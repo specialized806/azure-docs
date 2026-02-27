@@ -15,9 +15,7 @@ ms.custom: template-how-to
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-You can import OpenAI-compatible language model endpoints to your API Management instance as APIs. You can also import language models that aren't compatible with OpenAI as passthrough APIs, which forward requests directly to backend endpoints. For example, manage an LLM that you self-host or that's hosted on an inference provider other than Azure AI services. 
-
-Use AI gateway policies and other capabilities in API Management to simplify integration, improve observability, and enhance control over model endpoints.
+You can import OpenAI-compatible language model endpoints or non-compatible models as passthrough APIs to your API Management instance. For example, manage self-hosted LLMs or those hosted on inference providers other than Azure AI services. Use AI gateway policies and other API Management capabilities to simplify integration, improve observability, and enhance control over model endpoints.
 
 Learn more about managing AI APIs in API Management:
 
@@ -25,11 +23,11 @@ Learn more about managing AI APIs in API Management:
 
 ## Language model API types
 
-API Management supports two types of language model APIs for this scenario. Choose the option suitable for your model deployment. The option determines how clients call the API and how the API Management instance routes requests to the AI service.
+API Management supports two language model API types. Choose the option that matches your model deployment—it determines how clients call the API and how requests route to the AI service.
 
-* **OpenAI-compatible** - Language model endpoints that are compatible with OpenAI's API. Examples include certain models exposed by inference providers such as [Hugging Face Text Generation Inference (TGI)](https://huggingface.co/docs/text-generation-inference/en/index) and [Google Gemini API](openai-compatible-google-gemini-api.md).
+* **OpenAI-compatible** - Language model endpoints compatible with OpenAI's API. Examples include [Hugging Face Text Generation Inference (TGI)](https://huggingface.co/docs/text-generation-inference/en/index) and [Google Gemini API](openai-compatible-google-gemini-api.md).
 
-    API Management configures a chat completions endpoint for an OpenAI-compatible LLM. 
+    API Management configures a chat completions endpoint. 
 
 * **Passthrough** - Language model endpoints not compatible with OpenAI's API. Examples include models deployed in [Amazon Bedrock](amazon-bedrock-passthrough-llm-api.md) or other providers.
 
@@ -43,7 +41,7 @@ API Management supports two types of language model APIs for this scenario. Choo
 
 ## Import language model API by using the portal
 
-When you import the LLM API in the portal, API Management automatically configures:
+Importing the LLM API automatically configures:
 
 * A [backend](backends.md) resource and a [set-backend-service](set-backend-service-policy.md) policy that direct API requests to the LLM endpoint.
 * (optionally) Access to the LLM backend using an access key you provide. The key is protected as a secret [named value](api-management-howto-properties.md).
@@ -58,22 +56,22 @@ To import a language model API:
     :::image type="content" source="media/openai-compatible-llm-api/openai-api.png" alt-text="Screenshot of creating an OpenAI-compatible API in the portal." :::
 
 1. On the **Configure API** tab:
-    1. Enter a **Display name** and optional **Description**.
-    1. Enter the **URL** to the LLM API endpoint.
-    1. Optionally select one or more **Products** to associate with the API.  
-    1. In **Path**, append a path that your API Management instance uses to access the LLM API endpoints.
-    1. In **Type**, select either **Create OpenAI API** or **Create a passthrough API**. See [Language model API types](#language-model-api-types).
-    1. In **Access key**, enter the authorization header name and API key to access the LLM API, if required. 
+    1. Enter a **Display name** and **Description** (optional).
+    1. Enter the LLM API **URL**.
+    1. Select one or more **Products** to associate with the API (optional).  
+    1. In **Path**, append the path to access the LLM API.
+    1. Select either **Create OpenAI API** or **Create a passthrough API**. See [Language model API types](#language-model-api-types).
+    1. Enter the authorization header name and API key (if required). 
     1. Select **Next**.
 
     :::image type="content" source="media/openai-compatible-llm-api/configure-api.png" alt-text="Screenshot of language model API configuration in the portal.":::
 
-1. On the **Manage token consumption** tab, optionally enter settings or accept defaults for the following policies:
+1. On the **Manage token consumption** tab, enter settings or accept defaults for the following policies:
     * [Manage token consumption](llm-token-limit-policy.md)
     * [Track token usage](llm-emit-token-metric-policy.md) 
-1. On the **Apply semantic caching** tab, optionally enter settings or accept defaults for the policy to optimize performance and reduce latency:
+1. On the **Apply semantic caching** tab, enter settings or accept defaults for the policy to optimize performance and reduce latency:
     * [Enable semantic caching of responses](azure-openai-enable-semantic-caching.md)
-1. On the **AI content safety** tab, optionally enter settings or accept defaults to configure Azure AI Content Safety to block prompts with unsafe content:
+1. On the **AI content safety** tab, enter settings or accept defaults to configure Azure AI Content Safety to block unsafe content:
     * [Enforce content safety checks on LLM requests](llm-content-safety-policy.md)
 1. Select **Review**.
 1. After validation, select **Create**. 
@@ -82,12 +80,12 @@ API Management creates the API and configures operations for the LLM endpoints. 
 
 ## Test the LLM API
 
-To verify your LLM API works as expected, test it in the API Management test console. 
+Verify your LLM API in the API Management test console. 
 1. Select the API you created.
 1. Select the **Test** tab.
 1. Select an operation compatible with the model deployment.
-    The page displays fields for parameters and headers.
-1. Enter parameters and headers as needed. Depending on the operation, you might need to configure or update a **Request body**.
+    Fields for parameters and headers appear.
+1. Enter parameters and headers. Depending on the operation, configure or update a **Request body** as needed.
     > [!NOTE]
     > In the test console, API Management automatically adds an **Ocp-Apim-Subscription-Key** header and sets the subscription key for the built-in [all-access subscription](api-management-subscriptions.md#all-access-subscription). This key provides access to every API in the API Management instance. To display the **Ocp-Apim-Subscription-Key** header, select the "eye" icon next to **HTTP Request**.
 1. Select **Send**.
