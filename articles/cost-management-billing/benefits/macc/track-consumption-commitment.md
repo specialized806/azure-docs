@@ -49,7 +49,7 @@ Azure Consumption Commitment functionality in the Azure portal is available only
 
       :::image type="content" source="../../manage/media/track-consumption-commitment/select-macc-tab-ea.png" alt-text="Screenshot that shows selecting the Azure Consumption Commitment tab for an Enterprise Agreement." lightbox="../../manage/media/track-consumption-commitment/select-macc-tab-ea.png" :::
 
-5. The **Microsoft Azure Consumption Commitment (MACC)** tab has the following sections.
+The **Microsoft Azure Consumption Commitment (MACC)** tab has the following sections.
 
 #### Remaining commitment
 
@@ -90,7 +90,7 @@ The **Events** section displays events (invoiced spending) that decremented your
 | **Date** | Date when the event happened. |
 | **Description** | Description of the event. |
 | **Billing profile** | Billing profile for which the event happened. The billing profile applies only to Microsoft Customer Agreements. If you have an Enterprise Agreement enrollment, the billing profile doesn't appear. |
-| **MACC decrement** | Amount of Azure Consumption Commitment decremented from the event. |
+| **MACC decrement** | Amount of Azure Consumption Commitment decrement from the event. |
 | **Remaining commitment** | Remaining Azure Consumption Commitment after the event. |
 
 ### [REST API](#tab/rest)
@@ -324,7 +324,7 @@ Microsoft emails billing account admins to help you meet Azure Consumption Commi
 
 ### Azure Consumption Commitment expiry alerts
 
-If don't meet your Azure Consumption Commitment target, email notifications go to billing account admins at the following intervals before the Azure Consumption Commitment end date:
+If don't meet your Azure Consumption Commitment target, billing account admins get email notifications at the following intervals before the Azure Consumption Commitment end date:
 
 - 90 days before expiry
 - 60 days before expiry
@@ -332,7 +332,7 @@ If don't meet your Azure Consumption Commitment target, email notifications go t
 
 ### Milestone alerts
 
-If your Azure Consumption Commitment includes milestones, email alerts go to billing account admins at the following intervals before each milestone end date if you don't meet the milestone target:
+If your Azure Consumption Commitment includes milestones, billing account admins get email alerts at the following intervals before each milestone end date if you don't meet the milestone target:
 
 - 90 days before milestone end date
 - 60 days before milestone end date
