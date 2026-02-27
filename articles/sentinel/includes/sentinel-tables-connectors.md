@@ -2,7 +2,7 @@
 author: EdB-MSFT
 ms.author: edbaynash
 ms.topic: include
-ms.date: 02/09/2026    
+ms.date: 02/26/2026    
 # This file is auto-generated. Do not edit manually. Changes will be overwritten.
 ---
 
@@ -83,6 +83,7 @@ ms.date: 02/09/2026
 |BetterMTDDeviceLog_CL|[BETTER Mobile Threat Defense (MTD)](/azure/sentinel/data-connectors-reference#better-mobile-threat-defense-mtd)|No|No|
 |BetterMTDIncidentLog_CL|[BETTER Mobile Threat Defense (MTD)](/azure/sentinel/data-connectors-reference#better-mobile-threat-defense-mtd)|No|No|
 |BetterMTDNetflowLog_CL|[BETTER Mobile Threat Defense (MTD)](/azure/sentinel/data-connectors-reference#better-mobile-threat-defense-mtd)|No|No|
+|BigIDDSPMCatalog_CL|[BigID DSPM connector](/azure/sentinel/data-connectors-reference#bigid-dspm-connector)|Yes|Yes|
 |BitglassLogs_CL|[Bitglass (using Azure Functions)](/azure/sentinel/data-connectors-reference#bitglass-using-azure-functions)|No|No|
 |BitsightAlerts_data_CL|[Bitsight data connector (using Azure Functions)](/azure/sentinel/data-connectors-reference#bitsight-data-connector-using-azure-functions)|Yes|Yes|
 |BitsightBreaches_data_CL|[Bitsight data connector (using Azure Functions)](/azure/sentinel/data-connectors-reference#bitsight-data-connector-using-azure-functions)|Yes|Yes|
@@ -115,11 +116,12 @@ ms.date: 02/09/2026
 |Cisco_Umbrella_ravpnlogs_CL|[Cisco Cloud Security (using Azure Functions)](/azure/sentinel/data-connectors-reference#cisco-cloud-security-using-azure-functions)<br>[Cisco Cloud Security (using elastic premium plan) (using Azure Functions)](/azure/sentinel/data-connectors-reference#cisco-cloud-security-using-elastic-premium-plan-using-azure-functions)|No|No|
 |Cisco_Umbrella_ztaflow_CL|[Cisco Cloud Security (using Azure Functions)](/azure/sentinel/data-connectors-reference#cisco-cloud-security-using-azure-functions)<br>[Cisco Cloud Security (using elastic premium plan) (using Azure Functions)](/azure/sentinel/data-connectors-reference#cisco-cloud-security-using-elastic-premium-plan-using-azure-functions)|No|No|
 |Cisco_Umbrella_ztna_CL|[Cisco Cloud Security (using Azure Functions)](/azure/sentinel/data-connectors-reference#cisco-cloud-security-using-azure-functions)<br>[Cisco Cloud Security (using elastic premium plan) (using Azure Functions)](/azure/sentinel/data-connectors-reference#cisco-cloud-security-using-elastic-premium-plan-using-azure-functions)|No|No|
+|CiscoDuo_CL|[Cisco Duo Security (using Azure Functions)](/azure/sentinel/data-connectors-reference#cisco-duo-security-using-azure-functions)|No|No|
 |CiscoETD_CL|[Cisco ETD (using Azure Functions)](/azure/sentinel/data-connectors-reference#cisco-etd-using-azure-functions)|No|No|
 |CiscoSDWANNetflow_CL|[Cisco Software Defined WAN](/azure/sentinel/data-connectors-reference#cisco-software-defined-wan)|No|No|
 |CiscoSecureEndpointAuditLogsV2_CL|[Cisco Secure Endpoint (via Codeless Connector Framework)](/azure/sentinel/data-connectors-reference#cisco-secure-endpoint-via-codeless-connector-framework)|Yes|Yes|
 |CiscoSecureEndpointEventsV2_CL|[Cisco Secure Endpoint (via Codeless Connector Framework)](/azure/sentinel/data-connectors-reference#cisco-secure-endpoint-via-codeless-connector-framework)|Yes|Yes|
-|Cloud_Integrated_CL|[Mimecast Cloud Integrated](/azure/sentinel/data-connectors-reference#mimecast-cloud-integrated)|No|No|
+|Cloud_Integrated_CL|[Mimecast Cloud Integrated](/azure/sentinel/data-connectors-reference#mimecast-cloud-integrated)|Yes|Yes|
 |[CloudAppEvents](/azure/azure-monitor/reference/tables/CloudAppEvents)|[Microsoft Defender XDR](/azure/sentinel/data-connectors-reference#microsoft-defender-xdr)|Yes|Yes|
 |Cloudflare_CL|[Cloudflare (Preview) (using Azure Functions)](/azure/sentinel/data-connectors-reference#cloudflare-preview-using-azure-functions)|Yes|Yes|
 |CloudflareV2_CL|[Cloudflare (Using Blob Container) (via Codeless Connector Framework)](/azure/sentinel/data-connectors-reference#cloudflare-using-blob-container-via-codeless-connector-framework)|Yes|Yes|
@@ -238,7 +240,7 @@ ms.date: 02/09/2026
 |Failed_Range_To_Ingest_CL|[Infoblox Data Connector via REST API](/azure/sentinel/data-connectors-reference#infoblox-data-connector-via-rest-api)|No|No|
 |feedly_indicators_CL|[Feedly](/azure/sentinel/data-connectors-reference#feedly)|No|No|
 |FinanceOperationsActivity_CL|[Dynamics 365 Finance and Operations](/azure/sentinel/data-connectors-reference#dynamics-365-finance-and-operations)|Yes|Yes|
-|Firework_CL|[Flare](/azure/sentinel/data-connectors-reference#flare)|No|No|
+|FireworkV2_CL|[Flare Push Connector](/azure/sentinel/data-connectors-reference#flare-push-connector)|No|No|
 |fluentbit_CL|[Azure CloudNGFW By Palo Alto Networks](/azure/sentinel/data-connectors-reference#azure-cloudngfw-by-palo-alto-networks)|Yes|Yes|
 |FncEventsDetections_CL|[Fortinet FortiNDR Cloud](/azure/sentinel/data-connectors-reference#fortinet-fortindr-cloud)|No|No|
 |FncEventsObservation_CL|[Fortinet FortiNDR Cloud](/azure/sentinel/data-connectors-reference#fortinet-fortindr-cloud)|No|No|
@@ -302,11 +304,11 @@ ms.date: 02/09/2026
 |Lockdown_Data_CL|[Vectra XDR (using Azure Functions)](/azure/sentinel/data-connectors-reference#vectra-xdr-using-azure-functions)|Yes|Yes|
 |Lookout_CL|[[DEPRECATED] Lookout](/azure/sentinel/data-connectors-reference#deprecated-lookout)|No|No|
 |LookoutMtdV2_CL|[Lookout Mobile Threat Detection Connector (via Codeless Connector Framework) (Preview)](/azure/sentinel/data-connectors-reference#lookout-mobile-threat-detection-connector-via-codeless-connector-framework-preview)|Yes|Yes|
-|MailGuard365_Threats_CL|[MailGuard 365](/azure/sentinel/data-connectors-reference#mailguard-365)|No|No|
+|MailGuard365_Threats_CL|[MailGuard 365](/azure/sentinel/data-connectors-reference#mailguard-365)|Yes|Yes|
 |MailRiskEmails_CL|[MailRisk by Secure Practice (using Azure Functions)](/azure/sentinel/data-connectors-reference#mailrisk-by-secure-practice-using-azure-functions)|No|No|
 |MarkLogicAudit_CL|[Custom logs via AMA](/azure/sentinel/data-connectors-reference#custom-logs-via-ama)|No|No|
 |McasShadowItReporting​|[Microsoft Defender for Cloud Apps](/azure/sentinel/data-connectors-reference#microsoft-defender-for-cloud-apps)|No|No|
-|MDBALogTable_CL|[MongoDB Atlas Logs](/azure/sentinel/data-connectors-reference#mongodb-atlas-logs)|No|No|
+|MDBALogTable_CL|[MongoDB Atlas Logs](/azure/sentinel/data-connectors-reference#mongodb-atlas-logs)|Yes|Yes|
 |meraki_CL|[Custom logs via AMA](/azure/sentinel/data-connectors-reference#custom-logs-via-ama)|Yes|Yes|
 |MessageTrackingLog_CL|[Microsoft Exchange Message Tracking Logs](/azure/sentinel/data-connectors-reference#microsoft-exchange-message-tracking-logs)<br>[[Deprecated] Microsoft Exchange Logs and Events](/azure/sentinel/data-connectors-reference#deprecated-microsoft-exchange-logs-and-events)|Yes|Yes|
 |[MicrosoftPurviewInformationProtection](/azure/azure-monitor/reference/tables/MicrosoftPurviewInformationProtection)|[Microsoft Purview Information Protection](/azure/sentinel/data-connectors-reference#microsoft-purview-information-protection)|Yes|Yes|
@@ -434,7 +436,7 @@ ms.date: 02/09/2026
 |TheHive_CL|[TheHive Project - TheHive (using Azure Functions)](/azure/sentinel/data-connectors-reference#thehive-project---thehive-using-azure-functions)|No|No|
 |TheomAlerts_CL|[Theom](/azure/sentinel/data-connectors-reference#theom)|No|No|
 |[ThreatIntelIndicators](/azure/azure-monitor/reference/tables/ThreatIntelIndicators)|[CrowdStrike Falcon Adversary Intelligence  (using Azure Functions)](/azure/sentinel/data-connectors-reference#crowdstrike-falcon-adversary-intelligence--using-azure-functions)|Yes|No|
-|[ThreatIntelligenceIndicator](/azure/azure-monitor/reference/tables/ThreatIntelligenceIndicator)|[Datalake2Sentinel](/azure/sentinel/data-connectors-reference#datalake2sentinel)<br>[GreyNoise Threat Intelligence](/azure/sentinel/data-connectors-reference#greynoise-threat-intelligence)<br>[Luminar IOCs and Leaked Credentials (using Azure Functions)](/azure/sentinel/data-connectors-reference#luminar-iocs-and-leaked-credentials-using-azure-functions)<br>[MISP2Sentinel](/azure/sentinel/data-connectors-reference#misp2sentinel)<br>[Microsoft Defender Threat Intelligence](/azure/sentinel/data-connectors-reference#microsoft-defender-threat-intelligence)<br>[Mimecast Intelligence for Microsoft - Microsoft Sentinel (using Azure Functions)](/azure/sentinel/data-connectors-reference#mimecast-intelligence-for-microsoft---microsoft-sentinel-using-azure-functions)<br>[Premium Microsoft Defender Threat Intelligence](/azure/sentinel/data-connectors-reference#premium-microsoft-defender-threat-intelligence)<br>[Threat Intelligence Platforms](/azure/sentinel/data-connectors-reference#threat-intelligence-platforms)<br>[Threat Intelligence Upload API (Preview)](/azure/sentinel/data-connectors-reference#threat-intelligence-upload-api-preview)<br>[Threat intelligence - TAXII](/azure/sentinel/data-connectors-reference#threat-intelligence---taxii)<br>[VMRayThreatIntelligence (using Azure Functions)](/azure/sentinel/data-connectors-reference#vmraythreatintelligence-using-azure-functions)|Yes|No|
+|[ThreatIntelligenceIndicator](/azure/azure-monitor/reference/tables/ThreatIntelligenceIndicator)|[Datalake2Sentinel](/azure/sentinel/data-connectors-reference#datalake2sentinel)<br>[GreyNoise Threat Intelligence](/azure/sentinel/data-connectors-reference#greynoise-threat-intelligence)<br>[JoeSandboxThreatIntelligence (using Azure Functions)](/azure/sentinel/data-connectors-reference#joesandboxthreatintelligence-using-azure-functions)<br>[Luminar IOCs and Leaked Credentials (using Azure Functions)](/azure/sentinel/data-connectors-reference#luminar-iocs-and-leaked-credentials-using-azure-functions)<br>[MISP2Sentinel](/azure/sentinel/data-connectors-reference#misp2sentinel)<br>[Microsoft Defender Threat Intelligence](/azure/sentinel/data-connectors-reference#microsoft-defender-threat-intelligence)<br>[Mimecast Intelligence for Microsoft - Microsoft Sentinel (using Azure Functions)](/azure/sentinel/data-connectors-reference#mimecast-intelligence-for-microsoft---microsoft-sentinel-using-azure-functions)<br>[Premium Microsoft Defender Threat Intelligence](/azure/sentinel/data-connectors-reference#premium-microsoft-defender-threat-intelligence)<br>[Threat Intelligence Platforms](/azure/sentinel/data-connectors-reference#threat-intelligence-platforms)<br>[Threat Intelligence Upload API (Preview)](/azure/sentinel/data-connectors-reference#threat-intelligence-upload-api-preview)<br>[Threat intelligence - TAXII](/azure/sentinel/data-connectors-reference#threat-intelligence---taxii)<br>[VMRayThreatIntelligence (using Azure Functions)](/azure/sentinel/data-connectors-reference#vmraythreatintelligence-using-azure-functions)|Yes|No|
 |Tomcat_CL|[Custom logs via AMA](/azure/sentinel/data-connectors-reference#custom-logs-via-ama)|Yes|Yes|
 |TransmitSecurityActivity_CL|[Transmit Security Connector (using Azure Functions)](/azure/sentinel/data-connectors-reference#transmit-security-connector-using-azure-functions)|No|No|
 |TrendMicro_XDR_OAT_CL|[Trend Vision One (using Azure Functions)](/azure/sentinel/data-connectors-reference#trend-vision-one-using-azure-functions)|No|No|
