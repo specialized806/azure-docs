@@ -184,7 +184,7 @@ For more information on how to use icacls to set Windows ACLs and on the differe
 If you sign in to a domain-joined Windows client, you can use Windows File Explorer to grant full permission to all directories and files under the file share, including the root directory. Using File Explorer only works for hybrid identities; it doesn't work for cloud-only identities.
 
 > [!IMPORTANT]
-> Using Windows File Explorer doesn't work for cloud-only identities. If your client isn't domain joined, or if your environment has multiple Active Directory forests, don't use File Explorer to configure ACLs. [Use icacls](#configure-windows-acls-with-icacls) instead. This restriction exists because Windows File Explorer ACL configuration requires the client to be domain joined to the AD domain that the storage account is joined to.
+> Using Windows File Explorer doesn't work for cloud-only identities. If your client isn't domain joined, or if your environment has multiple Active Directory forests, don't use File Explorer to configure ACLs. [Use icacls](#configure-windows-acls-by-using-icacls) instead. This restriction exists because Windows File Explorer ACL configuration requires the client to be domain joined to the AD domain that the storage account is joined to.
 
 Follow these steps to configure ACLs by using Windows File Explorer.
 
