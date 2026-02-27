@@ -712,7 +712,12 @@
         },
         {
             "source_path_from_root": "/articles/azure-functions/durable/durable-functions-orchestration-versioning.md",
-            "redirect_url": "/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-versioning",
+            "redirect_url": "/azure/azure-functions/durable/durable-orchestration-versioning",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-versioning.md",
+            "redirect_url": "/azure/azure-functions/durable/durable-orchestration-versioning",
             "redirect_document_id": false
         }
     ]
