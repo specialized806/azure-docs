@@ -1067,7 +1067,7 @@ Over time, you might want to remove legacy code paths from your orchestrator fun
 - **Issue**: Orchestrations of a newer version are making very slow progress or are stuck
    - **Solution**: This problem can have different root causes:
      1. **Insufficient newer workers**: Make sure enough workers that contain an equal or higher version in `defaultVersion` are deployed and active.
-     2. **Orchestration routing interference from older workers**: Old workers can interfere with the orchestration routing mechanism, making it harder for new workers to pick up orchestrations. This interference can be especially noticeable with certain storage providers (Azure Storage or MSSQL). Normally, the Azure Functions platform makes sure that old workers are disposed of soon after a deployment, so any delay typically isn't significant. Consider using the [Durable Task Scheduler](durable-task-scheduler.md) for an improved routing mechanism.
+     2. **Orchestration routing interference from older workers**: Old workers can interfere with the orchestration routing mechanism, making it harder for new workers to pick up orchestrations. This interference can be especially noticeable with certain storage providers (Azure Storage or MSSQL). Normally, the Azure Functions platform makes sure that old workers are disposed of soon after a deployment, so any delay typically isn't significant. Consider using the [Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md) for an improved routing mechanism.
 
 ::: zone-end
 
