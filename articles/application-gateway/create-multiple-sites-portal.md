@@ -6,7 +6,7 @@ services: application-gateway
 author: mbender-ms
 ms.service: azure-application-gateway
 ms.topic: tutorial
-ms.date: 07/11/2025
+ms.date: 02/26/2026
 ms.author: mbender
 ms.custom: sfi-image-nochange
 #Customer intent: As an IT administrator, I want to use the Azure portal to set up an application gateway so I can host multiple sites.
@@ -21,7 +21,6 @@ In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Create an application gateway
-> * Deploy Azure Bastion
 > * Create virtual machines for backend servers
 > * Create backend pools with the backend servers
 > * Create listeners
@@ -159,35 +158,6 @@ To add backend targets, you'll:
 3. Select **+ Subnet** and in the **Add subnet** pane, enter *myBackendSubnet* for **Name** and accept *10.0.1.0/24* as the **Subnet address range**.
 4. Accept all other default settings and select **Save**.
 
-### Deploy Azure Bastion
-
-Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
-
->[!NOTE]
->[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
-
-1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
-
-1. Select **+ Create**.
-
-1. In the **Basics** tab of **Create a Bastion**, enter or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **myResourceGroupAG**. |
-    | **Instance details** |  |
-    | Name | Enter **bastion**. |
-    | Region | Select the same region you used previously. |
-    | Tier | Select **Developer**. |
-    | **Configure virtual networks** |  |
-    | Virtual network | Select **myVNet**. |
-
-1. Select **Review + create**.
-
-1. Select **Create**.
-
 ### Create a virtual machine
 
 1. On the Azure portal, select **Create a resource**. The **New** window appears.
@@ -207,6 +177,9 @@ Azure Bastion uses your browser to connect to VMs in your virtual network over s
 4. On the **Management** tab, set **Boot diagnostics** to **Disable**. Accept the other defaults and then select **Review + create**.
 5. On the **Review + create** tab, review the settings, correct any validation errors, and then select **Create**.
 6. Wait for the virtual machine creation to complete before continuing.
+
+> [!NOTE]
+> The default rules of the network security group block all inbound access from the internet, including RDP. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../bastion/quickstart-host-portal.md).
 
 ### Install IIS for testing
 
