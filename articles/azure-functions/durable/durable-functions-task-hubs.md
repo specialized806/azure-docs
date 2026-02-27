@@ -425,7 +425,7 @@ Use user-assigned managed identities when possible because they aren't tied to t
 
 # [Azure Resource Manager](#tab/arm)
 
-1. Create a role assignment for the managed identity using the ARM REST API.
+Create a role assignment for the managed identity using the ARM REST API.
 
     ```HTTP
     PUT https://management.azure.com/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP/providers/Microsoft.DurableTask/schedulers/SCHEDULER_NAME/providers/Microsoft.Authorization/roleAssignments/ROLE_ASSIGNMENT_ID?api-version=2022-04-01

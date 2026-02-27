@@ -127,7 +127,6 @@ A development team is testing simple orchestrations, each with three actions (us
 | Activity | Calculation | Result |
 | - | ----------- | ------ |
 | Monthly actions | 10,000 × 3 | 30,000 actions |
-| Cost | 30,000 × $0.003 | **$90/month** |
 
 ### Example 2
 
@@ -136,7 +135,6 @@ An e-commerce application experiences dynamic scaling during promotional sales e
 | Activity | Calculation | Result |
 | - | ----------- | ------ |
 | Monthly actions | 20,000 × 7 | 140,000 actions |
-| Cost | 140,000 × $0.003 | **$420/month** |
 
 ## Compute costs
 
