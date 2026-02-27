@@ -2,7 +2,7 @@
 title: Integrate your app with an Azure virtual network
 description: Integrate your app in Azure App Service with Azure virtual networks.
 author: seligj95
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 02/25/2026
 ms.update-cycle: 1095-days
 ms.author: jordanselig
