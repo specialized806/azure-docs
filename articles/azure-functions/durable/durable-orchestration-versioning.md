@@ -55,7 +55,7 @@ Orchestration versioning operates on these core principles:
 
 Before you use orchestration versioning, ensure you have the required package versions for your programming language.
 
-If you're using a non-.NET language (JavaScript, Python, PowerShell, or Java) with [extension bundles](../../extension-bundles.md), your function app must reference **Extension Bundle version 4.26.0 or later**. Configure the `extensionBundle` range in `host.json` so that the minimum version is at least `4.26.0`. For example:
+If you're using a non-.NET language (JavaScript, Python, PowerShell, or Java) with [extension bundles](../extension-bundles.md), your function app must reference **Extension Bundle version 4.26.0 or later**. Configure the `extensionBundle` range in `host.json` so that the minimum version is at least `4.26.0`. For example:
 
 ```json
 {
