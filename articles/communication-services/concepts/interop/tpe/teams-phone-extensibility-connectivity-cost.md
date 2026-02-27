@@ -61,7 +61,7 @@ Choosing the best PSTN connectivity solution for Teams Phone extensibility depen
 
 - The Teams Phone Extensibility business model for independent software vendors (ISVs) includes charging contact center as a service (CCaaS) vendors for using Azure Communication Services SDKs. This model includes Calling SDK and VoIP consumption, which require charges for each leg between the call automation bot and the CCaaS agent.
 
-- This solution also includes Audio Insights with access to mixed/unmixed audio streams or direct transcriptions. Using transcription incurs an [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) for the selected Azure resource and Call Recording with pay-as-you-go for mixed/unmixed AV recordings. You can review current pricing for VoIP, transcription, and recording at [Azure Communication Services pricing](https://azure.microsoft.com/pricing/details/communication-services/).
+- This solution also includes Audio Insights with access to mixed/unmixed audio streams or direct transcriptions. Using transcription incurs an [Azure Speech in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) for the selected Azure resource and Call Recording with pay-as-you-go for mixed/unmixed AV recordings. You can review current pricing for VoIP, transcription, and recording at [Azure Communication Services pricing](https://azure.microsoft.com/pricing/details/communication-services/).
 
 ## Teams licenses requirements
 
@@ -73,7 +73,7 @@ Teams licensing requirements vary based on the calling scenario when Teams Phone
 
 ### Outbound calling prerequisites
 
-Starting **November 1, 2025**, Calling Plan licenses assigned to Teams Resource Accounts will no longer support On-Behalf-Of PSTN outbound calls or server-initiated outbound calls. A **[Pay-As-You-Go Calling Plan](/microsoftteams/calling-plans-for-office-365#pay-as-you-go-calling-plan)** and Communication Credits are required for these scenarios, based on the billing agreements.
+Starting **November 1, 2025**, Calling Plan licenses assigned to Teams Resource Accounts will no longer support On-Behalf-Of PSTN outbound calls or server-initiated outbound calls. Customers now need a financing balance, which can be provided by a  **[Communications Credits](/microsoftteams/set-up-communications-credits-for-your-organization)** license for legacy customers or telco overage for MCA customers. To activate a Communications Credits license, a **[Pay-As-You-Go Calling Plan](/microsoftteams/calling-plans-for-office-365#pay-as-you-go-calling-plan)** license is required as a prerequisite, since the Communications Credits license is an add-on. While telco overage can be set up without a PAYG license initially, the PAYG license must be acquired and assigned to the Resource Account for proper functionality. Therefore, customers must ensure the RA has a PAYG license along with either a Communications Credits license or telco overage.
 
 > [!NOTE]
 > Direct Routing numbers aren’t affected by these licensing changes.
