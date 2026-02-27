@@ -1,86 +1,156 @@
 ---
 title: "Quickstart: Create an app with Durable Task SDKs and Durable Task Scheduler"
-description: Learn how to build a fan-out/fan-in orchestration using the Durable Task SDKs with the Durable Task Scheduler emulator.
+description: Learn how to configure an existing app for the Durable Task Scheduler using the Durable Task SDKs.
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 05/06/2025
 zone_pivot_groups: df-languages
+ms.custom:
+  - build-2025
 ---
 
 # Quickstart: Create an app with Durable Task SDKs and Durable Task Scheduler
 
-In this quickstart, you use the Durable Task SDKs to build and run a [fan-out/fan-in orchestration](../durable-functions-fan-in-fan-out.md) locally with the Durable Task Scheduler emulator. The fan-out/fan-in pattern processes multiple work items in parallel and aggregates the results.
+The Durable Task SDKs provide a lightweight client library for the Durable Task Scheduler. In this quickstart, you learn how to create orchestrations that use [the fan-out/fan-in application pattern](../durable-functions-fan-in-fan-out.md) to perform parallel processing. 
 
-::: zone pivot="csharp,python,java,javascript"
+::: zone pivot="javascript"
+
+[!INCLUDE [preview-sample-limitations](./includes/preview-sample-limitations.md)]
+
+::: zone-end
+
+::: zone pivot="powershell"
+
+[!INCLUDE [preview-sample-limitations](./includes/preview-sample-limitations.md)]
+
+::: zone-end
+
+::: zone pivot="csharp,python,java"
 
 > [!div class="checklist"]
 >
-> - Set up and run the Durable Task Scheduler emulator for local development.
+> - Set up and run the Durable Task Scheduler emulator for local development. 
 > - Run the worker and client projects.
-> - Review orchestration status and history in the Durable Task Scheduler dashboard.
+> - Review orchestration status and history via the Durable Task Scheduler dashboard.
 
 ## Prerequisites
 
-Before you begin:
+Before you begin: 
 
 ::: zone-end
 
 ::: zone pivot="csharp"
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later.
-- [Docker](https://www.docker.com/products/docker-desktop/) for running the emulator.
-- Clone the [Durable Task Scheduler samples repository](https://github.com/Azure-Samples/Durable-Task-Scheduler).
+- Make sure you have [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later.
+- Install [Docker](https://www.docker.com/products/docker-desktop/) for running the emulator.
+- Clone the [Durable Task Scheduler GitHub repository](https://github.com/Azure-Samples/Durable-Task-Scheduler) to use the quickstart sample.
 
 ::: zone-end
 
+
 ::: zone pivot="python"
 
-- [Python 3.9](https://www.python.org/downloads/) or later.
-- [Docker](https://www.docker.com/products/docker-desktop/) for running the emulator.
-- Clone the [Durable Task Scheduler samples repository](https://github.com/Azure-Samples/Durable-Task-Scheduler).
-
+- Make sure you have [Python 3.9+](https://www.python.org/downloads/) or later.
+- Install [Docker](https://www.docker.com/products/docker-desktop/) for running the emulator.
+- Clone the [Durable Task Scheduler GitHub repository](https://github.com/Azure-Samples/Durable-Task-Scheduler) to use the quickstart sample.
+    
 ::: zone-end
 
 ::: zone pivot="java"
 
-- [Java 21 SDK](https://www.java.com/en/download/) or later.
-- [Docker](https://www.docker.com/products/docker-desktop/) for running the emulator.
-- Clone the [Durable Task Scheduler samples repository](https://github.com/Azure-Samples/Durable-Task-Scheduler).
+- Make sure you have [Java 8 or 11](https://www.java.com/en/download/).
+- Install [Docker](https://www.docker.com/products/docker-desktop/) for running the emulator.
+- Clone the [Durable Task Scheduler GitHub repository](https://github.com/Azure-Samples/Durable-Task-Scheduler) to use the quickstart sample.
 
 ::: zone-end
 
-::: zone pivot="javascript"
-
-- [Node.js 22](https://nodejs.org/) or later.
-- [Docker](https://www.docker.com/products/docker-desktop/) for running the emulator.
-- Clone the [Durable Task Scheduler samples repository](https://github.com/Azure-Samples/Durable-Task-Scheduler).
-
-::: zone-end
-
-::: zone pivot="csharp,python,java,javascript"
+::: zone pivot="csharp,python,java"
 
 ## Set up the Durable Task Scheduler emulator
 
-The emulator simulates a scheduler and task hub in a Docker container. If no deployed scheduler is found, the sample code automatically falls back to the emulator.
+The application code looks for a deployed scheduler and task hub resource. If none is found, the code falls back to the emulator. The emulator simulates a scheduler and task hub in a Docker container, making it ideal for the local development required in this quickstart.
+
+::: zone-end
+
+::: zone pivot="csharp"
+
+1. From the `Azure-Samples/Durable-Task-Scheduler` root directory, navigate to the .NET SDK sample directory. 
+    
+     ```bash
+     cd samples/durable-task-sdks/dotnet/FanOutFanIn
+     ```
 
 1. Pull the Docker image for the emulator.
-
+    
      ```bash
      docker pull mcr.microsoft.com/dts/dts-emulator:latest
      ```
 
-1. Run the emulator. The container might take a few seconds to be ready.
+1. Run the emulator. The container may take a few seconds to be ready.
 
      ```bash
      docker run --name dtsemulator -d -p 8080:8080 -p 8082:8082 mcr.microsoft.com/dts/dts-emulator:latest
      ```
 
-The sample code uses the default emulator settings, so you don't need to set any environment variables:
-
+Since the example code automatically uses the default emulator settings, you don't need to set any environment variables. The default emulator settings for this quickstart are:
 - Endpoint: `http://localhost:8080`
 - Task hub: `default`
 
-> [!TIP]
-> The emulator is for local development and testing only. When you're ready to run in Azure, [create a Durable Task Scheduler and task hub resource in Azure](./develop-with-durable-task-scheduler.md).
+::: zone-end
+
+
+::: zone pivot="python"
+
+1. From the `Azure-Samples/Durable-Task-Scheduler` root directory, navigate to the Python SDK sample directory. 
+
+     ```bash
+     cd samples/durable-task-sdks/python/fan-out-fan-in
+     ```
+
+1. Pull the Docker image for the emulator.
+    
+     ```bash
+     docker pull mcr.microsoft.com/dts/dts-emulator:latest
+     ```
+
+1. Run the emulator. The container may take a few seconds to be ready.
+    
+     ```bash
+     docker run --name dtsemulator -d -p 8080:8080 -p 8082:8082 mcr.microsoft.com/dts/dts-emulator:latest
+     ```
+
+Since the example code automatically uses the default emulator settings, you don't need to set any environment variables. The default emulator settings for this quickstart are:
+- Endpoint: `http://localhost:8080`
+- Task hub: `default`
+
+::: zone-end
+
+::: zone pivot="java"
+
+1. From the `Azure-Samples/Durable-Task-Scheduler` root directory, navigate to the Java SDK sample directory. 
+
+     ```bash
+     cd samples/durable-task-sdks/java/fan-out-fan-in
+     ```
+
+1. Pull the Docker image for the emulator.
+    
+     ```bash
+     docker pull mcr.microsoft.com/dts/dts-emulator:latest
+     ```
+
+1. Run the emulator. The container may take a few seconds to be ready.
+    
+     ```bash
+     docker run --name dtsemulator -d -p 8080:8080 -p 8082:8082 mcr.microsoft.com/dts/dts-emulator:latest
+     ```
+
+Since the example code automatically uses the default emulator settings, you don't need to set any environment variables. The default emulator settings for this quickstart are:
+- Endpoint: `http://localhost:8080`
+- Task hub: `default`
+
+::: zone-end
+
+::: zone pivot="csharp,python,java"
 
 ## Run the quickstart
 
@@ -88,31 +158,43 @@ The sample code uses the default emulator settings, so you don't need to set any
 
 ::: zone pivot="csharp"
 
-1. From the repository root, navigate to the sample directory.
-
-     ```bash
-     cd samples/durable-task-sdks/dotnet/FanOutFanIn
-     ```
-
-1. Start the worker.
-
+1. From the `FanOutFanIn` directory, navigate to the `Worker` directory to build and run the worker. 
+    
      ```bash
      cd Worker
+     dotnet build
      dotnet run
      ```
 
-1. In a separate terminal, from the `FanOutFanIn` directory, run the client.
-
+1. In a separate terminal, from the `FanOutFanIn` directory, navigate to the `Client` directory to build and run the client.
+     
      ```bash
      cd Client
+     dotnet build
      dotnet run
      ```
 
 ### Understanding the output
 
-The worker output shows registration of the orchestrator and activities, log entries for each activity call, parallel processing of work items, and the final aggregation.
+When you run this sample, you receive output from both the worker and client processes. [Unpack what happened in the code when you ran the project.](#understanding-the-code-structure)
 
-The client output shows the orchestration starting with a list of work items, the unique orchestration instance ID, and the final aggregated results with a total count of processed items.
+#### Worker output
+
+The worker output shows:
+
+- Registration of the orchestrator and activities
+- Log entries when each activity is called
+- Parallel processing of multiple work items
+- Final aggregation of results
+
+#### Client output
+
+The client output shows: 
+
+- The orchestration starting with a list of work items
+- The unique orchestration instance ID
+- The final aggregated results, showing each work item and its corresponding result
+- Total count of processed items
 
 #### Example output
 
@@ -131,88 +213,130 @@ Work item: Task3, Result: 5
 Work item: LongerTask4, Result: 11
 Work item: VeryLongTask5, Result: 13
 Total items processed: 5
-```
+```     
 
 ::: zone-end
 
 ::: zone pivot="python"
 
-1. From the repository root, navigate to the sample directory.
 
-     ```bash
-     cd samples/durable-task-sdks/python/fan-out-fan-in
-     ```
-
-1. Create and activate a Python virtual environment.
-
-      # [Linux/macOS](#tab/linux)
-
-      ```bash
-      python -m venv venv
-      source ./venv/bin/activate
-      ```
+1. Activate a Python virtual environment.
 
       # [Windows](#tab/windows)
 
       ```bash
       python -m venv venv
-      venv\Scripts\activate
-      ```
+      /venv/Scripts/activate
+      ```      
+
+      # [Linux](#tab/linux)
+
+      ```bash
+      python -m venv venv
+      source ./venv/bin/activate
+      ```      
 
       ---
 
-1. Install the required packages.
-
+1. Install the required packages. 
+     
      ```bash
      pip install -r requirements.txt
      ```
 
-1. Start the worker.
-
+1. Start the worker. 
+     
      ```bash
      python worker.py
      ```
 
+     **Expected output**
+
+     You can see output indicating that the worker started and is waiting for work items.
+
+     ```
+     Starting Fan Out/Fan In pattern worker...
+     Using taskhub: default
+     Using endpoint: http://localhost:8080
+     Starting gRPC worker that connects to http://localhost:8080
+     Successfully connected to http://localhost:8080. Waiting for work items...
+     ```
+     
 1. In a new terminal, activate the virtual environment and run the client.
-
-      # [Linux/macOS](#tab/linux)
-
-      ```bash
-      source ./venv/bin/activate
-      python client.py
-      ```
 
       # [Windows](#tab/windows)
 
       ```bash
-      venv\Scripts\activate
+      venv/Scripts/activate
       python client.py
-      ```
+      ```      
+
+      # [Linux](#tab/linux)
+
+      ```bash
+      source ./venv/bin/activate
+      python client.py
+      ```      
 
       ---
 
-     You can optionally specify the number of work items. The default is 10.
+     You can provide the number of work items as an argument. If no argument is provided, the example runs 10 items by default.
 
      ```bash
-     python client.py 15
+     python client.py [number_of_items]
      ```
 
 ### Understanding the output
 
-The worker output shows parallel processing of each work item with random delays (between 0.5 and 2 seconds) and the final aggregation of results.
+When you run this sample, you receive output from both the worker and client processes. [Unpack what happened in the code when you ran the project.](#understanding-the-code-structure)
 
-The client output shows the orchestration starting with the specified number of work items, the unique orchestration instance ID, and the aggregated result, including total items, sum, and average.
+#### Worker output
+
+The worker output shows:
+
+- Registration of the orchestrator and activities.
+- Status messages when processing each work item in parallel, showing that they're executing concurrently.
+- Random delays for each work item (between 0.5 and 2 seconds) to simulate varying processing times.
+- A final message showing the aggregation of results.
+
+#### Client output
+
+The client output shows: 
+
+- The orchestration starting with the specified number of work items.
+- The unique orchestration instance ID.
+- The final aggregated result, which includes:
+   - The total number of items processed
+   - The sum of all results (each item result is the square of its value)
+   - The average of all results
 
 #### Example output
 
 ```
 Starting fan out/fan in orchestration with 10 items
 Waiting for 10 parallel tasks to complete
+Orchestrator yielded with 10 task(s) and 0 event(s) outstanding.
 Processing work item: 1
 Processing work item: 2
+Processing work item: 10
+Processing work item: 9
+Processing work item: 8
+Processing work item: 7
+Processing work item: 6
+Processing work item: 5
+Processing work item: 4
 Processing work item: 3
-...
+Orchestrator yielded with 9 task(s) and 0 event(s) outstanding.
+Orchestrator yielded with 8 task(s) and 0 event(s) outstanding.
+Orchestrator yielded with 7 task(s) and 0 event(s) outstanding.
+Orchestrator yielded with 6 task(s) and 0 event(s) outstanding.
+Orchestrator yielded with 5 task(s) and 0 event(s) outstanding.
+Orchestrator yielded with 4 task(s) and 0 event(s) outstanding.
+Orchestrator yielded with 3 task(s) and 0 event(s) outstanding.
+Orchestrator yielded with 2 task(s) and 0 event(s) outstanding.
+Orchestrator yielded with 1 task(s) and 0 event(s) outstanding.
 All parallel tasks completed, aggregating results
+Orchestrator yielded with 1 task(s) and 0 event(s) outstanding.
 Aggregating results from 10 items
 Orchestration completed with status: COMPLETED
 ```
@@ -221,86 +345,51 @@ Orchestration completed with status: COMPLETED
 
 ::: zone pivot="java"
 
-1. From the repository root, navigate to the sample directory.
+From the `fan-out-fan-in` directory, build and run the application using Gradle.
 
-     ```bash
-     cd samples/durable-task-sdks/java/fan-out-fan-in
-     ```
+```bash
+./gradlew runFanOutFanInPattern
+```
 
-1. Build and run the application using Gradle. The Java sample runs the worker and client in a single process.
-
-     ```bash
-     ./gradlew runFanOutFanInPattern
-     ```
-
-     > [!TIP]
-     > If you get the error `zsh: permission denied: ./gradlew`, run `chmod +x gradlew` first.
+> [!TIP]
+> If you receive the error message `zsh: permission denied: ./gradlew`, try running `chmod +x gradlew` before running the application. 
 
 ### Understanding the output
 
-The output shows the worker connecting, scheduling the orchestration, processing each word count activity in parallel, and returning the final aggregated word count.
+When you run this sample, you receive output that shows: 
+
+- Registration of the orchestrator and activities.
+- Status messages when processing each work item in parallel, showing that they're executing concurrently.
+- Random delays for each work item (between 0.5 and 2 seconds) to simulate varying processing times.
+- A final message showing the aggregation of results.
+
+[Unpack what happened in the code when you ran the project.](#understanding-the-code-structure)
 
 #### Example output
 
 ```
+Starting a Gradle Daemon (subsequent builds will be faster)
+
 > Task :runFanOutFanInPattern
 Durable Task worker is connecting to sidecar at localhost:8080.
 Started new orchestration instance
-Orchestration completed: [Name: 'FanOutFanIn_WordCount', ID: '<instance-id>', RuntimeStatus: COMPLETED, CreatedAt: 2025-04-25T15:24:47.170Z, LastUpdatedAt: 2025-04-25T15:24:47.287Z, Input: '["Hello, world!","The quick brown fox jumps over t...', Output: '60']
+Orchestration completed: [Name: 'FanOutFanIn_WordCount', ID: '<id-number>', RuntimeStatus: COMPLETED, CreatedAt: 2025-04-25T15:24:47.170Z, LastUpdatedAt: 2025-04-25T15:24:47.287Z, Input: '["Hello, world!","The quick brown fox jumps over t...', Output: '60']
 Output: 60
 ```
 
 ::: zone-end
 
-::: zone pivot="javascript"
+::: zone pivot="csharp,python,java"
 
-1. From the repository root, navigate to the sample directory.
-
-     ```bash
-     cd samples/durable-task-sdks/javascript/fan-out-fan-in
-     ```
-
-1. Install dependencies.
-
-     ```bash
-     npm install
-     ```
-
-1. Start the worker.
-
-     ```bash
-     npm run worker
-     ```
-
-1. In a separate terminal, from the same directory, run the client.
-
-     ```bash
-     npm run client
-     ```
-
-     You can optionally specify the number of work items. The default is 10.
-
-     ```bash
-     npm run client -- 15
-     ```
-
-### Understanding the output
-
-The worker output shows parallel execution of `processWorkItem` activities and aggregation through `aggregateResults`.
-
-The client output shows the scheduled orchestration instance ID, the final runtime status, and the aggregated output JSON that contains total items, sum, average, and per-item results.
-
-::: zone-end
-
-::: zone pivot="csharp,python,java,javascript"
+Now that you ran the project locally, you can now learn how to [deploy to Azure hosted in Azure Container Apps](#next-steps). 
 
 ## View orchestration status and history
 
-View the orchestration status and history through the [Durable Task Scheduler dashboard](./durable-task-scheduler-dashboard.md). The emulator runs the dashboard on port 8082.
+You can view the orchestration status and history via the [Durable Task Scheduler dashboard](./durable-task-scheduler-dashboard.md). By default, the dashboard runs on port 8082. 
 
-1. Go to `http://localhost:8082` in your web browser.
-1. Select the **default** task hub. The orchestration instance you created is in the list.
-1. Select the orchestration instance ID to view execution details, including:
+1. Navigate to http://localhost:8082 in your web browser.
+1. Click the **default** task hub. The orchestration instance you created is in the list.
+1. Click the orchestration instance ID to view the execution details, which include:
    - The parallel execution of multiple activity tasks
    - The fan-in aggregation step
    - The input and output at each step
@@ -326,45 +415,83 @@ View the orchestration status and history through the [Durable Task Scheduler da
 
 ::: zone-end
 
-::: zone pivot="csharp,python,java,javascript"
+::: zone pivot="csharp,python,java"
 
-## Understand the code structure
+## Understanding the code structure
 
 ::: zone-end
 
 ::: zone pivot="csharp"
 
-Each sample has a **worker** (hosts the orchestration and activity logic) and a **client** (schedules and monitors orchestration instances).
+### The worker project
 
-### Worker
+To demonstrate [the fan-out/fan-in pattern](../durable-functions-fan-in-fan-out.md), the worker project orchestration creates parallel activity tasks and waits for all to complete. The orchestrator:
 
-The worker registers an orchestration and two activities, then connects to the scheduler. The orchestration uses the fan-out/fan-in pattern to create a parallel task for each work item, wait for all tasks to complete, and then aggregate the results.
+1. Takes a list of work items as input.
+1. Fans out by creating a separate task for each work item using `ProcessWorkItemActivity`.
+1. Executes all tasks in parallel.
+1. Waits for all tasks to complete using `Task.WhenAll`.
+1. Fans in by aggregating all individual results using `AggregateResultsActivity`.
+1. Returns the final aggregated result to the client.
+
+The worker project contains:
+
+- **ParallelProcessingOrchestration.cs**: Defines the orchestrator and activity functions in a single file.
+- **Program.cs**: Sets up the worker host with proper connection string handling.
+
+#### `ParallelProcessingOrchestration.cs`
+
+Using fan-out/fan-in, the orchestration creates parallel activity tasks and waits for all to complete. 
 
 ```csharp
-public override async Task<Dictionary<string, int>> RunAsync(
-    TaskOrchestrationContext context, List<string> workItems)
+public override async Task<Dictionary<string, int>> RunAsync(TaskOrchestrationContext context, List<string> workItems)
 {
-    // Fan out: create a task for each work item
-    var processingTasks = new List<Task<Dictionary<string, int>>>();
+    // Step 1: Fan-out by creating a task for each work item in parallel
+    List<Task<Dictionary<string, int>>> processingTasks = new List<Task<Dictionary<string, int>>>();
+    
     foreach (string workItem in workItems)
     {
-        processingTasks.Add(
-            context.CallActivityAsync<Dictionary<string, int>>(
-                nameof(ProcessWorkItemActivity), workItem));
+        // Create a task for each work item (fan-out)
+        Task<Dictionary<string, int>> task = context.CallActivityAsync<Dictionary<string, int>>(
+            nameof(ProcessWorkItemActivity), workItem);
+        processingTasks.Add(task);
     }
-
-    // Wait for all parallel tasks to complete
+    
+    // Step 2: Wait for all parallel tasks to complete
     Dictionary<string, int>[] results = await Task.WhenAll(processingTasks);
-
-    // Fan in: aggregate all results
-    return await context.CallActivityAsync<Dictionary<string, int>>(
+    
+    // Step 3: Fan-in by aggregating all results
+    Dictionary<string, int> aggregatedResults = await context.CallActivityAsync<Dictionary<string, int>>(
         nameof(AggregateResultsActivity), results);
+    
+    return aggregatedResults;
 }
 ```
 
-The worker uses `Microsoft.Extensions.Hosting` to register the orchestration and activities and connect to the scheduler.
+Each activity is implemented as a separate class decorated with the `[DurableTask]` attribute.
 
 ```csharp
+[DurableTask]
+public class ProcessWorkItemActivity : TaskActivity<string, Dictionary<string, int>>
+{
+    // Implementation processes a single work item
+}
+
+[DurableTask]
+public class AggregateResultsActivity : TaskActivity<Dictionary<string, int>[], Dictionary<string, int>>
+{
+    // Implementation aggregates individual results
+}
+```
+
+#### `Program.cs`
+
+The worker uses `Microsoft.Extensions.Hosting` for proper lifecycle management.
+
+```csharp
+using Microsoft.Extensions.Hosting;
+//..
+
 builder.Services.AddDurableTaskWorker()
     .AddTasks(registry =>
     {
@@ -375,93 +502,132 @@ builder.Services.AddDurableTaskWorker()
     .UseDurableTaskScheduler(connectionString);
 ```
 
-### Client
+### The client project
 
-The client schedules an orchestration instance with a list of work items and waits for the result.
+The client project:
+
+- Uses the same connection string logic as the worker.
+- Creates a list of work items to be processed in parallel.
+- Schedules an orchestration instance with the list as input.
+- Waits for the orchestration to complete and displays the aggregated results.
+- Uses `WaitForInstanceCompletionAsync` for efficient polling.
 
 ```csharp
-List<string> workItems = new() { "Task1", "Task2", "Task3", "LongerTask4", "VeryLongTask5" };
+List<string> workItems = new List<string>
+{
+    "Task1",
+    "Task2",
+    "Task3",
+    "LongerTask4",
+    "VeryLongTask5"
+};
 
+// Schedule the orchestration with the work items
 string instanceId = await client.ScheduleNewOrchestrationInstanceAsync(
-    "ParallelProcessingOrchestration", workItems);
+    "ParallelProcessingOrchestration", 
+    workItems);
 
-OrchestrationMetadata instance = await client.WaitForInstanceCompletionAsync(
-    instanceId, getInputsAndOutputs: true, cts.Token);
+// Wait for completion
+var instance = await client.WaitForInstanceCompletionAsync(
+    instanceId,
+    getInputsAndOutputs: true,
+    cts.Token);
 ```
 
 ::: zone-end
 
 ::: zone pivot="python"
 
-Each sample has a **worker** (hosts the orchestration and activity logic) and a **client** (schedules and monitors orchestration instances).
+### `worker.py`
 
-### Worker
+To demonstrate [the fan-out/fan-in pattern](../durable-functions-fan-in-fan-out.md), the worker project orchestration creates parallel activity tasks and waits for all to complete. The orchestrator:
 
-The worker registers an orchestration and two activities, then connects to the scheduler. The orchestrator fans out by creating a parallel task for each work item, waits for all tasks to complete, and then fans in by aggregating the results.
+1. Receives a list of work items as input.
+1. It "fans out" by creating parallel tasks for each work item (calling `process_work_item` for each one).
+1. It waits for all tasks to complete using `task.when_all`.
+1. It then "fans in" by aggregating the results with the `aggregate_results` activity.
+1. The final aggregated result is returned to the client.
 
-```python
+Using fan-out/fan-in, the orchestration creates parallel activity tasks and waits for all to complete. 
+
+```csharp
+# Orchestrator function
 def fan_out_fan_in_orchestrator(ctx, work_items: list) -> dict:
-    # Fan out: create a task for each work item
+    logger.info(f"Starting fan out/fan in orchestration with {len(work_items)} items")
+    
+    # Fan out: Create a task for each work item
     parallel_tasks = []
     for item in work_items:
         parallel_tasks.append(ctx.call_activity("process_work_item", input=item))
-
+    
     # Wait for all tasks to complete
+    logger.info(f"Waiting for {len(parallel_tasks)} parallel tasks to complete")
     results = yield task.when_all(parallel_tasks)
-
-    # Fan in: aggregate all the results
+    
+    # Fan in: Aggregate all the results
+    logger.info("All parallel tasks completed, aggregating results")
     final_result = yield ctx.call_activity("aggregate_results", input=results)
+    
     return final_result
 ```
 
-The worker connects to the scheduler using `DurableTaskSchedulerWorker`.
+### `client.py`
+
+The client project:
+
+- Uses the same connection string logic as the worker.
+- Creates a list of work items to be processed in parallel.
+- Schedules an orchestration instance with the list as input.
+- Waits for the orchestration to complete and displays the aggregated results.
+- Uses `wait_for_orchestration_completion` for efficient polling.
 
 ```python
-from durabletask.azuremanaged.worker import DurableTaskSchedulerWorker
+# Generate work items (default 10 items if not specified)
+count = int(sys.argv[1]) if len(sys.argv) > 1 else 10
+work_items = list(range(1, count + 1))
 
-with DurableTaskSchedulerWorker(
-    host_address=endpoint,
-    secure_channel=endpoint != "http://localhost:8080",
-    taskhub=taskhub_name,
-    token_credential=credential
-) as worker:
-    worker.add_activity(process_work_item)
-    worker.add_activity(aggregate_results)
-    worker.add_orchestrator(fan_out_fan_in_orchestrator)
-    worker.start()
-```
+logger.info(f"Starting new fan out/fan in orchestration with {count} work items")
 
-### Client
-
-The client schedules an orchestration instance with a list of work items and waits for the result.
-
-```python
-from durabletask.azuremanaged.client import DurableTaskSchedulerClient
-
-client = DurableTaskSchedulerClient(
-    host_address=endpoint,
-    secure_channel=endpoint != "http://localhost:8080",
-    taskhub=taskhub_name,
-    token_credential=credential
-)
-
+# Schedule a new orchestration instance
 instance_id = client.schedule_new_orchestration(
-    "fan_out_fan_in_orchestrator", input=work_items)
-
-result = client.wait_for_orchestration_completion(instance_id, timeout=60)
+    "fan_out_fan_in_orchestrator", 
+    input=work_items
+)
+    
+logger.info(f"Started orchestration with ID = {instance_id}")
+    
+# Wait for orchestration to complete
+logger.info("Waiting for orchestration to complete...")
+result = client.wait_for_orchestration_completion(
+    instance_id,
+    timeout=60
+)
 ```
-
+    
 ::: zone-end
 
 ::: zone pivot="java"
 
-The Java sample runs the worker and client in a single process. The orchestrator fans out by scheduling a `CountWords` activity for each input string, waits for all tasks to complete, and then sums the results.
+To demonstrate [the fan-out/fan-in pattern](../durable-functions-fan-in-fan-out.md), the `FanOutFanInPattern` project orchestration creates parallel activity tasks and waits for all to complete. The orchestrator:
+
+1. Takes a list of work items as input.
+1. Fans out by creating a separate task for each work item using ``.
+1. Executes all tasks in parallel.
+1. Waits for all tasks to complete using ``.
+1. Fans in by aggregating all individual results using ``.
+1. Returns the final aggregated result to the client.
+
+The project contains:
+
+- **`DurableTaskSchedulerWorkerExtensions` worker**: Defines the orchestrator and activity functions.
+- **`DurableTaskSchedulerClientExtension` client**: Sets up the worker host with proper connection string handling.
 
 ### Worker
 
+Using fan-out/fan-in, the orchestration creates parallel activity tasks and waits for all to complete. 
+
 ```java
-DurableTaskGrpcWorker worker = DurableTaskSchedulerWorkerExtensions
-    .createWorkerBuilder(connectionString)
+DurableTaskGrpcWorker worker = DurableTaskSchedulerWorkerExtensions.createWorkerBuilder(connectionString)
     .addOrchestration(new TaskOrchestrationFactory() {
         @Override
         public String getName() { return "FanOutFanIn_WordCount"; }
@@ -471,12 +637,10 @@ DurableTaskGrpcWorker worker = DurableTaskSchedulerWorkerExtensions
             return ctx -> {
                 List<?> inputs = ctx.getInput(List.class);
                 List<Task<Integer>> tasks = inputs.stream()
-                    .map(input -> ctx.callActivity(
-                        "CountWords", input.toString(), Integer.class))
-                    .collect(Collectors.toList());
-                List<Integer> results = ctx.allOf(tasks).await();
-                int totalWordCount = results.stream()
-                    .mapToInt(Integer::intValue).sum();
+                        .map(input -> ctx.callActivity("CountWords", input.toString(), Integer.class))
+                        .collect(Collectors.toList());
+                List<Integer> allWordCountResults = ctx.allOf(tasks).await();
+                int totalWordCount = allWordCountResults.stream().mapToInt(Integer::intValue).sum();
                 ctx.complete(totalWordCount);
             };
         }
@@ -489,102 +653,58 @@ DurableTaskGrpcWorker worker = DurableTaskSchedulerWorkerExtensions
         public TaskActivity create() {
             return ctx -> {
                 String input = ctx.getInput(String.class);
-                return new StringTokenizer(input).countTokens();
+                StringTokenizer tokenizer = new StringTokenizer(input);
+                return tokenizer.countTokens();
             };
         }
     })
     .build();
 
+// Start the worker
 worker.start();
 ```
 
 ### Client
 
+The client project:
+
+- Uses the same connection string logic as the worker.
+- Creates a list of work items to be processed in parallel.
+- Schedules an orchestration instance with the list as input.
+- Waits for the orchestration to complete and displays the aggregated results.
+- Uses `waitForInstanceCompletion` for efficient polling.
+
 ```java
-DurableTaskClient client = DurableTaskSchedulerClientExtensions
-    .createClientBuilder(connectionString).build();
+DurableTaskClient client = DurableTaskSchedulerClientExtensions.createClientBuilder(connectionString).build();
 
+// The input is an arbitrary list of strings.
 List<String> listOfStrings = Arrays.asList(
-    "Hello, world!",
-    "The quick brown fox jumps over the lazy dog.",
-    "If a tree falls in the forest and there is no one there to hear it, does it make a sound?",
-    "The greatest glory in living lies not in never falling, but in rising every time we fall.",
-    "Always remember that you are absolutely unique. Just like everyone else.");
+        "Hello, world!",
+        "The quick brown fox jumps over the lazy dog.",
+        "If a tree falls in the forest and there is no one there to hear it, does it make a sound?",
+        "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+        "Always remember that you are absolutely unique. Just like everyone else.");
 
+// Schedule an orchestration which will reliably count the number of words in all the given sentences.
 String instanceId = client.scheduleNewOrchestrationInstance(
-    "FanOutFanIn_WordCount",
-    new NewOrchestrationInstanceOptions().setInput(listOfStrings));
+        "FanOutFanIn_WordCount",
+        new NewOrchestrationInstanceOptions().setInput(listOfStrings));
+logger.info("Started new orchestration instance: {}", instanceId);
 
+// Block until the orchestration completes. Then print the final status, which includes the output.
 OrchestrationMetadata completedInstance = client.waitForInstanceCompletion(
-    instanceId, Duration.ofSeconds(30), true);
+        instanceId,
+        Duration.ofSeconds(30),
+        true);
+logger.info("Orchestration completed: {}", completedInstance);
+logger.info("Output: {}", completedInstance.readOutputAs(int.class));
 ```
 
 ::: zone-end
-
-::: zone pivot="javascript"
-
-Each sample has a **worker** (hosts the orchestration and activity logic) and a **client** (schedules and monitors orchestration instances).
-
-### Worker
-
-The worker registers an orchestration and two activities, then connects to the scheduler. The orchestrator fans out by scheduling `processWorkItem` for each input, waits for all tasks to complete using `whenAll`, and then calls `aggregateResults` to produce the final output.
-
-```javascript
-import { whenAll } from "@microsoft/durabletask-js";
-import { createAzureManagedWorkerBuilder } from "@microsoft/durabletask-js-azuremanaged";
-
-const processWorkItem = async (_ctx, workItem) => {
-  const item = Number(workItem);
-  const delayMs = 500 + Math.floor(Math.random() * 1500);
-  await new Promise((resolve) => setTimeout(resolve, delayMs));
-  return { item, result: item * item };
-};
-
-const aggregateResults = async (_ctx, results) => {
-  const sum = results.reduce((acc, cur) => acc + cur.result, 0);
-  return { totalItems: results.length, sum, average: sum / results.length, results };
-};
-
-const fanOutFanInOrchestrator = async function* (ctx, workItems) {
-  const tasks = workItems.map((item) => ctx.callActivity(processWorkItem, item));
-  const processedResults = yield whenAll(tasks);
-  return yield ctx.callActivity(aggregateResults, processedResults);
-};
-
-const worker = createAzureManagedWorkerBuilder(connectionString)
-  .addOrchestrator(fanOutFanInOrchestrator)
-  .addActivity(processWorkItem)
-  .addActivity(aggregateResults)
-  .build();
-
-await worker.start();
-```
-
-### Client
-
-The client schedules an orchestration instance with a list of work items and waits for the result.
-
-```javascript
-import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
-
-const client = createAzureManagedClient(connectionString);
-
-const workItems = Array.from({ length: 10 }, (_, i) => i + 1);
-const instanceId = await client.scheduleNewOrchestration(
-  "fanOutFanInOrchestrator", workItems);
-
-const state = await client.waitForOrchestrationCompletion(instanceId, true, 120);
-```
-
-::: zone-end
-
-::: zone pivot="csharp,python,java,javascript"
 
 ## Next steps
 
-::: zone-end
-
-Now that you've run the sample locally using the Durable Task Scheduler emulator, try creating a scheduler and task hub resource, and deploying to Azure Container Apps.
+Now that you've run the sample locally using the Durable Task Scheduler emulator, try creating a scheduler and task hub resource and deploying to Azure Container Apps.
 
 > [!div class="nextstepaction"]
 > [Deploy Durable Task Scheduler hosted on Azure Container Apps to Azure](./quickstart-container-apps-durable-task-sdk.md)
