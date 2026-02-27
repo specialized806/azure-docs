@@ -500,7 +500,7 @@ To create a snapshot of an existing file share, run the following PowerShell com
 
 ```powershell
 New-AzResource -ResourceId "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.FileShares/fileShares/<your-file-share-name>/fileShareSnapshots/<snapshot-name>" `
-               -ApiVersion "2025-06-01-preview" `
+               -ApiVersion "2025-09-01-preview" `
                -Properties @{
                   metadata = @{}; 
                   initiatorId=""
@@ -513,7 +513,7 @@ To create a snapshot of an existing file share, run the following Azure CLI comm
 
 ```bash
 az rest --method put \
---uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/<snapshot-name>?api-version=2025-06-01-preview" \
+--uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/<snapshot-name>?api-version=2025-09-01-preview" \
 --body '{
   "properties": {
     "metadata": {},
@@ -554,7 +554,7 @@ $filesharesnapshot.properties.metadata
 To list all file share snapshots, run the following Azure CLI command. Replace `<subscription-ID>`, `<resource-group-name>`, and `<file-share-name>` with your own values.
 ```bash
 az rest --method get \
---uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/?api-version=2025-06-01-preview"
+--uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/?api-version=2025-09-01-preview"
 ```
 
 ---
@@ -626,7 +626,7 @@ To delete a file share snapshot, run the following PowerShell command. Replace `
 
 ```powershell
 Remove-AzResource -ResourceId "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.FileShares/fileShares/<your-file-share-name>/fileShareSnapshots/<snapshot-name>" `
-                  -ApiVersion "2025-06-01-preview" `
+                  -ApiVersion "2025-09-01-preview" `
                   -Force
 ```
 
@@ -636,7 +636,7 @@ To delete a file share snapshot, run the following Azure CLI command. Replace `<
 
 ```bash
 az rest --method delete \
---uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/<snapshot-name>?api-version=2025-06-01-preview"
+--uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/<snapshot-name>?api-version=2025-09-01-preview"
 ```
 
 ---
