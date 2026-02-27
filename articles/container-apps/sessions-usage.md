@@ -351,56 +351,7 @@ This template contains the following settings for managed identity:
 
 ## Logging
 
-Session pools can send session logs to a Log Analytics workspace by using Azure Monitor diagnostic settings on the Container Apps environment. Some log tables are available only for custom container session pools.
-
-> [!NOTE]
-> Session log tables are available after diagnostic settings are configured to send logs to Log Analytics.
-
-### Configure logging
-
-Session pools route logs through a Container Apps environment. The environment is the Azure resource that connects your session pool to a Log Analytics workspace. You specify the environment when you create a custom container session pool, or it's automatically associated with code interpreter session pools.
-
-1. In the [Azure portal](https://portal.azure.com), search for and select **Container Apps Environments**, then select the environment associated with your session pool.
-1. Under **Monitoring**, select **Diagnostic settings**, then select **+ Add diagnostic setting**.
-1. Select the session-related log categories you want to capture and set the destination to **Send to Log Analytics workspace**.
-1. Choose your workspace and select **Save**.
-
-### Log tables
-
-Use these tables to query session logs:
-
-| Table name | Description | Applies to |
-| --- | --- | --- |
-| `AppEnvSessionLifecycleLogs` | System logs for session allocation and lifecycle events. | All session pools |
-| `AppEnvSessionPoolEvents` | Events related to session pool management, pod creation, and deletion. | All session pools |
-| `AppEnvSessionConsoleLogs` | Console output and logs from session containers. | Custom container session pools only |
-
-### Sample queries
-
-**View recent console logs from sessions**
-
-```kusto
-AppEnvSessionConsoleLogs
-| where TimeGenerated > ago(1h)
-| order by TimeGenerated desc
-| take 100
-```
-
-**View session lifecycle events**
-
-```kusto
-AppEnvSessionLifecycleLogs
-| where TimeGenerated > ago(1h)
-| order by TimeGenerated desc
-```
-
-**View session pool events**
-
-```kusto
-AppEnvSessionPoolEvents
-| where TimeGenerated > ago(1h)
-| order by TimeGenerated desc
-```
+Console logs from containers running in a session are available in the Azure Log Analytics workspace associated with the Azure Container Apps environment in a table named `AppEnvSessionConsoleLogs_CL`.
 
 ## Related content
 
