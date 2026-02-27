@@ -6,6 +6,7 @@ ms.author: samuelzhang
 ms.reviewer: glenga
 ms.topic: how-to
 ms.date: 02/11/2026
+ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 
 #Customer intent: As a developer, I want to learn how to connect an Azure Functions-hosted MCP server to Foundry Agent Service, so that my agent has access to my MCP tools.
@@ -41,12 +42,10 @@ This table summarizes the currently supported options for authenticating your ag
 
 | Method | Description | Use case | Additional setup | Functions supports |
 | ------ | ----------- | -------- | ---------------- | ------------------- |
-| **Key-based**<sup>*</sup> | Agent authenticates by passing a shared [function access key](./function-keys-how-to.md) in the request header. This method is the default authentication for HTTP endpoints in Functions. | Use during development or when the MCP server doesn't require Microsoft Entra authentication. | None | Yes |
+| **Key-based** (default) | Agent authenticates by passing a shared [function access key](./function-keys-how-to.md) in the request header. This method is the default authentication for HTTP endpoints in Functions. | Use during development or when the MCP server doesn't require Microsoft Entra authentication. | None | Yes |
 | **Microsoft Entra** | Agent authenticates using either its own identity (*agent identity*) or the shared identity of the Foundry project (*project managed identity*). | Use agent identity for production scenarios, but limit shared identity to development. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). | Project managed (shared) identity |
 | **OAuth identity passthrough** | Agent prompts users to sign in and authorize access, using the provided token to authenticate. | Use in production when each user must authenticate with their own identity and user context must be persisted. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). | Yes |
 | **Unauthenticated access** | Agent makes unauthenticated calls. | Use during development or when your MCP server accesses only public information. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication). | Yes |
-
-<sup>*</sup>Default for Functions-hosted MCP servers.
 
 To learn more about the MCP server authentication options that the Foundry Agent Service supports, see [Set up authentication for MCP tools](/azure/ai-foundry/agents/how-to/mcp-authentication?view=foundry&preserve-view=true).
 
@@ -90,9 +89,11 @@ For more information, see [Work with access keys in Azure Functions](function-ke
 
 ### [Microsoft Entra](#tab/entra)
 
-Both **Agent Identity** and **Project Managed Identity** use Microsoft Entra authentication. Currently, Functions only supports **Project managed identity**, which requires your server to use built-in authentication and authorization. 
+Both **Agent Identity** and **Project Managed Identity** use Microsoft Entra authentication. Currently, Functions only supports **Project managed identity**, which requires your server to use [built-in authentication and authorization](../app-service/configure-authentication-provider-aad.md). 
 
-1. Connect a user-assigned managed identity from your function app to your Foundry project. If you don't have a user-assigned managed identity, [first create one](../app-service/overview-managed-identity.md#add-a-user-assigned-identity).
+1. If your function app doesn't have a user-assigned managed identity, [first create one](../app-service/overview-managed-identity.md#add-a-user-assigned-identity).
+ 
+1. Connect the user-assigned managed identity from your function app to your Foundry project: 
 
     1. In the [Azure portal](https://portal.azure.com), search for `Foundry`. In Microsoft Foundry, select your Foundry resource from **All resources**.
     
@@ -100,7 +101,7 @@ Both **Agent Identity** and **Project Managed Identity** use Microsoft Entra aut
     
     1. Select the newly added identity and copy the **Client ID** value. 
     
-1. Use the client ID of the identity to make it an allowed client application in your [function app's Entra app registration](functions-mcp-tutorial.md?tabs=mcp-extension#configure-protected-resource-metadata-preview):
+1. Add the user-assigned managed identity as an allowed client application in your [function app's Entra app registration](functions-mcp-tutorial.md?tabs=mcp-extension#configure-protected-resource-metadata-preview):
 
     1. Go to your function app resource in the [Azure portal](https://portal.azure.com).
     
@@ -110,7 +111,7 @@ Both **Agent Identity** and **Project Managed Identity** use Microsoft Entra aut
     
     1. In your provider, set **Client application requirement** to **Allow requests from specific client applications** and select the edit button next to **Allowed client applications**.
     
-    1. Add the client ID of your managed identity, and select **OK** and then **Save**.    
+    1. Add the client ID of your user-assigned managed identity, and select **OK** and then **Save**.    
 
 1. Get the **Application ID URI** from your function app's Entra app registration, which you need to complete the Entra authentication registration in your agent:
 

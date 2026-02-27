@@ -177,7 +177,7 @@ The following table shows locations by service provider. If you want to view ava
 | **Noovle** | &check; | &check; | Milan |
 | **[NTT DOCOMO BUSINESS](https://www.ntt.com/business/services/network/vpn/vpn/global.html?msockid=2c77b10c975466be0227a4ad962e67a1)** | &check; | &check; | Amsterdam<br/>Hong Kong<br/>London<br/>Los Angeles<br/>New York<br/>Singapore<br/>Sydney<br/>Washington DC |
 | **NTT Communications India Network Services Pvt Ltd** | &check; | &check; | Chennai<br/>Mumbai |
-| **[NTT DOCOMO BUSINESS - Flexible InterConnect](https://sdpf.ntt.com/)** |&check; |&check; | Jakarta<br/>Osaka<br/>Singapore2<br/>Tokyo<br/>Tokyo2 |
+| **[NTT DOCOMO BUSINESS - Flexible InterConnect (NTT Communications - Flexible InterConnect)](https://sdpf.ntt.com/)** |&check; |&check; | Jakarta<br/>Osaka<br/>Singapore2<br/>Tokyo<br/>Tokyo2 |
 | **[NTT EAST](https://business.ntt-east.co.jp/service/crossconnect/)** |&check; |&check; | Tokyo |
 | **[NTT Global DataCenters EMEA](https://hello.global.ntt/)** |&check; |&check; | Amsterdam2<br/>Berlin<br/>Frankfurt<br/>London2<br/>Vienna2 |
 | **[NTT Indonesia](https://jktix.com/service_cloudconnect.html)** | &check; | &check; | Jakarta2 |
@@ -375,7 +375,7 @@ If you're remote and don't have fiber connectivity, or you want to explore other
 | **[QSC AG](https://www2.qbeyond.de/en/)** |Interxion | Frankfurt |  
 | **[RETN](https://retn.net/products/cloud-connect)** | Equinix | Amsterdam |
 | **Rogers** | Cologix<br/>Equinix | Montreal<br/>Toronto |
-| **[Spectrum Enterprise](https://enterprise.spectrum.com/services/networking/cloud-connectivity)** | Equinix | Chicago<br/>Dallas<br/>Los Angeles<br/>New York<br/>Silicon Valley | 
+| **[Spectrum Enterprise](https://enterprise.spectrum.com/products/networking/connectivity/cloud-connect.html)** | Equinix | Chicago<br/>Dallas<br/>Los Angeles<br/>New York<br/>Silicon Valley | 
 | **[Tamares Telecom](https://www.exelera.net/)** | Equinix | London | 
 | **[Tata Teleservices](https://www.tatatelebusiness.com/data-services/ez-cloud-connect/)** | Tata Communications | Chennai<br/>Mumbai |
 | **[TDC Erhverv](https://tdc.dk/)** | Equinix | Amsterdam | 

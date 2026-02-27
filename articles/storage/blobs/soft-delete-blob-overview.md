@@ -76,8 +76,6 @@ To protect a copy operation, blob soft delete must be enabled for the destinatio
 
 Blob soft delete doesn't protect against operations to write blob metadata or properties. No soft-deleted snapshot is created when a blob's metadata or properties are updated.
 
-Blob soft delete doesn't afford overwrite protection for blobs in the archive tier. If a blob in the archive tier is overwritten with a new blob in any tier, then the overwritten blob is permanently deleted.
-
 For premium storage accounts, soft-deleted snapshots don't count toward the per-blob limit of 100 snapshots.
 
 ### Restoring soft-deleted objects
