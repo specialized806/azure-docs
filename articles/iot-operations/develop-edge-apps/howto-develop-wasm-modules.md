@@ -73,7 +73,13 @@ Create `.cargo/config.toml` to configure the SDK registry:
 ```toml
 [registries]
 aio-wg = { index = "sparse+https://pkgs.dev.azure.com/azure-iot-sdks/iot-operations/_packaging/preview/Cargo/index/" }
+
+[build]
+target = "wasm32-wasip2"
 ```
+
+> [!TIP]
+> Adding `[build] target = "wasm32-wasip2"` to your `.cargo/config.toml` means you don't need to pass `--target wasm32-wasip2` on every `cargo build` command. The [Azure Samples dataflow graphs repository](https://github.com/Azure-Samples/azure-edge-extensions-aio-dataflow-graphs) uses this pattern.
 
 Edit `Cargo.toml`:
 
@@ -298,6 +304,11 @@ spec:
       graphSettings:
         registryEndpointRef: my-registry-endpoint
         artifact: graph-simple:1.0.0
+        configuration:
+          - key: temperature_lower_bound
+            value: "-40"
+          - key: temperature_upper_bound
+            value: "3422"
     - nodeType: Destination
       name: mqtt-destination
       destinationSettings:
@@ -1019,3 +1030,4 @@ For integration testing, deploy your module to a development cluster and use MQT
 - [Build WASM modules with VS Code extension](howto-build-wasm-modules-vscode.md) for IDE-based development
 - [Run ONNX inference in WASM](./howto-wasm-onnx-inference.md) for ML model integration
 - [Azure IoT Operations WASM samples](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/wasm) on GitHub
+- [Data flow graph samples with schema validation and WIT composition](https://github.com/Azure-Samples/azure-edge-extensions-aio-dataflow-graphs) on GitHub
