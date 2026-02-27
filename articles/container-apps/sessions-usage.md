@@ -76,40 +76,6 @@ The identifier must be a string that is 4 to 128 characters long and can contain
 
 As you continue to make calls to the same session, the session remains [allocated](sessions.md#key-concepts) in the pool. Once there are no requests to the session after the cooldown period has elapsed, the session is automatically destroyed.
 
-### Stop a session
-
-Session pools can manage session lifecycle automatically, but you can also terminate a session manually when you need to free resources immediately (for example, after work completes or when the pool is at its max concurrent sessions). The API you use depends on the session pool type.
-
-#### Code interpreter session pools (Delete Session API)
-
-To terminate a code interpreter session, use the Delete Session API (`DELETE`). See the data-plane REST reference for the latest endpoint shape and API version: [Container Apps data-plane operations overview](/rest/api/data-plane/containerapps/operation-groups).
-
-#### Custom container session pools (Stop Session API)
-
-##### Request
-
-```http
-POST {PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-preview&identifier={SessionIdentifier}
-```
-
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `api-version` | string | Yes | The API version to use (for example, `2025-02-02-preview`). |
-| `identifier` | string | Yes | The unique identifier of the session to stop. |
-
-##### Example
-
-```http
-POST https://{PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-preview&identifier=testSessionIdentifier
-```
-
-```text
-HTTP/1.1 200 OK
-Content-Type: text/plain
-
-Session testSessionIdentifier in session pool testSessionPool stopped.
-```
-
 ## Security
 
 ### Security model
