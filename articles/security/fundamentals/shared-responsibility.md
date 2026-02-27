@@ -74,7 +74,7 @@ Microsoft is responsible for the underlying cloud infrastructure, which includes
 
 ## AI shared responsibility
 
-When using Foundry Tools, the shared responsibility model introduces unique considerations beyond traditional IaaS, PaaS, and SaaS. Microsoft is responsible for securing the AI infrastructure, model hosting, and platform-level safeguards. Customers, however, remain accountable for how AI is applied within their environment—this includes protecting sensitive data, managing prompt security, mitigating prompt injection risks, and ensuring compliance with organizational and regulatory requirements.
+When using AI services, the shared responsibility model introduces unique considerations beyond traditional IaaS, PaaS, and SaaS. Microsoft is responsible for securing the AI infrastructure, model hosting, and platform-level safeguards. Customers, however, remain accountable for how AI is applied within their environment—this includes protecting sensitive data, managing prompt security, mitigating prompt injection risks, and ensuring compliance with organizational and regulatory requirements.
 
 Because responsibilities differ significantly for AI workloads, you should review the [AI Shared Responsibility Model](/azure/security/fundamentals/shared-responsibility-ai) for detailed guidance on roles, best practices, and risk management.
 
