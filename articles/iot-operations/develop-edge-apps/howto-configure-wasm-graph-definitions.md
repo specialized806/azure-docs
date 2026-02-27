@@ -290,4 +290,4 @@ For a complete implementation example, see the [branch module](https://github.co
 
 - [Develop WebAssembly modules for data flow graphs](howto-develop-wasm-modules.md)
 - [Use WebAssembly with data flow graphs](../connect-to-cloud/howto-dataflow-graph-wasm.md)
-- [Configure registry endpoints](howto-configure-registry-endpoint.md)
+- [Configure registry endpoints](howto-configure-registry-endpoint.md)- [Data flow graph samples with schema validation and WIT composition](https://github.com/Azure-Samples/azure-edge-extensions-aio-dataflow-graphs) on GitHub
