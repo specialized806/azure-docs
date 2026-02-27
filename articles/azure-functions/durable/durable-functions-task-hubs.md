@@ -427,21 +427,21 @@ Use user-assigned managed identities when possible because they aren't tied to t
 
 Create a role assignment for the managed identity using the ARM REST API.
 
-    ```HTTP
-    PUT https://management.azure.com/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP/providers/Microsoft.DurableTask/schedulers/SCHEDULER_NAME/providers/Microsoft.Authorization/roleAssignments/ROLE_ASSIGNMENT_ID?api-version=2022-04-01
+```HTTP
+PUT https://management.azure.com/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP/providers/Microsoft.DurableTask/schedulers/SCHEDULER_NAME/providers/Microsoft.Authorization/roleAssignments/ROLE_ASSIGNMENT_ID?api-version=2022-04-01
 
-    {
-      "properties": {
-        "roleDefinitionId": "/subscriptions/SUBSCRIPTION_ID/providers/Microsoft.Authorization/roleDefinitions/ROLE_DEFINITION_ID",
-        "principalId": "MANAGED_IDENTITY_PRINCIPAL_ID",
-        "principalType": "ServicePrincipal"
-      }
-    }
-    ```
+{
+  "properties": {
+    "roleDefinitionId": "/subscriptions/SUBSCRIPTION_ID/providers/Microsoft.Authorization/roleDefinitions/ROLE_DEFINITION_ID",
+    "principalId": "MANAGED_IDENTITY_PRINCIPAL_ID",
+    "principalType": "ServicePrincipal"
+  }
+}
+```
 
-    > [!TIP]
-    > To find the role definition ID for **Durable Task Data Contributor**, run:
-    > `az role definition list --name "Durable Task Data Contributor" --query "[0].id" -o tsv`
+> [!TIP]
+> To find the role definition ID for **Durable Task Data Contributor**, run:
+> `az role definition list --name "Durable Task Data Contributor" --query "[0].id" -o tsv`
 
 # [Bicep](#tab/bicep)
 
