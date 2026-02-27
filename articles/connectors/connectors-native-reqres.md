@@ -5,7 +5,7 @@ services: logic-apps
 ms.suite: integration
 ms.reviewers: estfan, azla
 ms.topic: how-to
-ms.date: 04/25/2026
+ms.date: 02/25/2026
 ---
 
 # Receive and respond to inbound HTTPS calls sent to workflows in Azure Logic Apps
