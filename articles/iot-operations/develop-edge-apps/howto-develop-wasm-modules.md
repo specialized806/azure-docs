@@ -189,7 +189,7 @@ class Map(exports.Map):
 
 ```bash
 cargo build --release --target wasm32-wasip2
-ls target/wasm32-wasip2/release/*.wasm
+cp target/wasm32-wasip2/release/temperature_converter.wasm .
 ```
 
 # [Python](#tab/python)
@@ -257,10 +257,10 @@ connections:
 Then push both artifacts:
 
 ```bash
-# Push the WASM module
+# Push the WASM module (Rust output is in target/wasm32-wasip2/release/)
 oras push <YOUR_REGISTRY>/temperature:1.0.0 \
   --artifact-type application/vnd.module.wasm.content.layer.v1+wasm \
-  temperature-converter.wasm:application/wasm
+  temperature_converter.wasm:application/wasm
 
 # Push the graph definition
 oras push <YOUR_REGISTRY>/graph-simple:1.0.0 \
@@ -333,11 +333,21 @@ mosquitto_pub -h localhost -t "thermostats/temperature" \
   -m '{"temperature": {"value": 72, "unit": "F"}}'
 ```
 
-You should see converted output like:
+You should see converted output. The exact format depends on which language you used:
+
+# [Rust](#tab/rust)
 
 ```json
 {"temperature": {"value_celsius": 22.222222222222225, "original_fahrenheit": 72}}
 ```
+
+# [Python](#tab/python)
+
+```json
+{"temperature": {"value": 22.222222222222225, "unit": "C"}}
+```
+
+---
 
 If you don't see output, check the dataflow pod logs:
 
@@ -600,7 +610,7 @@ fn branch_by_type(timestamp: HybridLogicalClock, input: DataModel) -> Result<boo
         .map_err(|e| Error { message: format!("JSON parse error: {e}") })?;
 
     // false = first arm (temperature data), true = second arm (everything else)
-    Ok(!data.get("temperature").is_some())
+    Ok(data.get("temperature").is_none())
 }
 ```
 
