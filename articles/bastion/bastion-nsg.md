@@ -44,13 +44,17 @@ The following table summarizes all required NSG rules.
 | AllowBastionCommunication | Outbound | VirtualNetwork | VirtualNetwork | 8080, 5701 | * |
 | AllowHttpOutbound | Outbound | * | Internet | 80 | * |
 
+You can configure the required NSG rules using the Azure portal or PowerShell.
+
 ### [Portal](#tab/portal)
 
 ### <a name="apply"></a>AzureBastionSubnet
 
-Azure Bastion is deployed specifically to ***AzureBastionSubnet***.
+Use the following steps to configure NSG rules for the AzureBastionSubnet.
 
-* **Ingress traffic:**
+1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to **Network security groups** and select the NSG that's associated with your **AzureBastionSubnet**.
+1. Select **Inbound security rules** on the left side, then select **+ Add** to create the following ingress rules:
 
    * **Ingress from internet (port 443):** Enable port 443 inbound from the **Internet** service tag. Ports 3389 and 22 are not required on AzureBastionSubnet. The source can be **Internet** or a set of specific public IP addresses you specify.
    * **Ingress from GatewayManager (port 443):** Enable port 443 inbound from the **GatewayManager** service tag. This allows the control plane (Gateway Manager) to communicate with your Bastion host.
@@ -60,7 +64,7 @@ Azure Bastion is deployed specifically to ***AzureBastionSubnet***.
 
    :::image type="content" source="./media/bastion-nsg/inbound.png" alt-text="Screenshot shows inbound security rules for Azure Bastion connectivity." lightbox="./media/bastion-nsg/inbound.png":::
 
-* **Egress traffic:**
+1. Select **Outbound security rules** on the left side, then select **+ Add** to create the following egress rules:
 
    * **Egress to target VMs (ports 3389, 22):** Enable outbound traffic to target VM subnets on ports 3389 and 22 over private IP. If you use the custom port feature with the Standard SKU, allow outbound traffic to the **VirtualNetwork** service tag instead.
    * **Egress to VirtualNetwork (ports 8080, 5701):** Enable ports 8080 and 5701 outbound from the **VirtualNetwork** service tag to the **VirtualNetwork** service tag. This enables the internal components of Azure Bastion to communicate with each other.
@@ -72,7 +76,10 @@ Azure Bastion is deployed specifically to ***AzureBastionSubnet***.
 
 ### Target VM subnet
 
-This is the subnet that contains the target virtual machine that you want to connect to.
+Use the following steps to configure the NSG rules for the subnet that contains your target virtual machine.
+
+1. In the Azure portal, go to **Network security groups** and select the NSG that's associated with your target VM subnet.
+1. Select **Inbound security rules**, then select **+ Add** to create the following rule:
 
    * **Ingress from AzureBastionSubnet (ports 3389, 22):** Open RDP/SSH ports (3389 and 22 respectively, or custom values if you use the custom port feature with Standard or Premium SKU) inbound on the target VM subnet over private IP. Without this rule, Bastion can't reach your VMs even when it's correctly configured. As a best practice, scope the source to the AzureBastionSubnet IP address range so that only Bastion can open these ports -- not the broader internet.
 
