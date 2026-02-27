@@ -8,7 +8,7 @@ ms.service: azure-api-management
 ms.custom:
   - build-2024
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 02/11/2026
 ms.author: danlep
 ---
 
@@ -197,6 +197,13 @@ For estimated maximum gateway throughput in the API Management service tiers, se
 ### Workspace gateway
 
 Scale capacity by adding and removing scale [units](upgrade-and-scale.md) in the workspace gateway.
+
+## Gateway runtime limits
+
+The following table lists limits that apply to the API Management gateway when it handles API requests and responses.
+
+[!INCLUDE [api-management-gateway-constraints](../../includes/api-management-gateway-constraints.md)]
+
 
 ## Gateway health check endpoint
 
