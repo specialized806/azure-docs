@@ -4,7 +4,7 @@ titleSuffix: Azure API Center
 description: Configure linting of API definitions in your API center to analyze compliance of APIs with the organization's API style guide.
 ms.service: azure-api-center
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 02/28/2026
 
 ms.custom:
   - devx-track-azurecli
@@ -14,15 +14,16 @@ ms.custom:
 
 # Enable API analysis in your API center - self-managed
 
-This article explains how to enable API analysis in [Azure API Center](overview.md) by manually setting up a linting engine and triggers. These capabilities analyze your API definitions for adherence to organizational style rules, generating both individual and summary reports. API analysis helps identify and correct common errors and inconsistencies in your API definitions.
+This article explains how to enable API analysis in [Azure API Center](overview.md) to set up a linting engine and triggers. These capabilities analyze your API definitions for adherence to organizational style rules, generating both individual and summary reports. API analysis helps identify and correct common errors and inconsistencies in your API definitions.
+
+The following procedures support **automated deployment** of the linting engine and event subscription in your API center. Use the Azure Developer CLI (`azd`) for one-step deployment of linting infrastructure for a streamlined deployment process. The Azure CLI command examples can run in PowerShell or a bash shell. Separate command examples are provided, as needed.
+
+If you prefer to set up the engine and resources via **manual deployment**, see the [Azure API Center Analyzer](https://github.com/Azure/APICenter-Analyzer/) GitHub repository for guidance to deploy the function app and configure the event subscription.
 
 > [!NOTE]
 > Azure API Center also [automatically configures](enable-managed-api-analysis-linting.md) a default linting engine and dependencies for API analysis. If you enable self-managed analysis as described in this article, you override these built-in features.  
 
 > [!VIDEO https://www.youtube.com/embed/m0XATQaVhxA]
-
-> [!NOTE]
-> Azure CLI command examples in this article can run in PowerShell or a bash shell. Where needed because of different variable syntax, separate command examples are provided for the two shells.
 
 ## Scenario overview
 
@@ -44,18 +45,12 @@ The following diagram shows the steps to enable linting and analysis in your API
 
 1. View the analysis report in the API center.
 
-### Options to deploy the linting engine and event subscription
-
-This article provides two options to deploy the linting engine and event subscription in your API center:
-
-- **Automated deployment**: Use the Azure Developer CLI (`azd`) for one-step deployment of linting infrastructure. This option is recommended for a streamlined deployment process.
-
-- **Manual deployment**: Follow step-by-step guidance to deploy the function app and configure the event subscription. This option is recommended if you prefer to deploy and manage the resources manually.
-
 ### Limitations
 
 * Linting currently supports only JSON or YAML specification files, such as OpenAPI or AsyncAPI specification documents.
+
 * By default, the linting engine uses the built-in [`spectral:oas` ruleset](https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules). To extend the ruleset or create custom API style guides, see the [Spectral repository](https://github.com/stoplightio/spectral/blob/develop/docs/reference/openapi-rules.md) on GitHub.
+
 * The function app that invokes linting is charged separately, and you manage and maintain it.
 
 ## Prerequisites
@@ -64,6 +59,10 @@ This article provides two options to deploy the linting engine and event subscri
 
 * The Event Grid resource provider registered in your subscription. If you need to register the Event Grid resource provider, see [Subscribe to events published by a partner with Azure Event Grid](../event-grid/subscribe-to-partner-events.md#register-the-event-grid-resource-provider).
 
+* [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/install-azd). Install `azd` on your machine into the environment you plan to use for the following procedure. 
+
+* [Azure Functions Core Tools](/azure/azure-functions/functions-run-local). Install the core tools on your machine into the environment you plan to use for the following procedure. Make sure the tools are reachable by your `PATH` settings.
+
 * For Azure CLI:
    [!INCLUDE [include](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 
@@ -71,13 +70,10 @@ This article provides two options to deploy the linting engine and event subscri
 
 ## Use azd deployment for function app and event subscription
 
-This section provides automated steps for the Azure Developer CLI (`azd`) to configure the function app and event subscription that enable linting and analysis in your API center. You can also configure the resources [manually](#manual-steps-to-configure-function-app-and-event-subscription).
+The following procedures provide automated steps for the Azure Developer CLI (`azd`) to configure the function app and event subscription that enable linting and analysis in your API center.
 
-### Other prerequisites for this option
-
-* [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/install-azd). Install `azd` on your machine into the environment you plan to use for the following procedure. 
-
-* [Azure Functions Core Tools](/azure/azure-functions/functions-run-local). Install the core tools on your machine into the environment you plan to use for the following procedure. Make sure the tools are reachable by your `PATH` settings.
+> [!NOTE]
+> If you prefer to set up the engine and resources with **manual deployment**, see the [Azure API Center Analyzer](https://github.com/Azure/APICenter-Analyzer/) GitHub repository for guidance to deploy the function app and configure the event subscription.
 
 ### Run the sample by using azd
 
@@ -100,11 +96,10 @@ This section provides automated steps for the Azure Developer CLI (`azd`) to con
    > [!TIP]
    > You can avoid authentication issues across development environments by running the following commands:
    > 
-   > 1. Create a new development environment: `azd new env`
+   > 1. Create a new development environment: `azd env new`
    > 1. Get your tenant ID: `az account show --query tenantId -o tsv` (copy the output ID for later)
    > 1. Sign out: `azd auth logout` command
    > 1. Sign into `azd` with your `tenantId` value from step 2: `azd auth login --tenant-id <tenant_ID>`
-   > 1. Sign in again: `azd auth login`
    
    When you successfully authenticate, the command output shows you _Logged into Azure as <your_user_alias>_. 
 
@@ -187,7 +182,19 @@ This section provides automated steps for the Azure Developer CLI (`azd`) to con
 
    If the `apicenter-analyer` function isn't listed or the **Status** isn't **Enabled**, [publish the function](#publish-apicenter-analyzer-function-with-azure-functions-core-tools) by using the Azure Functions Core Tools.
 
-1. [Configure an event subscription](#configure-event-subscription-with-the-azure-cli) by using PowerShell or a bash shell in Visual Studio Code.
+1. [Configure an event subscription](#configure-event-subscription) by using PowerShell or a bash shell in Visual Studio Code.
+
+### Confirm function published in Azure portal
+
+When the deployment completes, confirm the new function app is present in the Azure portal and the function is published.
+
+1. Sign in to the [Azure portal](https://portal.azure.com), browse to the **Function App** section, and select your new function app in the list.
+
+1. On the **Overview** page for the new function app, confirm the function app **Status** is **Running**.
+
+1. In the **Functions** section, confirm the `apicenter-analyer` function is listed and the **Status** is **Enabled**.
+   
+   :::image type="content" source="media/enable-api-analysis-linting/function-app-status.png" alt-text="Screenshot of the function app in the Azure portal showing the Running status and Enabled function.":::
 
 #### Publish apicenter-analyzer function with Azure Functions Core Tools
 
@@ -239,187 +246,9 @@ If the deployment process doesn't publish the `apicenter-analyer` function to th
 
 1. In the Azure portal, confirm the `apicenter-analyer` function is now [published and enabled for your function app](#confirm-function-published-in-azure-portal).
 
-### Configure event subscription with the Azure CLI
+### Configure event subscription
 
-After the function is successfully published to the function app in the Azure portal, you can [configure an event subscription](/azure/api-center/enable-api-analysis-linting?tabs=cli#configure-event-subscription-in-your-api-center) by using PowerShell or a bash shell. Then browse to your API center in the Azure portal, and confirm the new event subscription under **Events** > **Event Subscriptions**.
-
-You can now upload an API definition file to your API center to [trigger the event subscription](#trigger-event-in-your-api-center) and run the linting engine.
-
-
-## Manual steps to configure function app and event subscription
-
-This section provides the manual deployment steps to configure the function app and event subscription to enable linting and analysis in your API center.
-
-- Step 1: Deploy a function app to run the linting function on your API definitions.
-- Step 2: Configure a system-assigned managed identity for the function app (Azure portal or the Azure CLI).
-- Step 3: Create an event subscription to trigger the function app when you upload or change an API definition (Azure portal or the Azure CLI).
-
-If you prefer automated deployment, you can use the [Azure Developer CLI (azd)](#use-azd-deployment-for-function-app-and-event-subscription).
-
-### Other prerequisites for this option
-
-* Visual Studio Code with the [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) version v1.10.4 or later.
-
-### Deploy your function app
-
-To deploy the function app that runs the linting function on API definitions:
-
-1. Clone the [GitHub repository](https://github.com/Azure/APICenter-Analyzer/) and open it in Visual Studio Code.
-
-1. In the `resources/rulesets` folder, locate the `oas.yaml` file. This file reflects your current API style guide and can be modified based on your organizational needs and requirements.
-
-1. (Optional) Run the function app locally to test it. For more information, see the [README](https://github.com/Azure/APICenter-Analyzer/tree/preview#-configure--run-your-function-locally) file in the repository.
-
-1. Deploy the function app to Azure. For instructions, see [Quickstart: Create and deploy function code to Azure by using Visual Studio Code (TypeScript)](/azure/azure-functions/how-to-create-function-vs-code?pivot=programming-language-typescript&tabs=go%2Cwindows&pivots=programming-language-typescript#sign-in-to-azure).
-
-   > [!NOTE]
-   > Deploying the function app can take several minutes.
-
-### Confirm function published in Azure portal
-
-When the deployment completes, confirm the new function app is present in the Azure portal and the function is published.
-
-1. Sign in to the [Azure portal](https://portal.azure.com), browse to the **Function App** section, and select your new function app in the list.
-
-1. On the **Overview** page for the new function app, confirm the function app **Status** is **Running**.
-
-1. In the **Functions** section, confirm the `apicenter-analyer` function is listed and the **Status** is **Enabled**.
-   
-   :::image type="content" source="media/enable-api-analysis-linting/function-app-status.png" alt-text="Screenshot of the function app in the Azure portal showing the Running status and Enabled function.":::
-
-### Configure managed identity in your function app
-
-To enable the function app to access the API center, configure a managed identity for the function app. The following steps show how to enable and configure a system-assigned managed identity for the function app by using the Azure portal or the Azure CLI. 
-
-#### [Portal](#tab/portal)
-
-1. In the Azure portal, browse to the **Overview** page for your function app.
-
-1. Expand **Settings** and select **Identity**.
-
-1. On the **System assigned** tab, set the **Status** to **On** and then select **Save**.
-
-After the managed identity is enabled, assign it the Azure API Center Compliance Manager role to access the API center.
-
-1. In the [Azure portal](https://portal.azure.com), browse to your API center, and select **Access control (IAM)**.
-
-1. Select **+ Add > Add role assignment**.
-
-1. On the **Job function roles** tab, select **Azure API Center Compliance Manager** in the list, and select **Next**.
-
-1. On the **Members** page, in the **Assign access to** box, select **Managed identity**, and then choose **+ Select members**.
-
-1. On the **Select managed identities** page, search for and select the managed identity of the function app. Choose **Select**.
-
-1. On the **Add role assignment** page, select **Next**.
-
-1. Review the role assignment, and select **Review + assign**.
-
-#### [Azure CLI](#tab/cli)
-
-1. Enable the system-assigned identity of the function app by using the [az functionapp identity assign](/cli/azure/functionapp/identity#az-functionapp-identity-assign) command. The following command stores the principal ID of the system-assigned managed identity in the `principalID` variable.
-
-   Replace `<function-app-name>` and `<resource-group-name>` with your function app name and the name of the resource group for your function app. 
-
-    ```azurecli
-    #! /bin/bash
-    principalID=$(az functionapp identity assign --name <function-app-name> \
-        --resource-group <resource-group-name> --identities [system] \
-        --query "principalId" --output tsv)
-    ```
-
-    ```azurecli
-    # PowerShell syntax
-    $principalID=$(az functionapp identity assign --name <function-app-name> `
-        --resource-group <resource-group-name> --identities [system] `
-        --query "principalId" --output tsv)
-    ```
-
-1. Get the resource ID of your API center.
-
-   Replace `<apic-name>` and `<resource-group-name>` with your API center name and the name of the resource group for your API center.
-
-    ```azurecli
-    #! /bin/bash
-    apicID=$(az apic show --name <apic-name> --resource-group <resource-group-name> \
-        --query "id" --output tsv)
-    ```
-
-    ```azurecli
-    # PowerShell syntax
-    $apicID=$(az apic show --name <apic-name> --resource-group <resource-group-name> `
-        --query "id" --output tsv)
-    ```
-
-1. Assign the function app's managed identity the Azure API Center Compliance Manager role in the API center using the [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create) command. 
-
-    ```azurecli
-    #! /bin/bash
-    az role assignment create \
-        --role "Azure API Center Compliance Manager" \
-        --assignee-object-id $principalID \
-        --assignee-principal-type ServicePrincipal \
-        --scope $apicID 
-    ```
-
-    ```azurecli
-    # PowerShell syntax
-    az role assignment create `
-        --role "Azure API Center Compliance Manager" `
-        --assignee-object-id $principalID `
-        --assignee-principal-type ServicePrincipal `
-        --scope $apicID 
-    ```
----
-
-### Configure event subscription in your API center
-
-Now create an event subscription in your API center to trigger the function app when an API definition file is uploaded or updated. The following steps show how to create the event subscription by using the Azure portal or the Azure CLI.
-
-#### [Portal](#tab/portal)
-
-1. In the [Azure portal](https://portal.azure.com), browse to your API center, and select **Events**.
-
-1. Select **+ Event Subscription**.
-
-1. On the **Create Event Subscription** page, complete the following configuration:
-
-   1. Enter a descriptive **Name** for the event subscription.
-   
-   1. For the **Event Schema**, select **Event Grid Schema**.
-   
-   1. Expand the **Event Types** dropdown list, and select the checkboxes for the following events:
-   
-      - **API definition added**
-      - **API definition updated**
-
-   1. Expand the **Endpoint Details** dropdown list, and select **Azure Function**.
-   
-   1. To provide an **Endpoint** value, select **Configure an endpoint**.
-
-      In the **Select Azure Function** page, configure the following settings:
-
-      1. Select the **Subscription** for your API center, and **Resource group** for your new function app.
-
-      1. As needed, provide a **System Topic Name** under **Topic details**.
-
-      1. Set the **Function app** to your new function app.
-
-      The **Slot** and **Function** values are configured for you based on your other selections.
-
-      Select **Confirm Selection**.
-
-   1. Select **Create**.
-
-      :::image type="content" source="media/enable-api-analysis-linting/create-event-subscription.png" alt-text="Screenshot of creating the event subscription in the Azure portal.":::
-
-1. Select the **Event Subscriptions** tab, and select **Refresh**.
-
-1. At the bottom of the page, locate the new event subscription in the list and confirm the **Provisioning state** is **Succeeded**.
-
-   :::image type="content" source="media/enable-api-analysis-linting/event-subscription-provisioning-state.png" alt-text="Screenshot of the state of the event subscription in the Azure portal." lightbox="media/enable-api-analysis-linting/event-subscription-provisioning-state.png":::
-
-#### [Azure CLI](#tab/cli)
+After the function is successfully published to the function app in the Azure portal, you can create an event subscription in your API center to trigger the function app when an API definition file is uploaded or updated.
 
 1. Get the resource ID of your API center. Substitute `<apic-name>` and `<resource-group-name>` with your API center name and the name of the resource group for your API center.
 
@@ -474,10 +303,11 @@ Now create an event subscription in your API center to trigger the function app 
     ```azurecli
     az eventgrid event-subscription show --name MyEventSubscription --source-resource-id "$apicID"
     ```
----
 
-> [!NOTE]
-> It can take a short time for the event subscription to propagate to the function app.
+   > [!NOTE]
+   > It can take a short time for the event subscription to propagate to the function app.
+
+1. Browse to your API center in the Azure portal, and confirm the new event subscription under **Events** > **Event Subscriptions**.
 
 ## Trigger event in your API center
 
