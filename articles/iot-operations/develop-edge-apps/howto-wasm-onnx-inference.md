@@ -5,7 +5,7 @@ author: dominicbetts
 ms.author: dobett
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 02/26/2026
 ai-usage: ai-assisted
 
 ---
@@ -277,7 +277,7 @@ Reuse the streamlined sample builders or build locally:
 
 Follow this deployment process:
 
-1. Build your WASM module in release mode and produce a `<module-name>-<version>.wasm` file.
+1. Build your WASM module in release mode and produce a `.wasm` file.
 1. Push the module and optionally a graph definition to your registry by using OCI Registry as Storage (ORAS).
 1. Create or reuse a registry endpoint in Azure IoT Operations.
 1. Create a data flow graph resource that references your graph definition artifact.
