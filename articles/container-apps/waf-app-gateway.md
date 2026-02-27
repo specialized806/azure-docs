@@ -284,8 +284,8 @@ To connect the frontend and backend pool, perform the following steps:
 
 1. Select **Add** to add the backend settings.
 
-> [!NOTE]
-> To preserve the original host header for redirects and SSO scenarios, configure an `X-Forwarded-Host` header rewrite after creating the Application Gateway. See [Preserve original host header for redirects and SSO](#preserve-original-host-header-for-redirects-and-sso) for details.
+    > [!NOTE]
+    > To preserve the original host header for redirects and SSO scenarios, configure an `X-Forwarded-Host` header rewrite after creating the Application Gateway. See [Preserve original host header for redirects and SSO](#preserve-original-host-header-for-redirects-and-sso) for details.
 
 1. In the *Add a routing rule* window, select **Add** again.
 
