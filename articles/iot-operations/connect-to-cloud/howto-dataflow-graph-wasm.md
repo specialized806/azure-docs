@@ -1099,6 +1099,11 @@ If you deploy the data flow graph but it doesn't process messages:
 
 ## Related content
 
+- [Develop WebAssembly modules](../develop-edge-apps/howto-develop-wasm-modules.md) for writing operators in Rust and Python (includes quickstart)
+- [Configure WebAssembly graph definitions](../develop-edge-apps/howto-configure-wasm-graph-definitions.md) for graph YAML structure and configuration parameters
+- [Deploy WASM modules and graph definitions](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md) for registry setup and artifact management
+- [Build WASM modules with VS Code extension](../develop-edge-apps/howto-build-wasm-modules-vscode.md) for IDE-based development
+- [Run ONNX inference in WASM](../develop-edge-apps/howto-wasm-onnx-inference.md) for ML model integration
 - [Configure MQTT data flow endpoints](howto-configure-mqtt-endpoint.md)
 - [Configure Azure Event Hubs and Kafka data flow endpoints](howto-configure-kafka-endpoint.md)
 - [Configure Azure Data Lake Storage data flow endpoints](howto-configure-adlsv2-endpoint.md)
