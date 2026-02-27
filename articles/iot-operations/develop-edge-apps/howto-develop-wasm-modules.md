@@ -6,7 +6,7 @@ ms.author: dobett
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 02/27/2026
 ai-usage: ai-assisted
 ---
 
@@ -475,29 +475,47 @@ fn my_branch(input: DataModel, timestamp: HybridLogicalClock) -> Result<bool, Er
 
 #### Module configuration parameters
 
-Your WASM operators can receive runtime configuration parameters through the `ModuleConfiguration` struct passed to the `init` function. You define these parameters in the graph definition, which lets you customize the runtime without rebuilding modules.
+Your WASM operators can receive runtime configuration parameters through the `ModuleConfiguration` struct passed to the `init` function. You define these parameters in the graph definition's `moduleConfigurations` section, which lets you customize operator behavior at runtime without rebuilding modules.
+
+> [!IMPORTANT]
+> If your operator depends on configuration parameters (for example, filter bounds or threshold values), handle the case where they aren't provided. Either use sensible defaults or return `false` from `init` to signal a configuration error. Don't panic on missing parameters, as this causes the operator to crash at runtime with no clear error message.
+
+The following example shows how the [temperature filter sample](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/wasm/operators/temperature) uses configuration parameters to set filter bounds:
 
 ```rust
+use std::sync::OnceLock;
 use wasm_graph_sdk::logger::{self, Level};
-use wasm_graph_sdk::ModuleConfiguration;
 
-fn my_operator_init(configuration: ModuleConfiguration) -> bool {
+const DEFAULT_LOWER_BOUND: f64 = -40.0;
+const DEFAULT_UPPER_BOUND: f64 = 3422.0;
+
+static LOWER_BOUND: OnceLock<f64> = OnceLock::new();
+static UPPER_BOUND: OnceLock<f64> = OnceLock::new();
+
+fn filter_temperature_init(configuration: ModuleConfiguration) -> bool {
     // Access parameters via configuration.properties (a list of key-value tuples)
-    if let Some((_, threshold_value)) = configuration.properties.iter().find(|(k, _)| k == "temperature_threshold") {
-        let threshold: f64 = threshold_value.parse().unwrap_or(25.0);
-        logger::log(Level::Info, "my-operator", &format!("Using threshold: {}", threshold));
+    if let Some((_, value)) = configuration.properties.iter().find(|(k, _)| k == "temperature_lower_bound") {
+        match value.parse::<f64>() {
+            Ok(v) => { LOWER_BOUND.set(v).unwrap(); }
+            Err(_) => {
+                logger::log(Level::Error, "my-filter", &format!("Invalid lower bound: {value}"));
+            }
+        }
+    } else {
+        logger::log(Level::Info, "my-filter",
+            &format!("temperature_lower_bound not configured, using default: {DEFAULT_LOWER_BOUND}"));
     }
-    
-    // Access optional parameters with defaults
-    let unit = configuration.properties
-        .iter()
-        .find(|(k, _)| k == "output_unit")
-        .map(|(_, v)| v.as_str())
-        .unwrap_or("celsius");
-    
-    logger::log(Level::Info, "my-operator", &format!("Output unit: {}", unit));
+
+    // Same pattern for temperature_upper_bound...
     true
 }
+```
+
+When using these parameters, always fall back to defaults rather than panicking:
+
+```rust
+let lower = LOWER_BOUND.get().copied().unwrap_or(DEFAULT_LOWER_BOUND);
+let upper = UPPER_BOUND.get().copied().unwrap_or(DEFAULT_UPPER_BOUND);
 ```
 
 For detailed information about defining configuration parameters in graph definitions, see [Module configuration parameters](./howto-configure-wasm-graph-definitions.md#module-configuration-parameters).
@@ -554,20 +572,28 @@ Typed interfaces for operators:
 from map_impl import exports, imports
 from map_impl.imports import types
 
-# Implement the operator interface
 class Map(exports.Map):
     def init(self, configuration) -> bool:
         # Access configuration parameters via configuration.properties (list of key-value tuples)
-        threshold = None
-        unit = "celsius"
+        self.lower_bound = -40.0  # sensible default
+        self.upper_bound = 3422.0  # sensible default
+
         for key, value in configuration.properties:
-            if key == "temperature_threshold":
-                threshold = value
-            elif key == "output_unit":
-                unit = value
+            if key == "temperature_lower_bound":
+                try:
+                    self.lower_bound = float(value)
+                except ValueError:
+                    imports.logger.log(imports.logger.Level.ERROR, "my-filter",
+                                      f"Invalid lower bound: {value}")
+            elif key == "temperature_upper_bound":
+                try:
+                    self.upper_bound = float(value)
+                except ValueError:
+                    imports.logger.log(imports.logger.Level.ERROR, "my-filter",
+                                      f"Invalid upper bound: {value}")
         
-        imports.logger.log(imports.logger.Level.INFO, "my-operator", 
-                          f"Initialized with threshold={threshold}, unit={unit}")
+        imports.logger.log(imports.logger.Level.INFO, "my-filter", 
+                          f"Initialized with bounds=[{self.lower_bound}, {self.upper_bound}]")
         return True
     
     def process(self, message: types.DataModel) -> types.DataModel:

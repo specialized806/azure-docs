@@ -6,7 +6,7 @@ ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 02/27/2026
 ai-usage: ai-assisted
 
 ---
@@ -866,20 +866,12 @@ In the data flow diagram, select **Add graph transform (optional)** to add a gra
     artifact: 'temperature-converter:2.1.0'
     configuration: [
       {
-        key: 'input-unit'
-        value: 'fahrenheit'
+        key: 'temperature_lower_bound'
+        value: '-40'
       }
       {
-        key: 'output-unit' 
-        value: 'celsius'
-      }
-      {
-        key: 'precision'
-        value: '2'
-      }
-      {
-        key: 'enable-filtering'
-        value: 'true'
+        key: 'temperature_upper_bound'
+        value: '3422'
       }
     ]
   }
@@ -895,14 +887,10 @@ In the data flow diagram, select **Add graph transform (optional)** to add a gra
     registryEndpointRef: my-acr-endpoint
     artifact: temperature-converter:2.1.0
     configuration:
-      - key: input-unit
-        value: fahrenheit
-      - key: output-unit
-        value: celsius
-      - key: precision
-        value: "2"
-      - key: enable-filtering
-        value: "true"
+      - key: temperature_lower_bound
+        value: "-40"
+      - key: temperature_upper_bound
+        value: "3422"
 ```
 
 ---
@@ -913,6 +901,9 @@ You pass the configuration key-value pairs to the WASM module at runtime. The mo
 - Adjust processing parameters without rebuilding modules.
 - Enable or disable features based on deployment requirements.
 - Set environment-specific values like thresholds or endpoints.
+
+> [!IMPORTANT]
+> Check your WASM module's documentation or source code for required configuration parameters. If a module expects specific parameters (such as filter bounds or thresholds) and you don't provide them, the module may fail at runtime. For details on defining parameters in graph definitions, see [Module configuration parameters](../develop-edge-apps/howto-configure-wasm-graph-definitions.md#module-configuration-parameters).
 
 #### Destination nodes
 
