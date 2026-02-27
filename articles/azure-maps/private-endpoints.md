@@ -1,5 +1,5 @@
 ---
-title: Using private endpoints with Azure Maps
+title: Use private endpoints with Azure Maps
 description: Learn how to use private endpoints with Azure Maps. 
 author: pbrasil
 ms.author: peterbr 
@@ -9,7 +9,7 @@ ms.service: azure-maps
 ms.subservice: authentication
 ---
 
-# Using private endpoints with Azure Maps
+# Use private endpoints with Azure Maps
 
 Azure Maps supports [Azure Private Link](/../private-link/private-link-overview), enabling secure access to Azure Maps services through a private endpoint in your virtual network. A private endpoint assigns a private IP address from your virtual network to the Azure Maps service, so traffic between your applications and Azure Maps stays on the Microsoft backbone network instead of the public internet. This provides improved security and network isolation. You can create a private endpoint when you create an Azure Maps account or add one to an existing account.
 
@@ -28,8 +28,13 @@ Private endpoints provide the following benefits for Azure Maps accounts:
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 - An [Azure Maps account](quick-demo-map-app.md#create-an-azure-maps-account). Use a Maps account and a virtual network in the **same Azure region** for optimal performance.
-- **A Virtual Network and Subnet** in your Azure subscription for the private endpoint. The subnet should have available IP addresses. You need Contributor roles on both the Azure Maps account (Azure Maps Contributor) and the virtual network (Network Contributor) to create a Private Endpoint that is automatically approved. A manually approved Private Endpoint can be created with just Network Contributor role.
-- Optionally, decide whether to let Azure automatically manage DNS for the private endpoint (using Azure Private DNS) or if you'll manage DNS on your own. Using Azure's built-in Private DNS zone is easier in most cases.
+- **A Virtual Network and Subnet**: A virtual network and subnet in your Azure subscription for the private endpoint. The subnet must have available IP addresses.
+- **Required permissions**
+  - To create a private endpoint that's automatically approved, you need:
+    - **Azure Maps Contributor** on the Azure Maps account
+    - **Network Contributor** on the virtual network
+  - To create a private endpoint that requires manual approval, only the **Network Contributor** role is required.
+- Choose whether Azure automatically manages DNS for the private endpoint using Azure Private DNS, or manage DNS manually. In most cases, Azure Private DNS provides the simplest setup.
 
 ## Configure a private endpoint for Azure Maps
 
@@ -63,26 +68,28 @@ az network private-endpoint create \
   --connection-name <MyConnectionName>
 ```
 
-This command specifies the Maps account's resource ID and the `mapsAccount` subresource group, as well as the virtual network and subnet for the endpoint.
+This command specifies the Maps account resource ID and the `mapsAccount` subresource, along with the virtual network and subnet used for the private endpoint.
 
 ### 2. Configure DNS for the private endpoint
 
-If you enabled **Private DNS integration** when creating the endpoint (the default), Azure has already created a Private DNS Zone for `privatelink.account.maps.azure.com` in your subscription and linked it to your VNET. In that zone, you should find a record that maps your Maps account's unique ID and region to the private IP address of the endpoint. For example, if your Maps account's Client ID is `abc123` and located in `East US`, the DNS record would look like:
+If you enabled **Private DNS integration** when creating the private endpoint (the default), Azure automatically creates a Private DNS zone for `privatelink.account.maps.azure.com` in your subscription and links it to your virtual network.
+
+Within this zone, a DNS record maps your Azure Maps account's unique ID and region to the private IP address of the endpoint. For example, if your Maps account client ID is `abc123` and the region is `East US`, the DNS record resolves that hostname to the private endpoint IP address:
 
 - **Record name:** `abc123.eastus.account.maps.azure.com`
 - **Record value:** `10.x.y.z` - The private IP address assigned to the endpoint.
 
-Clients inside the virtual network resolve the hostname to the private IP address, enabling private connectivity. Clients outside the virtual network resolve the same hostname to the Azure Maps public endpoint. This split‑horizon DNS approach lets you use a single endpoint URL both inside and outside the virtual network.
+Clients inside the virtual network resolve the hostname to a private IP address for private connectivity, while clients outside the network resolve the same hostname to the Azure Maps public endpoint. This split‑horizon DNS approach lets you use a single endpoint URL both inside and outside the virtual network.
 
 If you don't use automatic DNS integration, configure DNS manually so the Azure Maps account hostname  
-(`<maps-account-client-id>.<location>.privatelink.account.maps.azure.com`) resolves to the private endpoint IP address in your network. For more information, see [Azure Private Endpoint DNS documentation](/../private-link/private-endpoint-dns).
-
+(`<maps-account-client-id>.<location>.privatelink.account.maps.azure.com`) resolves to the private endpoint IP address within your network. For more information, see [Azure Private Endpoint DNS documentation](/../private-link/private-endpoint-dns).
 
 ### 3. Use the private endpoint in your applications
 
 To use the private endpoint, configure your applications to call the **Azure Maps account-specific endpoint**. You can find this endpoint in the Azure Maps account **Overview** or **Authentication** pages, or in the private endpoint resource under **DNS configuration** (customer-visible FQDNs).
 
-:::image type="content" source="./media/private-endpoint/dns-configuration.png" alt-text="Azure portal sidebar menu for a private endpoint resource, highlighting the DNS configuration option under Settings. The menu includes options such as Overview, Activity log, Access control IAM, Tags, Diagnose and solve problems, Resource visualizer, Application security groups, DNS configuration, and Properties. The environment is a dark-themed Azure portal interface, and the focus is on configuring DNS for private endpoints. The tone is neutral and instructional.":::
+:::image type="content" source="./media/private-endpoint/dns-configuration.png" alt-text="A screenshot showing an Azure portal sidebar menu for a private endpoint resource, highlighting the DNS configuration option under Settings. The menu includes options such as Overview, Activity log, Access control IAM, Tags, Diagnose and solve problems, Resource visualizer, Application security groups, DNS configuration, and Properties.":::
+
 The access pattern is:
 
 `https://{maps-account-client-id}.{location}.privatelink.account.maps.azure.com`
