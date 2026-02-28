@@ -244,7 +244,7 @@ If the deployment process doesn't publish the `apicenter-analyer` function to th
    apicenter-analyzer - [eventGridTrigger]
    ```
 
-1. In the Azure portal, confirm the `apicenter-analyer` function is now [published and enabled for your function app](#confirm-function-published-in-azure-portal).
+1. In the Azure portal, confirm the `apicenter-analyzer` function is now [published and enabled for your function app](#confirm-function-published-in-azure-portal).
 
 ### Configure event subscription
 
