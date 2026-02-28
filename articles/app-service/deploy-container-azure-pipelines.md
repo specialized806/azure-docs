@@ -22,7 +22,9 @@ This article describes how to deploy a Windows container application stored in a
 
 ## Add a service connection
 
-Before creating your pipeline, you must create an Azure service connection to use for connecting to your Azure Container Registry. In **Project Settings** for your Azure DevOps project, create the service connection by following the instructions at [Create a service connection](/azure/devops/pipelines/library/service-endpoints#create-a-service-connection). For this service connection, choose **Docker Registry** and then choose **Azure Container Registry** as the registry type. After you create the service connection, copy its **ID** to use in a later step.
+Before creating your pipeline, you must create an Azure service connection to use for connecting to your Azure Container Registry. In **Project Settings** for your Azure DevOps project, create the service connection by following the instructions at [Create a service connection](/azure/devops/pipelines/library/service-endpoints#create-a-service-connection).
+
+For this service connection, choose **Docker Registry** and then choose **Azure Container Registry** as the registry type. After you create the service connection, copy its **ID** to use in a later step.
 
 ## Create and configure the pipeline
 
@@ -38,16 +40,16 @@ Create the pipeline by following these steps:
 
 ### Create variables
 
-Create variables for your pipeline for frequently used information or to protect secure information you don't want others to access. For more information, see [Define variables](/azure/devops/pipelines/process/variables).
+Create pipeline variables for frequently used information or to protect secure information you don't want others to access. For more information, see [Define variables](/azure/devops/pipelines/process/variables).
 
 1. On the pipeline editing screen, select **Variables** at upper right.
 1. On the **Variables** screen, select **New variable**.
 1. Enter the following name/value pairs using your own information. Select **OK** after adding each variable and then select **+** to add the next variable. If the value is a secret, select the checkbox to **Keep this value secret**.
 
    - vmImageName: windows-latest
-   - imageRepository: <repository-name>
-   - dockerfilePath: $(Build.SourcesDirectory)/<folder-path>/Dockerfile>
-   - dockerRegistryServiceConnection: <service-connection-ID>
+   - imageRepository: \<repository name>
+   - dockerfilePath: $(Build.SourcesDirectory)/\<folder-path>/Dockerfile>
+   - dockerRegistryServiceConnection: \<service-connection-ID>
 
 1. After adding all variables, select **Save** on the **Variables** screen.
 1. On the pipeline page, select the dropdown arrow next to **Save and run** at upper right, and select **Save**.
@@ -132,7 +134,7 @@ The pipeline is now ready to run.
 
 The pipeline goes through the steps to build and push the Windows container image to Azure Container Registry and deploy the image to App Service.
 
-The following code shows the full *azure-pipelines.yml* pipeline definition file.
+The following code shows the full *azure-pipelines.yml* pipeline definition file with example values.
 
 ```yaml
 trigger:
@@ -173,6 +175,6 @@ stages:
         azureSubscription: 'mysubscription(00000000-0000-0000-0000-000000000000)'
         appType: 'webAppHyperVContainer'
         WebAppName: 'WindowsDockerSample'
-        DockerNamespace: 'myontainerregistry'
+        DockerNamespace: 'mycontainerregistry'
         DockerRepository: 'myrepository'
 ```
