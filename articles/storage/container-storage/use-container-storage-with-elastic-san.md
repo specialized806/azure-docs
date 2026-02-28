@@ -6,6 +6,7 @@ ms.service: azure-container-storage
 ms.topic: how-to
 ms.date: 01/28/2026
 ms.author: saurabsharma
+ms.reviewer: kendownie
 ms.custom:
   - references_regions
 
