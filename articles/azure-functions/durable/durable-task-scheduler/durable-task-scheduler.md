@@ -152,9 +152,9 @@ Stale orchestration data should be purged periodically to ensure efficient stora
     | Orchestration custom status | 1 MB |
     | Entity state | 1 MB |
 
-- **Orchestration instance ID size:**
+- **Orchestration instance ID length:**
   
-  Currently instance ID length is limited to 100 characters.
+  Orchestration instance IDs are limited to a maximum length of 100 UTF-16 code units (approximately 100 characters for ASCII-only IDs).
 
 - **Feature parity:** 
 
