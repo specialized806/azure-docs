@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-dedicated-sku.md",
+      "redirect_url": "/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-billing",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-functions/durable/durable-functions-cloud-backup.md",
       "redirect_url": "/azure/azure-functions/durable/durable-functions-fan-in-fan-out",
       "redirect_document_id": false

@@ -320,7 +320,29 @@ if (existingInstance == null || !existingInstance.isRunning()) {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+import { OrchestrationStatus } from "@microsoft/durabletask-js";
+
+const client = createAzureManagedClient(connectionString);
+
+const instanceId = "singleton-job";
+
+// Check if an instance with the specified ID already exists
+const existingInstance = await client.getOrchestrationState(instanceId, false);
+
+if (!existingInstance ||
+    existingInstance.runtimeStatus === OrchestrationStatus.COMPLETED ||
+    existingInstance.runtimeStatus === OrchestrationStatus.FAILED ||
+    existingInstance.runtimeStatus === OrchestrationStatus.TERMINATED) {
+    // An instance with the specified ID doesn't exist or an existing one stopped running, create one.
+    await client.scheduleNewOrchestration("MyOrchestration", input, instanceId);
+    console.log(`Started orchestration with ID = '${instanceId}'.`);
+} else {
+    // An instance with the specified ID exists or an existing one still running.
+    console.log(`An instance with ID '${instanceId}' already exists.`);
+}
+```
 
 # [PowerShell](#tab/powershell)
 

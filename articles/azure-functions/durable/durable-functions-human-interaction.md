@@ -84,9 +84,9 @@ This article covers the following functions in the sample app:
 
 This article explains the following components in the sample app:
 
-* `ApprovalOrchestration` (`human_interaction_orchestrator`): An orchestrator that submits an approval request and waits for a human response or a timeout.
-* `SubmitApprovalRequestActivity` (`submit_approval_request`): An activity that notifies a human approver, for example, by email or chat message.
-* `ProcessApprovalActivity` (`process_approval`): An activity that processes the approval decision.
+* `ApprovalOrchestration` / `approvalOrchestrator` / `human_interaction_orchestrator`: An orchestrator that submits an approval request and waits for a human response or a timeout.
+* `SubmitApprovalRequestActivity` / `submitRequest` / `submit_approval_request`: An activity that notifies a human approver, for example, by email or chat message.
+* `ProcessApprovalActivity` / `processApproval` / `process_approval`: An activity that processes the approval decision.
 
 ::: zone-end
 
@@ -103,7 +103,10 @@ This article explains the following components in the sample app:
 > [!NOTE]
 > It might not be obvious at first, but this orchestrator doesn't violate the [deterministic orchestration constraint](durable-functions-code-constraints.md). It's deterministic because the `CurrentUtcDateTime` property calculates the timer expiration time, and it returns the same value on every replay at this point in the orchestrator code. This behavior ensures that `winner` is the same for every repeated call to `Task.WhenAny`.
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
+
+<details>
+<summary><b>V3 programming model</b></summary>
 
 The **E4_SmsPhoneVerification** function uses the standard *function.json* for orchestrator functions.
 
@@ -116,11 +119,18 @@ Here's the code that implements the function:
 > [!NOTE]
 > It might not be obvious at first, but this orchestrator doesn't violate the [deterministic orchestration constraint](durable-functions-code-constraints.md). It's deterministic because the `currentUtcDateTime` property calculates the timer expiration time, and it returns the same value on every replay at this point in the orchestrator code. This behavior ensures that `winner` is the same for every repeated call to `context.df.Task.any`.
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+</details>
+
+<br>
+
+<details>
+<summary><b>V4 programming model</b></summary>
 
 Here's the code that implements the `smsPhoneVerification` orchestration function:
 
 :::code language="javascript" source="~/azure-functions-durable-js-v3/samples-js/functions/smsPhoneVerification.js" range="2-43":::
+
+</details>
 
 # [Python](#tab/python)
 
@@ -237,13 +247,55 @@ public class ApprovalOrchestration : TaskOrchestrator<ApprovalRequestData, Appro
 }
 ```
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-This sample isn't available for JavaScript. Use the .NET, Java, or Python tab.
+```typescript
+import {
+  OrchestrationContext,
+  TOrchestrator,
+  whenAny,
+} from "@microsoft/durabletask-js";
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+const approvalOrchestrator: TOrchestrator = async function* (
+  ctx: OrchestrationContext,
+  amount: number
+): any {
+  // Step 1: Submit the request
+  const requestId: string = yield ctx.callActivity(submitRequest, { amount });
 
-This sample isn't available for JavaScript. Use the .NET, Java, or Python tab.
+  ctx.setCustomStatus({ stage: "Awaiting approval", requestId });
+
+  // Step 2: Race external event vs timer
+  const approvalEvent = ctx.waitForExternalEvent<{ approved: boolean }>(
+    "approval"
+  );
+  const timeout = ctx.createTimer(5); // 5-second timeout
+
+  const winner = yield whenAny([approvalEvent, timeout]);
+
+  let result: string;
+  if (winner === approvalEvent) {
+    // Human responded in time
+    const decision = approvalEvent.getResult();
+    ctx.setCustomStatus({
+      stage: "Processing",
+      requestId,
+      approved: decision.approved,
+    });
+    result = yield ctx.callActivity(processApproval, {
+      requestId,
+      approved: decision.approved,
+    });
+  } else {
+    // Timer fired first — timed out
+    ctx.setCustomStatus({ stage: "Timed out", requestId });
+    result = yield ctx.callActivity(notifyTimeout, requestId);
+  }
+
+  ctx.setCustomStatus({ stage: "Completed", requestId });
+  return result;
+};
+```
 
 # [Python](#tab/python)
 
@@ -306,7 +358,7 @@ def human_interaction_orchestrator(ctx: task.OrchestrationContext, input_data: d
 
 # [PowerShell](#tab/powershell)
 
-This sample isn't available for PowerShell. Use the .NET, Java, or Python tab.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -391,7 +443,10 @@ The **E4_SendSmsChallenge** function uses the Twilio binding to send an SMS mess
 > [!NOTE]
 > To run the sample, install the `Microsoft.Azure.WebJobs.Extensions.Twilio` NuGet package. Don't install the main [Twilio NuGet package](https://www.nuget.org/packages/Twilio/) because it can cause version conflicts and build errors.
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
+
+<details>
+<summary><b>V3 programming model</b></summary>
 
 The *function.json* file is defined like this:
 
@@ -401,11 +456,18 @@ This code generates the four-digit challenge code and sends the SMS message:
 
 :::code language="javascript" source="~/azure-functions-durable-js/samples/E4_SendSmsChallenge/index.js":::
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+</details>
+
+<br>
+
+<details>
+<summary><b>V4 programming model</b></summary>
 
 Here's the code that generates the four-digit challenge code and sends the SMS message:
 
 :::code language="javascript" source="~/azure-functions-durable-js-v3/samples-js/functions/smsPhoneVerification.js" range="1-2,4-6,45-67":::
+
+</details>
 
 # [Python](#tab/python)
 
@@ -474,13 +536,21 @@ public class SubmitApprovalRequestActivity : TaskActivity<ApprovalRequestData, S
 }
 ```
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```typescript
+import { ActivityContext } from "@microsoft/durabletask-js";
 
-# [JavaScript (PM4)](#tab/javascript-v4)
-
-This sample is shown for .NET, Java, and Python.
+const submitRequest = async (
+  _ctx: ActivityContext,
+  request: { amount: number }
+): Promise<string> => {
+  console.log(
+    `[submitRequest] Purchase request submitted: $${request.amount}`
+  );
+  return `REQ-${Date.now()}`;
+};
+```
 
 # [Python](#tab/python)
 
@@ -508,7 +578,7 @@ def submit_approval_request(ctx: task.ActivityContext, request_data: dict) -> di
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -618,13 +688,33 @@ public class ApprovalResult
 }
 ```
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```typescript
+import { ActivityContext } from "@microsoft/durabletask-js";
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+const processApproval = async (
+  _ctx: ActivityContext,
+  data: { requestId: string; approved: boolean }
+): Promise<string> => {
+  console.log(
+    `[processApproval] Request ${data.requestId}: ${
+      data.approved ? "APPROVED" : "REJECTED"
+    }`
+  );
+  return data.approved ? "Order placed" : "Order cancelled";
+};
 
-This sample is shown for .NET, Java, and Python.
+const notifyTimeout = async (
+  _ctx: ActivityContext,
+  requestId: string
+): Promise<string> => {
+  console.log(
+    `[notifyTimeout] Request ${requestId} timed out — auto-rejected`
+  );
+  return "Timed out — auto-rejected";
+};
+```
 
 # [Python](#tab/python)
 
@@ -653,7 +743,7 @@ def process_approval(ctx: task.ActivityContext, approval_data: dict) -> dict:
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -778,13 +868,54 @@ var result = await client.WaitForInstanceCompletionAsync(instanceId, getInputsAn
 Console.WriteLine($"Result: {result.ReadOutputAs<ApprovalResult>().Status}");
 ```
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```typescript
+import {
+  DurableTaskAzureManagedClientBuilder,
+  DurableTaskAzureManagedWorkerBuilder,
+} from "@microsoft/durabletask-js-azuremanaged";
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+const client = new DurableTaskAzureManagedClientBuilder()
+  .connectionString(connectionString)
+  .build();
 
-This sample is shown for .NET, Java, and Python.
+const worker = new DurableTaskAzureManagedWorkerBuilder()
+  .connectionString(connectionString)
+  .addOrchestrator(approvalOrchestrator)
+  .addActivity(submitRequest)
+  .addActivity(processApproval)
+  .addActivity(notifyTimeout)
+  .build();
+
+await worker.start();
+
+// Schedule the approval workflow
+const approvalId = await client.scheduleNewOrchestration(
+  approvalOrchestrator,
+  500 // amount
+);
+
+console.log(`Orchestration started: ${approvalId}`);
+
+// Wait for it to reach "Awaiting approval", then send approval
+await new Promise((r) => setTimeout(r, 3000));
+
+await client.raiseOrchestrationEvent(approvalId, "approval", {
+  approved: true,
+});
+console.log("Sent approval event");
+
+const result = await client.waitForOrchestrationCompletion(
+  approvalId,
+  true,
+  60
+);
+console.log(`Result: ${result?.serializedOutput}`);
+
+await worker.stop();
+await client.stop();
+```
 
 # [Python](#tab/python)
 
@@ -834,7 +965,7 @@ print(f"Result: {result.serialized_output}")
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -904,6 +1035,8 @@ This sample shows how to use the Durable Task SDKs to implement workflows that w
 - **External events**: Using `WaitForExternalEvent` to wait for input
 - **Durable timers**: Using `CreateTimer` to implement timeouts
 - **Racing tasks**: Using `WhenAny`, `when_any`, or `anyOf` to handle whichever task completes first
+
+- [Durable Task JavaScript SDK on GitHub](https://github.com/microsoft/durabletask-js)
 
 > [!div class="nextstepaction"]
 > [Get started with Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md)

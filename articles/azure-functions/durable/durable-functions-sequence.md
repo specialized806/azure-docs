@@ -23,13 +23,7 @@ Function chaining is a pattern where you run a sequence of functions in order. I
 
 ::: zone pivot="durable-task-sdks"
 
-Function chaining is a pattern where you run a sequence of activities in order. It's common to pass the output of one activity to the input of the next. This article describes the chaining sequence for the Durable Task SDKs for .NET, Python, and Java.
-
-::: zone-end
-
-::: zone pivot="durable-functions"
-
-[!INCLUDE [functions-nodejs-durable-model-description](../../../includes/functions-nodejs-durable-model-description.md)]
+Function chaining is a pattern where you run a sequence of activities in order. It's common to pass the output of one activity to the input of the next. This article describes the chaining sequence for the Durable Task SDKs for .NET, JavaScript, Python, and Java.
 
 ::: zone-end
 
@@ -49,7 +43,7 @@ This article describes these functions in the sample app:
 
 This article describes these components in the sample app:
 
-* `GreetingOrchestration`, `function_chaining_orchestrator`, or `ActivityChaining`: An orchestrator that calls multiple activities in sequence. It stores each output and records the results.
+* `GreetingOrchestration`, `greetingOrchestrator`, `function_chaining_orchestrator`, or `ActivityChaining`: An orchestrator that calls multiple activities in sequence. It stores each output and records the results.
 * Activity functions: Activities that process input and return results. Each activity performs a simple transformation on the input.
 * Client: A client app that starts an instance of the orchestrator and waits for the result.
 
@@ -67,7 +61,10 @@ All C# orchestration functions must have a parameter of type `DurableOrchestrati
 
 The code calls `E1_SayHello` three times in sequence with different parameter values. The return value of each call is added to the `outputs` list, which is returned at the end of the function.
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
+
+<details>
+<summary><b>V3 programming model</b></summary>
 
 #### function.json
 
@@ -94,7 +91,12 @@ All JavaScript orchestration functions must include the [`durable-functions` mod
 
 The `context` object contains a `df` durable orchestration context object that lets you call other *activity* functions and pass input parameters using its `callActivity` method. The code calls `E1_SayHello` three times in sequence with different parameter values, using `yield` to indicate the execution should wait on the async activity function calls to be returned. The return value of each call is added to the `outputs` array, which is returned at the end of the function.
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+</details>
+
+<br>
+
+<details>
+<summary><b>V4 programming model</b></summary>
 
 :::code language="javascript" source="~/azure-functions-durable-js-v3/samples-js/functions/sayHello.js" range="1-14":::
 
@@ -106,6 +108,8 @@ Two key differences between an orchestrator function and other JavaScript functi
 1. The function is synchronous. The function returns.
 
 The `context` object contains a `df` durable orchestration context object that lets you call other *activity* functions and pass input parameters using its `callActivity` method. The code calls `sayHello` three times in sequence with different parameter values, using `yield` to indicate the execution should wait on the async activity function calls to be returned. The return value of each call is added to the `outputs` array, which is returned at the end of the function.
+
+</details>
 
 # [Python](#tab/python)
 
@@ -179,13 +183,34 @@ public class GreetingOrchestration : TaskOrchestrator<string, string>
 
 All .NET orchestrators inherit from `TaskOrchestrator<TInput, TOutput>`. The `TaskOrchestrationContext` lets you call activities using `CallActivityAsync`. The code calls three activities in sequence, where each activity receives the output of the previous activity.
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-No JavaScript sample is available. Use the .NET, Java, or Python sample.
+The following code shows an orchestrator that calls three activities in sequence:
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+```typescript
+import {
+  OrchestrationContext,
+  TOrchestrator,
+} from "@microsoft/durabletask-js";
 
-No JavaScript sample is available. Use the .NET, Java, or Python sample.
+const greetingOrchestrator: TOrchestrator = async function* (
+  ctx: OrchestrationContext,
+  name: string
+): any {
+  // Step 1: Say hello to the person
+  const greeting: string = yield ctx.callActivity(sayHello, name);
+
+  // Step 2: Process the greeting
+  const processedGreeting: string = yield ctx.callActivity(processGreeting, greeting);
+
+  // Step 3: Finalize the response
+  const finalResponse: string = yield ctx.callActivity(finalizeResponse, processedGreeting);
+
+  return finalResponse;
+};
+```
+
+All JavaScript orchestrators are generator functions (`async function*`) that use `yield` to call activities. The orchestration context's `callActivity` method schedules activity execution. The code calls three activities in sequence, passing each activity's output to the next.
 
 # [Python](#tab/python)
 
@@ -214,7 +239,7 @@ All Python orchestrators are generator functions that use `yield` to call activi
 
 # [PowerShell](#tab/powershell)
 
-No PowerShell sample is available. Use the .NET, Java, or Python sample.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -267,7 +292,10 @@ Instead of binding to `IDurableActivityContext`, bind directly to the type passe
 
 [!code-csharp[Main](~/samples-durable-functions/samples/precompiled/HelloSequence.cs?range=34-38)]
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
+
+<details>
+<summary><b>V3 programming model</b></summary>
 
 #### E1_SayHello/function.json
 
@@ -286,7 +314,12 @@ The implementation of `E1_SayHello` is a relatively trivial string formatting op
 
 Unlike the orchestration function, an activity function doesn't need special setup. The orchestrator passes input on the `context.bindings` object under the name of the `activityTrigger` binding—in this case, `context.bindings.name`. Set the binding name as a parameter of the exported function to access it directly, as the sample does.
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+</details>
+
+<br>
+
+<details>
+<summary><b>V4 programming model</b></summary>
 
 `sayHello` formats a greeting string.
 
@@ -294,6 +327,7 @@ Unlike the orchestration function, an activity function doesn't need special set
 
 Unlike the orchestration function, an activity function doesn't need special setup. The orchestrator passes input as the first argument to the function. The second argument is the invocation context, which this example doesn't use.
 
+</details>
 
 # [Python](#tab/python)
 
@@ -374,13 +408,27 @@ public class FinalizeResponseActivity : TaskActivity<string, string>
 
 Use dependency injection to get services like `ILogger`. Add the `[DurableTask]` attribute to register the activity with the worker.
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+Activities in the Durable Task SDK are simple functions:
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+```typescript
+import { ActivityContext } from "@microsoft/durabletask-js";
 
-This sample is shown for .NET, Java, and Python.
+const sayHello = async (_ctx: ActivityContext, name: string): Promise<string> => {
+  return `Hello ${name}!`;
+};
+
+const processGreeting = async (_ctx: ActivityContext, greeting: string): Promise<string> => {
+  return `${greeting} How are you today?`;
+};
+
+const finalizeResponse = async (_ctx: ActivityContext, response: string): Promise<string> => {
+  return `${response} I hope you're doing well!`;
+};
+```
+
+Unlike orchestrators, activities can perform I/O operations like HTTP calls, database queries, and file access. The input is passed directly as a parameter.
 
 # [Python](#tab/python)
 
@@ -406,7 +454,7 @@ Unlike orchestrators, activities can perform I/O operations like HTTP calls, dat
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -470,7 +518,10 @@ Start an orchestrator function instance from a client function. Use the `HttpSta
 
 To interact with orchestrators, add a `DurableClient` input binding. Use the client to start an orchestration and return an HTTP response that includes URLs to check the status of the new orchestration.
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
+
+<details>
+<summary><b>V3 programming model</b></summary>
 
 #### HttpStart/function.json
 
@@ -484,13 +535,20 @@ To interact with orchestrators, add a `durableClient` input binding.
 
 Use `df.getClient` to get a `DurableOrchestrationClient` object. Use the client to start an orchestration and return an HTTP response that includes URLs to check the status of the new orchestration.
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+</details>
+
+<br>
+
+<details>
+<summary><b>V4 programming model</b></summary>
 
 :::code language="javascript" source="~/azure-functions-durable-js-v3/samples-js/functions/httpStart.js":::
 
 To manage and interact with orchestrators, add a `durableClient` input binding. Specify the binding in the `extraInputs` argument when you register the function. Get the `durableClient` input by calling `df.input.durableClient()`.
 
 Use `df.getClient` to get a `DurableClient` object. Use the client to start an orchestration and return an HTTP response that includes URLs to check the status of the new orchestration.
+
+</details>
 
 # [Python](#tab/python)
 
@@ -547,13 +605,31 @@ Console.WriteLine($"Orchestration completed with result: {result.ReadOutputAs<st
 
 Create the `DurableTaskClient` by using a connection string to the Durable Task Scheduler. Use `ScheduleNewOrchestrationInstanceAsync` to start an orchestration and `WaitForInstanceCompletionAsync` to wait for completion.
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```typescript
+import {
+  DurableTaskAzureManagedClientBuilder,
+} from "@microsoft/durabletask-js-azuremanaged";
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+const connectionString =
+  process.env.DURABLE_TASK_SCHEDULER_CONNECTION_STRING ||
+  "Endpoint=http://localhost:8080;Authentication=None;TaskHub=default";
 
-This sample is shown for .NET, Java, and Python.
+const client = new DurableTaskAzureManagedClientBuilder()
+  .connectionString(connectionString)
+  .build();
+
+// Schedule a new orchestration instance
+const instanceId = await client.scheduleNewOrchestration(greetingOrchestrator, "World");
+console.log(`Started orchestration with ID: ${instanceId}`);
+
+// Wait for the orchestration to complete
+const state = await client.waitForOrchestrationCompletion(instanceId, true, 30);
+console.log(`Orchestration completed with result: ${state?.serializedOutput}`);
+```
+
+Create the `DurableTaskAzureManagedClientBuilder` by using a connection string to the Durable Task Scheduler. Use `scheduleNewOrchestration` to start an orchestration and `waitForOrchestrationCompletion` to wait for completion.
 
 # [Python](#tab/python)
 
@@ -587,7 +663,7 @@ The `DurableTaskSchedulerClient` connects to the Durable Task Scheduler. Use `sc
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -715,5 +791,7 @@ This sample demonstrates a simple function chaining orchestration. Next, explore
 
 > [!div class="nextstepaction"]
 > [Get started with Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md)
+
+For complete JavaScript SDK examples, see the [Durable Task JavaScript SDK samples](https://github.com/microsoft/durabletask-js/tree/main/examples/azure-managed).
 
 ::: zone-end

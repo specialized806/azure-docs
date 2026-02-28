@@ -1,282 +1,122 @@
 ---
 title: Durable Task SDKs overview
-description: Understand the different Durable Task SDK flavors and when to use each.
+description: Learn about the portable Durable Task SDKs for .NET, Python, Java, and JavaScript/TypeScript. Build durable orchestrations on any compute platform.
 author: hhunter-ms
 ms.author: hannahhunter
 ms.reviewer: azfuncdf
-ms.date: 12/05/2025
+ms.date: 02/27/2026
 ms.topic: concept-article
 ms.service: azure-functions
 ms.subservice: durable-task-scheduler
 ---
 
-# Durable Task SDK overview
+# Durable Task SDKs overview
 
-Understanding the different Durable Task SDK flavors and when to use each.
+The Durable Task SDKs are portable, open-source libraries for building durable orchestrations, activities, and entities using ordinary code. They work on any compute platform—Azure Container Apps, Kubernetes, or VMs. Each SDK connects to the [Durable Task Scheduler](durable-task-scheduler.md) as its managed backend.
 
-## SDK categories
+> [!TIP]
+> Not sure whether to use the Durable Task SDKs or Durable Functions? See [Choose your orchestration framework](choose-orchestration-framework.md). For a broader overview of the Durable Task ecosystem, see [What is Durable Task?](../what-is-durable-task.md).
 
-The Durable Task ecosystem offers two categories of SDKs:
+## Available SDKs
 
-- **Azure Functions Extensions** - Designed specifically for Azure Functions hosting
-- **Portable Durable Task SDKs** - Platform-agnostic SDKs for any hosting environment
+The following table summarizes the available Durable Task SDKs, their packages, and where to find source code and samples.
 
-```mermaid
-flowchart TB
-    subgraph Azure["Azure Functions"]
-        AF_NET["WebJobs.Extensions.DurableTask<br/>(In-Process .NET)"]
-        AF_ISO["Worker.Extensions.DurableTask<br/>(.NET Isolated)"]
-        AF_JS["durable-functions npm<br/>(Node.js)"]
-        AF_PY["azure-functions-durable<br/>(Python)"]
-        AF_JAVA["Durable Functions Java<br/>(Preview)"]
-        AF_PS["PowerShell SDK"]
-    end
-    
-    subgraph Portable["Portable SDKs"]
-        P_NET["Microsoft.DurableTask<br/>(.NET)"]
-        P_PY["durabletask<br/>(Python)"]
-        P_JAVA["durabletask-java"]
-        P_JS["durabletask<br/>(Node.js - Coming)"]
-    end
-    
-    Azure -->|"Azure Functions<br/>Hosting"| Functions["Azure Functions"]
-    Portable -->|"Any Platform"| Hosts["Container Apps<br/>Kubernetes<br/>VMs<br/>On-premises"]
-```
+| Language | Packages | Status | Source | Samples |
+| -------- | -------- | ------ | ------ | ------- |
+| **.NET** | `Microsoft.DurableTask.Worker.AzureManaged`<br/>`Microsoft.DurableTask.Client.AzureManaged` | GA | [durabletask-dotnet](https://github.com/microsoft/durabletask-dotnet) | [.NET samples](https://github.com/Azure-Samples/Durable-Task-Scheduler/tree/main/samples/durable-task-sdks/dotnet) |
+| **Python** | `durabletask-azuremanaged` | GA | [durabletask-python](https://github.com/microsoft/durabletask-python) | [Python samples](https://github.com/Azure-Samples/Durable-Task-Scheduler/tree/main/samples/durable-task-sdks/python) |
+| **Java** | `durabletask-client`<br/>`durabletask-azure-managed` | GA | [durabletask-java](https://github.com/microsoft/durabletask-java) | [Java samples](https://github.com/Azure-Samples/Durable-Task-Scheduler/tree/main/samples/durable-task-sdks/java) |
+| **JavaScript / TypeScript** | `@microsoft/durabletask-js`<br/>`@microsoft/durabletask-js-azuremanaged` | Preview | [durabletask-js](https://github.com/microsoft/durabletask-js) | [JS samples](https://github.com/Azure-Samples/Durable-Task-Scheduler/tree/main/samples/durable-task-sdks/javascript) |
 
-## Choosing the right SDK
+## installation
 
-### Use Azure Functions Extensions when:
+Each SDK ships two packages: a **worker** package for defining orchestrations and activities, and a **client** package for scheduling and managing orchestration instances. Install both packages to get started.
 
-- You're deploying to Azure Functions
-- You want automatic scaling with consumption plan
-- You need minimal infrastructure management
-- You prefer the Azure Functions programming model
-
-### Use Portable SDKs when:
-
-- You're deploying to Container Apps, Kubernetes, or VMs
-- You need complete control over hosting and scaling
-- You want to run on-premises or in non-Azure clouds
-- You're building microservices with custom hosting requirements
-
-## SDK matrix
-
-| Language | Azure Functions SDK | Portable SDK | Status |
-|----------|---------------------|--------------|--------|
-| **.NET (In-Process)** | `WebJobs.Extensions.DurableTask` | N/A | GA |
-| **.NET (Isolated)** | `Worker.Extensions.DurableTask` | `Microsoft.DurableTask` | GA |
-| **Python** | `azure-functions-durable` | `durabletask` | GA |
-| **Java** | `durabletask-azure-functions` | `durabletask-client` | Preview |
-| **Node.js** | `durable-functions` | Coming Soon | GA / Preview |
-| **PowerShell** | `AzureFunctions.PowerShell.Durable.SDK` | N/A | GA |
-
-## .NET SDKs
-
-### Overview
-
-.NET has three SDK options depending on your hosting and programming model:
-
-| SDK | Hosting | Description |
-|-----|---------|-------------|
-| **Microsoft.DurableTask** | Portable | Modern, platform-agnostic SDK |
-| **Worker.Extensions.DurableTask** | Azure Functions (Isolated) | .NET isolated worker for Azure Functions |
-| **WebJobs.Extensions.DurableTask** | Azure Functions (In-Process) | Legacy in-process model |
-
-### Portable SDK (Microsoft.DurableTask)
-
-The portable SDK is recommended for new applications not hosted on Azure Functions.
+# [C#](#tab/csharp)
 
 ```bash
 dotnet add package Microsoft.DurableTask.Worker.AzureManaged
 dotnet add package Microsoft.DurableTask.Client.AzureManaged
 ```
 
-**Key Features:**
-- Works with any .NET hosting (ASP.NET Core, Console, Worker Services)
-- Type-safe orchestration and activity definitions
-- Source generators for compile-time validation
-- Native integration with dependency injection
+The .NET SDK works with any .NET hosting model: ASP.NET Core, console apps, or worker services. It supports type-safe orchestration and activity definitions with source generators, and integrates with dependency injection.
 
-### .NET Isolated SDK
-
-For Azure Functions using the isolated worker model (.NET 6+):
-
-```bash
-dotnet add package Microsoft.Azure.Functions.Worker.Extensions.DurableTask
-```
-
-**When to Use:**
-- Running Azure Functions on .NET 6, 7, or 8
-- Need process isolation from the Functions host
-- Want to use the latest .NET features
-
-### In-Process SDK (Legacy)
-
-For Azure Functions using the in-process model:
-
-```bash
-dotnet add package Microsoft.Azure.WebJobs.Extensions.DurableTask
-```
-
-> **Note:** The in-process model is being deprecated. Consider migrating to isolated worker or portable SDK.
-
-## Python SDKs
-
-### Overview
-
-Python has two SDK options:
-
-| SDK | Hosting | Description |
-|-----|---------|-------------|
-| **durabletask** | Portable | Platform-agnostic SDK |
-| **azure-functions-durable** | Azure Functions | Azure Functions integration |
-
-### Portable SDK (durabletask)
-
-For applications running outside Azure Functions:
+# [Python](#tab/python)
 
 ```bash
 pip install durabletask-azuremanaged
 ```
 
-**Key Features:**
-- Works with any Python hosting
-- Generator-based orchestrations
-- Async/await support
+The Python SDK works with any Python 3.9+ hosting. It supports generator-based orchestrations and async or await.
 
-### Azure Functions SDK
-
-For Azure Functions hosting:
-
-```bash
-pip install azure-functions-durable
-```
-
-**Key Features:**
-- Decorators for orchestration, activity, and entity triggers
-- Integration with Azure Functions Python v2 model
-- Seamless storage provider configuration
-
-## Node.js SDKs
-
-### Overview
-
-| SDK | Hosting | Description |
-|-----|---------|-------------|
-| **durable-functions** | Azure Functions | Full-featured Azure Functions SDK |
-| **durabletask** | Portable | Coming soon |
-
-### Azure Functions SDK
-
-For Azure Functions (v3 and v4 programming models):
-
-```bash
-npm install durable-functions
-```
-
-**Programming Model Versions:**
-- `durable-functions@2.x` - v3 programming model
-- `durable-functions@3.x` - v4 programming model (recommended)
-
-**Key Features:**
-- Generator-based orchestrations
-- JavaScript and TypeScript support
-- Entity functions support
-
-## Java SDKs
-
-### Overview
-
-| SDK | Hosting | Description |
-|-----|---------|-------------|
-| **durabletask-azure-functions** | Azure Functions | Azure Functions Java integration |
-| **durabletask-client** | Portable | Platform-agnostic SDK |
-
-### Portable SDK
+# [Java](#tab/java)
 
 ```xml
 <dependency>
     <groupId>com.microsoft</groupId>
     <artifactId>durabletask-client</artifactId>
-    <version>1.5.1</version>
+    <version>1.7.0</version>
 </dependency>
 <dependency>
     <groupId>com.microsoft</groupId>
     <artifactId>durabletask-azure-managed</artifactId>
-    <version>1.5.1</version>
+    <version>1.7.0</version>
 </dependency>
 ```
 
-> **Note:** Java SDK is currently in Preview.
+The Java SDK works with any Java 8+ hosting, including Spring Boot applications.
 
-## PowerShell SDK
+# [JavaScript](#tab/javascript)
 
-### Overview
-
-PowerShell support is available exclusively for Azure Functions:
-
-| SDK | Hosting | Description |
-|-----|---------|-------------|
-| **AzureFunctions.PowerShell.Durable.SDK** | Azure Functions | Standalone PowerShell SDK |
-
-### Installation
-
-```powershell
-# In requirements.psd1
-@{
-    'AzureFunctions.PowerShell.Durable.SDK' = '2.*'
-}
+```bash
+npm install @microsoft/durabletask-js @microsoft/durabletask-js-azuremanaged
 ```
 
-```powershell
-# In profile.ps1
-Import-Module AzureFunctions.PowerShell.Durable.SDK -ErrorAction Stop
-```
+The JavaScript or TypeScript SDK requires Node.js 22 or higher. It supports generator-based orchestrations and durable entities.
 
-**Prerequisites:**
-- PowerShell 7.4+
-- `ExternalDurablePowerShellSDK` app setting set to `"true"`
+> [!NOTE]
+> The JavaScript or TypeScript SDK is currently in preview. It isn't compatible with the Azure Durable Functions JavaScript SDK ([durable-functions](https://github.com/Azure/azure-functions-durable-js)).
+
+---
+
+## Get started
+
+All SDKs follow the same pattern:
+
+1. **Install** the worker and client packages for your language. See [Installation](#installation).
+1. **Start the emulator** for local development using Docker:
+
+   ```bash
+   docker run --name dtsemulator -d -p 8080:8080 -p 8082:8082 mcr.microsoft.com/dts/dts-emulator:latest
+   ```
+
+1. **Define** orchestrations and activities in your application code.
+1. **Start a worker** to process orchestration and activity work items.
+1. **Use the client** to schedule new orchestration instances and query their status.
+
+For a walkthrough with working code, see [Quickstart: Create an app with Durable Task SDKs](quickstart-portable-durable-task-sdks.md).
 
 ## Feature comparison
 
-| Feature | .NET Portable | .NET AF | Python | Node.js | Java | PowerShell |
-|---------|---------------|---------|--------|---------|------|------------|
-| **Orchestrations** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Activities** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Sub-orchestrations** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Durable Timers** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **External Events** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Durable Entities** | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| **Retry Policies** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Continue-as-new** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **HTTP Call** | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| **Suspend/Resume** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+The following table shows the features each SDK supports.
 
-## Migration paths
-
-### .NET In-Process → Isolated Worker
-
-1. Update target framework to .NET 6+
-1. Replace `Microsoft.Azure.WebJobs.Extensions.DurableTask` with `Microsoft.Azure.Functions.Worker.Extensions.DurableTask`
-1. Update function attributes from `[FunctionName]` to `[Function]`
-1. Replace `IDurableOrchestrationContext` with `TaskOrchestrationContext`
-
-### .NET In-Process → Portable SDK
-
-1. Remove Azure Functions dependencies
-1. Add `Microsoft.DurableTask.Worker.AzureManaged` and `Microsoft.DurableTask.Client.AzureManaged`
-1. Convert to worker/client pattern
-1. Update hosting code
-
-### Node.js v3 → v4 Programming Model
-
-1. Update `durable-functions` to v3.x
-1. Replace `function.json` with code-based registration
-1. Update orchestrator syntax from `df.orchestrator()` to `df.app.orchestration()`
+| Feature | .NET | Python | Java | JavaScript |
+| ------- | :--: | :----: | :--: | :--------: |
+| **Orchestrations** | ✅ | ✅ | ✅ | ✅ |
+| **Activities** | ✅ | ✅ | ✅ | ✅ |
+| **Sub-orchestrations** | ✅ | ✅ | ✅ | ✅ |
+| **Durable timers** | ✅ | ✅ | ✅ | ✅ |
+| **External events** | ✅ | ✅ | ✅ | ✅ |
+| **Durable entities** | ✅ | ✅ | ❌ | ✅ |
+| **Retry policies** | ✅ | ✅ | ✅ | ✅ |
+| **Continue-as-new** | ✅ | ✅ | ✅ | ✅ |
+| **Suspend/Resume** | ✅ | ✅ | ✅ | ✅ |
 
 ## Next steps
 
-- [Programming model overview](../programming-model-overview.md)
-- [Packages](../durable-functions-packages.md)
-- [Create a Durable Functions app - C#](../durable-functions-isolated-create-first-csharp.md)
-- [Durable Functions overview](../what-is-durable-task.md)
+> [!div class="nextstepaction"]
+> [Quickstart: Create an app with Durable Task SDKs](quickstart-portable-durable-task-sdks.md)
+
+- [Choose your orchestration framework](choose-orchestration-framework.md)
+- [What is Durable Task?](../what-is-durable-task.md)
+- [Durable Task Scheduler overview](durable-task-scheduler.md)
