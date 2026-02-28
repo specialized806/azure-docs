@@ -102,7 +102,7 @@ For AI models:
      | **Description** | Description of the transaction. |
      | **Amount** | Amount of the transaction. |
 
-1. If you're viewing Azure credits at the billing account scope and the billing account has more than one billing profile, the **Azure credits** tab shows a table with a summary of Azure credits for each billing profile. Select a billing profile from the list, select payment methods, and then select Azure credits to view details for a billing profile.
+1. If you're viewing Azure credits at the billing account scope and the billing account has more than one billing profile, the **Azure credits** tab shows a table with a summary of Azure credits for each billing profile. Select a billing profile from the list, select payment methods, and then select **Azure credits** to view details for a billing profile.
 
     :::image type="content" border="true" source="../../../cost-management-billing/manage/media/mca-check-azure-credits-balance/mca-account-credit-list.png" alt-text="Screenshot that shows the credit list for a billing account.":::
 
@@ -162,7 +162,7 @@ The API response returns a list of billing accounts and their billing profiles.
 }
 ```
 
-Use the `displayName` property of the billing profile to identify the billing profile for which you want to check the credit balance. Copy the `id` value of the billing profile. For example, if you want to check the credit balance for the **Development** billing profile, copy ```/providers/Microsoft.Billing/billingAccounts/5e98e158-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx/billingProfiles/PBFV-xxxx-xxx-xxx```. Paste this value somewhere so that you can use it in the next step.
+Use the `displayName` property of the billing profile to identify the billing profile for which you want to check the credit balance. Copy the `id` value of the billing profile. For example, if you want to check the credit balance for the `Development` billing profile, copy ```/providers/Microsoft.Billing/billingAccounts/5e98e158-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx/billingProfiles/PBFV-xxxx-xxx-xxx```. Paste this value somewhere so that you can use it in the next step.
 
 ### Get a list of credits
 

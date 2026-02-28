@@ -39,7 +39,7 @@ Credits act like a monetary balance applied toward applicable Azure usage.
 Examples include:
 
 - Promotional credits
-- [Azure credit offers](credits/mca-check-azure-credits-balance.md)
+- [Azure Credit Offers](credits/mca-check-azure-credits-balance.md)
 
 ### Discounts
 

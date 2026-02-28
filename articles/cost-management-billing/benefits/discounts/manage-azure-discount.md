@@ -27,15 +27,15 @@ You can use the **Discounts** view to manage all discounts in one place. It show
 
 1. In the [Azure portal](https://portal.azure.com/), enter **discounts** in the search box.
 
-2. Select the **Discounts** service.
+2. Under **Services**, select **Discounts**.
 
 ### View additional discount metadata
 
-You can get detailed information about an available discount by viewing the JSON representation of the discount resource. You can then examine all relevant fields, such as discount values, eligibility criteria, validity periods, and other pertinent attributes connected to the discount.
+You can get detailed information about an available discount by viewing the JSON representation of the discount resource. You can then examine all relevant fields, such as discount values, eligibility criteria, validity periods, and other attributes connected to the discount.
 
 1. In the [Azure portal](https://portal.azure.com/), enter **discounts** in the search box.
 
-2. Select the **Discounts** service.
+2. Under **Services**, select **Discounts**.
 
 3. Select the discount resource.
 
@@ -45,7 +45,7 @@ You can get detailed information about an available discount by viewing the JSON
 
 1. In the [Azure portal](https://portal.azure.com/), enter **discounts** in the search box.
 
-2. Select the **Discounts** service.
+2. Under **Services**, select **Discounts**.
 
 3. Select the discount resource.
 
@@ -63,7 +63,7 @@ Here are the high-level steps to move a discount resource. For more information 
 
 1. In the [Azure portal](https://portal.azure.com/), enter **discounts** in the search box.
 
-2. Select the **Discounts** service.
+2. Under **Services**, select **Discounts**.
 
 3. Select the discount resource that you want to move.
 
@@ -83,7 +83,7 @@ Here are the high-level steps to move a discount resource. For more information 
 
 1. In the [Azure portal](https://portal.azure.com/), enter **discounts** in the search box.
 
-2. Select the **Discounts** service.
+2. Under **Services**, select **Discounts**.
 
 3. Select the discount resource that you want to move.
 
@@ -107,7 +107,7 @@ The user who accepted the discount proposal automatically gets owner access to t
 
 1. In the [Azure portal](https://portal.azure.com/), enter **discounts** in the search box.
 
-2. Select the **Discounts** service.
+2. Under **Services**, select **Discounts**.
 
 3. Select the discount resource.
 
@@ -138,7 +138,7 @@ If you have questions about canceling your discount, contact your Microsoft acco
 
 You can delete a discount resource only if its status is **Failed**, **Canceled**, or **Expired**. Deletion is permanent and can't be reversed.
 
-If you try to delete a discount resource has an **Active** status, an error notifies you that deletion isn't allowed. Deleting a resource group or subscription that has an active discount resource will also fail. To avoid the error, move the active discount resource to another group or subscription within the same billing account before you attempt deletion.
+If you try to delete a discount resource has an **Active** status, an error notifies you that deletion isn't allowed. Deleting a resource group or subscription that has an active discount resource will also fail. Be sure to move the active discount resource to another group or subscription within the same billing account before you attempt deletion.
 
 ## Frequently asked questions
 

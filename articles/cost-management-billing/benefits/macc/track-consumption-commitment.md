@@ -13,7 +13,7 @@ ms.custom: sfi-image-nochange
 
 # Track your Azure Consumption Commitment
 
-A Microsoft Azure Consumption Commitment is a contractual agreement in which your organization commits to a specified level of Azure spending over a defined period. If your organization has an Azure Consumption Commitment associated with a Microsoft Customer Agreement or Enterprise Agreement billing account, you can track key details through the Azure portal or REST APIs. These details include start and end dates, remaining balance, and eligible spending.
+An Azure Consumption Commitment is a contractual agreement in which your organization commits to a specified level of Azure spending over a defined period. If your organization has an Azure Consumption Commitment associated with a Microsoft Customer Agreement or Enterprise Agreement billing account, you can track key details through the Azure portal or REST APIs. These details include start and end dates, remaining balance, and eligible spending.
 
 Azure Consumption Commitment functionality in the Azure portal is available only to direct Microsoft Customer Agreement and direct Enterprise Agreement customers. A direct agreement is one signed directly between Microsoft and the customer, whereas an indirect agreement involves a customer signing through a Microsoft partner.
 
@@ -39,7 +39,7 @@ Azure Consumption Commitment functionality in the Azure portal is available only
     :::image type="content" source="../../manage/media/track-consumption-commitment/list-of-scopes.png" alt-text="Screenshot that shows billing scopes." lightbox="../../manage/media/track-consumption-commitment/list-of-scopes.png" :::
 
     > [!NOTE]
-    > The Azure portal remembers the last billing scope that you access and displays the scope the next time you open the list of billing scopes. You don't see the **Billing scopes** pane if you visited **Cost Management + Billing** earlier. If so, check that you're in the [right scope](#check-access-to-a-microsoft-customer-agreement). If not, [switch the scope](../../manage/view-all-accounts.md#switch-billing-scope-in-the-azure-portal) to select the billing account for a Microsoft Customer Agreement.
+    > The Azure portal remembers the last billing scope that you access and displays the scope the next time you open the list of billing scopes. You don't see the **Billing scopes** pane if you visited **Cost Management + Billing** earlier. If so, check that you're in the [right scope](#steps-for-checking-access-to-a-microsoft-customer-agreement). If not, [switch the scope](../../manage/view-all-accounts.md#switch-billing-scope-in-the-azure-portal) to select the billing account for a Microsoft Customer Agreement.
 
 5. Depending on your agreement type, take one of the following steps:
 
@@ -77,7 +77,7 @@ The **Details** section displays other important aspects of your commitment.
 Your Azure Consumption Commitment can have one of the following statuses:
 
 - **Active**. The Azure Consumption Commitment is currently in effect. Eligible Azure spending contributes toward fulfilling your commitment.
-- **Complete**. The Azure Consumption Commitment amount is fully met. No further action is required.
+- **Complete**. You fully met the Azure Consumption Commitment amount. No further action is required.
 - **Expired**. The Azure Consumption Commitment end date passed without the commitment being fully met. Contact your Microsoft account team for more information.
 - **Canceled**. The Azure Consumption Commitment was terminated before the end date. New Azure spending doesn't contribute toward your Azure Consumption Commitment. Contact your Microsoft account team for more information.
 
@@ -140,7 +140,7 @@ The API response returns a list of billing accounts.
 }
 ```
 
-Use the `displayName` property of the billing account to identify the billing account for which you want to track Azure Consumption Commitment. Copy the `name` value of the billing account. For example, if you want to track Azure Consumption Commitment for the **Contoso** billing account, copy `9a157b81-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx`. Paste this value somewhere so that you can use it in the next step.
+Use the `displayName` property of the billing account to identify the billing account for which you want to track Azure Consumption Commitment. Copy the `name` value of the billing account. For example, if you want to track Azure Consumption Commitment for the `Contoso` billing account, copy `9a157b81-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx`. Paste this value somewhere so that you can use it in the next step.
 
 ### Get a list of Azure Consumption Commitments
 
@@ -214,7 +214,7 @@ The API response returns lists of Azure Consumption Commitments for your billing
 Your Azure Consumption Commitment can have one of the following statuses:
 
 - `Active`. The Azure Consumption Commitment is currently in effect. Eligible Azure spending contributes toward fulfilling your commitment.
-- `Complete`. The Azure Consumption Commitment amount is fully met. No further action is required.
+- `Complete`. You fully met the Azure Consumption Commitment amount. No further action is required.
 - `Expired`. The Azure Consumption Commitment end date passed without the commitment being fully met. Contact your Microsoft account team for more information.
 - `Canceled`. The Azure Consumption Commitment was terminated before the end date. New Azure spending doesn't contribute toward your Azure Consumption Commitment. Contact your Microsoft account team for more information.
 
@@ -318,8 +318,6 @@ Here are key points about Azure Consumption Commitment milestones:
 > [!IMPORTANT]
 > Consumption charges covered by shortfall credits don't accrue toward your Azure Consumption Commitment. For more information, see [Azure credits and Azure Consumption Commitment](#azure-credits-and-azure-consumption-commitment) later in this article.
 
----
-
 ## Azure Consumption Commitment shortfalls and alerts
 
 Microsoft emails billing account admins to help you meet Azure Consumption Commitments and milestones on time. These alerts give advance notice so you can act before getting shortfall charges.
@@ -344,8 +342,6 @@ If your Azure Consumption Commitment includes milestones and you don't meet a mi
 
 If you don't meet the Azure Consumption Commitment or the milestone target by the end date, an email alert notifies you about a shortfall charge for the remaining balance. This shortfall charge is an Azure prepayment credit that's applied to your account to fulfill your remaining commitment.
 
----
-
 ## Azure services and Marketplace offers that are eligible for Azure Consumption Commitment
 
 You can determine which Azure services and Microsoft Marketplace offers are eligible for Azure Consumption Commitment decrement in the Azure portal. See [Azure Consumption Commitment benefit](/marketplace/azure-consumption-commitment-benefit).
@@ -362,7 +358,7 @@ Contoso makes an Azure Consumption Commitment of $50,000 in May. In June, it pur
 
 During June, Contoso consumes $10,000 of Azure prepayment-eligible services. These service charges are covered by the Azure prepayment and don't decrement the Azure Consumption Commitment. After Contoso fully uses the Azure prepayment, all Azure service consumption and other eligible purchases decrement the Azure Consumption Commitment.
 
-## Check access to a Microsoft Customer Agreement
+## Steps for checking access to a Microsoft Customer Agreement
 
 [!INCLUDE [billing-check-mca](../../../../includes/billing-check-mca.md)]
 

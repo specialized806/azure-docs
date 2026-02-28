@@ -49,7 +49,7 @@ Moving a Conditional Azure Credit Offer resource changes its URI.
 
 ### View the Conditional Azure Credit Offer resource URI
 
-1. In the [Azure portal](https://portal.azure.com), search for **conditional credit**.
+1. In the [Azure portal](https://portal.azure.com), enter **conditional credit** in the search box.
 
 2. Under **Services**, select **Conditional Credits**.
 

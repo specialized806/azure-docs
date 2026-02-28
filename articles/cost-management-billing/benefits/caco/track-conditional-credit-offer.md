@@ -66,7 +66,7 @@ Your Conditional Azure Credit Offer can have one of the following statuses:
 
 - **Scheduled**. The Conditional Azure Credit Offer has a future start date and isn't yet active. No eligible Azure spending contributes toward your commitment until you reach the start date.
 - **Active**. The Conditional Azure Credit Offer is currently in effect. Eligible Azure spending contributes toward fulfilling your commitment.
-- **Completed**. The Conditional Azure Credit Offer commitment amount is fully met. No further action is required.
+- **Completed**. You fully met the Conditional Azure Credit Offer commitment amount. No further action is required.
 - **Expired**. The Conditional Azure Credit Offer end date passed without the commitment being fully met. Contact your Microsoft account team for more information.
 - **Canceled**. The Conditional Azure Credit Offer was terminated before the end date. New Azure spending doesn't contribute toward your Conditional Azure Credit Offer commitment. Contact your Microsoft account team for more information.
 

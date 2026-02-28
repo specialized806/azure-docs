@@ -18,7 +18,7 @@ service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 When you accept Azure credit under a Microsoft Customer Agreement, the credit is assigned to a [subscription](../../../cost-management-billing/manage/cloud-subscription.md) and a resource group. The associated resource holds metadata such as status, credit amount, currency, start date, and end date. You can access this information in the Azure portal.
 
 > [!NOTE]
-> This article applies to credits accepted after *August 2025* for Azure credit offers, Azure prepayments, End Customer Investment Funds (ECIF), and support. Credits accepted earlier aren't listed as resources under a subscription.
+> This article applies to credits accepted after *August 2025* for Azure Credit Offers, Azure prepayments, End Customer Investment Funds (ECIF), and support. Credits accepted earlier aren't listed as resources under a subscription.
 
 ## Move a credit resource
 
@@ -32,7 +32,7 @@ Here are the high-level steps to move a credit resource. For more information on
 
 1. In the [Azure portal](https://portal.azure.com/), enter **credits** in the search box.
 
-2. Select the **Credits** service.
+2. Under **Services**, select **Credits**.
 
 3. Select the specific credit resource that you want to move.
 
@@ -52,7 +52,7 @@ Here are the high-level steps to move a credit resource. For more information on
 
 1. In the [Azure portal](https://portal.azure.com/), enter **credits** in the search box.
 
-2. Select the **Credits** service.
+2. Under **Services**, select **Credits**.
 
 3. Select the specific credit resource that you want to move.
 
@@ -74,7 +74,7 @@ When you move a credit, the resource URI associated with it is updated to reflec
 
 1. In the [Azure portal](https://portal.azure.com/), enter **credits** in the search box.
 
-2. Select the **Credits** service.
+2. Under **Services**, select **Credits**.
 
 3. Select the credit resource.
 
@@ -90,7 +90,7 @@ The credit's resource name is a part of its URI and can't be changed. However, y
 
 You can delete a credit resource only if its status is **Failed**, **Canceled**, or **Expired**. Deletion of a credit resource is a permanent action and can't be undone.
 
-If you try to delete an active credit resource, an error notifies you that the credit resource can't be deleted in its current **Succeeded** state. Trying to delete a resource group or subscription that contains an active credit resource will fail with a similar error. To avoid the error, move the active credit resource to another resource group or subscription within the same billing profile before you attempt deletion.
+If you try to delete an active credit resource, an error notifies you that the credit resource can't be deleted in its current **Succeeded** state. Trying to delete a resource group or subscription that contains an active credit resource will fail with a similar error. Be sure to move the active credit resource to another resource group or subscription within the same billing profile before you attempt deletion.
 
 ## Cancel a credit
 
@@ -102,7 +102,7 @@ By default, the user account that accepted the credit proposal has owner access 
 
 1. In the [Azure portal](https://portal.azure.com/), enter **credits** in the search box.
 
-2. Select the **Credits** service.
+2. Under **Services**, select **Credits**.
 
 3. Select the credit resource.
 
