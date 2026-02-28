@@ -108,37 +108,37 @@
         {
             "source_path_from_root": "/articles/azure-functions/scripts/functions-cli-create-serverless-python.md",
             "redirect_url": "/azure/azure-functions/functions-cli-samples",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-functions/scripts/functions-cli-create-premium-plan.md",
             "redirect_url": "/azure/azure-functions/functions-cli-samples",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-functions/scripts/functions-cli-create-app-service-plan.md",
             "redirect_url": "/azure/azure-functions/functions-cli-samples",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-functions/scripts/functions-cli-create-function-app-connect-to-storage-account.md",
             "redirect_url": "/azure/azure-functions/functions-cli-samples",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-functions/scripts/functions-cli-create-function-app-connect-to-cosmos-db.md",
             "redirect_url": "/azure/azure-functions/functions-cli-samples",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-functions/scripts/functions-cli-mount-files-storage-linux.md",
             "redirect_url": "/azure/azure-functions/functions-cli-samples",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-functions/scripts/functions-cli-create-function-app-github-continuous.md",
             "redirect_url": "/azure/azure-functions/functions-cli-samples",
-            "redirect_document_id": true
+            "redirect_document_id": false
         }
     ]
 }
