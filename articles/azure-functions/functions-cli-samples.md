@@ -39,4 +39,4 @@ The following table includes links to bash scripts that you can use to create an
 
 | Deploy code | Description|
 |---|---|
-| [deploy-function-app-with-function-github-continuous.sh](https://github.com/Azure-Samples/azure-cli-samples/tree/master/azure-functions/deploy-function-app-with-function-github-continuous) | Creates a function app in a Flex Consumption plan and deploys code from a public GitHub repository. |
+| [deploy-function-app-with-function-github-continuous.sh](https://github.com/Azure-Samples/azure-cli-samples/tree/master/azure-functions/deploy-function-app-with-function-github-continuous) | Creates a function app in a Consumption plan and deploys code from a public GitHub repository. |
