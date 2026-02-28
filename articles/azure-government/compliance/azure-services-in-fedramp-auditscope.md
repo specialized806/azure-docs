@@ -335,7 +335,7 @@ This article provides a detailed list of Azure, Dynamics 365, Microsoft 365, and
 | **Service** | **FedRAMP High** | **DoD IL2** | **DoD IL4** | **DoD IL5** | **DoD IL6** |
 | [Azure Resource Manager](../../azure-resource-manager/management/index.yml) | &#x2705; | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 | [Azure Service Manager (RDFE)](/previous-versions/azure/ee460799(v=azure.100)) | &#x2705; | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
-| [Azure SQL Managed Instance](azure/azure-sql/managed-instance/) | &#x2705; | &#x2705; | |  |  |
+| [Azure SQL Managed Instance](azure/azure-sql/managed-instance) | &#x2705; | &#x2705; | |  |  |
 | [SQL Server on Azure VM](/azure/azure-sql/virtual-machines/) | &#x2705; | &#x2705; | |  |  |
 | [Azure Sign-up portal](https://signup.azure.com/) | &#x2705; | &#x2705; | &#x2705; | &#x2705; | |
 | [Azure Stack](/azure-stack/operator/azure-stack-usage-reporting) | &#x2705; | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
