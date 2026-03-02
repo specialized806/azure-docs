@@ -131,7 +131,7 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
    #### [Consumption SKU](#tab/consumption)
 
    > [!NOTE]
-   > The Consumption SKU is currently in preview. [Learn more about the SKU and orchestration framework combinations recommended for production use.](./choose-orchestration-framework.md#orchestration-framework-options)
+   > The Consumption SKU is currently in preview. [Learn more about the SKU and orchestration framework combinations recommended for production use.](../choose-orchestration-framework.md#more-considerations)
 
     ```azurecli
     az durabletask scheduler create --name "YOUR_SCHEDULER" --resource-group "YOUR_RESOURCE_GROUP" --location "LOCATION" --ip-allowlist "[0.0.0.0/0]" --sku-name "consumption"
@@ -213,7 +213,7 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
 1. Fill out the fields in the **Basics** tab. Click **Review + create**. 
 
    > [!NOTE]
-   > The Consumption SKU is currently in preview. [Learn more about the SKU and orchestration framework combinations recommended for production use.](./choose-orchestration-framework.md#orchestration-framework-options)
+   > The Consumption SKU is currently in preview. [Learn more about the SKU and orchestration framework combinations recommended for production use.](../choose-orchestration-framework.md#more-considerations)
 
 1. Once the validation passes, click **Create**. 
 
