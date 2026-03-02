@@ -266,23 +266,33 @@ For detailed instructions on uploading graph definitions and WASM modules to reg
 
 ## Module configuration parameters
 
-Graph definitions can specify runtime parameters for WASM operators through module configurations:
+Graph definitions can specify runtime parameters for WASM operators through module configurations. These parameters are passed to your operator's `init` function at runtime, enabling dynamic configuration without rebuilding modules.
+
+> [!IMPORTANT]
+> If a WASM operator requires configuration parameters and you don't provide them in `moduleConfigurations`, the operator may fail at runtime. Always check the operator's documentation or source code for required parameters.
+
+The following example shows module configurations for the [temperature sample](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/wasm/operators/temperature) used in the complex graph:
 
 ```yaml
 moduleConfigurations:
-  - name: my-operator/map
+  - name: module-temperature/map
     parameters:
-      threshold:
-        name: temperature_threshold
-        description: "Temperature threshold for filtering"
-        required: true
-      unit:
-        name: output_unit
-        description: "Output temperature unit"
-        required: false
+      key1:
+        name: key1
+        description: "Example parameter passed to the map operator's init function"
+  - name: module-temperature/filter
+    parameters:
+      temperature_lower_bound:
+        name: temperature_lower_bound
+        description: "Minimum valid temperature in Celsius (default: -40)"
+      temperature_upper_bound:
+        name: temperature_upper_bound
+        description: "Maximum valid temperature in Celsius (default: 3422)"
 ```
 
-These parameters are passed to your WASM operator's `init` function at runtime, enabling dynamic configuration without rebuilding modules. For detailed examples of how to access and use these parameters in your Rust and Python code, see [Module configuration parameters](howto-develop-wasm-modules.md#module-configuration-parameters).
+The `name` field in each configuration entry must match the operator name defined in the graph's `operations` section. Each parameter under `parameters` becomes a key-value tuple in the `configuration.properties` list that your operator's `init` function receives.
+
+For detailed examples of how to access and use these parameters in your Rust and Python code, see [Module configuration parameters](howto-develop-wasm-modules.md#module-configuration-parameters).
 
 For a complete implementation example, see the [branch module](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/wasm-python/operators/branch), which demonstrates parameter usage for conditional routing logic.
 

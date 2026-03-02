@@ -189,6 +189,8 @@ For detailed information about creating and configuring the YAML graph definitio
 
 ## Related content
 
-- [Configure WebAssembly graph definitions](../develop-edge-apps/howto-configure-wasm-graph-definitions.md)
-- [Develop WebAssembly modules for data flow graphs](../develop-edge-apps/howto-develop-wasm-modules.md)
+- [Develop WebAssembly modules](howto-develop-wasm-modules.md) for writing operators in Rust and Python (includes end-to-end quickstart)
+- [Configure WebAssembly graph definitions](howto-configure-wasm-graph-definitions.md) for graph YAML structure and configuration parameters
+- [Use WebAssembly with data flow graphs](../connect-to-cloud/howto-dataflow-graph-wasm.md) for DataflowGraph resource configuration and examples
+- [Build WASM modules with VS Code extension](howto-build-wasm-modules-vscode.md) for IDE-based development
 - [Configure registry endpoints](howto-configure-registry-endpoint.md)
