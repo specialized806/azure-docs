@@ -81,7 +81,6 @@ Object replication doesn't support blob snapshots. Any snapshots on a blob in th
 Object replication now supports copying index tags from source blobs to destination blobs. You can configure this capability as part of a new or existing replication rule. For more information, see [Configure object replication](object-replication-configure.md#configure-blob-index-tags-replication).
 
 > [!NOTE]
-> Tags Replication is in public preview and is subject to the prerequisites.
 
 ### Blob tiering
 
