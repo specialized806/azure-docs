@@ -54,12 +54,12 @@ The list below mentions the Azure and corresponding OCI regions with the regiona
 | North Europe | Ireland (Dublin) | ✓  | ✓ |   | | | ✓ |   Dual   |
 | Spain Central | 	Spain Central (Madrid) | ✓  | ✓ |  |  | | |   Dual    |
 | Sweden Central | 	Sweden Central (Stockholm) | ✓  | ✓ | ✓ | ✓ | ✓ | ✓ |   Dual    |
-| Switzerland North | Switzerland North (Zurich) | ✓  | ✓ | | | | ✓ |   Single    |
+| Switzerland North | Switzerland North (Zurich) | ✓  | ✓ | | | | ✓ |   Dual    |
 | UAE Central | UAE Central (Abu Dhabi) | ✓  | ✓ | | | | |   Single    |
 | UAE North | UAE North (Dubai) | ✓  | ✓ | ✓ | | | ✓ |   Dual    |
 | UK South| UK South (London)   | ✓   | ✓   | ✓ | ✓ | ✓ | ✓ | Dual |
 | UK West | UK West (Newport)	   | ✓   | ✓  | | ✓ | ✓ |  | Single |
-| West Europe | Netherlands Northwest (Amsterdam)   | ✓   | ✓ | ✓ | ✓ | ✓ | | Single |
+| West Europe | Netherlands Northwest (Amsterdam)   | ✓   | ✓ | ✓ | ✓ | ✓ | | Dual |
 
 
 ## North America (NA)
