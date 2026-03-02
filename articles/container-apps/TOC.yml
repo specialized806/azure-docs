@@ -470,6 +470,8 @@ items:
           href: mtls.md
         - name: Integrate with Azure Front Door
           href: how-to-integrate-with-azure-front-door.md
+        - name: Integrate Azure Front Door with Container Apps in a custom VNET & private end points
+          href: front-door-container-apps-custom-virtual-network-private-link.md
 - name: Languages and runtimes
   items:
     - name: .NET
