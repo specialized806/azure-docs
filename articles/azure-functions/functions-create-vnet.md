@@ -135,7 +135,7 @@ Next, you create a Service Bus instance that is used to test the functionality o
 
 Create the private endpoint to lock down your Service Bus:
 
-1. In your new Service Bus, in the menu under Settings, select **Networking**.
+1. In your new Service Bus, in the menu under **Settings**, select **Networking**.
 
 1. On the **Private endpoint connections** tab, select **Private endpoint**.
 
