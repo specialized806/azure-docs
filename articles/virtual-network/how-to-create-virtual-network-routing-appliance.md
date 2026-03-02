@@ -115,7 +115,7 @@ After Microsoft authorizes your subscription, search for **routing appliance** i
     | **Instance details** | |
     | **Name** | Enter **vnet-appliance**. |
     | **Region** | Select **East US**. |
-    | **Capacity** | Select **50 Gpbs**. |
+    | **Capacity** | Select **50 Gbps**. |
     | **Virtual Network** | Select **vnet-1**. |
 
 1. Select **Review + create**.
