@@ -63,7 +63,6 @@ The table below summarizes the design choices and rationale.
 
 ### Architecture (logical)
 
-
 Internet client
 	| HTTPS
 	v
@@ -248,6 +247,7 @@ Optionally harden the configuration by updating the default route and origin gro
 - [Custom VNet subnet address range restrictions (workload profiles)](./custom-virtual-networks.md)
 
 Author : Kumar shashi kaushal (Sr Digital cloud Solutions Architect)
+
 
 
 
