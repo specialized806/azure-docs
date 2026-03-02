@@ -22,7 +22,7 @@ This sample uses [Durable Functions](what-is-durable-task.md) to implement monit
 
 ::: zone pivot="durable-task-sdks"
 
-This article explains how to implement the monitor pattern using the Durable Task SDKs for .NET, Python, and Java. The example demonstrates job status monitoring with configurable polling intervals.
+This article explains how to implement the monitor pattern using the Durable Task SDKs for .NET, JavaScript, Python, and Java. The example demonstrates job status monitoring with configurable polling intervals.
 
 ::: zone-end
 
@@ -66,7 +66,8 @@ Java sample coming soon.
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+* Node.js 22 or later
+* Access to Azure Durable Task Scheduler or the local emulator
 
 # [Python](#tab/python)
 
@@ -75,7 +76,7 @@ This sample is shown for .NET, Java, and Python.
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -235,8 +236,8 @@ Java sample coming soon.
 
 This article explains the following components in the sample app:
 
-* `MonitoringJobOrchestrator` / `monitoring_job_orchestrator`: An orchestrator that periodically checks the status of a job until it completes or times out.
-* `CheckJobStatus` / `check_job_status`: An activity that checks the current status of a job.
+* `MonitoringJobOrchestrator` / `monitorOrchestrator` / `monitoring_job_orchestrator`: An orchestrator that periodically checks the status of a job until it completes or times out.
+* `CheckJobStatus` / `checkJobStatus` / `check_job_status`: An activity that checks the current status of a job.
 
 ::: zone-end
 
@@ -363,7 +364,55 @@ public class MonitoringJobOrchestration : TaskOrchestrator<JobMonitorInput, JobM
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```typescript
+import {
+  OrchestrationContext,
+  TOrchestrator,
+} from "@microsoft/durabletask-js";
+
+const monitorOrchestrator: TOrchestrator = async function* (
+  ctx: OrchestrationContext,
+  input: { jobId: string; pollingIntervalSeconds: number; timeoutSeconds: number }
+): any {
+  const { jobId, pollingIntervalSeconds, timeoutSeconds } = input;
+  const expirationTime = new Date(
+    ctx.currentUtcDateTime.getTime() + timeoutSeconds * 1000
+  );
+
+  let checkCount = 0;
+
+  while (ctx.currentUtcDateTime < expirationTime) {
+    // Check current job status
+    const jobStatus: any = yield ctx.callActivity(checkJobStatus, {
+      jobId,
+      checkCount,
+    });
+
+    checkCount = jobStatus.checkCount;
+
+    // Make job status available via custom status
+    ctx.setCustomStatus(jobStatus);
+
+    if (jobStatus.status === "Completed") {
+      return {
+        jobId,
+        finalStatus: "Completed",
+        checksPerformed: checkCount,
+      };
+    }
+
+    // Wait for next polling interval
+    yield ctx.createTimer(pollingIntervalSeconds);
+  }
+
+  // Timeout reached
+  return {
+    jobId,
+    finalStatus: "Timeout",
+    checksPerformed: checkCount,
+  };
+};
+```
 
 # [Python](#tab/python)
 
@@ -428,7 +477,7 @@ def monitoring_job_orchestrator(ctx: task.OrchestrationContext, job_data: dict) 
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -651,7 +700,28 @@ public class JobMonitorResult
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```typescript
+import { ActivityContext } from "@microsoft/durabletask-js";
+
+const checkJobStatus = async (
+  _ctx: ActivityContext,
+  input: { jobId: string; checkCount: number }
+): Promise<any> => {
+  console.log(
+    `Checking status for job: ${input.jobId} (check #${input.checkCount + 1})`
+  );
+
+  // Simulate job status — completes after 3 checks
+  const status = input.checkCount >= 3 ? "Completed" : "Running";
+
+  return {
+    jobId: input.jobId,
+    status,
+    checkCount: input.checkCount + 1,
+    lastCheckTime: new Date().toISOString(),
+  };
+};
+```
 
 # [Python](#tab/python)
 
@@ -683,7 +753,7 @@ def check_job_status(ctx: task.ActivityContext, job_data: dict) -> dict:
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -842,7 +912,49 @@ while (true)
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```typescript
+import {
+  DurableTaskAzureManagedClientBuilder,
+  DurableTaskAzureManagedWorkerBuilder,
+} from "@microsoft/durabletask-js-azuremanaged";
+
+const client = new DurableTaskAzureManagedClientBuilder()
+  .connectionString(connectionString)
+  .build();
+
+const worker = new DurableTaskAzureManagedWorkerBuilder()
+  .connectionString(connectionString)
+  .addOrchestrator(monitorOrchestrator)
+  .addActivity(checkJobStatus)
+  .build();
+
+await worker.start();
+
+// Schedule the monitoring orchestration
+const input = {
+  jobId: `job-${Date.now()}`,
+  pollingIntervalSeconds: 5,
+  timeoutSeconds: 30,
+};
+
+const instanceId = await client.scheduleNewOrchestration(
+  monitorOrchestrator,
+  input
+);
+
+console.log(`Started monitoring orchestration: ${instanceId}`);
+
+// Wait for completion
+const result = await client.waitForOrchestrationCompletion(
+  instanceId,
+  true,
+  60
+);
+console.log(`Final result: ${result?.serializedOutput}`);
+
+await worker.stop();
+await client.stop();
+```
 
 # [Python](#tab/python)
 
@@ -878,7 +990,7 @@ print(f"Final result: {result.serialized_output}")
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -927,6 +1039,8 @@ This sample demonstrates how to use Durable Functions to monitor an external sou
 ::: zone pivot="durable-task-sdks"
 
 This sample demonstrated how to use the Durable Task SDKs to implement the monitoring pattern with durable timers and status tracking. Learn more about other patterns and features.
+
+- [Durable Task JavaScript SDK on GitHub](https://github.com/microsoft/durabletask-js)
 
 > [!div class="nextstepaction"]
 > [Get started with Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md)

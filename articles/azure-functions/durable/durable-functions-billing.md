@@ -46,7 +46,7 @@ The [Durable Task Scheduler](durable-task-scheduler/durable-task-scheduler.md) i
 
 An *action* is a message dispatched by the Durable Task Scheduler to your application, triggering the execution of an orchestrator, activity, or entity function. Actions include starting orchestrations, scheduling activities, completing timers, and processing results.
 
-For detailed pricing information, SKU comparisons, and capacity planning examples, see [Durable Task Scheduler pricing and SKU options](durable-task-scheduler/durable-task-scheduler-dedicated-sku.md).
+For detailed pricing information, SKU comparisons, and capacity planning examples, see [Durable Task Scheduler billing](durable-task-scheduler/durable-task-scheduler-billing.md).
 
 ## Azure Storage transactions
 
@@ -62,5 +62,5 @@ For more information about Azure Storage costs and queue-polling behavior, see [
 
 ## Next steps
 
-- [Durable Task Scheduler pricing and SKU options](durable-task-scheduler/durable-task-scheduler-dedicated-sku.md)
+- [Durable Task Scheduler billing](durable-task-scheduler/durable-task-scheduler-billing.md)
 - [Azure Functions pricing](https://azure.microsoft.com/pricing/details/functions/)

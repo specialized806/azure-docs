@@ -598,7 +598,7 @@ Azure Functions supports debugging function code directly, and that same support
 
 - **Messaging timeouts:** Durable Functions internally uses queue messages to drive execution of orchestrator, activity, and entity functions. In a multi-VM environment, extended debugging sessions could cause another VM to process the message, resulting in duplicate execution. Although this behavior also exists for regular queue-trigger functions, this context is important to highlight because the queues are an implementation detail.
 
-- **Stopping and starting:** Messages in Durable Functions persist between debug sessions. If you stop debugging and terminate the local host process while a durable function is executing, that function might re-execute automatically in a future debug session. To avoid unexpected re-execution, use a [fresh task hub](durable-functions-task-hubs.md#task-hub-management) or clear the task hub contents between debug sessions.
+- **Stopping and starting:** Messages in Durable Functions persist between debug sessions. If you stop debugging and terminate the local host process while a durable function is executing, that function might re-execute automatically in a future debug session. To avoid unexpected re-execution, use a [fresh task hub](durable-functions-task-hubs.md#byo-storage-provider-task-hub-management) or clear the task hub contents between debug sessions.
 
 > [!TIP]
 > When setting breakpoints in orchestrator functions, if you want to only break on non-replay execution, you can set a conditional breakpoint that breaks only if the "is replaying" value is `false`.

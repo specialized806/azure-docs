@@ -14,15 +14,13 @@ zone_pivot_groups: azure-durable-approach
 
 *Fan-out/fan-in* runs multiple functions in parallel and then aggregates the results. This article shows an example that uses [Durable Functions](what-is-durable-task.md) to back up some or all of an app's site content to Azure Storage.
 
-[!INCLUDE [functions-nodejs-durable-model-description](../../../includes/functions-nodejs-durable-model-description.md)]
-
 [!INCLUDE [durable-functions-prerequisites](../../../includes/durable-functions-prerequisites.md)]
 
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"
 
-*Fan-out/fan-in* runs multiple activities in parallel and then aggregates the results. This article shows how to implement the pattern by using the Durable Task SDKs for .NET, Python, and Java.
+*Fan-out/fan-in* runs multiple activities in parallel and then aggregates the results. This article shows how to implement the pattern by using the Durable Task SDKs for .NET, JavaScript, Python, and Java.
 
 ::: zone-end
 
@@ -32,25 +30,25 @@ zone_pivot_groups: azure-durable-approach
 
 In this sample, the functions upload all files under a specified directory (recursively) to blob storage. They also count the total number of bytes uploaded.
 
-A single function can handle everything, but it doesn't scale. A single function execution runs on one virtual machine (VM), so throughput is limited to that VM. Reliability is another concern. If the process fails midway through, or takes more than five minutes, the backup can end in a partially completed state. Then restart the backup.
+A single function can handle everything, but it doesn't scale. A single function execution runs on one virtual machine (VM), so throughput is limited to that VM. Reliability is another concern. If the process fails midway through, or takes more than five minutes, the backup can end in a partially completed state. Then you restart the backup.
 
-A more robust approach is to use two separate functions: one enumerates the files and adds file names to a queue, and the other reads from the queue and uploads the files to blob storage. This approach improves throughput and reliability, but you need to set up and manage the queue. More importantly, it adds complexity for state management and coordination, like reporting the total number of bytes uploaded.
+A more robust approach is to use two separate functions: one enumerates the files and adds file names to a queue, and the other reads from the queue and uploads the files to blob storage. This approach improves throughput and reliability, but you need to set up and manage the queue. More importantly, this approach adds complexity for state management and coordination, like reporting the total number of bytes uploaded.
 
-Durable Functions gives you these benefits with little overhead.
+Durable Functions provides all these benefits with little overhead.
 
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"
 
-In this sample, the orchestrator processes multiple work items in parallel and then aggregates the results. This pattern is useful when you need to:
+In the following example, the orchestrator processes multiple work items in parallel and then aggregates the results. This pattern is useful when you need to:
 
 - Process a batch of items where each item can be processed independently
 - Distribute work across multiple machines for better throughput
 - Aggregate results from all parallel operations
 
-Without the fan-out/fan-in pattern, you either process items sequentially, which limits throughput, or manage your own queuing and coordination logic, which adds complexity.
+Without the fan-out/fan-in pattern, you either process items sequentially, which limits throughput, or you manage your own queuing and coordination logic, which adds complexity.
 
-The Durable Task SDKs handle parallelization and coordination, so the pattern stays simple to implement.
+The Durable Task SDKs handle parallelization and coordination, so the pattern is simple to implement.
 
 ::: zone-end
 
@@ -58,9 +56,9 @@ The Durable Task SDKs handle parallelization and coordination, so the pattern st
 
 ::: zone pivot="durable-functions"
 
-This article describes these functions in the sample app:
+This article describes the functions in the sample app:
 
-* `E2_BackupSiteContent`: An [orchestrator function](durable-functions-bindings.md#orchestration-trigger) that calls `E2_GetFileList` to get a list of files to back up, then calls `E2_CopyFileToBlob` for each file.
+* `E2_BackupSiteContent`: An [orchestrator function](durable-functions-bindings.md#orchestration-trigger) that calls `E2_GetFileList` to get a list of files to back up, and then calls `E2_CopyFileToBlob` for each file.
 * `E2_GetFileList`: An [activity function](durable-functions-bindings.md#activity-trigger) that returns a list of files in a directory.
 * `E2_CopyFileToBlob`: An activity function that backs up a single file to Azure Blob Storage.
 
@@ -68,11 +66,11 @@ This article describes these functions in the sample app:
 
 ::: zone pivot="durable-task-sdks"
 
-This article describes these components in the sample app:
+This article describes the components in the example code:
 
-* `ParallelProcessingOrchestration`, `fan_out_fan_in_orchestrator`, or `FanOutFanIn_WordCount`: An orchestrator that fans out work to multiple activities in parallel, waits for all to complete, and then fans in by aggregating the results.
-* `ProcessWorkItemActivity`, `process_work_item`, or `CountWords`: An activity that processes a single work item.
-* `AggregateResultsActivity` or `aggregate_results`: An activity that aggregates results from all parallel operations.
+* `ParallelProcessingOrchestration`, `fanOutFanInOrchestrator`, `fan_out_fan_in_orchestrator`, or `FanOutFanIn_WordCount`: An orchestrator that fans out work to multiple activities in parallel, waits for all activities to complete, and then fans in by aggregating the results.
+* `ProcessWorkItemActivity`, `processWorkItem`, `process_work_item`, or `CountWords`: An activity that processes a single work item.
+* `AggregateResultsActivity`, `aggregateResults`, or `aggregate_results`: An activity that aggregates results from all parallel operations.
 
 ::: zone-end
 
@@ -98,7 +96,10 @@ Notice the `await Task.WhenAll(tasks);` line. The code doesn't await the individ
 
 After the orchestrator awaits `Task.WhenAll`, all function calls are complete and return values. Each call to `E2_CopyFileToBlob` returns the number of bytes uploaded. Calculate the total by adding the return values.
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
+
+<details>
+<summary><b>V3 programming model</b></summary>
 
 The function uses the standard *function.json* for orchestrator functions.
 
@@ -115,7 +116,12 @@ Notice the `yield context.df.Task.all(tasks);` line. The code doesn't yield the 
 
 After the orchestrator yields `context.df.Task.all`, all function calls are complete and return values. Each call to `E2_CopyFileToBlob` returns the number of bytes uploaded, so calculating the sum total byte count is a matter of adding all those return values together.
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+</details>
+
+<br>
+
+<details>
+<summary><b>V4 programming model</b></summary>
 
 Here is the code that implements the orchestrator function:
 
@@ -127,6 +133,8 @@ Notice the `yield context.df.Task.all(tasks);` line. All the individual calls to
 > Although tasks are conceptually similar to JavaScript promises, orchestrator functions should use `context.df.Task.all` and `context.df.Task.any` instead of `Promise.all` and `Promise.race` to manage task parallelization.
 
 After yielding from `context.df.Task.all`, we know that all function calls have completed and have returned values back to us. Each call to `copyFileToBlob` returns the number of bytes uploaded, so calculating the sum total byte count is a matter of adding all those return values together.
+
+</details>
 
 # [Python](#tab/python)
 
@@ -204,13 +212,33 @@ public class ParallelProcessingOrchestration : TaskOrchestrator<List<string>, Di
 
 Use `Task.WhenAll()` to wait for all parallel tasks to complete. The Durable Task SDK ensures that the tasks can run on multiple machines concurrently, and the execution is resilient to process restarts.
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-Use the .NET, Java, or Python sample in this section.
+```typescript
+import {
+  OrchestrationContext,
+  TOrchestrator,
+  whenAll,
+} from "@microsoft/durabletask-js";
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+const fanOutFanInOrchestrator: TOrchestrator = async function* (
+  ctx: OrchestrationContext,
+  workItems: string[]
+): any {
+  // Fan-out: create a task for each work item in parallel
+  const tasks = workItems.map((item) => ctx.callActivity(processWorkItem, item));
 
-Use the .NET, Java, or Python sample in this section.
+  // Wait for all parallel tasks to complete
+  const results: number[] = yield whenAll(tasks);
+
+  // Fan-in: aggregate all results
+  const aggregatedResult = yield ctx.callActivity(aggregateResults, results);
+
+  return aggregatedResult;
+};
+```
+
+Use `whenAll()` to wait for all parallel tasks to complete. The Durable Task SDK ensures that the tasks can run on multiple machines concurrently, and the execution is resilient to process restarts.
 
 # [Python](#tab/python)
 
@@ -238,7 +266,7 @@ Use `task.when_all()` to wait for all parallel tasks to complete. The Durable Ta
 
 # [PowerShell](#tab/powershell)
 
-Use the .NET, Java, or Python sample in this section.
+This sample is available for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -285,7 +313,7 @@ Use `ctx.allOf(tasks).await()` to wait for all parallel tasks to complete. The D
 
 ::: zone pivot="durable-functions"
 
-The helper activity functions are regular functions that use the `activityTrigger` trigger binding.
+The helper activity functions are regular functions that use the `activityTrigger` binding.
 
 ### E2_GetFileList activity function
 
@@ -293,9 +321,12 @@ The helper activity functions are regular functions that use the `activityTrigge
 
 [!code-csharp[Main](~/samples-durable-functions/samples/precompiled/BackupSiteContent.cs?range=44-54)]
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-The *function.json* file for `E2_GetFileList` looks like this:
+<details>
+<summary><b>V3 programming model</b></summary>
+
+The *function.json* file for `E2_GetFileList` looks like the following example:
 
 :::code language="javascript" source="~/azure-functions-durable-js/samples/E2_GetFileList/function.json":::
 
@@ -305,7 +336,12 @@ Here's the implementation:
 
 The function uses the `readdirp` module, version `2.x`, to recursively read the directory structure.
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+</details>
+
+<br>
+
+<details>
+<summary><b>V4 programming model</b></summary>
 
 Here's the implementation of the `getFileList` activity function:
 
@@ -313,13 +349,15 @@ Here's the implementation of the `getFileList` activity function:
 
 The function uses the `readdirp` module (version `3.x`) to recursively read the directory structure.
 
+</details>
+
 # [Python](#tab/python)
 
-The *function.json* file for `E2_GetFileList` looks like the following:
+The *function.json* file for `E2_GetFileList` looks like the following example:
 
 [!code-json[Main](~/samples-durable-functions-python/samples/fan_in_fan_out/E2_GetFileList/function.json)]
 
-And here is the implementation:
+Here's the implementation:
 
 [!code-python[Main](~/samples-durable-functions-python/samples/fan_in_fan_out/E2_GetFileList/\_\_init\_\_.py)]
 
@@ -347,7 +385,10 @@ Java sample coming soon.
 
 The function uses Azure Functions binding features like the [`Binder` parameter](../functions-dotnet-class-library.md#binding-at-runtime). You don't need those details for this walkthrough.
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
+
+<details>
+<summary><b>V3 programming model</b></summary>
 
 The *function.json* file for `E2_CopyFileToBlob` is similarly simple:
 
@@ -357,11 +398,18 @@ The JavaScript implementation uses the [Azure Storage SDK for Node](https://gith
 
 :::code language="javascript" source="~/azure-functions-durable-js/samples/E2_CopyFileToBlob/index.js":::
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+</details>
+
+<br>
+
+<details>
+<summary><b>V4 programming model</b></summary>
 
 The JavaScript implementation of `copyFileToBlob` uses an Azure Storage output binding to upload the files to Azure Blob Storage.
 
 :::code language="javascript" source="~/azure-functions-durable-js-v3/samples-js/functions/backupSiteContent.js" range="1-2,5-6,8-9,50-68":::
+
+</details>
 
 # [Python](#tab/python)
 
@@ -386,7 +434,7 @@ Java sample coming soon.
 The implementation loads the file from disk and asynchronously streams the contents into a blob of the same name in the `backups` container. The function returns the number of bytes copied to storage. The orchestrator uses that value to compute the aggregate sum.
 
 > [!NOTE]
-> This example moves I/O operations into an `activityTrigger` function. The work can run across multiple machines and supports progress checkpointing. If the host process ends, you know which uploads completed.
+> This example moves I/O operations into an `activityTrigger` function. The work can run across multiple machines and supports progress checkpointing. If the host process ends, you know which uploads are complete.
 
 ::: zone-end
 
@@ -429,13 +477,21 @@ public class ProcessWorkItemActivity : TaskActivity<string, Dictionary<string, i
 }
 ```
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```typescript
+import { ActivityContext } from "@microsoft/durabletask-js";
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+const processWorkItem = async (
+  _ctx: ActivityContext,
+  item: string
+): Promise<number> => {
+  console.log(`Processing work item: "${item}"`);
+  return item.length;
+};
+```
 
-This sample is shown for .NET, Java, and Python.
+Unlike orchestrators, activities can perform I/O operations like HTTP calls, database queries, and file access.
 
 # [Python](#tab/python)
 
@@ -451,7 +507,7 @@ def process_work_item(ctx: task.ActivityContext, item: int) -> dict:
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -517,13 +573,25 @@ public class AggregateResultsActivity : TaskActivity<Dictionary<string, int>[], 
 }
 ```
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```typescript
+import { ActivityContext } from "@microsoft/durabletask-js";
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+const aggregateResults = async (
+  _ctx: ActivityContext,
+  results: number[]
+): Promise<object> => {
+  const total = results.reduce((sum, val) => sum + val, 0);
+  return {
+    totalItems: results.length,
+    sum: total,
+    average: results.length > 0 ? total / results.length : 0,
+  };
+};
+```
 
-This sample is shown for .NET, Java, and Python.
+Unlike orchestrators, activities can perform I/O operations like HTTP calls, database queries, and file access.
 
 # [Python](#tab/python)
 
@@ -542,7 +610,7 @@ def aggregate_results(ctx: task.ActivityContext, results: list) -> dict:
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -556,7 +624,7 @@ In the Java sample, the orchestrator aggregates results after `ctx.allOf(tasks).
 
 ::: zone pivot="durable-functions"
 
-Start the orchestration on Windows by sending the following HTTP POST request.
+Start the orchestration on Windows by sending the following HTTP POST request:
 
 ```
 POST http://{host}/orchestrators/E2_BackupSiteContent
@@ -566,7 +634,7 @@ Content-Length: 20
 "D:\\home\\LogFiles"
 ```
 
-Alternatively, on a Linux Function App, start the orchestration by sending the following HTTP POST request. Python currently runs on Linux for App Service.
+Alternatively, on a Linux function app, start the orchestration by sending the following HTTP POST request. Python currently runs on Linux for App Service:
 
 ```
 POST http://{host}/orchestrators/E2_BackupSiteContent
@@ -577,9 +645,9 @@ Content-Length: 20
 ```
 
 > [!NOTE]
-> The `HttpStart` function expects JSON. Include the `Content-Type: application/json` header, and encode the directory path as a JSON string. The HTTP snippet assumes *host.json* includes an entry that removes the default `api/` prefix from all HTTP trigger function URLs. Find the markup for this configuration in the sample *host.json* file.
+> The `HttpStart` function expects JSON. Include the `Content-Type: application/json` header, and encode the directory path as a JSON string. The HTTP snippet assumes *host.json* has an entry that removes the default `api/` prefix from all HTTP trigger function URLs. Find the markup for this configuration in the sample *host.json* file.
 
-This HTTP request triggers the `E2_BackupSiteContent` orchestrator and passes the string `D:\home\LogFiles` as a parameter. The response includes a link to check the status of the backup operation:
+This HTTP request triggers the `E2_BackupSiteContent` orchestrator and passes the string `D:\home\LogFiles` as a parameter. The response has a link to check the status of the backup operation:
 
 ```
 HTTP/1.1 202 Accepted
@@ -590,7 +658,7 @@ Location: http://{host}/runtime/webhooks/durabletask/instances/b4e9bdcc435d460f8
 (...trimmed...)
 ```
 
-Depending on the number of log files in your function app, this operation can take several minutes to finish. Get the latest status by querying the URL in the `Location` header of the previous HTTP 202 response.
+Depending on the number of log files in your function app, this operation can take several minutes to finish. Get the latest status by querying the URL in the `Location` header of the previous HTTP 202 response:
 
 ```
 GET http://{host}/runtime/webhooks/durabletask/instances/b4e9bdcc435d460f8dc008115ff0a8a9?taskHub=DurableFunctionsHub&connection=Storage&code={systemKey}
@@ -615,13 +683,13 @@ Content-Type: application/json; charset=utf-8
 {"runtimeStatus":"Completed","input":"D:\\home\\LogFiles","output":452071,"createdTime":"2019-06-29T18:50:55Z","lastUpdatedTime":"2019-06-29T18:51:26Z"}
 ```
 
-The response shows that the orchestration is complete and the approximate time to finish. The `output` field indicates that the orchestration uploads about 450 KB of logs.
+The response shows that the orchestration is complete and the approximate time to finish. The `output` field indicates that the orchestration uploaded about 450 KB of logs.
 
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"
 
-To run the sample:
+To run the example:
 
 1. **Start the Durable Task Scheduler emulator** for local development.
 
@@ -631,7 +699,7 @@ To run the sample:
 
 1. **Start the worker** to register the orchestrator and activities.
 
-1. **Run the client** to schedule an orchestration with a list of work items.
+1. **Run the client** to schedule an orchestration with a list of work items:
 
 # [C#](#tab/csharp)
 
@@ -646,13 +714,28 @@ var result = await client.WaitForInstanceCompletionAsync(instanceId, getInputsAn
 Console.WriteLine($"Result: {result.ReadOutputAs<Dictionary<string, int>>().Count} items processed");
 ```
 
-# [JavaScript (PM3)](#tab/javascript-v3)
+# [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```typescript
+import {
+  DurableTaskAzureManagedClientBuilder,
+} from "@microsoft/durabletask-js-azuremanaged";
 
-# [JavaScript (PM4)](#tab/javascript-v4)
+const connectionString =
+  process.env.DURABLE_TASK_SCHEDULER_CONNECTION_STRING ||
+  "Endpoint=http://localhost:8080;Authentication=None;TaskHub=default";
 
-This sample is shown for .NET, Java, and Python.
+const client = new DurableTaskAzureManagedClientBuilder()
+  .connectionString(connectionString)
+  .build();
+
+const workItems = ["item1", "item2", "item3", "item4", "item5"];
+const instanceId = await client.scheduleNewOrchestration(fanOutFanInOrchestrator, workItems);
+const state = await client.waitForOrchestrationCompletion(instanceId, true, 30);
+console.log(`Result: ${state?.serializedOutput}`);
+```
+
+Create the `DurableTaskAzureManagedClientBuilder` by using a connection string to the Durable Task Scheduler. Use `scheduleNewOrchestration` to start an orchestration, and use `waitForOrchestrationCompletion` to wait for completion.
 
 # [Python](#tab/python)
 
@@ -668,7 +751,7 @@ print(f"Result: {result.serialized_output}")
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -700,7 +783,7 @@ System.out.println("Total word count: " + result.readOutputAs(int.class));
 
 ::: zone pivot="durable-functions"
 
-This sample shows the fan-out/fan-in pattern. The next sample shows how to implement the monitor pattern by using [durable timers](durable-functions-timers.md).
+This sample shows the fan-out/fan-in pattern. The next sample shows how to implement the monitor pattern with [durable timers](durable-functions-timers.md).
 
 > [!div class="nextstepaction"]
 > [Run the monitor sample](durable-functions-monitor.md)
@@ -709,9 +792,11 @@ This sample shows the fan-out/fan-in pattern. The next sample shows how to imple
 
 ::: zone pivot="durable-task-sdks"
 
-This sample demonstrates the fan-out/fan-in pattern. Explore more patterns and features.
+This article demonstrates the fan-out/fan-in pattern. Explore more patterns and features:
 
 > [!div class="nextstepaction"]
 > [Get started with Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md)
+
+For JavaScript SDK examples, see the [Durable Task JavaScript SDK samples](https://github.com/microsoft/durabletask-js/tree/main/examples/azure-managed).
 
 ::: zone-end

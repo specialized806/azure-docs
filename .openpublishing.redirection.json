@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-dedicated-sku.md",
+      "redirect_url": "/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-billing",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-functions/durable/durable-functions-cloud-backup.md",
       "redirect_url": "/azure/azure-functions/durable/durable-functions-fan-in-fan-out",
       "redirect_document_id": false
@@ -5388,51 +5393,6 @@
     {
       "source_path_from_root": "/articles/role-based-access-control/permissions/mixed-reality.md",
       "redirect_url": "/azure/role-based-access-control/resource-provider-operations",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/get-started-portal.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-advanced-complexity.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-concepts-terms.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-high-availability-reliability.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-intro.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-limits-defaults-errors.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-outbound-authentication.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-plans-billing.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-powershell-reference.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
       "redirect_document_id": false
     },
     {
