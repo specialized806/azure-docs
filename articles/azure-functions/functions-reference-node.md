@@ -1051,7 +1051,7 @@ The `retryContext` object has the following properties:
 | **`maxRetryCount`** | Maximum number of times an execution is retried. A value of `-1` means to retry indefinitely. |
 | **`exception`** | Exception that caused the retry. |
 
-For more information, see [`retry-policies`](./functions-bindings-errors.md#retry-policies).
+For more information, see [`retry-policies`](./functions-bindings-error-pages.md#retry-policies).
 
 ::: zone-end
 
