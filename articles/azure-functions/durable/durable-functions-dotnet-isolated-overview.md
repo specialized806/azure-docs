@@ -66,7 +66,8 @@ public class MyActivity : TaskActivity<string, string>
         this.logger = logger;
     }
 
-    public async override Task<string> RunAsync(TaskActivityContext context, string input)
+    [Function(nameof(MyActivity))]
+    public async override Task<string> RunAsync([ActivityTrigger] TaskActivityContext context, string input)
     {
         // implementation
     }
@@ -75,7 +76,8 @@ public class MyActivity : TaskActivity<string, string>
 [DurableTask(nameof(MyOrchestration))]
 public class MyOrchestration : TaskOrchestrator<string, string>
 {
-    public async override Task<string> RunAsync(TaskOrchestrationContext context, string input)
+    [Function(nameof(MyOrchestration))]
+    public async override Task<string> RunAsync([OrchestrationTrigger] TaskOrchestrationContext context, string input)
     {
         ILogger logger = context.CreateReplaySafeLogger<MyOrchestration>(); // orchestrations do NOT have access to DI.
 
