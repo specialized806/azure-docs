@@ -618,7 +618,7 @@ To delete a snapshot of an existing file share, sign in to the Azure portal and 
 1. To delete one or more snapshots, select **Operations** > **Snapshots**. Any existing snapshots for the file share will be listed.
 
 1. Select the snapshot(s) that you want to delete, and then select **Delete**.
-![A screenshot of the Azure portal to delete a managed file share's snapshots.](./media/storage-snapshots-files/delete-managed-file-share-snapshot.png)
+![A screenshot of the Azure portal showing how to delete the snapshots for an NFS file share created with the Microsoft.FileShares resource provider.](./media/storage-snapshots-files/delete-managed-file-share-snapshot.png)
 
 # [Azure PowerShell](#tab/powershell)
 
