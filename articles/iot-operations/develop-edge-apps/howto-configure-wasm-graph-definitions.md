@@ -5,7 +5,7 @@ author: sethmanheim
 ms.author: sethm
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 02/27/2026
 ai-usage: ai-assisted
 
 ---
@@ -13,6 +13,11 @@ ai-usage: ai-assisted
 # Configure WebAssembly (WASM) graph definitions for data flow graphs and connectors
 
 Graph definitions are central to WASM development because they define how your modules connect to data flows and connectors. Understanding the relationship between graph definitions and data flow graphs or connectors helps you develop effectively.
+
+## Prerequisites
+
+- Familiarity with [developing custom WASM modules](howto-develop-wasm-modules.md)
+- Basic understanding of YAML syntax
 
 This article focuses on creating and configuring the YAML graph definitions. For information about deploying and testing data flow graphs, see [Deploy WebAssembly (WASM) modules and graph definitions](howto-deploy-wasm-graph-definitions.md).
 
@@ -24,13 +29,17 @@ This article focuses on creating and configuring the YAML graph definitions. For
 
 ## Graph definition structure
 
-Graph definitions follow a formal [JSON schema](https://www.schemastore.org/aio-wasm-graph-config-1.0.0.json) that validates structure and ensures compatibility. The configuration includes:
+Graph definitions follow a formal [JSON schema](https://www.schemastore.org/aio-wasm-graph-config-1.0.0.json) that validates the graph YAML structure and ensures compatibility. The configuration includes:
 
 - Module requirements for API and host library version compatibility
 - Module configurations for runtime parameters and operator customization  
 - Operations that define processing nodes in your workflow
 - Connections that specify data flow routing between operations
-- Schemas for optional data validation
+
+> [!IMPORTANT]
+> The `$schema` field in the graph metadata references the **graph definition schema** hosted on schemastore.org. This schema validates the structure of your graph YAML file (operations, connections, module requirements). It is not a message payload schema.
+>
+> If you need to validate message payloads, your WASM modules must handle that validation logic themselves. You can upload payload schemas to the [AIO schema registry](../connect-to-cloud/concept-schema-registry.md) and reference them in node connections, but the dataflow runtime does not automatically enforce payload validation. The schema reference only makes the schema available to your module code.
 
 ## Basic graph structure
 
@@ -281,4 +290,4 @@ For a complete implementation example, see the [branch module](https://github.co
 
 - [Develop WebAssembly modules for data flow graphs](howto-develop-wasm-modules.md)
 - [Use WebAssembly with data flow graphs](../connect-to-cloud/howto-dataflow-graph-wasm.md)
-- [Configure registry endpoints](howto-configure-registry-endpoint.md)
+- [Configure registry endpoints](howto-configure-registry-endpoint.md)- [Data flow graph samples with schema validation and WIT composition](https://github.com/Azure-Samples/azure-edge-extensions-aio-dataflow-graphs) on GitHub
