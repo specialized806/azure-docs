@@ -17,7 +17,7 @@ ms.custom:
 
 # GlusterFS on Azure VMs on Red Hat Enterprise Linux for SAP NetWeaver
 
-This article describes how to deploy the virtual machines, configure the virtual machines, and install a GlusterFS cluster. The GlusterFS cluster is used to store the shared data of a highly available SAP system. This guide describes how to set up GlusterFS that is used by two SAP systems, NW1 and NW2. The names of the resources (for example virtual machines, virtual networks) in the example, assumes that you used the [SAP file server template][template-file-server] with resource prefix `glust`.
+This article describes how to deploy the virtual machines (VMs), configure the VMs, and install a GlusterFS cluster. The GlusterFS cluster is used to store the shared data of a highly available SAP system. This guide describes how to set up GlusterFS that is used by two SAP systems, NW1 and NW2. The names of the resources (for example VMs, virtual networks) in the example, assumes that you used the [SAP file server template][template-file-server] with resource prefix `glust`.
 
 As documented in [Red Hat Gluster Storage Life Cycle](https://access.redhat.com/support/policy/updates/rhs), Red Hat Gluster Storage reaches end of life at the end of 2024. The configuration is supported for SAP on Azure until it reaches end of life stage. GlusterFS shouldn't be used for new deployments. We recommend deploying the SAP shared directories on an NFS on Azure Files, or Azure NetApp Files volumes as documented in [HA for SAP NW on RHEL with NFS on Azure Files](./high-availability-guide-rhel-nfs-azure-files.md). See also [HA for SAP NW on RHEL with Azure NetApp Files](./high-availability-guide-rhel-netapp-files.md).
 
@@ -65,7 +65,7 @@ This document assumes that you deployed:
 * A resource group previously.
 * An [Azure Virtual Network](../../virtual-network/virtual-networks-overview.md) and subnet.
 
-When you deploy virtual machines for GlusterFS, choose a suitable RHEL image that supports Gluster storage. You can deploy VM in any one of the availability options - scale set, availability zone, or availability set.
+When you deploy VMs for GlusterFS, choose a suitable RHEL image that supports Gluster storage. You can deploy VM in any one of the availability options - scale set, availability zone, or availability set.
 
 ### Configure GlusterFS
 
@@ -90,7 +90,7 @@ The following items are prefixed with either **[A]** - applicable to all nodes, 
 
 1. **[A]** Register
 
-   Register your virtual machines and attach it to a pool that contains repositories for RHEL 7 and GlusterFS:
+   Register your VMs and attach it to a pool that contains repositories for RHEL 7 and GlusterFS:
 
    ```bash
    sudo subscription-manager register
