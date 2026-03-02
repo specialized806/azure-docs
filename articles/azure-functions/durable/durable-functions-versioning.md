@@ -203,9 +203,6 @@ Because of these potential failures, the "do nothing" strategy is not recommende
 
 ### Orchestration versioning
 
-> [!NOTE]
-> Orchestration versioning is currently in public preview.
-
 The orchestration versioning feature allows different versions of orchestrations to coexist and execute concurrently without conflicts and non-determinism issues, making it possible to deploy updates while allowing in-flight orchestration instances to complete without manual intervention.
 
 With orchestration versioning:
