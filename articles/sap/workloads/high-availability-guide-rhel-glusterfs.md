@@ -4,7 +4,7 @@ description: Learn about deploying GlusterFS on Azure VMs on Red Hat Enterprise 
 services: virtual-machines-windows,virtual-network,storage
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
-ms.topic: article
+ms.topic: how-to
 manager: juergent
 author: rdeltcheva
 ms.author: radeltch
