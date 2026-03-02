@@ -1,12 +1,12 @@
 ---
-title: Durable Task Scheduler storage provider
+title: Durable Task Scheduler
 titleSuffix: Durable Task
-description: Learn about the characteristics of the Durable Task Scheduler storage provider.
+description: Learn about the characteristics of the Durable Task Scheduler.
 ms.topic: concept-article
 ms.date: 02/06/2026
 ---
 
-# Durable Task Scheduler storage provider
+# Durable Task Scheduler
 
 The Durable Task Scheduler provides durable execution in Azure. Durable execution is a fault-tolerant approach to running code that handles failures and interruptions through automatic retries and state persistence. Durable execution helps with scenarios such as:
 - Distributed transactions
@@ -14,7 +14,7 @@ The Durable Task Scheduler provides durable execution in Azure. Durable executio
 - Data processing
 - Infrastructure management, and others. 
 
-You can use the Durable Task Scheduler with [any of the Functions SKUs](../../functions-scale.md), the [Dedicated SKU](./durable-task-scheduler-dedicated-sku.md#dedicated-sku), or the [Consumption SKU (preview)](./durable-task-scheduler-dedicated-sku.md#consumption-sku-preview).
+You can use the Durable Task Scheduler with [any of the Functions SKUs](../../functions-scale.md), the [Dedicated SKU](./durable-task-scheduler-billing.md#dedicated-sku), or the [Consumption SKU (preview)](./durable-task-scheduler-billing.md#consumption-sku-preview).
 
 ## Supported regions
 
@@ -161,8 +161,8 @@ Stale orchestration data should be purged periodically to ensure efficient stora
 
     You're limited in how many task hubs you can use depending on your billing SKU. 
 
-     - [When using the Dedicated SKU,](./durable-task-scheduler-dedicated-sku.md#dedicated-sku) task hubs are limited to 25. 
-     - [When using the Consumption SKU,](./durable-task-scheduler-dedicated-sku.md#consumption-sku-preview) task hubs are limited to 5. 
+     - [When using the Dedicated SKU,](./durable-task-scheduler-billing.md#dedicated-sku) task hubs are limited to 25. 
+     - [When using the Consumption SKU,](./durable-task-scheduler-billing.md#consumption-sku-preview) task hubs are limited to 5. 
 
     For more quota, [contact support](https://github.com/Azure/azure-functions-durable-extension/issues).
 

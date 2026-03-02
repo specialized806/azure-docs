@@ -217,7 +217,19 @@ public class BudgetApproval implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { OrchestrationContext, TOrchestrator } from "@microsoft/durabletask-js";
+
+const budgetApproval: TOrchestrator = async function* (ctx: OrchestrationContext): any {
+    const approved = yield ctx.waitForExternalEvent("Approval");
+    if (approved) {
+        // approval granted - do the approved action
+    } else {
+        // approval denied - send a notification
+    }
+    return approved;
+};
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -457,7 +469,24 @@ public class SelectOrchestrator implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { OrchestrationContext, TOrchestrator, whenAny } from "@microsoft/durabletask-js";
+
+const selectOrchestrator: TOrchestrator = async function* (ctx: OrchestrationContext): any {
+    const event1 = ctx.waitForExternalEvent("Event1");
+    const event2 = ctx.waitForExternalEvent("Event2");
+    const event3 = ctx.waitForExternalEvent("Event3");
+
+    const winner = yield whenAny([event1, event2, event3]);
+    if (winner === event1) {
+        // ...
+    } else if (winner === event2) {
+        // ...
+    } else if (winner === event3) {
+        // ...
+    }
+};
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -659,7 +688,26 @@ public class NewBuildingPermit implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { ActivityContext, OrchestrationContext, TOrchestrator, whenAll } from "@microsoft/durabletask-js";
+
+const issueBuildingPermit = async (_: ActivityContext, applicationId: string): Promise<void> => {
+    // Issue the permit
+};
+
+const newBuildingPermit: TOrchestrator = async function* (
+    ctx: OrchestrationContext,
+    applicationId: string,
+): any {
+    const gate1 = ctx.waitForExternalEvent("CityPlanningApproval");
+    const gate2 = ctx.waitForExternalEvent("FireDeptApproval");
+    const gate3 = ctx.waitForExternalEvent("BuildingDeptApproval");
+
+    // all three departments must grant approval before a permit can be issued
+    yield whenAll([gate1, gate2, gate3]);
+    yield ctx.callActivity(issueBuildingPermit, applicationId);
+};
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -821,7 +869,9 @@ client.raiseEvent(instanceId, "Approval", true);
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+await client.raiseOrchestrationEvent(instanceId, "Approval", true);
+```
 
 # [PowerShell](#tab/powershell)
 

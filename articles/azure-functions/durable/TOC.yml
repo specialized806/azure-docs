@@ -32,7 +32,7 @@
   - name: Durable Task SDKs
     items:
     - name: Create an app with the Durable Task SDKs
-      href: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
+      href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
     - name: Host a Durable Task SDK app on Azure Container Apps
       href: ./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md
 - name: Core concepts
@@ -42,17 +42,9 @@
     - name: Programming model
       href: programming-model-overview.md
     - name: Orchestration
-      items:
-      - name: Durable Functions
-        href: durable-functions-orchestrations.md
-      - name: Durable Task SDKs
-        href: what-is-durable-task.md #placeholder
+      href: durable-functions-orchestrations.md
     - name: Sub-orchestrations
-      items:
-      - name: Durable Functions
-        href: durable-functions-sub-orchestrations.md
-      - name: Durable Task SDKs
-        href: what-is-durable-task.md #placeholder
+      href: durable-functions-sub-orchestrations.md
     - name: Task hubs
       href: durable-functions-task-hubs.md
     - name: Orchestrator code constraints
@@ -87,12 +79,8 @@
       href: durable-functions-human-interaction.md
     - name: Error handling and retries
       href: durable-functions-error-handling.md
-    - name: Versioning
-      items:
-      - name: Durable Functions versioning
-        href: durable-functions-versioning.md
-      - name: Orchestration versioning
-        href: durable-functions-orchestration-versioning.md
+    - name: Orchestration versioning
+      href: durable-orchestration-versioning.md
 - name: Durable Functions
   items:
   - name: Overview
@@ -117,12 +105,14 @@
       href: durable-functions-perf-and-scale.md
     - name: High availability
       href: durable-functions-disaster-recovery-geo-distribution.md
+    - name: Versioning
+      href: durable-functions-versioning.md
   - name: Tutorials
     items: 
     - name: Configure Durable Functions with managed identity
       href: durable-functions-configure-managed-identity.md
     - name: Configure Durable Functions with Durable Task Scheduler
-      href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
+      href: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
     - name: Configure Durable Functions with MSSQL
       href: quickstart-mssql.md
     - name: Host a Durable Functions app in Container Apps (.NET isolated)
@@ -133,8 +123,6 @@
     items:
     - name: Develop
       items:
-      - name: Manage connections
-        href: ../manage-connections.md?toc=/azure/azure-functions/durable/toc.json
       - name: Unit testing
         href: durable-functions-unit-testing.md
       - name: C#
@@ -239,10 +227,6 @@
   items:
   - name: Overview
     href: ./durable-task-scheduler/durable-task-overview.md
-  - name: Concepts
-    items:
-    - name: Versioning
-      href: ./durable-task-scheduler/durable-task-scheduler-versioning.md
   - name: Tutorials
     items:
     - name: Configure autoscale for Azure Container Apps hosting
@@ -251,8 +235,8 @@
     items:
     - name: Diagnostics
       href: durable-task-diagnostics.md
-  - name: Billing
-    href: durable-task-billing.md
+    - name: Troubleshooting guide
+      href: durable-task-sdk-troubleshooting.md
   - name: Reference
     items:
     - name: .NET APIs
@@ -284,7 +268,7 @@
     - name: Throughput benchmarks
       href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
     - name: Billing
-      href: ./durable-task-scheduler/durable-task-scheduler-dedicated-sku.md
+      href: ./durable-task-scheduler/durable-task-scheduler-billing.md
     - name: Troubleshoot
       href: ./durable-task-scheduler/troubleshoot-durable-task-scheduler.md
   - name: Durable Functions only
