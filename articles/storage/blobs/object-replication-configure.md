@@ -323,7 +323,6 @@ N/A
 
 Object replication now supports copying source blob's index tags to the destination blob. You can either configure it when creating new replication rules or enable it for existing replication rules. 
 
-> [!NOTE]
 > Tags Replication is in public preview and is subject to the prerequisites described in the following section.
 
 ### Prerequisites
