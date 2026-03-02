@@ -4,7 +4,7 @@ description: A share snapshot is a read-only, point-in-time copy of an Azure fil
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 1/16/2026
+ms.date: 3/2/2026
 ms.author: kendownie
 # Customer intent: "As a data administrator, I want to use file share snapshots for Azure Files, so that I can efficiently recover previous versions of files and protect against accidental deletions or data corruption."
 ---
@@ -15,24 +15,6 @@ Azure Files provides the capability to take snapshots of SMB and NFS file shares
 
 > [!IMPORTANT]
 > Share snapshots provide only file-level protection. They don't prevent fat-finger deletions on a file share or storage account. To help protect a storage account from accidental deletion, you can either [enable soft delete](storage-files-prevent-file-share-deletion.md), or lock the storage account and/or the resource group.
-
-## Applies to
-| Management model | Billing model | Media tier | Redundancy | SMB | NFS |
-|-|-|-|-|:-:|:-:|
-| Microsoft.FileShares | Provisioned v2 | SSD (premium)  | Local (LRS)    | ![No](../media/icons/no-icon.png)   | ![Yes](../media/icons/yes-icon.png) |
-| Microsoft.FileShares | Provisioned v2 | SSD (premium)  | Zone (ZRS)     | ![No](../media/icons/no-icon.png)   | ![Yes](../media/icons/yes-icon.png) |
-| Microsoft.Storage    | Provisioned v2 | SSD (premium)  | Local (LRS)    | ![Yes](../media/icons/yes-icon.png) | ![Yes](../media/icons/yes-icon.png) |
-| Microsoft.Storage    | Provisioned v2 | SSD (premium)  | Zone (ZRS)     | ![Yes](../media/icons/yes-icon.png) | ![Yes](../media/icons/yes-icon.png) |
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | Local (LRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | Zone (ZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | Geo (GRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | GeoZone (GZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v1 | SSD (premium) | Local (LRS) | ![Yes](../media/icons/yes-icon.png) | ![Yes](../media/icons/yes-icon.png) |
-| Microsoft.Storage | Provisioned v1 | SSD (premium) | Zone (ZRS) | ![Yes](../media/icons/yes-icon.png) | ![Yes](../media/icons/yes-icon.png)|
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Local (LRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Zone (ZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Geo (GRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | GeoZone (GZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
 
 ## When to use share snapshots
 
