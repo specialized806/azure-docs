@@ -476,7 +476,7 @@ az storage share delete --account-name <storage-account-name> --name <file-share
 
 ### Create an NFS file share snapshot with Microsoft.FileShares
 
-You can create a snapshot of an NFS file share using the Azure portal, Azure PowerShell, or Azure CLI.
+You can create a snapshot of an NFS file share created with the Microsoft.FileShares resource provider (preview) by using the Azure portal, Azure PowerShell, or Azure CLI.
 
 > [!NOTE]
 > File share with Microsoft.FileShares is currently in preview. You may use the Azure portal, or you can use generic PowerShell or Azure CLI commands to work with file shares. If you want to try the CLI private package for Microsoft.FileShares resource provider, fill out this [survey](https://forms.microsoft.com/r/nEGcB0ccaD).
