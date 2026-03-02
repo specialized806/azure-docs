@@ -54,7 +54,7 @@ You can create pipeline variables to reuse frequently used values or protect sec
 
 ### Add a task to build and push the image
 
-Replace all of the existing code in the *azure-pipelines.yml* starter file with the following code. This code adds a Docker task that builds and pushes the image to Azure Container Registry. The code uses the `$(variable-name>` syntax to call the variables you set up earlier.
+Replace all of the existing code in the *azure-pipelines.yml* starter file with the following code. This code adds a Docker task that builds and pushes the image to Azure Container Registry. The code uses the `$(<variable-name>)` syntax to call the variables you set up earlier.
 
 ```yaml
 trigger:
