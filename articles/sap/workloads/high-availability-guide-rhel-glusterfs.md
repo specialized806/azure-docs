@@ -54,7 +54,7 @@ Read the following SAP Notes and papers first:
 
 To achieve high availability, SAP NetWeaver requires shared storage. GlusterFS runs in a separate cluster and supports access by multiple SAP systems.
 
-![SAP NetWeaver High Availability overview](./media/high-availability-guide-rhel-glusterfs/rhel-glusterfs.png)
+![A diagram of a GlusterFS shared storage with 3 nodes configured for high availability for SAP NetWeaver.](./media/high-availability-guide-rhel-glusterfs/rhel-glusterfs.png)
 
 ## Prerequisites
 
