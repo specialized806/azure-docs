@@ -321,7 +321,7 @@ N/A
 
 ## Configure blob index tags replication (preview)
 
-```suggestion
+suggestion
 Object replication now supports copying index tags from source blobs to destination blobs. You can configure this capability as part of a new or existing replication rule. For more information, see [Configure object replication](object-replication-configure.md#configure-blob-index-tags-replication).
 
 > [!IMPORTANT]
@@ -332,23 +332,32 @@ Object replication now supports copying index tags from source blobs to destinat
 
 The source storage account must be registered for the EnableObjectReplicationTags preview feature before tag replication can be enabled. Register the preview feature in the Azure portal by following the steps in the [Azure Resource Manager preview features](/azure/azure-resource-manager/management/preview-features?tabs=azure-portal) documentation.
 
-CLI commands to register for preview,
-```
-az account set –subscription {subscription ID}
-az feature register --namespace "Microsoft.Storage" --name "EnableObjectReplicationTags"
-az provider register -n Microsoft.Storage
-```
-Users can verify the status of the registration using,
-```
-az feature show --namespace "Microsoft.Storage" --name "EnableObjectReplicationTags"
-```
 ### Enable Tags replication
 
-Tags replication can be enabled on both new and existing object replication policies. For existing rules, updates to the Blobs or Tags is required to trigger replication of tags to the destination account.  
+Tags replication can be enabled on both new and existing object replication policies. Any change to a source blob or it's index tags will trigger replication of tags.
 
 #### [Azure portal](#tab/portal)
 
-Enable tags replication from the Object Replication blade when creating a rule or update existing rules using the Tags replication column or Edit Rules from the '…' menu.
+Enable tags replication from the Object Replication blade when creating a rule or update existing rules using the Tags replication column.
+
+To configure replicating blob index tags when creating a new rule, follow these steps:
+
+1. Navigate to the source storage account in the Azure portal.
+1. Under **Data management**, select **Object replication**.
+1. Select **Create replication rules**.
+1. Select **Enable tags replication** and finally select **Save and apply** to configure replicating blob index tags.
+
+To configure replicating blob index tags for exsiting rules, follow these steps:
+
+1. Navigate to **Your accounts tab** in **Object replication** page 
+1. Select **Enable** option under Tags replication column in **Objects copied from this account** table and select **OK**.
+1. Status of Tags replication column against a rule now shows **Enabled**.
+
+To disable replicating blob index tags for exsiting rules, follow these steps:
+
+1. Navigate to **Your accounts tab** in **Object replication** page 
+2. Select an exsiting rule and select **Edit rules** from the '…' menu
+3. Unselect **Enable tags replication** option and finally select **Save and apply** to disable replicating blob index tags.
 
 #### [PowerShell](#tab/powershell)
 
