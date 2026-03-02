@@ -317,6 +317,14 @@ Recommended Actions: Ensure that the following configurations in the storage acc
 
 **Recommended action**: Enable storage key based authentication on storage account and the retry operation.
 
+### AzureOperationFailed - The backup operation was unsuccessful because Smart Tier (Preview) is currently not supported
+
+Error Code: AzureOperationFailed
+
+Error Message: Azure operation generic failure
+
+Storage Accounts with [Smart Tier(Preview)](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-smart) set are currently not supported.
+
 ## Common policy modification errors
 
 ### BMSUserErrorConflictingProtectionOperation- Another configure protection operation is in progress for this item
