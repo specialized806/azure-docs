@@ -536,7 +536,7 @@ To list all the snapshots for an existing file share, sign in to the Azure porta
 
 1. Select the file share that you want to view the snapshots of.
 
-1. Then select **Operations** > **Snapshots** and any existing snapshots for the file share will be listed.
+1. Select **Operations** > **Snapshots** and any existing snapshots for the file share will be listed.
 
 # [Azure PowerShell](#tab/powershell)
 
