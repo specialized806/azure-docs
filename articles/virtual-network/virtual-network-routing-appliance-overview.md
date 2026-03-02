@@ -55,11 +55,11 @@ A routing appliance is purpose built for horizontal scaling, accelerated east-to
 
 ### Azure-native management model
 
-Because a routing appliance is a top-level Azure resource, you can manage and govern it like other Azure networking resources. In addition, it provides native support for virtual network features such as network security groups, admin rules, user-define routes, and Azure NAT Gateway.
+Because a routing appliance is a top-level Azure resource, you can manage and govern it like other Azure networking resources. In addition, it provides native support for virtual network features such as network security groups, admin rules, user-defined routes, and Azure NAT Gateway.
 
 ## High-availability and load-balancing guidance
 
-A routing appliance provides built‑in high availability and is resilient to availability zones by default. It also offers high bandwidth without requiring an additional load balancer in front of it. If you place a load balancer in front of it, the load balancer won't forward traffic to it.
+A routing appliance provides built-in high availability and is resilient to availability zones by default. It also offers high bandwidth without requiring an additional load balancer in front of it. If you place a load balancer in front of it, the load balancer won't forward traffic to it.
 
 ## Region availability
 
