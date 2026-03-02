@@ -18,6 +18,7 @@ This article provides information about new features and documentation improveme
 
 | Date | Area | Description |
 | --- | --- | --- |
+| February 2026 | Roles and permissions | Updated permissions for several roles and resource providers. See [Azure built-in roles](built-in-roles.md) and [Azure permissions](resource-provider-operations.md). |
 | February 2026 | Classic administrators | Update steps to reflect that Azure Resource Graph will no longer list classic administrators. See [Azure classic subscription administrators](classic-administrators.md). |
 
 ## 2025
