@@ -255,12 +255,6 @@
     items:
     - name: Overview
       href: ./durable-task-scheduler/durable-task-scheduler.md
-    - name: Quickstarts
-      items:
-      - name: Durable Functions
-        href: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
-      - name: Durable Task SDKs
-        href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
     - name: Develop
       href: ./durable-task-scheduler/develop-with-durable-task-scheduler.md
     - name: Identity-based access
