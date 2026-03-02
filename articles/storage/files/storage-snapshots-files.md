@@ -526,7 +526,7 @@ az rest --method put \
 
 ### List NFS file share snapshots
 
-You can list all the snapshots for a NFS file share using the Azure portal, Azure PowerShell, or Azure CLI.
+You can list all the snapshots for an NFS file share by using the Azure portal, Azure PowerShell, or Azure CLI.
 
 # [Azure portal](#tab/portal)
 
