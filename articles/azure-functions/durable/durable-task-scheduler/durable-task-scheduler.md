@@ -161,8 +161,8 @@ Stale orchestration data should be purged periodically to ensure efficient stora
 
     You're limited in how many task hubs you can use depending on your billing SKU. 
 
-     - [When using the Dedicated SKU,](./durable-task-scheduler-billing.md#dedicated-sku) task hubs are limited to 25. 
-     - [When using the Consumption SKU,](./durable-task-scheduler-billing.md#consumption-sku-preview) task hubs are limited to 5. 
+     - [When using the Dedicated SKU,](./durable-task-scheduler-billing.md#dedicated-sku) task hubs are limited to 25 per region per subscription. 
+     - [When using the Consumption SKU,](./durable-task-scheduler-billing.md#consumption-sku-preview) task hubs are limited to 10 per region per subscription. 
 
     For more quota, [contact support](https://github.com/Azure/azure-functions-durable-extension/issues).
 
