@@ -17,7 +17,7 @@ This article describes how to deploy a Windows container application to Azure Ap
 
 - An Azure account with an Azure Container Registry registry instance and a Web App created in Azure App Service. [Create an Azure account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure DevOps organization and project, with a Windows app that runs in a Docker container and a supporting Dockerfile checked into an [Azure Repos](https://docs.github.com/get-started/quickstart/create-a-repo) repository in your project.
-- The appropriate user roles or permissions to create and manage Azure resources and Azure DevOps pipelines, repos, and service connections. For more information, see [Manage security in Azure Pipelines](/azure/devops/pipelines/policies/permissions).
+- The appropriate user roles or permissions to create and manage Azure resources and Azure DevOps projects, pipelines, repos, and service connections. For more information, see [Manage security in Azure Pipelines](/azure/devops/pipelines/policies/permissions).
 
 ## Add a service connection
 
