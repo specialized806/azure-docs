@@ -72,12 +72,12 @@ On Linux x64 devices, use `apt-get` or your appropriate package manager to updat
 
 Update `apt`:
 
-   ```bash
-   sudo apt-get update
-   ```
+```bash
+sudo apt-get update
+```
 
-   > [!NOTE]
-      > For instructions on how to get the latest repository configuration from Microsoft, see the preliminary steps to [Install IoT Edge](how-to-provision-single-device-linux-symmetric.md#install-iot-edge).
+> [!NOTE]
+> For instructions on how to get the latest repository configuration from Microsoft, see the preliminary steps to [Install IoT Edge](how-to-provision-single-device-linux-symmetric.md#install-iot-edge).
 
 Check which versions of IoT Edge are available:
 
