@@ -311,7 +311,7 @@ Azure Backup isn't currently supported for NFS file shares.
 
 NFS Azure file share snapshots are available in all Azure public cloud regions.
 
-### Create an classic NFS file share snapshot
+### Create a snapshot of an NFS classic file share
 
 You can create a snapshot of an NFS classic file share using the Azure portal, Azure PowerShell, or Azure CLI.
 
