@@ -583,8 +583,6 @@ To mount an NFS file share snapshot to a Linux VM (NFS client) and restore files
    
 The files and directories from the snapshot should now be available in the `/media/nfs/restore` directory.
 
----
-
 ### Delete NFS file share snapshots
 
 Existing share snapshots are never overwritten. They must be deleted explicitly. You can delete share snapshots using the Azure portal, Azure PowerShell, or Azure CLI.
