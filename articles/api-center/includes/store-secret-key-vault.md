@@ -32,7 +32,7 @@ Assign your API center's managed identity the **Key Vault Secrets User** role in
 
 1. In the [portal](https://azure.microsoft.com), navigate to your key vault.
 1. In the left menu, select **Access control (IAM)**.
-1. Select **+ Add role assignment**.
+1. Select **+ Add** > **Add role assignment**.
 1. On the **Add role assignment** page, set the values as follows: 
     1. On the **Role** tab, select **Key Vault Secrets User**.
     1. On the **Members** tab, in **Assign access to**, select **Managed identity** > **+ Select members**.
