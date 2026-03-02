@@ -489,7 +489,7 @@ To create a snapshot of an existing file share, sign in to the Azure portal and 
 
 1. Select the file share that you want to take a snapshot of.
 
-1. Then select **Operations** > **Snapshots**.
+1. Select **Operations** > **Snapshots**.
 
 1. Select **+ Add snapshot**. Add an optional comment, and select **OK**.
 ![A screenshot of the Azure portal showing how to create a snapshot of a file share created with Microsoft.FileShares.](./media/storage-snapshots-files/add-managed-file-share-snapshot.png)
