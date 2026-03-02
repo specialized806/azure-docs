@@ -77,58 +77,58 @@ The best way to manually create a workflow configuration is to start from the of
 1. Choose either **Windows** or **Linux** to make sure that you get the template for the correct operating system.
 
     # [Windows](#tab/windows)
-    
+
     Deployments to Windows use `runs-on: windows-latest`.
-    
+
     # [Linux](#tab/linux)
-    
+
     Deployments to Linux use `runs-on: ubuntu-latest`.
-    
+
     ---
 
 1. Copy the language-specific template from the Azure Functions actions repository using the following link:  
 
     # [.NET](#tab/dotnet/windows)
-    
+
     <https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-dotnet-functionapp-on-azure.yml> 
-    
+
     # [.NET](#tab/dotnet/linux)
-    
+
     <https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/linux-dotnet-functionapp-on-azure.yml>
-    
+
     # [Java](#tab/java/windows)
-    
+
     <https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-java-functionapp-on-azure.yml>
-    
+
     # [Java](#tab/java/linux)
-    
+
     <https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/linux-java-functionapp-on-azure.yml>
-    
+
     # [JavaScript](#tab/javascript/windows)
-    
+
     <https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-node.js-functionapp-on-azure.yml>
-    
+
     # [JavaScript](#tab/javascript/linux)
-    
+
     <https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/linux-node.js-functionapp-on-azure.yml>
-    
+
     # [Python](#tab/python/windows)
-    
+
     Python functions aren't supported on Windows. Choose Linux instead.
-    
+
     # [Python](#tab/python/linux)
-    
+
     <https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/linux-python-functionapp-on-azure.yml>
-    
+
     # [PowerShell](#tab/powershell/windows)
-    
+
     <https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-powershell-functionapp-on-azure.yml>
-    
+
     # [PowerShell](#tab/powershell/linux)
-    
+
     <https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/linux-powershell-functionapp-on-azure.yml>
-    
-    --- 
+
+    ---
 
 1. Update the `env.AZURE_FUNCTIONAPP_NAME` parameter with the name of your function app resource in Azure. You may optionally need to update the parameter that sets the language version used by your app, such as `DOTNET_VERSION` for C#.
 
@@ -221,7 +221,7 @@ You can create the GitHub Actions workflow configuration file from the Azure Fun
 
 ## Update a workflow configuration
 
-If for some reason, you need to update or change an existing workflow configuration, just navigate to the `/.github/workflows/` location in your repository, open the specific YAML file, make any needed changes, and then commit the updates to the repository.
+If for some reason you need to update or change an existing workflow configuration, just navigate to the `/.github/workflows/` location in your repository, open the specific YAML file, make any needed changes, and then commit the updates to the repository.
 
 ## Example: workflow configuration file
 
@@ -296,21 +296,21 @@ The following parameters are required for the Flex Consumption plan:
 
 |Parameter |Explanation  |
 |---------|---------|
-|_**sku**_ | Set this to `flexconsumption` when authenticating with publish-profile. When using RBAC credentials or deploying to a non-Flex Consumption plan, the Action can resolve the value, so the parameter does not need to be included. |
-|_**remote-build**_ | Set this to `true` to enable a build action from Kudu when the package is deployed to a Flex Consumption app. Oryx build is always performed during a remote build in Flex Consumption; do not set **scm-do-build-during-deployment** or **enable-oryx-build**. By default, this parameter is set to `false`. |
+|_**sku**_ | Set this to `flexconsumption` when authenticating with publish-profile. When using RBAC credentials or deploying to a non-Flex Consumption plan, the Action can resolve the value, so the parameter doesn't need to be included. |
+|_**remote-build**_ | Set this to `true` to enable a build action from Kudu when the package is deployed to a Flex Consumption app. Oryx build is always performed during a remote build in Flex Consumption; don't set **scm-do-build-during-deployment** or **enable-oryx-build**. By default, this parameter is set to `false`. |
 
 The following parameters are specific to the Consumption, Elastic Premium, and App Service (Dedicated) plans:
 
 |Parameter |Explanation  |
 |--------- |--------- |
-|_**scm-do-build-during-deployment**_ | (Optional) Allow the Kudu site (e.g. `https://<APP_NAME>.scm.azurewebsites.net/`) to perform pre-deployment operations, such as [remote builds](functions-deployment-technologies.md#remote-build). By default, this is set to `false`. Set this to `true` when you do want to control deployment behaviors using Kudu instead of resolving dependencies in your GitHub workflow. For more information, see the [`SCM_DO_BUILD_DURING_DEPLOYMENT`](./functions-app-settings.md#scm_do_build_during_deployment) setting.|
+|_**scm-do-build-during-deployment**_ | (Optional) Allow the Kudu site (for example, `https://<APP_NAME>.scm.azurewebsites.net/`) to perform pre-deployment operations, such as [remote builds](functions-deployment-technologies.md#remote-build). By default, this is set to `false`. Set this to `true` when you do want to control deployment behaviors using Kudu instead of resolving dependencies in your GitHub workflow. For more information, see the [`SCM_DO_BUILD_DURING_DEPLOYMENT`](./functions-app-settings.md#scm_do_build_during_deployment) setting.|
 |_**enable-oryx-build**_ | (Optional) Allow Kudu site to resolve your project dependencies with Oryx. By default, this is set to `false`. If you want to use [Oryx](https://github.com/Microsoft/Oryx) to resolve your dependencies instead of the GitHub Workflow, set both **scm-do-build-during-deployment** and **enable-oryx-build** to `true`.|
 
 Optional parameters for all function app plans:
 
 |Parameter | Explanation |
 | --------- | --------- |
-| ***slot-name*** | This is the [deployment slot](functions-deployment-slots.md) name to be deployed to. By default, this value is empty, which means the GitHub Action will deploy to your production site. When this setting points to a non-production slot, please ensure the **publish-profile** parameter contains the credentials for the slot instead of the production site. _Currently not supported in Flex Consumption_. |
+| ***slot-name*** | This is the [deployment slot](functions-deployment-slots.md) name to be deployed to. By default, this value is empty, which means the GitHub Action will deploy to your production site. When this setting points to a non-production slot, ensure the **publish-profile** parameter contains the credentials for the slot instead of the production site. _Currently not supported in Flex Consumption_. |
 |***publish-profile*** | The name of the GitHub secret that contains your publish profile.|
 | _**respect-pom-xml**_ | Used only for Java functions. Whether it's required for your app's deployment artifact to be derived from the pom.xml file. When deploying Java function apps, you should set this parameter to `true` and set `package` to `.`. By default, this parameter is set to `false`, which means that the `package` parameter must point to your app's artifact location, such as `./target/azure-functions/` |
 | _**respect-funcignore**_ | Whether GitHub Actions honors your .funcignore file to exclude files and folders defined in it. Set this value to `true` when your repository has a .funcignore file and you want to use it exclude paths and files, such as text editor configurations, .vscode/, or a Python virtual environment (.venv/). The default setting is `false`. |
@@ -330,11 +330,11 @@ Keep the following considerations in mind when using the Azure Functions action:
 
     \* The ability to run your apps on Linux in a Consumption plan is planned for retirement. For more information, see [Azure Functions Consumption plan hosting](consumption-plan.md).
 
-+ The credentials required by GitHub to connection to Azure for deployment are stored as Secrets in your GitHub repository and accessed in the deployment as `secrets.<SECRET_NAME>`.
++ The credentials required by GitHub to connect to Azure for deployment are stored as Secrets in your GitHub repository and accessed in the deployment as `secrets.<SECRET_NAME>`.
 
 + The easiest way for GitHub Actions to authenticate with Azure Functions for deployment is by using a publish profile. You can also authenticate using a service principal. To learn more, see [this GitHub Actions repository](https://github.com/Azure/functions-action).
 
-+ The actions for setting up the environment and running a build are generated from the templates, and are language specific.
++ The actions for setting up the environment and running a build are generated from the templates and are language specific.
 
 + The templates use `env` elements to define settings unique to your build and deployment.
 
