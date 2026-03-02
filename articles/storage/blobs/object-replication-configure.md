@@ -321,9 +321,12 @@ N/A
 
 ## Configure blob index tags replication (preview)
 
-Object replication now supports copying source blob's index tags to the destination blob. You can either configure it when creating new replication rules or enable it for existing replication rules. 
+```suggestion
+Object replication now supports copying index tags from source blobs to destination blobs. You can configure this capability as part of a new or existing replication rule. For more information, see [Configure object replication](object-replication-configure.md#configure-blob-index-tags-replication).
 
-> Tags Replication is in public preview and is subject to the prerequisites described in the following section.
+> [!IMPORTANT]
+> Tag replication is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ### Prerequisites
 

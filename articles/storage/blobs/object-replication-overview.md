@@ -80,7 +80,9 @@ Object replication doesn't support blob snapshots. Any snapshots on a blob in th
 
 Object replication now supports copying index tags from source blobs to destination blobs. You can configure this capability as part of a new or existing replication rule. For more information, see [Configure object replication](object-replication-configure.md#configure-blob-index-tags-replication).
 
-> [!NOTE]
+> [!IMPORTANT]
+> Tag replication is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ### Blob tiering
 
