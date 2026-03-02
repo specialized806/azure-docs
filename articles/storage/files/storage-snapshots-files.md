@@ -569,7 +569,7 @@ To mount an NFS file share snapshot to a Linux VM (NFS client) and restore files
    sudo mount -o vers=4,minorversion=1,proto=tcp,sec=sys $server:/nfs4account/share /media/nfs
    ```
    
-1. Change the directory to `/media/nfs/.snapshots` so you can view the available snapshots. The `.snapshots` directory is hidden by default, but you can access and read from it like any directory.
+1. Change the directory to `/media/nfs/.snapshots` so you can view the available snapshots. The `.snapshots` directory is hidden by default, but you can access and read from it like any directory. If you just created the snapshot, wait at least 30 seconds for the `.snapshots` directory to become available.
    
    ```bash
    cd /media/nfs/.snapshots
