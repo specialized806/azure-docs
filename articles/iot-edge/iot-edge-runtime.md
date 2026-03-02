@@ -3,7 +3,7 @@ title: Azure IoT Edge runtime and architecture explained
 description: Discover how Azure IoT Edge runtime manages modules, security, and communication with IoT Hub to optimize IoT solutions.
 author: sethmanheim
 ms.author: sethm
-ms.date: 02/26/2026
+ms.date: 03/02/2026
 ms.topic: concept-article
 ms.service: azure-iot-edge
 services: iot-edge
@@ -168,5 +168,4 @@ If you want to opt out of sending runtime quality telemetry from your devices, u
 
 * [Understand Azure IoT Edge modules](iot-edge-modules.md)
 * [Learn how to deploy modules and establish routes in IoT Edge](module-composition.md)
-* [Learn how to publish and subscribe with IoT Edge](how-to-publish-subscribe.md)
 * [Learn about IoT Edge runtime metrics](how-to-access-built-in-metrics.md)

@@ -86,6 +86,7 @@ To select a restore point for a VM restore, follow these steps:
 
 >[!Note]
 >Use the **Replace existing** option only when the **Transfer Data to Vault** subtask in the job details shows successfully completed. Otherwise, use the **Create New** option for the latest recovery point restoration.
+>For more information about backup phases and progress interpretation, see [Verify the backup job status](backup-azure-arm-vms-prepare.md#verify-the-backup-job-status).
 
 ## Create a VM
 

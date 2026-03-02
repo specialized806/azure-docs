@@ -2,7 +2,7 @@
 title: Support Matrix for Azure VM Disaster Recovery with Azure Site Recovery
 description: Summarizes support for Azure VMs disaster recovery to a secondary region with Azure Site Recovery.
 ms.topic: concept-article
-ms.date: 02/12/2026
+ms.date: 02/27/2026
 ms.service: azure-site-recovery
 author: Jeronika-MS
 ms.author: v-gajeronika
@@ -96,6 +96,8 @@ Site Recovery supports replication of Azure VMs running the operating systems li
 >- Windows OS upgrade without disable replication is supported.
 
 ### Windows
+
+[!INCLUDE [end-of-life-notes-windows-server-2008.md](./includes/end-of-life-notes-windows-server-2008.md)]
 
 Operating system | Details
 --- | ---
@@ -395,7 +397,7 @@ Data disk: Standard storage account | Supported. |
 Data disk: Premium storage account | Supported. | If a VM has disks spread across Premium and Standard storage accounts, you can select a different target storage account for each disk to ensure that you have the same storage configuration in the target region.
 Managed disk: Standard | Supported in Azure regions in which Site Recovery is supported. |
 Managed disk: Premium | Supported in Azure regions in which Site Recovery is supported. |
-Disk subscription limits | Up to 3,000 protected disks per subscription. | Ensure that the source or target subscription doesn't have more than 3,000 Site Recovery-protected disks (both data and OS).
+Disk subscription limits | Up to 3,000 (1,200 in case of Trusted VMs) protected disks per subscription. | Ensure that the source or target subscription doesn't have more than 3,000 (1,200 in case of Trusted VMs) Site Recovery-protected disks (both data and OS).
 Standard SSD | Supported. |
 Redundancy | Locally redundant storage (LRS), ZRS, and geo-redundant storage (GRS) are supported.
 Cool and hot storage | Not supported. | VM disks aren't supported on cool or hot storage.
