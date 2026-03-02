@@ -63,6 +63,7 @@ The table below summarizes the design choices and rationale.
 
 ### Architecture (logical)
 
+```text
 Internet client
 	| HTTPS
 	v
@@ -94,7 +95,7 @@ Internet client
 | Container App             |
 | revision / replicas       |
 +---------------------------+
-
+```
 
 ## 5. Deployment Procedure
 
@@ -247,6 +248,7 @@ Optionally harden the configuration by updating the default route and origin gro
 - [Custom VNet subnet address range restrictions (workload profiles)](./custom-virtual-networks.md)
 
 Author : Kumar shashi kaushal (Sr Digital cloud Solutions Architect)
+
 
 
 
