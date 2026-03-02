@@ -56,13 +56,10 @@ The following decisions are used throughout this implementation and are called o
 
 The table below summarizes the design choices and rationale.
 
-
 | Decision        | Value   | Reason                    |
 |-----------------|---------|---------------------------|
 | ACA subnet size | /23     | Allows room for scaling   |
 | AFD SKU         | Premium | Required for Private Link |
-
-
 
 ### Architecture (logical)
 
@@ -251,6 +248,7 @@ Optionally harden the configuration by updating the default route and origin gro
 - [Custom VNet subnet address range restrictions (workload profiles)](./custom-virtual-networks.md)
 
 Author : Kumar shashi kaushal (Sr Digital cloud Solutions Architect)
+
 
 
 
