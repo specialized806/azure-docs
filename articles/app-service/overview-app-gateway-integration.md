@@ -9,6 +9,7 @@ ms.date: 03/02/2026
 ms.author: jordanselig
 ms.custom: devx-track-azurecli, devx-track-arm-template
 ms.devlang: azurecli
+#customer intent: As an Azure App Service developer, I want to understand integration considerations for App Service and Application Gateway so I can implement the services.
 ---
 
 # What is Azure Application Gateway integration with Azure App Service?
@@ -19,7 +20,7 @@ This article provides an overview for configuring Azure Application Gateway with
 
 You can use private endpoints to secure traffic between Application Gateway and your App Service app. You need to ensure that Application Gateway can use Domain Name System (DNS) to resolve the private IP address of the App Service apps. Alternatively, you can use the private IP address in the back-end pool and override the host name in the HTTP settings.
 
-:::image type="content" source="./media/overview-app-gateway-integration/private-endpoint-appgw.png" border="false" alt-text="Diagram of traffic flowing to an application gateway through a private endpoint to App Service apps.":::
+:::image type="content" source="./media/overview-app-gateway-integration/private-endpoint-application-gateway.png" border="false" alt-text="Diagram of traffic flowing to an application gateway through a private endpoint to App Service apps.":::
 
 Application Gateway caches the DNS lookup results. If you use fully qualified domain names (FQDNs) and rely on DNS lookup to get the private IP address, you might need to restart the application gateway. A restart is required when the DNS update or the link to an Azure private DNS zone happens after you configure the back-end pool.
 
@@ -36,7 +37,7 @@ Learn more about [configuring an App Service app with private endpoint](overview
 
 As an alternative to using private endpoints, you can use service endpoints to secure the traffic from Application Gateway. By using [service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview), you can allow traffic from only a specific subnet within an Azure virtual network and block everything else. In the following scenario, you use this functionality to ensure App Service apps can receive traffic from only a specific application gateway.
 
-:::image type="content" source="./media/overview-app-gateway-integration/service-endpoints-appgw.png" border="false" alt-text="Diagram of the internet flowing to an application gateway in a virtual network, then through a service endpoint firewall to App Service apps.":::
+:::image type="content" source="./media/overview-app-gateway-integration/service-endpoints-application-gateway.png" border="false" alt-text="Diagram of the internet flowing to an application gateway in a virtual network, then through a service endpoint firewall to App Service apps.":::
 
 This configuration has two parts, aside from creating the App Service app instance and the application gateway.
 
@@ -126,4 +127,4 @@ az resource update --resource-group <your-resource-group> --name <your-web-app> 
 
 - [Review App Service Environment documentation](/azure/app-service/environment/)
 - [Secure web app with Azure Web Application Firewall](/azure/web-application-firewall/ag/ag-overview)
-- [Deploy secure, resilient site with custom domain on App Service with Azure Front Door or Application Gateway (Tutorial)](https://azure.github.io/AppService/2021/03/26/Secure-resilient-site-with-custom-domain)
+- [Deploy secure site with custom domain on Azure Front Door or Application Gateway (Tutorial)](https://azure.github.io/AppService/2021/03/26/Secure-resilient-site-with-custom-domain)
