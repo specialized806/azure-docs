@@ -1,6 +1,6 @@
 ---
 title: Configure API access in Azure API Center
-description: Configure access to APIs in your Azure API Center inventory using API keys or OAuth 2.0 authorization. Authorized users can test APIs in the API Center portal.
+description: Configure access to APIs in your Azure API Center inventory using API keys, OAuth 2.0 authorization, or other HTTP security schemes. Authorized users can test APIs in the API Center portal.
 
 ms.service: azure-api-center
 ms.topic: how-to
@@ -136,7 +136,7 @@ Store the secret in Azure Key Vault. Access the key vault using your API center'
 
 ### Option 3: Configure settings for another HTTP security scheme
 
-For APIs that use another HTTP security scheme, such as Basic authentication, you can still configure authorization settings in your API center. You might need to choose this for legacy APIs. 
+For APIs that use another HTTP security scheme, such as Basic authentication or bearer tokens that don't use OAuth 2.0, complete the following steps. You might need to choose this for legacy APIs. 
 
 In the [portal](https://azure.microsoft.com), go to your API center.
 1. Under **Governance**, select **Authorization (preview)** > **+ Add configuration**.
@@ -159,7 +159,7 @@ In the [portal](https://azure.microsoft.com), go to your API center.
 
 ## Add authentication configuration to an API version
 
-After configuring an API key or OAuth 2.0 flow, associate the configuration with an API version.
+After configuring an authentication scheme, associate the configuration with an API version.
 
 1. In the [portal](https://azure.microsoft.com), go to your API center.
 1. Under **Inventory**, select **Assets**.
@@ -180,9 +180,10 @@ After configuring an API key or OAuth 2.0 flow, associate the configuration with
 Configure an access policy that assigns users or groups the **API Center Credential Access Reader** role, scoped to specific authentication configurations in an API version. This role allows only designated users to test an API in the API Center portal.
 
 1. In the [portal](https://azure.microsoft.com), go to your API center.
-1. Navigate to an API version with an authentication configuration.
-1. Under **Details**, select **Manage Access (preview)**.
-1. Select **Edit access policies** for the authentication configuration you want to manage.
+1. Go to an API version with an authentication configuration.
+1. Select **Manage Access (preview)**.
+1. Select an authentication configuration you want to manage.
+1. In the dropdown menu, select **Edit access policies**.
     :::image type="content" source="media/authorize-api-access/edit-access-policies.png" alt-text="Screenshot of adding an access policy in the portal.":::
 
 1. On the **Manage access** page, select **+ Add > Users** or **+ Add > Groups**.
