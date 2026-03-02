@@ -30,6 +30,7 @@ SMB file shares are used for many applications including end-user file shares an
 
 Azure Files supports the major features of SMB and Azure needed for production deployments of SMB file shares:
 
+- SMB Continuous Availability (CA)
 - AD domain join and discretionary access control lists (DACLs)
 - Integrated serverless backup with Azure Backup
 - Network isolation with Azure private endpoints
@@ -54,6 +55,40 @@ You can disable encryption in transit for an Azure file share. When encryption i
 ## SMB protocol settings
 
 Azure Files offers multiple settings that affect the behavior, performance, and security of the SMB protocol. These are configured for all Azure file shares within a storage account.
+
+### SMB Continuous Availability
+
+Azure Files supports SMB Continuous Availability (CA) to help applications remain available during transient infrastructure events. Continuous availability is a capability of the SMB protocol that allows open file handles to survive brief interruptions, such as server failovers or short network disruptions. All Azure Files SMB shares are continuously available by default. This setting can't be disabled.
+
+**What continuous availability provides:**
+
+- Persistent file handles that survive transient failures
+- Transparent recovery of I/O operations after failover
+- Data consistency during infrastructure transitions
+- Reduced risk of application disruption
+
+If a brief connectivity interruption occurs, SMB clients automatically retry operations and reestablish access to open files without requiring the application to reopen them. This behavior is particularly important for workloads that maintain long-running file sessions.
+
+**How continuous availability works**
+
+Continuous availability relies on persistent SMB handles. During a transient interruption (typically lasting up to several minutes):
+
+- Open file handles remain valid.
+- The SMB client retries pending I/O operations.
+- Azure Files transparently resumes operations once connectivity is restored.
+
+Because Azure Files prioritizes correctness and durability, the client waits and retries instead of immediately failing the operation.
+
+**Timeout behavior during connectivity loss**
+
+Due to the retry behavior required for continuous availability, SMB operations might take longer to time out during network interruptions.
+
+For example:
+
+- Windows SMB clients may retry operations for several minutes before returning an error.
+- Applications might appear to pause temporarily while the connection is reestablished.
+
+This behavior is by design and helps preserve handle integrity and prevent data corruption. Workloads that frequently disconnect (such as roaming laptops or unstable network connections) might observe longer wait times before failures are returned.
 
 ### SMB Multichannel
 
