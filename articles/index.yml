@@ -10,7 +10,7 @@ metadata:
   ms.topic: hub-page
   author: JnHs
   ms.author: jenhayes
-  ms.date: 01/29/2026
+  ms.date: 03/02/2026
   adobe-target: true
   learn-experiments: true
   featureFlags:
@@ -395,7 +395,7 @@ productDirectory:
         - containers
       url: /azure/kubernetes-fleet/
     # Card
-    - title: Azure Quantum (Preview)
+    - title: Azure Quantum
       summary: Experience quantum impact today on Azure
       imageSrc: ./media/index/quantum.svg
       azureCategories:
