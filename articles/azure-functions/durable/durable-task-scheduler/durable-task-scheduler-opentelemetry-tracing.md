@@ -70,7 +70,7 @@ You don't need to add custom instrumentation to your orchestrator or activity co
 
 ---
 
-An OpenTelemetry-compatible back end for viewing traces, like [Jaeger](https://www.jaegertracing.io/) for local development or [Application Insights](/azure/azure-monitor/app/app-insights-overview) for production.
+- An OpenTelemetry-compatible back end for viewing traces, like [Application Insights](/azure/azure-monitor/app/app-insights-overview) for production or [Jaeger](https://www.jaegertracing.io/) for local development.
 
 ::: zone-end
 
