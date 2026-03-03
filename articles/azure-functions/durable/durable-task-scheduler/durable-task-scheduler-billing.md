@@ -59,7 +59,7 @@ In this example, Durable Task Scheduler processes each action as shown here:
 
 The Dedicated SKU provides performance and pricing through preallocated Capacity Units (CUs). Purchase up to three CUs.
 
-Currently, you're limited to 25 task hubs when using the Dedicated SKU. For more quota, [contact support](https://github.com/Azure/azure-functions-durable-extension/issues).
+Currently, you're limited to 25 schedulers and task hubs each, per region per subscription, when using the Dedicated SKU. For more quota, [contact support](https://github.com/Azure/azure-functions-durable-extension/issues).
 
 ### Key features
 
@@ -103,11 +103,14 @@ A software as a service (SaaS) platform supports 800 million orchestrations mont
 | Actions per second | 12 billion ÷ 2,628,000 | ≈ 4,571 actions/second |
 | Required CUs | 4,571 ÷ 2,000 | CUs needed: 2.29 → **3 CUs sufficient** |
 
-## Consumption SKU
+## Consumption SKU (Preview)
+
+> [!NOTE]
+> The Consumption SKU is currently in preview. [Learn more about the SKU and orchestration framework recommended for production use.](../choose-orchestration-framework.md)
 
 The Consumption SKU offers a pay-as-you-use model, ideal for variable workloads and development scenarios. 
 
-Currently, you're limited to five task hubs when using the Consumption SKU. For more quota, [contact support](https://github.com/Azure/azure-functions-durable-extension/issues).
+Currently, you're limited to 10 schedulers and five task hubs per region per subscription when using the Consumption SKU. For more quota, [contact support](https://github.com/Azure/azure-functions-durable-extension/issues).
 
 ### Key features
 
@@ -173,4 +176,4 @@ For detailed pricing information, see the billing documentation for each compute
 
 - [Learn about pricing for Durable Task Scheduler](https://azure.microsoft.com/pricing/details/functions/)
 - [View throughput performance benchmarks](./durable-task-scheduler-work-item-throughput.md)
-- [Choose your orchestration framework](./choose-orchestration-framework.md)
+- [Choose your orchestration framework](../choose-orchestration-framework.md)

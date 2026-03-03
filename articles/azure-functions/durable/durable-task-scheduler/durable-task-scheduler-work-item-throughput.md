@@ -1,11 +1,12 @@
 ---
-title: Azure Functions Durable Task Scheduler action throughput for Durable Functions
-description: Learn about how the Azure Functions Durable Task Scheduler provides high action throughput for use with Durable Functions.
+title: Durable Task Scheduler action throughput benchmarks
+titleSuffix: Durable Task
+description: Learn about the Durable Task Scheduler action throughput benchmarks compared to other storage providers.
 ms.topic: concept-article
 ms.date: 10/22/2025
 ---
 
-# Azure Functions Durable Task Scheduler action throughput
+# Durable Task Scheduler action throughput benchmarks
 
 The Durable Task Scheduler was benchmarked against other storage providers, including the Azure Storage, MSSQL, and Netherite providers. The results show the Durable Task Scheduler provides better [action](./durable-task-scheduler-billing.md#what-is-an-action) throughput than the other options, which translates into more orchestrator, entity, and activity tasks being processed in a given time period.
 

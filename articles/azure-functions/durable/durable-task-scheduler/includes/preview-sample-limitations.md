@@ -6,4 +6,4 @@ ms.date: 04/23/2025
 ---
 
 > [!IMPORTANT]
-> Currently, The Durable Task SDK is not available for PowerShell.
+> Currently, the PowerShell Durable Task SDK isn't available.
