@@ -180,10 +180,17 @@ cd /samples/durable-task-sdks/javascript/function-chaining
 
    SUCCESS: Your up workflow to provision and deploy to Azure completed in 10 minutes 34 seconds.   
    ```
+::: zone-end
+
+::: zone pivot="csharp,python,java,javascript"
 
 ## Confirm successful deployment 
 
 In the Azure portal, verify the orchestrations are running successfully. 
+
+::: zone-end
+
+::: zone pivot="java"
 
 1. Copy the resource group name from the terminal output.
 
@@ -193,9 +200,21 @@ In the Azure portal, verify the orchestrations are running successfully.
 
 1. Select **Monitoring** > **Log stream**.
 
+1. Confirm the sample container app is logging the function chaining tasks.
+
+   :::image type="content" source="media/quickstart-container-apps-durable-task-sdk/java-sample-app-log-stream.png" alt-text="Screenshot of the Java sample app's log stream in the Azure portal.":::
+
 ::: zone-end
 
 ::: zone pivot="csharp,python,javascript"
+
+1. Copy the resource group name from the terminal output.
+
+1. Sign in to the [Azure portal](https://portal.azure.com) and search for that resource group name.
+
+1. From the resource group overview page, click on the client container app resource.
+
+1. Select **Monitoring** > **Log stream**.
 
 1. Confirm the client container is logging the function chaining tasks.
 
@@ -208,14 +227,6 @@ In the Azure portal, verify the orchestrations are running successfully.
 1. Confirm the worker container is logging the function chaining tasks.
 
    :::image type="content" source="media/quickstart-container-apps-durable-task-sdk/worker-app-log-stream.png" alt-text="Screenshot of the worker container's log stream in the Azure portal.":::
-
-::: zone-end
-
-::: zone pivot="java"
-
-1. Confirm the sample container app is logging the function chaining tasks.
-
-   :::image type="content" source="media/quickstart-container-apps-durable-task-sdk/java-sample-app-log-stream.png" alt-text="Screenshot of the Java sample app's log stream in the Azure portal.":::
 
 ::: zone-end
 
