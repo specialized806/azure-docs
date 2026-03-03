@@ -6,6 +6,7 @@ ms.service: azure-container-storage
 ms.topic: how-to
 ms.date: 01/28/2026
 ms.author: saurabsharma
+ms.reviewer: kendownie
 ms.custom:
   - references_regions
 
@@ -215,6 +216,9 @@ If you don't already have Azure Container Storage installed, [install it](instal
    ```azurecli
    az network vnet subnet update -g <node-resource-group> --vnet-name <vnet-name> --name <subnet-name> --service-endpoints "Microsoft.Storage"
    ```
+
+   > [!IMPORTANT]
+   > If your AKS cluster uses multiple node pools in different subnets, **you must include all node pool subnet IDs in the Elastic SAN volume group network ACLs**. Elastic SAN volume groups allow access only from the virtual network subnets explicitly authorized in the volume group rules, and requests from other subnets are blocked by default.
 
 1. Create the volume group.
 
