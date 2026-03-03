@@ -2226,6 +2226,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/app-service/quickstart-python-portal.md",
+      "redirect_url": "/azure/app-service/quickstart-python",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/app-service-web/app-service-web-tutorial-monitoring.md",
       "redirect_url": "/azure/app-service/web-sites-monitor",
       "redirect_document_id": false
