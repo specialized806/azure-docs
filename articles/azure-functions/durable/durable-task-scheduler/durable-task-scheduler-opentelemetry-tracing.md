@@ -64,7 +64,7 @@ You don't need to add custom instrumentation to your orchestrator or activity co
 
 # [Java](#tab/java)
 
-- [Java 21](https://learn.microsoft.com/java/openjdk/download) or later.
+- [Java 21](/java/openjdk/download) or later.
 - The `durabletask-client` and `durabletask-azuremanaged` Maven dependencies.
 - The `opentelemetry-api`, `opentelemetry-sdk`, and `opentelemetry-exporter-otlp` dependencies.
 
