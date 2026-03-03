@@ -6,7 +6,7 @@ ms.service: sap-on-azure
 author: msjuergent
 manager: bburns
 ms.topic: article
-ms.date: 11/04/2025
+ms.date: 03/03/2026
 ms.author: juergent
 # Customer intent: "As an IT administrator, I want to deploy SAP workloads on Azure VMs, so that I can leverage Azure's scalability and automated management features for mission-critical applications."
 ---
@@ -56,7 +56,7 @@ In the SAP workload documentation space, you can find the following areas:
 
 ## Change Log
 
-- March 03, 2025: Added required changes for RHEL 10 cluster configuration and created a separate tab for different OS releases in [Set up Pacemaker on Red Hat Enterprise Linux in Azure](./high-availability-guide-rhel-pacemaker.md), [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](./sap-hana-high-availability-rhel.md), [High availability of SAP HANA scale-up with Azure NetApp Files on RHEL](./sap-hana-high-availability-netapp-files-red-hat), [High availability of SAP HANA scale-out system on Red Hat Enterprise Linux](./sap-hana-high-availability-scale-out-hsr-rhel), [High availability for SAP NetWeaver on VMs on RHEL with NFS on Azure Files](./high-availability-guide-rhel-nfs-azure-files.md), [Azure Virtual Machines HA for SAP NetWeaver on RHEL with Azure NetApp Files for SAP applications](./high-availability-guide-rhel-netapp-files), [Azure Virtual Machines high availability for SAP NetWeaver on Red Hat Enterprise Linux](./high-availability-guide-rhel.md), [High availability for SAP NetWeaver on Azure VMs on Red Hat Enterprise Linux for SAP applications multi-SID](./high-availability-guide-rhel-multi-sid).
+- March 03, 2025: Added required changes for RHEL 10 cluster configuration and created a separate tab for different OS releases in [Set up Pacemaker on Red Hat Enterprise Linux in Azure](./high-availability-guide-rhel-pacemaker.md), [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](./sap-hana-high-availability-rhel.md), [High availability of SAP HANA scale-up with Azure NetApp Files on RHEL](./sap-hana-high-availability-netapp-files-red-hat.md), [High availability of SAP HANA scale-out system on Red Hat Enterprise Linux](./sap-hana-high-availability-scale-out-hsr-rhel.md), [High availability for SAP NetWeaver on VMs on RHEL with NFS on Azure Files](./high-availability-guide-rhel-nfs-azure-files.md), [Azure Virtual Machines HA for SAP NetWeaver on RHEL with Azure NetApp Files for SAP applications](./high-availability-guide-rhel-netapp-files.md), [Azure Virtual Machines high availability for SAP NetWeaver on Red Hat Enterprise Linux](./high-availability-guide-rhel.md), [High availability for SAP NetWeaver on Azure VMs on Red Hat Enterprise Linux for SAP applications multi-SID](./high-availability-guide-rhel-multi-sid.md).
 - March 03, 2025: Updated SELinux support statement in [Secure Azure infrastructure for SAP applications](./sap-security-infrastructure.md)
 - March 02, 2025: Minor changes in [Azure Files NFS Encryption in Transit for SAP on Azure Systems](./sap-azure-files-nfs-encryption-in-transit-guide.md) to adjust mount instructions.
 - November 04, 2025: Updated [SAP HANA Azure virtual machine Premium SSD v2 storage configurations](./hana-vm-premium-ssd-v2.md) with information about snapshot capabilities
