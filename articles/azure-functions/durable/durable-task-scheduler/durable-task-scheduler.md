@@ -154,7 +154,11 @@ Stale orchestration data should be purged periodically to ensure efficient stora
 
 - **Orchestration instance ID length:**
   
-  Orchestration instance IDs are limited to a maximum length of 100 UTF-16 code units (approximately 100 characters for ASCII-only IDs).
+  Orchestration instance IDs are limited to a maximum length of 100 characters.
+
+  * Allowed characters: Printable ASCII only (letters, numbers, symbols like -, _, ., etc. Characters 0x20 through 0x7E)
+  * Minimum length: 1 character (cannot be empty)
+  * Instance IDs starting with @ are reserved for entities
 
 - **Feature parity:** 
 
