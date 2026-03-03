@@ -506,7 +506,7 @@ AzureMonitorTraceExporter azureExporter = new AzureMonitorTraceExporter(
 
 ## What trace data shows
 
-The trace data that the Durable Task SDKs produce includes:
+The trace data produced by the Durable Task SDKs includes:
 
 | Span type | Description |
 | --------- | ----------- |
