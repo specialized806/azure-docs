@@ -30,6 +30,6 @@ items:
       - name: Monitor in Azure Data Factory
         href: monitor-data-extraction.md
       - name: Monitor in Fabric
-        href: monitor-fabric-data-extraction-and-processing.md
+        href: monitor-fabric-data-extraction-processing.md
   - name: Attestation Document
     href: attestation.md
