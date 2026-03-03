@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: concept-article
-ms.date: 08/28/2025
+ms.date: 03/03/2026
 ms.author: anfdocs
 # Customer intent: "As a data administrator, I want to assess the data protection and disaster recovery options available in Azure NetApp Files, so that I can choose the most effective solutions to ensure data integrity and availability for my organization's needs."
 ---
@@ -78,8 +78,8 @@ Choosing the best data protection option for your Azure NetApp Files deployment 
 | Use case | In-region solution | Cross-region solution | 
 | --- | --- | --- | 
 | Ad hoc backup | On-demand snapshots | - | 
-| Application consistent data protection | AzAcSnap | - | 
-| Data corruption and ransomware protection | Scheduled snapshots | Cross-region replication | 
+| Application consistent data protection | AzAcSnap [SnapCenter](https://docs.netapp.com/us-en/snapcenter/get-started/concept_snapcenter_overview.html)  | - | 
+| Data corruption and ransomware protection | Advanced ransomware protection | Cross-region replication | 
 | Disaster recovery | - | Cross-region replication |
 Fast data recovery (whole volume) | Revert volume from snapshot | Revert volume from snapshot | 
 | Feed current production data to test or development environment | Restore snapshot to new volume (clone) | Restore snapshot to new volume (clone) |
@@ -96,8 +96,9 @@ Fast data recovery (whole volume) | Revert volume from snapshot | Revert volume 
 * [How Azure NetApp Files snapshots work](snapshots-introduction.md)
 * [Understand Azure NetApp Files backup](backup-introduction.md)
 * [Understand Azure NetApp Files replication](replication.md)
-* [Reliability in Azure NetApp Flies](/azure/reliability/reliability-netapp-files)
+* [Reliability in Azure NetApp Files](/azure/reliability/reliability-netapp-files)
 * [What is Azure Application Consistent Snapshot tool](azacsnap-introduction.md)
 * [Restore individual files using single-file snapshot restore](snapshots-restore-file-single.md)
 * [Restore a snapshot to a new volume](snapshots-restore-new-volume.md)
 * [Restore a volume using snapshot revert](snapshots-revert-volume.md)
+* [Understand advanced ransomware protection](advanced-ransomware-protection.md) 
