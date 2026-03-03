@@ -53,7 +53,7 @@ Use the following table to compare how each service works and who manages what. 
 | --- | --- | --- | --- | --- | --- |
 | **Service model** | PaaS | PaaS | PaaS | IaaS-style HSM service | IaaS-style HSM service |
 | **Authentication** | Entra ID | Entra ID | Entra ID | HSM authentication (password) | HSM authentication (password) |
-| **HSM administrative control** | Microsoft | Microsoft | Microsoft | Customer | Customer |
+| **HSM administrative control** | Microsoft | Microsoft | Customer | Customer | Customer |
 | **Patching and maintenance** | Microsoft | Microsoft | Microsoft | Microsoft | Customer |
 | **Service health and hardware failover** | Microsoft | Microsoft | [Shared](/azure/key-vault/managed-hsm/disaster-recovery-guide) | [Shared](/azure/cloud-hsm/overview#customer-owned-highly-available-single-tenant-hsm-as-a-service) | [Customer](/azure/payment-hsm/deployment-scenarios#high-availability-deployment) |
 | **BCDR** | Automatic | Automatic | Automatic | Automatic | [Manual](/azure/payment-hsm/deployment-scenarios#disaster-recovery-deployment) |
@@ -72,7 +72,6 @@ Use the following table to compare all the solutions side by side. Answer each q
 | Do you need **HSM hardware protection**? | No | Yes | Yes | Yes | Yes |
 | What kind of **objects** do you need to store? | Asym Keys, Secrets, Certs | Asym Keys, Secrets, Certs | Asym/Sym Keys, Azure services | Asym/Sym Keys, Certs | Keys |
 | Do you need **dedicated capacity**? | No | No | Yes | Yes | Yes |
-| Do you need **direct HSM access**? | No (REST API) | No (REST API) | No (REST API) | [Yes, partition-level](/azure/cloud-hsm/integration-guides) | [Yes, appliance-level](/azure/payment-hsm/overview#typical-use-cases) |
 | Do you need **customer control of root of trust**? | No | No | Yes | Yes | Yes |
 | What is your **budget**? | $ | $$ | $$$ | $$$ | $$$$ |
 
