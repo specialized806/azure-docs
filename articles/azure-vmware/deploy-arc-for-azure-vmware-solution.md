@@ -94,10 +94,10 @@ The minimum Azure roles required for operations related to Arc-enabled VMware vS
 | Onboarding your vCenter Server to Arc     | Azure Arc VMware Private Clouds Onboarding | On the subscription or resource group into which you want to onboard                                            |
 | Administering Arc-enabled VMware vSphere  | Azure Arc VMware Administrator             | On the subscription or resource group where vCenter server resource is created                                  |
 | VM Provisioning                           | Azure Arc VMware Private Cloud User        | On the subscription or resource group that contains the resource pool/cluster/host, datastore, and virtual network resources, or on the resources themselves |
-| VM Provisioning                           | Azure Arc VMware VM Contributor            | On the subscription or resource group where you want to provision VMs                                           |
+| VM Provisioning                           | Azure Arc VMware VM Contributor            | On the subscription or resource group where you want to configure VMs                                           |
 | VM Operations                             | Azure Arc VMware VM Contributor            | On the subscription or resource group that contains the VM, or on the VM itself                                 |
      
- Any roles with higher permissions on the same scope, such as Owner or Contributor, can also allow you to perform the operations listed above. 
+ Any roles with higher permissions on the same scope, like Owner or Contributor, allow you to perform the operations listed in the previous table. 
 
 ## Onboard process
 
@@ -145,7 +145,7 @@ Use the following steps to guide you through the process to onboard Azure Arc fo
   - `k8sNodeIPPoolStart`, `k8sNodeIPPoolEnd` are the starting and ending IP of the pool of IPs to assign to the appliance VM. Both need to be within the `networkCIDRForApplianceVM`. 
   - `k8sNodeIPPoolStart`, `k8sNodeIPPoolEnd`, `gatewayIPAddress` ,`applianceControlPlaneIpAddress` are optional. You can choose to skip all the optional fields or provide values for all. If you choose not to provide the optional fields, then you must use /28 address space for `networkCIDRForApplianceVM` with the first lp as the gateway.
   - If all the parameters are provided, the firewall and proxy URLs must be allowlisted for the lps between K8sNodeIPPoolStart, k8sNodeIPPoolEnd.
-  - If you're skipping the optional fields, the firewall and proxy URLs must be allowlisted the following IPs in the segment. If the networkCIDRForApplianceVM is x.y.z.1/28, the IPs to allowlist are between x.y.z.11 – x.y.z.14. See the [Azure Arc resource bridge network requirements](/azure/azure-arc/resource-bridge/network-requirements).  
+  - If you're skipping the optional fields, the firewall and proxy URLs must be allowlisted the following IPs in the segment. If the networkCIDRForApplianceVM is x.y.z.1/28, the IPs to allow list are between x.y.z.11 – x.y.z.14. See the [Azure Arc resource bridge network requirements](/azure/azure-arc/resource-bridge/network-requirements).  
 
 **JSON Example**
 ```json
@@ -206,7 +206,7 @@ If using a proxy, the Arc Resource Bridge must be configured to use the proxy in
   - `managementProxyDetails`- Proxy details to be used on management VM for running of the script. Provide these details only if you want to set or override the existing proxy settings on management VM.
   - `http` - Proxy server address for http requests.
   - `https` - Proxy server address for https requests.
-  - `noProxy` - The list of addresses that should be excluded from proxy. The endpoints those need to be excluded for Arc Deployment for both appliance and management VM are -localhost,127.0.0.1,.svc,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,\<esxihost endpoints common suffix\>
+  - `noProxy` - The list of addresses that should be excluded from proxy. The endpoints 'noProxy' need to be excluded for Arc Deployment for both appliance and management VM are -localhost,127.0.0.1,.svc,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,\<esxihost endpoints common suffix\>
   - `certificateFilePath` - The certificate that has to be used for authentication if it's an SSL proxy. 
 For more details on proxy configuration for Arc Deployment, Please check [Azure Arc resource bridge network requirements](/azure/azure-arc/resource-bridge/network-requirements).
 
