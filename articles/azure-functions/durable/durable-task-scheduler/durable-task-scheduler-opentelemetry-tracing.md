@@ -64,9 +64,9 @@ You don't need to add custom instrumentation to your orchestrator or activity co
 
 # [Java](#tab/java)
 
-- [Java 8](https://www.oracle.com/java/technologies/downloads/) or later.
-- The `durabletask-client` and `durabletask-azure-managed` Maven dependencies.
-- The Java SDK supports built-in trace context propagation through the `io.opentelemetry` APIs.
+- [Java 21](https://learn.microsoft.com/java/openjdk/download) or later.
+- The `durabletask-client` and `durabletask-azuremanaged` Maven dependencies.
+- The `opentelemetry-api`, `opentelemetry-sdk`, and `opentelemetry-exporter-otlp` dependencies.
 
 ---
 
@@ -317,46 +317,49 @@ The Java Durable Task SDK automatically propagates W3C trace context when an Ope
 Add the OpenTelemetry dependencies to your *build.gradle*:
 
 ```groovy
+def openTelemetryVersion = '1.58.0'
+
 dependencies {
-    implementation 'io.opentelemetry:opentelemetry-api:1.40.0'
-    implementation 'io.opentelemetry:opentelemetry-sdk:1.40.0'
-    implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.40.0'
-    implementation 'com.microsoft:durabletask-client:1.5.0'
-    implementation 'com.microsoft:durabletask-azure-managed:1.0.0'
+    implementation "com.microsoft:durabletask-client:1.7.0"
+    implementation "com.microsoft:durabletask-azuremanaged:1.7.0"
+    implementation "io.opentelemetry:opentelemetry-api:${openTelemetryVersion}"
+    implementation "io.opentelemetry:opentelemetry-sdk:${openTelemetryVersion}"
+    implementation "io.opentelemetry:opentelemetry-exporter-otlp:${openTelemetryVersion}"
 }
 ```
 
 Configure the OpenTelemetry SDK with an OTLP exporter in your application:
 
 ```java
-import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.export.BatchSpanProcessor;
 import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter;
 import io.opentelemetry.sdk.resources.Resource;
-import io.opentelemetry.semconv.ResourceAttributes;
+import io.opentelemetry.api.trace.Tracer;
 
-Resource resource = Resource.getDefault()
-    .merge(Resource.create(
-        io.opentelemetry.api.common.Attributes.of(
-            ResourceAttributes.SERVICE_NAME, "durable-worker")));
+String otlpEndpoint = System.getenv("OTEL_EXPORTER_OTLP_ENDPOINT");
+if (otlpEndpoint == null) {
+    otlpEndpoint = "http://localhost:4317";
+}
 
-OtlpGrpcSpanExporter exporter = OtlpGrpcSpanExporter.builder()
-    .setEndpoint("http://localhost:4317")
+OtlpGrpcSpanExporter spanExporter = OtlpGrpcSpanExporter.builder()
+    .setEndpoint(otlpEndpoint)
     .build();
 
 SdkTracerProvider tracerProvider = SdkTracerProvider.builder()
-    .addSpanProcessor(BatchSpanProcessor.builder(exporter).build())
-    .setResource(resource)
+    .setResource(Resource.builder().put("service.name", "durable-worker").build())
+    .addSpanProcessor(BatchSpanProcessor.builder(spanExporter).build())
     .build();
 
 OpenTelemetrySdk openTelemetry = OpenTelemetrySdk.builder()
     .setTracerProvider(tracerProvider)
     .buildAndRegisterGlobal();
+
+Tracer tracer = openTelemetry.getTracer("durable-worker");
 ```
 
-When you schedule an orchestration, the Java SDK automatically captures the active span context and sends it as trace context to the scheduler.
+The Java SDK automatically propagates W3C trace context (`traceparent`/`tracestate`) when scheduling orchestrations, enabling end-to-end trace correlation.
 
 ---
 
@@ -537,6 +540,7 @@ Each span includes attributes like the orchestration instance ID, activity name,
 - [OpenTelemetry Tracing (.NET)](https://github.com/Azure-Samples/Durable-Task-Scheduler/tree/main/samples/durable-task-sdks/dotnet/OpenTelemetryTracing)
 - [OpenTelemetry Tracing (Python)](https://github.com/Azure-Samples/Durable-Task-Scheduler/tree/main/samples/durable-task-sdks/python/opentelemetry-tracing)
 - [Distributed Tracing (JavaScript/TypeScript)](https://github.com/microsoft/durabletask-js/tree/main/examples/azure-managed/distributed-tracing)
+- [OpenTelemetry Tracing (Java)](https://github.com/Azure-Samples/Durable-Task-Scheduler/tree/main/samples/durable-task-sdks/java/opentelemetry-tracing)
 
 ::: zone-end
 
