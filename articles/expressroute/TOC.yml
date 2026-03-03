@@ -188,7 +188,7 @@
                     - name: Azure PowerShell
                       href: expressroute-howto-gateway-migration-powershell.md
                 - name: Troubleshoot
-                  href: gateway-migration-error-messaging.md
+                  href: /troubleshoot/azure/expressroute/gateway-migration-error-messaging
     - name: Traffic collector
       items:
         - name: Overview
@@ -228,7 +228,7 @@
               - name: Azure PowerShell
                 href: expressroute-howto-gateway-migration-powershell.md
           - name: Troubleshoot
-            href: gateway-migration-error-messaging.md
+            href: /troubleshoot/azure/expressroute/gateway-migration-error-messaging
     - name: Evaluate ExpressRoute circuit resiliency
       href: evaluate-circuit-resiliency.md
     - name: Resiliency Insights
