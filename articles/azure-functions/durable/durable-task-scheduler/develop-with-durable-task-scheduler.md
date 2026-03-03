@@ -28,7 +28,7 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
    docker pull mcr.microsoft.com/dts/dts-emulator:latest
    ```
 
-1. Run the emulator.
+2. Run the emulator.
 
    ```bash
    docker run -itP mcr.microsoft.com/dts/dts-emulator:latest
@@ -55,19 +55,19 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
     az upgrade
     ```
 
-1. Install the Durable Task Scheduler CLI extension.
+2. Install the Durable Task Scheduler CLI extension.
 
     ```azurecli
     az extension add --name durabletask
     ```
 
-1. If you already installed the Durable Task Scheduler CLI extension, upgrade to the latest version.
+3. If you already installed the Durable Task Scheduler CLI extension, upgrade to the latest version.
 
     ```azurecli
     az extension update --name durabletask
     ```
 
-1. Check your installed version:
+4. Check your installed version:
    
    ```azurecli
    az extension show --name durabletask
@@ -86,7 +86,7 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
     az group create --name YOUR_RESOURCE_GROUP --location LOCATION
     ```
 
-1. Using the `durabletask` CLI extension, create a scheduler.
+2. Using the `durabletask` CLI extension, create a scheduler.
 
    #### [Dedicated SKU](#tab/dedicated)
 
@@ -129,9 +129,6 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
     ```
 
    #### [Consumption SKU](#tab/consumption)
-
-   > [!NOTE]
-   > The Consumption SKU is currently in preview. [Learn more about the SKU and orchestration framework combinations recommended for production use.](../choose-orchestration-framework.md#more-considerations)
 
     ```azurecli
     az durabletask scheduler create --name "YOUR_SCHEDULER" --resource-group "YOUR_RESOURCE_GROUP" --location "LOCATION" --ip-allowlist "[0.0.0.0/0]" --sku-name "consumption"
@@ -206,16 +203,13 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
 
     :::image type="content" source="media/create-durable-task-scheduler/search-for-durable-task-scheduler.png" alt-text="Screenshot of searching for the Durable Task Scheduler in the portal.":::
 
-1. Click **Create** to open the **Azure Functions: Durable Task Scheduler** pane.
+2. Click **Create** to open the **Azure Functions: Durable Task Scheduler** pane.
 
     :::image type="content" source="media/create-durable-task-scheduler/top-level-create-form.png" alt-text="Screenshot of the create page for the Durable Task Scheduler.":::
 
-1. Fill out the fields in the **Basics** tab. Click **Review + create**. 
+3. Fill out the fields in the **Basics** tab. Click **Review + create**. 
 
-   > [!NOTE]
-   > The Consumption SKU is currently in preview. [Learn more about the SKU and orchestration framework combinations recommended for production use.](../choose-orchestration-framework.md#more-considerations)
-
-1. Once the validation passes, click **Create**. 
+4. Once the validation passes, click **Create**. 
 
     Deployment may take around 15 to 20 minutes. 
 
@@ -231,7 +225,7 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
     az durabletask scheduler list --subscription <SUBSCRIPTION_ID>
     ```
 
-1. You can narrow down results to a specific resource group by adding the `--resource-group` flag.
+2. You can narrow down results to a specific resource group by adding the `--resource-group` flag.
 
     ```azurecli
     az durabletask scheduler list --subscription <SUBSCRIPTION_ID> --resource-group <RESOURCE_GROUP_NAME>
@@ -277,7 +271,7 @@ You can see all the task hubs created in a scheduler on the **Overview** of the 
     az durabletask scheduler --resource-group YOUR_RESOURCE_GROUP --scheduler-name YOUR_SCHEDULER
     ```
 
-1. Delete a task hub:
+2. Delete a task hub:
 
     ```azurecli
     az durabletask taskhub delete --resource-group YOUR_RESOURCE_GROUP --scheduler-name YOUR_SCHEDULER --name YOUR_TASKHUB
@@ -286,11 +280,11 @@ You can see all the task hubs created in a scheduler on the **Overview** of the 
 
 ::: zone pivot="az-portal"
 
-1. Open the scheduler resource on Azure portal and click **Delete**: 
+3. Open the scheduler resource on Azure portal and click **Delete**: 
 
     :::image type="content" source="media/create-durable-task-scheduler/durable-task-scheduler-delete-portal.png" alt-text="Screenshot of scheduler resource in the portal highlighting delete button.":::
 
-1. Find the scheduler with the task hub you want to delete, then click into that task hub. Click **Delete**:
+4. Find the scheduler with the task hub you want to delete, then click into that task hub. Click **Delete**:
 
     :::image type="content" source="media/create-durable-task-scheduler/task-hub-delete-portal.png" alt-text="Screenshot of task hub resource in the portal highlighting delete button.":::
 

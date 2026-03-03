@@ -103,10 +103,7 @@ A software as a service (SaaS) platform supports 800 million orchestrations mont
 | Actions per second | 12 billion ÷ 2,628,000 | ≈ 4,571 actions/second |
 | Required CUs | 4,571 ÷ 2,000 | CUs needed: 2.29 → **3 CUs sufficient** |
 
-## Consumption SKU (Preview)
-
-> [!NOTE]
-> The Consumption SKU is currently in preview. [Learn more about the SKU and orchestration framework recommended for production use.](./choose-orchestration-framework.md#orchestration-framework-options)
+## Consumption SKU
 
 The Consumption SKU offers a pay-as-you-use model, ideal for variable workloads and development scenarios. 
 

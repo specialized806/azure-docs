@@ -14,7 +14,7 @@ The Durable Task Scheduler provides durable execution in Azure. Durable executio
 - Data processing
 - Infrastructure management, and others. 
 
-You can use the Durable Task Scheduler with [any of the Functions SKUs](../../functions-scale.md), the [Dedicated SKU](./durable-task-scheduler-billing.md#dedicated-sku), or the [Consumption SKU (preview)](./durable-task-scheduler-billing.md#consumption-sku-preview).
+You can use the Durable Task Scheduler with [any of the Functions SKUs](../../functions-scale.md), the [Dedicated SKU](./durable-task-scheduler-billing.md#dedicated-sku), or the [Consumption SKU](./durable-task-scheduler-billing.md#consumption-sku).
 
 ## Supported regions
 
@@ -162,7 +162,7 @@ Stale orchestration data should be purged periodically to ensure efficient stora
     You're limited in how many task hubs you can use depending on your billing SKU. 
 
      - [When using the Dedicated SKU,](./durable-task-scheduler-billing.md#dedicated-sku) task hubs are limited to 25. 
-     - [When using the Consumption SKU,](./durable-task-scheduler-billing.md#consumption-sku-preview) task hubs are limited to 5. 
+     - [When using the Consumption SKU,](./durable-task-scheduler-billing.md#consumption-sku) task hubs are limited to 5. 
 
     For more quota, [contact support](https://github.com/Azure/azure-functions-durable-extension/issues).
 
