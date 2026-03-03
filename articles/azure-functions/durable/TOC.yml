@@ -156,7 +156,7 @@
       - name: Diagnostics
         href: durable-functions-diagnostics.md
       - name: OpenTelemetry and distributed tracing
-        href: ./durable-task-scheduler/durable-task-scheduler-opentelemetry-tracing.md
+        href: ./durable-task-scheduler/durable-task-scheduler-opentelemetry-tracing.md?pivots=durable-functions
       - name: Monitoring
         href: ../functions-monitoring.md?toc=/azure/azure-functions/durable/toc.json
       - name: App diagnostics in Azure portal
