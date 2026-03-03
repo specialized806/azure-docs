@@ -319,7 +319,7 @@ Recommended Actions: Ensure that the following configurations in the storage acc
 
 ### AzureOperationFailed - Backup failed because Smart Tier (Preview) is not supported
 
-Error Code: AzureOperationFailed
+**Error code**: `AzureOperationFailed`
 
 Error Message: Azure operation generic failure
 
