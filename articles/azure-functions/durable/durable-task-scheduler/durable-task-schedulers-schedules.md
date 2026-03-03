@@ -8,7 +8,7 @@ ms.author: torosent
 
 # Automate recurring orchestrations with schedules
 
-Schedules trigger orchestrations automatically at regular intervals without requiring you to write your own polling or timer logic. Instead of building [eternal orchestrations](../durable-functions-eternal-orchestrations.md) or external cron jobs, define a schedule, and the Durable Task Scheduler handles the rest—executing your orchestration at the specified frequency with built-in pause, resume, and update support.
+Schedules trigger orchestrations automatically at regular intervals without requiring you to write your own polling or timer logic. Instead of building [eternal orchestrations](../durable-functions-eternal-orchestrations.md) or external cron jobs, you simply define a schedule. The Durable Task Scheduler handles the rest, executing your orchestration at the specified frequency with built-in pause, resume, and update support.
 
 > [!NOTE]
 > Schedules are currently supported only in the **Durable Task SDK for .NET**. 
