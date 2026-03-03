@@ -512,7 +512,7 @@ foreach ($vmName in $vmNames) {
       sudo vi /etc/sysconfig/sbd
       ```
 
-   2. Change the property of the SBD device, enable the pacemaker integration, change the start mode of SBD, and adjust SBD_DELAY_START value. 
+   2. Change the property of the SBD device, enable the pacemaker integration, change the start mode of SBD, and adjust SBD_DELAY_START value.
 
       ```bash
       [...]
