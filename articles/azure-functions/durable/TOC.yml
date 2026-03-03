@@ -155,6 +155,8 @@
       items:
       - name: Diagnostics
         href: durable-functions-diagnostics.md
+      - name: OpenTelemetry and distributed tracing
+        href: ./durable-task-scheduler/durable-task-scheduler-opentelemetry-tracing.md
       - name: Monitoring
         href: ../functions-monitoring.md?toc=/azure/azure-functions/durable/toc.json
       - name: App diagnostics in Azure portal
@@ -237,6 +239,8 @@
       href: ./durable-task-scheduler/durable-task-schedulers-schedules.md
     - name: Diagnostics
       href: durable-task-diagnostics.md
+    - name: OpenTelemetry and distributed tracing
+      href: ./durable-task-scheduler/durable-task-scheduler-opentelemetry-tracing.md
     - name: Troubleshooting guide
       href: durable-task-sdk-troubleshooting.md
   - name: Reference
@@ -271,6 +275,8 @@
       href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
     - name: Billing
       href: ./durable-task-scheduler/durable-task-scheduler-billing.md
+    - name: OpenTelemetry and distributed tracing
+      href: ./durable-task-scheduler/durable-task-scheduler-opentelemetry-tracing.md
     - name: Troubleshoot
       href: ./durable-task-scheduler/troubleshoot-durable-task-scheduler.md
   - name: Durable Functions only
