@@ -16,19 +16,12 @@ ms.custom: support-help-page
 Here are suggestions for where you can get help when developing your Azure Virtual Network solutions.
 
 ## Self help troubleshooting
-<div class='icon is-large'>
-    <img alt='Self help content' src='/media/common/i_learn-about.svg'>
-</div>
 
 Various articles explain how to determine, diagnose, and fix issues that you might encounter when using Azure Virtual Network. Use these articles to troubleshoot deployment failures, connectivity issues, peering problems and more. 
 
 For a full list of self help troubleshooting content, see [Azure Virtual Network troubleshooting documentation](/troubleshoot/azure/virtual-network/welcome-virtual-network).
 
 ## Post a question on Microsoft Q&A
-
-<div class='icon is-large'>
-    <img alt='Microsoft Q&A' src='/media/logos/logo_ms.svg'>
-</div>   
 
 Get answers to your Azure Virtual Network questions from Microsoft Engineers, Azure Most Valuable Professionals (MVPs), and community experts on [Microsoft Q&A](/answers/products/azure). Microsoft Q&A is Azure's destination for community-driven technical support.
 
@@ -42,10 +35,6 @@ To get the fastest response, search existing answers first. If you don't find a 
 
 ## Create an Azure support request
 
-<div class='icon is-large'>
-    <img alt='Azure support' src='/media/logos/logo_azure.svg'>
-</div>
-
 Explore the range of [Azure support options and choose the plan](https://azure.microsoft.com/support/plans) that best fits, whether you're a developer just starting your cloud journey or a large organization deploying business-critical, strategic applications. Azure customers can create and manage support requests in the Azure portal.
 
 - If you already have an Azure Support Plan, [open a support request here](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest).
@@ -53,10 +42,6 @@ Explore the range of [Azure support options and choose the plan](https://azure.m
 - To sign up for a new Azure Support Plan, [compare support plans](https://azure.microsoft.com/support/plans/) and select the plan that works for you. 
 
 ## Create a GitHub issue
-
-<div class='icon is-large'>
-    <img alt='GitHub-image' src='/media/logos/logo-mark-github.svg'>
-</div>
 
 If you need help with the language and tools used to develop and manage Azure Virtual Network, open an issue in its repository on GitHub.
 
