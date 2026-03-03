@@ -114,7 +114,7 @@ Follow these steps to enable AD Kerberos authentication. [This Samba documentati
                          10.0.2.4
                          10.0.0.41
              DNS Domain: domain1.contoso.com
-```
+   ```
 
 1. If the command works, skip the following steps and proceed to the [next section](#set-up-hostname-and-fully-qualified-domain-name-fqdn).
 
