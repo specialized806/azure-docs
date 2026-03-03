@@ -317,7 +317,7 @@ Recommended Actions: Ensure that the following configurations in the storage acc
 
 **Recommended action**: Enable storage key based authentication on storage account and the retry operation.
 
-### AzureOperationFailed - The backup operation was unsuccessful because Smart Tier (Preview) is currently not supported
+### AzureOperationFailed - Backup failed because Smart Tier (Preview) is not supported
 
 Error Code: AzureOperationFailed
 
