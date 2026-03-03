@@ -188,7 +188,7 @@
                     - name: Azure PowerShell
                       href: expressroute-howto-gateway-migration-powershell.md
                 - name: Troubleshoot
-                  href: gateway-migration-error-messaging.md
+                  href: /troubleshoot/azure/expressroute/gateway-migration-error-messaging
     - name: Traffic collector
       items:
         - name: Overview
@@ -228,7 +228,7 @@
               - name: Azure PowerShell
                 href: expressroute-howto-gateway-migration-powershell.md
           - name: Troubleshoot
-            href: gateway-migration-error-messaging.md
+            href: /troubleshoot/azure/expressroute/gateway-migration-error-messaging
     - name: Evaluate ExpressRoute circuit resiliency
       href: evaluate-circuit-resiliency.md
     - name: Resiliency Insights
@@ -302,17 +302,17 @@
 - name: Troubleshoot
   items:
     - name: Troubleshoot gateway migration
-      href: gateway-migration-error-messaging.md
+      href: /troubleshoot/azure/expressroute/gateway-migration-error-messaging
     - name: Obtain correlation ID
-      href: get-correlation-id.md
+      href: /troubleshoot/azure/expressroute/get-correlation-id
     - name: Verifying ExpressRoute connectivity
-      href: expressroute-troubleshooting-expressroute-overview.md
+      href: /troubleshoot/azure/expressroute/expressroute-troubleshooting-expressroute-overview
     - name: Resolving network performance issues
-      href: expressroute-troubleshooting-network-performance.md
+      href: /troubleshoot/azure/expressroute/expressroute-troubleshooting-network-performance
     - name: Reset a failed circuit
-      href: reset-circuit.md
+      href: /troubleshoot/azure/expressroute/reset-circuit
     - name: Getting ARP tables
-      href: expressroute-troubleshooting-arp-resource-manager.md
+      href: /troubleshoot/azure/expressroute/expressroute-troubleshooting-arp-resource-manager
     - name: Questions & answers
       href: /answers/tags/225/azure-expressroute
 - name: Reference
