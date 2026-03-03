@@ -92,7 +92,7 @@ The configuration process for cross-tenant customer-managed keys has portions th
 ### Configure the NetApp account to use your keys 
 
 > [!IMPORTANT]
-> If the NetApp account is currently configured with same-tenant customer-managed keys, you must switch the account back to Microsoft-managed keys before configuring cross-tenant CMK. To switch, navigate to **Encryption** for the NetApp account in the Azure portal and change the encryption key source to **Microsoft-managed key**, then select **Save**.
+> If the NetApp account is configured with same-tenant customer-managed keys, you must switch the account back to Microsoft-managed keys before configuring cross-tenant CMK. To switch, navigate to **Encryption** in the Azure portal and change the encryption key source to **Microsoft-managed key**.
 
 #### [Portal](#tab/portal-configure)
 
@@ -168,19 +168,19 @@ az netappfiles volume create -g <resource group name> --account-name <NetApp acc
 
 ## Troubleshoot cross-tenant customer-managed keys
 
-This section describes issues encountered when configuring cross-tenant CMK and the steps to resolve them.
+This section describes issues encountered when configuring cross-tenant CMK and the information to resolve them.
 
 ### Verify cross-tenant CMK configuration
 
 To confirm whether a NetApp account is correctly configured for cross-tenant CMK, check for the presence of `federatedClientId` in the account's encryption properties.
 
-#### [Portal](#tab/portal-volume)
+#### [Portal](#tab/portal-CMK)
 
 1. Navigate to your NetApp account, select **Overview**, then select **JSON View**.
   
    If cross-tenant CMK is correctly configured, the encryption properties should include `federatedClientId`.
 
-#### [Azure CLI](#tab/cli-volume)
+#### [Azure CLI](#tab/cli-CMK)
 
 Run the following command to inspect the account's encryption configuration:
 
