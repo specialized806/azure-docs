@@ -110,7 +110,7 @@ A software as a service (SaaS) platform supports 800 million orchestrations mont
 
 The Consumption SKU offers a pay-as-you-use model, ideal for variable workloads and development scenarios. 
 
-Currently, you're limited to five task hubs when using the Consumption SKU. For more quota, [contact support](https://github.com/Azure/azure-functions-durable-extension/issues).
+Currently, you're limited to 10 task hubs when using the Consumption SKU. For more quota, [contact support](https://github.com/Azure/azure-functions-durable-extension/issues).
 
 ### Key features
 
