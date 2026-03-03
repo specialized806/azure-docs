@@ -274,13 +274,13 @@
 - name: Troubleshoot
   items:
   - name: Troubleshoot with RefString
-    href: refstring.md
+    href: /troubleshoot/azure/front-door/refstring
   - name: Troubleshoot Front Door issues
-    href: troubleshoot-issues.md
+    href: /troubleshoot/azure/front-door/troubleshoot-issues
   - name: Troubleshoot Front Door performance issues
-    href: troubleshoot-performance-issues.md
+    href: /troubleshoot/azure/front-door/troubleshoot-performance-issues
   - name: Troubleshoot file compression
-    href: standard-premium/troubleshoot-compression.md
+    href: /troubleshoot/azure/front-door/troubleshoot-compression
   - name: Allowed certificate authorities
     href: https://ccadb.my.salesforce-sites.com/microsoft/IncludedCACertificateReportForMSFT
   - name: Subscription offers and bandwidth throttling
