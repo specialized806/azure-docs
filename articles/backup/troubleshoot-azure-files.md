@@ -321,7 +321,7 @@ Recommended Actions: Ensure that the following configurations in the storage acc
 
 **Error code**: `AzureOperationFailed`
 
-Error Message: Azure operation generic failure
+**Error message**: Azure operation generic failure
 
 Storage Accounts with [Smart Tier(Preview)](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-smart) set are currently not supported.
 
