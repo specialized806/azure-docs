@@ -230,6 +230,6 @@ For information about other configurations, see the following resources:
 [sap-ha-guide-figure-8003]:./media/virtual-machines-shared-sap-high-availability-guide/8003.png
 
 [optional-smb]:high-availability-guide-windows-netapp-files-smb.md#5121771a-7618-4f36-ae14-ccf9ee5f2031 (Optional configuration for SAP Application Servers on WSFC nodes using Server Message Block in Azure NetApp Files)
-[optional-fileshare]:sap-high-availability-guide-wsfc-file-share.md#sap-application-servers-on-windows-serv-failover-cluster-nodes-using-windows-sofs (Optional configuration for SAP Application Servers on WSFC nodes using Windows Scale-Out File Server)
+[optional-fileshare]:sap-high-availability-guide-wsfc-file-share.md#sap-application-servers-on-windows-server-failover-cluster-nodes-using-windows-sofs (Optional configuration for SAP Application Servers on WSFC nodes using Windows Scale-Out File Server)
 [optional-smb-sql]:high-availability-guide-windows-netapp-files-smb.md#01541cf2-0a03-48e3-971e-e03575fa7b4f (Optional configuration for SAP ASCS/SCS on SQL Server Always On nodes using Server Message Block in Azure NetApp Files)
-[optional-fileshare-sql]:sap-high-availability-guide-wsfc-file-share.md#sap-ascs-scs-on-sql-server-always-on-nodes-using-windows-sofs (Optional configuration for SAP ASCS/SCS on SQL Server Always On nodes using Windows Scale-Out File Server)
+[optional-fileshare-sql]:sap-high-availability-guide-wsfc-file-share.md#sap-ascsscs-on-sql-server-always-on-nodes-using-windows-sofs (Optional configuration for SAP ASCS/SCS on SQL Server Always On nodes using Windows Scale-Out File Server)
