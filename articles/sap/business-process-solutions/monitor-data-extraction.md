@@ -57,7 +57,8 @@ This error indicates that the specified CDS View doesn't support delta extractio
 There are three possible root causes for this issue.
 
 1. **Verify the view is available in your SAP release** - To check whether the CDS View is available, you need to examine the view annotations. Open transaction SE16n and access the table DDHEADANNO, which stores all CDS View annotations. Enter the CDS View name in the STRUCOBJN field. Keep in mind, the error message shows the SQL View Name (ODPName) and not the CDS View Name. If the system returns list of annotations, the CDS View exists and you can proceed to step (b) for troubleshooting.    
-    :::image type="content" source="./media/monitoring-data-extraction-in-azure-data-factory/view-sap.png" alt-text="Screenshot showing view is available in SAP release." lightbox="./media/monitoring-data-extraction-in-azure-data-factory/view-sap.png":::   
+    :::image type="content" source="./media/monitoring-data-extraction-in-azure-data-factory/view-sap.png" alt-text="Screenshot showing view is available in SAP release." lightbox="./media/monitoring-data-extraction-in-azure-data-factory/view-sap.png":::     
+  
 If the CDS View doesn’t exists in your system remove the failed table from the dataset to resolve the issue.
 
 2. **Verify if the view is extractable** - Not all views defined in the system support extraction using the SAP CDC connector. To determine if a view can be extracted, review the list of annotations in the table DDHEADANNO and check for the annotation ANALYTICS.DATAEXTRACTION.ENABLED. This annotation confirms that the view is extractable using the ODP framework and the SAP CDC connector. If the required annotation is missing, you should switch the connector used for data extraction to SAP Table. This can be achieved by changing the context of the CDS View to SAP Table.    
