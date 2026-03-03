@@ -37,7 +37,7 @@ In this section, you use Azure CLI in GitHub Codespaces to create an Azure OpenA
    ```
 
    > [!IMPORTANT]
-   > The location is tied to the regional availability of the chosen model. Model and [deployment type](/azure/ai-foundry/foundry-models/concepts/deployment-types) availability vary among regions and SKUs. This tutorial uses `gpt-4o-mini`, which is available in several regions under the Standard deployment type.
+   > The location is tied to the regional availability of the chosen model. Model and [deployment type](/azure/ai-foundry/foundry-models/concepts/deployment-types) availability vary among regions and billing tiers. This tutorial uses `gpt-4o-mini`, which is available in several regions under the Standard deployment type.
    >
    > Before selecting a location, consult the [Model summary and region availability table](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) to verify model support in your preferred region.
 

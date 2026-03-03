@@ -405,31 +405,31 @@
 - name: Troubleshooting
   items:
     - name: Troubleshoot VPN Gateway
-      href: vpn-gateway-troubleshoot.md
+      href: /troubleshoot/azure/vpn-gateway/vpn-gateway-troubleshoot?toc=/azure/vpn-gateway/toc.json
     - name: Troubleshoot using diagnostic logs
-      href: troubleshoot-vpn-with-azure-diagnostics.md
+      href: /troubleshoot/azure/vpn-gateway/troubleshoot-vpn-with-azure-diagnostics?toc=/azure/vpn-gateway/toc.json
     - name: Troubleshoot digital certificate authentication
-      href: troubleshoot-digital-certificate-authentication.md
+      href: /troubleshoot/azure/vpn-gateway/troubleshoot-digital-certificate-authentication?toc=/azure/vpn-gateway/toc.json
     - name: Troubleshoot point-to-site connection issues
       items:
         - name: Point-to-site connection problems
-          href: vpn-gateway-troubleshoot-vpn-point-to-site-connection-problems.md
+          href: /troubleshoot/azure/vpn-gateway/vpn-gateway-troubleshoot-vpn-point-to-site-connection-problems?toc=/azure/vpn-gateway/toc.json
         - name: macOS - native VPN client connection problems
-          href: vpn-gateway-troubleshoot-point-to-site-osx-ikev2.md
+          href: /troubleshoot/azure/vpn-gateway/vpn-gateway-troubleshoot-point-to-site-osx-ikev2?toc=/azure/vpn-gateway/toc.json
         - name: Troubleshoot the Azure VPN Client
-          href: troubleshoot-azure-vpn-client.md
+          href: /troubleshoot/azure/vpn-gateway/troubleshoot-azure-vpn-client?toc=/azure/vpn-gateway/toc.json
         - name: Report Azure VPN Client problems - Feedback Hub
-          href: feedback-hub-azure-vpn-client.md
+          href: /troubleshoot/azure/vpn-gateway/feedback-hub-azure-vpn-client?toc=/azure/vpn-gateway/toc.json
     - name: Troubleshoot site-to-site connection issues
       items:
         - name: Site-to-site connection problems
-          href: vpn-gateway-troubleshoot-site-to-site-cannot-connect.md
+          href: /troubleshoot/azure/vpn-gateway/vpn-gateway-troubleshoot-site-to-site-cannot-connect?toc=/azure/vpn-gateway/toc.json
         - name: Site-to-site error codes and solutions
-          href: vpn-gateway-troubleshoot-site-to-site-error-codes.md
+          href: /troubleshoot/azure/vpn-gateway/vpn-gateway-troubleshoot-site-to-site-error-codes?toc=/azure/vpn-gateway/toc.json
         - name: Site-to-site connection disconnects intermittently
-          href: vpn-gateway-troubleshoot-site-to-site-disconnected-intermittently.md
+          href: /troubleshoot/azure/vpn-gateway/vpn-gateway-troubleshoot-site-to-site-disconnected-intermittently?toc=/azure/vpn-gateway/toc.json
     - name: Validate VPN throughput to a VNet
-      href: vpn-gateway-validate-throughput-to-vnet.md
+      href: /troubleshoot/azure/vpn-gateway/vpn-gateway-validate-throughput-to-vnet?toc=/azure/vpn-gateway/toc.json
 - name: Reference
   items:
     - name: Azure PowerShell

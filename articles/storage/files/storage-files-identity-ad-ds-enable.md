@@ -4,7 +4,7 @@ description: Learn how to enable Active Directory Domain Services authentication
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 02/23/2026
+ms.date: 03/03/2026
 ms.author: kendownie 
 ms.custom: devx-track-azurepowershell
 # Customer intent: As an IT administrator, I want to enable Active Directory Domain Services authentication for Azure file shares, so that our domain-joined Windows virtual machines can securely access and manage file shares using existing AD credentials.
@@ -31,16 +31,16 @@ The AzFilesHybrid PowerShell module provides cmdlets for deploying and configuri
 ### Prerequisites
 
 - Install [.NET Framework 4.7.2 or higher](https://dotnet.microsoft.com/download/dotnet-framework/) if it's not already installed. The AzFilesHybrid module requires it to import successfully.
-- Make sure you have [Azure PowerShell](/powershell/azure/install-azure-powershell) (Az module) and [Az.Storage](https://www.powershellgallery.com/packages/Az.Storage/) installed. You must have at least Az.PowerShell 2.8.0+ and Az.Storage 4.3.0+ to use AzFilesHybrid.
+- Make sure you have the latest versions of [Azure PowerShell](/powershell/azure/install-azure-powershell) (Az module) and [Az.Storage](https://www.powershellgallery.com/packages/Az.Storage/) installed. You must have Az.Storage 8.1.0 or higher to use AzFilesHybrid.
 - Install the [Active Directory PowerShell](/powershell/module/activedirectory/) module.
 
 ### Download AzFilesHybrid module
 
-[Download and unzip the latest version of the AzFilesHybrid module](https://github.com/Azure-Samples/azure-files-samples/releases).
+Download and unzip the latest version of the [AzFilesHybrid module](https://www.powershellgallery.com/packages/AzFilesHybrid/).
 
 ### Run Join-AzStorageAccount
 
-The `Join-AzStorageAccount` cmdlet performs the equivalent of an offline domain join for the specified storage account. The following script uses this cmdlet to create a [computer account](/windows/security/identity-protection/access-control/active-directory-accounts#manage-default-local-accounts-in-active-directory) in your AD domain. If you can't use a computer account, you can change the script to create a [service logon account](/windows/win32/ad/about-service-logon-accounts) instead. Starting with AzFilesHybrid version 0.2.5, using AES-256 encryption with service logon accounts is supported.
+The `Join-AzStorageAccount` cmdlet performs the equivalent of an offline domain join for the specified storage account. The following script uses this cmdlet to create a [computer account](/windows/security/identity-protection/access-control/active-directory-accounts#manage-default-local-accounts-in-active-directory) in your AD domain. If you can't use a computer account, you can change the script to create a [service logon account](/windows/win32/ad/about-service-logon-accounts) instead. Using AES-256 encryption with service logon accounts is supported starting with AzFilesHybrid version 0.2.5.
 
 The AD DS account that the cmdlet creates represents the storage account. If you create the AD DS account under an organizational unit (OU) that enforces password expiration, you must update the password before the maximum password age. If you don't update the account password before that date, authentication fails when accessing Azure file shares. For more information on how to update the password, see [Update AD DS account password](storage-files-identity-ad-ds-update-password.md).
 
@@ -129,7 +129,7 @@ Most customers should choose [Option one](#option-one-recommended-use-azfileshyb
 First, check the state of your environment.
 
 - Check if [Active Directory PowerShell](/powershell/module/activedirectory/) is installed, and if the shell is running with administrator privileges.
-- Make sure the [Az.Storage module](https://www.powershellgallery.com/packages/Az.Storage/) is installed, and install it if it isn't. You need at least version 2.0. 
+- Make sure the latest version of the [Az.Storage module](https://www.powershellgallery.com/packages/Az.Storage/) is installed, and install it if it isn't.
 - After completing those checks, check your AD DS to see if there's either a [computer account](/windows/security/identity-protection/access-control/active-directory-accounts#manage-default-local-accounts-in-active-directory) (default) or [service logon account](/windows/win32/ad/about-service-logon-accounts) that you created with SPN/UPN such as "cifs/your-storage-account-name-here.file.core.windows.net". If the account doesn't exist, create one as described in the following section.
 
 > [!IMPORTANT]
@@ -151,7 +151,7 @@ Get-AzStorageAccountKey -ResourceGroupName $ResourceGroupName -Name $StorageAcco
 
 The cmdlets return the key value. Once you have the kerb1 key, create either a [computer account](/powershell/module/activedirectory/new-adcomputer) or [service account](/powershell/module/activedirectory/new-adserviceaccount) in AD under your OU, and use the key as the password for the AD identity.
 
-1. Set the SPN to **cifs/your-storage-account-name-here.file.core.windows.net** either in the AD GUI or by running the `Setspn` command from the Windows command line as administrator (replace the example text with your storage account name and `<ADAccountName>` with your AD account name).
+1. Set the SPN to **cifs/your-storage-account-name-here.file.core.windows.net** either in the Active Directory GUI or by running the `Setspn` command from the Windows command line as administrator (replace the example text with your storage account name and `<ADAccountName>` with your AD account name).
 
    ```shell
    Setspn -S cifs/your-storage-account-name-here.file.core.windows.net <ADAccountName>
@@ -182,8 +182,7 @@ Keep the SID of the newly created identity, you'll need it for the next step. Th
 
 ### Enable the feature on your storage account
 
-Modify the following command to include configuration details for the domain properties, then run it to enable the feature. The storage account SID required in the following command is the SID of the identity you created in your AD DS in [the previous section](#create-an-identity-representing-the-storage-account-in-your-ad-manually). Make sure that you provide the **ActiveDirectorySamAccountName** property without the trailing '
- sign.
+Modify the following command to include configuration details for the domain properties, then run it to enable the feature. The storage account SID required in the following command is the SID of the identity you created in your AD DS in [the previous section](#create-an-identity-representing-the-storage-account-in-your-ad-manually). Make sure that you provide the **ActiveDirectorySamAccountName** property without the trailing '$' sign.
 
 ```PowerShell
 # Set the feature flag on the target storage account and provide the required AD domain information
@@ -195,7 +194,7 @@ Set-AzStorageAccount `
         -ActiveDirectoryNetBiosDomainName "<your-domain-dns-root>" `
         -ActiveDirectoryForestName "<your-forest-name>" `
         -ActiveDirectoryDomainGuid "<your-guid>" `
-        -ActiveDirectoryDomainsid "<your-domain-sid>" `
+        -ActiveDirectoryDomainSid "<your-domain-sid>" `
         -ActiveDirectoryAzureStorageSid "<your-storage-account-sid>" `
         -ActiveDirectorySamAccountName "<your-domain-object-sam-account-name>" `
         -ActiveDirectoryAccountType "<your-domain-object-account-type, the value could be 'Computer' or 'User'>"
@@ -246,13 +245,13 @@ Debug-AzStorageAccountAuth -StorageAccountName $StorageAccountName -ResourceGrou
 
 ## Confirm the feature is enabled
 
-Check if Active Directory is enabled on your storage account by using the following script:
+Check if AD DS is enabled on your storage account by using the following script. Replace `<resource-group-name>` and `<storage-account-name>` with your values.
 
 ```PowerShell
 # Get the target storage account
 $storageaccount = Get-AzStorageAccount `
-        -ResourceGroupName "<your-resource-group-name-here>" `
-        -Name "<your-storage-account-name-here>"
+        -ResourceGroupName "<resource-group-name>" `
+        -Name "<storage-account-name>"
 
 # List the directory service of the selected service account
 $storageAccount.AzureFilesIdentityBasedAuth.DirectoryServiceOptions

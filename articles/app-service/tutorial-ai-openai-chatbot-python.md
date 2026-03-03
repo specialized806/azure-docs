@@ -92,7 +92,7 @@ You learn how to:
         app.run()
     ```
     
-1. Create a *templates* directory and an *index.html* file in it. Paste the following code into the *index.html* file to create a simple chat interface.
+1. Create a *templates* directory and an *index.html* file in it. Paste the following code for creating a simple chat interface into the *index.html* file.
 
     ```html
     <!doctype html>
@@ -208,13 +208,13 @@ client = OpenAI(
 For more information, see [How to switch between OpenAI and Azure OpenAI endpoints with Python](/azure/ai-services/openai/how-to/switching-endpoints).
 
 >[!IMPORTANT]
->When working with connection secrets like API keys in App Service, you should use [Key Vault references](app-service-key-vault-references.md) instead of storing secrets directly in your code. This practice ensures that sensitive information remains secure and is managed centrally.
+>When working with connection secrets like API keys in App Service, you should use [Azure Key Vault references](app-service-key-vault-references.md) instead of storing secrets directly in your code. This practice ensures that sensitive information remains secure and is managed centrally.
 
 ---
 
 ### Can I connect to Azure OpenAI with an API key instead of managed identity?
 
-Yes, you can connect to Azure OpenAI by using an API key instead of managed identity. This approach is supported by the Azure OpenAI SDKs and Semantic Kernel. 
+Yes, you can connect to Azure OpenAI by using an API key instead of managed identity. The Azure OpenAI SDK and Semantic Kernel support this approach. 
 
 - For details on using API keys with Semantic Kernel, see [Semantic Kernel C# Quickstart](/semantic-kernel/get-started/quick-start-guide?pivots=programming-language-python).
 - For details on using API keys with the Azure OpenAI client library, see [Quickstart: Get started using chat completions with Azure OpenAI Service](/azure/ai-services/openai/chatgpt-quickstart?pivots=programming-language-python).
