@@ -303,8 +303,6 @@
   items:
     - name: Monitoring data reference
       href: monitor-expressroute-reference.md
-    - name: Obtain correlation ID
-      href: get-correlation-id.md
     - name: Azure PowerShell
       href: /powershell/module/az.network#expressroute
     - name: Azure CLI
