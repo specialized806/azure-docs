@@ -6,6 +6,8 @@
       href: virtual-networks-overview.md
     - name: FAQ
       href: virtual-networks-faq.md
+    - name: Cost optimization
+      href: virtual-network-cost-optimization.md
     - name: Accelerated Networking
       href: accelerated-networking-overview.md
     - name: Application security groups
@@ -34,7 +36,7 @@
       href: virtual-network-vnet-plan-design-arm.md
     - name: Traffic routing
       href: virtual-networks-udr-overview.md
-    - name: Create a virtual network routing appliance
+    - name: Create a routing appliance
       href: how-to-create-virtual-network-routing-appliance.md
 - name: Security
   items:
@@ -249,19 +251,19 @@
     - name: Resource logging for a network security group
       href: virtual-network-nsg-manage-log.md
     - name: Test network latency between Azure VMs
-      href: virtual-network-test-latency.md
+      href: /troubleshoot/azure/virtual-network/virtual-network-test-latency?toc=%2Fazure%2Fvirtual-network%2Ftoc.json
     - name: Test VM network throughput by using NTTTCP
-      href: virtual-network-bandwidth-testing.md
+      href: /troubleshoot/azure/virtual-network/virtual-network-bandwidth-testing?toc=%2Fazure%2Fvirtual-network%2Ftoc.json
     - name: Troubleshoot Azure VM connectivity problems
-      href: troubleshoot-vm-connectivity.md
+      href: /troubleshoot/azure/virtual-network/troubleshoot-vm-connectivity?toc=%2Fazure%2Fvirtual-network%2Ftoc.json
     - name: Troubleshoot outbound SMTP connectivity problems
-      href: troubleshoot-outbound-smtp-connectivity.md
+      href: /troubleshoot/azure/virtual-network/troubleshoot-outbound-smtp-connectivity?toc=%2Fazure%2Fvirtual-network%2Ftoc.json
     - name: Troubleshoot virtual network peering issues
-      href: virtual-network-troubleshoot-peering-issues.md
+      href: /troubleshoot/azure/virtual-network/virtual-network-troubleshoot-peering-issues?toc=%2Fazure%2Fvirtual-network%2Ftoc.json
     - name: Troubleshoot connectivity problems between Azure VMs
-      href: virtual-network-troubleshoot-connectivity-problem-between-vms.md
+      href: /troubleshoot/azure/virtual-network/virtual-network-troubleshoot-connectivity-problem-between-vms?toc=%2Fazure%2Fvirtual-network%2Ftoc.json
     - name: Troubleshoot virtual network deletion failures
-      href: virtual-network-troubleshoot-cannot-delete-vnet.md
+      href: /troubleshoot/azure/virtual-network/virtual-network-troubleshoot-cannot-delete-vnet?toc=%2Fazure%2Fvirtual-network%2Ftoc.json
 - name: Reference
   items:
     - name: Monitor data reference
