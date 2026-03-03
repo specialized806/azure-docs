@@ -2,7 +2,7 @@
 author: EdB-MSFT
 ms.author: edbaynash
 ms.topic: include
-ms.date: 02/23/2026
+ms.date: 03/02/2026
 
 # This file is auto-generated . Do not edit manually. Changes will be overwritten.
 ---
@@ -880,6 +880,31 @@ The BETTER MTD Connector allows Enterprises to connect their Better MTD instance
 
  ---
    
+<a name="beyondtrust-pm-cloud"></a><details><summary>**BeyondTrust PM Cloud**</summary>
+
+**Supported by:** [BeyondTrust](https://www.beyondtrust.com/docs/index.htm)
+
+The BeyondTrust Privilege Management Cloud data connector provides the capability to ingest activity audit logs and client event logs from BeyondTrust PM Cloud into Microsoft Sentinel.
+
+This connector uses Azure Functions to pull data from the BeyondTrust PM Cloud API and ingest it into custom Log Analytics tables.
+
+**Log Analytics table(s):**  
+
+|Table|DCR support|Lake-only ingestion|
+|---|---|---|
+|`BeyondTrustPM_ActivityAudits_CL`|No|No|
+|`BeyondTrustPM_ClientEvents_CL`|No|No|
+
+**Data collection rule support:** Not currently supported
+
+**Prerequisites:**
+
+- **Microsoft.Web/sites permissions**: Read and write permissions to Azure Functions to create a Function App is required. For more information, see [Azure Functions](/azure/azure-functions/).
+- **BeyondTrust PM Cloud API credentials**: BeyondTrust PM Cloud OAuth Client ID and Client Secret are required. The API account requires the following permissions: Audit - Read Only and Reporting - Read Only<br><br>
+</details> 
+
+ ---
+   
 <a name="bigid-dspm-connector"></a><details><summary>**BigID DSPM connector**</summary>
 
 **Supported by:** [BigID](https://support.bigid.com/)
@@ -1169,6 +1194,28 @@ The Cisco Umbrella data connector provides the capability to ingest [Cisco Umbre
 - **Microsoft.Web/sites permissions**: Read and write permissions to Azure Functions to create a Function App is required. For more information, see [Azure Functions](/azure/azure-functions/).
 - **Amazon S3 REST API Credentials/permissions**: **AWS Access Key Id**, **AWS Secret Access Key**, **AWS S3 Bucket Name** are required for Amazon S3 REST API.
 - **Virtual Network permissions (for private access)**: For private storage account access, **Network Contributor** permissions are required on the Virtual Network and subnet. The subnet must be delegated to **Microsoft.Web/serverFarms** for Function App VNet integration.<br><br>
+</details> 
+
+ ---
+   
+<a name="cisco-duo-security-using-azure-functions"></a><details><summary>**Cisco Duo Security (using Azure Functions)**</summary>
+
+**Supported by:** [Cisco Systems](https://duo.com/support)
+
+The Cisco Duo Security data connector provides the capability to ingest [authentication logs](https://duo.com/docs/adminapi#authentication-logs), [administrator logs](https://duo.com/docs/adminapi#administrator-logs), [telephony logs](https://duo.com/docs/adminapi#telephony-logs), [offline enrollment logs](https://duo.com/docs/adminapi#offline-enrollment-logs) and [Trust Monitor events](https://duo.com/docs/adminapi#trust-monitor) into Microsoft Sentinel using the Cisco Duo Admin API. Refer to [API documentation](https://duo.com/docs/adminapi) for more information.
+
+**Log Analytics table(s):**  
+
+|Table|DCR support|Lake-only ingestion|
+|---|---|---|
+|`CiscoDuo_CL`|No|No|
+
+**Data collection rule support:** Not currently supported
+
+**Prerequisites:**
+
+- **Microsoft.Web/sites permissions**: Read and write permissions to Azure Functions to create a Function App is required. For more information, see [Azure Functions](/azure/azure-functions/).
+- **Cisco Duo API credentials**: Cisco Duo API credentials with permission *Grant read log* is required for Cisco Duo API. See the [documentation](https://duo.com/docs/adminapi#first-steps) to learn more about creating Cisco Duo API credentials.<br><br>
 </details> 
 
  ---
@@ -1972,7 +2019,7 @@ When critical systems fail or security incidents happen, SIGNL4 bridges the ‘l
    
 <a name="digital-shadows-searchlight-using-azure-functions"></a><details><summary>**Digital Shadows Searchlight (using Azure Functions)**</summary>
 
-**Supported by:** [Digital Shadows](https://contactout.com/company/digital-shadows-3384853)
+**Supported by:** [Digital Shadows](https://www.digitalshadows.com/contact-us/)
 
 The Digital Shadows data connector provides ingestion of the incidents and alerts from Digital Shadows Searchlight into the Microsoft Sentinel using the REST API. The connector will provide the incidents and alerts information such that it helps to examine, diagnose and analyse the potential security risks and threats.
 
@@ -2369,11 +2416,11 @@ The F5 firewall connector allows you to easily connect your F5 logs with Microso
 
  ---
    
-<a name="feedly"></a><details><summary>**Feedly**</summary>
+<a name="feedly-ioc"></a><details><summary>**Feedly IoC**</summary>
 
 **Supported by:** [Feedly Inc](https://blog.feedly.com/help/)
 
-This connector allows you to ingest IoCs from Feedly.
+The [Feedly](https://feedly.com/) IoC data connector provides the capability to ingest Indicators of Compromise (IoCs) from Feedly API into Microsoft Sentinel.
 
 **Log Analytics table(s):**  
 
@@ -2385,8 +2432,7 @@ This connector allows you to ingest IoCs from Feedly.
 
 **Prerequisites:**
 
-- **Microsoft.Web/sites permissions**: Read and write permissions to Azure Functions to create a Function App is required. For more information, see [Azure Functions](/azure/azure-functions/).
-- **Custom prerequisites if necessary, otherwise delete this customs tag**: Description for any custom pre-requisites<br><br>
+- **Feedly API access**: Access to the Feedly API is required. You need a Feedly API token with access to the IoC streams you want to ingest. Generate your API token at https://feedly.com/i/team/api<br><br>
 </details> 
 
  ---
@@ -2401,9 +2447,9 @@ The [Flare](https://flare.io) connector provides the capability to ingest threat
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`FireworkV2_CL`|No|No|
+|`FireworkV2_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -4047,12 +4093,12 @@ The Mimecast products included within the connector are:
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`Awareness_Performance_Details_CL`|No|No|
-|`Awareness_SafeScore_Details_CL`|No|No|
-|`Awareness_User_Data_CL`|No|No|
-|`Awareness_Watchlist_Details_CL`|No|No|
+|`Awareness_Performance_Details_CL`|Yes|Yes|
+|`Awareness_SafeScore_Details_CL`|Yes|Yes|
+|`Awareness_User_Data_CL`|Yes|Yes|
+|`Awareness_Watchlist_Details_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -4073,9 +4119,9 @@ The data connector for [Mimecast Cloud Integrated](https://integrations.mimecast
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`Cloud_Integrated_CL`|No|No|
+|`Cloud_Integrated_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -4142,10 +4188,10 @@ The data connector for [Mimecast Secure Email Gateway](https://integrations.mime
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`Seg_Cg_CL`|No|No|
-|`Seg_Dlp_CL`|No|No|
+|`Seg_Cg_CL`|Yes|Yes|
+|`Seg_Dlp_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -4214,11 +4260,11 @@ The Mimecast products included within the connector are:
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`Ttp_Url_CL`|No|No|
-|`Ttp_Attachment_CL`|No|No|
-|`Ttp_Impersonation_CL`|No|No|
+|`Ttp_Url_CL`|Yes|Yes|
+|`Ttp_Attachment_CL`|Yes|Yes|
+|`Ttp_Impersonation_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 

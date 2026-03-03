@@ -24,6 +24,7 @@ There are many things to consider when you upgrade to a new gateway SKU. The fol
 | Starting SKU | Target SKU | Eligible for SKU upgrade | Delete/re-create only |
 | --- | --- | --- | --- |
 | Basic SKU | Any other SKU | No | Yes |
+| Legacy SKU | AZ SKU | Yes (Migrate Only) | No
 | Generation 1 SKU | Generation 1 AZ SKU | Yes | No |
 | Generation 1 SKU | Generation 2 AZ SKU | No | Yes |
 | Generation 2 SKU | Generation 2 AZ SKU | Yes | No |
@@ -35,7 +36,7 @@ In the preceding table, *AZ* stands for *availability zone*, and means that the 
 
 * You can't upgrade a Basic SKU to a new SKU. You must delete the gateway, and then create a new one.
 * You can't downgrade a SKU without deleting the gateway and creating a new one.
-* Legacy gateway SKUs (Standard and High Performance) can't be upgraded to the new SKU families. You must delete the gateway and create a new one. For more information about working with legacy gateway SKUs, see [VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
+* Legacy gateway SKUs (Standard and High Performance) can be upgraded to new SKU families only by migrating the Basic SKU IP address to Standard SKU IP address first. You can use the [Basic SKU IP Migration tool](basic-public-ip-migrate-howto.md?tabs=portal) to migrate your IP address and your SKU will also be upgraded to AZ SKU family as part of this migration. For more information about working with legacy gateway SKUs, see [VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
 ## Upgrade a gateway SKU by using the Azure portal
 
@@ -49,7 +50,7 @@ This upgrade takes about 45 minutes to complete. If you're switching to a SKU th
 
 ## Workflow for SKUs that can't be upgraded
 
-Basic SKUs and legacy gateway SKUs can't be directly upgraded. You must delete the existing gateway and create a new one. This process incurs downtime. The public IP address assigned to your gateway SKU changes. You must also reconfigure your VPN device and P2S clients.
+**Basic SKUs** cannot be directly upgraded. You must delete the existing gateway and create a new one. This process incurs downtime. The public IP address assigned to your gateway SKU changes. You must also reconfigure your VPN device and P2S clients.
 
 The high-level workflow is:
 
@@ -66,6 +67,8 @@ The high-level workflow is:
 1. Download new client VPN configuration packages for point-to-site clients that connect to the virtual network through this VPN gateway.
 
 1. Re-create the connections to the virtual network gateway.
+
+**Legacy SKUs** cannot be directly upgraded. All legacy SKUs use Basic IP address and you must migrate your Basic SKU IP address to Standard SKU IP address first. As part of Basic IP migration, your legacy SKU will also be migrated to AZ SKU family. See, the detailed instructions listed for [migrating your Basic IP address](basic-public-ip-migrate-howto.md?tabs=portal). For more information about working with legacy gateway SKUs, see [VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
 ## Related content
 
