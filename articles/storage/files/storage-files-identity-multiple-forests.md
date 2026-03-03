@@ -198,7 +198,7 @@ Validate that the trust is working by running the **klist** command to display t
 
 1. Sign in to a machine or VM that's joined to a domain in **Forest 1** and open a Windows command prompt.
 1. To display the credentials cache for the domain-joined storage account in **Forest 2**, run one of the following commands: 
-   - If you used the [Modify storage account name suffix and add CNAME record](#modify-storage-account-name-suffix-and-add-cname-record) method, run: `klist get cifs/onprem2sa.onpremad2.com`
+   - If you used the [Modify storage account SPN suffix and add CNAME record](#modify-storage-account-spn-suffix-and-add-cname-record) method, run: `klist get cifs/onprem2sa.onpremad2.com`
    - If you used the [Add custom name suffix and routing rule](#add-custom-name-suffix-and-routing-rule) method, run: `klist get cifs/onprem2sa.file.core.windows.net`
 1. You should see output similar to the following. The klist output differs slightly based on which method you used to configure domain suffixes.
 
@@ -217,7 +217,7 @@ Kdc Called: onprem2.onpremad2.com
 
 1. Sign in to a machine or VM that's joined to a domain in **Forest 2** and open a Windows command prompt.
 1. To display the credentials cache for the domain-joined storage account in **Forest 1**, run one of the following commands:
-   - If you used the [Modify storage account name suffix and add CNAME record](#modify-storage-account-name-suffix-and-add-cname-record) method, run: `klist get cifs/onprem1sa.onpremad1.com`
+   - If you used the [Modify storage account SPN suffix and add CNAME record](#modify-storage-account-spn-suffix-and-add-cname-record) method, run: `klist get cifs/onprem1sa.onpremad1.com`
    - If you used the [Add custom name suffix and routing rule](#add-custom-name-suffix-and-routing-rule) method, run: `klist get cifs/onprem1sa.file.core.windows.net`
 1. You should see output similar to the following. The klist output differs slightly based on which method you used to configure domain suffixes.
 
