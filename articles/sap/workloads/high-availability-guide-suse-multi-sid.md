@@ -5,10 +5,13 @@ author: rdeltcheva
 manager: juergent
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
-ms.custom: linux-related-content
 ms.topic: article
 ms.date: 11/19/2024
 ms.author: radeltch
+ms.custom:
+  - linux-related-content
+  - sfi-image-nochange
+# Customer intent: As an SAP administrator, I want to implement a multi-SID high availability configuration for SAP NetWeaver on SUSE Linux within Azure VMs, so that I can ensure continuous service availability and efficient resource management across multiple SAP instances.
 ---
 
 # High availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server for SAP applications multi-SID guide
@@ -99,7 +102,7 @@ The presented configuration for this multi-SID cluster example with three SAP sy
 > [!IMPORTANT]
 >
 > * Don't enable TCP time stamps on Azure VMs placed behind Azure Load Balancer. Enabling TCP timestamps will cause the health probes to fail. Set the `net.ipv4.tcp_timestamps` parameter to `0`. For details, see [Load Balancer health probes](../../load-balancer/load-balancer-custom-probe-overview.md).
-> * To prevent saptune from changing the manually set `net.ipv4.tcp_timestamps` value from `0` back to `1`, you should update saptune version to 3.1.1 or higher. For more information, see [saptune 3.1.1 – Do I Need to Update?](https://www.suse.com/c/saptune-3-1-1-do-i-need-to-update/).
+> * To prevent saptune from changing the manually set `net.ipv4.tcp_timestamps` value from `0` back to `1`, you should update saptune version to 3.1.1 or higher. For more information, see [saptune 3.1.1 – Do I Need to Update?](https://www.suse.com/c/saptune-3-1-1-do-i-need-to-update/)
 
 ## SAP NFS shares
 
@@ -325,7 +328,7 @@ This documentation assumes that:
    Start_Program_01 = local $(_EN) pf=$(_PF)
    
    # Add the following lines
-   service/halib = $(DIR_CT_RUN)/saphascriptco.so
+   service/halib = $(DIR_EXECUTABLE)/saphascriptco.so
    service/halib_cluster_connector = /usr/bin/sap_suse_cluster_connector
    
    # Add the keep alive parameter, if using ENSA1
@@ -344,7 +347,7 @@ This documentation assumes that:
    Start_Program_00 = local $(_ER) pf=$(_PFL) NR=$(SCSID)
    
    # Add the following lines
-   service/halib = $(DIR_CT_RUN)/saphascriptco.so
+   service/halib = $(DIR_EXECUTABLE)/saphascriptco.so
    service/halib_cluster_connector = /usr/bin/sap_suse_cluster_connector
    
    # remove Autostart from ERS profile

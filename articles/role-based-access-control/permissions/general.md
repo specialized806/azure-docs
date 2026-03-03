@@ -2,11 +2,11 @@
 title: Azure permissions for General - Azure RBAC
 description: Lists the permissions for the Azure resource providers in the General category.
 ms.service: role-based-access-control
-ms.topic: reference
+ms.topic: generated-reference
 author: rolyon
-manager: amycolannino
+manager: pmwongera
 ms.author: rolyon
-ms.date: 01/25/2025
+ms.date: 02/23/2026
 ms.custom: generated
 ---
 
@@ -99,9 +99,11 @@ Azure service: core
 > | Microsoft.Marketplace/register/action | Registers Microsoft.Marketplace resource provider in the subscription. |
 > | Microsoft.Marketplace/privateStores/action | Updates PrivateStore. |
 > | Microsoft.Marketplace/search/action | Returns a list of azure private store marketplace catalog offers and total count and facets |
+> | Microsoft.Marketplace/locations/edgeZones/products/read | Returns a list of products for specific edgezone and location |
 > | Microsoft.Marketplace/mysolutions/read | Get user solutions |
 > | Microsoft.Marketplace/mysolutions/write | Create or update user solutions |
 > | Microsoft.Marketplace/mysolutions/delete | Remove user solutions |
+> | Microsoft.Marketplace/offers/read | Returns an offer |
 > | Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/read | Returns an Agreement. |
 > | Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/write | Accepts a signed agreement. |
 > | Microsoft.Marketplace/offerTypes/publishers/offers/plans/configs/read | Returns a config. |
@@ -128,6 +130,7 @@ Azure service: core
 > | Microsoft.Marketplace/privateStores/collections/queryRules/action | Get Rules on a given collection |
 > | Microsoft.Marketplace/privateStores/collections/upsertOfferWithMultiContext/action | Upsert an offer with different contexts |
 > | Microsoft.Marketplace/privateStores/collections/offers/action | Get Collection Offers By Public and Subscriptions Context |
+> | Microsoft.Marketplace/privateStores/collections/offers/contextsView/action | Retrieves offer details and plans for multiple subscription contexts, including approved stop-sell and hidden plans |
 > | Microsoft.Marketplace/privateStores/offers/write | Creates offer in  PrivateStore. |
 > | Microsoft.Marketplace/privateStores/offers/delete | Deletes offer from  PrivateStore. |
 > | Microsoft.Marketplace/privateStores/offers/read | Reads PrivateStore offers. |
@@ -136,6 +139,7 @@ Azure service: core
 > | Microsoft.Marketplace/privateStores/requestApprovals/write | Create request approval |
 > | Microsoft.Marketplace/privateStores/RequestApprovals/offer/acknowledgeNotification/write | Acknowledge a notification, Admins only |
 > | Microsoft.Marketplace/privateStores/RequestApprovals/withdrawPlan/write | Withdraw a plan from offer's notifications |
+> | Microsoft.Marketplace/products/read | Returns a Product |
 
 ## Microsoft.MarketplaceOrdering
 
@@ -209,10 +213,12 @@ Azure service: core
 > | Microsoft.Support/register/action | Registers Support Resource Provider |
 > | Microsoft.Support/lookUpResourceId/action | Looks up resource Id for resource type |
 > | Microsoft.Support/checkNameAvailability/action | Checks that name is valid and not in use for resource type |
+> | Microsoft.Support/classifyServices/action | Lists one or all classified services |
 > | Microsoft.Support/operationresults/read | Gets the result of the asynchronous operation |
 > | Microsoft.Support/operations/read | Lists all operations available on Microsoft.Support resource provider |
 > | Microsoft.Support/operationsstatus/read | Gets the status of the asynchronous operation |
 > | Microsoft.Support/services/read | Lists one or all Azure services available for support |
+> | Microsoft.Support/services/classifyProblems/action | Lists one or all classified problems |
 > | Microsoft.Support/services/problemClassifications/read | Lists one or all problem classifications for an Azure service |
 > | Microsoft.Support/supportTickets/read | Lists one or all support tickets |
 > | Microsoft.Support/supportTickets/write | Allows creating and updating a support ticket |

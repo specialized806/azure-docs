@@ -1,35 +1,29 @@
 ---
-# Mandatory fields.
 title: What is Azure Digital Twins?
 titleSuffix: Azure Digital Twins
 description: Overview of the Azure Digital Twins IoT platform, including its features and value.
 author: baanders
-ms.author: baanders # Microsoft employees only
+ms.author: baanders
 ms.date: 01/27/2025
 ms.topic: overview
 ms.service: azure-digital-twins
-
-# Optional fields. Don't forget to remove # if you need a field.
-# ms.custom: can-be-multiple-comma-separated
-# ms.reviewer: MSFT-alias-of-reviewer
-# manager: MSFT-alias-of-manager-or-PM-counterpart
 ---
 
 # What is Azure Digital Twins?
 
 *Azure Digital Twins* is a platform as a service (PaaS) offering that enables the creation of twin graphs based on digital models of entire environments, which could be buildings, factories, farms, energy networks, railways, stadiums, and more—even entire cities. These digital models can be used to gain insights that drive better products, optimized operations, reduced costs, and breakthrough customer experiences.
 
-Azure Digital Twins can be used to design a digital twin architecture that represents actual IoT devices in a wider cloud solution, and which connects to [IoT Hub](../iot-hub/iot-concepts-and-iot-hub.md) device twins to send and receive live data.
+Azure Digital Twins can be used to design a digital twin architecture that represents actual IoT devices in a wider cloud-based solution, and which connects to [IoT Hub](../iot-hub/iot-concepts-and-iot-hub.md) device twins to send and receive live data.
 
 > [!NOTE]
-> IoT Hub **device twins** are different from Azure Digital Twins **digital twins**. While *IoT Hub device twins* are maintained by your IoT hub for each IoT device that you connect to it, *digital twins* in Azure Digital Twins can be representations of anything defined by digital models and instantiated within Azure Digital Twins. 
+> Azure Digital Twins is different from [digital twin builder (preview) in Fabric](/fabric/real-time-intelligence/digital-twin-builder/overview) and the [device twins used by IoT Hub](../iot-hub/iot-hub-devguide-device-twins.md).
 
 Take advantage of your domain expertise on top of Azure Digital Twins to build customized, connected solutions that:
 * Model any environment, and bring digital twins to life in a scalable and secure manner
 * Connect assets such as IoT devices and existing business systems, using a robust event system to build dynamic business logic and data processing
 * Query the live execution environment to extract real-time insights from your twin graph
 * Build connected 3D visualizations of your environment that display business logic and twin data in context
-* Query historized environment data and integrate with other Azure data, analytics, and AI services to better track the past and predict the future
+* Query historized environment data and integrate with other Azure data, analytics, and Foundry Tools to better track the past and predict the future
 
 ## Define your business environment
 

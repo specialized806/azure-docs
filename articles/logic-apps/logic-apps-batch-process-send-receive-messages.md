@@ -5,7 +5,8 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: how-to
-ms.date: 12/09/2024
+ms.date: 02/05/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Send, receive, and batch process messages in Azure Logic Apps
@@ -26,7 +27,7 @@ Your batch receiver and batch sender need to share the same Azure subscription *
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An email account with any [email provider supported by Azure Logic Apps](/connectors/connector-reference/connector-reference-logicapps-connectors)
 
@@ -67,7 +68,7 @@ Before you can send messages to a batch, that batch must first exist as the dest
    | **Batch Name** | The name for your batch. In Consumption workflows, this property appears only when **Mode** is set to **Inline**. This example uses **TestBatch**. |
    | **Release Criteria** | The criteria to meet before processing each batch. By default, the batch trigger operates using "inline mode" where you define the batch release criteria inside the batch trigger. <br><br>- **Message count based**: Release the batch based on the number of messages collected by the batch. <br><br>- **Size based**: Release the batch based on the total size in bytes for all messages collected by that batch. <br><br>- **Schedule based**: Release the batch based on a recurrence schedule, which specifies an interval and frequency. You can optionally select a time zone and provide a start date and time. <br><br>To use all the specified criteria, select all the options. |
    | **Message Count** | The number of messages to collect in the batch, for example, 10 messages. The batch message limit is 8,000 messages. |
-   | **Batch Size** | The total byte size for messages to collect in the batch, for example, 10 MB. The batch size limit is 80 MB. |
+   | **Batch Size** | The total byte size for messages to collect in the batch, for example, 10 MB or 10,485,760 bytes. The batch size limit is 80 MB. |
    | **Recurrence** | The interval and frequency between batch releases, for example, 10 minutes. The minimum recurrence is 60 seconds or 1 minute. Fractional minutes are effectively rounded up to 1 minute. Optionally, you can select a time zone and provide a start date and time. |
 
    > [!NOTE]

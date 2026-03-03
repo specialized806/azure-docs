@@ -11,6 +11,7 @@ ms.tgt_pltfrm: vm-linux
 ms.date: 02/11/2022
 ms.author: bentrin
 ms.custom: H1Hack27Feb2017
+# Customer intent: "As an SAP administrator, I want to migrate SAP HANA workloads from Large Instances to Azure Virtual Machines, so that I can enhance performance, reduce costs, and leverage Azure's scalability for my database needs."
 ---
 # SAP HANA on Azure Large Instance migration to Azure Virtual Machines
 This article describes possible Azure Large Instance deployment scenarios and offers planning and migration approach with minimized transition downtime.
@@ -22,7 +23,7 @@ This article isn't a step-by-step configuration document. It describes the commo
 
 ## Assumptions
 This article makes the following assumptions:
-- We'll only consider a homogenous HANA database compute service migration from Hana Large Instance (HLI) to Azure VM without significant software upgrade or patching. These minor updates include the use of a more recent operating system (OS) version or HANA version explicitly stated as supported by relevant SAP notes. 
+- We'll only consider a homogeneous HANA database compute service migration from Hana Large Instance (HLI) to Azure VM without significant software upgrade or patching. These minor updates include the use of a more recent operating system (OS) version or HANA version explicitly stated as supported by relevant SAP notes. 
 - You'll do all updates/upgrades activities before or after the migration.  For example, SAP HANA MCOS converting to MDC deployment. 
 - The migration approach offering the least downtime is SAP HANA System Replication. Other migration methods aren't part of the scope of this document.
 - This guidance is applicable for both Rev3 and Rev4 SKUs of HLI.
@@ -151,8 +152,8 @@ The authors like to call out the difference of availability SLA between HLI and 
 ## Migration strategy
 In this document, we cover only the HANA System Replication approach for the migration from HLI to Azure VM.  Depends on the target storage solution deployed, the process differs slightly. The high-level steps are described below.
 
-### VM with premium/ultra-disks for data
-For VMs deployed with premium or ultra-disks, the standard SAP HANA system replication configuration is applicable for setting up HSR. For an overview of steps in setting up system replication, see the [SAP help article](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.04/099caa1959ce4b3fa1144562fa09e163.html). The article also covers taking over a secondary system, failing back to the primary, and disabling system replication. For migration, we'll only need the setup, taking over, and disabling replication steps.  
+### VM with premium/Ultra Disks for data
+For VMs deployed with premium or Ultra Disks, the standard SAP HANA system replication configuration is applicable for setting up HSR. For an overview of steps in setting up system replication, see the [SAP help article](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.04/099caa1959ce4b3fa1144562fa09e163.html). The article also covers taking over a secondary system, failing back to the primary, and disabling system replication. For migration, we'll only need the setup, taking over, and disabling replication steps.  
 
 ### VM with ANF for data and log volumes
 At a high level, the latest HLI storage snapshots of the full data and log volumes need to be copied to Azure storage. From there they're accessible and recoverable by the target HANA VM.  The copy process can be done with any native Linux copy tools.  

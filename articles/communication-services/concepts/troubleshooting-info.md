@@ -9,6 +9,7 @@ ms.author: prakulka
 ms.date: 03/31/2023
 ms.topic: conceptual
 ms.service: azure-communication-services
+ms.custom: sfi-ropc-nochange
 ---
 
 # Troubleshooting in Azure Communication Services
@@ -46,7 +47,7 @@ To help you troubleshoot certain issues, you might need one or more of the follo
 * **Short code program brief ID**: Identify a short code program brief application.
 * **Toll-free verification campaign brief ID**: Identify a toll-free verification campaign brief application.
 * **Email message ID**: Identify **Send Email** requests.
-* **Correlation ID**: Identify requests made by using Call Automation.
+* **Correlation ID**: Identify correlated requests made by using Call Automation.
 * **Call logs**: Use the detailed information to troubleshoot calling and network issues.
 
 For more information about throttling and limitations, see [Service limits](service-limits.md).
@@ -113,7 +114,10 @@ In addition to one of these IDs, you need to provide details about the failing u
 
 ## Access your client call ID
 
-When you troubleshoot voice or video calls, you might need to provide a `call ID`. Access this value via the `id` property of the `call` object.
+When you troubleshoot voice or video calls, you might need to provide a `call ID`. Access this value via the `id` property of the `call` object. 
+
+> [!IMPORTANT]
+> A `call ID` is unique and identifies a specific call, the `call ID` is the same for all the participants of that call. The `call ID` initial value is set by the local client and later it may change after the local client connects to a call that is already ongoing. If the local client was first to initiate the call then the `call ID` it created will become the `call ID` that the server and other call participants will use going forward in the call. 
 
 # [JavaScript](#tab/javascript)
 ```javascript
@@ -199,28 +203,43 @@ Learn how to enable and access call logs.
 
 ### JavaScript
 
-To control logging, the Calling SDK relies internally on the [@azure/logger](https://www.npmjs.com/package/@azure/logger) library.
+The client logs can help when we want to get more details while debugging an issue.
+To collect client logs, you can use [@azure/logger](https://www.npmjs.com/package/@azure/logger), which is used by WebJS calling SDK internally.
 
-To configure the log output level, use the `setLogLevel` method from the `@azure/logger` package. Create a logger and pass it into the `CallClient` constructor.
-
-```javascript
+```typescript
 import { setLogLevel, createClientLogger, AzureLogger } from '@azure/logger';
 setLogLevel('verbose');
 let logger = createClientLogger('ACS');
 const callClient = new CallClient({ logger });
-```
 
-You can use `AzureLogger` to redirect the logging output from Azure SDKs by overriding the `AzureLogger.log` method.
-
-You can log to the browser console, a file, or a buffer. You can also send to your own service. If you're going to send logs over the network to your own service, don't send a request per log line because this method adversely affects browser performance. Instead, accumulate logs lines and send them in batches.
-
-```javascript
-// Redirect log output
+// Redirect ACS Calling SDK's logs
 AzureLogger.log = (...args) => {
     // To console, file, buffer, REST API, etc...
     console.log(...args); 
 };
+
+// Application logging
+logger.info('....');
 ```
+
+[@azure/logger](https://www.npmjs.com/package/@azure/logger) supports four different log levels:
+
+* verbose
+* info
+* warning
+* error
+
+For debugging purposes, `info` level logging is sufficient in most cases.
+
+In the browser environment, [@azure/logger](https://www.npmjs.com/package/@azure/logger) outputs logs to the console by default.
+You can redirect logs by overriding `AzureLogger.log` method. For more information, see [@azure/logger](/javascript/api/overview/azure/logger-readme).
+
+Your app might keep logs in memory if it has a \'download log file\' feature.
+If that is the case, you have to set a limit on the log size.
+Not setting a limit might cause memory issues on long running calls.
+
+Additionally, if you send logs to a remote service, consider mechanisms such as compression and scheduling.
+If the client has insufficient bandwidth, sending a large amount of log data in a short period of time can affect call quality.
 
 ### Native SDK (Android/iOS)
 

@@ -17,6 +17,9 @@ ms.author: gasinh
 
 [!INCLUDE [active-directory-b2c-identity-protection-retirement](../../includes/active-directory-b2c-identity-protection-retirement.md)]
 
+[!INCLUDE [active-directory-b2c-end-of-sale-notice-b](../../includes/active-directory-b2c-end-of-sale-notice-b.md)]
+
+
 With Azure Active Directory B2C (Azure AD B2C) and solutions from software-vendor partners, customers can enable end-user identity verification and proofing for account registration. Identity verification and proofing can check documents, knowledge-based information, and liveness.
 
 ## Architecture diagram

@@ -12,7 +12,7 @@ ms.author: alvinhan
 ---
 
 ## Prerequisites 
-- Azure account with an active subscription, for details see [Create an account for free.](https://azure.microsoft.com/free/)
+- Azure account with an active subscription, for details see [Create an account for free.](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - An Azure Communication Services resource. See [Create an Azure Communication Services resource](../../../quickstarts/create-communication-resource.md?tabs=windows&pivots=platform-azp).
 - A new web service application created using the [Call Automation SDK](../../../quickstarts/call-automation/callflows-for-customer-interactions.md).
 - [Node.js](https://nodejs.org/en/) LTS installation
@@ -34,21 +34,26 @@ Enable automatic audio streaming when the call is established by setting the fla
 This setting ensures that audio streaming starts automatically as soon as the call is connected.
 
 ``` JS
-var mediaStreamingOptions = new MediaStreamingOptions(
-	new Uri("wss://YOUR_WEBSOCKET_URL"),
-	MediaStreamingContent.Audio,
-	MediaStreamingAudioChannel.Mixed,
-	startMediaStreaming: true)
-{
-	EnableBidirectional = true,
-		AudioFormat = AudioFormat.Pcm24KMono
-}
-var options = new AnswerCallOptions(incomingCallContext, callbackUri)
-{
-	MediaStreamingOptions = mediaStreamingOptions,
+const mediaStreamingOptions = {
+    transportUrl: "wss://YOUR_WEBSOCKET_URL", 
+    transportType: "websocket",               
+    contentType: "audio",                     
+    audioChannelType: "mixed",                
+    startMediaStreaming: true,
+    enableDtmfTones: true,           
+    enableBidirectional: true,                
+    audioFormat: "Pcm24KMono"                 
 };
 
-AnswerCallResult answerCallResult = await client.AnswerCallAsync(options);
+const answerCallOptions = {
+    mediaStreamingOptions: mediaStreamingOptions
+};
+
+answerCallResult = await acsClient.answerCall(
+    incomingCallContext,
+    callbackUri,
+    answerCallOptions
+);
 ```
 
 When Azure Communication Services receives the URL for your WebSocket server, it establishes a connection to it. Once the connection is successfully made, streaming is initiated.
@@ -58,11 +63,12 @@ To start media streaming during the call, you can use the API. To do so, set the
 
 ``` JS
 const mediaStreamingOptions: MediaStreamingOptions = {
-	transportUrl: transportUrl,
+	transportUrl:  "wss://YOUR_WEBSOCKET_URL",
 	transportType: "websocket",
 	contentType: "audio",
 	audioChannelType: "unmixed",
 	startMediaStreaming: false,
+	enableDtmfTones: true,
 	enableBidirectional: true,
 	audioFormat: "Pcm24KMono"
 }
@@ -134,6 +140,9 @@ async function processWebsocketMessageAsync(receivedBuffer: ArrayBuffer) {
 
 The first packet you receive contains metadata about the stream, including audio settings such as encoding, sample rate, and other configuration details.
 
+### Additional Headers
+The Correlation ID and Call Connection ID are now included in the WebSocket headers for improved traceability `x-ms-call-correlation-id` and `x-ms-call-connection-id`. These are sent when Azure Communication Services tries to connect to your endpoint.
+
 ``` json
 {
   "kind": "AudioMetadata",
@@ -160,11 +169,22 @@ After sending the metadata packet, Azure Communication Services (ACS) will begin
   }
 }
 ```
+#### DTMF example 
+When DTMF is enabled Azure Communication Services sends a `DtmfData` type.
+
+``` json
+{
+  "kind": "DtmfData",
+  "dtmfData": {
+    "data": "3"
+  }
+}
+```
 
 ## Sending audio streaming data to Azure Communication Services
 If bidirectional streaming is enabled using the `EnableBidirectional` flag in the `MediaStreamingOptions`, you can stream audio data back to Azure Communication Services, which plays the audio into the call.
 
-Once Azure Communication Services begins streaming audio to your WebSocket server, you can relay the audio to your AI services. After your AI service processes the audio content, you can stream the audio back to the ongoing call in Azure Communication Services.
+Once Azure Communication Services begins streaming audio to your WebSocket server, you can relay the audio to your Foundry Tools. After your Foundry Tool processes the audio content, you can stream the audio back to the ongoing call in Azure Communication Services.
 
 The example demonstrates how another service, such as Azure OpenAI or other voice-based Large Language Models, processes and transmits the audio data back into the call.
 
