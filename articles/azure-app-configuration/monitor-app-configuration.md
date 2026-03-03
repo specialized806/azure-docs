@@ -49,11 +49,11 @@ For more information about App Configuration metrics, see [supported metrics for
 Azure App Configuration logs include activity logs and resource logs.
 
 ### Activity logs
-[Activity logs](/azure/azure-monitor/reference/tables/azureactivity) provide insight into subscription-level events and show management plane activities (create, update, delete operations on your App Configuration resource). However, they don't capture data plane operations like key-value reads and writes. You can view them in the **Activity log** blade. Alternatively, follow the steps in [Log collection](#log-collection) to route them to Log Analytics workspace for more complex querying scenarios.
+[Activity logs](/azure/azure-monitor/reference/tables/azureactivity) provide insight into subscription-level events and show management plane activities (create, update, delete operations) for your App Configuration resource. However, they don't capture data plane operations like key-value reads and writes. You can view them in the **Activity log** blade. Alternatively, follow the steps in [Log collection](#log-collection) to route them to a Log Analytics workspace for more complex querying scenarios.
 
 ### Resource logs
 App Configuration provides two types of resource logs.
-- **Audit logs**: Capture write operations (create, update, delete) on your data plane resources, such as key-values. Audit logs don't include data plane read operations but include management plane operations. Entries are unaggregated. Query them in the **AACAudit** table. For more information, refer to [AACAudit](/azure/azure-monitor/reference/tables/AACAudit).
+- **Audit logs**: Capture data plane write operations (create, update, delete), such as key-values modifications, and management plane operations. Audit logs don't include data plane read operations. Entries are unaggregated. Query them in the **AACAudit** table. For more information, refer to [AACAudit](/azure/azure-monitor/reference/tables/AACAudit).
 - **HTTP request logs**: Capture both read and write operations on your data plane resources, such as key-values. Operations are aggregated for better performance and to reduce log volume. Aggregation is based on HTTP method and status code. Each log entry may represent multiple similar operations within a certain time window. Query them in the **AACHttpRequest** table. For more information, refer to [AACHttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest).
 
 #### Log collection
