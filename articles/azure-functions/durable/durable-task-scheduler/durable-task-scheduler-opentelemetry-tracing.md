@@ -365,45 +365,6 @@ The Java SDK automatically propagates W3C trace context (`traceparent`/`tracesta
 
 ::: zone-end
 
-## View traces locally with Jaeger
-
-::: zone pivot="durable-task-sdks"
-
-For local development, use the [Durable Task Scheduler emulator](durable-task-scheduler.md#emulator-for-local-development) with [Jaeger](https://www.jaegertracing.io/) to view traces. Use a `docker-compose.yml` to start both services:
-
-```yaml
-services:
-  dts-emulator:
-    image: mcr.microsoft.com/dts/dts-emulator:latest
-    ports:
-      - "8080:8080"  # gRPC
-      - "8082:8082"  # Dashboard
-  jaeger:
-    image: jaegertracing/jaeger:latest
-    ports:
-      - "16686:16686"  # Jaeger UI
-      - "4317:4317"    # OTLP gRPC
-      - "4318:4318"    # OTLP HTTP
-```
-
-Start the infrastructure:
-
-```bash
-docker compose up -d
-```
-
-After you run your application, open the Jaeger UI at `http://localhost:16686` and search for your service name (for example, `durable-worker`) to view traces.
-
-::: zone-end
-
-::: zone pivot="durable-functions"
-
-For local development with Durable Functions, distributed tracing data is sent to Application Insights. To view traces in Application Insights, go to **Transaction search** or **Application Map** in the Azure portal.
-
-For local visibility, you can also set up an OTLP exporter alongside Application Insights by adding the appropriate OpenTelemetry packages and exporter configuration to your function app's `Program.cs`.
-
-::: zone-end
-
 ## View traces in Application Insights
 
 For production workloads, [Application Insights](/azure/azure-monitor/app/app-insights-overview) is the recommended telemetry backend.
@@ -501,6 +462,45 @@ AzureMonitorTraceExporter azureExporter = new AzureMonitorTraceExporter(
 ```
 
 ---
+
+::: zone-end
+
+## View traces locally with Jaeger
+
+::: zone pivot="durable-task-sdks"
+
+For local development, use the [Durable Task Scheduler emulator](durable-task-scheduler.md#emulator-for-local-development) with [Jaeger](https://www.jaegertracing.io/) to view traces. Use a `docker-compose.yml` to start both services:
+
+```yaml
+services:
+  dts-emulator:
+    image: mcr.microsoft.com/dts/dts-emulator:latest
+    ports:
+      - "8080:8080"  # gRPC
+      - "8082:8082"  # Dashboard
+  jaeger:
+    image: jaegertracing/jaeger:latest
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "4317:4317"    # OTLP gRPC
+      - "4318:4318"    # OTLP HTTP
+```
+
+Start the infrastructure:
+
+```bash
+docker compose up -d
+```
+
+After you run your application, open the Jaeger UI at `http://localhost:16686` and search for your service name (for example, `durable-worker`) to view traces.
+
+::: zone-end
+
+::: zone pivot="durable-functions"
+
+For local development with Durable Functions, distributed tracing data is sent to Application Insights. To view traces in Application Insights, go to **Transaction search** or **Application Map** in the Azure portal.
+
+For local visibility, you can also set up an OTLP exporter alongside Application Insights by adding the appropriate OpenTelemetry packages and exporter configuration to your function app's `Program.cs`.
 
 ::: zone-end
 
