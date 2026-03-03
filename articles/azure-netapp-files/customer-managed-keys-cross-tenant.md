@@ -140,6 +140,7 @@ Verify that `federatedClientId` is present in the encryption properties.
 
     The output should include `federatedClientId` in the encryption identity properties.
 
+---
 
 ### Create a volume 
 
@@ -166,6 +167,8 @@ Create the volume using the CLI:
 az netappfiles volume create -g <resource group name> --account-name <NetApp account name> --pool-name <pool name> --name <volume name> -l southcentralus --service-level premium --usage-threshold 100 --file-path "<file path>" --vnet <virtual network name> --subnet default --network-features Standard --encryption-key-source Microsoft.KeyVault --kv-private-endpoint-id <full resource ID to the private endpoint to the customer's vault> --debug 
 ```
 
+---
+
 ## Troubleshoot cross-tenant customer-managed keys
 
 This section describes issues encountered when configuring cross-tenant CMK and the information to resolve them.
@@ -182,7 +185,7 @@ To confirm whether a NetApp account is correctly configured for cross-tenant CMK
 
 #### [Azure CLI](#tab/cli-CMK)
 
-Run the following command to inspect the account's encryption configuration:
+Run the following command:
 
 ```azurecli
 az netappfiles account show \
