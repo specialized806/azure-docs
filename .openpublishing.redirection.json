@@ -1083,27 +1083,22 @@
     {
       "source_path": "articles/expressroute/expressroute-troubleshooting-arp-resource-manager.md",
       "redirect_url": "/troubleshoot/azure/expressroute/arp-tables",
-      "redirect_document_id": false
     },
     {
       "source_path": "articles/expressroute/expressroute-troubleshooting-expressroute-overview.md",
       "redirect_url": "/troubleshoot/azure/expressroute/connectivity",
-      "redirect_document_id": false
     },
     {
       "source_path": "articles/expressroute/expressroute-troubleshooting-network-performance.md",
       "redirect_url": "/troubleshoot/azure/expressroute/network-performance",
-      "redirect_document_id": false
     },
     {
       "source_path": "articles/expressroute/gateway-migration-error-messaging.md",
       "redirect_url": "/troubleshoot/azure/expressroute/gateway-migration-errors",
-      "redirect_document_id": false
     },
     {
       "source_path": "articles/expressroute/reset-circuit.md",
       "redirect_url": "/troubleshoot/azure/expressroute/reset-failed-circuit",
-      "redirect_document_id": false
     },
     {
       "source_path": "articles/expressroute/expressroute-howto-circuit-classic.md",
