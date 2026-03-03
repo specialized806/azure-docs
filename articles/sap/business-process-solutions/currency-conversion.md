@@ -9,7 +9,7 @@ ms.date: 02/23/2026
 ms.author: mimansasingh
 ---
 
-# Currency conversion in Business Process Solutions
+# Currency Conversion in Business Process Solutions
 
 In SAP systems, transactions can be recorded in various currencies, creating a need for optional currency conversion capabilities. Most financial data already includes amounts in both the Transaction Currency and Company Code Currency, ensuring alignment between Business Process Solutions and the SAP system without extra conversion steps. Most financial data already includes amounts in both the **Transaction Currency** and **Company Code Currency**, ensuring alignment between Business Process Solutions and the SAP system without another conversion steps. 
 

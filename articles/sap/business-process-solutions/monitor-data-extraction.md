@@ -13,6 +13,8 @@ ms.author: mimansasingh
 
 When configuring the data extraction, using Azure Data Factory the solution automatically deploys required Azure services with a set of prebuilt templates designed to execute the extraction process. This document explains how the data extraction process works, how to monitor it, and how to troubleshoot issues when they occur.
 
+## Azure Data Factory pipelines for data extraction
+
 The Orchestration Master pipeline initiates the data extraction process, which consists of four key pipelines. Firstly, the **Get Field Metadata** pipeline connects to each source system and reads field metadata for enabled CDS Views. This step is essential for data type mapping, which occurs during data extraction.
 
 Once the field metadata is processed, the **System Lookup** pipeline (p_s2s_system_lookup) retrieves connection information and, for each source system, triggers the data extraction process. This process occurs in two main steps:
@@ -55,11 +57,11 @@ This error indicates that the specified CDS View doesn't support delta extractio
 There are three possible root causes for this issue.
 
 1. **Verify the view is available in your SAP release** - To check whether the CDS View is available, you need to examine the view annotations. Open transaction SE16n and access the table DDHEADANNO, which stores all CDS View annotations. Enter the CDS View name in the STRUCOBJN field. Keep in mind, the error message shows the SQL View Name (ODPName) and not the CDS View Name. If the system returns list of annotations, the CDS View exists and you can proceed to step (b) for troubleshooting.    
-:::image type="content" source="./media/monitoring-data-extraction-in-azure-data-factory/view-sap.png" alt-text="Screenshot showing view is available in SAP release." lightbox="./media/monitoring-data-extraction-in-azure-data-factory/view-sap.png":::    
+    :::image type="content" source="./media/monitoring-data-extraction-in-azure-data-factory/view-sap.png" alt-text="Screenshot showing view is available in SAP release." lightbox="./media/monitoring-data-extraction-in-azure-data-factory/view-sap.png":::   
 If the CDS View doesn’t exists in your system remove the failed table from the dataset to resolve the issue.
 
 2. **Verify if the view is extractable** - Not all views defined in the system support extraction using the SAP CDC connector. To determine if a view can be extracted, review the list of annotations in the table DDHEADANNO and check for the annotation ANALYTICS.DATAEXTRACTION.ENABLED. This annotation confirms that the view is extractable using the ODP framework and the SAP CDC connector. If the required annotation is missing, you should switch the connector used for data extraction to SAP Table. This can be achieved by changing the context of the CDS View to SAP Table.    
-:::image type="content" source="./media/monitoring-data-extraction-in-azure-data-factory/view-sap-extractable.png" alt-text="Screenshot showing if view is extractable." lightbox="./media/monitoring-data-extraction-in-azure-data-factory/view-sap-extractable.png":::
+    :::image type="content" source="./media/monitoring-data-extraction-in-azure-data-factory/view-sap-extractable.png" alt-text="Screenshot showing if view is extractable." lightbox="./media/monitoring-data-extraction-in-azure-data-factory/view-sap-extractable.png":::    
 
 3. **Check if you have the right authorizations** - Another common reason for extraction failures is missing authorizations in the source SAP system. Ensure that all required data sources are included in the SAP profile assigned to the user and pay special attention to the authorization objects S_RS_CDS_X and S_DHCDCCDS. To troubleshoot authorization issues, run the extraction using the test report RODPS_REPL_TEST with the same user defined in Business Process Solutions. After the test, execute transaction SU53 to review any missing authorizations. This process helps identify gaps that might be causing the extraction to fail.
 
