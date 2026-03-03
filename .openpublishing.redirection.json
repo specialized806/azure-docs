@@ -1,6 +1,30 @@
 {
   "redirections": [
     {
+      "source_path": "articles/expressroute/expressroute-troubleshooting-arp-resource-manager.md",
+      "redirect_url": "/troubleshoot/azure/expressroute/expressroute-troubleshooting-arp-resource-manager",
+    },
+    {
+      "source_path": "articles/expressroute/get-correlation-id.md",
+      "redirect_url": "/troubleshoot/azure/expressroute/get-correlation-id",
+    },
+    {
+      "source_path": "articles/expressroute/expressroute-troubleshooting-expressroute-overview.md",
+      "redirect_url": "/troubleshoot/azure/expressroute/expressroute-troubleshooting-expressroute-overview",
+    },
+    {
+      "source_path": "articles/expressroute/expressroute-troubleshooting-network-performance.md",
+      "redirect_url": "/troubleshoot/azure/expressroute/expressroute-troubleshooting-network-performance",
+    },
+    {
+      "source_path": "articles/expressroute/gateway-migration-error-messaging.md",
+      "redirect_url": "/troubleshoot/azure/expressroute/gateway-migration-error-messaging",
+    },
+    {
+      "source_path": "articles/expressroute/reset-circuit.md",
+      "redirect_url": "/troubleshoot/azure/expressroute/reset-circuit",
+    },
+    {
       "source_path": "articles/extended-zones/arc-enabled-workloads-postgre-sql.md",
       "redirect_url": "/azure/extended-zones/overview",
       "redirect_document_id": false
