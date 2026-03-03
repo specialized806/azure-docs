@@ -312,7 +312,7 @@ The Durable Task Python SDK automatically instruments orchestrations and activit
 
 # [Java](#tab/java)
 
-The Java Durable Task SDK automatically propagates W3C trace context when an OpenTelemetry `Span` is active. The SDK reads the current OpenTelemetry span context and includes `traceparent` and `tracestate` headers in gRPC requests to the scheduler.
+The Java Durable Task SDK automatically instruments orchestrations and activities with OpenTelemetry spans when you register the `OpenTelemetrySdk` globally. The SDK uses the `Microsoft.DurableTask` tracer name (matching the .NET activity source) and creates `Server`-kind spans for orchestration and activity execution. It also propagates W3C trace context (`traceparent`/`tracestate`) across client, orchestration, activity, and sub-orchestration boundaries.
 
 Add the OpenTelemetry dependencies to your *build.gradle*:
 
@@ -359,7 +359,7 @@ OpenTelemetrySdk openTelemetry = OpenTelemetrySdk.builder()
 Tracer tracer = openTelemetry.getTracer("durable-worker");
 ```
 
-The Java SDK automatically propagates W3C trace context (`traceparent`/`tracestate`) when scheduling orchestrations, enabling end-to-end trace correlation.
+The `buildAndRegisterGlobal()` call registers the OpenTelemetry SDK globally. The Durable Task SDK uses `GlobalOpenTelemetry.getTracer("Microsoft.DurableTask")` internally, so it picks up this configuration automatically and creates spans for orchestrations and activities.
 
 ---
 
@@ -516,7 +516,7 @@ The trace data produced by the Durable Task SDKs includes:
 | `sub_orchestration:<name>` | A span for each sub-orchestration call |
 | `timer` | A span for durable timer waits |
 
-Each span includes attributes like the orchestration instance ID, activity name, and task hub name. Failed activities and orchestrations include error details in the span's status and events.
+Each span includes attributes like `durabletask.type`, `durabletask.task.name`, `durabletask.task.instance_id`, and `durabletask.task.task_id`. Failed activities and orchestrations include error details in the span's status and events.
 
 ## Troubleshooting
 
