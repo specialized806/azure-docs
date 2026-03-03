@@ -4,7 +4,7 @@ description: Learn about file shares hosted in Azure Files using the Server Mess
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: concept-article
-ms.date: 01/15/2026
+ms.date: 03/02/2026
 ms.author: kendownie
 ms.custom: devx-track-azurepowershell
 # Customer intent: As an IT admin, I want to implement SMB file shares in Azure Files, so that I can provide scalable and secure file storage solutions for my organization's applications and end-user needs.
@@ -58,9 +58,11 @@ Azure Files offers multiple settings that affect the behavior, performance, and 
 
 ### SMB Continuous Availability
 
-Azure Files supports SMB Continuous Availability (CA) to help applications remain available during transient infrastructure events. Continuous availability is a capability of the SMB protocol that allows open file handles to survive brief interruptions, such as server failovers or short network disruptions. All Azure Files SMB shares are continuously available by default. This setting can't be disabled.
+Azure Files supports SMB Continuous Availability (CA) to help applications remain available during transient infrastructure events. Continuous availability is a capability of the SMB protocol that allows open file handles to survive brief interruptions, such as server failovers or short network disruptions. All SMB Azure file shares are continuously available by default. This setting can't be disabled.
 
-**What continuous availability provides:**
+#### What continuous availability provides
+
+Continuous availability provides the following benefits:
 
 - Persistent file handles that survive transient failures
 - Transparent recovery of I/O operations after failover
@@ -69,9 +71,9 @@ Azure Files supports SMB Continuous Availability (CA) to help applications remai
 
 If a brief connectivity interruption occurs, SMB clients automatically retry operations and reestablish access to open files without requiring the application to reopen them. This behavior is particularly important for workloads that maintain long-running file sessions.
 
-**How continuous availability works**
+#### How continuous availability works
 
-Continuous availability relies on persistent SMB handles. During a transient interruption (typically lasting up to several minutes):
+Continuous availability relies on persistent SMB handles. During a transient interruption, which typically lasts up to several minutes, the following statements apply:
 
 - Open file handles remain valid.
 - The SMB client retries pending I/O operations.
@@ -79,16 +81,16 @@ Continuous availability relies on persistent SMB handles. During a transient int
 
 Because Azure Files prioritizes correctness and durability, the client waits and retries instead of immediately failing the operation.
 
-**Timeout behavior during connectivity loss**
+#### Timeout behavior during connectivity loss
 
-Due to the retry behavior required for continuous availability, SMB operations might take longer to time out during network interruptions.
+Due to the retry behavior that continuous availability requires, SMB operations might take longer to time out during network interruptions.
 
-For example:
+For example, you might experience the following:
 
-- Windows SMB clients may retry operations for several minutes before returning an error.
+- Windows SMB clients might retry operations for several minutes before returning an error.
 - Applications might appear to pause temporarily while the connection is reestablished.
 
-This behavior is by design and helps preserve handle integrity and prevent data corruption. Workloads that frequently disconnect (such as roaming laptops or unstable network connections) might observe longer wait times before failures are returned.
+This behavior is by design because it helps preserve handle integrity and prevent data corruption. Workloads that frequently disconnect, such as roaming laptops or unstable network connections, might observe longer wait times before failures are returned.
 
 ### SMB Multichannel
 
