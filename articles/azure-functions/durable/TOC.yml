@@ -233,6 +233,8 @@
       href: ./durable-task-scheduler/durable-task-scheduler-auto-scaling.md
   - name: How-to guides
     items:
+    - name: Schedules
+      href: ./durable-task-scheduler/durable-task-schedulers-schedules.md
     - name: Diagnostics
       href: durable-task-diagnostics.md
     - name: Troubleshooting guide
