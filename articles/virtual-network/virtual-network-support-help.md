@@ -1,5 +1,6 @@
 ---
-title: Azure Virtual Network support and help options 
+title: Support and help options
+titleSuffix: Azure Virtual Network
 description: How to obtain help and support for questions or problems when you create solutions using Azure Virtual Network. 
 author: asudbring
 ms.author: allensu
@@ -29,9 +30,9 @@ For a full list of self help troubleshooting content, see [Azure Virtual Network
     <img alt='Microsoft Q&A' src='/media/logos/logo_ms.svg'>
 </div>   
 
-Get answers to your Azure Virtual Network questions from Microsoft Engineers, Azure Most Valuable Professionals (MVPs), and community experts on [Microsoft Q&A](/answers/products/azure). This is Azure's destination for community-driven technical support.
+Get answers to your Azure Virtual Network questions from Microsoft Engineers, Azure Most Valuable Professionals (MVPs), and community experts on [Microsoft Q&A](/answers/products/azure). Microsoft Q&A is Azure's destination for community-driven technical support.
 
-To get the fastest response, search existing answers first. If you don't find a solution, post a new question and include one of the relevant tags below:
+To get the fastest response, search existing answers first. If you don't find a solution, post a new question and include one of the following relevant tags:
 
 | Area | Tag |
 |-------|----------------------|
