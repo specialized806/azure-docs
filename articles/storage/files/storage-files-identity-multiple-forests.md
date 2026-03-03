@@ -180,7 +180,7 @@ First, add a new custom suffix on **Forest 2**. Make sure you have the appropria
 1. Open the **Active Directory Domains and Trusts** console.
 1. Right-click on **Active Directory Domains and Trusts**.
 1. Select **Properties**, and then select **Add**.
-1. Add "file.core.windows.net" as the UPN Suffix.
+1. Add "file.core.windows.net" as the UPN suffix.
 1. Select **Apply**, then **OK** to close the wizard.
 
 Next, add the suffix routing rule on **Forest 1**, so that it redirects to **Forest 2**.
@@ -197,53 +197,57 @@ Next, add the suffix routing rule on **Forest 1**, so that it redirects to **For
 Validate that the trust is working by running the **klist** command to display the contents of the Kerberos credentials cache and key table.
 
 1. Sign in to a machine or VM that's joined to a domain in **Forest 1** and open a Windows command prompt.
+
 1. To display the credentials cache for the domain-joined storage account in **Forest 2**, run one of the following commands: 
    - If you used the [Modify storage account SPN suffix and add CNAME record](#modify-storage-account-spn-suffix-and-add-cname-record) method, run: `klist get cifs/onprem2sa.onpremad2.com`
    - If you used the [Add custom name suffix and routing rule](#add-custom-name-suffix-and-routing-rule) method, run: `klist get cifs/onprem2sa.file.core.windows.net`
+
 1. You should see output similar to the following. The klist output differs slightly based on which method you used to configure domain suffixes.
 
-```
-Client: onprem1user @ ONPREMAD1.COM
-Server: cifs/onprem2sa.file.core.windows.net @ ONPREMAD2.COM
-KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
-Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
-Start Time: 11/22/2022 18:45:02 (local)
-End Time: 11/23/2022 4:45:02 (local)
-Renew Time: 11/29/2022 18:45:02 (local)
-Session Key Type: AES-256-CTS-HMAC-SHA1-96
-Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
-Kdc Called: onprem2.onpremad2.com
-```
+   ```
+   Client: onprem1user @ ONPREMAD1.COM
+   Server: cifs/onprem2sa.file.core.windows.net @ ONPREMAD2.COM
+   KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+   Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+   Start Time: 11/22/2022 18:45:02 (local)
+   End Time: 11/23/2022 4:45:02 (local)
+   Renew Time: 11/29/2022 18:45:02 (local)
+   Session Key Type: AES-256-CTS-HMAC-SHA1-96
+   Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
+   Kdc Called: onprem2.onpremad2.com
+   ```
 
 1. Sign in to a machine or VM that's joined to a domain in **Forest 2** and open a Windows command prompt.
+
 1. To display the credentials cache for the domain-joined storage account in **Forest 1**, run one of the following commands:
    - If you used the [Modify storage account SPN suffix and add CNAME record](#modify-storage-account-spn-suffix-and-add-cname-record) method, run: `klist get cifs/onprem1sa.onpremad1.com`
    - If you used the [Add custom name suffix and routing rule](#add-custom-name-suffix-and-routing-rule) method, run: `klist get cifs/onprem1sa.file.core.windows.net`
+
 1. You should see output similar to the following. The klist output differs slightly based on which method you used to configure domain suffixes.
 
-```
-Client: onprem2user @ ONPREMAD2.COM
-Server: krbtgt/ONPREMAD2.COM @ ONPREMAD2.COM
-KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
-Ticket Flags 0x40e10000 -> forwardable renewable pre_authent name_canonicalize
-Start Time: 11/22/2022 18:46:35 (local)
-End Time: 11/23/2022 4:46:35 (local)
-Renew Time: 11/29/2022 18:46:35 (local)
-Session Key Type: AES-256-CTS-HMAC-SHA1-96
-Cache Flags: 0x1 -> PRIMARY
-Kdc Called: onprem2
-
-Client: onprem2user @ ONPREMAD2.COM    
-Server: cifs/onprem1sa.file.core.windows.net @ ONPREMAD1.COM
-KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
-Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
-Start Time: 11/22/2022 18:46:35 (local)
-End Time: 11/23/2022 4:46:35 (local)
-Renew Time: 11/29/2022 18:46:35 (local)
-Session Key Type: AES-256-CTS-HMAC-SHA1-96
-Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
-Kdc Called: onpremad1.onpremad1.com
-```
+   ```
+   Client: onprem2user @ ONPREMAD2.COM
+   Server: krbtgt/ONPREMAD2.COM @ ONPREMAD2.COM
+   KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+   Ticket Flags 0x40e10000 -> forwardable renewable pre_authent name_canonicalize
+   Start Time: 11/22/2022 18:46:35 (local)
+   End Time: 11/23/2022 4:46:35 (local)
+   Renew Time: 11/29/2022 18:46:35 (local)
+   Session Key Type: AES-256-CTS-HMAC-SHA1-96
+   Cache Flags: 0x1 -> PRIMARY
+   Kdc Called: onprem2
+   
+   Client: onprem2user @ ONPREMAD2.COM    
+   Server: cifs/onprem1sa.file.core.windows.net @ ONPREMAD1.COM
+   KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+   Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+   Start Time: 11/22/2022 18:46:35 (local)
+   End Time: 11/23/2022 4:46:35 (local)
+   Renew Time: 11/29/2022 18:46:35 (local)
+   Session Key Type: AES-256-CTS-HMAC-SHA1-96
+   Cache Flags: 0x200 -> DISABLE-TGT-DELEGATION
+   Kdc Called: onpremad1.onpremad1.com
+   ```
 
 If you see the preceding output, you're done. If you don't, follow these steps to provide alternative UPN suffixes to make multi-forest authentication work.
 
