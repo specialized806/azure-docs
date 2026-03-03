@@ -240,7 +240,7 @@
     - name: Diagnostics
       href: durable-task-diagnostics.md
     - name: OpenTelemetry and distributed tracing
-      href: ./durable-task-scheduler/durable-task-scheduler-opentelemetry-tracing.md
+      href: ./durable-task-scheduler/durable-task-scheduler-opentelemetry-tracing.md?pivots=durable-task-sdks
     - name: Troubleshooting guide
       href: durable-task-sdk-troubleshooting.md
   - name: Reference
