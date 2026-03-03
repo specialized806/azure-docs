@@ -179,4 +179,4 @@ In this scenario, a single guest VM runs the benchmark against the Elastic SANâ€
 
 - Review [ESAN best practices](/azure/storage/elastic-san/elastic-san-best-practices)
 - [Resize your Elastic SAN's base capacity so it meets IOPS and throughput requirements](/azure/storage/elastic-san/elastic-san-expand)
-- Connect to [Azure VMware Solution using Elastic SAN](/azure/vmware/configure-azure-elastic-san)
+- Connect to [Azure VMware Solution using Elastic SAN](/azure/azure-vmware/configure-azure-elastic-san)
