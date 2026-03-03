@@ -18,17 +18,17 @@ Here are suggestions for where you can get help when developing your Azure Appli
 
 Various articles explain how to determine, diagnose, and fix issues that you might encounter when using Azure Application Gateway. Use these articles to troubleshoot deployment failures, connection issues, performance problems, and more.
 
-For a full list of self help troubleshooting content, see [Azure Application Gateway troubleshooting documentation](https://learn.microsoft.com/troubleshoot/azure/application-gateway/welcome-app-gateway).
+For a full list of self help troubleshooting content, see [Azure Application Gateway troubleshooting documentation](/troubleshoot/azure/application-gateway/welcome-app-gateway).
 
 ## Post a question on Microsoft Q&A
 
-For quick and reliable answers on your technical product questions from Microsoft Engineers, Azure Most Valuable Professionals (MVPs), or our expert community, engage with us on [Microsoft Q&A](https://learn.microsoft.com/answers), Azure's preferred destination for community support.
+For quick and reliable answers on your technical product questions from Microsoft Engineers, Azure Most Valuable Professionals (MVPs), or our expert community, engage with us on [Microsoft Q&A](/answers/products/azure), Azure's preferred destination for community support.
 
 If you can't find an answer to your problem using search, submit a new question to Microsoft Q&A. Use the following tag when asking your question:
 
 | Area | Tag |
 | --- | --- |
-| [Azure Application Gateway](./overview.md) | [azure-application-gateway](https://learn.microsoft.com/en-us/answers/tags/148/azure-application-gateway) |
+| [Azure Application Gateway](./overview.md) | [azure-application-gateway](/answers/tags/148/azure-application-gateway) |
 
 ## Create an Azure support request
 
