@@ -146,7 +146,7 @@ Verify that `federatedClientId` is present in the encryption properties.
 
 #### [Portal](#tab/portal-volume)
 
-1. In the Azure portal , select **Volumes** and then select **Add volume**.
+1. In the Azure portal, select **Volumes** and then select **Add volume**.
 1. Follow the instructions in [Configure network features for an Azure NetApp Files volume](configure-network-features.md):
     * [Set the Network Features option in volume creation page](configure-network-features.md#set-the-network-features-option).
     * The network security group for the volume's delegated subnet must allow incoming traffic from NetApp's storage VM.
@@ -179,9 +179,9 @@ To confirm whether a NetApp account is correctly configured for cross-tenant CMK
 
 #### [Portal](#tab/portal-CMK)
 
-1. Navigate to your NetApp account, select **Overview**, then select **JSON View**.
+Navigate to your NetApp account, select **Overview**, then select **JSON View**.
   
-   If cross-tenant CMK is correctly configured, the encryption properties should include `federatedClientId`.
+If cross-tenant CMK is correctly configured, the encryption properties should include `federatedClientId`.
 
 #### [Azure CLI](#tab/cli-CMK)
 
