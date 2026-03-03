@@ -23,17 +23,15 @@ Various articles explain how to determine, diagnose, and fix issues that you mig
 
 For a full list of self help troubleshooting content, see [Azure Virtual Network troubleshooting documentation](/troubleshoot/azure/virtual-network/welcome-virtual-network).
 
-
 ## Post a question on Microsoft Q&A
 
 <div class='icon is-large'>
     <img alt='Microsoft Q&A' src='/media/logos/logo_ms.svg'>
 </div>   
 
-For quick and reliable answers on your technical product questions from Microsoft Engineers, Azure Most Valuable Professionals (MVPs), or our expert community, engage with us on [Microsoft Q&A](/answers/products/azure), Azure's preferred destination for community support. 
+Get answers to your Azure Virtual Network questions from Microsoft Engineers, Azure Most Valuable Professionals (MVPs), and community experts on [Microsoft Q&A](/answers/products/azure). This is Azure's destination for community-driven technical support.
 
-If you can't find an answer to your problem using search, submit a new question to Microsoft Q&A. Use one of the following tags when asking your question:
-
+To get the fastest response, search existing answers first. If you don't find a solution, post a new question and include one of the relevant tags below:
 
 | Area | Tag |
 |-------|----------------------|
@@ -52,7 +50,6 @@ Explore the range of [Azure support options and choose the plan](https://azure.m
 - If you already have an Azure Support Plan, [open a support request here](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest).
 
 - To sign up for a new Azure Support Plan, [compare support plans](https://azure.microsoft.com/support/plans/) and select the plan that works for you. 
-
 
 ## Create a GitHub issue
 
@@ -74,7 +71,6 @@ If you need help with the language and tools used to develop and manage Azure Vi
 | Terraform | https://github.com/Azure/terraform/issues | 
 | Bicep | https://github.com/Azure/bicep/issues | 
 
-
 ## Stay informed of updates and new releases
 
 <div class='icon is-large'>
@@ -84,7 +80,6 @@ If you need help with the language and tools used to develop and manage Azure Vi
 Learn about important product updates, roadmap, and announcements in [Azure Updates](https://azure.microsoft.com/updates/?category=networking).
 
 News and information about Azure Virtual Network is shared at the [Azure Networking blog](https://techcommunity.microsoft.com/category/azure/blog/azurenetworkingblog).
-
 
 ## Next steps
 
