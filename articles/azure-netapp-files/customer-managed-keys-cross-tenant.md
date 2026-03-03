@@ -198,8 +198,7 @@ If `federatedClientId` is missing, the account is configured with the same-tenan
 
 ---
 
-
-### Missing Key URI or Encryption Key Source option in the portal
+### Missing Key URI or Encryption Key Source option 
 
 **Symptom:** When creating a volume in the Azure portal, the **Encryption Key Source** dropdown menu doesn't show **Customer-Managed Key**, or fields for **Key URI**, **subscription**, or **identity type** aren't visible.
 
