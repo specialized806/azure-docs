@@ -16,9 +16,6 @@ ms.custom: support-help-page
 Here are suggestions for where you can get help when developing your Azure ExpressRoute solutions.
 
 ## Self help troubleshooting
-<div class='icon is-large'>
-    <img alt='Self help content' src='/media/logos/doc-logo.png'>
-</div>
 
 Various articles explain how to determine, diagnose, and fix issues that you might encounter when using Azure ExpressRoute. Use these articles to troubleshoot connectivity problems, performance issues, circuit configuration, and more. 
 
@@ -27,19 +24,11 @@ For a full list of self help troubleshooting content, see [Azure ExpressRoute tr
 
 ## Post a question on Microsoft Q&A
 
-<div class='icon is-large'>
-    <img alt='Microsoft Q&A' src='/media/logos/microsoft-logo.png'>
-</div>   
-
 For quick and reliable answers on your technical product questions from Microsoft Engineers, Azure Most Valuable Professionals (MVPs), or our expert community, engage with us on [Microsoft Q&A](/answers/products/azure), Azure's preferred destination for community support. 
 
 If you can't find an answer to your problem using search, submit a new question to Microsoft Q&A. Use the [azure-expressroute](/answers/tags/225/azure-expressroute) tag when asking your question.
 
 ## Create an Azure support request
-
-<div class='icon is-large'>
-    <img alt='Azure support' src='/media/logos/azure-logo.png'>
-</div>
 
 Explore the range of [Azure support options and choose the plan](https://azure.microsoft.com/support/plans) that best fits, whether you're a developer just starting your cloud journey or a large organization deploying business-critical, strategic applications. Azure customers can create and manage support requests in the Azure portal.
 
@@ -49,10 +38,6 @@ Explore the range of [Azure support options and choose the plan](https://azure.m
 
 
 ## Create a GitHub issue
-
-<div class='icon is-large'>
-    <img alt='GitHub-image' src='/media/logos/github-logo.png'>
-</div>
 
 If you need help with the language and tools used to develop and manage Azure ExpressRoute, open an issue in its repository on GitHub.
 
@@ -70,14 +55,9 @@ If you need help with the language and tools used to develop and manage Azure Ex
 
 ## Stay informed of updates and new releases
 
-<div class='icon is-large'>
-    <img alt='Stay informed' src='/media/logos/updates-logo.png'>
-</div>
-
 Learn about important product updates, roadmap, and announcements in [Azure Updates](https://azure.microsoft.com/updates/?product=expressroute).
 
 News and information about Azure ExpressRoute is shared at the [Azure blog](https://azure.microsoft.com/blog/).
-
 
 ## Next step
 
