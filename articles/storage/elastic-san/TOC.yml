@@ -22,7 +22,7 @@ items:
     href: elastic-san-performance.md
   - name: Elastic SAN Datastore Performance on Azure VMware Solutions
     href: elastic-san-performance-on-azure-vmware-solutions.md
-    displayname: Performance, Azure VMware Solution, Azure Elastic SAN
+    displayname: Performance, Azure VMware Solutions, Azure Elastic SAN
   - name: Clustered applications
     href: elastic-san-shared-volumes.md
   - name: Encryption
