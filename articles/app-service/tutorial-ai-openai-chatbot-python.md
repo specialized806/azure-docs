@@ -208,7 +208,7 @@ client = OpenAI(
 For more information, see [How to switch between OpenAI and Azure OpenAI endpoints with Python](/azure/ai-services/openai/how-to/switching-endpoints).
 
 >[!IMPORTANT]
->When working with connection secrets like API keys in App Service, you should use [Azure Key Vault references](app-service-key-vault-references.md) instead of storing secrets directly in your code. This practice ensures that sensitive information remains secure and is managed centrally.
+>When working with connection secrets like API keys in App Service, you should [use Azure Key Vault references](app-service-key-vault-references.md) instead of storing secrets directly in your code. This practice ensures that sensitive information remains secure and is managed centrally.
 
 ---
 
@@ -216,11 +216,11 @@ For more information, see [How to switch between OpenAI and Azure OpenAI endpoin
 
 Yes, you can connect to Azure OpenAI by using an API key instead of managed identity. The Azure OpenAI SDK and Semantic Kernel support this approach. 
 
-- For details on using API keys with Semantic Kernel, see [Semantic Kernel C# Quickstart](/semantic-kernel/get-started/quick-start-guide?pivots=programming-language-python).
-- For details on using API keys with the Azure OpenAI client library, see [Quickstart: Get started using chat completions with Azure OpenAI Service](/azure/ai-services/openai/chatgpt-quickstart?pivots=programming-language-python).
+- For details on using API keys with Semantic Kernel, see [Get started with Semantic Kernel](/semantic-kernel/get-started/quick-start-guide?pivots=programming-language-python).
+- For details on using API keys with the Azure OpenAI client library, see [Use the Azure OpenAI Responses API](/azure/ai-services/openai/chatgpt-quickstart?pivots=programming-language-python).
 
 >[!IMPORTANT]
->When working with connection secrets like API keys in App Service, you should use [Key Vault references](app-service-key-vault-references.md) instead of storing secrets directly in your code. This practice ensures that sensitive information remains secure and is managed centrally.
+>When working with connection secrets like API keys in App Service, you should [use Key Vault references](app-service-key-vault-references.md) instead of storing secrets directly in your code. This practice ensures that sensitive information remains secure and is managed centrally.
 
 ---
 
@@ -235,7 +235,6 @@ This approach lets your code run securely and seamlessly in both local and cloud
 
 ## Related content
 
-- [Tutorial: Build a Retrieval Augmented Generation with Azure OpenAI and Azure AI Search (FastAPI)](tutorial-ai-openai-search-nodejs.md)
 - [Tutorial: Run a chatbot in App Service with a Phi-4 sidecar extension (FastAPI)](tutorial-ai-slm-fastapi.md)
 - [Create and deploy an Azure OpenAI Service resource](/azure/ai-services/openai/how-to/create-resource)
-- [Enable managed identity for your app](overview-managed-identity.md)
+- [Use managed identities for App Service and Azure Functions](overview-managed-identity.md)
