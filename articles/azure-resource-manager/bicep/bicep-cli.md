@@ -710,15 +710,45 @@ bicep snapshot --mode validate <bicep-param-file>
 
 ---
 
-The following screenshot shows a sample output:
+A sample output looks like:
 
-:::image type="content" source="./media/bicep-cli/bicep-cli-snapshot-validate-output.png" alt-text="Screenshot of Bicep CLI snapshot command validate output.":::
+```
+PS C:\bicep> bicep snapshot --mode validate main.bicepparam
+Snapshot validation failed. Expected no changes, but found the following:
+
+Scope: <unknown>
+
+  ~ [format('/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Storage/storageAccounts/stmyappstorage001', subscription().subscriptionId, resourceGroup().name)]
+    ~ apiVersion: "2025-01-01" => "2025-06-01"
+    ~ sku.name:   "Standard_LRS" => "Standard_GRS"
+```
 
 "Snapshot validation failed" indicates differences between the two snapshots.
 
+Snapshot and What-if have these differences:
+
+| Feature | `bicep snapshot` | `az deployment group what-if` |
+| :--- | :--- | :--- |
+| **Execution** | **Local only** (Offline) | **Cloud-based** (Online) |
+| **Comparison** | Compares code vs. a saved file | Compares code vs. live Azure state |
+| **Speed** | Extremely fast | Slower (requires API calls) |
+| **Use Case** | Refactoring and logic testing | Final pre-deployment check |
+
 ### Provide context
 
-If your Bicep file relies on environmental functions (like `subscription().id`), pass mock values to ensure the snapshot is accurate:
+When running bicep snapshot, the CLI performs a local evaluation of your code. Since it doesn't talk to Azure, it cannot "ask" the cloud for your Subscription ID or the current Resource Group name.
+
+If your code uses environment functions (like `subscription().id`), the snapshot will fail or return placeholders unless you provide specific context via CLI arguments.
+
+To simulate a real deployment environment, you can pass the following flags:
+
+| Argument | Purpose | Example Value |
+| :--- | :--- | :--- |
+| `--subscription-id` | Replaces the value returned by `subscription().subscriptionId` | `00000000-1111-2222-3333-444444444444` |
+| `--resource-group` | Replaces the value returned by `resourceGroup().name` | `my-production-rg` |
+| `--location` | Sets the default location for `deployment().location` | `westeurope` |
+| `--tenant-id` | Replaces the value returned by `tenant().tenantId` | `72f988bf-86f1-41af-91ab-2d7cd011db47` |
+| `--management-group` | Replaces the value returned by `managementGroup().name` | `my-corp-mg` |
 
 #### [Bicep CLI](#tab/bicep-cli)
 
@@ -735,15 +765,6 @@ bicep snapshot main.bicepparam \
 `az bicep snapshot` doesn't exist. You must run `bicep snapshot` directly.
 
 ---
-
-### Comparison: Snapshot vs. What-if
-
-| Feature | `bicep snapshot` | `az deployment group what-if` |
-| :--- | :--- | :--- |
-| **Execution** | **Local only** (Offline) | **Cloud-based** (Online) |
-| **Comparison** | Compares code vs. a saved file | Compares code vs. live Azure state |
-| **Speed** | Extremely fast | Slower (requires API calls) |
-| **Use Case** | Refactoring and logic testing | Final pre-deployment check |
 
 ## upgrade
 

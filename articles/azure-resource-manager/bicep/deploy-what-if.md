@@ -15,9 +15,7 @@ ms.custom:
 
 Before deploying a Bicep file, you can preview the changes that will happen. Azure Resource Manager provides the what-if operation to let you see how resources will change if you deploy the Bicep file. The what-if operation doesn't make any changes to existing resources. Instead, it predicts the changes if the specified Bicep file is deployed.
 
-The [`bicep snapshot`](./bicep-cli.md#snapshot) command performs local-only testing by generating and comparing a normalized JSON representation of your infrastructure to catch unintended logic changes without requiring an Azure connection. For a comparison, see [Comparison snapshot vs what-if](./bicep-cli.md#comparison-snapshot-vs-what-if).
-
-Would you like me to show you the specific JSON structure it generates?
+Similar to what-if, the [`bicep snapshot`](./bicep-cli.md#snapshot) command performs local-only testing by generating and comparing a normalized JSON representation of your infrastructure to catch unintended logic changes without requiring an Azure connection. For a comparison, see [Comparison snapshot vs what-if](./bicep-cli.md#validate-changes).
 
 You can use the what-if operation with [Visual Studio Code](./deploy-visual-studio-code.md#deployment-pane), Azure PowerShell, Azure CLI, or REST API operations. What-if is supported for resource group, subscription, management group, and tenant level deployments.
 
