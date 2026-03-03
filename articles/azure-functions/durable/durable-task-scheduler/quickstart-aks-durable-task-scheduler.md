@@ -149,6 +149,19 @@ Before you begin:
 
 When deployment is working, the client logs show scheduled orchestrations and completed document-processing results.
 
+### Verify using the Durable Task Scheduler dashboard
+
+You can also verify your task hub and orchestration status using the [Durable Task Scheduler dashboard](./durable-task-scheduler-dashboard.md). 
+
+You can view the orchestration status and history via the [Durable Task Scheduler dashboard](./durable-task-scheduler-dashboard.md). By default, the dashboard runs on port 8082. 
+
+1. Navigate to http://localhost:8082 in your web browser.
+1. Click the **default** task hub. The orchestration instance you created is in the list.
+1. Click the orchestration instance ID to view the execution details.
+
+    :::image type="content" source="./media/quickstart-aks-durable-task-scheduler/orchestration-instance.png" alt-text="Screenshot showing the orchestration instance's details.":::
+
+
 ## Understand the code
 
 ### Client app
