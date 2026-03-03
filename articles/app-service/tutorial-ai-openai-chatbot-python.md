@@ -18,7 +18,7 @@ ms.service: azure-app-service
 
 # Tutorial: Build a chatbot with Azure App Service and Azure OpenAI (Flask)
 
-In this tutorial, you build an intelligent AI application by integrating Azure OpenAI with a Python web application and deploying it to Azure App Service. You create a Flask app that sends chat completion requests to a model in Azure OpenAI, and connect to the service using a managed identity.
+In this tutorial, you build an intelligent AI application by integrating Azure OpenAI with a Python web application and deploy it to Azure App Service. You create a Flask app that sends chat completion requests to a model in Azure OpenAI, and connect to the service using a managed identity.
 
 You learn how to:
 
@@ -50,7 +50,7 @@ You learn how to:
     pip freeze > requirements.txt
     ```
 
-1. In the workspace root, create an file named *app.py* containing the following code for a simple chat completion call with Azure OpenAI.
+1. In the workspace root, create a file named *app.py* containing the following code for a simple chat completion call with Azure OpenAI.
 
     ```python
     import os
@@ -92,7 +92,7 @@ You learn how to:
         app.run()
     ```
     
-1. Create a *templates* directory and an *index.html* file in it. Paste the following code for creating a simple chat interface into the *index.html* file.
+1. Create a *templates* directory and an *index.html* file in it. Paste in the following code for creating a simple chat interface.
 
     ```html
     <!doctype html>
