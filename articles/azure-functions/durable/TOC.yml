@@ -87,8 +87,6 @@
     items:
     - name: About Azure Functions
       href: ../functions-overview.md?toc=/azure/azure-functions/durable/toc.json
-    - name: About Durable Functions
-      href: what-is-durable-task.md
     - name: Versions
       href: durable-functions-versions.md
     - name: Packages

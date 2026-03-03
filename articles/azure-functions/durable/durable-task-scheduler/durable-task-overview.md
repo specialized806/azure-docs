@@ -15,7 +15,7 @@ ms.subservice: durable-task-scheduler
 The Durable Task SDKs are portable, open-source libraries for building durable orchestrations, activities, and entities using ordinary code. They work on any compute platform—Azure Container Apps, Kubernetes, or VMs. Each SDK connects to the [Durable Task Scheduler](durable-task-scheduler.md) as its managed backend.
 
 > [!TIP]
-> Not sure whether to use the Durable Task SDKs or Durable Functions? See [Choose your orchestration framework](choose-orchestration-framework.md). For a broader overview of the Durable Task ecosystem, see [What is Durable Task?](../what-is-durable-task.md).
+> Not sure whether to use the Durable Task SDKs or Durable Functions? See [Choose your orchestration framework](../choose-orchestration-framework.md). For a broader overview of the Durable Task ecosystem, see [What is Durable Task?](../what-is-durable-task.md).
 
 ## Available SDKs
 
@@ -117,6 +117,6 @@ The following table shows the features each SDK supports.
 > [!div class="nextstepaction"]
 > [Quickstart: Create an app with Durable Task SDKs](quickstart-portable-durable-task-sdks.md)
 
-- [Choose your orchestration framework](choose-orchestration-framework.md)
+- [Choose your orchestration framework](../choose-orchestration-framework.md)
 - [What is Durable Task?](../what-is-durable-task.md)
 - [Durable Task Scheduler overview](durable-task-scheduler.md)
