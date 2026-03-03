@@ -55,39 +55,41 @@ Orchestration versioning operates on these core principles:
 
 Before you use orchestration versioning, ensure you have the required package versions for your programming language.
 
-If you're using a non-.NET language (JavaScript, Python, PowerShell, or Java) with [extension bundles](../extension-bundles.md), your function app must reference **Extension Bundle version 4.26.0 or later**. Configure the `extensionBundle` range in `host.json` so that the minimum version is at least `4.26.0`. For example:
+If you're using a non-.NET language (JavaScript, Python, PowerShell, or Java) with [extension bundles](../extension-bundles.md), your function app must reference **Extension Bundle version 4.30.0 or later**. Configure the `extensionBundle` range in `host.json` so that the minimum version is at least `4.30.0`. For example:
 
 ```json
 {
     "version": "2.0",
     "extensionBundle": {
         "id": "Microsoft.Azure.Functions.ExtensionBundle",
-        "version": "[4.26.0, 5.0.0)"
+        "version": "[4.30.0, 5.0.0)"
     }
 }
 ```
 
 For details on choosing and updating bundle versions, see the [extension bundle configuration documentation](../extension-bundles.md).
 
+In addition to the extension bundle requirement for non-.NET languages, you also need to use the minimum version of the language-specific SDK package listed below. Both the extension bundle and the SDK package are required for orchestration versioning to work correctly.
+
 # [C#](#tab/csharp)
 
-Use `Microsoft.Azure.Functions.Worker.Extensions.DurableTask` version [1.5.0](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.DurableTask/1.5.0) or later.
+Use `Microsoft.Azure.Functions.Worker.Extensions.DurableTask` version [1.14.0](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.DurableTask/1.14.0) or later.
 
 # [JavaScript](#tab/javascript)
 
-Use `durable-functions` version [3.2.0](https://www.npmjs.com/package/durable-functions/v/3.2.0) or later.
+Use `durable-functions` version [3.3.0](https://www.npmjs.com/package/durable-functions/v/3.3.0) or later.
 
 # [Python](#tab/python)
 
-Use `azure-functions-durable` version [1.3.3](https://pypi.org/project/azure-functions-durable/1.3.3/) or later.
+Use `azure-functions-durable` version [1.5.0](https://pypi.org/project/azure-functions-durable/1.5.0/) or later.
 
 # [PowerShell](#tab/powershell)
 
-Use `AzureFunctions.PowerShell.Durable.SDK` version [2.0.0](https://www.powershellgallery.com/packages/AzureFunctions.PowerShell.Durable.SDK/2.0.0) or later. Ensure you're using the standalone [Durable Functions PowerShell SDK](durable-functions-powershell-v2-sdk-migration-guide.md).
+Use `AzureFunctions.PowerShell.Durable.SDK` version [2.2.0](https://www.powershellgallery.com/packages/AzureFunctions.PowerShell.Durable.SDK/2.2.0) or later. Ensure you're using the standalone [Durable Functions PowerShell SDK](durable-functions-powershell-v2-sdk-migration-guide.md).
 
 # [Java](#tab/java)
 
-Use `durabletask-azure-functions` version [1.6.1](https://mvnrepository.com/artifact/com.microsoft/durabletask-azure-functions/1.6.1) or later.
+Use `durabletask-azure-functions` version [1.6.3](https://mvnrepository.com/artifact/com.microsoft/durabletask-azure-functions/1.6.3) or later.
 
 ---
 
@@ -930,15 +932,38 @@ public static async Task<HttpResponseData> HttpStart(
 
 # [JavaScript](#tab/javascript)
 
-Starting an orchestration with a specific version that differs from the current `defaultVersion` specified in your `host.json` isn't supported in JavaScript.
+```javascript
+const HttpStart: HttpHandler = async (request: HttpRequest, context: InvocationContext): Promise<HttpResponse> => {
+    const client = df.getClient(context);
+    const instanceId = await client.startNew("ProcessOrderOrchestrator", {
+        input: orderId,
+        version: "1.0"
+    });
+
+    // ...
+};
+```
 
 # [Python](#tab/python)
 
-Starting an orchestration with a specific version that differs from the current `defaultVersion` specified in your `host.json` isn't supported in Python.
+```python
+@myApp.route(route="orchestrators/{functionName}")  
+@myApp.durable_client_input(client_name="client")  
+async def http_start(req: func.HttpRequest, client):
+    instance_id = await client.start_new("ProcessOrderOrchestrator", client_input=order_id, version="1.0")
+
+    # ...
+```
 
 # [PowerShell](#tab/powershell)
 
-Starting an orchestration with a specific version that differs from the current `defaultVersion` specified in your `host.json` isn't supported in PowerShell.
+```powershell
+param($Request, $TriggerMetadata)
+
+$instanceId = Start-DurableOrchestration -FunctionName "ProcessOrderOrchestrator" -Input $orderId -Version "1.0"
+
+# ...
+```
 
 # [Java](#tab/java)
 
@@ -985,15 +1010,41 @@ public static async Task<string> RunMainOrchestrator(
 
 # [JavaScript](#tab/javascript)
 
-Starting a sub-orchestration with a specific version that differs from the current `defaultVersion` specified in your `host.json` isn't supported in JavaScript.
+```javascript
+const RunMainOrchestrator: OrchestrationHandler = function* (context: OrchestrationContext) {
+    const paymentResult = yield context.df.callSubOrchestrator(
+        "ProcessPaymentOrchestrator",
+        orderId,
+        { version: "1.0" }
+    );
+
+    // ...
+};
+```
 
 # [Python](#tab/python)
 
-Starting a sub-orchestration with a specific version that differs from the current `defaultVersion` specified in your `host.json` isn't supported in Python.
+```python
+@myApp.orchestration_trigger(context_name="context")
+def run_main_orchestrator(context: df.DurableOrchestrationContext):
+    payment_result = yield context.call_sub_orchestrator(
+        "ProcessPaymentOrchestrator",
+        order_id,
+        version="1.0"
+    )
+
+    # ...
+```
 
 # [PowerShell](#tab/powershell)
 
-Starting a sub-orchestration with a specific version that differs from the current `defaultVersion` specified in your `host.json` isn't supported in PowerShell.
+```powershell
+param($Context)
+
+$paymentResult = Invoke-SubOrchestrator -FunctionName "ProcessPaymentOrchestrator" -Input $orderId -Version "1.0"
+
+# ...
+```
 
 # [Java](#tab/java)
 
