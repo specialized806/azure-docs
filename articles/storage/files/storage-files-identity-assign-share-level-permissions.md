@@ -61,7 +61,7 @@ For example, say you have a user in your AD that's user1@onprem.contoso.com and 
 
 For share-level permissions to work, you must take the following actions:
 
-- If your identity source is AD DS or Microsoft Entra Kerberos, sync the users **and** the groups from your local Active Directory to Entra ID by using either [Microsoft Entra Connect Sync](/entra/identity/hybrid/connect/how-to-connect-sync-whatis) or [Microsoft Entra Cloud Sync](/entra/identity/hybrid/cloud-sync/what-is-cloud-sync), a lightweight agent that you can install from the Entra Admin Center.
+- If your identity source is AD DS or Microsoft Entra Kerberos, sync the users **and** the groups from your local Active Directory to Entra ID by using either [Microsoft Entra Connect Sync](/entra/identity/hybrid/connect/how-to-connect-sync-whatis) or [Microsoft Entra Cloud Sync](/entra/identity/hybrid/cloud-sync/what-is-cloud-sync), a lightweight agent that you can install from the Microsoft Entra admin center.
 - Add AD synced groups to RBAC role so they can access your storage account.
 
 > [!TIP]
@@ -169,7 +169,7 @@ You can assign permissions to all authenticated Entra users and to specific Entr
 
 ## Understanding group-based access for non-synced users
 
-Users who aren't synced to Entra ID can still access Azure file shares through group membership. If a user belongs to an on-premises AD DS group that's synced to Entra ID and has an Azure RBAC role assignment, the user gets the group's permissions, even though they don't appear as a group member in the Entra portal.
+Users who aren't synced to Entra ID can still access Azure file shares through group membership. If a user belongs to an on-premises AD DS group that's synced to Entra ID and has an Azure RBAC role assignment, the user gets the group's permissions, even though they don't appear as a group member in the Microsoft Entra admin center.
 
 Here's how it works:
 
@@ -178,7 +178,7 @@ Here's how it works:
 - Azure Files reads the group security identifiers (SIDs) from the Kerberos ticket.
 - If any of those groups are synced to Entra ID, Azure Files applies the matching RBAC role assignments.
 
-Because of this process, authorization is based on the groups listed in the Kerberos ticket, not on what appears in the Entra portal. Non-synced users can access file shares through their synced AD DS group memberships without needing individual sync to Entra ID.
+Because of this process, authorization is based on the groups listed in the Kerberos ticket, not on what appears in the Microsoft Entra admin center. Non-synced users can access file shares through their synced AD DS group memberships without needing individual sync to Entra ID.
 
 ## Next step
 
