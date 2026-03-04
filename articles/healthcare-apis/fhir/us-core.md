@@ -45,7 +45,7 @@ Download the us.nlm.vsac package version 0.18.0 from the FHIR package registry a
 2. Prepare the VSAC package: During the US Core upload process, UploadFIG utility might encounter a package resolution error when attempting to retrieve the VSAC package from the registry. To avoid this issue, the VSAC package must be preloaded into the local UploadFIG utility cache.  
   1. Package downloaded at step 2 has name `us.nlm.vsac-0.18.0.tgz`  
   1. Rename it to `us.nlm.vsac_0_18_0.tgz`  
-  - Create this folder if it doesn’t exist: `C:\Users\<YourUser>\AppData\Local\Temp\UploadFIG\PackageCache`
+  1. Create this folder if it doesn’t exist: `C:\Users\<YourUser>\AppData\Local\Temp\UploadFIG\PackageCache`
   1. Copy the renamed package into the UploadFIG cache directory (folder created in the last step) 
 3. Continue with the rest of the steps using UploadFIG to upload US Core 7 profiles.
 
