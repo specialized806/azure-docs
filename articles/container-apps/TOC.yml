@@ -52,6 +52,26 @@ items:
       href: ai-integration.md
     - name: Compose for agents
       href: compose-agent.md
+    - name: MCP servers
+      items:
+        - name: Overview
+          href: mcp-overview.md
+        - name: Choose a hosting option
+          href: mcp-choosing-azure-service.md
+        - name: Tutorials
+          items:
+            - name: Deploy with .NET
+              href: tutorial-mcp-server-dotnet.md
+            - name: Deploy with Python
+              href: tutorial-mcp-server-python.md
+            - name: Deploy with Node.js
+              href: tutorial-mcp-server-nodejs.md
+            - name: Deploy with Java
+              href: tutorial-mcp-server-java.md
+        - name: Authentication
+          href: mcp-authentication.md
+        - name: Troubleshooting
+          href: mcp-troubleshooting.md
     - name: GPUs
       items:
         - name: Serverless GPUs

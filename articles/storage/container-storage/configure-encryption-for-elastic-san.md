@@ -5,6 +5,7 @@ author: saurabh0501
 ms.service: azure-container-storage
 ms.date: 01/28/2026
 ms.author: saurabsharma
+ms.reviewer: kendownie
 ms.topic: overview
 # Customer intent: As a cloud administrator, I want to configure customer-managed keys for Azure Elastic SAN encryption when used with Azure Container Storage, so that my data management practices meet compliance requirements.
 ---
