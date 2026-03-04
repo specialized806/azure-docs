@@ -321,7 +321,7 @@ N/A
 
 ## Configure blob index tags replication (preview)
 
-Object replication now supports copying index tags from source blobs to destination blobs. You can configure this capability as part of a new or existing replication rule..
+Object replication now supports copying index tags from source blobs to destination blobs. You can configure this capability as part of a new or existing replication rule.
 
 > [!IMPORTANT]
 > Tag replication is currently in PREVIEW.
