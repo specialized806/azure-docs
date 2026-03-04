@@ -444,11 +444,12 @@ To use the sample:
 > **Bootstrap Dependency Notice**
 > 
 > This template uses **Bootstrap 3.3.5** sourced from the official Bootstrap CDN. This version has been validated and tested with the product.
-> [Template repository](https://github.com/azure-ad-b2c/html-templates)
->
-> [Official Bootstrap download and CDN reference](https://getbootstrap.com/docs/3.3/getting-started/#download-cdn)
 > 
-> [CDN reference used by the template](https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css)
+> **Template repositor**y: [https://github.com/azure-ad-b2c/html-templates](https://github.com/azure-ad-b2c/html-templates)
+>
+> **Official Bootstrap download and CDN reference**: [https://getbootstrap.com/docs/3.3/getting-started/#download-cdn](https://getbootstrap.com/docs/3.3/getting-started/#download-cdn)
+> 
+> **CDN reference used by the template**: [https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css](https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css)
 > 
 > Example snippet (default configuration):
 > ```xml
