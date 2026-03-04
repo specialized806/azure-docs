@@ -28,7 +28,7 @@ This article walks through the steps and syntax you need to create an External A
 - The virtual network specified in the template must define a subnet:
 
    - The recommended subnet size is `/24` with 256 addresses to accommodate future growth and scaling needs.
-   - The subnet must be empty (no network interface cards _NICs_, virtual machines, private endpoints, and so on).
+   - The subnet must be empty, which means no network interface cards (NICs), virtual machines, private endpoints, and so on.
    - The subnet must be delegated to `Microsoft.Web/hostingEnvironments`.
    
    Keep in mind that after you create an App Service Environment with the template, you can't change the subnet size.
