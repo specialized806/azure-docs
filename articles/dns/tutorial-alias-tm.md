@@ -129,7 +129,7 @@ Create two Ubuntu virtual machines.
     | **Network interface** |  |
     | Virtual network | Select **myTMVNet**. |
     | Subnet  | Select **WebSubnet**. |
-    | Public IP   | Select **Create new**, and then enter *web-01-ip* in **Name**. </br> Select **Basic** for the **SKU**, and **Static** for the **Assignment**. |
+    | Public IP   | Select **Create new**, and then enter *web-01-ip* in **Name**. Select **Standard** for the **SKU**. |
     | NIC network security group | Select **Basic**. |
     | Public inbound ports  | Select **Allow selected ports**. |
     | Select inbound ports  | Select **HTTP (80)** and **HTTPS (443)**. |
