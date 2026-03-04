@@ -16,7 +16,7 @@ The results in this article are intended as **reference only**, not as guarantee
 
 ## Workload categories
 
-This article focuses on two common storage workload categories:
+This article covers two common storage workload categories:
 
 - I/O‑intensive workloads
   Small, random I/O patterns that are typically read‑heavy and common in transactional or metadata‑driven workloads.
