@@ -6,7 +6,7 @@ services: dns
 author: asudbring
 ms.service: azure-dns
 ms.topic: tutorial
-ms.date: 07/11/2025
+ms.date: 03/03/2026
 ms.author: allensu
 ms.custom:
   - template-tutorial #Required; leave this attribute/value as-is.
@@ -24,7 +24,6 @@ In this tutorial, you learn how to:
 > [!div class="checklist"]
 > * Create a virtual network and a subnet.
 > * Create a web server virtual machine with a public IP.
-> * Deploy Azure Bastion for secure VM access.
 > * Add a DNS label to a public IP.
 > * Create a Traffic Manager profile.
 > * Create an alias record.
@@ -91,11 +90,11 @@ Create a virtual network and a subnet to place your web servers in.
 
 ## Create web server virtual machines
 
-Create two Windows Server virtual machines, and install IIS web server on them, and then add DNS labels to their public IPs.
+Create two Linux virtual machines, install NGINX web server on them, and then add DNS labels to their public IPs.
 
 ### Create the virtual machines
 
-Create two Windows Server 2019 virtual machines.
+Create two Ubuntu virtual machines.
 
 1. In the Azure portal, enter *virtual machine* in the search box at the top of the portal, and then select **Virtual machines** from the search results.
 2. In **Virtual machines**, select **+ Create** and then select **Azure virtual machine**.
@@ -107,16 +106,17 @@ Create two Windows Server 2019 virtual machines.
     | Subscription  | Select your Azure subscription. |
     | Resource Group   | Select **TMResourceGroup**. |
     | **Instance details**   |   |
-    | Virtual machine name  | Enter *Web-01*. |
+    | Virtual machine name  | Enter *web-01*. |
     | Region    | Select **(US) East US**. |
     | Availability options  | Select **No infrastructure redundancy required**. |
     | Security type    | Select **Standard**. |
-    | Image   | Select **Windows Server 2019 Datacenter - Gen2**. |
+    | Image   | Select **Ubuntu Server 24.04 LTS - x64 Gen2**. |
     | Size   | Select your VM size. |
     | **Administrator account** |  |
+    | Authentication type | Select **SSH public key**. |
     | Username  | Enter a username. |
-    | Password  | Enter a password. |
-    | Confirm password  | Reenter the password. |
+    | SSH public key source | Select **Generate new key pair**. |
+    | Key pair name | Enter a name for the key pair. |
     | **Inbound port rules** |    |
     | Public inbound ports | Select **None**. |
 
@@ -129,85 +129,65 @@ Create two Windows Server 2019 virtual machines.
     | **Network interface** |  |
     | Virtual network | Select **myTMVNet**. |
     | Subnet  | Select **WebSubnet**. |
-    | Public IP   | Select **Create new**, and then enter *Web-01-ip* in **Name**. </br> Select **Basic** for the **SKU**, and **Static** for the **Assignment**. |
+    | Public IP   | Select **Create new**, and then enter *web-01-ip* in **Name**. </br> Select **Basic** for the **SKU**, and **Static** for the **Assignment**. |
     | NIC network security group | Select **Basic**. |
     | Public inbound ports  | Select **Allow selected ports**. |
     | Select inbound ports  | Select **HTTP (80)** and **HTTPS (443)**. |
 
 6. Select **Review + create**.
 7. Review the settings, and then select **Create**.
-8. Repeat previous steps to create the second virtual machine. Enter *Web-02* in the **Virtual machine name** and *Web-02-ip* in the **Name** of **Public IP**. For the other settings, use the same information from the previous steps used with first virtual machine.
+8. Repeat previous steps to create the second virtual machine. Enter *web-02* in the **Virtual machine name** and *web-02-ip* in the **Name** of **Public IP**. For the other settings, use the same information from the previous steps used with first virtual machine.
 
 Each virtual machine deployment may take a few minutes to complete.
 
-### Deploy Azure Bastion
-
-Azure Bastion uses your browser to connect to VMs in your virtual network over RDP by using their private IP addresses. The VMs don't need client software or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
-
 > [!NOTE]
-> [!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+> The network security group rules block inbound SSH access from the internet. To run commands on the virtual machines, use the **Run command** feature in the Azure portal or deploy Azure Bastion. For more information about Azure Bastion, see [Quickstart: Deploy Azure Bastion with default settings](../bastion/quickstart-host-portal.md).
 
-1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
-2. Select **+ Create**.
-3. In the **Basics** tab of **Create a Bastion**, enter or select the following information:
+### Install NGINX web server
 
-    | Setting | Value |
-    |---|---|
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **TMResourceGroup**. |
-    | **Instance details** |  |
-    | Name | Enter **bastion**. |
-    | Region | Select **East US**. |
-    | Tier | Select **Developer**. |
-    | **Configure virtual networks** |  |
-    | Virtual network | Select **myTMVNet**. |
+Install NGINX on both **web-01** and **web-02** virtual machines using the **Run command** feature in the Azure portal.
 
-4. Select **Review + create**.
-5. Select **Create**.
+1. In the search box at the top of the portal, enter *virtual machine*. Select **Virtual machines** in the search results.
 
-### Install IIS web server
+1. Select the **web-01** virtual machine.
 
-Install IIS on both **Web-01** and **Web-02** virtual machines.
+1. In the **Operations** section of the left menu, select **Run command**.
 
-1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
-2. In **Virtual machines**, select **Web-01**.
-3. Select **Connect** then **Connect via Bastion** in the **Overview** section.
-4. Enter the username and password that you created when you created the virtual machine, then select **Connect**.
-5. On the **Server Manager** dashboard, select **Manage** then **Add Roles and Features**.
-6. Select **Server Roles** or select **Next** three times. On the **Server Roles** screen, select **Web Server (IIS)**.
-7. Select **Add Features**, and then select **Next**.
+1. Select **RunShellScript**.
 
-    :::image type="content" source="./media/tutorial-alias-tm/iis-web-server-installation.png" alt-text="Screenshot of Add Roles and Features Wizard in Windows Server 2019 showing how to install the I I S Web Server by adding the Web Server role.":::
+1. In the **Run Command Script** pane, enter the following command:
 
-8. Select **Confirmation** or select **Next** three times, and then select **Install**. The installation process takes a few minutes to finish.
-9. After the installation finishes, select **Close**.
-10. Go to *C:\inetpub\wwwroot* and open *iisstart.htm* with Notepad or any editor of your choice to edit the default IIS web page.
-11. Replace all the text in the file with `Hello World from Web-01` and save the changes to *iisstart.htm*. 
-12. Open a web browser. Browse to **localhost** to verify that the default IIS web page appears.
+    ```bash
+    sudo apt-get update && sudo apt-get install -y nginx && echo 'Hello World from web-01' | sudo tee /var/www/html/index.html
+    ```
 
-    :::image type="content" source="./media/tutorial-alias-tm/iis-on-web-01-vm-in-web-browser.png" alt-text="Screenshot of Internet Explorer showing the I I S Web Server default page of first virtual machine.":::
+1. Select **Run**.
 
-13. Close the Bastion session.
-14. Repeat previous steps to install IIS web server on **Web-02** virtual machine. Use `Hello World from Web-02` to replace all the text in *iisstart.htm*.
+1. Wait for the command to complete. The output displays the installation progress and finishes when NGINX is installed.
+
+1. Repeat the previous steps for the **web-02** virtual machine. Use the following command instead:
+
+    ```bash
+    sudo apt-get update && sudo apt-get install -y nginx && echo 'Hello World from web-02' | sudo tee /var/www/html/index.html
+    ```
 
 ### Add a DNS label
 
 Public IP addresses need DNS labels to work with Traffic Manager.
 
 1. In the Azure portal, enter *TMResourceGroup* in the search box at the top of the portal, and then select **TMResourceGroup** from the search results.
-2. In the **TMResourceGroup** resource group, select the **Web-01-ip** public IP address.
+1. In the **TMResourceGroup** resource group, select the **web-01-ip** public IP address.
 3. Under **Settings**, select **Configuration**.
 4. Enter *web01pip* in the **DNS name label**.
 5. Select **Save**.
 
     :::image type="content" source="./media/tutorial-alias-tm/ip-dns-name-label-inline.png" alt-text="Screenshot of the Configuration page of Azure Public IP Address showing D N S name label." lightbox="./media/tutorial-alias-tm/ip-dns-name-label-expanded.png":::
 
-6. Repeat the previous steps for the **Web-02-ip** public IP address and enter *web02pip* in the **DNS name label**.
+6. Repeat the previous steps for the **web-02-ip** public IP address and enter *web02pip* in the **DNS name label**.
 
 ## Create a Traffic Manager profile
 
-1. In the **Overview** page of **Web-01-ip** public IP address, note the IP address for later use. Repeat this step for the **Web-02-ip** public IP address.
+1. In the **Overview** page of **web-01-ip** public IP address, note the IP address for later use. Repeat this step for the **web-02-ip** public IP address.
 2. In the Azure portal, enter *Traffic Manager profile* in the search box at the top of the portal, and then select **Traffic Manager profiles**.
 3. Select **+ Create**.
 4. In the **Create Traffic Manager profile** page, enter or select the following information:
@@ -229,7 +209,7 @@ Public IP addresses need DNS labels to work with Traffic Manager.
     |---------|-------|
     | Type | Select **External endpoint**. |
     | Name | Enter *EP-Web01*. |
-    | Fully qualified domain name (FQDN) or IP | Enter the IP address for **Web-01-ip** that you noted previously.  |
+    | Fully qualified domain name (FQDN) or IP | Enter the IP address for **web-01-ip** that you noted previously.  |
     | Priority  | Enter *1*.  |
 
     :::image type="content" source="./media/tutorial-alias-tm/add-endpoint-tm-inline.png" alt-text="Screenshot of the Endpoints page in Traffic Manager profile showing selected settings for adding an endpoint." lightbox="./media/tutorial-alias-tm/add-endpoint-tm-expanded.png":::
@@ -241,7 +221,7 @@ Public IP addresses need DNS labels to work with Traffic Manager.
     |---------|-------|
     | Type | Select **External endpoint**. |
     | Name   | Enter *EP-Web02*. |
-    | Fully qualified domain name (FQDN) or IP | Enter the IP address for **Web-02-ip** that you noted previously.  |
+    | Fully qualified domain name (FQDN) or IP | Enter the IP address for **web-02-ip** that you noted previously.  |
     | Priority  | Enter *2*. |
 
 ## Create an alias record
@@ -263,9 +243,9 @@ Create an alias record that points to the Traffic Manager profile.
 
 ## Test the alias record
 
-1. From a web browser, browse to `contoso.com` or your apex domain name. You see the IIS default page with `Hello World from Web-01`. The Traffic Manager directed traffic to **Web-01** IIS web server because it has the highest priority. Close the web browser and shut down **Web-01** virtual machine. Wait a few minutes for the virtual machine to completely shut down.
+1. From a web browser, browse to `contoso.com` or your apex domain name. You see the NGINX page with `Hello World from web-01`. The Traffic Manager directed traffic to **web-01** because it has the highest priority. Close the web browser and shut down **web-01** virtual machine. Wait a few minutes for the virtual machine to completely shut down.
 2. Open a new web browser, and browse again to `contoso.com` or your apex domain name.
-3. You should see the IIS default page with `Hello World from Web-02`. The Traffic Manager handled the situation and directed traffic to the second IIS server after shutting down the first server that has the highest priority.
+3. You should see the NGINX page with `Hello World from web-02`. The Traffic Manager handled the situation and directed traffic to the second web server after shutting down the first server that has the highest priority.
 
 ## Clean up resources
 
