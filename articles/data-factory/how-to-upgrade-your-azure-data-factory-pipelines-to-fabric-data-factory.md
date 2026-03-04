@@ -6,6 +6,7 @@ ms.author: ssrinivasara
 ms.topic: how-to
 ms.date: 03/05/2026
 ms.custom: pipelines
+ai-usage: ai-assisted
 ---
 
 # Upgrade your Azure Data Factory pipelines to Fabric
