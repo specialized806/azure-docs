@@ -73,19 +73,21 @@ API Management supports external identity providers when you configure them in a
 
 To optionally enable access to the developer portal by external users in your Microsoft Entra ID tenant, complete the following steps:
 
-* Add an external identity provider to your Microsoft Entra ID tenant.
-* Enable self-service sign-up.
+1. Add an external identity provider to your Microsoft Entra ID tenant.
+1. Enable self-service sign-up.
 
-### Add an external identity provider to your Microsoft Entra ID tenant
+### 1. Add an external identity provider to your Microsoft Entra ID tenant
 
-For this scenario, you must enable an external identity provider in your workforce tenant. Configuring the external identity provider depends on the specific provider and is outside the scope of this article. For options and links to steps, see [Identity providers for External ID in workforce tenants](/entra/external-id/identity-providers).
+For this scenario, you must enable an external identity provider in your workforce tenant. Configuring the external identity provider depends on the specific provider and is outside the scope of this article. For example, for Google you must create a project in the Google Developers Console, then configure the project credentials in Microsoft Entra. 
 
-### Enable self-service sign-up
+For options and links to steps, see [Identity providers for External ID in workforce tenants](/entra/external-id/identity-providers).
+
+### 2. Enable self-service sign-up
 
 To allow external users to register for access to the developer portal, complete the following steps:
 
-* Enable self-service sign-up for your tenant. 
-* Add your app to the self-service sign-up user flow. 
+a. Enable self-service sign-up for your tenant. 
+b. Add your app to the self-service sign-up user flow. 
 
 For more information and detailed steps, see [Add self-service sign-up user flows for B2B collaboration](/entra/external-id/self-service-sign-up-user-flow).
 
@@ -96,17 +98,17 @@ For more information and detailed steps, see [Add self-service sign-up user flow
 
 To optionally enable access to the developer portal by users from more than one Microsoft Entra ID tenant, complete the following steps:
 
-* Configure app registration for multiple tenants.
-* Update the Microsoft Entra ID identity provider configuration for the developer portal to add another tenant.
+1. Configure app registration for multiple tenants.
+1. Update the Microsoft Entra ID identity provider configuration for the developer portal to add another tenant.
 
-### Configure app registration for multiple tenants
+### 1. Configure app registration for multiple tenants
 
 The app registration must support multiple tenants. You can configure this support in either of the following ways:
 
 * When creating the app registration, set **Supported account types** to **Accounts in any organizational directory (Any Microsoft Entra ID tenant - Multitenant)**. 
 * If you previously configured an app registration for a single tenant, update the **Supported account types** setting on the **Manage** > **Authentication** page of the app registration.
 
-### Update Microsoft Entra ID identity provider configuration for multiple tenants
+### 2. Update Microsoft Entra ID identity provider configuration for multiple tenants
 
 Update the identity provider configuration to add another tenant:
 
