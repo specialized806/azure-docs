@@ -125,7 +125,7 @@ In this scenario, multiple guest VMs run concurrently against the same Elastic S
 |---------------:|--------------------------------|----------|---------------:|------------:|--------------:|--------------:|
 | 6              | Random (Read/Write 75/25)      | 4K       | 3              | 96          | 85,000        | 356           |
 
-## Throughput‑intensive workload example
+## Throughput‑intensive workload benchmark
 Throughput intensive workloads are represented by large sequential I/O patterns typical of backup, scan, and read ahead workloads.
 
 ### Windows (DiskSPD)
