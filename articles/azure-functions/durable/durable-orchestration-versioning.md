@@ -437,7 +437,7 @@ Here's what to expect when you deploy your updated orchestrator function with th
 - **Old worker restrictions**: Old workers can process only the orchestrations with a version equal to or lower than the version specified in their own `defaultVersion` in `host.json`, because they aren't expected to have orchestrator code compatible with newer versions.
 
 > [!NOTE]
-> Orchestration versioning doesn't affect worker lifecycle. The Azure Functions platform manages worker setup and decommissioning based on regular rules depending on hosting options.
+> Orchestration versioning doesn't affect worker lifecycle. The Azure Functions platform manages worker setup and decommissioning based on regular rules depending on hosting models.
 
 ## Example: Replace an activity in the sequence
 

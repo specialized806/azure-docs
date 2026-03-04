@@ -30,7 +30,7 @@ landingContent:
             url: ./durable-task-scheduler/durable-task-overview.md
       - linkListType: concept
         links:
-          - text: Choose your hosting option
+          - text: Choose your hosting model
             url: choose-orchestration-framework.md
           - text: Programming model
             url: programming-model-overview.md

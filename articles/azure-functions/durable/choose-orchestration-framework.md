@@ -1,5 +1,5 @@
 ---
-title: Choose your hosting option
+title: Choose your hosting model
 description: Learn how your hosting platform determines whether to use Durable Functions for Azure Functions or the standalone Durable Task SDKs for self-hosted scenarios.
 author: cgillum
 ms.author: cgillum
@@ -9,20 +9,24 @@ ms.topic: concept-article
 ms.service: azure-functions
 ms.subservice: durable
 titleSuffix: Durable Task
-#Customer intent: As a developer, I want to understand which Durable Task programming model to use based on my hosting platform.
+#Customer intent: As a developer, I want to understand which Durable Task hosting model to use based on my hosting platform.
 ---
 
-# Choose your hosting option
+# Choose your hosting model
 
-As described in [What is Durable Task?](what-is-durable-task.md), the Durable Task framework supports two hosting models: **Azure Functions** (via Durable Functions) and **self-hosted** (via the standalone Durable Task SDKs). Both hosting models provide the same core durable execution capabilities (orchestrations, activities, timers, external events, and more) but differ in how your application is hosted, scaled, and deployed.
+As described in [What is Durable Task?](what-is-durable-task.md), the Durable Task framework supports two hosting models: 
+- **Azure Functions** (via [Durable Functions](./durable-functions-overview.md))
+- **Self-hosted** (via [the standalone Durable Task SDKs](./durable-task-scheduler/durable-task-overview.md)). 
 
-In general, where your application runs determines which programming model you use. If you're building on Azure Functions, you use Durable Functions. If you're building on any other compute platform, you use the standalone Durable Task SDKs.
+Both hosting models provide the same core durable execution capabilities (orchestrations, activities, timers, external events, and more) but differ in how your application is hosted, scaled, and deployed.
+
+In general, where your application runs determines which hosting model you use. If you're building on Azure Functions, you use Durable Functions. If you're building on any other compute platform, you use the standalone Durable Task SDKs.
 
 ## Choosing based on hosting platform
 
-If you already know your application's hosting platform, the following table can help you determine which programming model to use:
+If you already know your application's hosting platform, the following table can help you determine which hosting model to use:
 
-| Hosting platform | Programming model |
+| Hosting platform | Hosting model |
 | - | - |
 | **Azure Functions** (Consumption, Flex Consumption, Premium) | Durable Functions |
 | **Azure Container Apps** (with Azure Functions runtime) | Either |
@@ -31,11 +35,11 @@ If you already know your application's hosting platform, the following table can
 | **Virtual machines or on-premises** | Standalone Durable Task SDKs |
 
 > [!NOTE]
-> Azure App Service and Azure Container Apps can both host the Azure Functions runtime, either through [fully managed Azure Functions integration](../functions-scale.md#overview-of-plans) or by deploying the Functions runtime directly. Thus, both platforms support either programming model. For more information on Azure Functions hosting options, see [Azure Functions hosting plans](../functions-scale.md).
+> Azure App Service and Azure Container Apps can both host the Azure Functions runtime, either through [fully managed Azure Functions integration](../functions-scale.md#overview-of-plans) or by deploying the Functions runtime directly. Thus, both platforms support either hosting model. For more information on Azure Functions hosting models, see [Azure Functions hosting plans](../functions-scale.md).
 
-## Comparing the programming models
+## Comparing the hosting models
 
-The following table summarizes the key differences between the two programming models:
+The following table summarizes the key differences between the two hosting models:
 
 | | Durable Functions (Azure Functions) | Standalone Durable Task SDKs (self-hosted) |
 | - | - | - |
@@ -51,7 +55,7 @@ The following table summarizes the key differences between the two programming m
 >
 > The [Flex Consumption](../flex-consumption-plan.md) hosting plan offers [an "always read instances" concept](../flex-consumption-plan.md#always-ready-instances) as cold start mitigation.
 > 
-> Learn more about [Azure Functions hosting options](../functions-scale.md).
+> Learn more about [Azure Functions hosting models](../functions-scale.md).
 
 ### Built-in HTTP APIs
 
@@ -111,16 +115,16 @@ Learn more: [Task hubs](durable-functions-task-hubs.md)
 
 Learn more: [Diagnostics](durable-functions-diagnostics.md) | [Versioning](durable-functions-versioning.md)
 
-Both programming models support the **[Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md)** as a state storage backend, which provides both state storage and extra monitoring capabilities. Durable Functions also supports several bring-your-own (BYO) storage options for scenarios that require them. For more information, see [Storage providers](durable-functions-storage-providers.md).
+Both hosting models support the **[Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md)** as a state storage backend, which provides both state storage and extra monitoring capabilities. Durable Functions also supports several bring-your-own (BYO) storage options for scenarios that require them. For more information, see [Storage providers](durable-functions-storage-providers.md).
 
 ## More considerations
 
-When choosing between the two programming models, consider the following factors:
+When choosing between the two hosting models, consider the following factors:
 
 | Choose Durable Functions if... | Choose standalone Durable Task SDKs if... |
 | - | - |
 | You want built-in Azure Functions triggers (HTTP, Queue, Timer, etc.). | You want full control over your container and its entry points. |
-| You're already familiar with the Azure Functions programming model. | You prefer a lightweight SDK without the Azure Functions runtime overhead. |
+| You're already familiar with the Azure Functions hosting model. | You prefer a lightweight SDK without the Azure Functions runtime overhead. |
 | You want Azure portal integration for function management. | You want the same code to be portable across container platforms (AKS, App Service, etc.). |
 | You need to choose from [multiple storage backends](durable-functions-storage-providers.md). | You have existing non-Functions application code to integrate with. |
 | You need **serverless, event-driven apps** that scale to zero. | You need **always-on, low-latency workloads** without cold start delays. |

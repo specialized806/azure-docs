@@ -15,7 +15,7 @@ ms.subservice: durable
 Durable Functions is an extension of [Azure Functions](../functions-overview.md) that lets you build stateful workflows in a serverless environment by writing orchestrator, activity, and entity functions in code. The Durable Functions runtime manages state, checkpoints, retries, and recovery so your workflows can run reliably for long periods.
 
 > [!TIP]
-> Not sure whether to use Durable Functions or the standalone Durable Task SDKs? See [Choose your hosting option](choose-orchestration-framework.md).
+> Not sure whether to use Durable Functions or the standalone Durable Task SDKs? See [Choose your hosting model](choose-orchestration-framework.md).
 
 ## Supported languages
 
@@ -48,6 +48,6 @@ After your first workflow is running, explore [Task hubs](durable-functions-task
 > [Create your first durable function (C#)](durable-functions-isolated-create-first-csharp.md)
 
 - [What is Durable Task?](what-is-durable-task.md)
-- [Choose your hosting option](choose-orchestration-framework.md)
+- [Choose your hosting model](choose-orchestration-framework.md)
 - [Durable Functions storage providers](durable-functions-storage-providers.md)
 - [Durable Task Scheduler overview](durable-task-scheduler/durable-task-scheduler.md)

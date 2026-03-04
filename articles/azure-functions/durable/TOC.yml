@@ -5,7 +5,7 @@
   items:
   - name: What is Durable Task?
     href: what-is-durable-task.md
-  - name: Choose your hosting option
+  - name: Choose your hosting model
     href: choose-orchestration-framework.md
 - name: Quickstarts
   items:
