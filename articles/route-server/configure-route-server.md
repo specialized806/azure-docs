@@ -316,18 +316,14 @@ Use the scroll bar at the bottom of the table to view the 'AS Path'.
 
 | **Prefix** |  **Next hop type** | **Next hop** |  **Origin** |**AS Path** |
 | ---        | ---                | ---          | ---               | ---         |
-| 10.2.0.0/24 | VPN | 10.0.2.14 | /subscriptions/subscriptionID/resourceGroups/resourceGroupName/providers/Microsoft.Network/virtualNetworkGateways/vpngw | 20000 | 
-
-| **Prefix** |  **Next hop type** | **Next hop** |  **Origin** |**AS Path** |
-| ---        | ---                | ---          | ---               | ---         |
-| 10.2.0.0/24| VPN |10.0.2.14|/subscriptions/`<sub id>`/resourceGroups/`<resource group name>`/providers/Microsoft.Network/vpnGateways/vpngw| 20000|
+| 10.2.0.0/24 | VPN | 10.0.2.14 | /subscriptions/`<sub id>`/resourceGroups/`<resource group name>`/providers/Microsoft.Network/virtualNetworkGateways/vpngw | 20000 | 
 
 
 > [!NOTE]
 > If a spoke VNet is peered with "use remote gateway" disabled, the spoke VNet's address range may still get advertised to on-premises even if the prefix does not appear in the **Effective Routes**.
+>
 
-
-### View advertised and learned routes to BGP peers
+### <a name="view-advertised-and-learned-routes"></a> View advertised and learned routes to BGP peers
 
 In this section, you learn how to view the routes that your route server advertises to BGP peers and the routes it learns from those peers. This information is useful for troubleshooting routing issues and understanding traffic flow.
 
