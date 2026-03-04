@@ -14,7 +14,7 @@ This article describes the performance characteristics of Azure Elastic SAN data
 
 The results in this article are intended as **reference only**, not as guaranteed performance targets. Actual performance changes depending on workload characteristics, VM configuration, and Elastic SAN provisioning.
 
-## Workload categories evaluated
+## Workload categories
 
 This article focuses on two common storage workload categories:
 
