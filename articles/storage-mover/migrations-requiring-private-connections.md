@@ -5,10 +5,14 @@ author: stevenmatthew
 ms.author: shaas
 ms.service: azure-storage-mover
 ms.topic: how-to
-ms.date: 02/18/2026
+ms.date: 03/04/2026
 --- 
 
 # Migrate data using private connections in Azure Storage Mover
+
+Azure Storage Mover supports secure, large-scale data migration across cloud environments, including scenarios that require strict network isolation. Storage Mover can be configured to use private networking constructs to keep data traffic within trusted boundaries. By using Azure Private Link and Private Endpoints, data transfers stay within trusted boundaries between your AWS VPC and Azure virtual network.
+
+This article explains how private connections enable secure migrations between AWS S3 and Azure Storage, and when this approach is appropriate.
 
 ## Overview
 
@@ -166,6 +170,7 @@ You can modify private connections on an existing job at any time before or afte
 :::image type="content" source="./media/private-connections/added-private-connection.png" alt-text="Screenshot of the addition of a private connection to a job." lightbox="./media/private-connections/added-private-connection.png":::
 
 :::image type="content" source="./media/private-connections/save-pc-edits.png" alt-text="Screenshot of the saved edits of a private connection for a job." lightbox="./media/private-connections/save-pc-edits.png":::
+
 
 
 
