@@ -34,7 +34,7 @@ For language-specific requirements and package details, see [Durable Functions b
 
 ## How to get started
 
-1. Create a new Azure Functions app by using one of the language quickstarts in [Quickstarts and samples](#quickstarts-and-samples).
+1. Create a new Azure Functions app by using one of the language quickstarts in [Supported languages](#supported-languages).
 1. Add an orchestrator function and one or more activity functions.
 1. Choose and configure your backend in [Durable Functions storage providers](durable-functions-storage-providers.md). The recommended option is [Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md).
 1. Run and test locally with Azure Functions Core Tools.
