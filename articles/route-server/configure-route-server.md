@@ -323,7 +323,7 @@ Use the scroll bar at the bottom of the table to view the 'AS Path'.
 > If a spoke VNet is peered with "use remote gateway" disabled, the spoke VNet's address range may still get advertised to on-premises even if the prefix does not appear in the **Effective Routes**.
 
 
-### View advertised and learned routes to BGP peers
+### <a name="view-advertised-and-learned-routes"> View advertised and learned routes to BGP peers
 
 In this section, you learn how to view the routes that your route server advertises to BGP peers and the routes it learns from those peers. This information is useful for troubleshooting routing issues and understanding traffic flow.
 
