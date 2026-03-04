@@ -65,7 +65,7 @@ The benchmarks use industry‑standard storage testing tools, [DiskSPD](https://
 
 This section provides example commands used to generate the benchmark results shown later in this article. The examples include both **I/O‑intensive** and **throughput‑intensive** scenarios for Windows and Linux. For each workload scenario, the benchmarks are executed on one or more guest VMs connected to the same Elastic SAN datastore.
 
-### I/O‑intensive workload example
+### I/O‑intensive workload benchmark
 
 #### Windows (DiskSPD)
 
