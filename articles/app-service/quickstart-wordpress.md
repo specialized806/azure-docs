@@ -6,7 +6,7 @@ keywords: app service, azure app service, wordpress, wordpress hosting, azure wo
 author: msangapu-msft
 ms.service: azure-app-service
 ms.topic: quickstart
-ms.date: 04/11/2025
+ms.date: 03/04/2026
 ms.author: msangapu
 ms.custom:
   - mvc
