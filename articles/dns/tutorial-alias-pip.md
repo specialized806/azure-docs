@@ -5,7 +5,7 @@ services: dns
 author: asudbring
 ms.service: azure-dns
 ms.topic: tutorial
-ms.date: 07/11/2025
+ms.date: 03/03/2026
 ms.author: allensu
 ms.custom: template-tutorial #Required; leave this attribute/value as-is.
 #Customer intent: As an experienced network administrator, I want to configure Azure an DNS alias record to refer to an Azure public IP address.
