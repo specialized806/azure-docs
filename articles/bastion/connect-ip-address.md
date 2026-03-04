@@ -1,5 +1,5 @@
 ---
-title: 'About IP-based connection'
+title: 'About Azure Bastion IP-based connection'
 titleSuffix: Azure Bastion
 description: Learn about IP-based connection in Azure Bastion, including supported scenarios, SKU requirements, and limitations.
 author: abell
@@ -11,7 +11,7 @@ ms.author: abell
 # Customer intent: As a network administrator, I want to understand how IP-based connection works with Azure Bastion, so that I can determine whether it's the right approach for securely connecting to on-premises, non-Azure, or Azure virtual machines.
 ---
 
-# About IP-based connection
+# About Azure Bastion IP-based connection
 
 IP-based connection lets you connect to your on-premises, non-Azure, and Azure virtual machines via Azure Bastion using a specified private IP address. Unlike standard Bastion connections that use the Azure Resource Manager resource ID of a target VM, IP-based connections target a VM by its private IP address. This makes it possible to connect to machines that aren't registered as Azure resources, such as on-premises servers or VMs running in other cloud environments.
 
