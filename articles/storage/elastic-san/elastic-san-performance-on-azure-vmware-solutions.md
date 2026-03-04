@@ -18,11 +18,11 @@ The results in this article are intended as **reference only**, not as guarantee
 
 This article covers two common storage workload categories:
 
-- I/O‑intensive workloads
-  Small, random I/O patterns that are typically read‑heavy and common in transactional or metadata‑driven workloads.
+- **I/O‑intensive workloads**
+  - Transactional or metadata‑driven workloads are common examples of I/O‑intensive workloads. These workloads have small, random I/O patterns that are typically read‑heavy.
 
-- Throughput‑intensive workloads
-  Large, sequential I/O patterns commonly seen in backup, scanning, analytics, and read‑ahead workloads.
+- **Throughput‑intensive workloads**
+  - Backup, scanning, analytics, and read‑ahead workloads are common examples of throughput‑intensive workloads. These workloads generate large, sequential I/O patterns.
 
 All tests use a single Elastic SAN–backed AVS datastore, sized and configured as described in the following sections.
 
