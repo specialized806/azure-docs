@@ -146,7 +146,7 @@ The following items aren't supported in the UX-based migration experience today.
 | **Integration runtimes** | Self-hosted integration runtime (SHIR) | Self-hosted integration runtimes can't be migrated. Replace with the Fabric on-premises data gateway (OPDG). |
 | | Managed virtual network integration runtime (Managed virtual network IR) / Virtual network–injected integration runtime (VNet – Virtual network) | Fabric doesn't support migrating managed virtual network integration runtimes. The Fabric virtual network gateway uses a different model and requires reconfiguration. |
 | | SQL Server Integration Services integration runtime (SSIS IR) | Infrastructure migration, including SQL Server Integration Services integration runtimes, isn't supported. |
-| **Workload types** | Azure Data Factory change data capture (CDC ) | Change data capture workloads are out of scope and don't migrate. |
+| **Workload types** | Azure Data Factory change data capture (CDC) | Change data capture workloads are out of scope and don't migrate. |
 | | Apache Airflow assets | Directed acyclic graph (DAG)–based orchestration from Apache Airflow can't be migrated to Fabric. |
 | | Unified Structured Query Language (U‑SQL) / Azure Data Lake Analytics | Deprecated services and not supported in Fabric. |
 | | Cross‑cloud or Azure Machine Learning refresh workloads | Workspace identity support is in progress. These workloads don't migrate. |
