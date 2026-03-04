@@ -29,9 +29,9 @@ To get the fastest response, search existing answers first. If you don't find a 
 
 | Area | Tag |
 |-------|----------------------|
-| [Azure Virtual Network](./virtual-networks-overview.md) | [azure-virtual-network](/answers/topics/azure-virtual-network) | 
-| [Azure Virtual Network Peering](./virtual-network-peering-overview.md) | [azure-virtual-network](/answers/topics/azure-virtual-network)| 
-| [Azure Network Security Groups](./network-security-groups-overview.md) | [azure-virtual-network](/answers/topics/azure-virtual-network) | 
+| [Azure Virtual Network](./virtual-networks-overview.md) | [azure-virtual-network](/answers/tags/102/azure-virtual-network) | 
+| [Azure Virtual Network Peering](./virtual-network-peering-overview.md) | [azure-virtual-network](/answers/tags/102/azure-virtual-network)| 
+| [Azure Network Security Groups](./network-security-groups-overview.md) | [azure-virtual-network](/answers/tags/102/azure-virtual-network) | 
 
 ## Create an Azure support request
 
