@@ -30,7 +30,7 @@ If you can't find an answer to your problem using search, submit a new question 
 
 | Area | Tag |
 | --- | --- |
-| Azure Front Door | [azure-frontdoor](/answers/topics/azure-frontdoor.html) |
+| Azure Front Door | [azure-front-door](/answers/topics/azure-front-door.html) |
 | CDN Standard from Microsoft (classic) | [azure-cdn](/answers/topics/azure-cdn.html) |
 
 ## Create an Azure support request
