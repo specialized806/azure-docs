@@ -8,7 +8,7 @@ ms.service: azure-elastic-san-storage
 ms.date: 02/26/2026
 ---
 
-# Elastic SAN datastore performance on Azure VMware solution
+# Elastic SAN datastore performance on Azure VMware Solution
 
 This article describes the performance characteristics of Azure Elastic SAN datastores when used with Azure VMware Solution. It presents benchmark results for common workload patterns and provides enough configuration and test details to help you compare these results with your own environments results.
 
