@@ -46,6 +46,7 @@ Download the us.nlm.vsac package version 0.18.0 from the FHIR package registry a
     i. Package downloaded at step 2 has name `us.nlm.vsac-0.18.0.tgz`  
     ii. Rename it to `us.nlm.vsac_0_18_0.tgz`  
     iii. Create this folder if it doesn’t exist: `C:\Users\<YourUser>\AppData\Local\Temp\UploadFIG\PackageCache`
+     
     iiii. Copy the renamed package into the UploadFIG cache directory (folder created in the last step) 
 3. Continue with the rest of the steps using UploadFIG to upload US Core 7 profiles.
 
