@@ -1,101 +1,73 @@
 ---
-title: 'Connect to a VM - specified private IP address: Azure portal'
+title: 'About IP-based connection'
 titleSuffix: Azure Bastion
-description: Learn how to connect to your virtual machines using a specified private IP address via Azure Bastion.
+description: Learn about IP-based connection in Azure Bastion, including supported scenarios, SKU requirements, and limitations.
 author: abell
 ms.service: azure-bastion
-ms.topic: how-to
-ms.date: 03/03/2025
+ms.topic: concept-article
+ms.date: 03/04/2026
 ms.author: abell
-ms.custom: sfi-image-nochange
 
-# Customer intent: As a network administrator, I want to configure and connect to virtual machines using a specified private IP address via Bastion, so that I can securely manage resources in my network environment.
+# Customer intent: As a network administrator, I want to understand how IP-based connection works with Azure Bastion, so that I can determine whether it's the right approach for securely connecting to on-premises, non-Azure, or Azure virtual machines.
 ---
 
-# Connect to a VM via specified private IP address
+# About IP-based connection
 
-IP-based connection lets you connect to your on-premises, non-Azure, and Azure virtual machines via Azure Bastion over ExpressRoute or a VPN site-to-site connection using a specified private IP address. The steps in this article show you how to configure your Bastion deployment, and then connect to an on-premises resource using IP-based connection. For more information about Azure Bastion, see the [Overview](bastion-overview.md).
+IP-based connection lets you connect to your on-premises, non-Azure, and Azure virtual machines via Azure Bastion using a specified private IP address. Unlike standard Bastion connections that use the Azure Resource Manager resource ID of a target VM, IP-based connections target a VM by its private IP address. This makes it possible to connect to machines that aren't registered as Azure resources, such as on-premises servers or VMs running in other cloud environments.
 
-:::image type="content" source="./media/connect-ip-address/architecture.png" alt-text="Diagram that shows the Azure Bastion architecture." lightbox="./media/connect-ip-address/architecture.png":::
+IP-based connections work over Azure ExpressRoute private peering or VPN site-to-site connections, extending Azure Bastion's secure connectivity beyond Azure-hosted workloads. For more information about Azure Bastion, see [What is Azure Bastion?](bastion-overview.md)
 
-> [!NOTE]
-> This configuration requires the Standard SKU tier or higher for Azure Bastion. To upgrade, see [Upgrade a SKU](upgrade-sku.md).
->
+## Architecture
 
-**Limitations**
+The following diagram shows the IP-based connection architecture. Azure Bastion, deployed in its virtual network, connects to a target VM using the VM's private IP address over an ExpressRoute circuit or VPN site-to-site connection. The connection doesn't require the target VM to have a public IP address or to be an Azure resource.
 
-* IP-based connection won’t work with force tunneling over VPN, or when a default route is advertised over an ExpressRoute circuit. Azure Bastion requires access to the Internet and force tunneling, or the default route advertisement will result in traffic blackholing.
+:::image type="content" source="./media/connect-ip-address/architecture.png" alt-text="Diagram that shows the Azure Bastion IP-based connection architecture." lightbox="./media/connect-ip-address/architecture.png":::
 
-* Microsoft Entra authentication isn't supported for RDP connections. Microsoft Entra authentication is supported for SSH connections via native client.
+When you initiate an IP-based connection:
 
-* Custom ports and protocols aren't currently supported when connecting to a VM via native client.
+1. You specify the private IP address of the target VM directly on the Bastion **Connect** page, rather than selecting a VM from the Azure portal.
+1. Azure Bastion routes the RDP or SSH traffic through the ExpressRoute or VPN connection to reach the target VM at the specified IP address.
+1. The connection is secured through the Bastion host, so the target VM doesn't need to be exposed to the public internet.
 
-* UDR isn't supported on Bastion subnet, including with IP-based connection.
+## Supported scenarios
 
-## Prerequisites
+IP-based connection supports the following scenarios:
 
-Before you begin these steps, verify that you have the following environment set up:
+* **On-premises virtual machines:** Connect to VMs running in your on-premises datacenter through an ExpressRoute private peering or VPN site-to-site connection.
+* **Non-Azure virtual machines:**Connect to VMs hosted in other cloud environments that are reachable from the Azure virtual network through ExpressRoute or VPN.
+* **Azure virtual machines:** Connect to Azure VMs by specifying a private IP address instead of selecting the VM resource in the portal. This is useful when the target VM is in a peered or connected virtual network.
 
-* A VNet with Bastion already deployed.
+## SKU requirements
 
-  * Make sure that you have deployed Bastion to the virtual network. Once the Bastion service is provisioned and deployed in your virtual network, you can use it to connect to any VM deployed in any of the virtual networks that is reachable from Bastion.
-  * To deploy Bastion, see [Quickstart: Deploy Bastion with default settings and the Standard SKU](quickstart-host-portal.md).
+IP-based connection requires the **Standard** SKU tier or higher for Azure Bastion. The Basic and Developer SKUs don't support this feature. You must also enable the **IP-based connection** setting on the Bastion **Configuration** page.
 
-* A virtual machine in any reachable virtual network. This is the virtual machine to which you'll connect.
+For information about SKU capabilities, see [Choose the right Azure Bastion SKU](bastion-sku-comparison.md). To upgrade your Bastion deployment, see [Upgrade a SKU](upgrade-sku.md).
 
-## Configure Bastion
+## Supported connection methods
 
-1. Sign in to the [Azure portal](https://portal.azure.com/).
+The following table summarizes the connection methods available with IP-based connection:
 
-1. In the Azure portal, go to your Bastion deployment.
+| Connection method | Protocol | Details |
+|---|---|---|
+| Azure portal (browser) | RDP, SSH | Provides browser-based RDP or SSH sessions from the Bastion **Connect** page by targeting a private IP address. For step-by-step guidance, see [Connect to a Windows VM using RDP](bastion-connect-vm-rdp-windows.md). |
+| Native client (Azure CLI) | RDP | Provides RDP connectivity from a Windows client using `az network bastion rdp` with the `--target-ip-address` parameter. For connection steps, see [Connect from a Windows native client](connect-vm-native-client-windows.md). |
+| Native client (Azure CLI) | SSH | Provides SSH connectivity from Windows or Linux clients using `az network bastion ssh` with the `--target-ip-address` parameter. For connection steps, see [Connect from a Windows native client](connect-vm-native-client-windows.md) or [Connect from a Linux native client](connect-vm-native-client-linux.md). |
+| Native client (Azure CLI) | Tunnel | Creates an IP-based TCP tunnel using `az network bastion tunnel` with the `--target-ip-address` parameter. For configuration steps, see [Configure Bastion native client support](native-client.md). |
 
-1. IP based connection requires the Standard SKU tier or higher. On the **Configuration** page, for **Tier**, verify the tier is set to the **Standard** SKU or higher. If the tier is set to the Basic SKU, select a higher SKU from the dropdown.
+## Limitations
 
-1. To enable **IP based connection**, select **IP based connection**.
+* **Force tunneling:** IP-based connection doesn't work with force tunneling over VPN, or when a default route is advertised over an ExpressRoute circuit. Azure Bastion requires access to the internet. Force tunneling or default route advertisement results in traffic being dropped.
 
-1. Select **Apply** to apply the changes. It takes a few minutes for the Bastion configuration to complete.
+* **Microsoft Entra ID authentication:** Microsoft Entra authentication isn't supported for RDP connections via IP address. Microsoft Entra authentication is supported for SSH connections via native client. For more information, see [Microsoft Entra ID authentication](bastion-entra-id-authentication.md).
 
-## Connect to VM - Azure portal
+* **Custom ports and protocols:**  Custom ports and protocols aren't currently supported when connecting to a VM via native client with IP-based connections.
 
-1. To connect to a VM using a specified private IP address, you make the connection from Bastion to the VM, not directly from the VM page. On your Bastion page, select **Connect** to open the Connect page.
-
-1. On the Bastion **Connect** page, for **IP address**, enter the private IP address of the target VM.
-
-    :::image type="content" source="./media/connect-ip-address/ip-address.png" alt-text="Screenshot of the Connect using Azure Bastion page." lightbox="./media/connect-ip-address/ip-address.png":::
-
-1. Adjust your connection settings to the desired **Protocol** and **Port**.
-
-1. Enter your credentials in **Username** and **Password**.
-
-1. Select **Connect** to connect to your virtual machine.  
-
-## Connect to VM - native client
-
-You can connect to VMs using a specified IP address with native client via SSH, RDP, or tunneling. To learn more about configuring native client support, see [Configure Bastion native client support](native-client.md).
-
-> [!NOTE]
-> This feature does not currently support Microsoft Entra authentication or custom port and protocol.
-
-Use the following commands as examples:
-
-**RDP:**
-
-```azurecli
-az network bastion rdp --name "<BastionName>" --resource-group "<ResourceGroupName>" --target-ip-address "<VMIPAddress>
-```
-
-**SSH:**
-
-```azurecli
-az network bastion ssh --name "<BastionName>" --resource-group "<ResourceGroupName>" --target-ip-address "<VMIPAddress>" --auth-type "ssh-key" --username "<Username>" --ssh-key "<Filepath>"
-```
-
-**Tunnel:**
-
-```azurecli
-az network bastion tunnel --name "<BastionName>" --resource-group "<ResourceGroupName>" --target-ip-address "<VMIPAddress>" --resource-port "<TargetVMPort>" --port "<LocalMachinePort>"
-```
+* **UDR:** User-defined routes (UDR) aren't supported on the Bastion subnet, including with IP-based connections.
 
 ## Next steps
 
-Read the [Bastion FAQ](bastion-faq.md) for additional information.
+* [Create an RDP connection to a Windows VM](bastion-connect-vm-rdp-windows.md)
+* [Connect from a Windows native client](connect-vm-native-client-windows.md)
+* [Connect from a Linux native client](connect-vm-native-client-linux.md)
+* [Configure Bastion native client support](native-client.md)
+* [Azure Bastion FAQ](bastion-faq.md)
