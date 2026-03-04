@@ -14,9 +14,6 @@ ms.custom: references_regions
 
 Azure API Center enables you to track all your APIs in a centralized location for discovery, reuse, and governance. Use an API center to develop and maintain a structured and organized inventory of your organization's APIs - regardless of their type, lifecycle stage, or deployment location - along with related information such as version details, API definition files, and common metadata. 
 
-> [!TIP]
-> You can get started quickly with Azure API Center by taking advantage of the Free plan, which has no time constraints. Compare the [Free plan and Standard plan limits](/azure/azure-resource-manager/management/azure-subscription-service-limits?toc=/azure/api-center/toc.json&bc=/azure/api-center/breadcrumb/toc.json#azure-api-center-limits).
-
 By using an API center, stakeholders throughout your organization, including API program managers, IT administrators, application developers, and API developers can design, discover, reuse, and govern APIs.  
 
 > [!NOTE]
@@ -54,12 +51,18 @@ Create and use an API center for the following capabilities:
 
 For more information about the entities you can manage and the capabilities in Azure API Center, see [Key concepts](key-concepts.md).
 
-## Tiers and SKUs
+## API Center plans and features
 
-Azure API Center is offered in a [Free plan and Standard plan](../azure-resource-manager/management/azure-subscription-service-limits.md?toc=/azure/api-center/toc.json&bc=/azure/api-center/breadcrumb/toc.json#azure-api-center-limits).
+Azure API Center is offered in a Free plan and Standard plan. Key comparisons are in the following table. For detailed limits, see [Azure API Center limits](/azure/azure-resource-manager/management/azure-subscription-service-limits?toc=/azure/api-center/toc.json&bc=/azure/api-center/breadcrumb/toc.json#azure-api-center-limits).
 
-> [!NOTE]
-> Azure API Center is also included free with Azure API Management Premium and Standard tiers.
+| Feature | Free plan | Standard plan |
+|---------|-----------|---------------|
+| **Time constraints** | None | None |
+| **Inventory and governance limits** | Limited | Expanded for enterprise use cases |
+| **Upgrade path** | Upgradable to Standard | N/A |
+
+[!INCLUDE [free-apic-standard-linked-api-management](includes/free-apic-standard-linked-api-management.md)]
+
 
 ## Available regions
 

@@ -1,0 +1,15 @@
+---
+title: Include file
+description: Include file
+services: api-center
+
+
+ms.service: azure-api-center
+ms.topic: include
+ms.date: 03/04/2026
+
+ms.custom: Include file
+---
+
+> [!NOTE]
+> API Center Standard can now be used at no additional cost when you link it to an API Management instance in a Standard, Standard v2, Premium, or Premium v2 tier. For more information, see [API Management pricing](free-apic-standard-linked-api-management.md).
