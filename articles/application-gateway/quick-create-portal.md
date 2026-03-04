@@ -203,13 +203,12 @@ To add backend targets, you:
 
 In this example, you install IIS on the virtual machines to verify that the application gateway was created successfully.
 
-1. Open Azure PowerShell.
+1. In the Azure portal, select **Cloud Shell** from the top navigation bar, and then select **PowerShell** from the dropdown list. 
 
-   Select **Cloud Shell** from the top navigation bar of the Azure portal and then select **PowerShell** from the dropdown list. 
+    > [!NOTE]
+    > You can also use Azure Bastion to connect to the virtual machines and install IIS. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../bastion/quickstart-host-portal.md).
 
-    :::image type="content" source="./media/application-gateway-create-gateway-portal/application-gateway-extension.png" alt-text="Screenshot of installing custom extension in Cloud Shell.":::
-
-1. Run the following command to install IIS on the virtual machine. Change the `Location` parameter if necessary: 
+1. In the Azure PowerShell terminal, run the following command to install IIS on the virtual machine. Change the `Location` parameter if necessary: 
 
     ```azurepowershell
     Set-AzVMExtension `
