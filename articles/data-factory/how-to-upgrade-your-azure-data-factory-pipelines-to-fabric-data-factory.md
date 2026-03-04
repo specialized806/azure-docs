@@ -15,10 +15,10 @@ Your Azure Data Factory pipelines already power critical workflows. In this arti
 
 The migration experience helps you:
 
-1. Assess pipeline readiness directly in Azure Data Factory.
-1. Understand compatibility gaps at the pipeline and activity level.
-1. Migrate supported pipelines to a Fabric workspace.
-1. Plan next steps for items that need updates or that are coming soon.
+- Assess pipeline readiness directly in Azure Data Factory.
+- Understand compatibility gaps at the pipeline and activity level.
+- Migrate supported pipelines to a Fabric workspace.
+- Plan next steps for items that need updates or that are coming soon.
 
 This assessment-first approach helps ensure migrations are intentional, transparent, and incremental. You can upgrade pipelines at your own pace and validate results before switching production workloads.
 
@@ -84,7 +84,7 @@ Select **Review connections** to map Azure Data Factory linked services to Fabri
 
 The migration experience attempts to automatically create connections for authentication methods that can be safely and reliably mapped from Azure Data Factory to Fabric’s managed identity and security model without requiring customer‑managed infrastructure or network configuration.
 
-:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linkedservices-to-connection-mapping.png" alt-text="Screenshot showing the mapping of linked services to Fabric connections." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linkedservices-to-connection-mapping.png":::
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linked-services-to-connection-mapping.png" alt-text="Screenshot showing the mapping of linked services to Fabric connections." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linked-services-to-connection-mapping.png":::
 
 ### Connections automatically created during migration (supported only)
 
