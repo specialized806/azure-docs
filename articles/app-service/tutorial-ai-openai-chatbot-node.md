@@ -238,7 +238,7 @@ Yes, you can connect to Azure OpenAI using an API key instead of managed identit
 
 ---
 
-### How does DefaultAzureCredential work?
+### How does the DefaultAzureCredential work?
 
 The `DefaultAzureCredential` simplifies authentication by automatically selecting the best available authentication method.
 
