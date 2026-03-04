@@ -543,7 +543,7 @@ At runtime, the configured token source automatically returns an OAuth 2.0 acces
 
 You can find a more complete example in the [precompiled C# RestartVMs sample](https://github.com/Azure/azure-functions-durable-extension/blob/dev/samples/precompiled/RestartVMs.cs).
 
-Managed identities aren't limited to Azure resource management. You can use managed identities to access any API that accepts Microsoft Entra bearer tokens, including Azure services from Microsoft and web apps from partners. A partner's web app can even be another function app. For a list of Azure services from Microsoft that support authentication with Microsoft Entra ID, see [Azure services that support Microsoft Entra authentication](/entra/identity/managed-identities-azure-resources/services-support-managed-identities#azure-services-that-support-microsoft-entra-authentication).
+Managed identities aren't limited to Azure resource management. You can use managed identities to access any API that accepts Microsoft Entra bearer tokens, including Azure services from Microsoft and web apps from partners. A partner's web app can even be another function app. For a list of Azure services from Microsoft that support authentication with Microsoft Entra ID, see [Azure services that support Microsoft Entra authentication](/entra/identity/managed-identities-azure-resources/managed-identities-status#services-supporting-managed-identities).
 
 ### Limitations
 

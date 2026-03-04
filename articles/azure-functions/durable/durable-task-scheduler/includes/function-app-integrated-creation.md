@@ -7,7 +7,7 @@ ms.date: 03/19/2025
 
 1. Navigate to the Function app creation blade. 
 
-   :::image type="content" source="../media/create-durable-task-scheduler/function-app-hosted-app-service.png" alt-text="Screenshot of hosting models for Function apps.":::
+   :::image type="content" source="../media/create-durable-task-scheduler/function-app-hosted-app-service.png" alt-text="Screenshot of hosting options for Function apps.":::
 
 1. In the **Create Function App (Flex Consumption)** blade, fill in the information in the **Basics** tab. 
 

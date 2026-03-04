@@ -106,11 +106,6 @@
             "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/articles/azure-functions/durable/durable-functions-overview.md",
-            "redirect_url": "/azure/azure-functions/durable/what-is-durable-task",
-            "redirect_document_id": false
-        },
-        {
             "source_path_from_root": "/articles/azure-functions/durable/durable-task-scheduler/choose-orchestration-framework.md",
             "redirect_url": "/azure/azure-functions/durable/choose-orchestration-framework",
             "redirect_document_id": true

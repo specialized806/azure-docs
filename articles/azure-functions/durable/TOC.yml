@@ -7,6 +7,10 @@
     href: what-is-durable-task.md
   - name: Choose your hosting model
     href: choose-orchestration-framework.md
+  - name: About Durable Functions
+    href: durable-functions-overview.md
+  - name: About the Durable Task SDKs
+    href: ./durable-task-scheduler/durable-task-overview.md
 - name: Quickstarts
   items:
   - name: Durable Functions
@@ -87,8 +91,6 @@
   items:
   - name: Overview
     items:
-    - name: About Durable Functions
-      href: durable-functions-overview.md
     - name: About Azure Functions
       href: ../functions-overview.md?toc=/azure/azure-functions/durable/toc.json
     - name: Versions
@@ -229,8 +231,6 @@
         href: https://azure.microsoft.com/updates/?product=functions&updatetype=&platform=
 - name: Durable Task SDKs
   items:
-  - name: About the Durable Task SDKs
-    href: ./durable-task-scheduler/durable-task-overview.md
   - name: Tutorials
     items:
     - name: Configure autoscale for Azure Container Apps hosting
