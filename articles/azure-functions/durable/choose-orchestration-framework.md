@@ -156,15 +156,12 @@ The [Durable Task SDK for Go](https://github.com/Azure/durabletask-go) is a comm
 
 ## Next steps
 
-Once you've decided which framework to use, get started with the appropriate quickstart:
-
-- **Durable Functions**: [Create your first Durable Functions app](durable-functions-isolated-create-first-csharp.md)
-- **Durable Task SDKs**: [Create an app with Durable Task SDKs](durable-task-scheduler/quickstart-durable-task-scheduler.md)
-
-For more in-depth information:
+Get started with the framework you chose:
 
 > [!div class="nextstepaction"]
-> [Durable Functions overview](what-is-durable-task.md)
+> [Durable Functions overview](durable-functions-overview.md)
 
 > [!div class="nextstepaction"]
-> [Durable Task Scheduler overview](durable-task-scheduler/durable-task-scheduler.md)
+> [Durable Functions overview](./durable-task-scheduler/durable-task-overview.md)
+
+Then, learn more about the [Durable Task Scheduler backend provider](durable-task-scheduler/durable-task-scheduler.md).
