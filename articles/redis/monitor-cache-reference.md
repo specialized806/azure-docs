@@ -33,6 +33,7 @@ The following table lists the metrics available for the Microsoft.Cache/redisEnt
 <a name="available-metrics-and-reporting-intervals"></a>
 <a name="create-your-own-metrics"></a>
 <a name="metrics-details"></a>
+
 ## Azure Managed Redis metrics
 
 ### Supported metrics for Microsoft.Cache/redisEnterprise
@@ -44,7 +45,8 @@ The following table lists the metrics available for the Microsoft.Cache/redisEnt
 <a name="available-metrics-and-reporting-intervals"></a>
 <a name="create-your-own-metrics"></a>
 <a name="metrics-details"></a>
-## Azure Managed Redis metrics
+
+## Details about Azure Managed Redis metrics
 
 The following list provides details and more information about the supported Azure Monitor metrics for [Microsoft.Cache/redisEnterprise](/azure/azure-monitor/reference/supported-metrics/microsoft-cache-redisenterprise-metrics).
 
