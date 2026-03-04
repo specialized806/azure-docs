@@ -6,7 +6,7 @@ author: kengaderdus
 manager: CelesteDG
 ms.service: azure-active-directory
 ms.topic: how-to
-ms.date: 02/17/2025
+ms.date: 03/04/2026
 ms.author: kengaderdus
 ms.subservice: b2c
 zone_pivot_groups: b2c-policy-type
@@ -440,6 +440,29 @@ To use the sample:
 1. Now modify the policy, pointing to your HTML file, as mentioned previously.
 1. If you see missing fonts, images, or CSS, check your references in the extensions policy and the `\*.html` files.
 
+> [!NOTE]
+> **Bootstrap Dependency Notice**
+> 
+> This template uses **Bootstrap 3.3.5** sourced from the official Bootstrap CDN. This version has been validated and tested with the product.
+> [Template repository](https://github.com/azure-ad-b2c/html-templates)
+>
+> [Official Bootstrap download and CDN reference](https://getbootstrap.com/docs/3.3/getting-started/#download-cdn)
+> 
+> [CDN reference used by the template](https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css)
+> 
+> Example snippet (default configuration):
+> ```xml
+> <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+> ```
+> You may replace the CDN reference with your organization’s internal CDN or a locally hosted copy to meet reliability, security, or compliance requirements.
+> 
+> Please note:
+> - The template is validated specifically against **Bootstrap 3.3.5.**
+> - Upgrading, downgrading, or modifying the Bootstrap version may introduce styling, layout, or component compatibility issues.
+> - Customers are responsible for validating and supporting any such changes.
+> 
+> We recommend retaining the validated version unless appropriate regression testing has been completed.
+      
 ## Use company branding assets in custom HTML
 
 To use [company branding](customize-ui.md#configure-company-branding) assets in a custom HTML, add the following tags outside the `<div id="api">` tag. The image source is replaced with that of the background image and banner logo.
