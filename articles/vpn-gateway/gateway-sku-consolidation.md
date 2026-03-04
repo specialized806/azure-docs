@@ -61,6 +61,8 @@ Yes. If a region doesn't currently support availability zones, you can still cre
 * *For gateways that use a Basic public IP address*: You'll need to migrate your gateway to use a Standard public IP address when the migration tool becomes available. As part of this IP address migration, your gateway is upgraded to the next generation (called *Generation 2*). You don't need to take any further action.
 * *For gateways that already use a Standard public IP address*: We'll migrate these gateways to the next generation separately before September 30, 2026. This migration happens seamlessly during regular updates, with no downtime involved.
 
+No separate customer action is required to migrate your gateway to Gen2 beyond required Basic IP address migration.
+
 ### Will there be downtime during migration?
 
 No. This migration is seamless, and there's no expected downtime during migration.

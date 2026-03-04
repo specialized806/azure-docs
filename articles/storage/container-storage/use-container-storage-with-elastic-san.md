@@ -37,13 +37,6 @@ Expanding the capacity of an Elastic SAN through Azure Container Storage is curr
   az provider register --namespace Microsoft.ElasticSan
   ```
 
-- When [ZRS is newly enabled](enable-multi-zone-redundancy.md) in a region, you might need to register a subscription-level feature flag so Azure Container Storage can deploy SAN targets:
-  ```azurecli
-  az feature register \
-  --namespace Microsoft.ElasticSan \
-  --name EnableElasticSANTargetDeployment
-  ```
-
 ## Setting up permissions
 
 For Azure Container Storage to deploy an Elastic SAN, you need to assign the [Azure Container Storage Operator](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-operator) role to the AKS managed identity. You need either an [Azure Container Storage Owner](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-owner) role or [Azure Container Storage Contributor](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-contributor) role for your Azure subscription to complete this step.
