@@ -121,6 +121,6 @@ The following table shows the features each SDK supports.
 > [!div class="nextstepaction"]
 > [Quickstart: Create an app with Durable Task SDKs](quickstart-portable-durable-task-sdks.md)
 
+- [Durable Task Scheduler overview](durable-task-scheduler.md)
 - [Choose your orchestration framework](../choose-orchestration-framework.md)
 - [What is Durable Task?](../what-is-durable-task.md)
-- [Durable Task Scheduler overview](durable-task-scheduler.md)

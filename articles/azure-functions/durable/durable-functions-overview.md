@@ -47,7 +47,7 @@ After your first workflow is running, explore [Task hubs](durable-functions-task
 > [!div class="nextstepaction"]
 > [Create your first durable function (C#)](durable-functions-isolated-create-first-csharp.md)
 
+- [Durable Task Scheduler overview](durable-task-scheduler/durable-task-scheduler.md)
+- [Durable Functions storage providers](durable-functions-storage-providers.md)
 - [What is Durable Task?](what-is-durable-task.md)
 - [Choose your hosting model](choose-orchestration-framework.md)
-- [Durable Functions storage providers](durable-functions-storage-providers.md)
-- [Durable Task Scheduler overview](durable-task-scheduler/durable-task-scheduler.md)
