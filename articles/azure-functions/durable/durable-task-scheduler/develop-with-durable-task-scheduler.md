@@ -275,7 +275,7 @@ You can see all the task hubs created in a scheduler on the **Overview** of the 
     az durabletask scheduler --resource-group YOUR_RESOURCE_GROUP --scheduler-name YOUR_SCHEDULER
     ```
 
-2. Delete a task hub:
+1. Delete a task hub:
 
     ```azurecli
     az durabletask taskhub delete --resource-group YOUR_RESOURCE_GROUP --scheduler-name YOUR_SCHEDULER --name YOUR_TASKHUB
@@ -284,11 +284,11 @@ You can see all the task hubs created in a scheduler on the **Overview** of the 
 
 ::: zone pivot="az-portal"
 
-3. Open the scheduler resource on Azure portal and click **Delete**: 
+1. Open the scheduler resource on Azure portal and click **Delete**: 
 
     :::image type="content" source="media/create-durable-task-scheduler/durable-task-scheduler-delete-portal.png" alt-text="Screenshot of scheduler resource in the portal highlighting delete button.":::
 
-4. Find the scheduler with the task hub you want to delete, then click into that task hub. Click **Delete**:
+1. Find the scheduler with the task hub you want to delete, then click into that task hub. Click **Delete**:
 
     :::image type="content" source="media/create-durable-task-scheduler/task-hub-delete-portal.png" alt-text="Screenshot of task hub resource in the portal highlighting delete button.":::
 
