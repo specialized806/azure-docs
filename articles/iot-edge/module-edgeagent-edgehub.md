@@ -86,7 +86,7 @@ The following table doesn't include the information that's copied from the desir
 | `runtime.platform.OS` | Reports the OS running on the device. |
 | `runtime.platform.architecture` | Reports the CPU architecture on the device. |
 | `schemaVersion` | Schema version of reported properties. |
-| `systemModules.edgeAgent.runtimeStatus` | The reported status of IoT Edge agent: {**running** \| **unhealthy**}. |
+| `systemModules.edgeAgent.runtimeStatus` | The reported status of IoT Edge agent: { **running** \| **unhealthy** }. |
 | `systemModules.edgeAgent.statusDescription` | Text description of the reported status of the IoT Edge agent. |
 | `systemModules.edgeAgent.exitCode` | The exit code reported by the IoT Edge agent container if the container exits. |
 | `systemModules.edgeAgent.lastStartTimeUtc` | Time when IoT Edge agent was last started. |
