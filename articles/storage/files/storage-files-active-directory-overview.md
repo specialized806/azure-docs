@@ -95,7 +95,7 @@ The following diagram represents the workflow for Entra Kerberos authentication 
 
 For more information, see [Enable Microsoft Entra Kerberos authentication on Azure Files](storage-files-identity-auth-hybrid-identities-enable.md).
 
-You can also use this feature to store FSLogix profiles on Azure file shares for Entra joined VMs. For more information, see [Create a profile container with Azure Files and Microsoft Entra ID](/azure/virtual-desktop/create-profile-container-azure-ad).
+You can also use this feature to store FSLogix profiles on Azure file shares for Entra-joined VMs. For more information, see [Store FSLogix profile containers on Azure Files using Microsoft Entra ID](/fslogix/how-to-configure-profile-container-entra-id-hybrid).
 
 <a name='azure-ad-ds'></a>
 
