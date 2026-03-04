@@ -12,7 +12,7 @@ ms.date: 02/26/2026
 
 This article describes the performance characteristics of Azure Elastic SAN datastores when used with Azure VMware Solution. It presents benchmark results for common workload patterns and provides enough configuration and test details to help you compare these results with your own environments results.
 
-The results in this article are intended as **reference** only, not as guaranteed performance targets. Actual performance changes depending on workload characteristics, VM configuration, and Elastic SAN provisioning.
+The results in this article are intended as **reference only**, not as guaranteed performance targets. Actual performance changes depending on workload characteristics, VM configuration, and Elastic SAN provisioning.
 
 ## Workload categories evaluated
 
