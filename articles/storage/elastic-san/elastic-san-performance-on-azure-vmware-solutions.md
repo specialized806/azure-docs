@@ -30,7 +30,7 @@ All tests use a single Elastic SAN–backed AVS datastore, sized and configured 
 
 ### Azure VMware Solution configuration
 
-This is the Azure VMware Solution environment used in this article:
+This article uses the following Azure VMware Solution environment:
 
 - Private cloud generation: **Gen 2**
 - ESXi hosts: **Three AV64 hosts**
