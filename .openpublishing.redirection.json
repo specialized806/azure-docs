@@ -6695,6 +6695,21 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/app-service/app-service-web-nodejs-best-practices-and-troubleshoot-guide.md",
+      "redirect_url": "/troubleshoot/azure/app-service/app-service-web-nodejs-best-practices-troubleshoot-guide",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/app-service/troubleshoot-http-502-http-503.md",
+      "redirect_url": "/troubleshoot/azure/app-service/troubleshoot-http-502-http-503",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/app-service/troubleshoot-performance-degradation.md",
+      "redirect_url": "/troubleshoot/azure/app-service/troubleshoot-performance-degradation",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/app-service/sre-agent-overview.md",
       "redirect_url": "/azure/sre-agent/overview",
       "redirect_document_id": false
