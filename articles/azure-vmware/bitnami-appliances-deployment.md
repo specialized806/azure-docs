@@ -102,7 +102,7 @@ In this article, learn how to install and configure the following virtual applia
 1. From the vCenter Server console, select **Launch Web Console** and sign in to the Bitnami virtual appliance. Check the [Bitnami virtual appliance support documentation](https://docs.bitnami.com/vmware-marketplace/faq/get-started/find-credentials/) for the default username and password.
 
    >[!NOTE]
-   >You can change the default password to a more secure one. For more information, see ...
+   >You can change the default password to a more secure one.
 
 
 
