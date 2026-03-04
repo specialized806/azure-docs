@@ -40,9 +40,7 @@ Before configuring zone redundancy, review the requirements and details listed i
 
 ::: zone pivot="flex-consumption-plan"
 
-### Create a zone-redundant Flex Consumption function app
-
-There are currently multiple ways to deploy a zone-redundant Flex Consumption app.
+Follow these steps to create a zone-redundant Flex Consumption plan and app.
 
 #### [Azure portal](#tab/azure-portal)
 
@@ -163,11 +161,9 @@ After the zone-redundant plan is created and deployed, the Flex Consumption func
 
 ::: zone pivot="premium-plan"
 
-### Create a zone-redundant Premium function app
+Follow these steps to create a zone-redundant Premium plan and app.
 
-There are currently two ways to deploy a zone-redundant Premium plan and function app. You can use either the [Azure portal](https://portal.azure.com) or an ARM template.
-
-#### [Azure portal (Premium)](#tab/azure-portal)
+#### [Azure portal](#tab/azure-portal)
 
 1. In the Azure portal, go to the **Create Function App** page. For more information about creating a function app in the portal, see [Create a function app](/azure/azure-functions/functions-create-function-app-portal#create-a-function-app).
 
@@ -191,7 +187,7 @@ There are currently two ways to deploy a zone-redundant Premium plan and functio
   
 1. For the rest of the function app creation process, create your function app as normal. There are no settings in the rest of the creation process that affect zone redundancy.
 
-#### [Azure CLI (Premium)](#tab/azure-cli)
+#### [Azure CLI](#tab/azure-cli)
 
 1. When creating the storage account for the function app, choose a zone redundant SKU, like `Standard_ZRS`. For example:
 
@@ -227,9 +223,9 @@ There are currently two ways to deploy a zone-redundant Premium plan and functio
       --runtime-version <RUNTIME_VERSION>
     ```
 
-#### [Bicep template (Premium)](#tab/bicep)
+#### [Bicep template](#tab/bicep)
 
-You can use a [Bicep template](/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code) to deploy to a zone-redundant Premium plan. To learn how to deploy function apps to a Premium plan, see [Automate resource deployment in Azure Functions](/azure/azure-functions/functions-infrastructure-as-code?pivots=premium-plan).
+You can use a [Bicep file](/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code) to deploy to a zone-redundant Premium plan. To learn how to deploy function apps to a Premium plan, see [Automate resource deployment in Azure Functions](/azure/azure-functions/functions-infrastructure-as-code?pivots=premium-plan).
 
 The only properties to be aware of while creating a zone-redundant hosting plan are the `zoneRedundant` property and the plan's instance count (`capacity`) fields. The `zoneRedundant` property must be set to `true` and the `capacity` property should be set based on the workload requirement, but not less than `3`. Choosing the right capacity varies based on several factors and high availability / fault tolerance strategies. A good rule of thumb is to specify sufficient instances for the application to ensure that losing one zone instance leaves sufficient capacity to handle expected load.
 
