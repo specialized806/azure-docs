@@ -42,7 +42,7 @@ Azure Functions currently supports exposing your function code by using these ty
 | Tool type | Description |
 | ------ | ----- |
 | [Remote MCP server](#remote-mcp-servers) | Create custom MCP servers or host SDK-based MCP servers. |
-| [Queue-based Azure Functions tool](#queue-based-azure-functions-tools) | Azure AI Foundry provides a specific Azure Functions tool that enables asynchronous function calling by using message queues. |
+| [Queue-based Azure Functions tool](#queue-based-azure-functions-tools) | Microsoft Foundry provides a specific Azure Functions tool that enables asynchronous function calling by using message queues. |
 
 ### Remote MCP servers
 
@@ -114,9 +114,9 @@ PowerShell isn't currently supported for either MCP server hosting option.
 
 ### Queue-based Azure Functions tools
 
-In addition to MCP servers, you can implement AI tools by using Azure Functions with queue-based communication. Azure AI Foundry provides Azure Functions-specific tools that enable asynchronous function calling by using message queues. With these tools, AI agents interact with your code by using messaging patterns.
+In addition to MCP servers, you can implement AI tools by using Azure Functions with queue-based communication. Foundry provides Azure Functions-specific tools that enable asynchronous function calling by using message queues. With these tools, AI agents interact with your code by using messaging patterns.
 
-This tool approach is ideal for AI Foundry scenarios that require:
+This tool approach is ideal for Foundry scenarios that require:
 - Reliable message delivery and processing
 - Decoupling between AI agents and function execution
 - Built-in retry and error handling capabilities
@@ -135,7 +135,7 @@ Here are some reference samples for function calling scenarios:
 **[Agent Service function calling](https://github.com/Azure-Samples/foundry-agent-service-remote-mcp-javascript)**
 ::: zone-end
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-javascript"  
-> Uses an [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/) client to call a custom remote MCP server implemented by using Azure Functions.
+> Uses a [Foundry Agent Service](/azure/ai-foundry/agents/) client to call a custom remote MCP server implemented by using Azure Functions.
 ::: zone-end
 ::: zone pivot="programming-language-csharp"  
 **[Agents function calling (Azure AI SDKs)](https://github.com/Azure-Samples/azure-functions-ai-services-agent-dotnet)**
@@ -204,8 +204,8 @@ Here are some key Microsoft AI frameworks you should be aware of:
 | Framework/library | Description |
 | ----- | ----- |
 | [Agent Framework](/agent-framework/) | Easily build AI agents and agentic workflows. |
-| [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) | A fully managed service for building, deploying, and scaling AI agents with enterprise-grade security, built-in tools, and seamless integration with Azure Functions. |
-| [Azure AI Services SDKs](/azure/ai-foundry/) | By working directly with client SDKs, you can use the full breadth of Azure AI services functionality directly in your function code. |
+| [Agent Service](/azure/ai-foundry/agents/overview) | A fully managed service for building, deploying, and scaling AI agents with enterprise-grade security, built-in tools, and seamless integration with Azure Functions. |
+| [Foundry Tools SDKs](/azure/ai-foundry/) | By working directly with client SDKs, you can use the full breadth of Foundry Tools functionality directly in your function code. |
 
 Functions also lets your apps reference third-party libraries and frameworks, so you can use all of your favorite AI tools and libraries in your AI-enabled functions.  
 
