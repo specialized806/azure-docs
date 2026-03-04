@@ -95,7 +95,7 @@ The following example shows how to upload a file to a session.
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/upload?api-version=2024-02-02-preview&identifier=<SESSION_ID>
+POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/upload?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Authorization: Bearer <TOKEN>
 
@@ -116,7 +116,7 @@ The following example demonstrates how to format a `GET` request to download a f
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/content/<FILE_NAME_AND_EXTENSION>?api-version=2024-02-02-preview&identifier=<SESSION_ID>
+GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/content/<FILE_NAME_AND_EXTENSION>?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Authorization: Bearer <TOKEN>
 ```
 
@@ -129,7 +129,7 @@ The following example shows how to list the files in a session's directory.
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files?api-version=2024-02-02-preview&identifier=<SESSION_ID>
+GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Authorization: Bearer <TOKEN>
 ```
 
@@ -183,14 +183,14 @@ If you're not using an LLM framework integration, you can interact with the sess
 
 ## Run code in a session
 
-To run code in a session, send a `POST` request to the `code/execute` endpoint with the code to run in the request body. Each code execution is limited to a maximum runtime of 220 seconds.
+To run code in a session, send a `POST` request to the `executions` endpoint with the code to run in the request body. Each code execution is limited to a maximum runtime of 220 seconds.
 
 The following example prints `Hello, world!` in Python.
 
 Before you send the request, replace the placeholders between the `<>` brackets with the appropriate values for your session pool and session identifier.
 
 ```http
-POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/code/execute?api-version=2024-02-02-preview&identifier=<SESSION_ID>
+POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/executions?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Content-Type: application/json
 Authorization: Bearer <TOKEN>
 
@@ -214,7 +214,7 @@ Uploaded files are stored in the session's file system in the `/mnt/data` direct
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/upload?api-version=2024-02-02-preview&identifier=<SESSION_ID>
+POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/upload?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Authorization: Bearer <TOKEN>
 
@@ -236,7 +236,7 @@ To download a file from a session's `/mnt/data` directory, send a `GET` request 
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/content/<FILE_NAME_AND_EXTENSION>?api-version=2024-02-02-preview&identifier=<SESSION_ID>
+GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/content/<FILE_NAME_AND_EXTENSION>?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Authorization: Bearer <TOKEN>
 ```
 
@@ -247,7 +247,7 @@ To list the files in a session's `/mnt/data` directory, send a `GET` request to 
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files?api-version=2024-02-02-preview&identifier=<SESSION_ID>
+GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Authorization: Bearer <TOKEN>
 ```
 
@@ -285,12 +285,12 @@ Following is an example of the type of response you can expect when you request 
 
 Python code interpreter sessions include popular Python packages such as NumPy, pandas, and scikit-learn.
 
-To output the list of preinstalled packages, call the `code/execute` endpoint with the following code.
+To output the list of preinstalled packages, call the `executions` endpoint with the following code.
 
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/identifier/<SESSION_ID>/code/execute?api-version=2024-02-02-preview&identifier=<SESSION_ID>
+POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/executions?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Content-Type: application/json
 Authorization: Bearer <TOKEN>
 
@@ -314,14 +314,14 @@ If you need request or response tracing, capture it in the application that call
 
 ## Metrics
 
-Code interpreter usage and execution metrics are returned as HTTP response headers for the Execute Code API. These metrics aren't written to Log Analytics.
+Code interpreter usage and execution metrics are returned as HTTP response headers for the code execution API. These metrics aren't written to Log Analytics.
 
 ### View metrics
 
-1. Call the Execute Code API (`code/execute`).
+1. Call the code execution API (`/executions`).
 2. Inspect the HTTP response headers for usage and execution metrics.
 
-For details about the Execute Code API and endpoints, see [Run code in a session](#run-code-in-a-session) and [Management API endpoints](#management-api-endpoints).
+For details about the code execution API and endpoints, see [Run code in a session](#run-code-in-a-session) and [Management API endpoints](#management-api-endpoints).
 
 ## Billing
 

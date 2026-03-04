@@ -273,14 +273,14 @@ The following endpoints are available for managing sessions in a pool:
 
 | Endpoint path | Method | Description |
 |----------|--------|-------------|
-| `code/execute` | `POST` | Execute code in a session. |
+| `executions` | `POST` | Execute code in a session. |
 | `files/upload` | `POST` | Upload a file to a session. |
 | `files/content/{filename}` | `GET` | Download a file from a session. |
 | `files` | `GET` | List the files in a session. |
 
-You build the full URL for each endpoint by concatenating the pool's management API endpoint with the endpoint path. The query string must include an `identifier` parameter containing the session identifier, and an `api-version` parameter with the value `2024-02-02-preview`.
+You build the full URL for each endpoint by concatenating the pool's management API endpoint with the endpoint path. The query string must include an `identifier` parameter containing the session identifier, and an `api-version` parameter with the value `2025-10-02-preview`.
 
-For example: `https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/code/execute?api-version=2024-02-02-preview&identifier=<IDENTIFIER>`
+For example: `https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/executions?api-version=2025-10-02-preview&identifier=<IDENTIFIER>`
 
 To retrieve the session pool's management endpoint, use the `az containerapp sessionpool show` command:
 

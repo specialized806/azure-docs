@@ -104,9 +104,9 @@ Use an ARM template to create a shell session pool with MCP server enabled.
            "location": { "type": "String" }
        },
        "resources": [
-           {
+             {
                "type": "Microsoft.App/sessionPools",
-               "apiVersion": "2025-02-02-preview",
+               "apiVersion": "2025-10-02-preview",
                "name": "[parameters('name')]",
                "location": "[parameters('location')]",
                "properties": {
@@ -147,7 +147,7 @@ Use an ARM template to create a shell session pool with MCP server enabled.
 Retrieve the MCP server endpoint from the deployed session pool.
 
 ```azurecli
-MCP_ENDPOINT=$(az rest --method GET --uri "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.App/sessionPools/$SESSION_POOL_NAME?api-version=2025-02-02-preview" --query "properties.mcpServerSettings.mcpServerEndpoint" -o tsv)
+MCP_ENDPOINT=$(az rest --method GET --uri "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.App/sessionPools/$SESSION_POOL_NAME?api-version=2025-10-02-preview" --query "properties.mcpServerSettings.mcpServerEndpoint" -o tsv)
 ```
 
 ## Get MCP server credentials
@@ -155,7 +155,7 @@ MCP_ENDPOINT=$(az rest --method GET --uri "/subscriptions/$SUBSCRIPTION_ID/resou
 Request API credentials for the MCP server.
 
 ```azurecli
-API_KEY=$(az rest --method POST --uri "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.App/sessionPools/$SESSION_POOL_NAME/fetchMCPServerCredentials?api-version=2025-02-02-preview" --query "apiKey" -o tsv)
+API_KEY=$(az rest --method POST --uri "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.App/sessionPools/$SESSION_POOL_NAME/fetchMCPServerCredentials?api-version=2025-10-02-preview" --query "apiKey" -o tsv)
 ```
 
 ## Initialize the MCP server

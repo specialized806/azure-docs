@@ -124,14 +124,14 @@ After allocating a session, you can call this API to manually terminate it at an
 #### Request
 
 ```http
-POST {PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-preview&identifier={SessionIdentifier}
+POST {PoolManagementEndpoint}/.management/stopSession?api-version=2025-10-02-preview&identifier={SessionIdentifier}
 ```
 
 #### Parameters
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api-version` | string | Yes | The API version to use (for example, `2025-02-02-preview`). |
+| `api-version` | string | Yes | The API version to use (for example, `2025-10-02-preview`). |
 | `identifier` | string | Yes | The unique identifier of the session to stop. |
 
 ### Examples
@@ -139,7 +139,7 @@ POST {PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-pre
 #### Request
 
 ```http
-POST https://{PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-preview&identifier=testSessionIdentifier
+POST https://{PoolManagementEndpoint}/.management/stopSession?api-version=2025-10-02-preview&identifier=testSessionIdentifier
 ```
 
 #### Response
