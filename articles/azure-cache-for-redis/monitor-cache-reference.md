@@ -1,39 +1,32 @@
 ---
-title: Monitoring data reference for Azure Managed Redis
-description: This article contains important reference material you need when you monitor Azure Managed Redis.
-ms.date: 03/04/2026
+title: Monitoring data reference for Azure Cache for Redis
+description: This article contains important reference material you need when you monitor Azure Cache for Redis.
+ms.date: 05/18/2025
 ms.topic: reference
 ms.custom:
   - horz-monitor
   - ignite-2024
   - build-2025
 appliesto:
-  - ✅ Azure Managed Redis
+  - ✅ Azure Cache for Redis
 
 ---
 
-# Azure Managed Redis monitoring data reference
+# Azure Cache for Redis monitoring data reference
 
 [!INCLUDE [horz-monitor-ref-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-intro.md)]
 
-<!-- Can we clone the following article for AMR too? -->
 See [Monitor Azure Cache for Redis](monitor-cache.md) for details on the data you can collect for Azure Cache for Redis and how to use it.
 
 [!INCLUDE [horz-monitor-ref-metrics-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-intro.md)]
 
-For more details and information about the supported metrics for Microsoft.Cache/redisEnterprise, see [List of metrics](monitor-cache-reference.md#azure-managed-redis-metrics).
+For more details and information about the supported metrics for Microsoft.Cache/redis and Microsoft.Cache/redisEnterprise, see [List of metrics](monitor-cache-reference.md#azure-cache-for-redis-metrics).
 
-
-### Supported metrics for Microsoft.Cache/redisEnterprise
-The following table lists the metrics available for the Microsoft.Cache/redisEnterprise resource type.
+### Supported metrics for Microsoft.Cache/redis
+The following table lists the metrics available for the Microsoft.Cache/redis resource type.
 
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
-[!INCLUDE [Microsoft.Cache/redisEnterprise](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-cache-redisenterprise-metrics-include.md)]
-
-<a name="available-metrics-and-reporting-intervals"></a>
-<a name="create-your-own-metrics"></a>
-<a name="metrics-details"></a>
-## Azure Managed Redis metrics
+[!INCLUDE [Microsoft.Cache/redis](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-cache-redis-metrics-include.md)]
 
 ### Supported metrics for Microsoft.Cache/redisEnterprise
 The following table lists the metrics available for the Microsoft.Cache/redisEnterprise resource type.
