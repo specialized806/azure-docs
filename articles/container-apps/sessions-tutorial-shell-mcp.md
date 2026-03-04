@@ -133,58 +133,12 @@ Deploy a session pool by using an ARM template with the MCP server enabled.
 
 1. Deploy the template:
 
-## Create a shell session pool with MCP server
-
-Use an ARM template to create a shell session pool with MCP server enabled.
-
-1. Create a deployment template file named `deploy.json`:
-
-   ```json
-   {
-       "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-       "contentVersion": "1.0.0.0",
-       "parameters": {
-           "name": { "type": "String" },
-           "location": { "type": "String" }
-       },
-       "resources": [
-             {
-               "type": "Microsoft.App/sessionPools",
-               "apiVersion": "2025-10-02-preview",
-               "name": "[parameters('name')]",
-               "location": "[parameters('location')]",
-               "properties": {
-                   "poolManagementType": "Dynamic",
-                   "containerType": "Shell", # Set the "containerType" property to "Shell"
-                   "scaleConfiguration": {
-                       "maxConcurrentSessions": 5
-                   },
-                   "sessionNetworkConfiguration": {
-                       "status": "EgressEnabled"
-                   },
-                   "dynamicPoolConfiguration": {
-                       "lifecycleConfiguration": {
-                           "lifecycleType": "Timed",
-                           "coolDownPeriodInSeconds": 300
-                       }
-                   },
-                   "mcpServerSettings": { 
-                       "isMCPServerEnabled": true # Add the "mcpServerSettings" section to enable the MCP server
-                   }
-               }
-           }
-       ]
-   }
-   ```
-
-2. Deploy the ARM template.
-
-   ```azurecli
-   az deployment group create \
-     --resource-group $RESOURCE_GROUP \
-     --template-file deploy.json \
-     --parameters name=$SESSION_POOL_NAME location=$LOCATION
-   ```
+    ```azurecli
+    az deployment group create \
+      --resource-group $RESOURCE_GROUP \
+      --template-file deploy.json \
+      --parameters name=$SESSION_POOL_NAME location=$LOCATION
+    ```
 
 ## Get the MCP server endpoint
 

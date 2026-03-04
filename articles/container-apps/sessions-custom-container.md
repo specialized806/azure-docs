@@ -55,7 +55,7 @@ Session pools support **Liveness** and **Startup** probe types. For more informa
 
 When you create or update a session pool, specify probes in the `properties.customContainerTemplate.containers` section of your request payload.
 
-For the full API specification, see [SessionPools API](/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?view=rest-resource-manager-containerapps-2025-07-01&tabs=HTTP).
+For the full API specification, see [SessionPools API](/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?view=rest-resource-manager-containerapps-2025-07-01&tabs=HTTP&preserve-view=true).
 
 #### Example
 
@@ -101,7 +101,7 @@ For the full API specification, see [SessionPools API](/rest/api/resource-manage
 
 If your session pool isn't maintaining the expected number of healthy `readySessionInstances`, consider the following:
 
-1. **Check container logs** - Review session container logs to identify issues with probe endpoints or container startup. See [View logs for custom container session pools](../code-interpreter/bring-your-own-code-interpreter/tutorials/custom-container-logs.md).
+1. **Check container logs** - Review session container logs to identify issues with probe endpoints or container startup. See [View logs for custom container session pools](troubleshooting.md#view-logs).
 2. **Verify probe configuration** - Ensure probe paths, ports, and thresholds are configured correctly for your application.
 3. **Review container health** - Check for issues inside your container that prevent probe endpoints from responding successfully.
 
