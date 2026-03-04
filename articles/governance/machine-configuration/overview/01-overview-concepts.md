@@ -61,7 +61,7 @@ compatible. Additionally, Linux server versions that are out of lifetime support
 respective publishers are excluded from the support matrix.
 
 The following table shows a list of supported operating systems on Azure images. The `.x` text is
-symbolic to represent new minor versions of Linux distributions.
+symbolic to represent new minor versions of Linux distributions. To view supported server editions on Azure Arc, refer to [this list of supported editions on Azure Arc][49].
 
 | Publisher | Name                         | Versions         |
 | --------- | ---------------------------- | ---------------- |
@@ -153,3 +153,4 @@ Machine configuration built-in policy samples are available in the following loc
 [46]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#scale-sets-with-flexible-orchestration
 [47]: ../../policy/concepts/exemption-structure.md
 [48]: ../how-to/assign-built-in-policies.md
+[49]: /azure/azure-arc/servers/prerequisites
