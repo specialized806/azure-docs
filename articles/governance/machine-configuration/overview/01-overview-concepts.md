@@ -61,7 +61,7 @@ compatible. Additionally, Linux server versions that are out of lifetime support
 respective publishers are excluded from the support matrix.
 
 The following table shows a list of supported operating systems on Azure images. The `.x` text is
-symbolic to represent new minor versions of Linux distributions. To view supported server editions on Azure Arc, refer to [this list of supported editions on Azure Arc][49].
+symbolic to represent new minor versions of Linux distributions. To view supported server editions on Azure Arc, refer to [this list of supported server editions on Azure Arc][49].
 
 | Publisher | Name                         | Versions         |
 | --------- | ---------------------------- | ---------------- |
