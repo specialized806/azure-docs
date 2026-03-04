@@ -45,7 +45,7 @@ This article uses the following Azure VMware Solution environment:
 
 ### Azure Elastic SAN configuration
 
-The Elastic SAN environment was configured as follows:
+This article uses the following Elastic SAN environment:
 
 - Deployed in the **same region and availability zone** as the AVS private cloud
 - Base capacity provisioned: **100 TiB**
