@@ -420,7 +420,7 @@ az group delete --name $RESOURCE_GROUP
 ::: zone-end
 
 > [!NOTE]
-> If your Container Apps environment is zone redundant and hosted in your own virtual network, Azure Container Apps provisions an internal load balancer (ILB) with an IP-based backend pool. Azure Private Link Service can not be created with an ILB having IP-based backend pools, so an AFD → Private Link Service → ILB topology is not supported for zone-redundant environments. Instead, connect Azure Front Door directly to your Container Apps environment via a private endpoint, which is the approach described in this article and works regardless of whether zone redundancy is enabled or disabled.
+> If your Container Apps environment is zone redundant and hosted in a virtual network with an internal Virtual IP, Azure Container Apps will provision an internal load balancer (ILB) with an IP-based backend pool. Azure Private Link Service can not be created with an ILB having IP-based backend pools, so an AFD → Private Link Service → ILB topology is not supported for zone-redundant environments. Instead, connect Azure Front Door directly to your Container Apps environment via a private endpoint, which is the approach described in this article and works regardless of whether the environment is zone redundant or not.
 
 > [!TIP]
 > Having issues? Let us know on GitHub by opening an issue in the [Azure Container Apps repo](https://github.com/microsoft/azure-container-apps).
