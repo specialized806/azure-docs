@@ -2,7 +2,7 @@
 title: Support Matrix for Azure VM Disaster Recovery with Azure Site Recovery
 description: Summarizes support for Azure VMs disaster recovery to a secondary region with Azure Site Recovery.
 ms.topic: concept-article
-ms.date: 02/12/2026
+ms.date: 02/27/2026
 ms.service: azure-site-recovery
 author: Jeronika-MS
 ms.author: v-gajeronika
@@ -97,6 +97,8 @@ Site Recovery supports replication of Azure VMs running the operating systems li
 
 ### Windows
 
+[!INCLUDE [end-of-life-notes-windows-server-2008.md](./includes/end-of-life-notes-windows-server-2008.md)]
+
 Operating system | Details
 --- | ---
 Windows Server 2025 | Supported.
@@ -124,6 +126,7 @@ Ubuntu 16.04 LTS Server | Includes support for all 16.04.*x* versions. [Supporte
 Ubuntu 18.04 LTS Server | Includes support for all 18.04.*x* versions. [Supported kernel versions](#supported-ubuntu-kernel-versions-for-azure-vms).<br/><br/> Ubuntu servers using password-based authentication and sign-in, and the `cloud-init` package to configure cloud VMs, might have password-based sign-in disabled on failover (depending on the `cloud-init` configuration). To re-enable password-based sign-in on the VM, reset the password from the **Support** > **Troubleshooting** > **Settings** menu of the failed-over VM in the Azure portal.
 Ubuntu 20.04 LTS server | Includes support for all 20.04.*x* versions. [Supported kernel versions](#supported-ubuntu-kernel-versions-for-azure-vms).
 Ubuntu 22.04 LTS server | Includes support for all 22.04.*x* versions. [Supported kernel versions](#supported-ubuntu-kernel-versions-for-azure-vms).
+Ubuntu 24.04 LTS server | Includes support for all 24.04.*x* versions. [Supported kernel versions](#supported-ubuntu-kernel-versions-for-azure-vms).
 Debian 7 | Includes support for all 7.*x* versions. [Supported kernel versions](#supported-debian-kernel-versions-for-azure-vms).
 Debian 8 | Includes support for all 8.*x* versions. [Supported kernel versions](#supported-debian-kernel-versions-for-azure-vms).
 Debian 9 | Includes support for 9.1 to 9.13. Debian 9.0 isn't supported. [Supported kernel versions](#supported-debian-kernel-versions-for-azure-vms).
@@ -394,7 +397,7 @@ Data disk: Standard storage account | Supported. |
 Data disk: Premium storage account | Supported. | If a VM has disks spread across Premium and Standard storage accounts, you can select a different target storage account for each disk to ensure that you have the same storage configuration in the target region.
 Managed disk: Standard | Supported in Azure regions in which Site Recovery is supported. |
 Managed disk: Premium | Supported in Azure regions in which Site Recovery is supported. |
-Disk subscription limits | Up to 3,000 protected disks per subscription. | Ensure that the source or target subscription doesn't have more than 3,000 Site Recovery-protected disks (both data and OS).
+Disk subscription limits | Up to 3,000 (1,200 in case of Trusted VMs) protected disks per subscription. | Ensure that the source or target subscription doesn't have more than 3,000 (1,200 in case of Trusted VMs) Site Recovery-protected disks (both data and OS).
 Standard SSD | Supported. |
 Redundancy | Locally redundant storage (LRS), ZRS, and geo-redundant storage (GRS) are supported.
 Cool and hot storage | Not supported. | VM disks aren't supported on cool or hot storage.
@@ -425,8 +428,8 @@ General-purpose V2 storage accounts (hot and cool tiers) | Supported. | Transact
 Generation 2 (UEFI boot) | Supported.
 NVMe disks | Not supported.
 Managed shared disk| Supported. |
-Managed Premium SSD v2 disk| Supported. | Since block blob storage accounts aren't supported in China North and China East regions, Site Recovery for Premium SSD v2 disks can't be supported. 
-Ultra disks | Supported. | Zonal Disaster Recovery isn't supported. Since block blob storage accounts aren't supported in China North and China East regions, Site Recovery for Ultra disks can't be supported.
+Managed Premium SSD v2| Supported. | Since block blob storage accounts aren't supported in China North and China East regions, Site Recovery for Premium SSD v2 disks can't be supported. 
+Ultra Disks | Supported. | Zonal Disaster Recovery isn't supported. Since block blob storage accounts aren't supported in China North and China East regions, Site Recovery for Ultra Disks can't be supported.
 Secure transfer option | Supported.
 Write accelerator enabled disks | Not supported.
 Tags | Supported. | User-generated tags replicate every 24 hours.
