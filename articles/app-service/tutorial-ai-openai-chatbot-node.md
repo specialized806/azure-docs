@@ -3,7 +3,7 @@ title: Intelligent app with Azure OpenAI (Express.js)
 description: Learn how to build and deploy a Node.js web app to Azure App Service that connects to Azure OpenAI using managed identity.
 author: jefmarti
 ms.author: jefmarti
-ms.date: 05/19/2025
+ms.date: 03/03/2026
 ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.custom:
