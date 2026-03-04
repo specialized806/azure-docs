@@ -26,7 +26,7 @@ Microsoft Entra ID authentication for [Azure Bastion](bastion-overview.md) lets 
 
 Before you configure Entra ID authentication, verify the following:
 
-* **Azure Bastion host** — A Bastion host deployed in the virtual network where the virtual machine is located, or in a [peered virtual network](vnet-peering.md). The minimum SKU depends on the connection method:
+* **Azure Bastion host:** A Bastion host deployed in the virtual network where the virtual machine is located, or in a [peered virtual network](vnet-peering.md). The minimum SKU depends on the connection method:
 
   | Connection method | Minimum SKU |
   |---|---|
@@ -38,7 +38,7 @@ Before you configure Entra ID authentication, verify the following:
   * **Windows VMs (RDP):** Windows 10 version 20H2 or later, Windows 11 21H2 or later, or Windows Server 2022 or later.
   * **Linux VMs (SSH):** Any Linux distribution that supports the AADSSHLoginForLinux extension.
 
-* **Native client connections** — Azure CLI version 2.32 or later. Run `az extension add --name ssh` to install the SSH extension. For setup details, see [Configure Bastion for native client connections](native-client.md).
+* **Native client connections:** Azure CLI version 2.32 or later. Run `az extension add --name ssh` to install the SSH extension. For setup details, see [Configure Bastion for native client connections](native-client.md).
 
 
 ## Entra ID authentication overview
@@ -52,8 +52,8 @@ Entra ID authentication supports both RDP and SSH connections. The authenticatio
 
 Entra ID authentication is available through two connection methods:
 
-* **Azure portal** — Connect directly from the Azure portal using RDP (Windows VMs) or SSH (Linux VMs). The [Basic SKU](bastion-sku-comparison.md) or higher is required.
-* **[Native client](native-client.md)** — Connect using the Azure CLI from your local computer with the [`az network bastion rdp`](/cli/azure/network/bastion#az-network-bastion-rdp) or [`az network bastion ssh`](/cli/azure/network/bastion#az-network-bastion-ssh) command. The [Standard SKU](bastion-sku-comparison.md) or higher is required.
+* **Azure portal:** Connect directly from the Azure portal using RDP (Windows VMs) or SSH (Linux VMs). The [Basic SKU](bastion-sku-comparison.md) or higher is required.
+* **[Native client](native-client.md)"** Connect using the Azure CLI from your local computer with the [`az network bastion rdp`](/cli/azure/network/bastion#az-network-bastion-rdp) or [`az network bastion ssh`](/cli/azure/network/bastion#az-network-bastion-ssh) command. The [Standard SKU](bastion-sku-comparison.md) or higher is required.
 
 When all requirements are met, Microsoft Entra ID appears as the default authentication option on the Bastion connection page in the Azure portal. If any requirement isn't met, the option doesn't appear.
 
@@ -61,8 +61,8 @@ When all requirements are met, Microsoft Entra ID appears as the default authent
 
 Users connecting with Entra ID authentication need the following role assignments:
 
-* **[Virtual Machine Administrator Login](/azure/role-based-access-control/built-in-roles#virtual-machine-administrator-login)** — Grants administrator-level access to the VM.
-* **[Virtual Machine User Login](/azure/role-based-access-control/built-in-roles#virtual-machine-user-login)** — Grants regular user-level access to the VM.
+* **[Virtual Machine Administrator Login:](/azure/role-based-access-control/built-in-roles#virtual-machine-administrator-login)** Grants administrator-level access to the VM.
+* **[Virtual Machine User Login:](/azure/role-based-access-control/built-in-roles#virtual-machine-user-login)** Grants regular user-level access to the VM.
 
 The following [Bastion Reader roles](bastion-connect-vm-rdp-windows.md#prerequisites) are also required:
 
