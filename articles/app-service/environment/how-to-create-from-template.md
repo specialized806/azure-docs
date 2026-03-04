@@ -13,32 +13,27 @@ ms.service: azure-app-service
 
 An App Service Environment v3 can be created in the Azure portal or by using an Azure Resource Manager (ARM) template.
 
-In the Azure portal, you create an App Service Environment with a specific configuration for immediate deployment. When you [create the environment in the portal](creation.md), you can create your virtual network at the same time or choose an existing virtual network for the deployment. 
+In the Azure portal, you create an App Service Environment with a specific configuration for immediate deployment. When you [create the environment in the portal](creation.md), you select or create the supporting resources at the same time, including the resource group for the deployment region, and the virtual network with subnet. 
 
-When you create an App Service Environment from a template, you access a configuration that's available for repeatable deployment of the same environment or other App Service Environments. In this scenario, you must choose an existing virtual network with an existing subnet. You also need to preconfirm the region location for the planned deployment.
+When you create an App Service Environment from a template, you access a configuration that's available for repeatable deployment of the same environment or other App Service Environments. The template specifies the property set for the App Service Environment, along with the virtual network and subnet to use for the deployment.
 
 This article walks through the steps and syntax you need to create an External App Service Environment or internal load balancer (ILB) App Service Environment from an ARM template.
 
 ## Prerequisites
 
-Before you can create an App Service Environment from an ARM template, you need to prepare the virtual network and subnet.
+- To build the App Service Environment ARM template, you need to determine the type of environment to configure. You can create the environment with an internet-accessible endpoint or an endpoint on an internal address in an Azure Virtual Network instance. 
 
-In an App Service Environment ARM template, you can create the environment with an internet-accessible endpoint or an endpoint on an internal address in an Azure Virtual Network instance. 
+   When the environment is created with an internal endpoint, the endpoint is provided by an Azure component, the _internal load balancer (ILB)_. An App Service Environment on an internal IP address is referred to as an _ILB App Service Environment_. An App Service Environment with a public endpoint is referred to as an _External App Service Environment_. 
 
-When the environment is created with an internal endpoint, the endpoint is provided by an Azure component, the _internal load balancer (ILB)_. An App Service Environment on an internal IP address is referred to as an _ILB App Service Environment_. An App Service Environment with a public endpoint is referred to as an _External App Service Environment_. 
-
-To create an App Service Environment by using a template, you need the following items:
-
-- An existing virtual network.
-- An existing subnet in the specified virtual network.
+- The virtual network specified in the template must define a subnet:
 
    - The recommended subnet size is `/24` with 256 addresses to accommodate future growth and scaling needs.
-   - The subnet must be empty (no network interface cards (NICs), virtual machines, private endpoints, and so on).
+   - The subnet must be empty (no network interface cards _NICs_, virtual machines, private endpoints, and so on).
    - The subnet must be delegated to `Microsoft.Web/hostingEnvironments`.
    
    Keep in mind that after you create an App Service Environment with the template, you can't change the subnet size.
 
-- A region location with sufficient availability to support deployment of an App Service Environment created from the template.
+- When you create an App Service Environment from an ARM template, the resource group you specify must be in a region that has sufficient availability to support deployment of the environment created from the template.
 
 ## Review the ARM template properties
 
