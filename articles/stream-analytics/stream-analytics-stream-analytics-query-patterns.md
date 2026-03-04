@@ -3,13 +3,16 @@ title: Common query patterns in Azure Stream Analytics
 description: This article describes several common query patterns and designs that are useful in Azure Stream Analytics jobs.
 ms.service: azure-stream-analytics
 ms.topic: how-to
-ms.date: 12/17/2024
+ms.date: 03/04/2026
 ms.custom: devx-track-js
 ---
 
 # Common query patterns in Azure Stream Analytics
 
-Queries in Azure Stream Analytics are expressed in an SQL-like query language. The language constructs are documented in the [Stream Analytics query language reference](/stream-analytics-query/stream-analytics-query-language-reference) guide. 
+> [!NOTE]
+> This article applies to [Microsoft Fabric Eventstream Query Language](/stream-analytics-query/built-in-functions-azure-stream-analytics) too. 
+
+Queries in Azure Stream Analytics are expressed in a SQL-like query language. The language constructs are documented in the [Stream Analytics query language reference](/stream-analytics-query/stream-analytics-query-language-reference) guide. 
 
 The query design can express simple pass-through logic to move event data from one input stream into an output data store, or it can do rich pattern matching and temporal analysis to calculate aggregates over various time windows as in the [Build an IoT solution by using Stream Analytics](stream-analytics-build-an-iot-solution-using-stream-analytics.md) guide. You can join data from multiple inputs to combine streaming events, and you can do lookups against static reference data to enrich the event values. You can also write data to multiple outputs.
 
@@ -83,7 +86,7 @@ HAVING
 ```
 
 
-The **INTO** clause tells the Stream Analytics service which of the outputs to write the data to. The first **SELECT** defines a pass-through query that receives data from the input and sends it to the output named **ArchiveOutput**. The second query aggregates and filters data before sending the results to a downstream alerting system output called **AlertOutput**.
+The **INTO** clause tells the Stream Analytics service, which of the outputs to write the data to. The first **SELECT** defines a pass-through query that receives data from the input and sends it to the output named **ArchiveOutput**. The second query aggregates and filters data before sending the results to a downstream alerting system output called **AlertOutput**.
 
 The **WITH** clause can be used to define multiple subquery blocks. This option has the benefit of opening fewer readers to the input source.
 
@@ -115,7 +118,7 @@ For more information, see [**WITH** clause](/stream-analytics-query/with-azure-s
 
 ## Simple pass-through query
 
-A simple pass-through query can be used to copy the input stream data into the output. For example, if a stream of data containing real-time vehicle information needs to be saved in an SQL database for later analysis, a simple pass-through query does the job.
+A simple pass-through query can be used to copy the input stream data into the output. For example, if a stream of data containing real-time vehicle information needs to be saved in a SQL database for later analysis, a simple pass-through query does the job.
 
 Consider the following **input**:
 
@@ -434,7 +437,7 @@ WHERE
 	LAG(Make, 1) OVER (LIMIT DURATION(second, 90)) = Make
 ```
 
-The **LAG** function can look into the input stream one event back and retrieve the *Make* value, comparing that with the *Make* value of the current event.  Once the condition is met, data from the previous event can be projected using **LAG** in the **SELECT** statement.
+The **LAG** function can look into the input stream one event back and retrieve the *Make* value, comparing that with the *Make* value of the current event. Once the condition is met, data from the previous event can be projected using **LAG** in the **SELECT** statement.
 
 For more information, see [LAG](/stream-analytics-query/lag-azure-stream-analytics).
 
@@ -945,7 +948,7 @@ MATCH_RECOGNIZE (
 
 This query matches at least two consecutive failure events and generates an alarm when the conditions are met.
 **PATTERN** defines the regular expression to be used on the matching, in this case, at least two consecutive warnings after at least one successful operation.
-Success and Warning are defined using Return_Code value and once the condition is met, the **MEASURES** are projected with *ATM_id*, the first warning operation and first warning time.
+Success and Warning are defined using Return_Code value and once the condition is met. The MEASURES** are projected with *ATM_id*, the first warning operation, and first warning time.
 
 For more information, see [MATCH_RECOGNIZE](/stream-analytics-query/match-recognize-stream-analytics).
 
