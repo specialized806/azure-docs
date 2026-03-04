@@ -3,7 +3,7 @@ title: Deploy disaster recovery using JetStream DR
 description: Learn how to implement JetStream DR for your Azure VMware Solution private cloud and on-premises VMware workloads. 
 ms.topic: how-to
 ms.service: azure-vmware
-ms.date: 3/22/2024
+ms.date: 3/04/2026
 ms.custom: references_regions, engagement-fy23
 # Customer intent: "As an IT administrator, I want to implement JetStream DR for my Azure VMware Solution, so that I can ensure minimal downtime and data loss during disaster recovery scenarios."
 ---
@@ -26,7 +26,7 @@ To learn more about JetStream DR, see:
 
 | Items | Description |
 | --- | --- |
-| **JetStream Management Server Virtual Appliance (MSA)**  | MSA enables both Day 0 and Day 2 configuration, such as primary sites, protection domains, and recovering VMs.  The MSA is deployed from an OVA file on a vSphere node by the cloud admin.  The MSA collects and maintains statistics relevant to VM protection and implements a vCenter Server plugin that allows you to manage JetStream DR natively with the vSphere Client. The MSA doesn't handle replication data of protected VMs.  | 
+| **JetStream Management Server Virtual Appliance (MSA)**  | MSA enables both Day 0 and Day 2 configuration, such as primary sites, protection domains, and recovering VMs. The MSA is deployed from an OVA file on a vSphere node by the cloud admin. The MSA collects and maintains statistics relevant to VM protection and implements a vCenter Server plugin that allows you to manage JetStream DR natively with the vSphere Client. The MSA doesn't handle replication data of protected VMs.  | 
 | **JetStream DR Virtual Appliance (DRVA)**  | Linux-based Virtual Machine appliance receives protected VMs replication data from the source ESXi host. It maintains the replication log and manages the transfer of the VMs and their data to the object store such as Azure Blob Storage. Depending upon the number of protected VMs and the amount of VM data to replicate, the private cloud admin can create one or more DRVA instances.  | 
 | **JetStream ESXi host components (IO Filter packages)**  | JetStream software installed on each ESXi host configured for JetStream DR. The host driver intercepts the vSphere VMs I/O and sends the replication data to the DRVA. The IO filters also monitor relevant events, such as vMotion, Storage vMotion, snapshots, etc.   | 
 | **JetStream Protected Domain**  | Logical group of VMs that are protected together using the same policies and runbook. The data for all VMs in a protection domain is stored in the same Azure Blob container instance. A single DRVA instance handles replication to remote DR storage for all VMs in a Protected Domain.   | 
@@ -52,9 +52,9 @@ In this scenario, the primary site is an Azure VMware Solution private cloud in 
 :::image type="content" source="media/jetstream-disaster-recovery/jetstream-cloud-to-cloud-diagram.png" alt-text="Diagram showing the Azure VMware Solution private cloud to private cloud JetStream deployment." border="false" lightbox="media/jetstream-disaster-recovery/jetstream-cloud-to-cloud-diagram.png":::
 
 
-## Disaster Recovery with Azure NetApp Files, JetStream DR and Azure VMware Solution 
+## Disaster Recovery with Azure NetApp Files, JetStream DR, and Azure VMware Solution 
 
-Disaster Recovery to cloud is a resilient and cost-effective way of protecting the workloads against site outages and data corruption events like ransomware. Using the VMware VAIO framework, on-premises VMware workloads can be replicated to Azure Blob storage and recovered with minimal or close to no data loss and near-zero Recovery Time Objective (RTO). JetStream DR can seamlessly recover workloads replicated from on-premises to Azure VMware Solution and specifically to Azure NetApp Files. 
+Disaster Recovery to cloud is a resilient and cost-effective way of protecting the workloads against site outages and data corruption events like ransomware. When you use the VMware VAIO framework, on-premises VMware workloads can be replicated to Azure Blob storage and recovered with minimal or close to no data loss and near-zero Recovery Time Objective (RTO). JetStream DR can seamlessly recover workloads replicated from on-premises to Azure VMware Solution and specifically to Azure NetApp Files. 
 
 JetStream DR enables cost-effective disaster recovery by consuming minimal resources at the DR site and using cost-effective cloud storage. JetStream DR automates recovery to Azure NetApp Files (ANF) datastores using Azure Blob Storage. It can recover independent VMs or groups of related VMs into the recovery site infrastructure according to runbook settings. It also provides point-in-time recovery for ransomware protection. 
 
@@ -79,9 +79,9 @@ To install JetStream DR in the on-premises data center and in the Azure VMware S
    - Import protected domains and configure RocVA (recovery VA) to use ANF datastore for VM placements. 
    - Select the appropriate failover option and start continuous rehydration for near-zero RTO domains/VMs. 
 
-- During a disaster event, trigger failover to Azure NetApp Files datastores in the designated Azure VMware Solution DR site. 
-
-- Invoke failback to the protected site after the protected site is recovered. 
+   >[!NOTE]
+   >During a disaster event, trigger failover to Azure NetApp Files datastores in the designated Azure VMware Solution DR site. 
+   > - Invoke failback to the protected site after the protected site is recovered. 
 
 ### Ransomware recovery 
 
