@@ -26,7 +26,7 @@ This article covers two common storage workload categories:
 
 All tests use a single Elastic SAN–backed AVS datastore, sized and configured as described in the following sections.
 
-## Test environment
+## Benchmark environment
 
 ### Azure VMware Solution configuration
 
