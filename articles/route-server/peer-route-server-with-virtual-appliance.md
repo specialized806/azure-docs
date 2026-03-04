@@ -5,14 +5,14 @@ author: duongau
 ms.author: duau
 ms.service: azure-route-server
 ms.topic: tutorial
-ms.date: 07/11/2025
+ms.date: 03/03/2026
 ms.custom: sfi-image-nochange
 
 ---
 
 # Tutorial: Configure BGP peering between Azure Route Server and network virtual appliance (NVA)
 
-This tutorial shows you how to deploy Azure Route Server and configure BGP peering with a Windows Server network virtual appliance (NVA). You learn the complete process from deployment through route verification, providing hands-on experience with dynamic routing in Azure virtual networks.
+This tutorial shows you how to deploy Azure Route Server and configure BGP peering with a Linux-based network virtual appliance (NVA). You learn the complete process from deployment through route verification, providing hands-on experience with dynamic routing in Azure virtual networks.
 
 By the end of this tutorial, you have a working Azure Route Server environment that demonstrates automatic route exchange between Azure's software-defined network and a network virtual appliance.
 
@@ -20,8 +20,7 @@ In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Deploy an Azure Route Server in a virtual network
-> * Create and configure a Windows Server virtual machine as an NVA
-> * Deploy Azure Bastion for secure VM access
+> * Create and configure a Linux virtual machine as an NVA
 > * Configure BGP routing on the network virtual appliance
 > * Establish BGP peering between Route Server and the NVA
 > * Verify route learning and propagation
@@ -83,11 +82,11 @@ In this section, you create an Azure Route Server that establishes BGP peering w
 
 ## Create a network virtual appliance (NVA)
 
-In this section, you create a Windows Server virtual machine that functions as a network virtual appliance and establish BGP communication with the Route Server.
+In this section, you create a Linux virtual machine that functions as a network virtual appliance and establish BGP communication with the Route Server.
 
 ### Create a virtual machine
 
-Create a Windows Server VM in the virtual network you created earlier to act as a network virtual appliance.
+Create a Linux VM in the virtual network you created earlier to act as a network virtual appliance.
 
 1. In the search box at the top of the portal, enter **virtual machine**, and select **Virtual machines** from the search results.
 
@@ -105,12 +104,13 @@ Create a Windows Server VM in the virtual network you created earlier to act as 
     | Region | Select **(US) East US**. |
     | Availability options | Select **No infrastructure required**. |
     | Security type | Select a security type. This tutorial uses **Standard**. |
-    | Image | Select a **Windows Server** image. This tutorial uses **Windows Server 2022 Datacenter: Azure Edition - x64 Gen2** image. |
+    | Image | Select **Ubuntu Server 24.04 LTS - x64 Gen2**. |
     | Size | Choose a size or leave the default setting. |
     | **Administrator account** |  |
+    | Authentication type | Select **SSH public key**. |
     | Username | Enter a username. |
-    | Password | Enter a password. |
-    | Confirm password | Reenter the password. |
+    | SSH public key source | Select **Generate new key pair**. |
+    | Key pair name | Enter **myNVA-key**. |
 
 1. Select the **Networking** tab or **Next: Disks >** then **Next: Networking >**.
 
@@ -126,79 +126,52 @@ Create a Windows Server VM in the virtual network you created earlier to act as 
 
 1. Select **Review + create** and then **Create** after validation passes.
 
-### Deploy Azure Bastion
-
-Azure Bastion uses your browser to connect to VMs in your virtual network over Secure Shell (SSH) or Remote Desktop Protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](../bastion/bastion-overview.md?toc=/azure/route-server/toc.json).
-
->[!NOTE]
->[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
-
-1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
-
-1. Select **+ Create**.
-
-1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **myResourceGroup**. |
-    | **Instance details** |  |
-    | Name | Enter **bastion**. |
-    | Region | Select **East US**. |
-    | Tier | Select **Developer**. |
-    | **Configure virtual networks** |  |
-    | Virtual network | Select **myVirtualNetwork**. |
-
-1. Select **Review + create**.
-
-1. Select **Create**.
+    > [!NOTE]
+    > The network security group rules block inbound SSH access from the internet. To run commands on the virtual machine, use the **Run command** feature in the Azure portal or deploy Azure Bastion. For more information about Azure Bastion, see [Quickstart: Deploy Azure Bastion with default settings](../bastion/quickstart-host-portal.md).
 
 ### Configure BGP on the virtual machine
 
-In this section, you configure BGP settings on the VM so it can function as an NVA and exchange routes with the Route Server.
+In this section, you install FRRouting (FRR) on the VM and configure BGP so it can function as an NVA and exchange routes with the Route Server.
 
 > [!IMPORTANT]
-> The Routing and Remote Access Service (RRAS) isn't supported in Azure for production use. However, in this tutorial, it's used to simulate an NVA and demonstrate how to establish BGP peering with Route Server. For production environments, use supported network virtual appliances from Azure Marketplace. For more information, see [Remote access overview](/windows-server/remote/remote-access/remote-access).
+> FRRouting is used in this tutorial to simulate an NVA and demonstrate how to establish BGP peering with Route Server. For production environments, use supported network virtual appliances from Azure Marketplace.
+
 1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
 
 1. Select **myNVA**.
 
-1. Select **Connect** then **Connect via Bastion** in the **Overview** section.
+1. In **Operations**, select **Run command** then **RunShellScript**.
 
-1. In the **Bastion** connection page, enter or select the following information:
+1. Enter the following script in the **Run Command Script** window, then select **Run**:
 
-    | Setting | Value |
-    | ------- | ----- |
-    | Authentication Type | Select **Password**. |
-    | Username | Enter the username you created. |
-    | Password | Enter the password you created. |
+    ```bash
+    #!/bin/bash
+    # Install FRRouting
+    sudo apt-get update && sudo apt-get install -y frr
 
-1. Select **Connect**.
+    # Enable BGP daemon
+    sudo sed -i 's/bgpd=no/bgpd=yes/' /etc/frr/daemons
 
-1. Run PowerShell as an administrator.
+    # Write BGP configuration
+    sudo tee /etc/frr/frr.conf > /dev/null << 'EOF'
+    frr version 8.1
+    frr defaults traditional
+    hostname myNVA
+    router bgp 65001
+     bgp router-id 10.0.0.4
+     neighbor 10.0.1.4 remote-as 65515
+     neighbor 10.0.1.5 remote-as 65515
+     address-family ipv4 unicast
+      network 172.16.1.0/24
+      network 172.16.2.0/24
+     exit-address-family
+    EOF
 
-1. In PowerShell, execute the following cmdlets:
-
-    ```powershell
-    # Install required Windows features.
-    Install-WindowsFeature RemoteAccess
-    Install-WindowsFeature RSAT-RemoteAccess-PowerShell
-    Install-WindowsFeature Routing
-    Install-RemoteAccess -VpnType RoutingOnly
-    
-    # Configure BGP & Router ID on the Windows Server
-    Add-BgpRouter -BgpIdentifier 10.0.0.4 -LocalASN 65001
-     
-    # Configure Azure Route Server as a BGP Peer.
-    Add-BgpPeer -LocalIPAddress 10.0.0.4 -PeerIPAddress 10.0.1.4 -PeerASN 65515 -Name RS_IP1
-    Add-BgpPeer -LocalIPAddress 10.0.0.4 -PeerIPAddress 10.0.1.5 -PeerASN 65515 -Name RS_IP2
-    
-    # Originate and announce BGP routes.
-    Add-BgpCustomRoute -network 172.16.1.0/24
-    Add-BgpCustomRoute -network 172.16.2.0/24
+    # Restart FRR to apply configuration
+    sudo systemctl restart frr
     ```
+
+1. Wait for the script to complete. The output confirms the FRR installation and BGP configuration.
 
 ## Configure Route Server peering
 
