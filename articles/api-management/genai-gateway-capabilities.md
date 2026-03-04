@@ -248,6 +248,7 @@ More information:
 * [AI gateway workshop](https://aka.ms/ai-gateway/workshop)
 * [Azure OpenAI with API Management (Node.js)](https://github.com/Azure-Samples/genai-gateway-apim)
 * [Python sample code](https://github.com/Azure-Samples/openai-apim-lb/blob/main/docs/sample-code.md)
+* [Unified AI gateway design pattern](https://github.com/Azure-Samples/APIM-Unified-AI-Gateway-Sample)
 
 ## Architecture and design
 
