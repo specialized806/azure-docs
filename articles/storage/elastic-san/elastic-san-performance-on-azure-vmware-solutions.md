@@ -57,7 +57,7 @@ This article uses the following Elastic SAN environment:
 
 The Elastic SAN used also follows all the best practices outlined in [Optimize the performance of your Elastic SAN](elastic-san-best-practices.md).
 
-## Benchmarking tools
+## Benchmark tools
 
 The benchmarks use industry‑standard storage testing tools, [DiskSPD](https://github.com/microsoft/diskspd) (used with Windows environments) and [Fio](https://github.com/axboe/fio) (used with Linux environments).
 
