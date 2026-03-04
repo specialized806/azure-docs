@@ -17,8 +17,6 @@ ms.custom:
 ---
 # Create a WordPress site
 
-For more information, see [broken link test](quickstart-nonexistent-page.md).
-
 In this quickstart, you'll learn how to create and deploy your first [WordPress](https://www.wordpress.org/) site to [Azure App Service](overview.md) with [Azure Database for MySQL - Flexible Server](/azure/mysql/flexible-server/) using the [WordPress Azure Marketplace item by App Service](https://azuremarketplace.microsoft.com/marketplace/apps/WordPress.WordPress?tab=Overview). This quickstart uses the **Standard** tier for your app and a **Burstable, B2s** tier for your database, and incurs a cost for your Azure Subscription. For pricing, visit [App Service pricing](https://azure.microsoft.com/pricing/details/app-service/linux/), [Azure Database for MySQL pricing](https://azure.microsoft.com/pricing/details/mysql/flexible-server/), [Content Delivery Network pricing](https://azure.microsoft.com/pricing/details/storage/blobs/), and [Azure Blob Storage pricing](https://azure.microsoft.com/pricing/details/storage/blobs/). You can learn more about WordPress on App Service in the [overview](overview-wordpress.md).
 
 To complete this quickstart, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
