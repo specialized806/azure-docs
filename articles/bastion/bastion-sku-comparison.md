@@ -6,7 +6,7 @@ ms.author: abell
 ms.service: azure-bastion
 ms.topic: concept-article
 ms.date: 11/24/2025
-# Customer intent: As a cloud administrator, I want to compare Azure Bastion SKU tiers and understand their features, so that I can select the appropriate tier for my organization's secure remote access requirements.
+# Customer intent: As a cloud administrator, I want to compare Azure Bastion SKU tiers and understand their features, so that I can select the appropriate SKU for my organization's secure remote access requirements.
 ---
 
 # Choose the right Azure Bastion SKU to meet your needs
@@ -58,7 +58,7 @@ Compare the features across all four Azure Bastion SKU tiers:
 
 ## Performance and scalability
 
-The following table shows the capacity and scaling characteristics of each SKU tier:
+The following table shows the capacity and scaling characteristics of each SKU:
 
 | Metric | Developer | Basic | Standard | Premium |
 |--------|-----------|----------|---------|---------|

@@ -160,7 +160,7 @@ Azure Functions provides serverless compute resources that integrate with AI and
 
 The [Azure OpenAI binding extension](./functions-bindings-openai.md) lets you integrate AI features and behaviors of the [Azure OpenAI service](/azure/ai-services/openai/overview), such as retrieval-augmented generation (RAG), into your function code executions. For more information, see [Retrieval-augmented generation](functions-create-ai-enabled-apps.md#retrieval-augmented-generation).
 
-A function might also call a TensorFlow model or Azure AI services to process and classify a stream of images.
+A function might also call a TensorFlow model or Foundry Tools to process and classify a stream of images.
 
 :::image type="content" source="media/functions-scenarios/machine-learning-and-ai.png" alt-text="Diagram of a machine learning and AI process using Azure Functions." lightbox="media/functions-scenarios/machine-learning-and-ai-expanded.png":::
 
