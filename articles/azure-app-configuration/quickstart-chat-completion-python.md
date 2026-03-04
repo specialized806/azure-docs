@@ -9,7 +9,7 @@ ms.devlang: python
 ms.custom: devx-track-python, mode-other
 ms.topic: quickstart
 ms.tgt_pltfrm: Python
-ms.date: 02/27/2026
+ms.date: 03/04/2026
 ms.update-cycle: 180-days
 ms.author: mametcal
 ms.collection: ce-skilling-ai-copilot
