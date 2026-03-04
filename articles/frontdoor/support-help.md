@@ -19,14 +19,19 @@ Here are suggestions for where you can get help when developing your Azure Front
 
 Various articles explain how to determine, diagnose, and fix issues that you might encounter when using Azure Front Door. Use these articles to troubleshoot connectivity problems, performance issues, circuit configuration, and more. 
 
-For a full list of self help troubleshooting content, see [Azure Front Door troubleshooting documentation](/troubleshoot/azure/front-door/welcome-frontdoor).
+For a full list of self help troubleshooting content, see [Azure Front Door troubleshooting documentation](/troubleshoot/azure/front-door/welcome-front-door).
 
 
 ## Post a question on Microsoft Q&A
 
 For quick and reliable answers on your technical product questions from Microsoft Engineers, Azure Most Valuable Professionals (MVPs), or our expert community, engage with us on [Microsoft Q&A](/answers/products/azure), Azure's preferred destination for community support. 
 
-If you can't find an answer to your problem using search, submit a new question to Microsoft Q&A. Use the [azure-frontdoor](/answers/tags/226/azure-frontdoor) tag when asking your question.
+If you can't find an answer to your problem using search, submit a new question to Microsoft Q&A. Use one of the following tags when asking your question:
+
+| Area | Tag |
+| --- | --- |
+| Azure Front Door | [azure-frontdoor](/answers/topics/azure-frontdoor.html) |
+| CDN Standard from Microsoft (classic) | [azure-cdn](/answers/topics/azure-cdn.html) |
 
 ## Create an Azure support request
 
