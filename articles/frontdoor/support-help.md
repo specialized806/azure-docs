@@ -1,5 +1,6 @@
 ---
-title: Azure Front Door support and help options 
+title: Support and Troubleshooting
+titleSuffix: Azure Front Door
 description: How to obtain help and support for questions or problems when you create solutions using Azure Front Door. 
 author: halkazwini
 ms.author: halkazwini
