@@ -35,6 +35,8 @@
       href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
     - name: Host a Durable Task SDK app on Azure Container Apps
       href: ./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md
+    - name: Host a .NET Durable Task SDK app on Azure Kubernetes Service
+      href: ./durable-task-scheduler/quickstart-aks-durable-task-scheduler.md
 - name: Core concepts
   items:
   - name: Fundamentals
