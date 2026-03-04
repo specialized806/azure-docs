@@ -242,7 +242,7 @@ az network bastion ssh \
 
 ---
 
-## Known limitations
+## Limitations
 
 * RDP and Entra ID authentication in the portal can't be used concurrently with [graphical session recording](session-recording.md).
 * Microsoft Entra ID authentication isn't supported for [IP-based](connect-ip-address.md) RDP or SSH connections.
