@@ -61,7 +61,7 @@ The Elastic SAN used also follows all the best practices outlined in [Optimize t
 
 The benchmarks use industry‑standard storage testing tools, [DiskSPD](https://github.com/microsoft/diskspd) (used with Windows environments) and [Fio](https://github.com/axboe/fio) (used with Linux environments).
 
-## Running the benchmark tests
+## Perform the benchmark tests
 
 This section provides example commands used to generate the benchmark results shown later in this article. The examples include both **I/O‑intensive** and **throughput‑intensive** scenarios for Windows and Linux. For each workload scenario, the benchmarks are executed on one or more guest VMs connected to the same Elastic SAN datastore.
 
