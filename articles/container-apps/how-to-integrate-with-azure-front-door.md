@@ -1,6 +1,6 @@
 ---
-title: Access an Azure container app using an Azure Front Door
-description: Learn how to access an Azure container app using an Azure Front Door.
+title: Access an Azure container app using an Azure Front Door with Private Link
+description: Learn how to access an Azure container app using an Azure Front Door with Private Link
 services: container-apps
 author: craigshoemaker
 ms.service: azure-container-apps
@@ -17,7 +17,7 @@ zone_pivot_groups: azure-cli-or-portal
 
 # Create a private link to an Azure Container App with Azure Front Door
 
-In this article, you learn how to connect directly from Azure Front Door to your Azure Container Apps using a private link instead of the public internet. In this tutorial, you create an Azure Container Apps workload profiles environment, an Azure Front Door, and connect them securely through a private link. You then verify the connectivity between your container app and the Azure Front Door.
+In this article, you learn how to connect directly from Azure Front Door to your Azure Container Apps using a private link instead of the public internet. In this tutorial, you will create an Azure Container Apps workload profiles environment, an Azure Front Door, and connect them securely through a private link. You then verify the connectivity between your container app and the Azure Front Door.
 
 > [!IMPORTANT]
 > There are [additional charges](./private-endpoints-with-dns.md#billing) for enabling private endpoints in both the Dedicated and Consumption plans.
@@ -418,6 +418,9 @@ az group delete --name $RESOURCE_GROUP
 ```
 
 ::: zone-end
+
+> [!NOTE]
+> If your Container Apps environment is zone redundant and hosted in your own virtual network, Azure Container Apps provisions an internal load balancer (ILB) with an IP-based backend pool. Azure Private Link Service can not be created with an ILB having IP-based backend pools, so an AFD → Private Link Service → ILB topology is not supported for zone-redundant environments. Instead, connect Azure Front Door directly to your Container Apps environment via a private endpoint, which is the approach described in this article and works regardless of whether zone redundancy is enabled or disabled.
 
 > [!TIP]
 > Having issues? Let us know on GitHub by opening an issue in the [Azure Container Apps repo](https://github.com/microsoft/azure-container-apps).
