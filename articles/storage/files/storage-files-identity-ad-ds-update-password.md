@@ -21,7 +21,7 @@ Two options exist for triggering password rotation. You can use the `AzFilesHybr
 
 ## Option 1: Use AzFilesHybrid module
 
-To regenerate and rotate the password for the AD principal that represents the storage account, use the `Update-AzStorageAccountADObjectPassword` cmdlet from the [AzFilesHybrid module](https://github.com/Azure-Samples/azure-files-samples/releases). To run `Update-AzStorageAccountADObjectPassword`, you must:
+To regenerate and rotate the password for the AD principal that represents the storage account, use the `Update-AzStorageAccountADObjectPassword` cmdlet from the [AzFilesHybrid module](https://www.powershellgallery.com/packages/AzFilesHybrid/). To run `Update-AzStorageAccountADObjectPassword`, you must:
 
 - Run the cmdlet from a domain-joined client.
 - Have the owner permission on the storage account.
@@ -29,7 +29,7 @@ To regenerate and rotate the password for the AD principal that represents the s
 
 ```PowerShell
 # Update the password of the AD DS account registered for the storage account
-# You may use either kerb1 or kerb2
+# You can use either kerb1 or kerb2
 Update-AzStorageAccountADObjectPassword `
         -RotateToKerbKey kerb2 `
         -ResourceGroupName "<your-resource-group-name-here>" `
