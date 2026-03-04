@@ -3,6 +3,7 @@ title: Durable Task Scheduler billing
 titleSuffix: Durable Task
 description: Learn how billing works for applications built with the Durable Task SDKs, including compute costs and Durable Task Scheduler pricing.
 ms.topic: concept-article
+ms.subservice: durable-task-scheduler
 ms.date: 02/25/2026
 ms.author: franlanglois
 ---

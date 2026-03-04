@@ -2,6 +2,7 @@
 title: Automate recurring orchestrations with schedules
 description: Learn how to create, manage, and monitor recurring orchestrations using the schedules feature in the Durable Task Scheduler
 ms.topic: concept-article
+ms.subservice: durable-task-scheduler
 ms.date: 03/03/2026
 ms.author: torosent
 ---

@@ -3,6 +3,7 @@ title: Durable Task Scheduler action throughput benchmarks
 titleSuffix: Durable Task
 description: Learn about the Durable Task Scheduler action throughput benchmarks compared to other storage providers.
 ms.topic: concept-article
+ms.subservice: durable-task-scheduler
 ms.date: 10/22/2025
 ---
 
