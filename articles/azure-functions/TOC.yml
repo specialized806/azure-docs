@@ -36,6 +36,9 @@
       - name: Custom remote MCP server
         displayName: AI, agent, agentic, tools, trigger
         href: scenario-custom-remote-mcp-server.md
+      - name: MCP Apps
+        displayName: AI, agent, agentic, tools, MCP Apps, UI
+        href: scenario-mcp-apps.md
       - name: Host MCP server using SDKs
         displayName: AI, agent, agentic, tools, MCP SDKs
         href: scenario-host-mcp-server-sdks.md
@@ -630,6 +633,9 @@
     - name: MCP extension quickstart
       displayName: AI, agent, agentic, tools, trigger
       href: scenario-custom-remote-mcp-server.md
+    - name: MCP Apps quickstart
+      displayName: AI, agent, agentic, tools, MCP Apps, UI
+      href: scenario-mcp-apps.md
     - name: Custom remote MCP tutorial
       displayName: agent, agentic, Foundry
       href: functions-mcp-tutorial.md
@@ -930,9 +936,12 @@
       - name: Overview
         displayName: MCP
         href: functions-bindings-mcp.md
-      - name: Trigger
+      - name: Tool trigger
         displayName: MCP tool
-        href: functions-bindings-mcp-trigger.md
+        href: functions-bindings-mcp-tool-trigger.md
+      - name: Resource trigger
+        displayName: MCP resource
+        href: functions-bindings-mcp-resource-trigger.md
     - name: Mobile Apps
       href: functions-bindings-mobile-apps.md
     - name: Notification Hubs
@@ -1060,6 +1069,8 @@
         href: errors-diagnostics/diagnostic-events/azfd0012.md
       - name: AZFD0013
         href: errors-diagnostics/diagnostic-events/azfd0013.md
+      - name: AZFD0015
+        href: errors-diagnostics/diagnostic-events/azfd0015.md
   - name: host.json 2.x reference
     href: functions-host-json.md
   - name: host.json 1.x reference
