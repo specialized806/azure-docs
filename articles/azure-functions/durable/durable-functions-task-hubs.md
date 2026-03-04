@@ -354,7 +354,7 @@ resource taskHub 'Microsoft.DurableTask/schedulers/taskHubs@2025-04-01-preview' 
 > [!IMPORTANT]
 > The `0.0.0.0/0` IP allowlist permits access from any IP address. For production deployments, restrict this to only the required IP ranges.
 
-The previous examples use the Dedicated SKU. The Durable Task Scheduler also offers a [Consumption SKU (preview)](durable-task-scheduler/durable-task-scheduler-billing.md). For more information about managing Durable Task Scheduler resources, see [Develop with Durable Task Scheduler](durable-task-scheduler/develop-with-durable-task-scheduler.md).
+The previous examples use the Dedicated SKU. The Durable Task Scheduler also offers a [Consumption SKU](durable-task-scheduler/durable-task-scheduler-billing.md). For more information about managing Durable Task Scheduler resources, see [Develop with Durable Task Scheduler](durable-task-scheduler/develop-with-durable-task-scheduler.md).
 
 ### Configure identity-based authentication
 

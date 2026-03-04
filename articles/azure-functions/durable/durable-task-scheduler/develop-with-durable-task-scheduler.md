@@ -29,7 +29,7 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
    docker pull mcr.microsoft.com/dts/dts-emulator:latest
    ```
 
-1. Run the emulator.
+2. Run the emulator.
 
    ```bash
    docker run -itP mcr.microsoft.com/dts/dts-emulator:latest
@@ -56,19 +56,19 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
     az upgrade
     ```
 
-1. Install the Durable Task Scheduler CLI extension.
+2. Install the Durable Task Scheduler CLI extension.
 
     ```azurecli
     az extension add --name durabletask
     ```
 
-1. If you already installed the Durable Task Scheduler CLI extension, upgrade to the latest version.
+3. If you already installed the Durable Task Scheduler CLI extension, upgrade to the latest version.
 
     ```azurecli
     az extension update --name durabletask
     ```
 
-1. Check your installed version:
+4. Check your installed version:
    
    ```azurecli
    az extension show --name durabletask
@@ -87,7 +87,7 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
     az group create --name YOUR_RESOURCE_GROUP --location LOCATION
     ```
 
-1. Using the `durabletask` CLI extension, create a scheduler.
+2. Using the `durabletask` CLI extension, create a scheduler.
 
    #### [Dedicated SKU](#tab/dedicated)
 
@@ -213,7 +213,7 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
 
 1. Fill out the fields in the **Basics** tab. Click **Review + create**.
 
-1. Once the validation passes, click **Create**. 
+1. Once the validation passes, click **Create**.
 
     Deployment may take around 15 to 20 minutes. 
 
@@ -229,7 +229,7 @@ The Durable Task Scheduler emulator is only available as a Docker image today.
     az durabletask scheduler list --subscription <SUBSCRIPTION_ID>
     ```
 
-1. You can narrow down results to a specific resource group by adding the `--resource-group` flag.
+2. You can narrow down results to a specific resource group by adding the `--resource-group` flag.
 
     ```azurecli
     az durabletask scheduler list --subscription <SUBSCRIPTION_ID> --resource-group <RESOURCE_GROUP_NAME>
