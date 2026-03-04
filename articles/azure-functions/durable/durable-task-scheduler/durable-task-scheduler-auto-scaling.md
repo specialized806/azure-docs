@@ -175,7 +175,7 @@ In the [Autoscaling in Azure Container Apps sample](https://github.com/Azure-Sam
    Subscription: SUBSCRIPTION_NAME (SUBSCRIPTION_ID)
    Location: West US 2
 
-    You can view detailed progress in the Azure Portal:
+    You can view detailed progress in the Azure portal:
     https://portal.azure.com/#view/HubsExtension/DeploymentDetailsBlade/~/overview/id/%2Fsubscriptions%SUBSCRIPTION_ID%2Fproviders%2FMicrosoft.Resources%2Fdeployments%2FCONTAINER_APP_ENVIRONMENT
 
     (✓) Done: Resource group: GENERATED_RESOURCE_GROUP (1.385s)
