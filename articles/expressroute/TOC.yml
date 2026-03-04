@@ -362,5 +362,5 @@
           href: expressroute-howto-coexist-classic.md
         - name: Change circuit from classic to Resource Manager
           href: expressroute-howto-move-arm.md
-    - name: Support and troubleshooting for ExpressRoute
-      href: expressroute-support-help.md
+- name: Support and troubleshooting for ExpressRoute
+  href: expressroute-support-help.md
