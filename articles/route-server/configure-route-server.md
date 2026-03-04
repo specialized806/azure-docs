@@ -329,7 +329,7 @@ In this section, you learn how to view the routes that your route server adverti
 
 # [**Portal**](#tab/portal)
 
-Use [PowerShell](?tabs=powershell##view-advertised-and-learned-routes) or [Azure CLI](?tabs=cli##view-advertised-and-learned-routes) to view the advertised and learned routes.
+Use [PowerShell](?tabs=powershell#view-advertised-and-learned-routes) or [Azure CLI](?tabs=cli#view-advertised-and-learned-routes) to view the advertised and learned routes.
 
 # [**PowerShell**](#tab/powershell)
 
