@@ -18,7 +18,7 @@ You can even *scale to zero* when the task hub is idle. When you scale to zero, 
 
 The following diagram illustrates this concept:
 
-![Diagram that shows workers scaling out, scaling in, and scaling to zero for a task hub.](./media/durable-functions-perf-and-scale/worker-scaling.png)
+:::image type="content" source="./media/durable-functions-perf-and-scale/worker-scaling.png" alt-text="Diagram that shows workers scaling out, scaling in, and scaling to zero for a task hub.":::
 
 ### Automatic scaling
 
@@ -67,12 +67,12 @@ Caching typically reduces I/O to the underlying storage service and improves thr
 
 The Azure Storage provider and the Netherite storage provider support instance caching. The table compares providers.
 
-|| Azure Storage provider | Netherite storage provider | MSSQL storage provider |
-|----|----|----|----|
-| **Instance caching**    | Supported<br/>(.NET in-process worker only)       | Supported          | Not supported |
-| **Default setting**      | Disabled       | Enabled   | n/a |
-| **Mechanism**        | Extended Sessions       | Instance Cache   | n/a |
-| **Documentation**  |  See [Extended sessions](durable-functions-azure-storage-provider.md#extended-sessions) | See [Instance cache](https://microsoft.github.io/durabletask-netherite/#/caching) | n/a |
+| | Azure Storage provider | Netherite storage provider | MSSQL storage provider |
+| - | ---------------------- | -------------------------- | ---------------------- |
+| **Instance caching** | Supported<br/>(.NET in-process worker only) | Supported | Not supported |
+| **Default setting** | Disabled | Enabled | n/a |
+| **Mechanism** | Extended Sessions | Instance Cache | n/a |
+| **Documentation** | See [Extended sessions](durable-functions-azure-storage-provider.md#extended-sessions) | See [Instance cache](https://microsoft.github.io/durabletask-netherite/#/caching) | n/a |
 
 > [!TIP]
 > Caching can reduce how often the runtime replays history, but it can't eliminate replay. During development, test orchestrators with caching disabled. Forced replay helps you detect violations of [orchestrator function code constraints](durable-functions-code-constraints.md).
@@ -157,13 +157,13 @@ With partitioning, workers don't compete for individual work items. Partitioning
 
 The following table shows which queues each storage provider partitions and the allowed range and default values for `partitionCount`.
 
-|| Azure Storage provider | Netherite storage provider | MSSQL storage provider |
-|----|----|----|----|
-| **Instance messages**| Partitioned        | Partitioned          | Not partitioned     |
-| **Activity messages**   | Not partitioned      | Partitioned          | Not partitioned    |
-| **Default `partitionCount`**    | 4        | 12          | n/a    |
-| **Maximum `partitionCount`**    | 16       | 32          | n/a     |
-| **Documentation**  |  See [Orchestrator scale-out](durable-functions-azure-storage-provider.md#orchestrator-scale-out) | See [Partition count considerations](https://microsoft.github.io/durabletask-netherite/#/settings?id=partition-count-considerations) | n/a |
+| | Azure Storage provider | Netherite storage provider | MSSQL storage provider |
+| - | ---------------------- | -------------------------- | ---------------------- |
+| **Instance messages** | Partitioned | Partitioned | Not partitioned |
+| **Activity messages** | Not partitioned | Partitioned | Not partitioned |
+| **Default `partitionCount`** | 4 | 12 | n/a |
+| **Maximum `partitionCount`** | 16 | 32 | n/a |
+| **Documentation** | See [Orchestrator scale-out](durable-functions-azure-storage-provider.md#orchestrator-scale-out) | See [Partition count considerations](https://microsoft.github.io/durabletask-netherite/#/settings?id=partition-count-considerations) | n/a |
 
 > [!WARNING]
 > You can't change the partition count after you create a task hub. Set it high enough to meet expected scale out requirements for the task hub instance.
@@ -200,7 +200,7 @@ Specify `partitionCount` in the *host.json* file. The following *host.json* snip
 
 ## Minimize invocation latency
 
-Invocation requests for activities, orchestrators, and entities usually complete quickly, but invocation latency depends on your App Service plan scale behavior, your concurrency settings, and your application's backlog size. Use [stress testing](./durable-functions-best-practice-reference.md#invest-in-stress-testing) to measure and reduce your application's tail latency.
+Invocation requests for activities, orchestrators, and entities usually complete quickly, but invocation latency depends on your App Service plan scale behavior, your concurrency settings, and your application's backlog size. Use [stress testing](/azure/azure-functions/durable/durable-functions-best-practice-reference#invest-in-stress-testing) to measure and reduce your application's tail latency.
 
 ## Performance targets
 
@@ -210,7 +210,7 @@ When you're planning a production app with Durable Functions, consider performan
 * **Parallel activity execution**: This scenario describes an orchestrator function that executes many activity functions in parallel using the [Fan-out, fan-in](durable-functions-monitor.md) pattern.
 * **Parallel response processing**: This scenario is the second half of the [Fan-out, fan-in](durable-functions-monitor.md) pattern. It focuses on fan-in performance. Unlike fan-out, fan-in runs in a single orchestrator function instance, so it runs on a single VM.
 * **External event processing**: This scenario represents a single orchestrator function instance that waits on [external events](durable-functions-external-events.md), one at a time.
-* **Entity operation processing**: This scenario tests how quickly a _single_ [Counter entity](durable-functions-entities.md) can process a constant stream of operations.
+* **Entity operation processing**: This scenario tests how quickly a *single* [Counter entity](durable-functions-entities.md) can process a constant stream of operations.
 
 Throughput numbers for these scenarios are in the storage provider documentation. In particular:
 

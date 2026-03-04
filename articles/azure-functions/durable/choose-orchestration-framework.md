@@ -1,5 +1,5 @@
 ---
-title: Choose your programming model
+title: Choose your hosting option
 description: Learn how your hosting platform determines whether to use Durable Functions for Azure Functions or the standalone Durable Task SDKs for self-hosted scenarios.
 author: cgillum
 ms.author: cgillum
@@ -12,7 +12,7 @@ titleSuffix: Durable Task
 #Customer intent: As a developer, I want to understand which Durable Task programming model to use based on my hosting platform.
 ---
 
-# Choose your programming model
+# Choose your hosting option
 
 As described in [What is Durable Task?](what-is-durable-task.md), the Durable Task framework supports two hosting models: **Azure Functions** (via Durable Functions) and **self-hosted** (via the standalone Durable Task SDKs). Both hosting models provide the same core durable execution capabilities (orchestrations, activities, timers, external events, and more) but differ in how your application is hosted, scaled, and deployed.
 
@@ -60,7 +60,7 @@ Azure Functions provides HTTP endpoints for your functions app, which the Durabl
 When using the Durable Task SDKs, you need to implement your own HTTP endpoints depending on your hosting compute.
 
 | Feature | Durable Functions | Durable Task SDKs |
-|---------|-------------------|-------------------|
+| ------- | ----------------- | ----------------- |
 | **Management HTTP APIs** | ✅ Built-in | ❌ Implement your own |
 | **Automatic status URLs** | ✅ Built-in | ❌ Implement your own |
 
@@ -84,10 +84,10 @@ Learn more: [Manage orchestration instances](durable-functions-instance-manageme
 Durable Functions supports multiple storage backends, while the Durable Task SDKs exclusively use the Durable Task Scheduler.
 
 > [!TIP]
-> The **Durable Task Scheduler** is a fully managed Azure service that handles orchestration state persistence and execution. It's provisioned as a separate Azure resource with its own [pricing](./durable-task-scheduler/durable-task-scheduler-dedicated-sku.md). It's the recommended backend for Durable Functions and the only supported backend for the Durable Task SDKs.
+> The **Durable Task Scheduler** is a fully managed Azure service that handles orchestration state persistence and execution. It's provisioned as a separate Azure resource with its own [pricing](./durable-task-scheduler/durable-task-scheduler-billing.md). It's the recommended backend for Durable Functions and the only supported backend for the Durable Task SDKs.
 
 | Storage provider | Durable Functions | Durable Task SDKs |
-|------------------|-------------------|-------------------|
+| ---------------- | ----------------- | ----------------- |
 | **Durable Task Scheduler** | ✅ Recommended | ✅ Required |
 | **Azure Storage** | ✅ Supported | ❌ Not supported |
 | **Microsoft SQL Server** | ✅ Supported | ❌ Not supported |
@@ -104,7 +104,7 @@ Learn more: [Task hubs](durable-functions-task-hubs.md)
 ### Diagnostics and versioning
 
 | Feature | Durable Functions | Durable Task SDKs |
-|---------|-------------------|-------------------|
+| ------- | ----------------- | ----------------- |
 | **Durable Task Scheduler dashboard** | ✅ Yes | ✅ Yes |
 | **Application Insights** | ✅ Built-in | Manual setup |
 | **Zero-downtime deployment** | ✅ Functions slots | Platform-specific |
@@ -139,7 +139,7 @@ All Durable Task SDKs are open source and available on GitHub. However, some SDK
 
 ### Durable Task Framework (Legacy)
 
-The [Durable Task Framework](https://github.com/Azure/durabletask) (DTFx) is an older, open-source .NET Durable Task library. While it provides similar orchestration primitives, it predates the modern Durable Task SDKs and doesn't include official Microsoft support or the latest features. It also requires you to manage hosting, operational infrastructure, and long-term maintenance themselves.
+The [Durable Task Framework](https://github.com/Azure/durabletask) (DTFx) is an older, open-source .NET Durable Task library. While it provides similar orchestration primitives, it predates the modern Durable Task SDKs and doesn't include official Microsoft support or the latest features. It also requires you to manage hosting, operational infrastructure, and long-term maintenance yourself.
 
 If you're starting a new project, we recommend using the modern Durable Task SDKs or Durable Functions instead.
 

@@ -50,7 +50,7 @@ For detailed configuration and implementation guidance, see [Orchestration versi
 
 Define new versions of your functions and leave the old versions in your function app. As you can see in the diagram, a function's version becomes part of its name. Because previous versions of functions are preserved, in-flight orchestration instances can continue to reference them. Meanwhile, requests for new orchestration instances call for the latest version, which your orchestration client function can reference from an app setting.
 
-![Versioning strategy](media/durable-functions-zero-downtime-deployment/versioning-strategy.png)
+:::image type="content" source="media/durable-functions-zero-downtime-deployment/versioning-strategy.png" alt-text="Versioning strategy":::
 
 In this strategy, every function must be copied, and its references to other functions must be updated. You can make it easier by writing a script. Here's a [sample project](https://github.com/TsuyoshiUshio/DurableVersioning) with a migration script.
 
@@ -75,7 +75,7 @@ Use the following procedure to set up this scenario.
 
 The following diagram shows the described configuration of deployment slots and storage accounts. In this potential predeployment scenario, version 2 of a function app is running in the production slot, while version 1 remains in the staging slot.
 
-![Deployment slots and storage accounts](media/durable-functions-zero-downtime-deployment/deployment-slot.png)
+:::image type="content" source="media/durable-functions-zero-downtime-deployment/deployment-slot.png" alt-text="Deployment slots and storage accounts":::
 
 ### host.json examples
 
@@ -130,21 +130,21 @@ public static async Task<IActionResult> StatusCheck(
 
 Next, configure the staging gate to wait until no orchestrations are running. For more information, see [Release deployment control using gates](/azure/devops/pipelines/release/approvals/gates)
 
-![Deployment gate](media/durable-functions-zero-downtime-deployment/deployment-gate.png)
+:::image type="content" source="media/durable-functions-zero-downtime-deployment/deployment-gate.png" alt-text="Deployment gate":::
 
 Azure Pipelines checks your function app for running orchestration instances before your deployment starts.
 
-![Deployment gate (running)](media/durable-functions-zero-downtime-deployment/deployment-gate-2.png)
+:::image type="content" source="media/durable-functions-zero-downtime-deployment/deployment-gate-2.png" alt-text="Deployment gate (running)":::
 
 Now the new version of your function app should be deployed to the staging slot.
 
-![Staging slot](media/durable-functions-zero-downtime-deployment/deployment-slot-2.png)
+:::image type="content" source="media/durable-functions-zero-downtime-deployment/deployment-slot-2.png" alt-text="Staging slot":::
 
 Finally, swap slots. 
 
 Application settings that aren't marked as deployment slot settings are also swapped, so the version 2 app keeps its reference to storage account A. Because orchestration state is tracked in the storage account, any orchestrations running on the version 2 app continue to run in the new slot without interruption.
 
-![Deployment slot](media/durable-functions-zero-downtime-deployment/deployment-slot-3.png)
+:::image type="content" source="media/durable-functions-zero-downtime-deployment/deployment-slot-3.png" alt-text="Deployment slot":::
 
 To use the same storage account for both slots, you can change the names of your task hubs. In this case, you need to manage the state of your slots and your app's HubName settings. To learn more, see [Task hubs in Durable Functions](durable-functions-task-hubs.md).
 
@@ -166,17 +166,17 @@ The first time an orchestration request is received, the router does the followi
 
 The router manages the state of which version of your app's code is deployed to which function app in Azure.
 
-![Application routing (first time)](media/durable-functions-zero-downtime-deployment/application-routing.png)
+:::image type="content" source="media/durable-functions-zero-downtime-deployment/application-routing.png" alt-text="Application routing (first time)":::
 
 The router directs deployment and orchestration requests to the appropriate function app based on the version sent with the request. It ignores the patch version.
 
 When you deploy a new version of your app without a breaking change, you can increment the patch version. The router deploys to your existing function app and sends requests for the old and new versions of the code, which are routed to the same function app.
 
-![Application routing (no breaking change)](media/durable-functions-zero-downtime-deployment/application-routing-2.png)
+:::image type="content" source="media/durable-functions-zero-downtime-deployment/application-routing-2.png" alt-text="Application routing (no breaking change)":::
 
 When you deploy a new version of your app with a breaking change, you can increment the major or minor version. Then the application router creates a new function app in Azure, deploys to it, and routes requests for the new version of your app to it. In the following diagram, running orchestrations on the 1.0.1 version of the app keep running, but requests for the 1.1.0 version are routed to the new function app.
 
-![Application routing (breaking change)](media/durable-functions-zero-downtime-deployment/application-routing-3.png)
+:::image type="content" source="media/durable-functions-zero-downtime-deployment/application-routing-3.png" alt-text="Application routing (breaking change)":::
 
 The router monitors the status of orchestrations on the 1.0.1 version and removes apps after all orchestrations are finished. 
 
@@ -186,7 +186,7 @@ Each function app should use separate scheduling queues, possibly in separate st
 
 For more information, see [Manage instances in Durable Functions in Azure](durable-functions-instance-management.md).
 
-![Tracking store settings](media/durable-functions-zero-downtime-deployment/tracking-store-settings.png)
+:::image type="content" source="media/durable-functions-zero-downtime-deployment/tracking-store-settings.png" alt-text="Tracking store settings":::
 
 ## Next steps
 

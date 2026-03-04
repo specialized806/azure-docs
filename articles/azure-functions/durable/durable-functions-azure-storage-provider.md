@@ -165,7 +165,7 @@ Storing payloads to local disks is *not* recommended, since on-disk state isn't 
 
 ## Configuring the Azure storage provider
 
-The Azure Storage provider is the default storage provider and doesn't require any explicit configuration, NuGet package references, or extension bundle references. You can find the full set of **host.json** configuration options [here](durable-functions-bindings.md#durable-functions-settings-in-hostjson), under the `extensions/durableTask/storageProvider` path.
+The Azure Storage provider is the default storage provider and doesn't require any explicit configuration, NuGet package references, or extension bundle references. You can find the full set of [Durable Functions host.json configuration options](durable-functions-bindings.md#durable-functions-settings-in-hostjson) under the `extensions/durableTask/storageProvider` path.
 
 ### Connections
 
@@ -178,15 +178,16 @@ If the configured value is both an exact match for a single setting and a prefix
 
 ### Identity-based connections 
 
-If you are using [version 2.7.0 or higher of the extension](https://github.com/Azure/azure-functions-durable-extension/releases/tag/v2.7.0) and the Azure storage provider, instead of using a connection string with a secret, you can have the app use an [Microsoft Entra identity](../../active-directory/fundamentals/active-directory-whatis.md). To do this, you would define settings under a common prefix which maps to the `connectionName` property in the trigger and binding configuration.
+If you are using [version 2.7.0 or higher of the extension](https://github.com/Azure/azure-functions-durable-extension/releases/tag/v2.7.0) and the Azure storage provider, instead of using a connection string with a secret, you can have the app use an [Microsoft Entra identity](/entra/fundamentals/what-is-entra). To do this, you would define settings under a common prefix which maps to the `connectionName` property in the trigger and binding configuration.
 
 To use an identity-based connection for Durable Functions, configure the following app settings:
 
-|Property | Environment variable template                       | Description                                | Example value                                        |
-|-|-----------------------------------------------------|--------------------------------------------|------------------------------------------------|
-| Blob service URI | `<CONNECTION_NAME_PREFIX>__blobServiceUri`| The data plane URI of the blob service of the storage account, using the HTTPS scheme. | https://<storage_account_name>.blob.core.windows.net |
-| Queue service URI | `<CONNECTION_NAME_PREFIX>__queueServiceUri` | The data plane URI of the queue service of the storage account, using the HTTPS scheme. | https://<storage_account_name>.queue.core.windows.net |
-| Table service URI | `<CONNECTION_NAME_PREFIX>__tableServiceUri` | The data plane URI of a table service of the storage account, using the HTTPS scheme. | https://<storage_account_name>.table.core.windows.net |
+| Property | Environment variable template | Description | Example value |
+| -------- | ----------------------------- | ----------- | ------------- |
+| Blob service URI | `<CONNECTION_NAME_PREFIX>__blobServiceUri` | The data plane URI of the blob service of the storage account, using the HTTPS scheme. | `https://<storage_account_name>.blob.core.windows.net` |
+| Queue service URI | `<CONNECTION_NAME_PREFIX>__queueServiceUri` | The data plane URI of the queue service of the storage account, using the HTTPS scheme. | `https://<storage_account_name>.queue.core.windows.net` |
+| Table service URI | `<CONNECTION_NAME_PREFIX>__tableServiceUri` | The data plane URI of a table service of the storage account, using the HTTPS scheme. | `https://<storage_account_name>.table.core.windows.net` |
+<!-- markdownlint-enable MD044 -->
 
 Additional properties may be set to customize the connection. See [Common properties for identity-based connections](../functions-reference.md#common-properties-for-identity-based-connections).
 
@@ -373,7 +374,7 @@ The following table shows the [expected *maximum* throughput numbers for the sce
 | External event processing | 50 events per second, per instance |
 | Entity operation processing | 64 operations per second |
 
-If you aren't seeing the throughput numbers you expect and your CPU and memory usage appears healthy, check whether the cause is related to [the health of your storage account](../../storage/common/storage-monitoring-diagnosing-troubleshooting.md#troubleshooting-guidance). The Durable Functions extension can put significant load on an Azure Storage account, and sufficiently high loads may result in storage account throttling.
+If you aren't seeing the throughput numbers you expect and your CPU and memory usage appears healthy, check whether the cause is related to [the health of your storage account](/troubleshoot/azure/azure-storage/blobs/alerts/storage-monitoring-diagnosing-troubleshooting#troubleshooting-guidance). The Durable Functions extension can put significant load on an Azure Storage account, and sufficiently high loads may result in storage account throttling.
 
 > [!TIP]
 > In some cases, you can increase the throughput of external events, activity fan-in, and entity operations by increasing the value of the `controlQueueBufferThreshold` setting in your `host.json`. Increasing this value beyond its default causes the Durable Task Framework storage provider to use more memory to prefetch these events more aggressively, reducing delays associated with dequeueing messages from the Azure Storage control queues. For more information, see the [host.json](durable-functions-bindings.md#host-json) reference documentation.

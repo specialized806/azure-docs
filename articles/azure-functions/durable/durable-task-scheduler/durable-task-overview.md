@@ -5,7 +5,7 @@ author: hhunter-ms
 ms.author: hannahhunter
 ms.reviewer: azfuncdf
 ms.date: 02/27/2026
-ms.topic: concept-article
+ms.topic: get-started
 ms.service: azure-functions
 ms.subservice: durable-task-scheduler
 ---
@@ -28,9 +28,13 @@ The following table summarizes the available Durable Task SDKs, their packages, 
 | **Java** | `durabletask-client`<br/>`durabletask-azure-managed` | GA | [durabletask-java](https://github.com/microsoft/durabletask-java) | [Java samples](https://github.com/Azure-Samples/Durable-Task-Scheduler/tree/main/samples/durable-task-sdks/java) |
 | **JavaScript / TypeScript** | `@microsoft/durabletask-js`<br/>`@microsoft/durabletask-js-azuremanaged` | Preview | [durabletask-js](https://github.com/microsoft/durabletask-js) | [JS samples](https://github.com/Azure-Samples/Durable-Task-Scheduler/tree/main/samples/durable-task-sdks/javascript) |
 
-## installation
+## Installation
 
-Each SDK ships two packages: a **worker** package for defining orchestrations and activities, and a **client** package for scheduling and managing orchestration instances. Install both packages to get started.
+Each SDK ships two packages: 
+- A **worker** package for defining orchestrations and activities
+- A **client** package for scheduling and managing orchestration instances. 
+
+Install *both* packages to get started.
 
 # [C#](#tab/csharp)
 

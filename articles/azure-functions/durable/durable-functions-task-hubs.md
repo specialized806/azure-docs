@@ -14,7 +14,7 @@ A *task hub* is a representation of the current state of the application in stor
 
 ::: zone pivot="durable-functions"
 
-![Diagram that shows the function app and task hub concepts.](./media/durable-functions-task-hubs/taskhub.png)
+:::image type="content" source="./media/durable-functions-task-hubs/taskhub.png" alt-text="Diagram that shows the function app and task hub concepts.":::
 
 ::: zone-end
 
@@ -192,33 +192,33 @@ After this orchestration is initiated by a client, the application processes it 
 
 1. A client requests to start a new orchestration with instance-id "123". After the client completes this request, the task hub contains a placeholder for the orchestration state and an instance message:
 
-   ![workitems-illustration-step-1](./media/durable-functions-task-hubs/work-items-1.png)
+  :::image type="content" source="./media/durable-functions-task-hubs/work-items-1.png" alt-text="workitems-illustration-step-1":::
 
    The label `ExecutionStarted` is one of many [history event types](https://github.com/Azure/durabletask/tree/main/src/DurableTask.Core/History#readme) that identify the various types of messages and events participating in an orchestration's history.
 
 2. A worker executes an *orchestrator work item* to process the `ExecutionStarted` message. It calls the orchestrator function which starts executing the orchestration code. This code schedules two activities and then stops executing when it is waiting for the results. After the worker commits this work item, the task hub contains
 
-   ![workitems-illustration-step-2](./media/durable-functions-task-hubs/work-items-2.png)
+  :::image type="content" source="./media/durable-functions-task-hubs/work-items-2.png" alt-text="workitems-illustration-step-2":::
 
    The runtime state is now `Running`, two new `TaskScheduled` messages were added, and the history now contains the five events `OrchestratorStarted`, `ExecutionStarted`, `TaskScheduled`, `TaskScheduled`, `OrchestratorCompleted`. These events represent the first episode of this orchestration's execution.
 
 3. A worker executes an *activity work item* to process one of the `TaskScheduled` messages. It calls the activity function with input "2". When the activity function completes, it creates a `TaskCompleted` message containing the result. After the worker commits this work item, the task hub contains
 
-   ![workitems-illustration-step-3](./media/durable-functions-task-hubs/work-items-3.png)
+  :::image type="content" source="./media/durable-functions-task-hubs/work-items-3.png" alt-text="workitems-illustration-step-3":::
 
 4. A worker executes an *orchestrator work item* to process the `TaskCompleted` message. If the orchestration is still cached in memory, it can just resume execution. Otherwise, the worker first [replays the history to recover the current state of the orchestration](durable-functions-orchestrations.md#reliability). Then it continues the orchestration,  delivering the result of the activity. After receiving this result, the orchestration is still waiting for the result of the other activity, so it once more stops executing. After the worker commits this work item, the task hub contains
 
-   ![workitems-illustration-step-4](./media/durable-functions-task-hubs/work-items-4.png)
+  :::image type="content" source="./media/durable-functions-task-hubs/work-items-4.png" alt-text="workitems-illustration-step-4":::
 
    The orchestration history now contains three more events `OrchestratorStarted`, `TaskCompleted`, `OrchestratorCompleted`. These  events represent the second episode of this orchestration's execution.
 
 5. A worker executes an *activity work item* to process the remaining `TaskScheduled` message. It calls the activity function with input "1". After the worker commits this work item, the task hub contains
 
-   ![workitems-illustration-step-5](./media/durable-functions-task-hubs/work-items-5.png)
+  :::image type="content" source="./media/durable-functions-task-hubs/work-items-5.png" alt-text="workitems-illustration-step-5":::
 
 6. A worker executes another *orchestrator work item* to process the `TaskCompleted` message. After receiving this second result, the orchestration completes. After the worker commits this work item, the task hub contains
 
-   ![workitems-illustration-step-6](./media/durable-functions-task-hubs/work-items-6.png)
+  :::image type="content" source="./media/durable-functions-task-hubs/work-items-6.png" alt-text="workitems-illustration-step-6":::
 
    The runtime state is now `Completed`, and the orchestration history now contains four more events `OrchestratorStarted`, `TaskCompleted`, `ExecutionCompleted`, `OrchestratorCompleted`. These events represent the third and final episode of this orchestration's execution.
 
@@ -513,7 +513,7 @@ If multiple function apps share a storage account, configure each function app w
 
 The following diagram illustrates one task hub per function app in shared and dedicated Azure Storage accounts.
 
-![Diagram that shows shared and dedicated Azure Storage accounts.](./media/durable-functions-task-hubs/multiple-apps.png)
+:::image type="content" source="./media/durable-functions-task-hubs/multiple-apps.png" alt-text="Diagram that shows shared and dedicated Azure Storage accounts.":::
 
 > [!NOTE]
 > The exception to the task hub sharing rule is if you're configuring your app for regional disaster recovery. For more information, see the [disaster recovery and geo-distribution](durable-functions-disaster-recovery-geo-distribution.md) article.
@@ -568,7 +568,7 @@ The Azure Storage provider represents the task hub in storage using the followin
 
 For example, a task hub named `xyz` with `PartitionCount = 4` contains the following queues and tables:
 
-![Diagram that shows Azure Storage provider storage organization for four control queues.](./media/durable-functions-task-hubs/azure-storage.png)
+:::image type="content" source="./media/durable-functions-task-hubs/azure-storage.png" alt-text="Diagram that shows Azure Storage provider storage organization for four control queues.":::
 
 The following sections describe these components and their roles in more detail.
 
@@ -585,7 +585,7 @@ In storage, these resources store the data:
 
 For example, a task hub named `mytaskhub` with `PartitionCount = 32` is represented in storage as follows:
 
-![Diagram that shows Netherite storage organization for 32 partitions.](./media/durable-functions-task-hubs/netherite-storage.png)
+:::image type="content" source="./media/durable-functions-task-hubs/netherite-storage.png" alt-text="Diagram that shows Netherite storage organization for 32 partitions.":::
 
 > [!NOTE]
 > All of the task hub state is stored inside the `x-storage` blob container. The `DurableTaskPartitions` table and the Event Hubs namespace contain redundant data: if their contents are lost, they can be automatically recovered. Therefore, you don't need to configure the Azure Event Hubs namespace to retain messages past the default expiration time.
@@ -603,7 +603,7 @@ All task hub data is stored in a single relational database, using these tables:
 * The `dt.NewTasks` table stores the activity messages.
 
 
-![Diagram that shows MSSQL storage organization.](./media/durable-functions-task-hubs/mssql-storage.png)
+:::image type="content" source="./media/durable-functions-task-hubs/mssql-storage.png" alt-text="Diagram that shows MSSQL storage organization.":::
 
 To enable multiple task hubs to coexist independently in the same database, each table includes a `TaskHub` column as part of its primary key. Unlike the other two providers, the MSSQL provider doesn't have partitions.
 

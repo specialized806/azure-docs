@@ -24,14 +24,18 @@ landingContent:
         links:
           - text: What is Durable Task?
             url: what-is-durable-task.md
+          - text: Durable Functions overview
+            url: durable-functions-overview.md
+          - text: Durable Task SDKs overview
+            url: ./durable-task-scheduler/durable-task-overview.md
       - linkListType: concept
         links:
+          - text: Choose your hosting option
+            url: choose-orchestration-framework.md
           - text: Programming model
             url: programming-model-overview.md
-          - text: Durable Task Scheduler
+          - text: Durable Task Scheduler storage provider
             url: ./durable-task-scheduler/durable-task-scheduler.md
-          - text: Choose your programming model
-            url: choose-orchestration-framework.md
 
   # Card (optional)
   - title: Get started
@@ -42,6 +46,10 @@ landingContent:
             url: durable-functions-isolated-create-first-csharp.md
           - text: Create an app with the Durable Task SDKs
             url: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
+          - text: Create a portable app with the Durable Task SDKs
+            url: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
+          - text: Create a Container Apps app with the Durable Task SDKs
+            url: ./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md
         
   # Card
   - title: Application patterns
