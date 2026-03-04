@@ -65,9 +65,17 @@ Create a resource group and virtual network for the application gateway and its 
    | **Region** | Select the same region as the resource group. |
 
 1. Select **Next > Next** or select the **IP Addresses** tab.
-1. On the **IP Addresses** tab, select **+ Add a subnet**. 
-1. In the **Add subnet** window, enter *myBackendSubnet* for the subnet name, accept the default address range and other settings, and then select **Add**.
-1. From the **Subnets** list, select the **default** subnet and select the pencil icon to edit it. Change the name to *myAGSubnet* and then select **Save**.
+1. On the **IP Addresses** tab, configure the address space to *10.21.0.0/16*.
+1. Select **+ Add a subnet** and enter the following values:
+
+   | Setting | Value |
+   | --- | --- |
+   | **Subnet name** | Enter *myBackendSubnet*. |
+   | **Starting address** | Enter *10.21.1.0*. |
+   | **Subnet size** | Select */24 (256 addresses)*. |
+
+1. Select **Add**.
+1. From the **Subnets** list, select the **default** subnet and select the pencil icon to edit it. Change the name to *myAGSubnet*, set the starting address to *10.21.0.0* with a subnet size of */24 (256 addresses)*, and then select **Save**.
 1. Select **Review + create** and then select **Create** to create the virtual network.
 
 ## Create an application gateway
