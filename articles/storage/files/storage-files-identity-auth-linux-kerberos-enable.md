@@ -64,9 +64,11 @@ sudo systemctl restart systemd-timesyncd.service
 
 ## Enable AD Kerberos authentication
 
-Follow these steps to enable AD Kerberos authentication. [This Samba documentation](https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member) might be helpful as a reference.
+Follow these steps to enable AD Kerberos authentication using either on-premises AD DS or Microsoft Entra Domain Services. [This Samba documentation](https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member) might be helpful as a reference.
 
 ### Make sure the domain server is reachable and discoverable
+
+The following section assumes you have an existing, on-premises AD DS. If you're using Microsoft Entra Domain Services instead, skip this section and proceed to [Connect to Entra Domain Services and make sure the services are discoverable](#connect-to-microsoft-entra-domain-services-and-make-sure-the-services-are-discoverable).
 
 1. Make sure that the DNS servers you enter contain the domain server IP addresses.
 
@@ -192,9 +194,13 @@ Follow these steps to enable AD Kerberos authentication. [This Samba documentati
    fi 
    ```
 
+Proceed to [set up a hostname and fully qualified domain name](#set-up-hostname-and-fully-qualified-domain-name-fqdn).
+
 <a name='connect-to-azure-ad-ds-and-make-sure-the-services-are-discoverable'></a>
 
 ### Connect to Microsoft Entra Domain Services and make sure the services are discoverable
+
+If you're using AD DS and not Microsoft Entra Domain Services, you can skip this section and proceed to [set up a hostname and fully qualified domain name](#set-up-hostname-and-fully-qualified-domain-name-fqdn).
 
 Make sure that you can ping the domain server by the domain name.
 
@@ -345,7 +351,7 @@ sudo smbcontrol all reload-config
 
 ### Join the domain
 
-Use the `net ads join` command to join the host to the Microsoft Entra Domain Services domain. If the command returns an error, see [Troubleshooting samba domain members](https://wiki.samba.org/index.php/Troubleshooting_Samba_Domain_Members) to resolve the problem.
+Use the `net ads join` command to join the host to the domain. If the command returns an error, see [Troubleshooting samba domain members](https://wiki.samba.org/index.php/Troubleshooting_Samba_Domain_Members) to resolve the problem.
 
 ```bash
 sudo net ads join -U contososmbadmin    # user  - garead
@@ -372,9 +378,9 @@ Name:   contosovm.contosodomain.contoso.com
 Address: 10.0.0.8
 ```
 
-If you plan for users to actively sign in to client machines and access the Azure file shares, you need to [set up nsswitch.conf](#set-up-nsswitchconf) and [configure PAM for winbind](#configure-pam-for-winbind). If planned access is limited to applications represented by a user account or computer account that need Kerberos authentication to access the file share, you can skip these steps.
-
 ### Set up nsswitch.conf
+
+If you plan for users to actively sign in to client machines and access the Azure file shares, you need to set up nsswitch.conf. If planned access is limited to applications represented by a user account or computer account that need Kerberos authentication to access the file share, you can skip this step.
 
 After you join the host to the domain, add the winbind libraries to the user and group lookup paths. Use your text editor to edit `/etc/nsswitch.conf` and add the following entries:
 
@@ -449,6 +455,8 @@ wbinfo --ping-dc
 
 ### Configure PAM for winbind
 
+If you plan for users to actively sign in to client machines and access the Azure file shares, you need to configure PAM for winbind. If planned access is limited to applications represented by a user account or computer account that need Kerberos authentication to access the file share, you can skip this step.
+
 Place winbind in the authentication stack so that domain users authenticate through winbind by configuring PAM (Pluggable Authentication Module) for winbind. The second command ensures that the system creates the home directory for a domain user upon first login.
 
 ```bash
@@ -509,7 +517,7 @@ wbinfo -K 'contososmbadmin%SUPERSECRETPASSWORD'
 
 ## Mount the file share
 
-After you enable AD (or Entra ID) Kerberos authentication and domain-join your Linux VM, you can mount the file share.
+After you enable Kerberos authentication and domain-join your Linux VM, you can mount the file share.
 
 Use the following mount option with all access control models to enable Kerberos security: `sec=krb5`. Omit the username and password when you use `sec=krb5`. For example:
 
