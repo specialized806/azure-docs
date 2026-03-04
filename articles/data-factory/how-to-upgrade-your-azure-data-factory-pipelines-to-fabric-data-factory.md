@@ -4,7 +4,7 @@ description: Learn how to assess and upgrade your Azure Data Factory pipelines t
 author: ssindhub
 ms.author: ssrinivasara
 ms.topic: how-to
-ms.date: 03/05/2026
+ms.date: 03/04/2026
 ms.custom: pipelines
 ai-usage: ai-assisted
 ---
