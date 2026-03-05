@@ -44,6 +44,9 @@
   - name: Host a Durable Task SDK app on Azure Container Apps
     displayName: get started, durable task scheduler
     href: ./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md
+  - name: Use work item filtering with Durable Task SDK and Durable Task Scheduler
+    displayName: get started, durable task scheduler
+    href: ./durable-task-scheduler/quickstart-work-item-filtering-durable-task.md
   - name: Configure Durable Functions app with MSSQL
     href: quickstart-mssql.md
   - name: Configure Durable Functions app with managed identity
