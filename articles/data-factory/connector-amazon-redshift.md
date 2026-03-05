@@ -6,7 +6,7 @@ ms.author: jianleishen
 author: jianleishen
 ms.subservice: data-movement
 ms.topic: conceptual
-ms.date: 01/15/2026
+ms.date: 03/05/2026
 ms.custom:
   - synapse
   - sfi-image-nochange
@@ -96,6 +96,7 @@ The following properties are supported for Amazon Redshift linked service:
 | database |Name of the Amazon Redshift database. |Yes |
 | username |Name of user who has access to the database. |Yes |
 | password |Password for the user account. Mark this field as a SecureString to store it securely, or [reference a secret stored in Azure Key Vault](store-credentials-in-key-vault.md). |Yes |
+| sslmode | Controls whether SSL is used, depending on server support. This property is only supported in version 2.0.<br/>- **Verify_full**: The connection fails if the server doesn't support SSL. Also verifies server certificate with host's name.<br/>- **Verify_ca**: The connection fails if the server doesn't support SSL. Also verifies server certificate.<br/>- **Required**: The connection fails if the server doesn't support SSL.<br/>- **Preferred**: Prefer SSL connections if the server allows them, but allow connections without SSL.<br/>- **Allowed**: Prefer non-SSL connections if the server allows them, but allow SSL connections.<br/>- **Disabled**: SSL is disabled. If the server requires SSL, the connection fails. <br/>Options: Verify_full (Default) / Verify_ca / Required / Preferred / Allowed / Disabled | No |
 | connectVia | The [Integration Runtime](concepts-integration-runtime.md) to be used to connect to the data store. You can use Azure Integration Runtime or Self-hosted Integration Runtime (if your data store is located in private network). If not specified, it uses the default Azure Integration Runtime. |No |
 
 > [!Note]
@@ -306,7 +307,7 @@ The following table shows the release stage and change logs for different versio
 | Version | Release stage | Change log |
 | :----------- | :------- | :------- |
 | Version 1.0 | End of support announced | / |
-| Version 2.0 | GA version available | • Supports Azure Integration Runtime and Self-hosted Integration Runtime version 5.61 or above. Driver installation is no longer needed with Self-hosted Integration Runtime version 5.61 or above. <br><br>• BOOLEAN is read as Boolean data type.  |
+| Version 2.0 | GA version available | • Supports Azure Integration Runtime and Self-hosted Integration Runtime version 5.61 or above. Driver installation is no longer needed with Self-hosted Integration Runtime version 5.61 or above. <br><br>• BOOLEAN is read as Boolean data type. <br><br>• Support `sslmode` in the linked service. |
 
 ### <a name="upgrade-the-amazon-redshift-connector"></a> Upgrade the Amazon Redshift connector from version 1.0 to version 2.0
 
