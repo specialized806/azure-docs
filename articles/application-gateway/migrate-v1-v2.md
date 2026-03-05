@@ -8,7 +8,7 @@ ms.custom: devx-track-azurepowershell
 ms.topic: how-to
 ms.date: 03/04/2026
 ms.author: mbender
-# Customer intent: As an DevOps engineer, I want to migrate my Azure Application Gateway and Web Application Firewall from V1 to V2, so that I can leverage the improved features and performance while ensuring minimal downtime during the transition.
+#customer intent: As a DevOps engineer, I want to migrate my Azure Application Gateway and Web Application Firewall deployments from V1 to V2, so that I can take advantage of the improved features and performance while ensuring minimal downtime during the transition.
 ---
 
 # Migrate Azure Application Gateway and Web Application Firewall from V1 to V2
@@ -73,20 +73,20 @@ You can **download** the Enhanced cloning script from the  [PowerShell Gallery](
  
 **Parameters for the script:**
 This script takes the following parameters:
--	**AppGw V1 ResourceId -Required**: This parameter is the Azure Resource ID for your existing Standard V1 or WAF V1 gateway. To find this string value,  navigate to the Azure portal, select your application gateway or WAF resource, and select the **Properties** link for the gateway. The Resource ID is located on that page.
+-  **AppGw V1 ResourceId -Required**: This parameter is the Azure Resource ID for your existing Standard V1 or WAF V1 gateway. To find this string value,  navigate to the Azure portal, select your application gateway or WAF resource, and select the **Properties** link for the gateway. The Resource ID is located on that page.
      You can also run the following Azure PowerShell commands to get the Resource ID:
      ```azurepowershell
      $appgw = Get-AzApplicationGateway -Name <V1 gateway name> -ResourceGroupName <resource group Name>
      $appgw.Id
      ```
--	**SubnetAddressRange -Required**: The subnet address in CIDR notation, where Application Gateway V2 is to be deployed
--	**AppGwName -Optional**: Name of V2 app gateway. Default Value = {AppGwV1 Name}_migrated
--	**AppGwResourceGroupName -Optional**: Name of resource group where V2 Application Gateway will be created. If not provided, Application Gateway V1 resource group is used.
--	**PrivateIPAddress -Optional**: Private IP address to be assigned to Application Gateway V2. If not provided, random private IP will be assigned.
--	**ValidateBackendHealth -Optional**: Post migration validation by comparing ApplicationGatewayBackendHealth response. If not set, this validation will be skipped.
--	**PublicIpResourceId -Optional**: Public IP Address resourceId (if already exists) can be attached to application gateway. If not provided, public IP name will be {AppGwName}-IP.
--	**DisableAutoscale -Optional**: Disable autoscale configuration for Application Gateway V2 instances, false by default
--	**WafPolicyName -Optional**: Name of the WAF policy that will be created from WAF V1 Configuration and will be attached to WAF V2 gateway.
+-  **SubnetAddressRange -Required**: The subnet address in CIDR notation, where Application Gateway V2 is to be deployed
+-  **AppGwName -Optional**: Name of V2 app gateway. Default Value = {AppGwV1 Name}_migrated
+-  **AppGwResourceGroupName -Optional**: Name of resource group where V2 Application Gateway will be created. If not provided, Application Gateway V1 resource group is used.
+-  **PrivateIPAddress -Optional**: Private IP address to be assigned to Application Gateway V2. If not provided, random private IP will be assigned.
+-  **ValidateBackendHealth -Optional**: Post migration validation by comparing ApplicationGatewayBackendHealth response. If not set, this validation will be skipped.
+-  **PublicIpResourceId -Optional**: Public IP Address resourceId (if already exists) can be attached to application gateway. If not provided, public IP name will be {AppGwName}-IP.
+-  **DisableAutoscale -Optional**: Disable autoscale configuration for Application Gateway V2 instances, false by default
+-  **WafPolicyName -Optional**: Name of the WAF policy that will be created from WAF V1 Configuration and will be attached to WAF V2 gateway.
 
 #### How to run the script
 To run the script:
@@ -120,7 +120,7 @@ To run the script:
    -publicIpResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.Network/publicIPAddresses/MyPublicIP" `
    ```
 ### Recommendations
-*  After script completion, review the V2 gateway configuration in the Azure portal and test connectivity by sending traffic directly to the V2 gateway’s IP.
+*  After script completion, review the V2 gateway configuration in the Azure portal and test connectivity by sending traffic directly to the V2 gateway's IP.
 *  The script relaxes backend TLS validation by default (no cert chain, expiry, or SNI validation) during cloning. If stricter TLS validation or authentication certificates are required, you can update your Application Gateway V2 after creation to add trusted root certificates and enable this feature as needed.
 *  For NTLM/Kerberos passthrough, set the dedicated backend connection to "true" in HTTP settings after cloning.
 
@@ -201,7 +201,7 @@ The legacy script takes the following parameters:
 * **privateIpAddress: [String]: Optional**. A specific private IP address that you want to associate to your new V2 gateway. This must be from the same VNet that you allocate for your new V2 gateway. If this isn't specified, the script allocates a private IP address for your V2 gateway.
  
 * **publicIpResourceId: [String]: Optional**. The resourceId of existing public IP address (standard SKU) resource in your subscription that you want to allocate to the new V2 gateway. If public Ip resource name is provided, ensure that it exists in succeeded state.
-  If this isn't specified, the script allocates a new public IP address in the same resource group. The name is the V2 gateway's name with *-IP* appended. If AppGWResourceGroupName is provided and a public IP address isn't provided, ensure that public IP resource with name AppGWV2Name-IP doesn’t exist in a resource group with the name AppGWResourceGroupName in the V1 subscription.
+  If this isn't specified, the script allocates a new public IP address in the same resource group. The name is the V2 gateway's name with *-IP* appended. If AppGWResourceGroupName is provided and a public IP address isn't provided, ensure that public IP resource with name AppGWV2Name-IP doesn't exist in a resource group with the name AppGWResourceGroupName in the V1 subscription.
  
  * **validateMigration: [switch]: Optional**. Use this parameter to enable the script to do some basic configuration comparison validations after the V2 gateway creation and the configuration copy. By default, no validation is done.
  
@@ -313,8 +313,8 @@ To check the version of the downloaded script the steps are as follows:
 After successfully migrating the configuration and thoroughly testing your new V2 gateway, this step focuses on redirecting live traffic. 
 We provide an Azure PowerShell script designed to **retain the Public IP address from V1**.
 * Swaps Public IP: This script reserves the Basic public IP from V1, converts it to Standard, and attaches it to the V2 gateway. This effectively redirects all incoming traffic to the V2 gateway.
-*	Expected Downtime: This IP swap operation typically results in a brief **downtime of approximately 1-5 minutes**. Plan accordingly.
-*	After a successful script run, the Public IP is moved from Application Gateway V1 to Application Gateway V2, with Application Gateway V1 receiving a new public IP.
+*  Expected Downtime: This IP swap operation typically results in a brief **downtime of approximately 1-5 minutes**. Plan accordingly.
+*  After a successful script run, the Public IP is moved from Application Gateway V1 to Application Gateway V2, with Application Gateway V1 receiving a new public IP.
 
 > [!NOTE]
 > The IP migration script does not support Public IP address resources that have a DNS name beginning with a numeric character. This limitation exists because Public IP address resources do not allow DNS name labels that start with a number. This issue is more likely to occur for V1 gateways **created before May 2023**, when Public IP addresses were automatically assigned a default DNS name of the form **{GUID}.cloudapp.net**.
@@ -325,8 +325,8 @@ You can **download** this Public IP retention script  from the  [PowerShell Gall
   **Parameters for the script:**
   
   This script requires the following mandatory parameters:
-* 	V1 ResourceId – The resource ID of the V1 Application Gateway whose Public IP will be reserved and associated with V2.
-* 	V2 ResourceId – The resource ID of the V2 Application Gateway to which the V1 Public IP will be assigned. The V2 gateway can be created either manually or using anyone of the cloning script. 
+*   V1 ResourceId – The resource ID of the V1 Application Gateway whose Public IP will be reserved and associated with V2.
+*   V2 ResourceId – The resource ID of the V2 Application Gateway to which the V1 Public IP will be assigned. The V2 gateway can be created either manually or using anyone of the cloning script. 
 
 After downloading and [installing the script](../application-gateway/migrate-v1-v2.md#installing-the-script)
 
@@ -378,7 +378,7 @@ There are five variants available in V1 SKU based on the Tier and Size - Standar
 
 | SKU      | V1 Fixed Price/mo          | V2 Fixed Price/mo | Recommendation|
 | ------------- |:-------------:|:-----:|:-----: | 
-|Standard Medium     | 102.2 | 179.8|V2 SKU can handle a larger number of requests than a V1 gateway, so we recommend consolidating multiple V1 gateways into a single V2 gateway, to optimize the cost. Ensure that consolidation doesn’t exceed the Application Gateway [limits](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-application-gateway-limits). We recommend 3:1 consolidation. |
+|Standard Medium     | 102.2 | 179.8|V2 SKU can handle a larger number of requests than a V1 gateway, so we recommend consolidating multiple V1 gateways into a single V2 gateway, to optimize the cost. Ensure that consolidation doesn't exceed the Application Gateway [limits](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-application-gateway-limits). We recommend 3:1 consolidation. |
 | WAF Medium    | 183.96     |   262.8 |Same as for Standard Medium |
 | Standard Large | 467.2      |    179.58 | For these variants, in most cases, moving to a V2 gateway can provide you with a better price benefit compared to V1.|
 | WAF Large | 654.08     |    262.8 |Same as for Standard Large |
