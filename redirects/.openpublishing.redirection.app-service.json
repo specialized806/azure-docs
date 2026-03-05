@@ -2227,7 +2227,7 @@
     },
     {
       "source_path_from_root": "/articles/app-service/quickstart-python-portal.md",
-      "redirect_url": "/azure/app-service/quickstart-python",
+      "redirect_url": "/azure/app-service/quickstart-python?tabs=flask%2Cwindows%2Cazure-portal%2Cazure-cli-deploy%2Cdeploy-instructions-azportal%2Cterminal-bash%2Cdeploy-instructions-zip-azcli",
       "redirect_document_id": false
     },
     {
