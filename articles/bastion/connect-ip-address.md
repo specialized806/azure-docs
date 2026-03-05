@@ -54,6 +54,19 @@ The following table summarizes the connection methods available with IP-based co
 | Native client (Azure CLI) | SSH | Provides SSH connectivity from Windows or Linux clients using `az network bastion ssh` with the `--target-ip-address` parameter. For connection steps, see [Connect from a Windows native client](connect-vm-native-client-windows.md) or [Connect from a Linux native client](connect-vm-native-client-linux.md). |
 | Native client (Azure CLI) | Tunnel | Creates an IP-based TCP tunnel using `az network bastion tunnel` with the `--target-ip-address` parameter. For configuration steps, see [Configure Bastion native client support](native-client.md). |
 
+
+### Enable IP-based connection
+
+Before you can connect using a private IP address, you must enable IP-based connection on your Bastion deployment.
+
+1. In the [Azure portal](https://portal.azure.com), go to your Bastion deployment.
+
+1. On the **Configuration** page, for **Tier**, verify the SKU is set to the **Standard** SKU or higher. If the SKU is set to the Basic SKU, select a higher SKU from the dropdown.
+
+1. Select **IP based connection**.
+
+1. Select **Apply** to apply the changes. It takes a few minutes for the Bastion configuration to complete.
+
 ## Limitations
 
 * **Force tunneling:** IP-based connection doesn't work with force tunneling over VPN, or when a default route is advertised over an ExpressRoute circuit. Azure Bastion requires access to the internet. Force tunneling or default route advertisement results in traffic being dropped.
