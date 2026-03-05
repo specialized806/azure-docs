@@ -53,7 +53,7 @@ You can use Zerto with Azure VMware Solution for the following three scenarios.
 
 In this scenario, the primary site is an on-premises vSphere-based environment. The disaster recovery site is an Azure VMware Solution private cloud. 
 
-:::image type="content" source="media/zerto-disaster-recovery/zerto-disaster-recovery-scenario-1-diagram.png" alt-text="Diagram showing Scenario 1 for the Zerto disaster recovery solution on Azure VMware Solution." lightbox="media/zerto-disaster-recovery/zerto-disaster-recovery-scenario-1-diagram.png":::
+:::image type="content" source="media/zerto-disaster-recovery/zerto-disaster-recovery-scenario-1-diagram.png" alt-text="Diagram showing Scenario 1 for the Zerto disaster recovery solution on Azure VMware Solution."lightbox="media/zerto-disaster-recovery/zerto-disaster-recovery-scenario-1-diagram.png":::
 
 ### Scenario 2: Azure VMware Solution to Azure VMware Solution cloud disaster recovery
 
@@ -83,7 +83,7 @@ In this scenario, the primary site is an Azure VMware Solution private cloud in 
 
 - Connectivity, like ExpressRoute Global Reach, between the source and target Azure VMware Solution private cloud.
 
-### Azure VMware Solution IaaS VMs cloud disaster recovery prerequisites
+### Azure VMware Solution IaaS VMs cloud disaster recovery
 
 - Network connectivity, ExpressRoute based, from Azure VMware Solution to the virtual network used for disaster recovery.
 
