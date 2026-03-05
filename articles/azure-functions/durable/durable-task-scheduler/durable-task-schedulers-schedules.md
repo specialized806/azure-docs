@@ -2,6 +2,7 @@
 title: Automate recurring orchestrations with schedules
 description: Learn how to create, manage, and monitor recurring orchestrations using the schedules feature in the Durable Task Scheduler
 ms.topic: concept-article
+ms.subservice: durable-task-scheduler
 ms.date: 03/03/2026
 ms.author: torosent
 ---
@@ -210,7 +211,7 @@ Monitor scheduled orchestrations using the [Durable Task Scheduler dashboard](./
 
 Explore complete working examples that demonstrate schedule operations.
 
-- [Schedule console app](https://github.com/microsoft/durabletask-dotnet/tree/main/samples/ScheduleConsoleApp): A Demonstrates how to create, pause, resume, and list schedules in a console application.me, delete, and list endpoints.
+- [Schedule console app](https://github.com/microsoft/durabletask-dotnet/tree/main/samples/ScheduleConsoleApp): Demonstrates how to create, pause, resume, delete, and list schedules in a console application.
 
 ## Next steps
 

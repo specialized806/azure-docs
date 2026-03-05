@@ -2,7 +2,8 @@
 title: Troubleshoot errors in Durable Task Scheduler
 titleSuffix: Durable Task
 description: Learn how to troubleshoot error messages and issues you encounter while using Durable Task Scheduler.
-ms.topic: article
+ms.topic: troubleshooting-general
+ms.subservice: durable-task-scheduler
 ms.date: 05/06/2025
 ---
 

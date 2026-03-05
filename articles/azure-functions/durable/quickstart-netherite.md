@@ -103,7 +103,7 @@ This code snippet is a basic configuration. Later, you might want to [add parame
 
 Your app is now ready for local development. You can start the function app to test it. One way to start the app is to run `func host start` on your application's root, and then execute a basic orchestrator function.
 
-While the function app is running, Netherite publishes load information about its active partitions to an Azure Storage table named **DurableTaskPartitions**. You can use [Azure Storage Explorer](../../vs-azure-tools-storage-manage-with-storage-explorer.md) to verify that it's working as expected. If Netherite is running correctly, the table isn't empty. For an example, see the following screenshot.
+While the function app is running, Netherite publishes load information about its active partitions to an Azure Storage table named **DurableTaskPartitions**. You can use [Azure Storage Explorer](../../storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer.md) to verify that it's working as expected. If Netherite is running correctly, the table isn't empty. For an example, see the following screenshot.
 
 :::image type="content" source="media/quickstart-netherite/partition-table.png" alt-text="Screenshot that shows data in the DurableTaskPartitions table in Azure Storage Explorer.":::
 

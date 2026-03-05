@@ -3,6 +3,7 @@ title: Debug and manage orchestrations using the Durable Task Scheduler dashboar
 titleSuffix: Durable Task
 description: Learn how to debug and manage your orchestrations using the Durable Task Scheduler dashboard.
 ms.topic: how-to
+ms.subservice: durable-task-scheduler
 ms.date: 05/06/2025
 zone_pivot_groups: dts-devexp
 ---

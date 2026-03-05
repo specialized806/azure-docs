@@ -3,6 +3,7 @@ title: "Quickstart: Configure a Durable Functions app to use Durable Task Schedu
 titleSuffix: Durable Task
 description: Learn how to configure an existing Durable Functions app to use Durable Task Scheduler as a backend.
 ms.topic: how-to
+ms.subservice: durable-task-scheduler
 ms.date: 10/29/2025
 zone_pivot_groups: df-languages
 ---

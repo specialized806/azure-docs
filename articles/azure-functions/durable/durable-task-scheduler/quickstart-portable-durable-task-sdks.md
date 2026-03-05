@@ -3,6 +3,7 @@ title: "Quickstart: Create an app with Durable Task SDKs and Durable Task Schedu
 titleSuffix: Durable Task
 description: Learn how to configure an app for the Durable Task Scheduler using the Durable Task SDKs.
 ms.topic: how-to
+ms.subservice: durable-task-scheduler
 ms.date: 02/25/2026
 zone_pivot_groups: df-languages
 ms.custom:

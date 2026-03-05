@@ -16,7 +16,7 @@ This article helps you troubleshoot common scenarios in Durable Functions apps.
 > [!NOTE]
 > Microsoft support engineers are available to help diagnose issues with your application. If you can't diagnose your problem using this guide, file a support ticket by opening the **New Support request** blade in the **Support + troubleshooting** section of your function app page in the Azure portal.
 
-![Screenshot of the support request page in the Azure portal.](./media/durable-functions-troubleshooting-guide/durable-function-support-request.png)
+:::image type="content" source="./media/durable-functions-troubleshooting-guide/durable-function-support-request.png" alt-text="Screenshot of the support request page in the Azure portal.":::
 
 > [!TIP]
 > When debugging and diagnosing issues, we recommend that you start by ensuring your app uses the latest Durable Functions extension version. Most of the time, using the latest version mitigates known issues already reported by other users. For instructions on how to upgrade your extension version, see [Upgrade Durable Functions extension version](./durable-functions-extension-upgrade.md). 
