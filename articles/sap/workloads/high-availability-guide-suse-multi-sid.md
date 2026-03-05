@@ -14,7 +14,7 @@ ms.custom:
 # Customer intent: As an SAP administrator, I want to implement a multi-SID high availability configuration for SAP NetWeaver on SUSE Linux within Azure VMs, so that I can ensure continuous service availability and efficient resource management across multiple SAP instances.
 ---
 
-# High availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server for SAP applications multi-SID guide
+# Guidance on high availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server for SAP applications multi-SID
 
 This article describes how to deploy multiple SAP NetWeaver or S/4HANA highly available systems (multi-SID) in a two-node cluster on Azure VMs with SUSE Linux Enterprise Server for SAP applications. Multi-SID clustering allows you to run multiple SAP instances with different system identifiers on the same Pacemaker cluster, optimizing resource utilization while maintaining high availability.
 
@@ -24,7 +24,7 @@ In the example configurations, installation commands etc. three SAP NetWeaver 7.
 * **NW2**: ASCS instance number **10** and virtual hostname **msnw2ascs**; ERS instance number **12** and virtual host name **msnw2ers**.
 * **NW3**: ASCS instance number **20** and virtual hostname **msnw3ascs**; ERS instance number **22** and virtual host name **msnw3ers**.
 
-The article doesn't cover the database layer and the deployment of the SAP NFS shares. In the examples in this article, we're using virtual names nw2-nfs for the NW2 NFS shares and nw3-nfs for the NW3 NFS shares, assuming that NFS cluster was deployed.
+The article doesn't cover the database layer and the deployment of the SAP NFS shares. In the examples in this article, we're using virtual names *nw2-nfs* for the **NW2** NFS shares and *nw3-nfs* for the **NW3** NFS shares, assuming that an NFS cluster was deployed.
 
 Before you begin, refer to the following SAP Notes and papers first:
 
