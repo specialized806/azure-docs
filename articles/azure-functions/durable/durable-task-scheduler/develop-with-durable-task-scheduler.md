@@ -3,6 +3,7 @@ title: Develop with Durable Task Scheduler
 titleSuffix: Durable Task
 description: Learn how to develop with the Durable Task Scheduler using the Azure CLI for both Durable Functions and Durable Task SDKs.
 ms.topic: how-to
+ms.subservice: durable-task-scheduler
 ms.date: 11/05/2025
 zone_pivot_groups: dts-devexp
 ---

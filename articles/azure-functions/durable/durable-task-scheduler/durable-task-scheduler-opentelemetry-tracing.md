@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.date: 03/03/2026
 ms.author: azfuncdf
 ms.service: azure-functions
-ms.subservice: durable
+ms.subservice: durable-task-scheduler
 ms.devlang: csharp
 zone_pivot_groups: azure-durable-approach
 ---

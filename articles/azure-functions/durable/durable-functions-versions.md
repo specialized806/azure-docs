@@ -73,7 +73,7 @@ In Durable Functions 2.x, we introduced a new [Durable HTTP](durable-functions-h
 
 * Call HTTP APIs directly from orchestration functions (with some documented limitations).
 * Implement automatic client-side HTTP 202 status polling.
-* Built-in support for [Azure Managed Identities](../../active-directory/managed-identities-azure-resources/overview.md).
+* Built-in support for [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview).
 
 To learn more, see the [HTTP features](durable-functions-http-features.md#consuming-http-apis) article.
 
@@ -152,7 +152,7 @@ In version 1.x, the various *context* objects supported by Durable Functions hav
 The following table represents the main changes:
 
 | 1.x | 2.x |
-|----------|----------|
+| -------- | -------- |
 | `DurableOrchestrationClientBase` | `IDurableOrchestrationClient` or `IDurableClient` |
 | `DurableOrchestrationContext` or `DurableOrchestrationContextBase` | `IDurableOrchestrationContext` |
 | `DurableActivityContext` or `DurableActivityContextBase` | `IDurableActivityContext` |

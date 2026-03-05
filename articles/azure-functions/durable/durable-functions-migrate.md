@@ -32,7 +32,7 @@ Microsoft announced that the in-process model for .NET Azure Functions reaches e
 Migrating to the isolated worker model provides the following benefits:
 
 | Benefit | Description |
-|---------|-------------|
+| ------- | ----------- |
 | **No assembly conflicts** | Your code runs in a separate process, eliminating version conflicts |
 | **Full process control** | Control startup, configuration, and middleware via `Program.cs` |
 | **Standard DI patterns** | Use familiar .NET dependency injection |
@@ -189,7 +189,7 @@ If you have a `Startup.cs` with `[assembly: FunctionsStartup(...)]`, delete it a
 ### Durable Functions package changes
 
 | In-process package | Isolated worker package |
-|--------------------|------------------------|
+| ------------------ | ---------------------- |
 | `Microsoft.Azure.WebJobs.Extensions.DurableTask` | `Microsoft.Azure.Functions.Worker.Extensions.DurableTask` |
 | `Microsoft.DurableTask.SqlServer.AzureFunctions` | `Microsoft.Azure.Functions.Worker.Extensions.DurableTask.SqlServer` |
 | `Microsoft.Azure.DurableTask.Netherite.AzureFunctions` | `Microsoft.Azure.Functions.Worker.Extensions.DurableTask.Netherite` |
@@ -197,7 +197,7 @@ If you have a `Startup.cs` with `[assembly: FunctionsStartup(...)]`, delete it a
 ### Common extension package changes
 
 | In-process | Isolated worker |
-|------------|-----------------|
+| ---------- | --------------- |
 | `Microsoft.Azure.WebJobs.Extensions.Storage` | `Microsoft.Azure.Functions.Worker.Extensions.Storage.Blobs`, `.Queues`, `.Tables` |
 | `Microsoft.Azure.WebJobs.Extensions.CosmosDB` | `Microsoft.Azure.Functions.Worker.Extensions.CosmosDB` |
 | `Microsoft.Azure.WebJobs.Extensions.ServiceBus` | `Microsoft.Azure.Functions.Worker.Extensions.ServiceBus` |
@@ -276,7 +276,7 @@ public static async Task<OrderResult> OrderOrchestrator(
 ### Key differences
 
 | Aspect | In-Process | Isolated Worker |
-|--------|------------|-----------------|
+| ------ | ---------- | --------------- |
 | Context type | `IDurableOrchestrationContext` | `TaskOrchestrationContext` |
 | Logger | `ILogger` parameter | `context.CreateReplaySafeLogger()` |
 | Attribute | `[FunctionName]` | `[Function]` |
@@ -351,7 +351,7 @@ public static async Task<HttpResponseData> StartOrder(
 ### Client type changes
 
 | In-process | Isolated worker |
-|------------|-----------------|
+| ---------- | --------------- |
 | `IDurableOrchestrationClient` | `DurableTaskClient` |
 | `StartNewAsync()` | `ScheduleNewOrchestrationInstanceAsync()` |
 | `CreateCheckStatusResponse()` | `CreateCheckStatusResponseAsync()` |

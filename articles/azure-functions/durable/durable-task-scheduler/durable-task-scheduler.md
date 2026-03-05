@@ -3,6 +3,7 @@ title: Durable Task Scheduler
 titleSuffix: Durable Task
 description: Learn about the characteristics of the Durable Task Scheduler.
 ms.topic: concept-article
+ms.subservice: durable-task-scheduler
 ms.date: 02/06/2026
 ---
 
