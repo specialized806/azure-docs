@@ -48,6 +48,7 @@ The following Azure Managed Redis tiers currently support reservations:
 | Central US          | Yes              | Yes      | Yes              | No              |
 | Chile Central       | Yes              | Yes      | Yes              | No              |
 | East Asia           | Yes              | Yes      | Yes              | No              |
+| East US             | Yes              | No       | Yes              | No              |
 | East US 2           | Yes              | Yes      | Yes              | No              |
 | France Central      | Yes              | Yes      | Yes              | No              |
 | France South        | Yes              | Yes      | Yes              | No              |
@@ -86,9 +87,9 @@ The following Azure Managed Redis tiers currently support reservations:
 | UAE North           | Yes              | Yes      | Yes              | No              |
 | UK South            | Yes              | Yes      | Yes              | No              |
 | UK West             | Yes              | Yes      | Yes              | No              |
-| US East             | Yes              | No       | Yes              | No              |
 | West Central US     | Yes              | Yes      | Yes              | No              |
 | West Europe         | Yes              | Yes      | Yes              | No              |
+| West US             | Yes              | Yes      | Yes              | No              |
 | West US 2           | Yes              | Yes      | Yes              | No              |
 | West US 3           | Yes              | Yes      | Yes              | No              |
 
@@ -131,7 +132,9 @@ Existing or new caches that match the attributes you select get the reservation 
 
 - You can update the scope of the reservation through the Azure portal, PowerShell, Azure CLI, or the API.
 
-- You can cancel, exchange, or refund reservations with certain limitations. For more information, see [Self-service exchanges and refunds for Azure Reservations](/azure/cost-management-billing/reservations/exchange-and-refund-azure-reservations).
+## Exchange existing Reservations with Azure Managed Redis
+
+You can cancel, exchange, or refund reservations with certain limitations. For more information, see [Self-service exchanges and refunds for Azure Reservations](/azure/cost-management-billing/reservations/exchange-and-refund-azure-reservations).
 
 ## Related content
 
