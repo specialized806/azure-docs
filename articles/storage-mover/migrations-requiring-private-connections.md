@@ -151,25 +151,24 @@ You can modify private connections on an existing job at any time before or afte
 
    :::image type="content" source="./media/private-connections/job-created.png" alt-text="Screenshot of a job successfully created." lightbox="./media/private-connections/job-created.png":::
 
+   :::image type="content" source="./media/private-connections/job-overview.png" alt-text="Screenshot of the overview page of the created job." lightbox="./media/private-connections/job-overview.png":::
+
 2. Select the **Edit** icon.
+
+:::image type="content" source="./media/private-connections/edit-private-connections.png" alt-text="Screenshot of the edit private connections tab for a job." lightbox="./media/private-connections/edit-private-connections.png":::
+
 3. Under **Private connections**, add or delete private connections by selecting the respective buttons.
+
+:::image type="content" source="./media/private-connections/removed-private-connection.png" alt-text="Screenshot of the removal of a private connection from a job." lightbox="./media/private-connections/removed-private-connection.png":::
+
 4. Select **Save**.
 5. Run your job as usual once you confirm that all configurations are correct.
 
 > [!TIP]
 > To locate errors related to private connections, go to the job page and select the **Monitoring** tab after the job completes.
 
-:::image type="content" source="./media/private-connections/job-overview.png" alt-text="Screenshot of the overview page of the created job." lightbox="./media/private-connections/job-overview.png":::
 
-:::image type="content" source="./media/private-connections/edit-job.png" alt-text="Screenshot of the edit job page." lightbox="./media/private-connections/edit-job.png":::
 
-:::image type="content" source="./media/private-connections/edit-private-connections.png" alt-text="Screenshot of the edit private connections tab for a job." lightbox="./media/private-connections/edit-private-connections.png":::
-
-:::image type="content" source="./media/private-connections/removed-private-connection.png" alt-text="Screenshot of the removal of a private connection from a job." lightbox="./media/private-connections/removed-private-connection.png":::
-
-:::image type="content" source="./media/private-connections/added-private-connection.png" alt-text="Screenshot of the addition of a private connection to a job." lightbox="./media/private-connections/added-private-connection.png":::
-
-:::image type="content" source="./media/private-connections/save-pc-edits.png" alt-text="Screenshot of the saved edits of a private connection for a job." lightbox="./media/private-connections/save-pc-edits.png":::
 
 
 
