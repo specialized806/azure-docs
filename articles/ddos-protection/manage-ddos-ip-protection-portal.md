@@ -51,7 +51,8 @@ You can enable DDoS IP Protection when creating a new public IP address or for a
     | Idle Timeout (minutes)  | Keep a TCP or HTTP connection open without relying on clients to send keep-alive messages. In this example, we leave the default of **4**.        |
     | DNS name label          | Enter a DNS name label. In this example, we left the value blank.    |
 
-
+1. Select **Next: DDoS Protection** to open the DDoS Protection page.
+1. Select **IP** on the **Azure DDoS IP Protection** radio button.
 1. Select **Review + create** to review your settings and create the public IP address.
 
 # [Existing public IP address](#tab/existing-ip)
