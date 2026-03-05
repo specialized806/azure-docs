@@ -404,7 +404,7 @@
       href: packet-capture.md
     - name: Monitoring data reference
       href: monitor-vpn-gateway-reference.md
-- name: Support and troubleshooting for VPN Gateway
+- name: Support and troubleshooting
   href: vpn-gateway-support-help.md
 - name: Reference
   items:
