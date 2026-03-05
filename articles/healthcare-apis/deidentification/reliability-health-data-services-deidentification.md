@@ -1,6 +1,6 @@
 ---
 title: Reliability in Azure Health Data Services De-identification Service
-description: Learn how to ensure healthcare data privacy with reliable de-identification services by using active-active configurations and Azure Front Door for traffic routing.
+description: Learn how to ensure healthcare data privacy with reliable de-identification services. Use active-active configurations and Azure Front Door for traffic routing.
 author: jovinson-ms
 ms.author: jovinson
 ms.topic: reliability-article
@@ -10,32 +10,38 @@ ms.date: 09/27/2024
 #Customer intent: As an IT admin, I want to understand reliability support for the de-identification service so that I can respond to and/or avoid failures in order to minimize downtime and data loss.
 ---
 
-# Reliability in the Azure Health Data Services de-identification service (preview)
+# Reliability in the Azure Health Data Services de-identification service
 
-This article describes reliability support in the de-identification service (preview). For a more detailed overview of reliability principles in Azure, see [Azure reliability](/azure/architecture/framework/resiliency/overview).
+This article describes reliability support in the de-identification service. For a more detailed overview of reliability principles in Azure, see [Azure reliability](/azure/architecture/framework/resiliency/overview).
 
 ## Cross-region disaster recovery
 
 [!INCLUDE [introduction to disaster recovery](~/reusable-content/ce-skilling/azure/includes/reliability/reliability-disaster-recovery-description-include.md)]
 
-Each de-identification service (preview) is deployed to a single Azure region. If an entire region is not available or performance is significantly degraded:
-- ARM control plane functionality is limited to read-only during the outage. Your service metadata (such as resource properties) is always backed up outside of the region by Microsoft. Once the outage is over, you can read and write to the control plane.
-- All data plane requests fail during the outage, such as de-identification or job API requests. No customer data is lost, but there's the potential for job progress metadata to be lost. Once the outage is over, you can read and write to the data plane.
+Each de-identification service is deployed to a single Azure region. If an entire region isn't available or performance is significantly degraded:
+
+- The control plane functionality of Azure Resource Manager is limited to read-only during the outage. Your service metadata (such as resource properties) is always backed up outside of the region by Microsoft. After the outage is over, you can read and write to the control plane.
+
+- All data plane requests, such as de-identification or job API requests, fail during the outage. No customer data is lost, but there's the potential for job progress metadata to be lost. After the outage is over, you can read and write to the data plane.
 
 ### Disaster recovery tutorial
-If an entire Azure region isn't available, you can still assure high availability of your workloads. You can deploy two or more de-identification services in an active-active configuration, with Azure Front door used to route traffic to both regions.
+
+If an entire Azure region isn't available, you can still assure high availability of your workloads. You can deploy two or more de-identification services in an *active-active* configuration. An active-active configuration distributes requests across multiple active regions. Use Azure Front Door to route traffic to both regions.
 
 With this example architecture:
 
-- Identical de-identification services are deployed in two separate regions. 
-- Azure Front Door is used to route traffic to both regions.
-- During a disaster, one region becomes offline, and Azure Front Door routes traffic exclusively to the other region. The recovery time objective during such a geo-failover is limited to the time Azure Front Door takes to detect that one service is unhealthy. 
+- Identical de-identification services are deployed in two separate regions.
 
-####  RTO and RPO
+- Azure Front Door routes traffic to both regions.
 
-If you adopt the active-active configuration, you should expect a recovery time objective (RTO) of **5 minutes**. In any configuration, you should expect a recovery point objective (RPO) of **0 minutes** (no customer data will be lost).
+- During a disaster, one region becomes offline, and Azure Front Door routes traffic exclusively to the other region. The recovery time objective is the time Azure Front Door takes to detect that one service is unhealthy.
+
+If you adopt the active-active configuration, you can expect a recovery time objective (RTO) of five minutes. In any configuration, you can expect a recovery point objective (RPO) of zero minutes (no customer data is lost).
 
 ### Validate disaster recovery plan
+
+The following sections offer a short tutorial about how you validate your disaster recover plan.
+
 #### Prerequisites
 
 [!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
@@ -46,7 +52,7 @@ To complete this tutorial:
 
 #### Create a resource group
 
-You need two instances of a de-identification service (preview) in different Azure regions for this tutorial. The tutorial uses the East US and West US 2 regions, but feel free to choose your own regions.
+You need two instances of a de-identification service in different Azure regions for this tutorial. The tutorial uses the East US and West US 2 regions, but feel free to choose your own regions.
 
 To make management and clean-up simpler, you use a single resource group for all resources in this tutorial. Consider using separate resource groups for each region/resource to further isolate your resources in a disaster recovery situation.
 
@@ -56,38 +62,36 @@ Run the following command to create your resource group.
 az group create --name my-deid --location eastus
 ```
 
-#### Create de-identification services (preview)
+#### Create de-identification services
 
-Follow the steps at [Quickstart: Deploy the de-identification service (preview)](/azure/healthcare-apis/deidentification/quickstart) to create two separate services, one in East US and one in West US 2.
+Follow the steps at [Quickstart: Deploy the de-identification service](/azure/healthcare-apis/deidentification/quickstart) to create two separate services, one in East US and one in West US 2.
 
-Note the service URL of each de-identification service so you can define the backend addresses when you deploy the Azure Front Door in the next step.
+Note the service URL of each de-identification service. You need this information when you deploy Azure Front Door in the next step.
 
-#### Create an Azure Front Door
+#### Create a front door
 
-A multi-region deployment can use an active-active or active-passive configuration. An active-active configuration distributes requests across multiple active regions. An active-passive configuration keeps running instances in the secondary region, but doesn't send traffic there unless the primary region fails. 
-Azure Front Door has a built-in feature that allows you to enable these configurations. For more information on designing apps for high availability and fault tolerance, see [Architect Azure applications for resiliency and availability](/azure/architecture/reliability/architect).
+A multiregion deployment can use an active-active or active-passive configuration. An active-active configuration distributes requests across multiple active regions. An active-passive configuration keeps running instances in the secondary region, but doesn't send traffic there unless the primary region fails.
 
-#### Create an Azure Front Door profile
+You can enable these configurations in Azure Front Door. For more information on designing apps for high availability and fault tolerance, see [Architect Azure applications for resiliency and availability](/azure/architecture/reliability/architect).
 
-You now create an [Azure Front Door Premium](/azure/frontdoor/front-door-overview) to route traffic to your services. 
+#### Create a profile
 
-Run [`az afd profile create`](/cli/azure/afd/profile#az-afd-profile-create) to create an Azure Front Door profile.
+You now create a profile in Azure Front Door to route traffic to your services. Run [`az afd profile create`](/cli/azure/afd/profile#az-afd-profile-create).
 
 > [!NOTE]
-> If you want to deploy Azure Front Door Standard instead of Premium, substitute the value of the `--sku` parameter with Standard_AzureFrontDoor. You can't deploy managed rules with WAF Policy if you choose the Standard tier. For a detailed comparison of the pricing tiers, see [Azure Front Door tier comparison](/azure/frontdoor/standard-premium/tier-comparison).
+> If you want to deploy Azure Front Door Standard instead of Premium, substitute the value of the `--sku` parameter with `Standard_AzureFrontDoor`. You can't deploy managed rules with a WAF policy if you choose the Standard tier. For a detailed comparison of the pricing tiers, see [Azure Front Door tier comparison](/azure/frontdoor/standard-premium/tier-comparison).
 
 ```azurecli-interactive
 az afd profile create --profile-name myfrontdoorprofile --resource-group my-deid --sku Premium_AzureFrontDoor
 ```
 
-|Parameter  |Value  |Description  |
-|---------|---------|---------|
-|`profile-name`     |`myfrontdoorprofile`         |Name for the Azure Front Door profile, which is unique within the resource group.         |
-|`resource-group`     |`my-deid`         |The resource group that contains the resources from this tutorial.         |
-|`sku`     |`Premium_AzureFrontDoor`         |The pricing tier of the Azure Front Door profile.         |
+|Parameter         |Value                    |Description                                                                       |
+|------------------|-------------------------|----------------------------------------------------------------------------------|
+|`profile-name`    |`myfrontdoorprofile`     |Name for the Azure Front Door profile, which is unique within the resource group. |
+|`resource-group`  |`my-deid`                |The resource group that contains the resources from this tutorial.                |
+|`sku`             |`Premium_AzureFrontDoor` |The pricing tier of the Azure Front Door profile.                                 |
 
-
-### Add an Azure Front Door endpoint
+#### Add an Azure Front Door endpoint
 
 Run [`az afd endpoint create`](/cli/azure/afd/endpoint#az-afd-endpoint-create) to create an endpoint in your Azure Front Door profile. This endpoint routes requests to your services. You can create multiple endpoints in your profile after you finish this guide.
 
