@@ -32,7 +32,7 @@ Use the tabs below to find steps for disabling your current identity source.
 1. Under **Data storage**, select **File shares**.
 1. Next to **Identity-based access**, select the configuration status. It should show **Configured**. If it shows **Not configured**, then you don't have an identity source enabled on the storage account and you can proceed to [Enable a new identity source](#step-2-enable-a-new-identity-source).
 
-   :::image type="content" source="media/storage-files-identity-auth-domain-services-enable/enable-entra-storage-account-identity.png" alt-text="Screenshot of the file shares pane in your storage account, identity-based access is highlighted." lightbox="media/storage-files-identity-auth-domain-services-enable/enable-entra-storage-account-identity.png":::
+   :::image type="content" source="media/files-change-identity-source/configure-identity-based-access.png" alt-text="Screenshot of the file shares pane in your storage account, identity-based access configuration status is highlighted." lightbox="media/files-change-identity-source/configure-identity-based-access.png":::
 
 1. Under **Active Directory Domain Services (AD DS)**, select **Configure**.
 1. Select the **Disable Active Directory for this storage account** checkbox.
@@ -72,6 +72,9 @@ az storage account update --name <storage-account-name> --resource-group <resour
 1. Sign in to the [Azure portal](https://portal.azure.com) and select the storage account.
 1. Under **Data storage**, select **File shares**.
 1. Next to **Identity-based access**, select the configuration status. It should show **Configured**. If it shows **Not configured**, then you don't have an identity source enabled on the storage account and you can proceed to [Enable a new identity source](#step-2-enable-a-new-identity-source).
+
+   :::image type="content" source="media/files-change-identity-source/configure-identity-based-access.png" alt-text="Screenshot of the file shares pane in your storage account, identity-based access configuration status is highlighted." lightbox="media/files-change-identity-source/configure-identity-based-access.png":::
+
 1. Under **Microsoft Entra Domain Services**, select **Configure**.
 1. Uncheck the **Microsoft Entra Domain Services** checkbox.
 1. Select **Save**.
@@ -101,6 +104,9 @@ az storage account update --name <storage-account-name> --resource-group <resour
 1. Sign in to the [Azure portal](https://portal.azure.com) and select the storage account.
 1. Under **Data storage**, select **File shares**.
 1. Next to **Identity-based access**, select the configuration status. It should show **Configured**. If it shows **Not configured**, then you don't have an identity source enabled on the storage account and you can proceed to [Enable a new identity source](#step-2-enable-a-new-identity-source).
+
+   :::image type="content" source="media/files-change-identity-source/configure-identity-based-access.png" alt-text="Screenshot of the file shares pane in your storage account, identity-based access configuration status is highlighted." lightbox="media/files-change-identity-source/configure-identity-based-access.png":::
+
 1. Under **Microsoft Entra Kerberos**, select **Configure**.
 1. Uncheck the **Microsoft Entra Kerberos** checkbox.
 1. Select **Save**.
