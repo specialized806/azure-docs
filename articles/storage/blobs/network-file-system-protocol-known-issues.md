@@ -22,9 +22,10 @@ This article describes limitations and known issues of Network File System (NFS)
 
 - NFS 3.0 support can't be enabled on existing storage accounts.
 - NFS 3.0 support can't be disabled in a storage account after you enable it.
-- Geo-redundant storage, geo-zone-redundant storage, and read-access geo-redundant storage options for redundancy aren't supported when you create an NFS 3.0 storage account.
+- Geo-redundant storage (GRS) is supported only for unplanned failover scenarios and isn't supported for planned failover.
+- Geo-zone-redundant storage (GZRS) and read-access geo-redundant storage (RA-GRS) redundancy options aren't supported when you create an NFS 3.0 storage account.
 - Access control lists (ACLs) can't be used to authorize an NFS 3.0 request. If the ACL or a blob or directory contains an entry for a named user or group, that file becomes inaccessible on the client for nonroot users. You have to remove these entries to restore access to nonroot users on the client. For information about how to remove an ACL entry for named users and groups, see [How to set ACLs](data-lake-storage-access-control.md#how-to-set-acls).
-- NFS 3.0-enabled accounts don't support [Azure Data Lake Storage vaulted backup](/azure/backup/azure-data-lake-storage-backup-support-matrix).
+- NFS 3.0 enabled accounts don't support [Azure Data Lake Storage vaulted backup](/azure/backup/azure-data-lake-storage-backup-support-matrix).
 
 ## NFS 3.0 features
 
@@ -49,7 +50,7 @@ When you enable NFS 3.0 protocol support, some Azure Blob Storage features are f
 To see how each Blob Storage feature is supported in accounts that have NFS 3.0 support enabled, see [Blob Storage feature support for Azure Storage accounts](storage-feature-support-in-storage-accounts.md).
 
 > [!NOTE]
-> Static websites is an example of a partially supported feature. The configuration page for static websites doesn't yet appear in the Azure portal for accounts that have NFS 3.0 support enabled. You can enable static websites only by using Azure PowerShell or the Azure CLI.
+> Static websites are an example of a partially supported feature. The configuration page for static websites doesn't yet appear in the Azure portal for accounts that have NFS 3.0 support enabled. You can enable static websites only by using Azure PowerShell or the Azure CLI.
 
 ## Blob Storage events
 
