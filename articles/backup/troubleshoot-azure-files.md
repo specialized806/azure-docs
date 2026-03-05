@@ -331,9 +331,9 @@ Recommended Actions: Ensure that the following configurations in the storage acc
 
 **Error message**: Azure File Share Backup requires a minimum SAS expiration period of 8 hours.
 
-**Recommended action**: 
-- If the SAS token expiry is shorter than 8 hours, the Backup service cannot renew the token in time. This leads to authentication failures and can interrupt ongoing backup or restore operations.
-- Set the SAS expiry upper limit to 8 hours or more to ensure the Backup service can successfully renew the SAS token and maintain uninterrupted backup and restore activities.
+**Cause**: If the SAS token expiry is shorter than 8 hours, the Backup service cannot renew the token in time. This leads to authentication failures and can interrupt ongoing backup or restore operations.
+
+**Recommended action**: Set the SAS expiry upper limit to 8 hours or more to ensure the Backup service can successfully renew the SAS token and maintain uninterrupted backup and restore activities.
 
 ## Common policy modification errors
 
