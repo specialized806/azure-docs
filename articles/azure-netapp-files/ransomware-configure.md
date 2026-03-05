@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 02/24/2026
+ms.date: 03/05/2026
 ms.author: anfdocs
 ms.custom: references_regions
 ---
@@ -28,7 +28,8 @@ Advanced ransomware protection's alert mechanisms enable you to stay vigilant in
 * Attack reports are retained for 30 days.  
 * Ransomware threat notifications are sent in the Azure Activity log.  
 * It’s recommended that you enable no more than five volumes per Azure region with advanced ransomware protection to mitigate performance issues. 
-* It's recommended you increase QoS capacity by 5 to 10 percent due to potential performance impacts of advanced ransomware protection. The scale of the impact can vary based on the configurations across your Azure NetApp Files deployment.  
+* It's recommended you increase QoS capacity by 5 to 10 percent due to potential performance impacts of advanced ransomware protection. The scale of the impact can vary based on the configurations across your Azure NetApp Files deployment.
+* If your volumes have workloads with a high level of encryption and deletion, it may increase the possibility of false positives. It is recommended not to enable advanced ransomware protection on these volumes.
 
 ## Supported regions 
 
