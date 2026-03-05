@@ -43,6 +43,9 @@ Different protocols are supported by the hierarchical namespace. SFTP is one of 
 
 ## SFTP permission model
 
+> [!TIP]
+> The ability to use Microsoft Entra ID to authorize SFTP transfers is currently now in public preview. To learn more about configuring entra-id based access, see  [Authorize SSH File Transfer Protocol (SFTP) access to blobs using Microsoft Entra ID](secure-file-transfer-protocol-support-entra-id-based-access.md).
+
 SFTP utilizes a new form of identity management called _local users_.
 
 Local users must use either a password or a Secure Shell (SSH) private key credential for authentication. You can have a maximum of 25,000 local users for a storage account.
@@ -55,9 +58,6 @@ To set up access permissions, you create a local user, and choose authentication
 > For example, Jeff has read only permission (can be controlled via RBAC or ABAC) via their Microsoft Entra identity for file _foo.txt_ stored in container _con1_. If Jeff is accessing the storage account via NFS (when not mounted as root/superuser), Blob REST, or Data Lake Storage REST, these permissions will be enforced. However, if Jeff also has a local user identity with delete permission for data in container _con1_, they can delete _foo.txt_ via SFTP using the local user identity.
 
 Enabling SFTP support doesn't prevent other types of clients from using Microsoft Entra ID. For users that access Blob Storage by using the Azure portal, Azure CLI, Azure PowerShell commands, AzCopy, as well as Azure SDKs, and Azure REST APIs, you can continue to use the full breadth of Azure Blob Storage security setting to authorize access. To learn more, see [Access control model in Azure Data Lake Storage](data-lake-storage-access-control-model.md).
-
-> [!TIP]
-> The ability to use Microsoft Entra ID to authorize SFTP transfers is currently now in public preview. To learn more about configuring entra-id based access, see  [Authorize SSH File Transfer Protocol (SFTP) access to blobs using Microsoft Entra ID](secure-file-transfer-protocol-support-entra-id-based-access.md).
 
 ## Authentication methods
 

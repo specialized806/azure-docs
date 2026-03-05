@@ -224,7 +224,7 @@ Use the following command to view the OpenSSH certificate:
 
 The _Principals_ section contains the username:
 
-:::image type="content" source="./media/secure-file-transfer-protocol-support/verify-opensshcert.jpg" alt-text="Screenshot of the principals section in the command ouput.":::
+:::image type="content" source="./media/secure-file-transfer-protocol-support/verify-opensshcert.png" alt-text="Screenshot of the principals section in the command ouput.":::
 
 For security reasons, the OpenSSH certificate is valid for 65 minutes. After this period, you need to request a new certificate to initiate any further transactions.
 
