@@ -54,7 +54,7 @@ Use the Scale VMware HCX Cloud Manager Run Command to increase the resource allo
 
    If the parameters are used incorrectly, they can halt active migrations and replications and cause other issues. Brief description of each parameter with an example of when it should be used:
 
-   **ScaleFormFactor Parameter** - Specifies the target form factor for the HCX Manager VM — *"Medium"* or *"Large"*. Defaults to *"Medium"* if not specified. See [Form Factor Specification] for details on each size.
+   **ScaleFormFactor Parameter** - Specifies the target form factor for the HCX Manager VM — *"Medium"* or *"Large"*. Defaults to *"Medium"* if not specified. See [Form Factor Specification](use-hcx-run-commands.md) for details on each size.
 
    **DiskStorageFormat Parameter** - Specifies the storage format for the new disk added during scaling — *"Thin"*, *"Thick"*, or *"EagerZeroedThick"*. Defaults to *"Thin"*. See [Disk Storage Formats] for guidance on choosing a format.
 
