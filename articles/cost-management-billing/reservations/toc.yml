@@ -7,7 +7,9 @@
     href: save-compute-costs-reservations.md
 - name: Concepts
   items:
-  - name: VM instance size flexibility
+  - name: Instance size flexibility
+    href: instance-size-flexibility.md
+  - name: VM instance size flexibility (Virtual Machines)
     href: /azure/virtual-machines/reserved-vm-instance-size-flexibility
     maintainContext: true
   - name: Reservation recommendations
