@@ -3,7 +3,7 @@ title: Deploy vSAN stretched clusters
 description: Learn how to deploy vSAN stretched clusters.
 ms.topic: how-to
 ms.service: azure-vmware
-ms.date: 12/4/2024
+ms.date: 3/05/2026
 ms.custom: references_regions, engagement-fy23 
 # Customer intent: As a cloud administrator, I want to deploy a vSAN stretched cluster on Azure VMware Solution, so that I can ensure high availability and disaster recovery across multiple availability zones.
 ---
@@ -32,11 +32,11 @@ When the request support details are received, quota is reserved for a stretched
 
 Once the private cloud is created, you can peer both availability zones (AZs) to your on-premises ExpressRoute circuit with Global Reach that helps connect your on-premises data center to the private cloud. Peering both the AZs ensures that an AZ failure doesn't result in a loss of connectivity to your private cloud. Since an ExpressRoute Auth Key is valid for only one connection, repeat the [Create an ExpressRoute auth key in the on-premises ExpressRoute circuit](./tutorial-expressroute-global-reach-private-cloud.md#create-an-expressroute-auth-key-in-the-on-premises-expressroute-circuit) process to generate another authorization.
 
-:::image type="content" source="media/stretch-clusters/express-route-availability-zones.png" alt-text="Screenshot shows how to generate Express Route authorizations for both availability zones."lightbox="media/stretch-clusters/express-route-availability-zones.png":::
+:::image type="content" source="media/stretch-clusters/express-route-availability-zones.png" alt-text="Screenshot shows how to generate Express Route authorizations for both availability zones." lightbox="media/stretch-clusters/express-route-availability-zones.png":::
 
 Next, repeat the process to [peer ExpressRoute Global Reach](./tutorial-expressroute-global-reach-private-cloud.md#peer-private-cloud-to-on-premises) two availability zones to the on-premises ExpressRoute circuit.
 
-:::image type="content" source="media/stretch-clusters/express-route-global-reach-peer-availability-zones.png" alt-text="Screenshot shows page to peer both availability zones to on-premises Express Route Global Reach."lightbox="media/stretch-clusters/express-route-global-reach-peer-availability-zones.png":::
+:::image type="content" source="media/stretch-clusters/express-route-global-reach-peer-availability-zones.png" alt-text="Screenshot shows page to peer both availability zones to on-premises Express Route Global Reach." lightbox="media/stretch-clusters/express-route-global-reach-peer-availability-zones.png":::
 
 ## Storage policies supported
 
