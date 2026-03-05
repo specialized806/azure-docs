@@ -22,15 +22,19 @@ For guidance on choosing the right identity source for your environment, see [Ov
 
 ## Step 1: Verify the current identity source
 
-Use the Azure portal to verify the identity source that's currently enabled on your storage account. Supported identity sources are Active Directory Domain Services (AD DS), Microsoft Entra Domain Services, and Microsoft Entra Kerberos.
+Use the Azure portal to verify the identity source that's currently enabled on your storage account. Supported identity sources for SMB Azure file shares are Active Directory Domain Services (AD DS), Microsoft Entra Domain Services, and Microsoft Entra Kerberos.
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and select the storage account.
+
 1. From the service menu, under **Data storage**, select **File shares**.
+
 1. Next to **Identity-based access**, check the configuration status. It should show **Configured**. If it shows **Not configured**, then you don't have an identity source enabled on the storage account and you can proceed to [Enable a new identity source](#step-3-enable-a-new-identity-source).
 
    :::image type="content" source="media/change-identity-source/configure-identity-based-access.png" alt-text="Screenshot of the file shares pane in your storage account, identity-based access configuration status is highlighted." lightbox="media/change-identity-source/configure-identity-based-access.png":::
 
-1. Select **Configured**. The portal shows the identity source that's enabled on the storage account and its configuration status. Other identity sources are grayed out. In this example, Microsoft Entra Kerberos is enabled on the storage account, but not yet configured.
+1. Select **Configured**.
+
+1. The portal shows the identity source that's enabled on the storage account and its configuration status. Other identity sources are grayed out. In this example, Microsoft Entra Kerberos is enabled on the storage account, but not yet configured.
 
    :::image type="content" source="media/change-identity-source/identity-source-status.png" alt-text="Screenshot showing which identity source is enabled on the storage account." lightbox="media/change-identity-source/identity-source-status.png":::
 
