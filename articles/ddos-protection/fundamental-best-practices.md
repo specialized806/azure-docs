@@ -93,8 +93,10 @@ If you're connecting an on-premises environment to Azure, minimize exposure of o
 Set up monitoring and alerting to detect DDoS attacks quickly and understand your protection status:
 
 - **Configure metric alerts**: Create alerts on key DDoS Protection metrics, such as *Under DDoS attack or not*, *Inbound packets dropped DDoS*, and *Inbound SYN packets to trigger DDoS mitigation*. Alerts notify you immediately when an attack is detected. For step-by-step instructions, see [Configure Azure DDoS Protection metric alerts](alerts.md).
+- **View alerts in Microsoft Defender for Cloud**: DDoS Protection automatically sends mitigation alerts to Microsoft Defender for Cloud when an attack is detected. Use Defender for Cloud to get a unified view of DDoS alerts alongside other security alerts. For more information, see [View Azure DDoS Protection alerts in Microsoft Defender for Cloud](ddos-view-alerts-defender-for-cloud.md).
 - **Enable diagnostic logging**: Enable diagnostic logs to capture DDoS mitigation reports, flow logs, and notifications. Use these logs for post-attack analysis and compliance auditing.
 - **Review DDoS Protection telemetry**: Use the metrics and diagnostic logs to understand traffic patterns during attacks and evaluate the effectiveness of mitigation. For detailed monitoring guidance, see [Monitor Azure DDoS Protection](monitor-ddos-protection.md).
+- **Monitor application performance**: Use [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) to monitor your web application and detect performance anomalies. Understanding your application's normal behavior helps you identify degradation during a DDoS attack. For detailed guidance, see [DDoS response strategy](ddos-response-strategy.md).
 
 ## Test and validate your protection
 
@@ -110,7 +112,7 @@ For testing partners, prerequisites, and step-by-step instructions, see [Test th
 Establish a clear response plan before an attack occurs to ensure a fast and effective response:
 
 - **Build a DDoS response team**: Assign team members responsible for coordinating the response to an attack. Include members from networking, application, and operations teams.
-- **Engage DDoS Rapid Response (DRR)**: With DDoS Network Protection, you can engage the [DDoS Rapid Response team](ddos-rapid-response.md) during an active attack for investigation and post-attack analysis.
+- **Engage DDoS Rapid Response (DRR)**: With [DDoS Network Protection](manage-ddos-protection.md), you can engage the [DDoS Rapid Response team](ddos-rapid-response.md) during an active attack for investigation and post-attack analysis.
 - **Document and rehearse**: Create runbooks, define escalation paths, and rehearse your response to DDoS attacks. Review and update your response plan regularly.
 
 For detailed guidance on building your response strategy, see [DDoS response strategy](ddos-response-strategy.md).
