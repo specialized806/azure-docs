@@ -24,26 +24,22 @@ Blob Storage now supports a hierarchical namespace. When combined with NFS 3.0 p
 
 The NFS 3.0 protocol feature is optimized for high-throughput, large-scale, read-heavy workloads with sequential I/O. It's ideal for scenarios that involve multiple readers and numerous threads where throughput is more critical than low latency. Common examples include:
 
-**High-performance computing**: HPC jobs often involve thousands of cores reading the same large datasets concurrently. The NFS 3.0 protocol feature uses object storage throughput to eliminate traditional file server bottlenecks. Here are some examples:
+- **High-performance computing**: HPC jobs often involve thousands of cores reading the same large datasets concurrently. The NFS 3.0 protocol feature uses object storage throughput to eliminate traditional file server bottlenecks. Here are some examples:
 
-- **Genomics sequencing**: Processing massive DNA datasets.
-- **Financial risk modeling**: Using Monte Carlo simulations on historical data.
-- **Seismic analysis**: Analyzing geological data for oil and gas exploration.
-- **Weather forecasting**: Modeling atmospheric data for climate and storm prediction.
+   - **Genomics sequencing**: Processing massive DNA datasets.
+   - **Financial risk modeling**: Using Monte Carlo simulations on historical data.
+   - **Seismic analysis**: Analyzing geological data for oil and gas exploration.
+   - **Weather forecasting**: Modeling atmospheric data for climate and storm prediction.
+- **Big data and analytics (data lakes)**: Many analytics tools require hierarchical directories. BlobNFS (via Azure Data Lake Storage Gen2) delivers this structure while supporting standard file protocols. Here are some examples:
 
-**Big data & analytics (Data Lakes)**: Many analytics tools require hierarchical directories. BlobNFS (via Azure Data Lake Storage Gen2) delivers this structure while supporting standard file protocols. Here are some examples:
+   - **Machine learning**: Feeding training data to GPU clusters by using standard file I/O.
+   - **Log analytics**: Aggregating logs from thousands of sources.
+- **Advanced Driver Assistance Systems (ADAS)**: ADAS workflows produce petabytes of sequential sensor data, such as LiDAR point clouds and high-resolution camera feeds. The data must be ingested efficiently and analyzed at scale for simulation and model training. For example, storing raw LiDAR scans and multi-camera video streams from autonomous test vehicles by using NFS 3.0, then running large-scale replay simulations across thousands of compute nodes to validate perception algorithms.
+- **Media and entertainment**: Rendering farms need efficient access to large asset libraries. NFS 3.0 over blob provides a file interface for legacy rendering tools that expect file paths. Here are some examples:
 
-- **Machine learning**: Feeding training data to GPU clusters by using standard file I/O.
-- **Log analytics**: Aggregating logs from thousands of sources.
-
-**Advanced Driver Assistance Systems (ADAS)**: ADAS workflows produce petabytes of sequential sensor data, such as LiDAR point clouds and high-resolution camera feeds. The data must be ingested efficiently and analyzed at scale for simulation and model training. For example, storing raw LiDAR scans and multi-camera video streams from autonomous test vehicles by using NFS 3.0, then running large-scale replay simulations across thousands of compute nodes to validate perception algorithms.
-
-**Media and entertainment**: Rendering farms need efficient access to large asset libraries. NFS 3.0 over blob provides a file interface for legacy rendering tools that expect file paths. Here are some examples:
-
-- **Video rendering**: Distributed nodes reading source assets.
-- **Transcoding**: Converting large raw video files into streaming formats.
-
-**Database backup**: This feature offers a cost-effective, high-throughput NFS 3.0 target without complex connectors or expensive snapshots. , Oracle RMAN can write large backup pieces directly for long-term archival and enable direct restore from any NFS-mounted Linux VM.
+   - **Video rendering**: Reading source assets with distributed nodes.
+   - **Transcoding**: Converting large raw video files into streaming formats.
+- **Database backup**: This feature offers a cost-effective, high-throughput NFS 3.0 target without complex connectors or expensive snapshots. , Oracle RMAN can write large backup pieces directly for long-term archival and enable direct restore from any NFS-mounted Linux VM.
 
 ### When not to use NFS 3.0 with Blob Storage
 
