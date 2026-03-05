@@ -34,21 +34,21 @@ Before you begin, refer to the following SAP Notes and papers first:
   * Supported SAP software, operating system (OS), and database combinations
   * Required SAP kernel version for Windows and Linux on Microsoft Azure
 * SAP Note [2015553][2015553] has prerequisites for SAP-supported SAP software deployments in Azure.
-* SAP Note [2205917][2205917] has the recommended OS settings for SUSE Linux Enterprise Server for SAP Applications
-* SAP Note [1944799][1944799] has SAP HANA Guidelines for SUSE Linux Enterprise Server for SAP Applications
+* SAP Note [2205917][2205917] has the recommended OS settings for SUSE Linux Enterprise Server for SAP Applications.
+* SAP Note [1944799][1944799] has SAP HANA Guidelines for SUSE Linux Enterprise Server for SAP Applications.
 * SAP Note [2178632][2178632] has detailed information about all monitoring metrics reported for SAP in Azure.
 * SAP Note [2191498][2191498] has the required SAP Host Agent version for Linux in Azure.
 * SAP Note [2243692][2243692] has information about SAP licensing on Linux in Azure.
 * SAP Note [1984787][1984787] has general information about SUSE Linux Enterprise Server 12.
 * SAP Note [1999351][1999351] has other troubleshooting information for the Azure Enhanced Monitoring Extension for SAP.
 * [SAP Community WIKI](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) has all required SAP Notes for Linux.
-* [Azure Virtual Machines planning and implementation for SAP on Linux][planning-guide]
-* [Azure Virtual Machines deployment for SAP on Linux][deployment-guide]
-* [Azure Virtual Machines DBMS deployment for SAP on Linux][dbms-guide]
+* [Azure Virtual Machines planning and implementation for SAP on Linux][planning-guide].
+* [Azure Virtual Machines deployment for SAP on Linux][deployment-guide].
+* [Azure Virtual Machines DBMS deployment for SAP on Linux][dbms-guide].
 * [SUSE SAP HA Best Practice Guides][suse-ha-guide] - The guides contain all required information to configure Netweaver HA and SAP HANA System Replication on-premises. Use these guides as a general baseline. They provide much more detailed information.
-* [SUSE High Availability Extension 12 SP3 Release Notes][suse-ha-12sp3-relnotes]
-* [SUSE multi-SID cluster guide for SLES 12 and SLES 15](https://documentation.suse.com/sbp/all/html/SBP-SAP-MULTI-SID/index.html)
-* [NetApp SAP Applications on Microsoft Azure using Azure NetApp Files][anf-sap-applications-azure]
+* [SUSE High Availability Extension 12 SP3 Release Notes][suse-ha-12sp3-relnotes].
+* [SUSE multi-SID cluster guide for SLES 12 and SLES 15](https://documentation.suse.com/sbp/all/html/SBP-SAP-MULTI-SID/index.html).
+* [NetApp SAP Applications on Microsoft Azure using Azure NetApp Files][anf-sap-applications-azure].
 
 ## Overview
 
