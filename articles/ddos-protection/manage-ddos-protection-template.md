@@ -48,7 +48,7 @@ In this example, the template creates a new resource group, a DDoS protection pl
 
 1. Enter the values to create a new resource group, DDoS protection plan, and virtual network name.
 
-    :::image type="content" source="media/manage-ddos-protection-template/ddos-template.png" alt-text="DDoS quickstart template."lightbox="media/manage-ddos-protection-template/ddos-template.png":::
+    :::image type="content" source="media/manage-ddos-protection-template/ddos-template.png" alt-text="DDoS quickstart template." lightbox="media/manage-ddos-protection-template/ddos-template.png":::
 
     - **Subscription**: Name of the Azure subscription where the resources will be deployed.
     - **Resource group**: Select an existing resource group or create a new resource group.
