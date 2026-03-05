@@ -128,7 +128,7 @@ You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` 
 
     :::image type="content" source="./media/ransomware-configure/ransomware-threats.png" alt-text="Screenshot of ransomware threats." lightbox="./media/ransomware-configure/ransomware-threats.png":::
 
-1. If you know the files are **not** an active threat, mark the files as a **False positive**. 
+1. If you know the files are **not** an active threat, mark the active threat as a **False positive**. 
 
     If you believe the files are a threat, select **Threat**. You can then [revert the volume](snapshots-revert-volume.md) based on the last snapshot captured before the threat.
 1. Once you've resolved the threat, you can view archived ransomware reports on the same page. Reports are archived for 30 days. 
