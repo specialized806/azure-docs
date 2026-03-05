@@ -53,7 +53,7 @@ For more information about the entities you can manage and the capabilities in A
 
 ## API Center plans and features
 
-Azure API Center is offered in a Free plan and Standard plan. Key comparisons are in the following table. For detailed limits, see [Azure API Center limits](/azure/azure-resource-manager/management/azure-subscription-service-limits?toc=/azure/api-center/toc.json&bc=/azure/api-center/breadcrumb/toc.json#azure-api-center-limits).
+Azure API Center is offered in a Free plan and Standard plan. Key comparisons are in the following table. For feature availability and limits, see [Azure API Center limits](/azure/azure-resource-manager/management/azure-subscription-service-limits?toc=/azure/api-center/toc.json&bc=/azure/api-center/breadcrumb/toc.json#azure-api-center-limits).
 
 | Feature | Free plan | Standard plan |
 |---------|-----------|---------------|

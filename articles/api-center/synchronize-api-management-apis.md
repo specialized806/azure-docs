@@ -17,7 +17,7 @@ This article shows how to integrate (link) an API Management instance so that th
 > [!TIP]
 > This article explains how to integrate an API Management instance from your API center. Alternatively, quickly set up integration directly from an API Management instance. In the left menu of your instance, under **APIs**, select **API Center**, and select a target API center in your subscription to synchronize APIs to.
 
-[!INCLUDE [free-apic-standard-linked-api-management](includes/free-apic-standard-linked-api-management.md)]
+[!INCLUDE [free-standard-plan-linked-api-management](includes/free-standard-plan-linked-api-management.md)]
 
 ## About integrating an API Management instance
 

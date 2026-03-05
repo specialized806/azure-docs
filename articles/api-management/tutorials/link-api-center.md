@@ -19,8 +19,7 @@ This tutorial shows how to integrate (link) an Azure API Management instance wit
 > 
 > Only one API Center can be linked to a single API Management instance.
 
-[!INCLUDE [free-apic-standard-linked-api-management](../../api-center/includes/free-apic-standard-linked-api-management.md)]
-
+[!INCLUDE [free-standard-plan-linked-api-management](../../api-center/includes/free-standard-plan-linked-api-management.md)]
 
 In this tutorial, you:
 
