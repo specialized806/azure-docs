@@ -1,6 +1,6 @@
 ---
 title: Enable Integration with Azure Virtual Network
-description: Follow steps to enable virtual network integration on an Azure App Service web app.
+description: Enable virtual network integration on an Azure App Service web app in the Azure portal, or use the Azure CLI or Azure PowerShell.
 keywords: vnet integration
 author: seligj95
 ms.author: jordanselig
@@ -17,7 +17,7 @@ ms.custom:
 
 # Enable virtual network integration in Azure App Service
 
-This article describes how to integrate Azure Virtual Network with [Azure App Service](overview.md). The integration enables you to reach private resources from your App Service app within your Azure virtual network.
+This article describes how to integrate Azure Virtual Network with [Azure App Service](overview.md). The integration enables you to reach private resources from your App Service app within your Azure virtual network. Procedures are provided for the Azure portal, the Azure CLI, and Azure PowerShell.
 
 ## Prerequisites
 
