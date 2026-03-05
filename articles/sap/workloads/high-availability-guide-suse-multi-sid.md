@@ -14,14 +14,16 @@ ms.custom:
 # Customer intent: As an SAP administrator, I want to implement a multi-SID high availability configuration for SAP NetWeaver on SUSE Linux within Azure VMs, so that I can ensure continuous service availability and efficient resource management across multiple SAP instances.
 ---
 
-# Guidance on high availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server for SAP applications multi-SID
+# High availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server for SAP applications multi-SID
 
 This article describes how to deploy multiple SAP NetWeaver or S/4HANA highly available systems (multi-SID) in a two-node cluster on Azure VMs with SUSE Linux Enterprise Server for SAP applications. Multi-SID clustering allows you to run multiple SAP instances with different system identifiers on the same Pacemaker cluster, optimizing resource utilization while maintaining high availability.
 
-In the example configurations, installation commands etc. three SAP NetWeaver 7.50 systems are deployed in a single, two node high availability cluster. The SAP systems SIDs are:
+In the example configurations, installation commands, and etc., three SAP NetWeaver 7.50 systems are deployed in a single, two-node high availability cluster. The SAP systems SIDs are:
 
 * **NW1**: ASCS instance number **00** and virtual host name **msnw1ascs**; ERS instance number **02** and virtual host name **msnw1ers**.
+
 * **NW2**: ASCS instance number **10** and virtual hostname **msnw2ascs**; ERS instance number **12** and virtual host name **msnw2ers**.
+
 * **NW3**: ASCS instance number **20** and virtual hostname **msnw3ascs**; ERS instance number **22** and virtual host name **msnw3ers**.
 
 The article doesn't cover the database layer and the deployment of the SAP NFS shares. In the examples in this article, we're using virtual names *nw2-nfs* for the **NW2** NFS shares and *nw3-nfs* for the **NW3** NFS shares, assuming that an NFS cluster was deployed.
@@ -59,7 +61,7 @@ To achieve high availability, SAP NetWeaver requires highly available NFS shares
 ![A diagram of a Pacemaker cluster with detailed information about two multi-SID clusters.](./media/high-availability-guide-suse/ha-suse-multi-sid.png)
 
 > [!IMPORTANT]
-> The support for multi-SID clustering of SAP ASCS/ERS with SUSE Linux as guest operating system in Azure VMs is limited to **five** SAP SIDs on the same cluster. Each new SID increases the complexity. A mix of SAP Enqueue Replication Server 1 and Enqueue Replication Server 2 on the same cluster **isn't supported**. Multi-SID clustering describes the installation of multiple SAP ASCS/ERS instances with different SIDs in one Pacemaker cluster. Currently multi-SID clustering is only supported for ASCS/ERS.
+> The support for multi-SID clustering of SAP ASCS/ERS with SUSE Linux as guest operating system in Azure VMs is limited to **five (5)** SAP SIDs on the same cluster. Each new SID increases the complexity. A mix of SAP Enqueue Replication Server 1 and Enqueue Replication Server 2 on the same cluster **isn't supported**. Multi-SID clustering describes the installation of multiple SAP ASCS/ERS instances with different SIDs in one Pacemaker cluster. Currently multi-SID clustering is only supported for ASCS/ERS.
 
 > [!TIP]
 > The multi-SID clustering of SAP ASCS/ERS is a solution with higher complexity. It's more complex to implement. It also involves higher administrative effort, when executing maintenance activities (like OS patching). Before you start the actual implementation, carefully plan out the deployment and all involved components like VMs, NFS mounts, VIPs, load balancer configurations and so on.
