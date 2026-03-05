@@ -7,6 +7,7 @@ ms.subservice: security-fundamentals
 ms.topic: article
 ms.author: mbaldwin
 ms.date: 12/03/2025
+ms.custom: cx-rw
 ---
 
 # Backup and restore plan to protect against ransomware
