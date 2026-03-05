@@ -26,7 +26,7 @@ Use the tabs below to find steps for disabling your current identity source.
 
 ### Active Directory Domain Services (AD DS)
 
-# [Portal](#tab/portal-adds)
+# [Portal](#tab/portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and select the storage account.
 1. Under **Data storage**, select **File shares**.
@@ -41,7 +41,7 @@ Use the tabs below to find steps for disabling your current identity source.
 > [!IMPORTANT]
 > After disabling AD DS authentication, consider deleting the AD DS computer account or service logon account that you created to represent the storage account in your on-premises AD. If you leave the identity in AD DS, it remains as an orphaned object.
 
-# [Azure PowerShell](#tab/powershell-adds)
+# [Azure PowerShell](#tab/powershell)
 
 Run the following command, replacing the placeholder values with your own.
 
@@ -52,7 +52,7 @@ Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName 
 > [!IMPORTANT]
 > After disabling AD DS authentication, consider deleting the AD DS computer account or service logon account that you created to represent the storage account in your on-premises AD. If you leave the identity in AD DS, it remains as an orphaned object.
 
-# [Azure CLI](#tab/cli-adds)
+# [Azure CLI](#tab/cli)
 
 Run the following command, replacing the placeholder values with your own.
 
@@ -67,7 +67,7 @@ az storage account update --name <storage-account-name> --resource-group <resour
 
 ### Microsoft Entra Domain Services
 
-# [Portal](#tab/portal-aadds)
+# [Portal](#tab/portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and select the storage account.
 1. Under **Data storage**, select **File shares**.
@@ -79,7 +79,7 @@ az storage account update --name <storage-account-name> --resource-group <resour
 1. Uncheck the **Microsoft Entra Domain Services** checkbox.
 1. Select **Save**.
 
-# [Azure PowerShell](#tab/powershell-aadds)
+# [Azure PowerShell](#tab/powershell)
 
 Run the following command, replacing the placeholder values with your own.
 
@@ -87,7 +87,7 @@ Run the following command, replacing the placeholder values with your own.
 Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName <storageAccountName> -EnableAzureActiveDirectoryDomainServicesForFile $false
 ```
 
-# [Azure CLI](#tab/cli-aadds)
+# [Azure CLI](#tab/cli)
 
 Run the following command, replacing the placeholder values with your own.
 
@@ -99,7 +99,7 @@ az storage account update --name <storage-account-name> --resource-group <resour
 
 ### Microsoft Entra Kerberos
 
-# [Portal](#tab/portal-aadkerb)
+# [Portal](#tab/portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and select the storage account.
 1. Under **Data storage**, select **File shares**.
@@ -111,7 +111,7 @@ az storage account update --name <storage-account-name> --resource-group <resour
 1. Uncheck the **Microsoft Entra Kerberos** checkbox.
 1. Select **Save**.
 
-# [Azure PowerShell](#tab/powershell-aadkerb)
+# [Azure PowerShell](#tab/powershell)
 
 Run the following command, replacing the placeholder values with your own.
 
@@ -119,7 +119,7 @@ Run the following command, replacing the placeholder values with your own.
 Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName <storageAccountName> -EnableAzureActiveDirectoryKerberosForFile $false
 ```
 
-# [Azure CLI](#tab/cli-aadkerb)
+# [Azure CLI](#tab/cli)
 
 Run the following command, replacing the placeholder values with your own.
 
