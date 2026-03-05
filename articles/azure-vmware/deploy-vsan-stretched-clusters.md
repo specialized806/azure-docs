@@ -10,7 +10,7 @@ ms.custom: references_regions, engagement-fy23
 
 # Deploy vSAN stretched clusters
 
-In article, learn how to implement a vSAN stretched cluster for an Azure VMware Solution private cloud.
+In this article, learn how to implement a vSAN stretched cluster for an Azure VMware Solution private cloud.
 
 ## Prerequisites
 
