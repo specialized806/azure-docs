@@ -54,7 +54,7 @@ Azure App Configuration logs include activity logs and resource logs.
 ### Resource logs
 App Configuration provides two types of resource logs.
 - **Audit logs**: Capture data plane write operations (create, update, and delete), such as key-values modifications, and all control plane CRUD operations. Audit logs don't include data plane read operations. Unlike HTTP request logs, entries of audit logs are not aggregated. Query them in the **AACAudit** table. For more information, refer to [AACAudit](/azure/azure-monitor/reference/tables/AACAudit).
-- **HTTP request logs**: Capture both read and write operations on your data plane resources, such as key-values. Operations are aggregated for better performance and to reduce log volume. Aggregation is based on HTTP method and status code. Each log entry may represent multiple similar operations within a certain time window. Query them in the **AACHttpRequest** table. For more information, refer to [AACHttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest).
+- **HTTP request logs**: Capture both read and write operations on your data plane resources, such as key-values. Entries of HTTP request logs are aggregated for better performance and to reduce log volume. Aggregation is based on HTTP method and status code. Each log entry may represent multiple requests within a certain time window. Refer to the HitCount field for the number of requests whose logs are aggregated. Query them in the **AACHttpRequest** table. For more information, refer to [AACHttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest).
 
 #### Log collection
 Metrics and the activity log are collected and stored automatically, and can be routed to other locations by using a diagnostic setting.
