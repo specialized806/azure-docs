@@ -12,7 +12,7 @@ ms.author: abell
 
 # Azure DDoS Protection fundamental best practices
 
-This article provides best practices and recommendations for building DDoS-resilient services on Azure. Use this guidance to protect your applications with Azure DDoS Protection across the areas of tier selection, security design, scalability, multi-layered defense, monitoring, and response planning.
+This article provides best practices for building DDoS-resilient services on Azure. Use this guidance to protect your applications with Azure DDoS Protection across the areas of tier selection, security design, scalability, multi-layered defense, monitoring, testing, and response planning.
 
 ## Choose the right protection tier
 
@@ -25,12 +25,12 @@ Evaluate your requirements based on the number of public IP resources, the need 
 
 ## Design for security
 
-Ensure that security is a priority throughout the entire lifecycle of an application, from design and implementation to deployment and operations. Applications can have bugs that allow a relatively low volume of requests to use an inordinate amount of resources, resulting in a service outage.
+Ensure that security is a priority throughout the entire lifecycle of an application, from design and implementation to deployment and operations. Applications can have bugs that allow a relatively low volume of requests to use an excessive amount of resources, resulting in a service outage.
 
-To protect a service running on Microsoft Azure:
+To protect your service on Azure:
 
 - **Understand your application architecture**: Focus on the [five pillars of software quality](/azure/architecture/guide/pillars). Know your typical traffic volumes, the connectivity model between your application and other applications, and the service endpoints exposed to the public internet.
-- **Plan for denial of service**: Ensure that an application is resilient enough to handle a denial of service targeted at the application itself.
+- **Plan for denial of service**: Ensure that an application is resilient enough to handle a denial of service targeted at the application layer, such as HTTP floods.
 - **Apply security development practices**: Security and privacy are built into the Azure platform, beginning with the [Security Development Lifecycle (SDL)](https://www.microsoft.com/sdl). The SDL addresses security at every development phase and ensures that Azure is continually updated to make it even more secure.
 - **Follow Azure security baselines**: Review the [Azure security baseline for DDoS Protection](/security/benchmark/azure/baselines/azure-ddos-protection-security-baseline) to align your configuration with the [Microsoft cloud security benchmark](/security/benchmark/azure/overview).
 
@@ -41,7 +41,7 @@ Scalability is how well a system can handle increased load. Design your applicat
 Consider the following scalability strategies:
 
 - **[Azure App Service](../app-service/overview.md)**: Select an [App Service plan](../app-service/overview-hosting-plans.md) that offers multiple instances. Configure autoscale rules to automatically scale out based on metrics like CPU usage or request count.
-- **[Azure Virtual Machines](/azure/virtual-machines/)**: Ensure that your VM architecture includes more than one VM and that each VM is included in an [availability set](/azure/virtual-machines/windows/tutorial-availability-sets). Use [Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/overview) for autoscaling capabilities.
+- **[Azure Virtual Machines](/azure/virtual-machines/)**: Ensure that your virtual machine architecture includes more than one virtual machine and that each virtual machine is included in an [availability set](/azure/virtual-machines/windows/tutorial-availability-sets). Use [Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/overview) for autoscaling capabilities.
 - **Caching and load distribution**: Use [Azure Front Door](../frontdoor/front-door-overview.md) for global load balancing, SSL offloading, and caching of static content. Caching reduces the load on backend resources and minimizes the impact of traffic spikes.
 - **[Azure Load Balancer](../load-balancer/quickstart-load-balancer-standard-public-portal.md)**: Distribute traffic across multiple instances to prevent any single resource from being overwhelmed.
 
@@ -56,17 +56,18 @@ A defense in depth strategy uses multiple layers of security to reduce the risk 
 Reduce your exposure by minimizing the publicly accessible surface area:
 
 - Use [Azure Private Link](../private-link/private-link-overview.md) to access Azure PaaS services over a private endpoint in your virtual network, eliminating exposure to the public internet.
-- Use an approval list to close down the exposed IP address space and listening ports that aren't needed on load balancers ([Azure Load Balancer](../load-balancer/quickstart-load-balancer-standard-public-portal.md) and [Azure Application Gateway](../application-gateway/application-gateway-create-probe-portal.md)).
-- Use [network security groups (NSGs)](../virtual-network/network-security-groups-overview.md) to restrict traffic. Use [service tags](../virtual-network/network-security-groups-overview.md#service-tags) and [application security groups](../virtual-network/network-security-groups-overview.md#application-security-groups) to simplify creating security rules and configuring network security as a natural extension of an application's structure.
+- Use an allowlist to restrict the exposed IP address space and listening ports that aren't needed on load balancers ([Azure Load Balancer](../load-balancer/quickstart-load-balancer-standard-public-portal.md) and [Azure Application Gateway](../application-gateway/application-gateway-create-probe-portal.md)).
+- Use [network security groups (NSGs)](../virtual-network/network-security-groups-overview.md) to restrict traffic.
+- Use [service tags](../virtual-network/network-security-groups-overview.md#service-tags) and [application security groups](../virtual-network/network-security-groups-overview.md#application-security-groups) to simplify creating security rules and configure network security as a natural extension of an application's structure.
 - Deploy Azure services in a [virtual network](../virtual-network/virtual-networks-overview.md) whenever possible so that service resources communicate through private IP addresses. Use [service endpoints](../virtual-network/virtual-network-service-endpoints-overview.md) to switch service traffic to use virtual network private addresses as source IP addresses.
 
 ### Protect the network layer (L3/L4)
 
 Azure DDoS Protection provides automatic protection against network-layer (L3/L4) volumetric, protocol, and resource-layer attacks. Key capabilities include:
 
-- **Always-on traffic monitoring**: DDoS Protection monitors your application traffic patterns to detect anomalies. Protection is activated automatically when thresholds are exceeded.
-- **Adaptive real-time tuning**: Profiling your application traffic over time allows DDoS Protection to select and adjust the profile that is best suited for your service.
-- **Azure Firewall integration**: Combine [Azure Firewall](../firewall/overview.md) with DDoS Protection in a virtual network to provide additional network-layer filtering and threat intelligence. For architecture guidance, see [Azure Firewall and DDoS Protection reference architecture](ddos-protection-reference-architectures.md).
+- **Always-on traffic monitoring**: DDoS Protection monitors your application traffic patterns to detect anomalies. Protection activates automatically when traffic exceeds thresholds.
+- **Adaptive real-time tuning**: DDoS Protection profiles your application traffic over time and selects the mitigation profile best suited for your service.
+- **Azure Firewall integration**: Combine [Azure Firewall](../firewall/overview.md) with DDoS Protection in a virtual network to provide additional network-layer filtering and threat intelligence. For architecture guidance, see [Azure Firewall and DDoS Protection reference architectures](ddos-protection-reference-architectures.md).
 
 ### Protect the application layer (L7)
 
@@ -81,7 +82,7 @@ For detailed guidance on application-layer DDoS defense strategies, see [Applica
 
 ### Integrate with Microsoft Sentinel
 
-Use the [Azure DDoS Solution for Microsoft Sentinel](https://techcommunity.microsoft.com/t5/azure-network-security-blog/new-azure-ddos-solution-for-microsoft-sentinel/ba-p/3732013) to identify offending DDoS sources, correlate attack data with other security events, and block attackers from launching other sophisticated attacks such as data theft.
+Use the [Azure DDoS Solution for Microsoft Sentinel](https://techcommunity.microsoft.com/t5/azure-network-security-blog/new-azure-ddos-solution-for-microsoft-sentinel/ba-p/3732013) to identify offending DDoS sources, correlate attack data with other security events, and prevent attackers from pivoting to other attack types, such as data exfiltration.
 
 ### Protect hybrid environments
 
