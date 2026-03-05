@@ -133,7 +133,7 @@ High availability (HA) can be enabled on Azure Managed Redis instances in all ti
 
 When you enable HA mode, your instance is deployed with primary and replica shards distributed across at least two nodes. In regions that support availability zones, Azure Managed Redis distributes the nodes across zones by default. In regions without availability zones, the primary and replica shards are distributed across at least two nodes in the same zone. For more information, see [Reliability in Azure Managed Redis](/azure/reliability/reliability-managed-redis).
 
-You can run without high availability (HA) mode enabled. This configuration means that your Redis instance doesn't have replication enabled and doesn't have access to the availability SLA. Don't run in non-HA mode outside of development and test scenarios. You can't disable high availability in an instance that you already created. You can enable high availability in an instance that doesn't have it. Because an instance running without high availability uses fewer VMs and nodes, vCPUs aren't used as efficiently, so performance might be lower.
+You can run without HA mode enabled. This configuration means that your Redis instance doesn't have replication enabled and doesn't have access to the availability SLA. Don't run in non-HA mode outside of development and test scenarios. You can't disable high availability in an instance that you already created. You can enable high availability in an instance that doesn't have it. Because an instance running without high availability uses fewer VMs and nodes, vCPUs aren't used as efficiently, so performance might be lower.
 
 ## Reserved memory
 
