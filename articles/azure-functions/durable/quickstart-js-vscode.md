@@ -262,7 +262,7 @@ Azure Functions Core Tools gives you the capability to run an Azure Functions pr
 
 4. In the terminal panel, copy the URL endpoint of your HTTP-triggered function.
 
-    :::image type="content" source="media/quickstart-js-vscode/functions-f5.png" alt-text="Screenshot of the Visual Studio code terminal panel. The terminal shows the output of running a Durable Functions app locally.":::
+    :::image type="content" source="media/quickstart-js-vscode/functions-f5.png" alt-text="Screenshot of the Visual Studio Code terminal panel. The terminal shows the output of running a Durable Functions app locally.":::
 
 ::: zone pivot="nodejs-model-v3"
 

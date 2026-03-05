@@ -210,7 +210,7 @@ Open another terminal window in your app's root folder and start the Function ap
 
 ## Run your app in Azure
 
-To run your app in Azure, you need to create various resources. For convenient clean up later, create all the resources in the same resource group. 
+To run your app in Azure, you need to create various resources. For convenient cleanup later, create all the resources in the same resource group. 
 
 ### Create an Azure SQL database
 

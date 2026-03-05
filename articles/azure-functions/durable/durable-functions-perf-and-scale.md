@@ -166,7 +166,7 @@ The following table shows which queues each storage provider partitions and the 
 | **Documentation** | See [Orchestrator scale-out](durable-functions-azure-storage-provider.md#orchestrator-scale-out) | See [Partition count considerations](https://microsoft.github.io/durabletask-netherite/#/settings?id=partition-count-considerations) | n/a |
 
 > [!WARNING]
-> You can't change the partition count after you create a task hub. Set it high enough to meet expected scale out requirements for the task hub instance.
+> You can't change the partition count after you create a task hub. Set it high enough to meet expected scale-out requirements for the task hub instance.
 
 ### Configure partition count
 

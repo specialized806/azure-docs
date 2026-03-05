@@ -211,7 +211,7 @@ Monitor scheduled orchestrations using the [Durable Task Scheduler dashboard](./
 
 Explore complete working examples that demonstrate schedule operations.
 
-- [Schedule console app](https://github.com/microsoft/durabletask-dotnet/tree/main/samples/ScheduleConsoleApp): A Demonstrates how to create, pause, resume, and list schedules in a console application.me, delete, and list endpoints.
+- [Schedule console app](https://github.com/microsoft/durabletask-dotnet/tree/main/samples/ScheduleConsoleApp): Demonstrates how to create, pause, resume, delete, and list schedules in a console application.
 
 ## Next steps
 

@@ -232,7 +232,7 @@ Keep these considerations in mind when choosing the storage account for your Dur
 
 - For performance-sensitive workloads, configure a storage account other than the default account (`AzureWebJobsStorage`). Since Durable Functions uses Azure Storage heavily, using a dedicated storage account isolates Durable Functions storage usage from the internal usage by the Azure Functions host.
 - You need standard general purpose Azure Storage accounts when using the Azure Storage provider. All other storage account types aren't currently supported. 
-- Legacy v1 general purpose storage accounts for Durable Functions is recommended. The newer v2 storage accounts can be more expensive for Durable Functions workloads. [Learn more about Azure Storage account types](../../storage/common/storage-account-overview.md).
+- Legacy v1 general purpose storage accounts for Durable Functions are recommended. The newer v2 storage accounts can be more expensive for Durable Functions workloads. [Learn more about Azure Storage account types](../../storage/common/storage-account-overview.md).
 
 ## Orchestrator scale-out
 

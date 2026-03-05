@@ -15,7 +15,7 @@ Use Durable Functions, a feature of [Azure Functions](../functions-overview.md),
 
 In this quickstart, you use the Durable Functions extension in Visual Studio Code to locally create and test a "hello world" Durable Functions app in Azure Functions. The Durable Functions app orchestrates and chains together calls to other functions. Then, you publish the function code to Azure. The tools you use are available via the Visual Studio Code extension.
 
-:::image type="content" source="./media/quickstart-js-vscode/functions-vs-code-complete.png" alt-text="Running a Durable Functions app in Azure.":::
+:::image type="content" source="./media/quickstart-js-vscode/functions-vs-code-complete.png" alt-text="Screenshot showing a Durable Functions app in Visual Studio Code.":::
 
 ## Prerequisites
 
