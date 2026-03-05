@@ -49,7 +49,7 @@ Configure virtual network integration for an app in the Azure portal:
 
 1. In the left menu, select **Settings** > **Networking**. The **Networking** page opens.
 
-1. Scroll to the **Outbound traffic configuration** section, locate the **Virtual network integration** group, and select the **Not configured** link.
+1. Scroll to the **Outbound traffic configuration** section, locate the **Virtual network integration** option, and select the **Not configured** link.
 
    :::image type="content" source="./media/configure-vnet-integration-enable/integration-not-configured.png" border="false" alt-text="Screenshot that shows how to select the 'not configured' link for virtual network integration in the Azure portal.":::
 
@@ -90,9 +90,9 @@ During the integration, your app restarts. When integration completes, the **Vir
 
 # [Azure CLI](#tab/azure-cli)
 
-Configure virtual network integration for an app by using the Azure CLI. The following command assumes the app and virtual network are in the same subscription.
+Configure virtual network integration for an app by using the Azure CLI. The following commands assume the app and virtual network are in the same subscription.
 
-1. Run the following command to configure virtual network integration:
+1. Run the following command to configure virtual network integration.
 
    Replace the `<app-name>`, `<app-resource-group>`, `<virtual-network>`, and `<subnet>` values with your resource information.
 
@@ -129,7 +129,7 @@ For more information, see the [az webapp vnet-integration add](/cli/azure/webapp
 
 # [Azure PowerShell](#tab/azure-powershell)
 
-Configure virtual network integration for an app by using Azure PowerShell.
+Configure virtual network integration for an app by using Azure PowerShell. 
 
 1. Prepare parameters for the procedure commands.
 
