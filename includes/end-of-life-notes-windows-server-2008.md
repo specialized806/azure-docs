@@ -1,12 +1,12 @@
 ---
 ms.assetid: 
-title: include file
-description: include file with notes on end of life information for Windows Server 2008 and 2008 R2.
+title: Include file
+description: Include file with notes on end of life information for Windows Server 2008 and 2008 R2.
 author: RochakSingh-blr
 ms.author: v-rochak2
 ms.date: 03/05/2026
-ms.topic:  include
-ms.service: azure-resource-mover
+ms.topic:  Include
+ms.service: Azure-resource-mover
 
 ---
 > [!NOTE]
