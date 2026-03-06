@@ -23,9 +23,9 @@ items:
       href: run-extraction-data-processing.md
     - name: Configure insights
       href: configure-insights.md
-    - name: Currency Conversion
+    - name: Currency conversion
       href: currency-conversion.md
-    - name: Monitoring Data Extraction and Processing
+    - name: Monitoring data extraction and processing
       items:
       - name: Monitor in Azure Data Factory
         href: monitor-data-extraction.md

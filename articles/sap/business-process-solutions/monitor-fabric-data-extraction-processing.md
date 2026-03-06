@@ -1,5 +1,6 @@
 ---
 title: Monitoring data extraction and processing in Fabric
+titleSuffix: Business Process Solutions
 description: Learn how to monitor data extraction and processing in Fabric in Business Process Solutions.
 author: mimansasingh
 ms.service: sap-on-azure
@@ -41,9 +42,13 @@ Use the following steps to check the run history for a pipeline
 
 1. Navigate to the pipeline in Fabric
 1. Select "View run history" to see execution status, duration, and completion details for each run.
+
     :::image type="content" source="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-view-run-history.png" alt-text="Screenshot showing view run history button." lightbox="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-view-run-history.png":::
+
 1. From the dialog box, open the execution you want to check.
+
     :::image type="content" source="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-execution-logs.png" alt-text="Screenshot showing list of execution logs." lightbox="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-execution-logs.png":::
+
 1. Once you select the activity name you should be able to see all the steps that were executed as a part of pipeline execution and you can check the input, output and error message for each step.
 
 ## Check logs for a processing notebook executed from pipeline
@@ -52,11 +57,16 @@ When you want to check the logs for a notebook that was executed as a part of pi
 
 1. Open the pipeline run history and select the run that you want to check, follow the instructions mentioned in the previous section.
 1. Once you open the pipeline snapshot, you should be able to see the notebook inside the pipeline.
+
     :::image type="content" source="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-notebook.png" alt-text="Screenshot showing notebooks inside pipeline." lightbox="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-notebook.png":::
+
 1. Select the activity name to open the details and then from the dialog box open the Notebook snapshot.
+
     :::image type="content" source="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-notebook-snapshot.png" alt-text="Screenshot showing notebook snapshot." lightbox="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-notebook-snapshot.png":::
-1. The notebook snapshot opens in a new browser tab. Once the page is loaded, you should be able to see the notebook snapshot and the output for each cell. 
+
+1. The notebook snapshot opens in a new browser tab. Once the page is loaded, you should be able to see the notebook snapshot and the output for each cell.
 1. Navigate to the cell that failed, and check the output of the cell to view the failure message.
+
     :::image type="content" source="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-notebook-failure.png" alt-text="Screenshot showing failed notebooks and errors." lightbox="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-notebook-failure.png":::
 
 ## Next steps
