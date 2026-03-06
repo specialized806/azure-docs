@@ -85,11 +85,11 @@ Use the following steps if you need to use a hosted Linux agent:
     > [!NOTE]
     > It's highly recommended to use the `build --v2` command to generate the ARM template for deployment. The new ARM template has fewer parameters while preserving the same functionality as the previous version.
     >
-        > The older ARM template will soon be deprecated. Only templates created by using `build --v2` receive updates and bug fixes.
+    > The older ARM template will soon be deprecated. Only templates created by using `build --v2` receive updates and bug fixes.
 
-   ```bash
-   azure-streamanalytics-cicd build --v2 -project $(projectRootPath)/asaproj.json -outputpath $(projectRootPath)/$(outputPath)/$(deployPath)
-   ```
+    ```bash
+    azure-streamanalytics-cicd build --v2 -project $(projectRootPath)/asaproj.json -outputpath $(projectRootPath)/$(outputPath)/$(deployPath)
+    ```
 
    The following image uses a Stream Analytics Visual Studio Code project as an example.
 
