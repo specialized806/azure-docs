@@ -6,8 +6,8 @@ author: asudbring
 ms.author: allensu
 ms.service: azure-nat-gateway
 ms.topic: how-to
-ms.date: 09/08/2025
-ms.custom: template-how-to, devx-track-azurecli, devx-track-azurepowershell
+ms.date: 03/06/2026
+ms.custom: template-how-to, devx-track-azurecli, devx-track-azurepowershell, devx-track-bicep
 #Customer intent: As a network administrator, I want to learn how to create and remove a NAT gateway resource from a virtual network subnet. I also want to learn how to add and remove public IP addresses and prefixes used for outbound connectivity.
 ---
 
@@ -65,11 +65,41 @@ To use Azure PowerShell for this article, you need:
 
 - Sign in to Azure PowerShell and select the subscription that you want to use. For more information, see [Sign in with Azure PowerShell](/powershell/azure/authenticate-azureps).
 
+# [**Azure CLI**](#tab/manage-nat-cli)
+
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
+- An existing Azure Virtual Network and subnet. For more information, see [Quickstart: Create a virtual network using the Azure portal](../virtual-network/quick-create-portal.md).
+
+  - The example virtual network that is used in this article is named **vnet-1**.
+
+  - The example subnet is named **subnet-1**.
+
+  - The example NAT gateway is named **nat-gateway**.
+
+To use Azure CLI for this article, you need:
+
+- Azure CLI version 2.31.0 or later. Azure Cloud Shell uses the latest version.
+
+[!INCLUDE [azure-cli-prepare-your-environment-no-header.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
+
+# [**Bicep**](#tab/manage-nat-bicep)
+
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
+- An existing Azure Virtual Network and subnet. For more information, see [Quickstart: Create a virtual network using the Azure portal](../virtual-network/quick-create-portal.md).
+
+  - The example virtual network that is used in this article is named **vnet-1**.
+
+  - The example subnet is named **subnet-1**.
+
+  - The example NAT gateway is named **nat-gateway**.
+
 ---
 
 ## Create a NAT gateway and associate it with an existing subnet
 
-You can create a NAT gateway resource and add it to an existing subnet by using the Azure portal or Azure PowerShell.
+You can create a NAT gateway resource and add it to an existing subnet by using the Azure portal, Azure PowerShell, Azure CLI, or Bicep.
 
 # [**Azure portal**](#tab/manage-nat-portal)
 
@@ -242,13 +272,166 @@ Set-AzVirtualNetworkSubnetConfig @sub
 $vnet | Set-AzVirtualNetwork
 ```
 
+# [**Azure CLI**](#tab/manage-nat-cli)
+
+### Public IP address
+
+To create a NAT gateway with a public IP address, use the following commands.
+
+Use [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create) to create a StandardV2 public IP address for the NAT gateway.
+
+```azurecli
+az network public-ip create \
+    --resource-group test-rg \
+    --name public-ip-nat \
+    --location eastus \
+    --sku StandardV2 \
+    --allocation-method Static \
+    --version IPv4 \
+    --zone 1 2 3
+```
+
+Use [az network nat gateway create](/cli/azure/network/nat/gateway#az-network-nat-gateway-create) to create a NAT gateway resource and associate the public IP address that you created.
+
+```azurecli
+az network nat gateway create \
+    --resource-group test-rg \
+    --name nat-gateway \
+    --location eastus \
+    --public-ip-addresses public-ip-nat \
+    --idle-timeout 4 \
+    --sku StandardV2 \
+    --zone 1 2 3
+```
+
+Use [az network vnet subnet update](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-update) to associate the NAT gateway with your virtual network subnet.
+
+```azurecli
+az network vnet subnet update \
+    --resource-group test-rg \
+    --vnet-name vnet-1 \
+    --name subnet-1 \
+    --nat-gateway nat-gateway
+```
+
+### Public IP prefix
+
+To create a NAT gateway with a public IP prefix, use the following commands.
+
+Use [az network public-ip prefix create](/cli/azure/network/public-ip/prefix#az-network-public-ip-prefix-create) to create a StandardV2 public IP prefix for the NAT gateway.
+
+```azurecli
+az network public-ip prefix create \
+    --resource-group test-rg \
+    --name public-ip-prefix-nat \
+    --location eastus \
+    --length 31 \
+    --sku StandardV2 \
+    --version IPv4 \
+    --zone 1 2 3
+```
+
+Use [az network nat gateway create](/cli/azure/network/nat/gateway#az-network-nat-gateway-create) to create a NAT gateway resource and associate the public IP prefix that you created.
+
+```azurecli
+az network nat gateway create \
+    --resource-group test-rg \
+    --name nat-gateway \
+    --location eastus \
+    --public-ip-prefixes public-ip-prefix-nat \
+    --idle-timeout 4 \
+    --sku StandardV2 \
+    --zone 1 2 3
+```
+
+Use [az network vnet subnet update](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-update) to associate the NAT gateway with your virtual network subnet.
+
+```azurecli
+az network vnet subnet update \
+    --resource-group test-rg \
+    --vnet-name vnet-1 \
+    --name subnet-1 \
+    --nat-gateway nat-gateway
+```
+
+# [**Bicep**](#tab/manage-nat-bicep)
+
+```bicep
+@description('Name of the NAT gateway')
+param natGatewayName string = 'nat-gateway'
+
+@description('Name of the NAT gateway public IP')
+param publicIpName string = 'public-ip-nat'
+
+@description('Name of resource group')
+param location string = resourceGroup().location
+
+var existingVNetName = 'vnet-1'
+var existingSubnetName = 'subnet-1'
+
+resource vnet 'Microsoft.Network/virtualNetworks@2024-05-01' existing = {
+  name: existingVNetName
+}
+
+resource publicIp 'Microsoft.Network/publicIPAddresses@2024-05-01' = {
+  name: publicIpName
+  location: location
+  sku: {
+    name: 'StandardV2'
+    tier: 'Regional'
+  }
+  zones: [
+    '1'
+    '2'
+    '3'
+  ]
+  properties: {
+    publicIPAddressVersion: 'IPv4'
+    publicIPAllocationMethod: 'Static'
+    idleTimeoutInMinutes: 4
+  }
+}
+
+resource natGateway 'Microsoft.Network/natGateways@2024-05-01' = {
+  name: natGatewayName
+  location: location
+  sku: {
+    name: 'StandardV2'
+  }
+  zones: [
+    '1'
+    '2'
+    '3'
+  ]
+  properties: {
+    idleTimeoutInMinutes: 4
+    publicIpAddresses: [
+      {
+        id: publicIp.id
+      }
+    ]
+  }
+}
+
+resource updatedSubnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' = {
+  parent: vnet
+  name: existingSubnetName
+  properties: {
+    addressPrefix: vnet.properties.subnets[0].properties.addressPrefix
+    natGateway: {
+      id: natGateway.id
+    }
+  }
+}
+```
+
 ---
 
 ## Create a NAT gateway and associate it with an existing virtual network.
 
 Azure NAT Gateway V2 adds a feature that allows you to associate a NAT gateway with an entire virtual network instead of a specific subnet.
 
-You can create a NAT gateway resource and add it to an existing virtual network by using the Azure portal or Azure PowerShell.
+You can create a NAT gateway resource and add it to an existing virtual network by using the Azure portal, Azure PowerShell, or Azure CLI.
 
 # [**Azure portal**](#tab/manage-nat-portal)
 
@@ -391,6 +574,71 @@ $nat = @{
 $natGateway = New-AzNatGateway @nat
 ```
 
+# [**Azure CLI**](#tab/manage-nat-cli)
+
+### Public IP address
+
+Use [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create) to create a StandardV2 public IP address for the NAT gateway.
+
+```azurecli
+az network public-ip create \
+    --resource-group test-rg \
+    --name public-ip-nat \
+    --location eastus \
+    --sku StandardV2 \
+    --allocation-method Static \
+    --version IPv4 \
+    --zone 1 2 3
+```
+
+Use [az network nat gateway create](/cli/azure/network/nat/gateway#az-network-nat-gateway-create) to create the NAT gateway resource and associate it with the virtual network.
+
+```azurecli
+az network nat gateway create \
+    --resource-group test-rg \
+    --name nat-gateway \
+    --location eastus \
+    --public-ip-addresses public-ip-nat \
+    --idle-timeout 4 \
+    --sku StandardV2 \
+    --zone 1 2 3 \
+    --vnet vnet-1
+```
+
+### Public IP prefix
+
+Use [az network public-ip prefix create](/cli/azure/network/public-ip/prefix#az-network-public-ip-prefix-create) to create a StandardV2 public IP prefix for the NAT gateway.
+
+```azurecli
+az network public-ip prefix create \
+    --resource-group test-rg \
+    --name public-ip-prefix-nat \
+    --location eastus \
+    --length 31 \
+    --sku StandardV2 \
+    --version IPv4 \
+    --zone 1 2 3
+```
+
+Use [az network nat gateway create](/cli/azure/network/nat/gateway#az-network-nat-gateway-create) to create the NAT gateway resource and associate it with the virtual network.
+
+```azurecli
+az network nat gateway create \
+    --resource-group test-rg \
+    --name nat-gateway \
+    --location eastus \
+    --public-ip-prefixes public-ip-prefix-nat \
+    --idle-timeout 4 \
+    --sku StandardV2 \
+    --zone 1 2 3 \
+    --vnet vnet-1
+```
+
+# [**Bicep**](#tab/manage-nat-bicep)
+
+> [!NOTE]
+> Bicep support for virtual network-level NAT gateway association isn't currently available. Use the Azure portal, Azure PowerShell, or Azure CLI to associate a NAT gateway with a virtual network.
+
 ---
 
 ## Remove a NAT gateway from an existing subnet and delete the resource
@@ -473,6 +721,50 @@ $nat = @{
 Remove-AzNatGateway @nat
 ```
 
+# [**Azure CLI**](#tab/manage-nat-cli)
+
+Use [az network vnet subnet update](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-update) to remove the NAT gateway from the subnet.
+
+```azurecli
+az network vnet subnet update \
+    --resource-group test-rg \
+    --vnet-name vnet-1 \
+    --name subnet-1 \
+    --remove natGateway
+```
+
+Use [az network nat gateway delete](/cli/azure/network/nat/gateway#az-network-nat-gateway-delete) to delete the NAT gateway resource.
+
+```azurecli
+az network nat gateway delete \
+    --name nat-gateway \
+    --resource-group test-rg
+```
+
+# [**Bicep**](#tab/manage-nat-bicep)
+
+Deploy the subnet without the `natGateway` property to remove the NAT gateway association.
+
+```bicep
+@description('Name of resource group')
+param location string = resourceGroup().location
+
+var existingVNetName = 'vnet-1'
+var existingSubnetName = 'subnet-1'
+
+resource vnet 'Microsoft.Network/virtualNetworks@2024-05-01' existing = {
+  name: existingVNetName
+}
+
+resource updatedSubnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' = {
+  parent: vnet
+  name: existingSubnetName
+  properties: {
+    addressPrefix: vnet.properties.subnets[0].properties.addressPrefix
+  }
+}
+```
+
 ---
 
 ## Remove a NAT gateway from an existing virtual network and delete the NAT gateway
@@ -528,6 +820,30 @@ $nat = @{
 }
 Remove-AzNatGateway @nat
 ```
+
+# [**Azure CLI**](#tab/manage-nat-cli)
+
+Use [az network nat gateway update](/cli/azure/network/nat/gateway#az-network-nat-gateway-update) to remove the NAT gateway association from the virtual network.
+
+```azurecli
+az network nat gateway update \
+    --name nat-gateway \
+    --resource-group test-rg \
+    --vnet ""
+```
+
+Use [az network nat gateway delete](/cli/azure/network/nat/gateway#az-network-nat-gateway-delete) to delete the NAT gateway resource.
+
+```azurecli
+az network nat gateway delete \
+    --name nat-gateway \
+    --resource-group test-rg
+```
+
+# [**Bicep**](#tab/manage-nat-bicep)
+
+> [!NOTE]
+> Bicep support for virtual network-level NAT gateway association isn't currently available. Use the Azure portal, Azure PowerShell, or Azure CLI to remove a NAT gateway from a virtual network.
 
 ---
 
@@ -675,6 +991,49 @@ $nt = @{
 Set-AzNatGateway @nt
 ```
 
+# [**Azure CLI**](#tab/manage-nat-cli)
+
+### Add public IP address
+
+In this example, the existing public IP address associated with the NAT gateway is named **public-ip-nat**.
+
+Use [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create) to create a new IP address for the NAT gateway.
+
+```azurecli
+az network public-ip create \
+    --resource-group test-rg \
+    --name public-ip-nat2 \
+    --location eastus \
+    --sku StandardV2 \
+    --allocation-method Static \
+    --version IPv4 \
+    --zone 1 2 3
+```
+
+Use [az network nat gateway update](/cli/azure/network/nat/gateway#az-network-nat-gateway-update) to add the public IP address that you created to the NAT gateway. The Azure CLI command replaces the values. It doesn't add a new value. To add the new IP address to the NAT gateway, you must also include any other IP addresses associated to the NAT gateway.
+
+```azurecli
+az network nat gateway update \
+    --name nat-gateway \
+    --resource-group test-rg \
+    --public-ip-addresses public-ip-nat public-ip-nat2
+```
+
+### Remove public IP address
+
+Use [az network nat gateway update](/cli/azure/network/nat/gateway#az-network-nat-gateway-update) to remove a public IP address from the NAT gateway. The Azure CLI command replaces the values. It doesn't remove a value. To remove a public IP address, include any IP address in the command that you want to keep. Omit the value that you want to remove. For example, you have a NAT gateway configured with two public IP addresses. You want to remove one of the IP addresses. The IP addresses associated with the NAT gateway are named public-ip-nat and public-ip-nat2. To remove public-ip-nat2, omit the name of the IP address from the command. The command reapplies the IP addresses listed in the command to the NAT gateway. It removes any IP address not listed.
+
+```azurecli
+az network nat gateway update \
+    --name nat-gateway \
+    --resource-group test-rg \
+    --public-ip-addresses public-ip-nat
+```
+
+# [**Bicep**](#tab/manage-nat-bicep)
+
+Use the Azure portal, Azure PowerShell, or Azure CLI to add or remove a public IP address from a NAT gateway.
+
 ---
 
 ## Add or remove a public IP prefix
@@ -817,6 +1176,49 @@ $nt = @{
 }
 Set-AzNatGateway @nt
 ```
+
+# [**Azure CLI**](#tab/manage-nat-cli)
+
+### Add public IP prefix
+
+In this example, the existing public IP prefix associated with the NAT gateway is named **public-ip-prefix-nat**.
+
+Use [az network public-ip prefix create](/cli/azure/network/public-ip/prefix#az-network-public-ip-prefix-create) to create a public IP prefix for the NAT gateway.
+
+```azurecli
+az network public-ip prefix create \
+    --resource-group test-rg \
+    --name public-ip-prefix-nat2 \
+    --location eastus \
+    --length 31 \
+    --sku StandardV2 \
+    --version IPv4 \
+    --zone 1 2 3
+```
+
+Use [az network nat gateway update](/cli/azure/network/nat/gateway#az-network-nat-gateway-update) to add the public IP prefix that you created to the NAT gateway. The Azure CLI command replaces values. It doesn't add a value. To add the new IP address prefix to the NAT gateway, you must also include any other IP prefixes associated to the NAT gateway.
+
+```azurecli
+az network nat gateway update \
+    --name nat-gateway \
+    --resource-group test-rg \
+    --public-ip-prefixes public-ip-prefix-nat public-ip-prefix-nat2
+```
+
+### Remove public IP prefix
+
+Use [az network nat gateway update](/cli/azure/network/nat/gateway#az-network-nat-gateway-update) to remove a public IP prefix from the NAT gateway. The Azure CLI command replaces the values. It doesn't remove a value. To remove a public IP prefix, include any prefix in the command that you wish to keep. Omit the one you want to remove. For example, you have a NAT gateway configured with two public IP prefixes. You want to remove one of the prefixes. The IP prefixes associated with the NAT gateway are named public-ip-prefix-nat and public-ip-prefix-nat2. To remove public-ip-prefix-nat2, omit the name of the IP prefix from the command. The command reapplies the IP prefixes listed in the command to the NAT gateway. It removes any IP address not listed.
+
+```azurecli
+az network nat gateway update \
+    --name nat-gateway \
+    --resource-group test-rg \
+    --public-ip-prefixes public-ip-prefix-nat
+```
+
+# [**Bicep**](#tab/manage-nat-bicep)
+
+Use the Azure portal, Azure PowerShell, or Azure CLI to add or remove a public IP prefix from a NAT gateway.
 
 ---
 
