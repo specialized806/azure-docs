@@ -36,7 +36,7 @@ The wizard guides you through four steps: **Set up insight**, **Set up connectio
 
 In this step, you configure the source system and select the insight to deploy. The wizard opens to the **Set up Business Process Solution insight** page.
 
-Under **Source system**, you can select an existing source system or create a new source system to see available insights. If no source system exists in the Business Process Solutions item, the **Select existing** option is disabled and **Create new** is automatically selected. If at least one source system already exists, the **Select existing** option is selected by default.
+Under **Source system**, you can select an existing source system or create a new source system to see available insights.
 :::image type="content" source="./media/configure-insights/wizard-source-system-options.png" alt-text="Screenshot showing the source system options with Create new and Select existing." lightbox="./media/configure-insights/wizard-source-system-options.png":::
 
 #### Create new
@@ -53,6 +53,7 @@ If you don't have an existing source system, or want to create a new one:
    :::image type="content" source="./media/configure-insights/wizard-create-new-insight-cards.png" alt-text="Screenshot showing the available insight cards grouped by area for a new source system." lightbox="./media/configure-insights/wizard-create-new-insight-cards.png":::
 5. Under **Define insight**, the **Insight name** is autopopulated. If an error message appears to indicate the name already exists, update the name to a unique value.
    :::image type="content" source="./media/configure-insights/wizard-create-new-define-insight.png" alt-text="Screenshot showing the Define insight section with the autopopulated insight name." lightbox="./media/configure-insights/wizard-create-new-define-insight.png":::
+6. Select **Next** to proceed with the Set up connections page.
 
 #### Select existing
 
@@ -66,8 +67,7 @@ If at least one source system already exists in the Business Process Solutions i
    :::image type="content" source="./media/configure-insights/wizard-select-existing-insight-cards.png" alt-text="Screenshot showing the available insight cards for an existing source system." lightbox="./media/configure-insights/wizard-select-existing-insight-cards.png":::
 4. Under **Define insight**, the **Insight name** is autopopulated. If an error message appears to indicate the name already exists, update the name to a unique value.
    :::image type="content" source="./media/configure-insights/wizard-select-existing-define-insight.png" alt-text="Screenshot showing the Define insight section for an existing source system." lightbox="./media/configure-insights/wizard-select-existing-define-insight.png":::
-
-Select **Next** to proceed.
+5. Select **Next** to proceed.
 
 ### Step 2: Set up connections
 
@@ -85,43 +85,21 @@ For a new source system, the available connection types depend on the source sys
 
 Select a **Connection type** and fill in the required fields.
 
-For **SAP S/4HANA**, choose between Azure Data Factory and Open Mirroring:
-:::image type="content" source="./media/configure-insights/wizard-hana-connection-type-radio.png" alt-text="Screenshot showing the connection type options for SAP S/4HANA with Azure Data Factory and Open Mirroring." lightbox="./media/configure-insights/wizard-hana-connection-type-radio.png":::
-
-For **SAP ECC**:
-:::image type="content" source="./media/configure-insights/wizard-ecc-connection-type-radio.png" alt-text="Screenshot showing the connection type option for SAP ECC." lightbox="./media/configure-insights/wizard-ecc-connection-type-radio.png":::
-
-For **Salesforce**:
-:::image type="content" source="./media/configure-insights/wizard-sf-connection-type-radio.png" alt-text="Screenshot showing the connection type option for Salesforce." lightbox="./media/configure-insights/wizard-sf-connection-type-radio.png":::
-
-> [!NOTE]
-> When you create the first source system in a Business Process Solutions item, all fields are editable. For subsequent source system creations, the Azure subscription, location, and resource group fields that were previously saved are disabled and reused. The same goes for the Azure resource names.
-
 ##### Azure Data Factory
 
-If you select **Azure Data Factory** as the connection type, provide the following details:
-
-- **Azure Subscription ID** and **Location**
-- **Resource group**
-- **Azure resources**: Specify the Azure Data Factory name, Azure Key Vault name, and Azure Storage account name. These names can't be modified after source system creation.
-- **System connection**: Provide the Hostname, Subscriber name, SAP instance number, SAP Client ID, Username, Password, and Service Principal details (Name, Object ID, Client ID, and Secret).
+If you select **Azure Data Factory** as the connection type, provide Azure resource details and SAP system connection information. For detailed prerequisites and field descriptions, see [Configure a source system with Azure Data Factory](configure-source-system-with-data-factory.md).
 
 :::image type="content" source="./media/configure-insights/wizard-connection-adf.png" alt-text="Screenshot showing the Azure Data Factory connection setup with Azure resources and system connection fields." lightbox="./media/configure-insights/wizard-connection-adf.png":::
 
 ##### Open Mirroring
 
-If you select **Open Mirroring** as the connection type, a **Mirrored Database** is deployed as the target data store for the extracted data. Business Process Solutions only manages datasets and objects that are already available for processing. To ensure the necessary data is present, coordinate with your data extraction provider and share the list of required tables so they can populate the Mirrored Database accordingly.
-
-Provide the following details under **System connection**:
-
-- **Partner name**: Select the partner from the dropdown or type it in the input box.
-- **Fabric SQL database connection ID**: Provide the SQL connection ID.
+If you select **Open Mirroring** as the connection type, provide the mirroring partner and Fabric SQL database connection details. For detailed prerequisites and field descriptions, see [Configure a source system with Open Mirroring](configure-source-system-with-open-mirroring.md).
 
 :::image type="content" source="./media/configure-insights/wizard-connection-om.png" alt-text="Screenshot showing the Open Mirroring connection setup with partner name and Fabric SQL database connection ID." lightbox="./media/configure-insights/wizard-connection-om.png":::
 
 ##### Fabric
 
-If you select **Fabric** as the connection type (available for Salesforce), provide the required connection details.
+If you select **Fabric** as the connection type (available for Salesforce), provide the Salesforce and Fabric SQL connection details. For detailed prerequisites and field descriptions, see [Configure a Salesforce source system](configure-salesforce-source-system.md).
 
 :::image type="content" source="./media/configure-insights/wizard-connection-sf.png" alt-text="Screenshot showing the Fabric connection setup for Salesforce." lightbox="./media/configure-insights/wizard-connection-sf.png":::
 
@@ -147,18 +125,11 @@ Select **Next** to proceed.
 
 The **Review and deploy** page displays a summary of all configurations. The sections shown depend on the source system:
 
-- For a **new source system** or an **existing source system that previously failed**, the page shows three sections:
   - **Set up insight**: Source system type, source system name, system version, insight name, and insight type.
-  - **Set up connections**: This page depends on the source type and connection type you select in the previous steps.
+  - **Set up connections**: This page depends on the source type and connection type you select in the previous steps. It isn't shown for existing source system.
   - **Set up dataset**: Template name and dataset name.
 
 :::image type="content" source="./media/configure-insights/wizard-review-new.png" alt-text="Screenshot showing the review page with insight, connections, and dataset sections for a new source system." lightbox="./media/configure-insights/wizard-review-new.png":::
-
-- For an **existing source system that succeeded**, the page shows two sections:
-  - **Set up insight**: Source system type, source system name, system version, insight name, and insight type.
-  - **Set up dataset**: Template name and dataset name.
-
-:::image type="content" source="./media/configure-insights/wizard-review-succeeded.png" alt-text="Screenshot showing the review page with insight and dataset sections for a succeeded source system." lightbox="./media/configure-insights/wizard-review-succeeded.png":::
 
 Review the details and select the **Deploy** button to deploy the insight.
 :::image type="content" source="./media/configure-insights/wizard-deploy-button.png" alt-text="Screenshot showing the Deploy button on the review and deploy page." lightbox="./media/configure-insights/wizard-deploy-button.png":::
