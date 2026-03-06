@@ -13,7 +13,7 @@ ms.author: kendownie
 
 **Applies to:** :heavy_check_mark: SMB Azure file shares
 
-Azure Files supports only one identity source per storage account for identity-based authentication over SMB. If you want to switch from one identity source to another, for example, from on-premises Active Directory Domain Services (AD DS) to Microsoft Entra Kerberos, you must first disable the current identity source and then enable the new one.
+Azure Files supports only one identity source per storage account for identity-based authentication over SMB. If you want to switch from one identity source to another, you must first disable the current identity source and then enable the new one.
 
 For guidance on choosing the right identity source for your environment, see [Overview of Azure Files identity-based authentication for SMB access](storage-files-active-directory-overview.md).
 
