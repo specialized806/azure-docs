@@ -159,29 +159,30 @@ Azure Monitor provides the [.NET SDK](https://www.nuget.org/packages/microsoft.a
 
 In these examples, replace the `<resource-ID>` placeholder with the resource ID of the entire storage account or the Table Storage service. You can find these resource IDs on the **Properties** pages of your storage account in the Azure portal.
 
-Replace the `<subscription-ID>` variable with the ID of your subscription. For guidance on how to obtain values for `<tenant-ID>`, `<application-ID>`, and `<AccessKey>`, see [Use the portal to create a Microsoft Entra application and service principal that can access resources](/azure/active-directory/develop/howto-create-service-principal-portal).
+These examples use `DefaultAzureCredential` from the `Azure.Identity` package, which supports passwordless authentication using your local developer credentials or a managed identity in Azure. Add a reference to the [Azure.Monitor.Query](https://www.nuget.org/packages/Azure.Monitor.Query) and [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) NuGet packages before running these samples.
 
 #### List the account-level metric definition
 
 The following example shows how to list a metric definition at the account level:
 
 ```csharp
+using Azure.Identity;
+using Azure.Monitor.Query;
+using Azure.Monitor.Query.Models;
+
     public static async Task ListStorageMetricDefinition()
     {
         var resourceId = "<resource-ID>";
-        var subscriptionId = "<subscription-ID>";
-        var tenantId = "<tenant-ID>";
-        var applicationId = "<application-ID>";
-        var accessKey = "<AccessKey>";
 
-        MonitorManagementClient readOnlyClient = AuthenticateWithReadOnlyClient(tenantId, applicationId, accessKey, subscriptionId).Result;
-        IEnumerable<MetricDefinition> metricDefinitions = await readOnlyClient.MetricDefinitions.ListAsync(resourceUri: resourceId, cancellationToken: new CancellationToken());
+        var credential = new DefaultAzureCredential();
+        var client = new MetricsQueryClient(credential);
 
-        foreach (var metricDefinition in metricDefinitions)
+        var metricDefinitions = client.GetMetricDefinitionsAsync(resourceId);
+
+        await foreach (var metricDefinition in metricDefinitions)
         {
             // Enumerate metric definition:
             //    Id
-            //    ResourceId
             //    Name
             //    Unit
             //    MetricAvailabilities
@@ -198,33 +199,28 @@ The following example shows how to list a metric definition at the account level
 The following example shows how to read `UsedCapacity` data at the account level:
 
 ```csharp
+using Azure.Identity;
+using Azure.Monitor.Query;
+using Azure.Monitor.Query.Models;
+
     public static async Task ReadStorageMetricValue()
     {
         var resourceId = "<resource-ID>";
-        var subscriptionId = "<subscription-ID>";
-        var tenantId = "<tenant-ID>";
-        var applicationId = "<application-ID>";
-        var accessKey = "<AccessKey>";
 
-        MonitorClient readOnlyClient = AuthenticateWithReadOnlyClient(tenantId, applicationId, accessKey, subscriptionId).Result;
+        var credential = new DefaultAzureCredential();
+        var client = new MetricsQueryClient(credential);
 
-        Microsoft.Azure.Management.Monitor.Models.Response Response;
+        var response = await client.QueryResourceAsync(
+            resourceId,
+            new[] { "UsedCapacity" },
+            new MetricsQueryOptions
+            {
+                TimeRange = new QueryTimeRange(TimeSpan.FromHours(3)),
+                Granularity = TimeSpan.FromHours(1),
+                Aggregations = { MetricAggregationType.Average }
+            });
 
-        string startDate = DateTime.Now.AddHours(-3).ToUniversalTime().ToString("o");
-        string endDate = DateTime.Now.ToUniversalTime().ToString("o");
-        string timeSpan = startDate + "/" + endDate;
-
-        Response = await readOnlyClient.Metrics.ListAsync(
-            resourceUri: resourceId,
-            timespan: timeSpan,
-            interval: System.TimeSpan.FromHours(1),
-            metricnames: "UsedCapacity",
-
-            aggregation: "Average",
-            resultType: ResultType.Data,
-            cancellationToken: CancellationToken.None);
-
-        foreach (var metric in Response.Value)
+        foreach (var metric in response.Value.Metrics)
         {
             // Enumerate metric value
             //    Id
@@ -246,38 +242,32 @@ For multidimensional metrics, you need to define metadata filters if you want to
 The following example shows how to read metric data on the metric supporting multidimensional values:
 
 ```csharp
+using Azure.Identity;
+using Azure.Monitor.Query;
+using Azure.Monitor.Query.Models;
+
     public static async Task ReadStorageMetricValueTest()
     {
         // Resource ID for table storage
         var resourceId = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}/tableServices/default";
-        var subscriptionId = "<subscription-ID}";
-        // How to identify Tenant ID, Application ID and Access Key: https://azure.microsoft.com/documentation/articles/resource-group-create-service-principal-portal/
-        var tenantId = "<tenant-ID>";
-        var applicationId = "<application-ID>";
-        var accessKey = "<AccessKey>";
 
-        MonitorManagementClient readOnlyClient = AuthenticateWithReadOnlyClient(tenantId, applicationId, accessKey, subscriptionId).Result;
+        var credential = new DefaultAzureCredential();
+        var client = new MetricsQueryClient(credential);
 
-        Microsoft.Azure.Management.Monitor.Models.Response Response;
-
-        string startDate = DateTime.Now.AddHours(-3).ToUniversalTime().ToString("o");
-        string endDate = DateTime.Now.ToUniversalTime().ToString("o");
-        string timeSpan = startDate + "/" + endDate;
-        // It's applicable to define meta data filter when a metric support dimension
+        // It's applicable to define a metadata filter when a metric supports dimensions.
         // More conditions can be added with the 'or' and 'and' operators, example: BlobType eq 'BlockBlob' or BlobType eq 'PageBlob'
-        ODataQuery<MetadataValue> odataFilterMetrics = new ODataQuery<MetadataValue>(
-            string.Format("BlobType eq '{0}'", "BlockBlob"));
+        var response = await client.QueryResourceAsync(
+            resourceId,
+            new[] { "BlobCapacity" },
+            new MetricsQueryOptions
+            {
+                TimeRange = new QueryTimeRange(TimeSpan.FromHours(3)),
+                Granularity = TimeSpan.FromHours(1),
+                Aggregations = { MetricAggregationType.Average },
+                Filter = "BlobType eq 'BlockBlob'"
+            });
 
-        Response = readOnlyClient.Metrics.List(
-                        resourceUri: resourceId,
-                        timespan: timeSpan,
-                        interval: System.TimeSpan.FromHours(1),
-                        metricnames: "BlobCapacity",
-                        odataQuery: odataFilterMetrics,
-                        aggregation: "Average",
-                        resultType: ResultType.Data);
-
-        foreach (var metric in Response.Value)
+        foreach (var metric in response.Value.Metrics)
         {
             // Enumerate metric value
             //    Id
