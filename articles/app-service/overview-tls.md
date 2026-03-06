@@ -40,7 +40,7 @@ App Service supports the following TLS versions for incoming requests to your we
 
 - **TLS 1.3**. The latest and most secure version, now fully supported.
 - **TLS 1.2**. The default minimum TLS version for new web apps.
-- **TLS 1.1 and TLS 1.0**. Versions supported for backward compatibility but not recommended.
+- **TLS 1.1 and TLS 1.0**. These are legacy protocols and are no longer considered secure.
 
 You can configure the *minimum TLS version* for incoming requests to your web app and its Source Control Manager (SCM) site. By default, the minimum is set to **TLS 1.2**.
 
