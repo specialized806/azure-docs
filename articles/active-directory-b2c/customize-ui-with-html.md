@@ -447,6 +447,27 @@ The [sample templates](https://github.com/azure-ad-b2c/html-templates) use **Boo
 
 The templates reference the following CDN URL for Bootstrap CSS:
 
+  ```
+  https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css
+  ```
+
+The default configuration in the template HTML files includes a link element similar to the following example:
+
+  ```xml
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  ```
+
+For the official Bootstrap 3.3.5 download and CDN details, see [Bootstrap 3.3 Getting Started](https://getbootstrap.com/docs/3.3/getting-started/#download-cdn).
+
+#### Replace the CDN reference
+
+You can replace the CDN reference with your organization's internal CDN or a locally hosted copy to meet reliability, security, or compliance requirements.
+
+> [!IMPORTANT]
+> The templates are validated specifically against Bootstrap 3.3.5. Upgrading, downgrading, or otherwise modifying the Bootstrap version might introduce styling, layout, or component compatibility issues.
+
+If you change the Bootstrap version, you're responsible for completing regression testing to validate that your customized templates work correctly with Azure AD B2C. Retain the validated version unless you've completed appropriate testing.
+
 ## Use company branding assets in custom HTML
 
 To use [company branding](customize-ui.md#configure-company-branding) assets in a custom HTML, add the following tags outside the `<div id="api">` tag. The image source is replaced with that of the background image and banner logo.
