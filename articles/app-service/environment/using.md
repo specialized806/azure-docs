@@ -36,7 +36,7 @@ In the Azure portal, create a web app in an App Service Environment:
 
    The **Create Web App** pane opens to the **Basic** tab:
 
-   :::image type="content" source="./media/using/create-application-small.png" border="false" alt-text="Screenshot that shows how to create a web app in an App Service Environment in the Azure portal." lightbox="./media/using/create-application.png":::
+   :::image type="content" source="./media/using/create-application.png" border="false" alt-text="Screenshot that shows how to create a web app in an App Service Environment in the Azure portal.":::
 
 1. In the **Basic** tab, select your **Subscription**.
 
