@@ -24,7 +24,7 @@ Within a flexibility group, each SKU has a relative ratio:
 
 When you purchase a reservation, you commit to fixed quantity. Microsoft applies reservation benefit to running eligible usage until it's consumed. Ratios are relative units, not prices.
 
-Micorosoft continuously evaluates running usage and applies reservation discounts to eligible resources on a first-come, first-served basis within the reservation scope. If usage exceeds the purchased quantity, the remaining usage is billed at pay-as-you-go rates. No manual assignment is required.
+Microsoft continuously evaluates running usage and applies reservation discounts to eligible resources on a first-come, first-served basis within the reservation scope. If usage exceeds the purchased quantity, the remaining usage is billed at pay-as-you-go rates. No manual assignment is required.
 
 ## Examples
 
