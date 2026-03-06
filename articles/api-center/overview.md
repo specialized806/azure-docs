@@ -61,13 +61,14 @@ Azure API Center is offered in a Free plan and Standard plan, which are designed
 | **Inventory and governance features** | Limited<sup>1</sup> | Expanded for enterprise use cases |
 | **Upgrade path** | Upgradable to Standard | N/A |
 | **Time constraints** | None | None |
+
 <sup>1</sup> For details, see [Azure API Center limits](/azure/azure-resource-manager/management/azure-subscription-service-limits?toc=/azure/api-center/toc.json&bc=/azure/api-center/breadcrumb/toc.json#azure-api-center-limits).
 
 ### Standard plan benefit when API Center linked to API Management
 
 Customers who [link](synchronize-api-management-apis.md) an API Management Standard, Standard v2, Premium, or Premium v2 tier instance to their API center can use or upgrade to the API Center Standard plan at no additional cost. This benefit continues as long as at least one eligible API Management instance remains linked. 
 
-For more information, see [Azure API Management pricing](https://aTzure.microsoft.com/pricing/details/api-management/).
+For more information, see [Azure API Management pricing](https://azure.microsoft.com/pricing/details/api-management/).
 
 ## Available regions
 
