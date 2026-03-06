@@ -64,7 +64,7 @@ This article focuses on the configuration stage of migration. Migration of clien
 
 ## Configuration migration
 
-The configuration migration focuses on setting up the new V2 gateway with the settings from your existing V1 environment. The two Azure PowerShell scripts facilitate the migration of configurations from V1 (Standard or Web Application Firewall) to V2 (Standard V2 or Web Application Firewall V2) gateways. These scripts help streamline the transition process by automating key deployment and configuration tasks.
+The configuration migration focuses on setting up the new V2 gateway with the settings from your existing V1 environment. Two Azure PowerShell scripts facilitate the migration of configurations (Standard or Web Application Firewall) from V1 to V2 gateways. These scripts help streamline the transition process by automating key deployment and configuration tasks.
 
 ## Enhanced cloning script (recommended)
 
@@ -73,17 +73,17 @@ The enhanced cloning script is the recommended option. It offers an improved mig
 - Eliminating the need for manual input of frontend SSL certificates and backend trusted root certificates.
 - Supporting the deployment of private-only V2 gateways.
 
-You can **download** the Enhanced cloning script from the [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAppGWClone).
+You can download the Enhanced cloning script from the [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAppGWClone).
 
 ### Considerations
 
-If the existing V1 Application Gateway is configured with a private-only frontend, you must [register the `EnableApplicationGatewayNetworkIsolation` feature in the subscription](../application-gateway/application-gateway-private-deployment.md#onboard-to-the-feature) for private deployment before running the migration script. This step is required to avoid deployment failures.
+If the existing Application Gateway V1 deployment is configured with a private-only frontend, you must [register the `EnableApplicationGatewayNetworkIsolation` feature in the subscription](../application-gateway/application-gateway-private-deployment.md#onboard-to-the-feature) for private deployment before running the migration script. This step is required to avoid deployment failures.
 
 Private Application Gateway deployments must have subnet delegation configured to `Microsoft.Network/applicationGateways`. Use the [steps to set up subnet delegation](/azure/virtual-network/manage-subnet-delegation?tabs=manage-subnet-delegation-portal).
 
 ### Parameters for the script
 
-- `AppGw V1 ResourceId -Required`: Azure resource ID for your existing Standard V1 or Web Application Firewall V1 gateway. To find this string value, go to the Azure portal, select your Application Gateway or Web Application Firewall resource, and select the **Properties** link for the gateway. The resource ID is on that pane.
+- `AppGw V1 ResourceId -Required`: Azure resource ID for your existing Standard V1 or Web Application Firewall V1 gateway. To find this string value, go to the Azure portal, select your Application Gateway or Web Application Firewall resource, and then select the **Properties** link for the gateway. The resource ID is on that pane.
 
    You can also run the following Azure PowerShell commands to get the resource ID:
 
@@ -92,15 +92,15 @@ Private Application Gateway deployments must have subnet delegation configured t
    $appgw.Id
    ```
 
-- `SubnetAddressRange -Required`: The subnet address in CIDR notation, where Application Gateway V2 will be deployed.
+- `SubnetAddressRange -Required`: Subnet address in CIDR notation, where Application Gateway V2 will be deployed.
 
 - `AppGwName -Optional`: Name of the V2 application gateway. The default value is `{AppGwV1 Name}_migrated`.
 
-- `AppGwResourceGroupName -Optional`: Name of resource group where the V2 application gateway will be created. If not provided, the Application Gateway V1 resource group is used.
+- `AppGwResourceGroupName -Optional`: Name of resource group where the V2 application gateway will be created. If you don't provide it, the Application Gateway V1 resource group is used.
 
 - `PrivateIPAddress -Optional`: Private IP address to be assigned to Application Gateway V2. If you don't provide it, a random private IP is assigned.
 
-- `ValidateBackendHealth -Optional`: Post-migration validation by comparing `ApplicationGatewayBackendHealth` responses. If not set, this validation is skipped.
+- `ValidateBackendHealth -Optional`: Post-migration validation by comparing `ApplicationGatewayBackendHealth` responses. If you don't set it, this validation is skipped.
 
 - `PublicIpResourceId -Optional`: Resource ID of the public IP address (if it already exists) to be attached to the application gateway. If you don't provide it, the public IP name is `{AppGwName}-IP`.
 
@@ -114,7 +114,7 @@ Private Application Gateway deployments must have subnet delegation configured t
 
 2. Use `Import-Module Az` to import the Az modules.
 
-3. Run the `Set-AzContext` cmdlet to set the active Azure context to the correct subscription. This is an important step because the migration script might clean up the existing resource group if it doesn't exist in current subscription context.
+3. Run the `Set-AzContext` cmdlet to set the active Azure context to the correct subscription. This step is important because the migration script might clean up the existing resource group if the group doesn't exist in the current subscription context.
 
    ```
    Set-AzContext -Subscription '<V1 application gateway SubscriptionId>'
@@ -450,7 +450,7 @@ The following items are a few scenarios where your current application gateway (
 
 ## Post-migration tasks
 
-After traffic migration succeeds and you fully verify that the application runs correctly through the V2 gateway, you can safely decommission and delete the old V1 Application Gateway resource to avoid unnecessary costs.
+After traffic migration succeeds and you fully verify that the application runs correctly through the V2 gateway, you can safely decommission and delete the old Application Gateway V1 resource to avoid unnecessary costs.
 
 ## Pricing considerations
 
