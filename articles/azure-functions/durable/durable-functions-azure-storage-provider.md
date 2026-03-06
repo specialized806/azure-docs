@@ -201,7 +201,7 @@ Durable Functions creates the queues, tables, and blobs it uses in a configured 
 - The `durableTask/storageProvider/connectionStringName` setting (Durable Functions 2.x)
 - The `durableTask/azureStorageConnectionStringName` setting (in Durable Functions 1.x)
 
-# [Durable Functions 2.x](#tab/durable-2x)
+### [Durable Functions 2.x](#tab/durable-2x)
 
 ```json
 {
@@ -215,7 +215,7 @@ Durable Functions creates the queues, tables, and blobs it uses in a configured 
 }
 ```
 
-# [Durable Functions 1.x](#tab/durable-1x)
+### [Durable Functions 1.x](#tab/durable-1x)
 
 ```json
 {
@@ -243,7 +243,7 @@ While you can scale out activity functions infinitely by adding more virtual mac
 
 You define the number of control queues in your `host.json` file. The following example `host.json` snippet sets the `durableTask/storageProvider/partitionCount` property (`durableTask/partitionCount` in Durable Functions 1.x) to `3`. You have as many control queues as you have partitions.
 
-# [Durable Functions 2.x](#tab/durable-2x)
+### [Durable Functions 2.x](#tab/durable-2x)
 
 ```json
 {
@@ -257,7 +257,7 @@ You define the number of control queues in your `host.json` file. The following 
 }
 ```
 
-# [Durable Functions 1.x](#tab/durable-1x)
+### [Durable Functions 1.x](#tab/durable-1x)
 
 ```json
 {
@@ -310,7 +310,7 @@ Orchestration instances and entities are distributed across all control queue in
 
 You can enable extended sessions by setting `durableTask/extendedSessionsEnabled` to `true` in your `host.json` file. You can use the `durableTask/extendedSessionIdleTimeoutInSeconds` setting to control how long an idle session stays in memory:
 
-# [Durable Functions 2.x](#tab/durable-2x)
+### [Durable Functions 2.x](#tab/durable-2x)
 ```json
 {
   "extensions": {
@@ -322,7 +322,7 @@ You can enable extended sessions by setting `durableTask/extendedSessionsEnabled
 }
 ```
 
-# [Durable Functions 1.x](#tab/durable-1x)
+### [Durable Functions 1.x](#tab/durable-1x)
 ```json
 {
   "extensions": {
@@ -379,12 +379,6 @@ If you aren't seeing the throughput numbers you expect and your CPU and memory u
 > [!TIP]
 > In some cases, you can increase the throughput of external events, activity fan-in, and entity operations by increasing the value of the `controlQueueBufferThreshold` setting in your `host.json`. Increasing this value beyond its default causes the Durable Task Framework storage provider to use more memory to prefetch these events more aggressively, reducing delays associated with dequeueing messages from the Azure Storage control queues. For more information, see the [host.json](durable-functions-bindings.md#host-json) reference documentation.
 
-<<<<<<< HEAD
-### Flex Consumption Plan (supported by Durable Task Scheduler)
-The [Flex Consumption plan](../flex-consumption-plan.md), which is supported by Durable Task Scheduler, is an Azure Functions hosting plan that provides many of the benefits of the Consumption plan, including a serverless billing model, while also adding useful features, such as private networking, instance memory size selection, and full support for managed identity authentication.
-
-You should follow these performance recommendations when hosting Durable Functions in the Flex Consumption plan (supported by Durable Task Scheduler):
-=======
 ## Flex Consumption plan
 
 The [Flex Consumption plan](../flex-consumption-plan.md) is an Azure Functions hosting plan that provides many of the benefits of the Consumption plan, including:
@@ -392,7 +386,6 @@ The [Flex Consumption plan](../flex-consumption-plan.md) is an Azure Functions h
 - Private networking
 - Instance memory size selection
 - Full support for managed identity authentication
->>>>>>> cb03332abcaabf9b6291356e2e0f3d4afd1126a2
 
 You should follow these performance recommendations when you host Durable Functions in the Flex Consumption plan:
 
