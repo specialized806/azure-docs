@@ -10,8 +10,7 @@
   - name: Instance size flexibility
     href: instance-size-flexibility.md
   - name: VM instance size flexibility (Virtual Machines)
-    href: /azure/virtual-machines/reserved-vm-instance-size-flexibility
-    maintainContext: true
+    href: instance-size-flexibility.md#vm-example
   - name: Reservation recommendations
     href: reserved-instance-purchase-recommendations.md
   - name: How discount is applied
