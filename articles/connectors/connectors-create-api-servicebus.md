@@ -502,7 +502,7 @@ The built-in Service Bus connector is a stateless connector, by default. To run 
    |----------|----------|-------------|
    | **Queue or topic name** | Yes | The selected queue to access |
 
-   :::image type="content" source="./media/connectors-create-api-azure-service-bus/service-bus-action-built-in-standard.png" alt-text="Screenshot that shows information for the Send message Service Bus action of a Standard workflow.":::
+   :::image type="content" source="./media/connectors-create-api-azure-service-bus/service-bus-action-built-in-standard.png" alt-text="Screenshot that shows information for a Service Bus Send message built-in connector action of a Standard workflow..":::
 
 1. To add any other available properties to the action, open the **Add new parameter** list, and select the properties that you want.
 
@@ -542,7 +542,7 @@ The built-in Service Bus connector is a stateless connector, by default. To run 
    | **Session Id** | No | The session ID if sending the message to a session-aware queue or topic.  |
    | **System properties** | No | - **None** <br>- **Run Details**: Add metadata property information about the run as custom properties in the message. |
 
-   :::image type="content" source="./media/connectors-create-api-azure-service-bus/service-bus-action-managed-standard.png" alt-text="Screenshot that shows information for the Send message Service Bus action of a Standard workflow.":::
+   :::image type="content" source="./media/connectors-create-api-azure-service-bus/service-bus-action-managed-standard.png" alt-text="Screenshot that shows the information page for a Service Bus Send message managed connector action of a Standard workflow.":::
 
 1. To add any other available properties to the action, open the **Add new parameter** list, and select the properties that you want.
 
