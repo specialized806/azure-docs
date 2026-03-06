@@ -73,11 +73,11 @@ To learn more, see [SFTP permission model](secure-file-transfer-protocol-support
 
 ### Access ACLs and Default ACLs
 
-- SFTP doesn't currently support **Default ACLs** or **additional Access ACLs** (ACL entries beyond the POSIX `user::`, `group::`, and `other::` entries, such as named users or named groups).
+- SFTP doesn't currently support **Default ACLs** or additional **Access ACLs** (ACL entries beyond the POSIX `user::`, `group::`, and `other::` entries, such as named users or named groups).
 
-- If any directory in the access path (including the user's home directory) has Default ACLs or additional ACLs set, SFTP operations will fail with `Permission denied`, even when the connecting user has required permissions.
+- If any directory in the access path (including the user's home directory) has Default ACLs or additional Access ACLs set, SFTP operations will fail with `Permission denied`, even when the connecting user has required permissions.
 
-**Temporary Workaround:** Remove Default ACLs and additional ACL entries from all directories in the SFTP access path (including the user's home directory) so that only POSIX `user::`, `group::`, and `other::` entries remain.
+**Temporary Workaround:** Remove Default ACLs and additional Access ACLs from all directories in the SFTP access path (including the user's home directory) so that only POSIX `user::`, `group::`, and `other::` entries remain.
 
 For more details about ACLs and how you can edit them, see [Access control lists (ACLs)](data-lake-storage-access-control.md).
 
