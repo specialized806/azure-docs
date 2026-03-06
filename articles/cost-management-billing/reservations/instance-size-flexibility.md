@@ -29,54 +29,173 @@ Azure continuously evaluates running usage and applies reservation discounts to 
 
 ## Examples
 
-### VM example
+### Virtual Machine example
 
-Assume you buy a VM reservation that provides four ratio units per hour for a VM size flexibility group.
+With a reserved virtual machine instance that's optimized for instance size flexibility, the reservation you buy can apply to the virtual machines (VMs) sizes in the same instance size flexibility group. In other words, when you buy a reserved VM instance of any size within an instance flexibility group, the instance applies to all sizes within the group. For example, if you buy a reservation for a VM size that's listed in the DSv2 Series, like Standard_DS3_v2, the reservation discount can apply to the other sizes that are listed in that same instance size flexibility group:
 
-- Two running small VMs consume one ratio unit each.
-- One running larger VM in the same group consumes two ratio units.
+Standard_DS1_v2
+Standard_DS2_v2
+Standard_DS3_v2
+Standard_DS4_v2
+But that reservation discount doesn't apply to VMs sizes that are listed in different instance size flexibility groups, like SKUs in DSv2 Series High Memory: Standard_DS11_v2, Standard_DS12_v2, and so on.
 
-Total ratio usage is four units, so all matching usage gets reservation pricing for that hour. If usage grows beyond four ratio units, the excess is billed at pay-as-you-go rates.
+Within the instance size flexibility group, the number of VMs the reservation discount applies to depends on the VM size you pick when you buy a reservation. It also depends on the sizes of the VMs that you have running. The ratio column compares the relative footprint for each VM size in that instance size flexibility group. Use the ratio value to calculate how the reservation discount applies to the VMs you have running.
 
 ### Microsoft Foundry example
 
 Assume you buy a 300-PTU Global reservation for Microsoft Foundry Provisioned Throughput.
 
-- If you deploy 250 Global PTUs in an hour, all 250 PTUs are covered by the reservation.
-- If you deploy 340 Global PTUs in an hour, 300 PTUs are covered and 40 PTUs are billed at pay-as-you-go rates.
+- If you deploy 250 Global PTUs for Azure OpenAI Service, and 50 Global PTUs for DeepSeek in same region, all 300 PTUs are covered by the reservation.
 
 Global, Data Zone, and Regional reservations aren't interchangeable, so each deployment type needs its own matching reservation.
 
 ## Other services
 
-Reservation benefit matching isn't limited to VM reservations. Similar service-specific reservation behavior also exists for other services, including:
+Reservation benefit matching isn't limited to VM reservations. Similar service-specific reservation behavior also exists for other services, and you can find details on individual documents for each reservation type.
 
-- [Red Hat Enterprise Linux software plans](understand-rhel-reservation-charges.md)
-- [Azure Cosmos DB reserved capacity](understand-cosmosdb-reservation-charges.md)
-- [Microsoft Foundry Provisioned Throughput reservations](microsoft-foundry.md)
+# Extract Instance Size Flexibility ratios using Azure Catalogs API
 
-## When the discount applies
+This article describes how to use the Azure Reservations Catalogs API to extract Instance Size Flexibility (ISF) ratios for Azure Reservations. ISF allows you to apply reservation benefits flexibly across different sizes within the same resource family and region. This applies to various Azure reservation types including Virtual Machines, Azure Redis Cache and other supported services.
 
-For VM reservations, the discount applies when these attributes match:
+## What you'll learn
 
-- VM size group
-- Region
-- Reservation term
-- Scope (single subscription, shared scope, or management group scope)
+How to use the Azure Catalogs API via PowerShell to extract Instance Size Flexibility ratios for various Azure reservation types, construct ISF CSV files, and handle different resource types that support ISF.
 
-If there isn't enough matching usage in a given hour, the unused portion of that reservation hour is lost.
+## Prerequisites
 
-## Optimize setting for VM reservations
+- Azure subscription with appropriate permissions
+- Access to Azure Resource Management APIs
+- PowerShell with Az.Reservations module (for PowerShell examples)
+- Understanding of the Azure resource types you want to generate ISF ratios for
 
-When you purchase or manage a VM reservation, you can choose an optimize setting:
+## ISF CSV file structure
 
-- **Instance size flexibility**: Prioritizes discount coverage across sizes in the same VM size group.
-- **Capacity priority**: Prioritizes capacity reservation for the exact size/region, instead of flexibility across sizes.
+The resulting CSV file contains three columns:
 
-For steps to change this setting, see [Change optimize setting for Reserved VM Instances](manage-reserved-vm-instance.md#change-optimize-setting-for-reserved-vm-instances).
+| Column | Description |
+|--------|-------------|
+| `InstanceSizeFlexibilityGroup` | The flexibility group name (e.g., "Av2 Series", "General Purpose Gen5") |
+| `ArmSkuName` | The Azure Resource Manager SKU name (e.g., "Standard_A1_v2", "GP_Gen5_2") |
+| `Ratio` | The flexibility ratio for the SKU within its group |
 
-## Related content
+## API Documentation Reference
 
-- [How a reservation discount is applied](reservation-discount-application.md)
-- [Understand VM reservation charges](../manage/understand-vm-reservation-charges.md)
-- [Virtual machine size flexibility with Reserved VM Instances](/azure/virtual-machines/reserved-vm-instance-size-flexibility)
+For developers who prefer to use the REST API directly, refer to the [Azure Reservations Catalog REST API documentation](https://learn.microsoft.com/en-us/rest/api/reserved-vm-instances/get-catalog/get-catalog?view=rest-reserved-vm-instances-2022-11-01&tabs=HTTP).
+
+The ISF ratio information is found in the API response within each catalog item's `skuProperties` array. Look for properties with the following names:
+- `ReservationsAutofitGroup` - Contains the flexibility group name
+- `ReservationsAutofitRatio` - Contains the ratio value for that SKU
+
+## Using PowerShell
+
+### Install required module
+
+```powershell
+# Install the Az.Reservations module if not already installed
+Install-Module -Name Az.Reservations -Force -AllowClobber
+
+# Connect to Azure
+Connect-AzAccount
+```
+
+### Get catalog data with PowerShell
+
+```powershell
+# Set parameters
+$SubscriptionId = "your-subscription-id"
+$Location = "eastus"
+$ResourceType = "VirtualMachines"  # Change for different resource types
+
+# Set subscription context
+Set-AzContext -SubscriptionId $SubscriptionId
+
+# Get catalog data
+$CatalogData = Get-AzReservationCatalog -SubscriptionId $SubscriptionId -Location $Location -ReservedResourceType $ResourceType
+
+# Display results
+$CatalogData | Select-Object Name, ResourceType | Format-Table
+```
+
+## Extract ISF ratios from PowerShell response
+
+The Catalogs API response contains ISF ratio information in the `skuProperties` array. Look for properties with names "InstanceSizeFlexibilityRatio" and "InstanceSizeFlexibilityGroup".
+
+### PowerShell parsing example
+
+```powershell
+# Function to extract ISF data from catalog response
+function Get-ISFRatios {
+    param(
+        [Parameter(Mandatory=$true)]
+        $CatalogData
+    )
+   
+    $ISFData = @()
+   
+    foreach ($item in $CatalogData) {
+        $flexGroup = ""
+        $ratio = ""
+       
+        # Extract ISF properties
+        foreach ($property in $item.SkuProperties) {
+            if ($property.Name -eq "ReservationsAutofitGroup") {
+                $flexGroup = $property.Value
+            }
+            elseif ($property.Name -eq "ReservationsAutofitRatio") {
+                $ratio = $property.Value
+            }
+        }
+       
+        # Only include items with both group and ratio
+        if ($flexGroup -and $ratio) {
+            $ISFData += [PSCustomObject]@{
+                InstanceSizeFlexibilityGroup = $flexGroup
+                ArmSkuName = $item.Name
+                Ratio = $ratio
+            }
+        }
+    }
+   
+    return $ISFData
+}
+
+# Extract ISF data
+$ISFRatios = Get-ISFRatios -CatalogData $CatalogData
+
+# Export to CSV
+$ISFRatios | Export-Csv -Path "isf-ratios.csv" -NoTypeInformation
+
+# Display sample results
+$ISFRatios | Select-Object -First 10 | Format-Table
+```
+
+## Important considerations
+
+- **Pagination**: The API returns paginated results. Use the `nextLink` property to retrieve all data.
+- **Region-specific data**: ISF ratios can vary by Azure region. Generate separate files for each target region.
+- **Resource type support**: Not all Azure services support ISF. Check the API response for InstanceSizeFlexibilityGroup properties.
+- **Regular updates**: ISF ratios may change when new resource sizes are introduced. Update your files regularly.
+- **Service-specific ratios**: Different services may have different ISF calculation methods and ratio scales.
+
+## Troubleshooting
+
+### Common issues and solutions
+
+| Issue | Solution |
+|-------|----------|
+| Authentication errors | Ensure you have `Microsoft.Capacity/catalogs/read` permission |
+| Empty results | Verify the location parameter matches an Azure region name and the resource type supports ISF |
+| Missing ISF properties | Some resource families may not support ISF - this is expected behavior |
+| Invalid resource type | Check the supported reservedResourceType values for your target service |
+
+## Next steps
+
+- [Learn more about Azure Reservations](https://docs.microsoft.com/azure/cost-management-billing/reservations/save-compute-costs-reservations)
+- [Understanding Instance Size Flexibility for different services](https://docs.microsoft.com/azure/cost-management-billing/reservations/reserved-instance-size-flexibility)
+- [Azure Resource Manager REST API reference](https://docs.microsoft.com/rest/api/resources/)
+
+## Related articles
+
+- [Azure Reservations documentation](https://docs.microsoft.com/azure/cost-management-billing/reservations/)
+- [Manage Azure Reservations](https://docs.microsoft.com/azure/cost-management-billing/reservations/manage-reservations)
+- [Azure PowerShell documentation](https://docs.microsoft.com/powershell/azure/)
