@@ -19,20 +19,23 @@ In this article, you learn how to create Azure Health Data Services, including w
 
 ## What is Azure Bicep
 
-Bicep is built on top of Azure Resource Manager (ARM) template. Bicep immediately supports all preview and generally available (GA) versions for Azure services, including Azure Health Data Services. During development, you can generate a JSON ARM template file using the `az bicep build` command. Conversely, you can decompile the JSON files to Bicep using the `az bicep decompile` command. During deployment, the Bicep CLI converts a Bicep file into an ARM template JSON.
+Bicep is built on top of Azure Resource Manager (ARM) template. Bicep immediately supports all preview and generally available (GA) versions for Azure services, including Azure Health Data Services. For more information on Bicep, see [What is Bicep](../azure-resource-manager/bicep/overview.md).
 
-You can continue to work with JSON ARM templates, or use Bicep to develop your ARM templates. For more information on Bicep, see [What is Bicep](../azure-resource-manager/bicep/overview.md).
+
+During development, you can generate a JSON ARM template file using the `az bicep build` command. Conversely, you can decompile a JSON ARM template file to Bicep using the `az bicep decompile` command. During deployment, the Bicep CLI converts a Bicep file into an ARM template JSON.
+
+You can continue to work with JSON ARM templates, or use Bicep to develop your ARM templates. 
 
 >[!Note]
 >The templates and scripts in the article are tested in Visual Studio Code during the public preview. Some changes may be necessary to adapt the code to run in your environment.
 
 ## Define parameters and variables
 
-Using Bicep parameters and variables instead of hard coding names and other values allows you to debug and reuse your Bicep files.
+In this example, create a Bicep template file named `ahds.bicep` Using Bicep parameters and variables instead of hard coding names and other values allows you to debug and reuse your Bicep files. They’re used when you run the template in the CLI command line with the "--parameters" option.
 
-We first define parameters with the keyword *param* for workspace, FHIR service, and DICOM service. Also, we define parameters for Azure subscription and Microsoft Entra tenant. They’re used in the CLI command line with the "--parameters" option.
+First, define parameters with the keyword *param* for workspace and the services you want to deploy. Also, define parameters for Azure subscription and Microsoft Entra tenant. 
 
-We then define variables for resources with the keyword *var*. Also, we define variables for properties such as the authority and the audience for the FHIR service. They’re specified and used internally in the Bicep file and can be used in combination of parameters, Bicep functions, and other variables. Unlike parameters, they aren’t used in the CLI command line.
+Then define variables for resources with the keyword *var*. Also, if you're deploying a FHIR service, define variables for properties such as the authority and the audience. They’re specified and used internally in the Bicep file and can be used in combination of parameters, Bicep functions, and other variables. Unlike parameters, they aren’t used in the CLI command line.
 
 It's important to note that one Bicep function and environment are required to specify the login URL, `https://login.microsoftonline.com`. For more information on Bicep functions, see [Deployment functions for Bicep](../azure-resource-manager/bicep/bicep-functions-deployment.md#environment).
 
@@ -76,7 +79,9 @@ resource exampleExistingWorkspace 'Microsoft.HealthcareApis/workspaces@2021-06-0
 }
 ```
 
-You're now ready to deploy the workspace resource using the `az deployment group create` command. You can also deploy it along with its other resources, as described further later in this article.
+You're now ready to deploy the workspace resource using the `az deployment group create` command. You can also deploy it along with its other resources, as described further in this article.
+
+For more information about workspace templates, see [Microsoft.HealthcareApis workspaces](/azure/templates/microsoft.healthcareapis/workspaces)
 
 ## Create a FHIR service template
 
@@ -114,6 +119,8 @@ resource exampleExistingFHIR 'Microsoft.HealthcareApis/workspaces/fhirservices@2
 }
 ```
 
+For more information about FHIR service templates, see [Microsoft.HealthcareApis workspaces/fhirservices](/azure/templates/microsoft.healthcareapis/workspaces/fhirservices)
+
 ## Create a DICOM service template
 
 For the DICOM service resource, the required properties include service instance name and location, and the dependency on the workspace resource type.  
@@ -138,6 +145,10 @@ Similarly, you can use or reference an existing DICOM service using the keyword 
    name: dicomservicename
 }
 ```
+
+For more information about DICOM service templates, see [Microsoft.HealthcareApis workspaces/dicomservices](/azure/templates/microsoft.healthcareapis/workspaces/dicomservices)[!INCLUDE [FHIR and DICOM trademark statement](./includes/healthcare-apis-fhir-dicom-trademark.md)]
+
+
 
 ## Deploy Azure Health Data Services
 
@@ -175,9 +186,8 @@ output stringOutput2 string = audience
 
 ## Next steps
 
-In this article, you learned how to create Azure Health Data Services, including workspaces, FHIR services, and DICOM services using Bicep. You also learned how to create and debug Bicep files. For more information about Azure Health Data Services, see:
-
 >[!div class="nextstepaction"]
->[What is Azure Health Data Services?](healthcare-apis-overview.md)
+>[Manage user access and permissions](authentication-authorization.md)
 
-FHIR&#174; is a registered trademark of [HL7](https://hl7.org/fhir/) and is used with the permission of HL7.
+[!INCLUDE [FHIR and DICOM trademark statement](./includes/healthcare-apis-fhir-dicom-trademark.md)]
+
