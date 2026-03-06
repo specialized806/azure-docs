@@ -26,6 +26,8 @@ Follow these steps to complete the change directory workflow.
 2. Select **Change Directory**
 
 :::image type="content" source="./media/subscription-change-directory/1-change-directory.png" alt-text="Screenshot that shows Change Directory higlighted" lightbox="./media/subscription-change-directory/1-change-directory.png" :::
+
+:::image type="content" source="./media/subscription-change-directory/newer-1-change-directory.png" alt-text="NEW Screenshot that shows Change Directory higlighted" lightbox="./media/subscription-change-directory/newer-1-change-directory.png" :::
    
 3. The Change directory experience opens. 
 
@@ -38,23 +40,33 @@ Follow these steps to complete the change directory workflow.
 
 :::image type="content" source="./media/subscription-change-directory/2-start.png" alt-text="Screenshot that shows the start of the Change Directory workflow" lightbox="./media/subscription-change-directory/2-start.png" :::
 
+:::image type="content" source="./media/subscription-change-directory/newer-2-start.png" alt-text="NEW Screenshot that shows the start of the Change Directory workflow" lightbox="./media/subscription-change-directory/newer-2-start.png" :::
+
   If you're the acceptor select Yes and select the tenant ID of the destination directory in the dropdown and click Continue to initiate the transfer. 
 
 :::image type="content" source="./media/subscription-change-directory/4-destination-selection.png" alt-text="Screenshot that shows the destination choices of the Change Directory workflow" lightbox="./media/subscription-change-directory/4-destination-selection.png" :::
 
+:::image type="content" source="./media/subscription-change-directory/newer-4-destination-selection.png" alt-text="NEW Screenshot that shows the destination choices of the Change Directory workflow" lightbox="./media/subscription-change-directory/newer-4-destination-selection.png" :::
+
   If you're sending the request to another party select No and enter the email address of the recipient and the tenant ID of the destination directory and click Continue to initiate the transfer. 
 
 :::image type="content" source="./media/subscription-change-directory/3-b-other-recipient.png" alt-text="Screenshot that shows the selections if the acceptor is a different party" lightbox="./media/subscription-change-directory/3-b-other-recipient.png" :::
+
+:::image type="content" source="./media/subscription-change-directory/newer-3-b-other-recipient.png" alt-text="NEW Screenshot that shows the selections if the acceptor is a different party" lightbox="./media/subscription-change-directory/newer-3-b-other-recipient.png" :::
   
 ## Step 3 - Confirm the directory change request
 
 1. If you initiated a request that you'll be accepting you'll be presented with a confirmation page to Continue the transfer.
 
 :::image type="content" source="./media/subscription-change-directory/5-self-request-sent.png" alt-text="Screenshot that shows the confirmation of a self approved request" lightbox="./media/subscription-change-directory/5-self-request-sent.png" :::
+
+:::image type="content" source="./media/subscription-change-directory/newer-5-self-request-sent.png" alt-text="NEW Screenshot that shows the confirmation of a self approved request" lightbox="./media/subscription-change-directory/newer-5-self-request-sent.png" :::
     
 2. If you sent the request to another party, you receive the following confirmation page. This confirmation page includes a link for the acceptor to complete the transfer. 
 
 :::image type="content" source="./media/subscription-change-directory/6-other-transfer-sent.png" alt-text="Screenshot that shows the confirmation of a different party request" lightbox="./media/subscription-change-directory/6-other-transfer-sent.png" :::
+
+:::image type="content" source="./media/subscription-change-directory/newer-6-other-transfer-sent.png" alt-text="NEW Screenshot that shows the confirmation of a different party request" lightbox="./media/subscription-change-directory/newer-6-other-transfer-sent.png" :::
 
 ## Step 4 - Accept the directory change request
 
@@ -63,4 +75,4 @@ Follow these steps to complete the change directory workflow.
 
 :::image type="content" source="./media/subscription-change-directory/7-accept-transfer.png" alt-text="Screenshot that shows the acceptance of a transfer" lightbox="./media/subscription-change-directory/7-accept-transfer.png" :::
 
-:::image type="content" source="./media/subscription-change-directory/new-7-accept-transfer.png" alt-text="NEW Screenshot that shows the acceptance of a transfer" lightbox="./media/subscription-change-directory/new-7-accept-transfer.png" :::
+:::image type="content" source="./media/subscription-change-directory/newer-7-accept-transfer.png" alt-text="NEW Screenshot that shows the acceptance of a transfer" lightbox="./media/subscription-change-directory/newer-7-accept-transfer.png" :::
