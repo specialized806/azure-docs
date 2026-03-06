@@ -159,8 +159,20 @@ Because filters are derived from registration, workers don't receive unmatched w
 
 ## Clean up resources
 
-- To stop local containers, run `docker rm -f dts-emulator`.
-- If you deployed to Azure, delete the resource group to avoid ongoing charges.
+1. Stop the local emulator container:
+
+   ```bash
+   docker rm -f dts-emulator
+   ```
+
+1. If you deployed to Azure, identify the resource group name:
+
+   - Copy it from the `azd up` output.
+   - Or in the [Azure portal](https://portal.azure.com), use the global search box at the top and search for `rg-` or your environment name prefix.
+
+1. Open the resource group from the search results.
+
+1. Select **Delete resource group**, enter the resource group name to confirm, and then select **Delete**.
 
 ## Next steps
 
