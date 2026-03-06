@@ -15,8 +15,8 @@ service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8
 
 To change the Entra Directory of your Azure subscription, you need to complete the following two-party request and accept workflow. 
 
-1. To initiate a change directory request you will need to be a subscription owner of the subscription in the source directory. 
-2. To accept a change directory request you or another party will need to be an Entra tenant admin in the destination directory. 
+1. To initiate a change directory request, you'll need to be a subscription owner of the subscription in the source directory. 
+2. To accept a change directory request, you or another party will need to be an Entra tenant admin in the destination directory.
 
 Follow these steps to complete the change directory workflow.
 
@@ -27,38 +27,38 @@ Follow these steps to complete the change directory workflow.
 
 :::image type="content" source="./media/subscription-change-directory/1-change-directory.png" alt-text="Screenshot that shows Change Directory higlighted" lightbox="./media/subscription-change-directory/1-change-directory.png" :::
    
-3. The Change directory experience will open. 
+3. The Change directory experience opens. 
 
 ### Step 2 - Initiate the directory change request
 
 1. Read the information completely to understand the implications of the change directory action. 
-2. Choose whether you or another party will be accepting the request in the destination directory. 
-      1. Yes - if you are the acceptor in the destination
-      2. No - if you are inviting another party to accept the invitation
+2. Choose whether you or another party will accept the request in the destination directory. 
+      1. Yes - if you're the acceptor in the destination
+      2. No - if you're inviting another party to accept the invitation
 
 :::image type="content" source="./media/subscription-change-directory/2-start.png" alt-text="Screenshot that shows the start of the Change Directory workflow" lightbox="./media/subscription-change-directory/2-start.png" :::
 
-  If you are the acceptor select Yes and select the tenant ID of the destination directory in the dropdown and click Continue to initiate the transfer. 
+  If you're the acceptor select Yes and select the tenant ID of the destination directory in the dropdown and click Continue to initiate the transfer. 
 
 :::image type="content" source="./media/subscription-change-directory/4-destination-selection.png" alt-text="Screenshot that shows the destination choices of the Change Directory workflow" lightbox="./media/subscription-change-directory/4-destination-selection.png" :::
 
-  If you are sending the request to another party select No and enter the email address of the recipient and the tenant ID of the destination directory and click Continue to initiate the transfer. 
+  If you're sending the request to another party select No and enter the email address of the recipient and the tenant ID of the destination directory and click Continue to initiate the transfer. 
 
 :::image type="content" source="./media/subscription-change-directory/3b-other-recipient.png" alt-text="Screenshot that shows the selections if the acceptor is a different party" lightbox="./media/subscription-change-directory/3b-other-recipient.png" :::
   
 ### Step 3 - Confirm the directory change request
 
-1. If you initiated a request that you are also accepting you will be presented with a confirmation page to Continue the transfer.
+1. If you initiated a request that you'll be accepting you will be presented with a confirmation page to Continue the transfer.
 
 :::image type="content" source="./media/subscription-change-directory/5-self-request-sent.png" alt-text="Screenshot that shows the confirmation of a self approved request" lightbox="./media/subscription-change-directory/5-self-request-sent.png" :::
     
-2. If you sent the request to another party you will receive the following confirmation page. This confirmation page includes a link for the acceptor to complete the transfer. 
+2. If you sent the request to another party you'll receive the following confirmation page. This confirmation page includes a link for the acceptor to complete the transfer. 
 
 :::image type="content" source="./media/subscription-change-directory/6-other-transfer-sent.png" alt-text="Screenshot that shows the confirmation of a different party request" lightbox="./media/subscription-change-directory/6-other-transfer-sent.png" :::
 
 ### Step 4 - Accept the directory change request
 
-1. If you initiatied a request and are also the acceptor click Accept to complete the transfer.
-2. If you sent the request to another party they will receive an email with the link to Accept the transfer. This is the same link the requestor sees in step 2 above.
+1. If you initiated a request and are also the acceptor click Accept to complete the transfer.
+2. If you sent the request to another party they'll receive an email with the link to Accept the transfer. This is the same link the requestor sees in step 2 above.
 
 :::image type="content" source="./media/subscription-change-directory/7-accept-transfer.png" alt-text="Screenshot that shows the acceptance of a transfer" lightbox="./media/subscription-change-directory/7-accept-transfer.png" :::
