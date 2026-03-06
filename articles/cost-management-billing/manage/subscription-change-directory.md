@@ -44,7 +44,7 @@ Follow these steps to complete the change directory workflow.
 
   If you're sending the request to another party select No and enter the email address of the recipient and the tenant ID of the destination directory and click Continue to initiate the transfer. 
 
-:::image type="content" source="./media/subscription-change-directory/3-b-other-recipient.png" alt-text="Screenshot that shows the selections if the acceptor is a different party" lightbox="./media/subscription-change-directory/3b-other-recipient.png" :::
+:::image type="content" source="./media/subscription-change-directory/3-b-other-recipient.png" alt-text="Screenshot that shows the selections if the acceptor is a different party" lightbox="./media/subscription-change-directory/3-b-other-recipient.png" :::
   
 ## Step 3 - Confirm the directory change request
 
