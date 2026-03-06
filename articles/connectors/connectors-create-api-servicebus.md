@@ -90,7 +90,7 @@ For the Service Bus managed connector, the maximum message size is limited to 1 
 
 ### Increase timeout for receiving and sending messages
 
-In Standard workflows that use the Service Bus built-in operations, you can increase the timeout for receiving and sending messages. For example, to increase the timeout for receiving a message, [change the following setting in the Azure Functions extension](../azure-functions/functions-bindings-service-bus.md#install-bundle):
+In Standard workflows that use the Service Bus built-in operations, you can increase the timeout for receiving and sending messages. For example, to increase the timeout for receiving a message, change the setting in the following code example in the [Azure Functions extension](../azure-functions/functions-bindings-service-bus.md#install-bundle):
 
 ```json
 {
@@ -140,11 +140,11 @@ To increase the timeout for sending a message, [add the **ServiceProviders.Servi
 
 ### Service Bus built-in connector triggers
 
-For the Service Bus built-in connector, non-session triggers follow a *continuous-polling trigger pattern* that the connector fully manages. This pattern has the trigger constantly check for messages in the queue or topic subscription. Session triggers follow the *long-polling trigger pattern*; its configuration is governed by the Azure Functions setting, [**clientRetryOptions:tryTimeout**](../azure-functions/functions-bindings-service-bus.md#hostjson-settings). Currently, the configuration settings for the Service Bus built-in trigger are shared between the [Azure Functions host extension](../azure-functions/functions-bindings-service-bus.md#hostjson-settings), which is defined in your logic app's [**host.json** file](../logic-apps/edit-app-settings-host-settings.md), and the trigger settings defined in your logic app's workflow, which you can set up either through the designer or code view. This section covers both settings locations.
+For the Service Bus built-in connector, non-session triggers follow a *continuous-polling* trigger pattern, which the connector fully manages. In this pattern, the trigger constantly checks for messages in the queue or topic subscription. By contrast, session triggers follow the *long-polling* trigger pattern; their configuration is governed by the Azure Functions setting, [**clientRetryOptions:tryTimeout**](../azure-functions/functions-bindings-service-bus.md#hostjson-settings). The configuration settings for the Service Bus built-in trigger are shared between the [Azure Functions host extension](../azure-functions/functions-bindings-service-bus.md#hostjson-settings), which is defined in your logic app's [**host.json** file](../logic-apps/edit-app-settings-host-settings.md), and the trigger settings defined in your logic app's workflow, which you can set up either through the designer or code view. This section covers both settings locations. Note the following details about Service Bus triggers:
 
 * Some built-in triggers, such as the **When messages are available in a queue** trigger, can return one or more messages. When these triggers fire, they return between one and the number of messages.
 
-  The built-in trigger named **When messages are available in a queue (V1)** doesn't support the parameter named **Maximum message batch size**. Make sure that you use the V2 version instead. To use a trigger where the parameter isn't supported, you can still control the number of messages received by adding the `maxMessageBatchSize` parameter to the trigger definition in the host.json file. To find this file, see [Edit host and app settings for Standard logic apps](../logic-apps/edit-app-settings-host-settings.md).
+* The built-in trigger named **When messages are available in a queue (V1)** doesn't support the parameter named **Maximum message batch size**. If you use this parameter, ensure that you use the V2 version instead. To use a trigger where the parameter isn't supported, you can control the number of messages received by adding the `maxMessageBatchSize` parameter to the trigger definition in the host.json file. To find this file, see [Edit host and app settings for Standard logic apps](../logic-apps/edit-app-settings-host-settings.md).
 
   ```json
   "extensions": {
@@ -154,7 +154,7 @@ For the Service Bus built-in connector, non-session triggers follow a *continuou
   }
   ```
 
-  You can also enable concurrency on the Service Bus trigger, either through the designer or in code, for example:
+* You can enable concurrency on a Service Bus trigger, either through the designer or in code, for example:
 
   ```json
   "runtimeConfiguration": {
@@ -176,15 +176,15 @@ For the Service Bus built-in connector, non-session triggers follow a *continuou
 
     * Mimic the behavior of the Service Bus managed connector trigger, which has a 30-second long poll when no messages are found.
 
-    You can change this delay, but make sure that you carefully test any changes to the default value:
+      Although you can change this delay, make sure that you carefully test any changes to the default value:
 
-    ```json
-    "workflow": {
-       "settings": {
-          "Runtime.ServiceProviders.FunctionTriggers.DynamicListenerEnableDisableInterval": "00:00:30"
+      ```json
+       "workflow": {
+          "settings": {
+             "Runtime.ServiceProviders.FunctionTriggers.DynamicListenerEnableDisableInterval": "00:00:30"
+          }
        }
-    }
-    ```
+       ```
 
   * [Some scenarios exist where the trigger can exceed the concurrency settings](../logic-apps/logic-apps-workflow-actions-triggers.md#change-waiting-runs-limit). Rather than fail these runs, Azure Logic Apps queues them in a waiting state until they can be started. The [`maximumWaitingRuns` setting](../logic-apps/edit-app-settings-host-settings.md#trigger-concurrency) controls the number of runs allowed in the waiting state:
 
@@ -277,7 +277,9 @@ If you use the Service Bus managed connector, you need this endpoint URL if you 
 
 1. On the namespace menu, select **Overview**.
 
-1. On the **Overview** pane, find the **Host name** property, and copy the fully qualified name, which looks like **<*your-Service-Bus-namespace*>.servicebus.windows.net**.
+1. On the **Overview** pane, expand **Essentials**, and find the **Host name** property.
+
+1. Copy the fully qualified name, which looks like **<*your-Service-Bus-namespace*>.servicebus.windows.net**, and save it for later use.
 
 <a name="add-trigger"></a>
 
@@ -285,8 +287,8 @@ If you use the Service Bus managed connector, you need this endpoint URL if you 
 
 The following steps use the Azure portal, but with the appropriate Azure Logic Apps extension, you can also use these tools to create logic app workflows:
 
-* Consumption workflows: [Visual Studio Code](../logic-apps/quickstart-create-logic-apps-visual-studio-code.md)
-* Standard workflows: [Visual Studio Code](../logic-apps/create-single-tenant-workflows-visual-studio-code.md)
+* Consumption workflows: [Create Consumption logic app workflows with Visual Studio Code](../logic-apps/quickstart-create-logic-apps-visual-studio-code.md)
+* Standard workflows: [Create Standard logic app workflows with Visual Studio Code](../logic-apps/create-single-tenant-workflows-visual-studio-code.md)
 
 ### [Consumption](#tab/consumption)
 
@@ -338,11 +340,11 @@ The steps to add and use a Service Bus trigger differ based on whether you want 
 
 By default, the Service Bus built-in connector is a stateless connector. To run this connector's operations in stateful mode, see [Enable stateful mode for stateless built-in connectors](enable-stateful-affinity-built-in-connectors.md). Service Bus built-in non-session triggers follow the [*push-trigger* pattern](introduction.md#triggers), while session-based triggers provide polling capability.
 
-1. In the [Azure portal](https://portal.azure.com), and open your Standard logic app resource with a blank workflow in the designer.
+1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource with a blank workflow in the designer.
 
 1. In the designer, [follow these general steps to add the Azure Service Bus built-in trigger that you want](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=standard#add-trigger).
 
-   This example continues with the built-in auto-complete trigger named **When messages are available in a queue**. This trigger reads the message from a service bus. If the logic app can get the message and save the trigger response to storage, the trigger automatically completes the message. If a failure happens instead, the trigger abandons the message. These behaviors only apply to stateful workflows. For stateless workflows, the auto-complete or abandon decision happens only after the run completes.
+   This example continues with the built-in auto-complete trigger named **When messages are available in a queue**. This trigger reads the message from a service bus. If the logic app can receive the message and save the trigger response to storage, the trigger automatically completes the message. If a failure happens instead, the trigger abandons the message. These behaviors apply only to stateful workflows. For stateless workflows, the auto-complete or abandon decision happens only after the run completes.
 
 1. If prompted, provide the following information for your connection. When you're done, select **Create new**.
 
@@ -403,7 +405,7 @@ Service Bus managed triggers follow the [*long-polling trigger* pattern](#servic
    | **Queue type** | No | The type for the selected queue |
    | **How often do you want to check for items?** | Yes | The polling interval and frequency to check the queue for items |
 
-   :::image type="content" source="./media/connectors-create-api-azure-service-bus/service-bus-trigger-managed-standard.png" alt-text="Screenshot that shows the workflow of a Standard logic app with a Service Bus-managed trigger, and example trigger information.":::
+   :::image type="content" source="./media/connectors-create-api-azure-service-bus/service-bus-trigger-managed-standard.png" alt-text="Screenshot that shows the workflow of a Standard logic app with a Service Bus managed trigger, and example trigger information.":::
 
 1. To add any other available properties to the trigger, open the **Add new parameter** list, and select the properties that you want.
 
@@ -421,8 +423,8 @@ Service Bus managed triggers follow the [*long-polling trigger* pattern](#servic
 
 The following steps use the Azure portal, but with the appropriate Azure Logic Apps extension, you can also use the following tools to build logic app workflows:
 
-* Consumption workflows: [Visual Studio Code](../logic-apps/quickstart-create-logic-apps-visual-studio-code.md)
-* Standard workflows: [Visual Studio Code](../logic-apps/create-single-tenant-workflows-visual-studio-code.md)
+* Consumption workflows: [Create Consumption logic app workflows with Visual Studio Code](../logic-apps/quickstart-create-logic-apps-visual-studio-code.md)
+* Standard workflows: [Create Standard logic app workflows with Visual Studio Code](../logic-apps/create-single-tenant-workflows-visual-studio-code.md)
 
 ### [Consumption](#tab/consumption)
 
