@@ -179,7 +179,7 @@ There are many significant tradeoffs between the various supported storage provi
 | Price-performance configurable? | ❌ No | ✅ Yes (Event Hubs TUs and CUs) | ✅ Yes (SQL vCPUs) | Coming soon! | 
 | Disconnected environment support | ❌ Azure connectivity required | ❌ Azure connectivity required | ✅ Fully supported | ❌ Azure connectivity required |
 | Identity-based connections | ✅ Fully supported |❌ Not supported | ⚠️ Requires runtime-driven scaling |  ✅ Fully supported |
-| [Flex Consumption plan](../flex-consumption-plan.md) | ✅ Fully supported ([see notes](./durable-functions-azure-storage-provider.md#flex-consumption-plan)) |❌ Not supported | ✅ Fully supported | ❌ Not supported |
+| [Flex Consumption plan](../flex-consumption-plan.md) | ✅ Fully supported ([see notes](./durable-functions-azure-storage-provider.md#flex-consumption-plan)) |❌ Not supported | ✅ Fully supported | ✅ Fully supported |
 
 ## Next steps
 

@@ -299,7 +299,7 @@ az role assignment create --assignee "$clientId" --role "Storage Blob Data Owner
 
 #### Azure SQL Database
 >[!NOTE]
-> Authenticating to Azure SQL database using managed identity is _not_ supported when hosting a Durable Functions app in the Flex Consumption plan. If your app is hosted in the Flex Consumption plan, skip to the [set app settings](#set-required-app-settings) section. 
+> Authenticating to Azure SQL database using managed identity is _not_ supported when hosting a Durable Functions app in the Flex Consumption plan. If your app is hosted in the Flex Consumption plan, skip to the [set app settings](#set-required-app-settings) section. The Flex Consumption plan is supported by Durable Task Scheduler.
 
 1. Start by setting your developer identity as the database's admin.
   
@@ -347,7 +347,7 @@ If you're using user-assigned managed identity to authenticate to the SQL databa
   sqlconnstr="Server=tcp:$dbserver.database.windows.net,1433;Initial Catalog=$sqlDB;Persist Security Info=False;User ID=$clientId;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication='Active Directory Managed Identity';"
   ```
 
-For Flex Consumption apps, use a connection string to authenticate for now. You can find it by going to the SQL database resource on Azure portal, navigating to the **Settings** tab, then clicking on **Connection strings**:
+For Flex Consumption apps (supported by Durable Task Scheduler), use a connection string to authenticate for now. You can find it by going to the SQL database resource on Azure portal, navigating to the **Settings** tab, then clicking on **Connection strings**:
 
   :::image type="content" source="./media/quickstart-mssql/mssql-azure-db-connection-string.png" alt-text="Screenshot showing database connection string.":::
 
