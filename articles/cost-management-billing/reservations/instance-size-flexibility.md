@@ -80,7 +80,7 @@ The resulting CSV file contains three columns:
 
 ## API Documentation Reference
 
-For developers who prefer to use the REST API directly, refer to the [Azure Reservations Catalog REST API documentation](https://learn.microsoft.com/en-us/rest/api/reserved-vm-instances/get-catalog/get-catalog?view=rest-reserved-vm-instances-2022-11-01&tabs=HTTP).
+For developers who prefer to use the REST API directly, refer to the [Azure Reservations Catalog REST API documentation](/rest/api/reserved-vm-instances/get-catalog/get-catalog?view=rest-reserved-vm-instances-2022-11-01&tabs=HTTP).
 
 The ISF ratio information is found in the API response within each catalog item's `skuProperties` array. Look for properties with the following names:
 - `ReservationsAutofitGroup` - Contains the flexibility group name
@@ -190,12 +190,12 @@ $ISFRatios | Select-Object -First 10 | Format-Table
 
 ## Next steps
 
-- [Learn more about Azure Reservations](https://docs.microsoft.com/azure/cost-management-billing/reservations/save-compute-costs-reservations)
-- [Understanding Instance Size Flexibility for different services](https://docs.microsoft.com/azure/cost-management-billing/reservations/reserved-instance-size-flexibility)
-- [Azure Resource Manager REST API reference](https://docs.microsoft.com/rest/api/resources/)
+- [Learn more about Azure Reservations](save-compute-costs-reservations.md)
+- [Understanding Instance Size Flexibility for different services](reservation-discount-application.md#discount-applies-to-different-sizes)
+- [Azure Resource Manager REST API reference](/rest/api/resources/)
 
 ## Related articles
 
-- [Azure Reservations documentation](https://docs.microsoft.com/azure/cost-management-billing/reservations/)
-- [Manage Azure Reservations](https://docs.microsoft.com/azure/cost-management-billing/reservations/manage-reservations)
-- [Azure PowerShell documentation](https://docs.microsoft.com/powershell/azure/)
+- [Azure Reservations documentation](save-compute-costs-reservations.md)
+- [Manage Azure Reservations](manage-reserved-vm-instance.md)
+- [Azure PowerShell documentation](/powershell/azure/)
