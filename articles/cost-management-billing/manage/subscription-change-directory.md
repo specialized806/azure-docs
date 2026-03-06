@@ -63,4 +63,4 @@ Follow these steps to complete the change directory workflow.
 
 :::image type="content" source="./media/subscription-change-directory/7-accept-transfer.png" alt-text="Screenshot that shows the acceptance of a transfer" lightbox="./media/subscription-change-directory/7-accept-transfer.png" :::
 
-:::image type="content" source="./media/subscription-change-directory/new-7-accept-transfer.png" alt-text="Screenshot that shows the acceptance of a transfer" lightbox="./media/subscription-change-directory/new-7-accept-transfer.png" :::
+:::image type="content" source="./media/subscription-change-directory/new-7-accept-transfer.png" alt-text="NEW Screenshot that shows the acceptance of a transfer" lightbox="./media/subscription-change-directory/new-7-accept-transfer.png" :::
