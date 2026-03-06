@@ -36,7 +36,7 @@ First, verify the identity source that's currently enabled on your storage accou
 
 1. Select **Configured**.
 
-1. The portal shows the identity source that's enabled on the storage account and its configuration status. Other identity sources are grayed out. In this example, Microsoft Entra Kerberos is enabled on the storage account, but not yet configured.
+1. The portal shows the identity source that's enabled on the storage account and its configuration status. Other identity sources are grayed out. In this example, Microsoft Entra Kerberos is enabled as the identity source for the storage account.
 
    :::image type="content" source="media/change-identity-source/identity-source-status.png" alt-text="Screenshot showing which identity source is enabled on the storage account." lightbox="media/change-identity-source/identity-source-status.png":::
 
@@ -74,18 +74,20 @@ Disable your current identity source by using the Azure portal, Azure PowerShell
 
 ### Active Directory Domain Services (AD DS)
 
-> [!IMPORTANT]
-> After disabling AD DS authentication, consider deleting the AD DS computer account or service logon account that you created to represent the storage account in your on-premises AD. If you leave the identity in AD DS, it remains as an orphaned object.
-
 # [Portal](#tab/portal)
+
+To disable AD DS on the storage account, follow these steps.
 
 1. Under **Active Directory Domain Services (AD DS)**, select **Configure**.
 1. Select the **Disable Active Directory for this storage account** checkbox.
 1. Select **Save**.
 
+> [!IMPORTANT]
+> After disabling AD DS authentication, consider deleting the AD DS computer account or service logon account that you created to represent the storage account in your on-premises AD. If you leave the identity in AD DS, it remains as an orphaned object.
+
 # [Azure PowerShell](#tab/powershell)
 
-Run the following command, replacing the placeholder values with your own.
+To disable AD DS on the storage account, run the following cmdlet. Replace the placeholder values with your own.
 
 ```azurepowershell
 Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName <storageAccountName> -EnableActiveDirectoryDomainServicesForFile $false
@@ -93,7 +95,7 @@ Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName 
 
 # [Azure CLI](#tab/cli)
 
-Run the following command, replacing the placeholder values with your own.
+To disable AD DS on the storage account, run the following command. Replace the placeholder values with your own.
 
 ```azurecli
 az storage account update --name <storage-account-name> --resource-group <resource-group-name> --enable-files-adds false
@@ -105,13 +107,15 @@ az storage account update --name <storage-account-name> --resource-group <resour
 
 # [Portal](#tab/portal)
 
+To disable Microsoft Entra Domain Services on the storage account, follow these steps.
+
 1. Under **Microsoft Entra Domain Services**, select **Configure**.
 1. Uncheck the **Enable Microsoft Entra Domain Services** checkbox.
 1. Select **Save**.
 
 # [Azure PowerShell](#tab/powershell)
 
-Run the following command, replacing the placeholder values with your own.
+To disable Microsoft Entra Domain Services on the storage account, run the following cmdlet. Replace the placeholder values with your own.
 
 ```azurepowershell
 Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName <storageAccountName> -EnableAzureActiveDirectoryDomainServicesForFile $false
@@ -119,7 +123,7 @@ Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName 
 
 # [Azure CLI](#tab/cli)
 
-Run the following command, replacing the placeholder values with your own.
+To disable Microsoft Entra Domain Services on the storage account, run the following command. Replace the placeholder values with your own.
 
 ```azurecli
 az storage account update --name <storage-account-name> --resource-group <resource-group-name> --enable-files-aadds false
@@ -131,13 +135,15 @@ az storage account update --name <storage-account-name> --resource-group <resour
 
 # [Portal](#tab/portal)
 
+To disable Microsoft Entra Kerberos on the storage account, follow these steps.
+
 1. Under **Microsoft Entra Kerberos**, select **Configure**.
 1. Uncheck the **Microsoft Entra Kerberos** checkbox.
 1. Select **Save**.
 
 # [Azure PowerShell](#tab/powershell)
 
-Run the following command, replacing the placeholder values with your own.
+To disable Microsoft Entra Kerberos on the storage account, run the following cmdlet. Replace the placeholder values with your own.
 
 ```azurepowershell
 Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName <storageAccountName> -EnableAzureActiveDirectoryKerberosForFile $false
@@ -145,7 +151,7 @@ Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName 
 
 # [Azure CLI](#tab/cli)
 
-Run the following command, replacing the placeholder values with your own.
+To disable Microsoft Entra Kerberos on the storage account, run the following command. Replace the placeholder values with your own.
 
 ```azurecli
 az storage account update --name <storage-account-name> --resource-group <resource-group-name> --enable-files-aadkerb false
