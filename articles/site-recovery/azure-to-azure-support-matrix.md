@@ -72,7 +72,7 @@ Subscription | Can be different from source VMs | Cache storage account must be 
 Azure Storage firewalls for virtual networks | Supported | If you use a firewall-enabled cache storage account or a target storage account, ensure that you [allow trusted Microsoft services](../storage/common/storage-network-security.md#exceptions).<br></br>Ensure that you allow access to at least one subnet of the source virtual network.<br></br>If you use user-assigned managed identity (UAMI) created on an Azure Recovery Services vault, don't restrict virtual network access to your storage accounts that are used for Site Recovery. Allow access from all networks if you use vault UAMI.
 Soft delete | Not supported | Soft delete isn't supported because after soft delete is enabled on a cache storage account, it increases cost. Site Recovery performs frequent creates/deletes of log files. Replicating causes costs to increase.
 Encryption at rest | Supported | You can configure storage account encryption with customer-managed keys (CMKs).
-Managed identity | Supported | Please follow [Turn off key based access on cache account](https://learn.microsoft.com/en-us/azure/site-recovery/asr-turn-off-key-authentication-cache).
+Managed identity | Supported | Follow [Turn off key based access on cache account](/azure/site-recovery/asr-turn-off-key-authentication-cache).
 
 The following table lists the limits in terms of number of disks that can replicate to a single storage account.
 
