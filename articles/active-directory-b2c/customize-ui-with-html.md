@@ -440,30 +440,13 @@ To use the sample:
 1. Now modify the policy, pointing to your HTML file, as mentioned previously.
 1. If you see missing fonts, images, or CSS, check your references in the extensions policy and the `\*.html` files.
 
-> [!NOTE]
-> **Bootstrap Dependency Notice**
-> 
-> This template uses **Bootstrap 3.3.5** sourced from the official Bootstrap CDN. This version has been validated and tested with the product.
-> 
-> **Template repositor**y: [https://github.com/azure-ad-b2c/html-templates](https://github.com/azure-ad-b2c/html-templates)
->
-> **Official Bootstrap download and CDN reference**: [https://getbootstrap.com/docs/3.3/getting-started/#download-cdn](https://getbootstrap.com/docs/3.3/getting-started/#download-cdn)
-> 
-> **CDN reference used by the template**: [https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css](https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css)
-> 
-> Example snippet (default configuration):
-> ```xml
-> <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.5/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-> ```
-> You may replace the CDN reference with your organization’s internal CDN or a locally hosted copy to meet reliability, security, or compliance requirements.
-> 
-> Please note:
-> - The template is validated specifically against **Bootstrap 3.3.5.**
-> - Upgrading, downgrading, or modifying the Bootstrap version may introduce styling, layout, or component compatibility issues.
-> - Customers are responsible for validating and supporting any such changes.
-> 
-> We recommend retaining the validated version unless appropriate regression testing has been completed.
-      
+
+### Bootstrap dependency in sample templates
+
+The [sample templates](https://github.com/azure-ad-b2c/html-templates) use **Bootstrap 3.3.5**, sourced from the official Bootstrap CDN. This version has been validated and tested with Azure AD B2C.
+
+The templates reference the following CDN URL for Bootstrap CSS:
+
 ## Use company branding assets in custom HTML
 
 To use [company branding](customize-ui.md#configure-company-branding) assets in a custom HTML, add the following tags outside the `<div id="api">` tag. The image source is replaced with that of the background image and banner logo.
