@@ -62,5 +62,3 @@ Follow these steps to complete the change directory workflow.
 2. If you sent the request to another party, they receive an email with the link to Accept the transfer. This is the same link the requestor sees in step 2 above.
 
 :::image type="content" source="./media/subscription-change-directory/7-accept-transfer.png" alt-text="Screenshot that shows the acceptance of a transfer" lightbox="./media/subscription-change-directory/7-accept-transfer.png" :::
-
-:::image type="content" source="./media/subscription-change-directory/new-7-accept-transfer.png" alt-text="Screenshot that shows the acceptance of a transfer" lightbox="./media/subscription-change-directory/new-7-accept-transfer.png" :::
