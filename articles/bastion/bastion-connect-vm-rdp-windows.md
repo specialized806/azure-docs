@@ -90,7 +90,7 @@ Use the Azure portal to create a browser-based RDP connection to your Windows vi
 
 1. In the **Connection settings** tab, select **RDP** as the protocol, and enter the port number if you changed it from the default of 3389.
 
-1. Select your authentication method. In this guide we will select [Microsoft Entra ID (Preview)](bastion-entra-id-authentication.md). The available options depend on how you configured your Bastion host. For more information about authentication methods, see [Authentication methods](#authentication-methods).
+1. Select your authentication method. [Microsoft Entra ID (Preview)](bastion-entra-id-authentication.md) is recommended. For other options, see [Authentication methods](#authentication-methods).
 
 1. Select **Connect** to open the RDP connection to your virtual machine in a new browser tab.
 
