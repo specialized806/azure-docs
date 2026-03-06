@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Use work item filtering with Durable Task SDK and Durable Task Scheduler"
+title: "Quickstart: Use work item filtering with the .NET Durable Task SDK"
 description: Learn how to run a .NET Durable Task SDK sample that uses work item filtering with Durable Task Scheduler and deploy it to Azure Container Apps.
 ms.subservice: durable-task-scheduler
 ms.topic: quickstart
@@ -8,7 +8,7 @@ ms.custom:
   - build-2025
 ---
 
-# Quickstart: Use work item filtering with Durable Task SDK and Durable Task Scheduler
+# Quickstart: Use work item filtering with the .NET Durable Task SDK
 
 In this quickstart, you learn how to run a .NET Durable Task SDK sample that uses work item filtering to route orchestrations and activities to dedicated workers.
 
