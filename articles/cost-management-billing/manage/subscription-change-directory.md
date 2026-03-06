@@ -45,16 +45,19 @@ Follow these steps to complete the change directory workflow.
 
     ![Other Recipient](/media/subscription-change-directory/3b-other-recipient.png)
   
-### Step 3 - Accept the directory change request
+### Step 3 - Confirm the directory change request
 
 1. If you initiated a request that you are also accepting you will be presented with a confirmation page to Continue the transfer.
 
- ![Self Accept](/media/subscription-change-directory/1-change-directory.png) 
-    > [!NOTE]
-    > If you don’t have access to the target directory it will not show. After the directory is changed for the subscription, you'll receive a success message.  
-    ![A screenshot of the Change Directory validation page.](media/how-to-change-directory-tenants-visual-studio-azure/change-button.png "Select the directory from the dropdown and select the Change button.")
-5. Select “Switch Directories” on the subscription page to access the new directory  
+ ![Self Request Sent](/media/subscription-change-directory/5-self-request-sent.png) 
+    
+2. If you sent the request to another party you will receive the following confirmation page. This confirmation page includes a link for the acceptor to complete the transfer. 
 
-  ![A screenshot of the subscriptions page with Switch Directories highlighted.](media/how-to-change-directory-tenants-visual-studio-azure/switch-directories-outlined.png "Select Switch Directories to access the new directory.")
+ ![Other Party Request Sent](/media/subscription-change-directory/6-other-transfer-sent.png) 
 
-You can also access a target directory and change your tenancy by going to the target directory and adding an Admin. Follow [these instructions](/visualstudio/subscriptions/cloud-admin) on how to add an Admin to your subscription. Once that’s done, the Admin has access to both directories and can change the tenant directory for you.  
+### Step 4 - Accept the directory change request
+
+1. If you initiatied a request and are also the acceptor click Accept to complete the transfer.
+2. If you sent the request to another party they will receive an email with the link to Accept the transfer. This is the same link the requestor sees in step 2 above.
+
+ ![Accept Transfer](/media/subscription-change-directory/7-accept-transfer.png) 
