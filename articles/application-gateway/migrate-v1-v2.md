@@ -47,7 +47,7 @@ This article focuses on the configuration stage of migration. Migration of clien
 
 - You can't have any other planned operation on the V1 gateway or any associated resources during migration.
 
-- If you provide a public IP address, ensure that it's in a succeeded state. If you don't provide a public IP address but provide `AppGWResourceGroupName`, ensure that public IP resource with the name `AppGWV2Name-IP` doesn't exist in a resource group with the name `AppGWResourceGroupName` in the V1 subscription.
+- If you provide a public IP address, ensure that it's in a succeeded state. If you don't provide a public IP address but provide `AppGWResourceGroupName`, ensure that a public IP resource with the name `AppGWV2Name-IP` doesn't exist in a resource group with the name `AppGWResourceGroupName` in the V1 subscription.
 
 - For V1, authentication certificates are required to set up TLS connections with backend servers. V2 requires uploading [trusted root certificates](./certificates-for-backend-authentication.md) for the same purpose. Whereas V1 allows the use of self-signed certificates as authentication certificates, V2 mandates [generating and uploading a self-signed root certificate](./self-signed-certificates.md) if self-signed certificates are used in the backend.
 
@@ -255,7 +255,7 @@ The legacy script takes the following parameters:
 
 - `publicIpResourceId`. Use this optional string to provide the resource ID of an existing public IP address (Standard tier) resource in your subscription that you want to allocate to the new V2 gateway. If you provide the public IP resource name, ensure that it exists in a succeeded state.
 
-  If you don't specify this parameter, the script allocates a new public IP address in the same resource group. The name is the V2 gateway's name with `-IP` appended. If you provide `AppGWResourceGroupName` wihtout providing a public IP address, ensure that a public IP resource with the name `AppGWV2Name-IP` doesn't exist in a resource group with the name `AppGWResourceGroupName` in the V1 subscription.
+  If you don't specify this parameter, the script allocates a new public IP address in the same resource group. The name is the V2 gateway's name with `-IP` appended. If you provide `AppGWResourceGroupName` without providing a public IP address, ensure that a public IP resource with the name `AppGWV2Name-IP` doesn't exist in a resource group with the name `AppGWResourceGroupName` in the V1 subscription.
 
 - `validateMigration`. Use this optional switch parameter to enable the script to do some basic configuration comparison validations after the V2 gateway creation and the configuration copy. By default, no validation is done.
 
@@ -317,7 +317,7 @@ The legacy script takes the following parameters:
 
 - [Virtual network service endpoint policies](../virtual-network/virtual-network-service-endpoint-policies-overview.md) are currently not supported in an Application Gateway subnet.
 
-- To migrate a TLS/SSL configuration, you must specify all the TLS/SSL certificatess used in your V1 gateway.
+- To migrate a TLS/SSL configuration, you must specify all the TLS/SSL certificates used in your V1 gateway.
 
 - If you have FIPS mode enabled for your V1 gateway, it isn't migrated to your new V2 gateway.
 
@@ -384,29 +384,31 @@ For the legacy cloning script, version 1.0.11 is the new version of the migratio
 
 ### Public IP retention script
 
-After successfully migrating the configuration and thoroughly testing your new V2 gateway, this step focuses on redirecting live traffic.
+After you successfully migrate the configuration and thoroughly test your new V2 gateway, this step focuses on redirecting live traffic.
 
-We provide an Azure PowerShell script designed to **retain the Public IP address from V1**.
+We provide an Azure PowerShell script that *retains the public IP address from V1*. Here are important considerations about the script:
 
-- Swaps Public IP: This script reserves the Basic public IP from V1, converts it to Standard, and attaches it to the V2 gateway. This effectively redirects all incoming traffic to the V2 gateway.
-- Expected Downtime: This IP swap operation typically results in a brief **downtime of approximately one to five minutes**. Plan accordingly.
-- After a successful script run, the Public IP is moved from Application Gateway V1 to Application Gateway V2, with Application Gateway V1 receiving a new public IP.
+- The script reserves the Basic public IP from V1, converts it to Standard, and attaches it to the V2 gateway. This action effectively redirects all incoming traffic to the V2 gateway.
+- This IP swap operation typically results in a brief *downtime of approximately one to five minutes*. Plan accordingly.
+- After a successful script run, the public IP is moved from Application Gateway V1 to Application Gateway V2. Application Gateway V1 receives a new public IP.
+- During IP migration, don't attempt any other operation on the V1 and V2 gateways or any associated resources.
+- The public IP swap that this script performs is irreversible. After you initiate it, you can't revert the IP to the V1 gateway by using the script.
 
 > [!NOTE]
-> The IP migration script does not support Public IP address resources that have a DNS name beginning with a numeric character. This limitation exists because Public IP address resources do not allow DNS name labels that start with a number. This issue is more likely to occur for V1 gateways **created before May 2023**, when Public IP addresses were automatically assigned a default DNS name of the form **{GUID}.cloudapp.net**.
+> The IP migration script does not support public IP address resources that have a DNS name beginning with a numeric character. This limitation exists because public IP address resources don't allow DNS name labels that start with a number. This issue is more likely to occur for V1 gateways *created before May 2023*, when public IP addresses were automatically assigned a default DNS name of the form `{GUID}.cloudapp.net`.
 >
-> To proceed with migration, update the Public IP address resource to use a DNS name label that begins with a letter before running the script. [Learn about configuring Public IP DNS](../virtual-network/ip-services/public-ip-addresses.md#domain-name-label).
+> To proceed with migration, update the public IP address resource to use a DNS name label that begins with a letter before running the script. [Learn about configuring public IP DNS](../virtual-network/ip-services/public-ip-addresses.md#domain-name-label).
 
-You can **download** this Public IP retention script from the [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAppGWIPMigrate)
+You can download this public IP retention script from the [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAppGWIPMigrate).
 
 #### Parameters for the script
 
 This script requires the following mandatory parameters:
 
-- `v1resourceId`. The resource ID of the V1 Application Gateway whose Public IP will be reserved and associated with V2.
-- `v2resourceId`. The resource ID of the V2 Application Gateway to which the V1 Public IP will be assigned. The V2 gateway can be created either manually or using anyone of the cloning script.
+- `v1resourceId`. The resource ID of the V1 gateway whose Public IP will be reserved and associated with V2.
+- `v2resourceId`. The resource ID of the V2 gateway to which the V1 public IP will be assigned. You can create the V2 gateway manually or by using any one of the cloning scripts.
 
-After downloading and [installing the script](../application-gateway/migrate-v1-v2.md#installing-the-script), execute AzureAppGWIPMigrate.ps1 with the required parameters:
+After you download and [install the script](../application-gateway/migrate-v1-v2.md#installing-the-script), run `AzureAppGWIPMigrate.ps1` with the required parameters:
 
 ```azurepowershell
    ./AzureAppGWIPMigrate.ps1
@@ -422,35 +424,29 @@ Here's an example:
    -v2resourceId /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.Network/applicationGateways/myv2appgateway `
 ```
 
-After the IP swap completes, verify control plane and data plane operations on the V2 gateway. All control plane actions except Delete are disabled on the V1 gateway.
-
-> [!NOTE]
-> During IP migration, don't attempt any other operation on the V1 & V2 gateway or any associated resources.
-
-> [!NOTE]
-> The public IP swap performed by this script is irreversible. Once initiated, it isn't possible to revert the IP back to the V1 gateway using the script.
+After the IP swap finishes, verify control plane and data plane operations on the V2 gateway. All control plane actions except deletion are disabled on the V1 gateway.
 
 ### Traffic migration recommendations
 
-The following are a few scenarios where your current application gateway (Standard) can receive client traffic, and our recommendations for each one:
+The following items are a few scenarios where your current application gateway (Standard) can receive client traffic, and our recommendations for each one:
 
-- **A custom DNS zone (for example, contoso.com) that points to the frontend IP address (using an A record) associated with your Standard V1 or Web Application Firewall V1 gateway**.
+- **A custom DNS zone (for example, contoso.com) points to the frontend IP address (by using an A record) associated with your Standard V1 or Web Application Firewall V1 gateway**.
 
-  You can update your DNS record to point to the frontend IP or DNS label associated with your Standard_V2 application gateway. Depending on the TTL configured on your DNS record, it can take a while for all your client traffic to migrate to your new V2 gateway.
+  You can update your DNS record to point to the frontend IP or DNS label associated with your Standard V2 application gateway. Depending on the time to live (TTL) configured on your DNS record, it can take a while for all your client traffic to migrate to your new V2 gateway.
 
-- **A custom DNS zone (for example, contoso.com) that points to the DNS label (for example: *myappgw.eastus.cloudapp.azure.com* using a CNAME record) associated with your V1 gateway**.
+- **A custom DNS zone (for example, contoso.com) points to the DNS label (for example, myappgw.eastus.cloudapp.azure.com by using a CNAME record) associated with your V1 gateway**.
 
   You have two choices:
   
-  - If you use public IP addresses on your application gateway, you can do a controlled, granular migration using a Traffic Manager profile to incrementally route traffic (weighted traffic routing method) to the new V2 gateway.
+  - If you use public IP addresses on your application gateway, you can do a controlled, granular migration by using an Azure Traffic Manager profile to incrementally route traffic to the new V2 gateway.
 
-   You can do this by adding the DNS labels of both the V1 and V2 application gateways to the [Traffic Manager profile](../traffic-manager/traffic-manager-routing-methods.md#weighted-traffic-routing-method), and CNAMEing your custom DNS record (for example, `www.contoso.com`) to the Traffic Manager domain (for example, contoso.trafficmanager.net).
+   You can use this weighted traffic-routing method by adding the DNS labels of both the V1 and V2 application gateways to the [Traffic Manager profile](../traffic-manager/traffic-manager-routing-methods.md#weighted-traffic-routing-method). Then, apply CNAME on your custom DNS record (for example, `www.contoso.com`) to the Traffic Manager domain (for example, `contoso.trafficmanager.net`).
 
-  - Or, you can update your custom domain DNS record to point to the DNS label of the new V2 application gateway. Depending on the TTL configured on your DNS record, it can take a while for all your client traffic to migrate to your new V2 gateway.
+  - You can update your custom domain DNS record to point to the DNS label of the new V2 application gateway. Depending on the TTL configured on your DNS record, it can take a while for all your client traffic to migrate to your new V2 gateway.
 
 - **Your clients connect to the frontend IP address of your application gateway**.
 
-  Update your clients to use the IP address associated with the newly created V2 application gateway. We recommend that you don't use IP addresses directly. Consider using the DNS name label (for example, yourgateway.eastus.cloudapp.azure.com) associated with your application gateway that you can CNAME to your own custom DNS zone (for example, contoso.com).
+  Update your clients to use the IP address associated with the newly created V2 application gateway. We recommend that you don't use IP addresses directly. Consider using the DNS name label (for example, `yourgateway.eastus.cloudapp.azure.com`) associated with your application gateway that you can apply CNAME to your own custom DNS zone (for example, `contoso.com`).
 
 ## Post-migration tasks
 
@@ -458,27 +454,33 @@ After traffic migration succeeds and you fully verify that the application runs 
 
 ## Pricing considerations
 
-The pricing models are different for Application Gateway V1 and V2. V2 is charged based on consumption. See [Application Gateway pricing](https://azure.microsoft.com/pricing/details/application-gateway/) before migrating for pricing information.
+The pricing models are different for Application Gateway V1 and V2. V2 is charged based on consumption. For pricing information, see [Application Gateway pricing](https://azure.microsoft.com/pricing/details/application-gateway/) before you migrate.
 
 ### Cost-efficiency guidance
 
-Application Gateway V2 comes with a range of advantages such as a performance boost of 5x, improved security with Key Vault integration, faster updates of security rules in Web Application Firewall V2, Web Application Firewall Custom rules, Policy associations, and Bot protection. It also offers high scalability, optimized traffic routing, and seamless integration with Azure services. These features can improve the overall user experience, prevent slowdowns during times of heavy traffic, and avoid expensive data breaches.
+Application Gateway V2 comes with a range of advantages, such as:
 
-There are five variants available in V1 based on the Tier and Size - Standard Small, Standard Medium, Standard Large, Web Application Firewall Medium, and Web Application Firewall Large.
+- A performance boost of 5x.
+- Improved security with Key Vault integration.
+- Faster updates of security rules in Web Application Firewall V2.
+- Web Application Firewall custom rules.
+- Policy associations.
+- Bot protection.
 
-| SKU | V1 fixed price/mo | V2 fixed price/mo | Recommendation |
+It also offers high scalability, optimized traffic routing, and seamless integration with Azure services. These features can improve the overall user experience, prevent slowdowns during times of heavy traffic, and avoid expensive data breaches.
+
+Five variants are available in V1, based on the tier and size: Standard Small, Standard Medium, Standard Large, Web Application Firewall Medium, and Web Application Firewall Large. For pricing information according to your region, see the [pricing page](https://azure.microsoft.com/pricing/details/application-gateway/).
+
+The scenarios in the following table are examples and are for illustration purposes only. The calculations are based on East US and for a gateway with two instances in V1. The variable cost in V2 is based on one of the three dimensions with highest usage: new connections (50 per second), persistent connections (2,500 per minute), and throughput (2.22 Mbps per capacity unit).
+
+| SKU | V1 fixed price/month | V2 fixed price/month | Recommendation |
 | --- | :---------------: | :---------------: | :------------: |
 | Standard Medium | 102.2 | 179.8 | V2 can handle a larger number of requests than a V1 gateway, so we recommend consolidating multiple V1 gateways into a single V2 gateway, to optimize the cost. Ensure that consolidation doesn't exceed the Application Gateway [limits](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-application-gateway-limits). We recommend 3:1 consolidation. |
 | Web Application Firewall Medium | 183.96 | 262.8 | Same as for Standard Medium |
 | Standard Large | 467.2 | 179.58 | For these variants, in most cases, moving to a V2 gateway can provide you with a better price benefit compared to V1. |
-| Web Application Firewall Large | 654.08 | 262.8 | Same as for Standard Large |
+| Web Application Firewall Large | 654.08 | 262.8 | Same as for Standard Large. |
 
-> [!NOTE]
-> The calculations shown here are based on East US and for a gateway with two instances in V1. The variable cost in V2 is based on one of the three dimensions with highest usage: New connections (50/sec), Persistent connections (2500 persistent connections/min), Throughput (one CU can handle 2.22 Mbps).
->
-> The scenarios described here are examples and are for illustration purposes only. For pricing information according to your region, see the [Pricing page](https://azure.microsoft.com/pricing/details/application-gateway/).
-
-For further concerns regarding the pricing, work with your CSAM or get in touch with our support team for assistance.
+For further concerns regarding the pricing, work with your account manager or get in touch with our support team for assistance.
 
 ## Common questions
 
