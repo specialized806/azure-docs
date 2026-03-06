@@ -39,8 +39,8 @@ The Azure cloud platform doesn't offer the option to configure virtual IP addres
 
 The Azure Load Balancer service provides an *internal load balancer* for Azure. With the internal load balancer, clients reach the cluster over the cluster's virtual IP address.
 
-Deploy the internal load balancer in the resource group that contains the cluster nodes. Then, configure all necessary port-forwarding rules by using the probe ports of the internal load balancer. Clients can connect via the virtual host name. The DNS server resolves the cluster IP address, and the internal load balancer handles port forwarding to the active node of the cluster.  
- 
+Deploy the internal load balancer in the resource group that contains the cluster nodes. Then, configure all necessary port-forwarding rules by using the probe ports of the internal load balancer. Clients can connect via the virtual host name. The DNS server resolves the cluster IP address, and the internal load balancer handles port forwarding to the active node of the cluster.
+
 ![Diagram of a Windows Server Failover Clustering configuration in Azure without a shared disk.][sap-ha-guide-figure-1001]
 
 ### SAP ASCS/SCS HA with cluster shared disks
@@ -68,13 +68,13 @@ In a high-availability setting, you cluster SAP ASCS/SCS instances. You use clus
 With an Enqueue Replication Server 1 (ERS1) architecture:
 
 - The same ASCS/SCS virtual host name is used to access the SAP message server and enqueue server processes, in addition to the SAP global host files via the *sapmnt* file share.
-- The same cluster shared disk (drive S) is shared between them.  
+- The same cluster shared disk (drive S) is shared between them.
 
 With Enqueue Replication Server 2 (ERS2) architecture:
 
 - The same ASCS/SCS virtual host name is used to access the SAP message server process, in addition to the SAP global host files via the *sapmnt* file share.
 - The same cluster shared disk (drive S) is shared between them.
-- There's a separate ERS virtual host name to access the enqueue server process.  
+- There's a separate ERS virtual host name to access the enqueue server process.
 
 ![Diagram of an SAP ASCS/SCS high-availability architecture with a shared disk.][sap-ha-guide-figure-8003]
 
@@ -86,7 +86,7 @@ Shared disks are supported with an ERS1 architecture, where the ERS1 instance:
 - Uses a `localhost` name.
 - Is deployed on local disks on each of the cluster nodes.
 
-Shared disks are also supported with an ERS2 architecture, where the ERS2 instance:  
+Shared disks are also supported with an ERS2 architecture, where the ERS2 instance:
 
 - Is clustered.
 - Uses a dedicated virtual or network host name.
@@ -230,6 +230,6 @@ For information about other configurations, see the following resources:
 [sap-ha-guide-figure-8003]:./media/virtual-machines-shared-sap-high-availability-guide/8003.png
 
 [optional-smb]:high-availability-guide-windows-netapp-files-smb.md#5121771a-7618-4f36-ae14-ccf9ee5f2031 (Optional configuration for SAP Application Servers on WSFC nodes using Server Message Block in Azure NetApp Files)
-[optional-fileshare]:sap-high-availability-guide-wsfc-file-share.md#86cb3ee0-2091-4b74-be77-64c2e6424f50 (Optional configuration for SAP Application Servers on WSFC nodes using Windows Scale-Out File Server)
+[optional-fileshare]:sap-high-availability-guide-wsfc-file-share.md#sap-application-servers-on-windows-server-failover-cluster-nodes-using-windows-sofs (Optional configuration for SAP Application Servers on WSFC nodes using Windows Scale-Out File Server)
 [optional-smb-sql]:high-availability-guide-windows-netapp-files-smb.md#01541cf2-0a03-48e3-971e-e03575fa7b4f (Optional configuration for SAP ASCS/SCS on SQL Server Always On nodes using Server Message Block in Azure NetApp Files)
-[optional-fileshare-sql]:sap-high-availability-guide-wsfc-file-share.md#db335e0d-09b4-416b-b240-afa18505f503 (Optional configuration for SAP ASCS/SCS on SQL Server Always On nodes using Windows Scale-Out File Server)
+[optional-fileshare-sql]:sap-high-availability-guide-wsfc-file-share.md#sap-ascsscs-on-sql-server-always-on-nodes-using-windows-sofs (Optional configuration for SAP ASCS/SCS on SQL Server Always On nodes using Windows Scale-Out File Server)

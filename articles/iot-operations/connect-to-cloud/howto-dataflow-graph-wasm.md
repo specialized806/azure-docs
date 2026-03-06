@@ -6,7 +6,7 @@ ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 02/27/2026
 ai-usage: ai-assisted
 
 ---
@@ -268,7 +268,9 @@ kubectl apply -f dataflow-graph.yaml
 
 ### Test the data flow
 
-To test the data flow, send MQTT messages from within the cluster. First, deploy the MQTT client pod by following the instructions in [Test connectivity to MQTT broker with MQTT clients](../manage-mqtt-broker/howto-test-connection.md). The MQTT client provides the authentication tokens and certificates to connect to the broker. To deploy the MQTT client, run the following command:
+To test the data flow, send MQTT messages from within the cluster. The temperature module expects messages in a specific JSON format with a nested `temperature` object containing `value` (numeric) and `unit` (string) fields. For example: `{"temperature":{"value":72,"unit":"F"}}`.
+
+First, deploy the MQTT client pod by following the instructions in [Test connectivity to MQTT broker with MQTT clients](../manage-mqtt-broker/howto-test-connection.md). The MQTT client provides the authentication tokens and certificates to connect to the broker. To deploy the MQTT client, run the following command:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/Azure-Samples/explore-iot-operations/main/samples/quickstarts/mqtt-client.yaml
@@ -788,6 +790,26 @@ spec:
 
 ---
 
+### Naming rules and limits
+
+Data flow graph resources and their components have naming constraints enforced at different layers:
+
+| Component | Allowed characters | Length | Notes |
+|-----------|-------------------|--------|-------|
+| Data flow graph resource name | Lowercase alphanumeric and hyphens (`a-z`, `0-9`, `-`). Must start and end with an alphanumeric character. | 3-63 characters | Enforced by the ARM API. |
+| Node name | Alphanumeric characters, underscores, and hyphens (`a-zA-Z0-9`, `_`, `-`). | No documented limit | Must be unique within the graph. |
+| Configuration key | Alphanumeric characters, underscores, and hyphens (`a-zA-Z0-9`, `_`, `-`). | No documented limit | Key-value pairs passed to WASM modules. |
+| Data flow profile name | Lowercase alphanumeric and hyphens. | 3-39 characters | The 39-character limit is due to Kubernetes pod name constraints (63-character limit minus the `aio-dataflow-` prefix and revision suffix). |
+| Schema reference | Must match the format `aio-sr://<namespace>/<name>:<version>` or `aio-sr://<name>:<version>`. | N/A | Used in node connection schemas. |
+
+The data flow graph also enforces the following structural rules:
+
+- **No duplicate node names**: Each node in the graph must have a unique name.
+- **Valid connection types**: Only the following node connection types are allowed: Source to Graph, Source to Destination, Graph to Graph, and Graph to Destination.
+- **No cycles**: The graph can't contain circular connections that would create infinite processing loops.
+- **No self-loops**: A node can't connect to itself.
+- **No topic overlap**: If a source and destination use the same endpoint, their MQTT topics can't overlap, which would create an infinite message loop.
+
 ### Node configuration
 
 Nodes are the building blocks of a data flow graph. Each node has a unique name within the graph and performs a specific function. The graph includes three types of nodes:
@@ -866,20 +888,12 @@ In the data flow diagram, select **Add graph transform (optional)** to add a gra
     artifact: 'temperature-converter:2.1.0'
     configuration: [
       {
-        key: 'input-unit'
-        value: 'fahrenheit'
+        key: 'temperature_lower_bound'
+        value: '-40'
       }
       {
-        key: 'output-unit' 
-        value: 'celsius'
-      }
-      {
-        key: 'precision'
-        value: '2'
-      }
-      {
-        key: 'enable-filtering'
-        value: 'true'
+        key: 'temperature_upper_bound'
+        value: '3422'
       }
     ]
   }
@@ -895,14 +909,10 @@ In the data flow diagram, select **Add graph transform (optional)** to add a gra
     registryEndpointRef: my-acr-endpoint
     artifact: temperature-converter:2.1.0
     configuration:
-      - key: input-unit
-        value: fahrenheit
-      - key: output-unit
-        value: celsius
-      - key: precision
-        value: "2"
-      - key: enable-filtering
-        value: "true"
+      - key: temperature_lower_bound
+        value: "-40"
+      - key: temperature_upper_bound
+        value: "3422"
 ```
 
 ---
@@ -913,6 +923,9 @@ You pass the configuration key-value pairs to the WASM module at runtime. The mo
 - Adjust processing parameters without rebuilding modules.
 - Enable or disable features based on deployment requirements.
 - Set environment-specific values like thresholds or endpoints.
+
+> [!IMPORTANT]
+> Check your WASM module's documentation or source code for required configuration parameters. If a module expects specific parameters (such as filter bounds or thresholds) and you don't provide them, the module may fail at runtime. For details on defining parameters in graph definitions, see [Module configuration parameters](../develop-edge-apps/howto-configure-wasm-graph-definitions.md#module-configuration-parameters).
 
 #### Destination nodes
 
@@ -1108,6 +1121,11 @@ If you deploy the data flow graph but it doesn't process messages:
 
 ## Related content
 
+- [Develop WebAssembly modules](../develop-edge-apps/howto-develop-wasm-modules.md) for writing operators in Rust and Python (includes quickstart)
+- [Configure WebAssembly graph definitions](../develop-edge-apps/howto-configure-wasm-graph-definitions.md) for graph YAML structure and configuration parameters
+- [Deploy WASM modules and graph definitions](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md) for registry setup and artifact management
+- [Build WASM modules with VS Code extension](../develop-edge-apps/howto-build-wasm-modules-vscode.md) for IDE-based development
+- [Run ONNX inference in WASM](../develop-edge-apps/howto-wasm-onnx-inference.md) for ML model integration
 - [Configure MQTT data flow endpoints](howto-configure-mqtt-endpoint.md)
 - [Configure Azure Event Hubs and Kafka data flow endpoints](howto-configure-kafka-endpoint.md)
 - [Configure Azure Data Lake Storage data flow endpoints](howto-configure-adlsv2-endpoint.md)
