@@ -4,7 +4,7 @@ description: Learn how to switch between identity sources for Azure Files identi
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 03/05/2026
+ms.date: 03/06/2026
 ms.author: kendownie
 # Customer intent: As a storage administrator, I want to change the identity source configured on my storage account, so that I can switch to a different authentication method for Azure file shares.
 ---
@@ -22,7 +22,9 @@ For guidance on choosing the right identity source for your environment, see [Ov
 
 ## Step 1: Verify the current identity source
 
-Use the Azure portal to verify the identity source that's currently enabled on your storage account. Supported identity sources for SMB Azure file shares are Active Directory Domain Services (AD DS), Microsoft Entra Domain Services, and Microsoft Entra Kerberos.
+First, verify the identity source that's currently enabled on your storage account. Supported identity sources for SMB Azure file shares are Active Directory Domain Services (AD DS), Microsoft Entra Domain Services, and Microsoft Entra Kerberos.
+
+# [Portal](#tab/portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and select the storage account.
 
@@ -38,9 +40,37 @@ Use the Azure portal to verify the identity source that's currently enabled on y
 
    :::image type="content" source="media/change-identity-source/identity-source-status.png" alt-text="Screenshot showing which identity source is enabled on the storage account." lightbox="media/change-identity-source/identity-source-status.png":::
 
+# [Azure PowerShell](#tab/powershell)
+
+Check the identity source that's enabled on your storage account by running the following cmdlet. Replace `<resource-group-name>` and `<storage-account-name>` with your values.
+
+If the cmdlet returns **None**, then no identity source is enabled on the storage account and you can proceed to [Enable a new identity source](#step-3-enable-a-new-identity-source).
+
+```azurepowershell
+# Get the target storage account
+$storageaccount = Get-AzStorageAccount `
+        -ResourceGroupName "<resource-group-name>" `
+        -Name "<storage-account-name>"
+
+# List the identity source for the selected storage account
+$storageAccount.AzureFilesIdentityBasedAuth.DirectoryServiceOptions
+```
+
+# [Azure CLI](#tab/cli)
+
+Check the identity source that's enabled on your storage account by running the following command. Replace `<resource-group-name>` and `<storage-account-name>` with your values.
+
+If the command returns **None**, then no identity source is enabled on the storage account and you can proceed to [Enable a new identity source](#step-3-enable-a-new-identity-source).
+
+```azurecli
+az storage account show --name <storage-account-name> --resource-group <resource-group-name> --query "azureFilesIdentityBasedAuthentication.directoryServiceOptions" --output tsv
+```
+
+---
+
 ## Step 2: Disable the current identity source
 
-Use the tabs below to find steps for disabling your current identity source.
+Disable your current identity source by using the Azure portal, Azure PowerShell, or Azure CLI.
 
 ### Active Directory Domain Services (AD DS)
 
@@ -76,7 +106,7 @@ az storage account update --name <storage-account-name> --resource-group <resour
 # [Portal](#tab/portal)
 
 1. Under **Microsoft Entra Domain Services**, select **Configure**.
-1. Uncheck the **Microsoft Entra Domain Services** checkbox.
+1. Uncheck the **Enable Microsoft Entra Domain Services** checkbox.
 1. Select **Save**.
 
 # [Azure PowerShell](#tab/powershell)
