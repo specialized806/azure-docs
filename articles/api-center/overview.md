@@ -55,10 +55,10 @@ For more information about the entities you can manage and the capabilities in A
 
 Azure API Center is offered in a Free plan and Standard plan, which are designed to meet different needs as summarized in the following table. For feature availability and limits, see [Azure API Center limits](/azure/azure-resource-manager/management/azure-subscription-service-limits?toc=/azure/api-center/toc.json&bc=/azure/api-center/breadcrumb/toc.json#azure-api-center-limits).
 
-|  | Free plan | Standard plan |
+| Capability | Free plan | Standard plan |
 |---------|-----------|---------------|
 | **Use cases** | Evaluation and small-scale use | Enterprise and production workloads |
-| **Inventory and governance capabilities** | Limited<sup>1</sup> | Expanded for enterprise use cases |
+| **Inventory and governance features** | Limited<sup>1</sup> | Expanded for enterprise use cases |
 | **Upgrade path** | Upgradable to Standard | N/A |
 | **Time constraints** | None | None |
 <sup>1</sup> For details, see [Azure API Center limits](/azure/azure-resource-manager/management/azure-subscription-service-limits?toc=/azure/api-center/toc.json&bc=/azure/api-center/breadcrumb/toc.json#azure-api-center-limits).
