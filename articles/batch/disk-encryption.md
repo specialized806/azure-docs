@@ -46,14 +46,54 @@ After the pool is created, you can see the disk encryption configuration targets
 
 ## Examples
 
-The following examples show how to encrypt the OS and temporary disks on a Batch pool using the Batch .NET SDK, the Batch REST API, and the Azure CLI.
+The following examples show how to encrypt the OS and temporary disks on a Batch pool using the Azure.ResourceManager.Batch SDK, the Batch REST API, and the Azure CLI.
 
-### Batch .NET SDK
+### Azure.ResourceManager.Batch SDK
 
 ```csharp
-pool.VirtualMachineConfiguration.DiskEncryptionConfiguration = new DiskEncryptionConfiguration(
-    targets: new List<DiskEncryptionTarget> { DiskEncryptionTarget.OsDisk, DiskEncryptionTarget.TemporaryDisk }
-    );
+using Azure;
+using Azure.Identity;
+using Azure.ResourceManager;
+using Azure.ResourceManager.Batch;
+using Azure.ResourceManager.Batch.Models;
+
+//...
+
+public async Task SetDiskEncryption()
+{
+    ArmClient client = new ArmClient(new DefaultAzureCredential());
+
+    ResourceIdentifier batchAccountResourceId =
+        BatchAccountResource.CreateResourceIdentifier("subscriptionId", "resourceGroupName", "accountName");
+    BatchAccountResource batchAccount = client.GetBatchAccountResource(batchAccountResourceId);
+
+    BatchAccountPoolCollection poolCollection = batchAccount.GetBatchAccountPools();
+
+    BatchAccountPoolData poolData = new BatchAccountPoolData()
+    {
+        VmSize = "standard_ds1_v2",
+        DeploymentConfiguration = new BatchDeploymentConfiguration()
+        {
+            VmConfiguration = new BatchVmConfiguration(
+                imageReference: new BatchImageReference()
+                {
+                    Publisher = "Canonical",
+                    Offer = "UbuntuServer",
+                    Sku = "22.04-LTS"
+                },
+                nodeAgentSkuId: "batch.node.ubuntu 22.04")
+            {
+                 DiskEncryptionConfiguration = new BatchDiskEncryptionConfiguration()
+                 {
+                     Targets = { BatchDiskEncryptionTarget.OSDisk, BatchDiskEncryptionTarget.TemporaryDisk }
+                 }
+            }
+        }
+    };
+
+    ArmOperation<BatchAccountPoolResource> pool = await poolCollection.CreateOrUpdateAsync(
+        WaitUntil.Completed, "diskencryptionPool", poolData);
+}
 ```
 
 ### Batch REST API
