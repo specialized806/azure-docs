@@ -109,7 +109,7 @@ To see all your version sets, run the [az apim api versionset list](/cli/azure/a
 
 ```azurecli
 az apim api versionset list --resource-group <resource-group-name> \
-    --service-name <API-Management-service-name> --output table
+    --service-name <API-management-service-name> --output table
 ```
 
 When the Azure portal creates a version set for you, it assigns an alphanumeric name, which appears in the **Name** column of the list. Use this name in other Azure CLI commands.
@@ -118,7 +118,7 @@ To see details about a version set, run the [az apim api versionset show](/cli/a
 
 ```azurecli
 az apim api versionset show --resource-group <resource-group-name> \
-    --service-name <API-Management-service-name> --version-set-id <ID-from-the-Name-column>
+    --service-name <API-management-service-name> --version-set-id <ID-from-the-name-column>
 ```
 
 For more information about version sets, see [Versions in Azure API Management](api-management-versions.md#how-versions-are-represented).
@@ -138,8 +138,6 @@ If you use the [developer portal](api-management-howto-developer-portal-customiz
 1. Notice the **Request URL** of the first operation in the list. It shows that the API URL path includes **v1**.
 
 ## Next step
-
-Go to the next tutorial:
 
 > [!div class="nextstepaction"]
 > [Access and customize the developer portal](api-management-howto-developer-portal-customize.md)

@@ -308,12 +308,10 @@ Use the following steps to enable Application Insights logging for an API. You c
    > [!TIP]
    > To enable logging for all APIs, select **All APIs**.
 
-1. Go to the **Settings** tab from the top bar.
+1. Select the **Settings** tab on the top bar.
 
-1. Scroll down to the **Diagnostics Logs** section.  
+1. Scroll down to the **Diagnostics Logs** section, and check the **Enable** box.
     :::image type="content" source="media/api-management-howto-app-insights/apim-app-insights-api-1.png" alt-text="Screenshot of Diagnostic Logs configuration in the portal.":::
-
-1. Check the **Enable** box.
 
 1. Select your attached logger in the **Destination** dropdown.
 
@@ -368,7 +366,7 @@ To emit custom metrics, perform the following configuration steps.
 1. Enable **Custom metrics (Preview)** with custom dimensions in your Application Insights instance. 
 
     1. Navigate to your Application Insights instance in the portal.
-    1. In the sidebar menu, select **Usage and estimated costs**.
+    1. Under **Configure** in the sidebar menu, select **Usage and estimated costs**.
     1. Select **Custom metrics (Preview)** > **With dimensions**.
     1. Select **OK**. 
 
