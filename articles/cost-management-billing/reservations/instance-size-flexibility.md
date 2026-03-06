@@ -1,6 +1,6 @@
 ---
-title: VM instance size flexibility for Azure Reservations
-description: Learn how instance size flexibility works for Azure VM reservations and how discount matching is calculated.
+title: Instance size flexibility for Azure Reservations
+description: Learn how instance size flexibility works for reservations and how discount matching is calculated.
 author: pri-mittal
 ms.author: primittal
 ms.reviewer: primittal
