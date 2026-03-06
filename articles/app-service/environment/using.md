@@ -66,7 +66,7 @@ In the Azure portal, create a web app in an App Service Environment:
    
       If you're creating a new App Service plan, use the dropdown list and select the tier size. The list shows **Popular plans**. The only SKU you can select for your app is an _Isolated v2_ pricing SKU.
       
-      :::image type="content" source="./media/using/select-price-tier.png" alt-text="Screenshot that shows how to select the pricing tier for the App Service plan in the Azure portal.":::
+      :::image type="content" source="./media/using/select-plan-tier.png" alt-text="Screenshot that shows how to select the pricing tier for the App Service plan in the Azure portal.":::
 
       You can select **Explore pricing plans** to compare the plan features. The following image shows an example of pricing plans and features. In the **Select App Service Pricing plan** pane, select a plan in the list and then choose **Select**.
 
@@ -134,7 +134,7 @@ In an App Service Environment with an external VIP, the domain suffix used for a
 
 You use the `scm` URL to access the Kudu console, or publish your app by using web deploy. For more information, see [Kudu service for Azure App Service](../resources-kudu.md). The Kudu console gives you a web UI for debugging, uploading files, and editing files.
 
-### Configure DNS for your web app
+### Configure DNS
 
 If your App Service Environment is made with an external VIP, your apps are automatically put into public DNS. If your App Service Environment is made with an internal VIP, you might need to configure DNS manually.
 
@@ -347,13 +347,11 @@ Follow these steps to delete the App Service Environment:
 
 1. In the Azure portal, on the **Overview** page for the **App Service Environment**, select **Delete**.
 
-1. Confirm the delete action by entering the name of your App Service Environment.
+1. Confirm the delete action by entering the name of your App Service Environment, and select **OK**.
 
-   When you delete an App Service Environment, you also delete all content and resources within the environment.
+When you delete an App Service Environment, you also delete all content and resources within the environment.
 
-   :::image type="content" source="./media/using/delete-environment.png" alt-text="Screenshot that shows how to delete an App Service Environment in the Azure portal.":::
-
-1. Select **OK**.
+:::image type="content" source="./media/using/delete-environment.png" alt-text="Screenshot that shows how to delete an App Service Environment in the Azure portal.":::
 
 ## Related content
 
