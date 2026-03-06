@@ -52,7 +52,7 @@ Global, Data Zone, and Regional reservations aren't interchangeable, so each dep
 
 Reservation benefit matching isn't limited to VM reservations. Similar service-specific reservation behavior also exists for other services, and you can find details on individual documents for each reservation type.
 
-# Extract Instance Size Flexibility ratios using Azure Catalogs API
+## Extract Instance Size Flexibility ratios using Azure Catalogs API
 
 This section describes how to use the Azure Reservations Catalogs API to extract Instance Size Flexibility (ISF) ratios for Azure Reservations. ISF allows you to apply reservation benefits flexibly across different sizes within the same resource family and region. This applies to various Azure reservation types including Virtual Machines, Azure Redis Cache and other supported services.
 
@@ -72,14 +72,14 @@ How to use the Azure Catalogs API via PowerShell to extract Instance Size Flexib
 The resulting CSV file contains three columns:
 
 | Column | Description |
-|--------|-------------|
+| -------- | ----------- |
 | `InstanceSizeFlexibilityGroup` | The flexibility group name (e.g., "Av2 Series", "General Purpose Gen5") |
 | `ArmSkuName` | The Azure Resource Manager SKU name (e.g., "Standard_A1_v2", "GP_Gen5_2") |
 | `Ratio` | The flexibility ratio for the SKU within its group |
 
 ## API Documentation Reference
 
-For developers who prefer to use the REST API directly, refer to the [Azure Reservations Catalog REST API documentation](/rest/api/reserved-vm-instances/get-catalog/get-catalog?view=rest-reserved-vm-instances-2022-11-01&tabs=HTTP).
+For developers who prefer to use the REST API directly, refer to the [Azure Reservations Catalog REST API documentation](/rest/api/reserved-vm-instances/get-catalog/get-catalog?tabs=HTTP).
 
 The ISF ratio information is found in the API response within each catalog item's `skuProperties` array. Look for properties with the following names:
 - `ReservationsAutofitGroup` - Contains the flexibility group name
@@ -181,7 +181,7 @@ $ISFRatios | Select-Object -First 10 | Format-Table
 ### Common issues and solutions
 
 | Issue | Solution |
-|-------|----------|
+| ------- | ---------- |
 | Authentication errors | Ensure you have `Microsoft.Capacity/catalogs/read` permission |
 | Empty results | Verify the location parameter matches an Azure region name and the resource type supports ISF |
 | Missing ISF properties | Some resource families may not support ISF - this is expected behavior |

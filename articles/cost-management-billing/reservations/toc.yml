@@ -10,7 +10,7 @@
   - name: Instance size flexibility
     href: instance-size-flexibility.md
   - name: VM instance size flexibility (Virtual Machines)
-    href: instance-size-flexibility.md#vm-example
+    href: instance-size-flexibility.md#virtual-machine-example
   - name: Reservation recommendations
     href: reserved-instance-purchase-recommendations.md
   - name: How discount is applied
