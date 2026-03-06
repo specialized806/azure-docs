@@ -18,14 +18,13 @@ Instance Size Flexibility (ISF) is an Azure Reservations capability that allows 
 
 Each reservation-enabled service defines instance size flexibility groups where ISF is supported. Only SKUs in the same flexibility group can share a reservation benefit. For example, multiple VM sizes in the same VM family can be in one group, while sizes in a different family aren't.
 
-Within a flexibility group, each SKU has a relative ratio that represents its capacity footprint compared to other sizes in that group:
-
+Within a flexibility group, each SKU has a relative ratio:
 - Smaller sizes have lower ratios.
 - Larger sizes have higher ratios.
 
-Each reservation provides a fixed amount of ratio capacity. Azure applies reservation benefit to running eligible usage until it's consumed. Ratios are relative units, not prices.
+When you purchase a reservation, you commit to fixed quantity. Microsoft applies reservation benefit to running eligible usage until it's consumed. Ratios are relative units, not prices.
 
-Azure continuously evaluates running usage and applies reservation discounts to eligible resources on a first-come, first-served basis within the reservation scope. If usage exceeds the purchased ratio capacity, the remaining usage is billed at pay-as-you-go rates. No manual assignment is required.
+Micorosoft continuously evaluates running usage and applies reservation discounts to eligible resources on a first-come, first-served basis within the reservation scope. If usage exceeds the purchased quantity, the remaining usage is billed at pay-as-you-go rates. No manual assignment is required.
 
 ## Examples
 
@@ -55,7 +54,7 @@ Reservation benefit matching isn't limited to VM reservations. Similar service-s
 
 # Extract Instance Size Flexibility ratios using Azure Catalogs API
 
-This article describes how to use the Azure Reservations Catalogs API to extract Instance Size Flexibility (ISF) ratios for Azure Reservations. ISF allows you to apply reservation benefits flexibly across different sizes within the same resource family and region. This applies to various Azure reservation types including Virtual Machines, Azure Redis Cache and other supported services.
+This section describes how to use the Azure Reservations Catalogs API to extract Instance Size Flexibility (ISF) ratios for Azure Reservations. ISF allows you to apply reservation benefits flexibly across different sizes within the same resource family and region. This applies to various Azure reservation types including Virtual Machines, Azure Redis Cache and other supported services.
 
 ## What you'll learn
 
