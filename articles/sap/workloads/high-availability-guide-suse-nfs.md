@@ -7,7 +7,7 @@ manager: juergent
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: article
-ms.date: 06/19/2024
+ms.date: 03/07/2026
 ms.author: radeltch
 ms.custom:
   - linux-related-content
@@ -83,6 +83,8 @@ The NFS server uses a dedicated virtual hostname and virtual IP addresses for ev
 * Probe port 61001 for NW2
 
 ## Set up a highly available NFS server
+
+Use the following steps to deploy and configure a highly available NFS infrastructure for SAP workloads on SLES. Complete each subsection in order, because later steps depend on resources created in earlier steps.
 
 ### Deploy Linux manually via Azure portal
 
@@ -393,6 +395,8 @@ The following items are prefixed with either **[A]** - applicable to all nodes, 
     It is also possible to automatically recover from a split brain scenario. For more information, read [Automatic split brain recovery policies](https://www.linbit.com/drbd-user-guide/users-guide-drbd-8-4/#s-automatic-split-brain-recovery-configuration)
 
 ### Configure Cluster Framework
+
+After you complete the DRBD and NFS base configuration, add Pacemaker resources for each SAP system and define the required ordering and colocation constraints.
 
 1. **[1]** Add the NFS drbd devices for SAP system NW1 to the cluster configuration
 
