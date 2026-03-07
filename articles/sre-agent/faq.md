@@ -1,5 +1,5 @@
 ---
-title: Azure SRE Agent Preview general FAQ
+title: Azure SRE Agent (preview) general FAQ
 description: General frequently asked questions about Azure SRE Agent service overview, pricing, and availability.
 #customer intent: As a Site Reliability Engineer, I want to understand what Azure SRE Agent is so that I can evaluate its relevance to my team's operations.
 author: craigshoemaker
@@ -11,7 +11,7 @@ ms.service: azure-sre-agent
 ms.custom: references_regions
 ---
 
-# Azure SRE Agent Preview general FAQ
+# Azure SRE Agent (preview) general FAQ
 
 This article answers general questions about Azure SRE Agent service overview, licensing, regional availability, and core capabilities.
 
@@ -115,7 +115,7 @@ For a complete list, see [Connect to external services](connectors.md).
 
 ### Can I connect custom tools or APIs?
 
-Yes, you can connect custom tools or APIs through Model Context Protocol (MCP) servers. For more information, see [Connect to custom MCP server](custom-mcp-server.md).
+Yes, you can connect custom tools or APIs through Model Context Protocol (MCP) servers. For more information, see [Connect to custom MCP server](setup-mcp-connector.md).
 
 ## Data and privacy
 
@@ -130,6 +130,6 @@ No, Azure SRE Agent doesn't use your data to train AI models. Azure SRE Agent us
 ## Related content
 
 - [Operations troubleshooting FAQ](faq-troubleshooting.md)
-- [Security and compliance FAQ](faq-security-compliance.md)
+- [Security and compliance FAQ](data-privacy.md)
 - [Azure SRE Agent overview](overview.md)
 - [Billing](billing.md)

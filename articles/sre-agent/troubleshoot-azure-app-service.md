@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Troubleshoot an App Using Azure SRE Agent and Azure App Service Preview'
+title: 'Tutorial: Troubleshoot an App Using Azure SRE Agent (preview) and Azure App Service'
 description: Learn how to use Azure SRE Agent and Azure App Service to identify and fix app problems through AI-assisted troubleshooting.
 author: craigshoemaker
 ms.author: cshoe
@@ -8,7 +8,7 @@ ms.date: 10/13/2025
 ms.service: azure-sre-agent
 ---
 
-# Tutorial: Troubleshoot an App Service app by using Azure SRE Agent Preview
+# Tutorial: Troubleshoot an App Service app by using Azure SRE Agent (preview)
 
 > [!NOTE]
 > Azure SRE Agent is in. By using SRE Agent, you consent to the product-specific [Supplemental Terms of Use for Microsoft Azures](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
@@ -308,6 +308,11 @@ Use the following steps for each resource group:
 1. In the confirmation dialog, enter the name of the resource group.
 
 1. Select **Delete**. Deletion takes a few minutes to complete.
+
+## Next step
+
+> [!div class="nextstepaction"]
+> [Diagnose with Azure observability](./diagnose-azure-observability.md)
 
 ## Related content
 

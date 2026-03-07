@@ -1,5 +1,5 @@
 ---
-title: Azure SRE Agent operations troubleshooting FAQ
+title: Azure SRE Agent (preview) operations troubleshooting FAQ
 description: Troubleshooting guide for common deployment and operational issues with Azure SRE Agent.
 #customer intent: As an IT admin, I want to resolve Azure SRE Agent permission errors so that I can ensure proper access for users.
 author: craigshoemaker
@@ -10,13 +10,13 @@ ms.date: 02/06/2026
 ms.service: azure-sre-agent
 ---
 
-# Azure SRE Agent operations troubleshooting FAQ
+# Azure SRE Agent (preview) operations troubleshooting FAQ
 
 This article covers common operational problems when working with Azure SRE Agent, along with practical solutions. These problems typically relate to permissions, regional availability, deployment issues, and administrative access requirements.
 
 ## Common troubleshooting scenarios
 
-The following table outlines common problems and their solutions. For more information about how roles and permissions are applied to an agent, see [Roles and permissions](./roles-permissions-overview.md).
+The following table outlines common problems and their solutions. For more information about how roles and permissions are applied to an agent, see [Roles and permissions](./permissions.md).
 
 | Scenario | Reason | Solution |
 |---|---|---|
@@ -194,6 +194,6 @@ For problems that this guide doesn't cover, try the following options:
 ## Related content
 
 - [General FAQ](faq.md)
-- [Security and compliance FAQ](faq-security-compliance.md)
-- [Roles and permissions](roles-permissions-overview.md)
-- [Agent run modes](agent-run-modes.md)
+- [Security and compliance FAQ](data-privacy.md)
+- [Roles and permissions](permissions.md)
+- [Agent run modes](run-modes.md)
