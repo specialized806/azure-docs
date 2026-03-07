@@ -1,80 +1,164 @@
 items:
   - name: Azure SRE Agent Preview documentation
     href: index.yml
+  - name: What is SRE Agent?
+    href: overview.md
   - name: Get started
     expanded: true
     items:
-      - name: About Azure SRE Agent
-        href: overview.md
-      - name: Diagnose your first incident
-        href: usage.md
+      - name: "Step 1: Create Agent"
+        href: create-agent.md
+      - name: "Step 2: Add Knowledge"
+        href: first-value.md
+      - name: "Step 3: Connect Source Code"
+        href: connect-source-code.md
+      - name: "Step 4: Incident Response"
+        href: incident-response.md
+      - name: "Step 5: Automate Actions"
+        href: automate-actions.md
       - name: Ask the agent for help
         href: ask-agent.md
-      - name: Starter prompts
-        href: prompts.md
-  - name: Scenarios
+      - name: Diagnose your first incident
+        href: usage.md
+  - name: Concepts
     items:
-      - name: Connect source control
-        href: code-repository-connect.md
-      - name: Multi-cause investigation
-        href: deep-investigation.md
-      - name: Build incident response plans
-        href: incident-response-plan.md
-      - name: Build subagents
-        href: subagent-builder-scenarios.md
-      - name: Troubleshoot apps
-        items:
-          - name: App Service
-            href: troubleshoot-azure-app-service.md
-          - name: Container Apps
-            href: troubleshoot-azure-container-apps.md
-  - name: Features
-    items:
-      - name: Code interpreter
-        href: code-interpreter.md
-      - name: Memory system
-        href: memory-system.md
-      - name: Subagents
-        href: subagent-builder-overview.md
-      - name: Incident management
-        href: incident-management.md
-      - name: Run custom logic
-        href: custom-logic-python.md
-  - name: Automation
-    items:
-      - name: Build a custom subagent
-        href: subagent-builder-scenarios.md
-      - name: Schedule a task
-        href: scheduled-tasks.md
-      - name: Create an incident response plan
-        href: incident-response-plan.md
-  - name: Integrations
-    items:
-      - name: Connect to custom MCP server
-        href: custom-mcp-server.md
-      - name: Connect to external services
+      - name: User Roles and Permissions
+        href: user-roles.md
+      - name: Agent Permissions
+        href: permissions.md
+      - name: Run Modes
+        href: run-modes.md
+      - name: Connectors
         href: connectors.md
-  - name: Security
+      - name: Incident platforms
+        href: incident-platforms.md
+      - name: Incident Response Plans
+        href: incident-response-plans.md
+      - name: Memory & Knowledge
+        href: memory.md
+      - name: Azure DevOps Wiki Knowledge
+        href: ado-wiki-knowledge.md
+      - name: Skills
+        href: skills.md
+      - name: Subagents
+        href: sub-agents.md
+      - name: Threads
+        href: threads.md
+      - name: Tools
+        href: tools.md
+      - name: Kusto Tools
+        href: kusto-tools.md
+      - name: Agent Hooks
+        href: agent-hooks.md
+      - name: Agent Playground
+        href: agent-playground.md
+      - name: Agent Reasoning
+        href: agent-reasoning.md
+      - name: Chat from Your Tools
+        href: chat-from-your-tools.md
+      - name: Monitor Agent Usage
+        href: monitor-agent-usage.md
+      - name: Track Incident Value
+        href: track-incident-value.md
+      - name: Workflow Automation
+        href: workflow-automation.md
+  - name: Capabilities
     items:
-      - name: Roles and permissions
-        href: roles-permissions-overview.md
-      - name: Agent run modes
-        href: agent-run-modes.md
-      - name: Role based access control
-        href: user-access-roles.md
-      - name: Use Managed Identity
-        href: agent-managed-identity.md
+      - name: Diagnose
+        items:
+          - name: Incident Response
+            href: incident-response.md
+          - name: Deep Investigation
+            href: deep-investigation.md
+          - name: Root Cause Analysis
+            href: root-cause-analysis.md
+          - name: Diagnose with Azure Observability
+            href: diagnose-azure-observability.md
+          - name: Diagnose with External Observability
+            href: diagnose-observability.md
+          - name: Troubleshoot App Service
+            href: troubleshoot-azure-app-service.md
+          - name: Troubleshoot Container Apps
+            href: troubleshoot-azure-container-apps.md
+      - name: Act
+        items:
+          - name: Scheduled Tasks
+            href: scheduled-tasks.md
+          - name: Execute Mitigations
+            href: execute-mitigations.md
+          - name: Send Notifications
+            href: send-notifications.md
+      - name: Extend
+        items:
+          - name: Code Interpreter
+            href: code-interpreter.md
+          - name: Python Tools
+            href: python-code-execution.md
+  - name: Tutorials
+    items:
+      - name: Set up connectors
+        items:
+          - name: Set Up Azure DevOps Connector
+            href: setup-azure-devops-connector.md
+          - name: Set Up Kusto Connector
+            href: setup-kusto-connector.md
+          - name: Set Up MCP Connector
+            href: setup-mcp-connector.md
+          - name: Set Up Outlook Connector
+            href: setup-outlook-connector.md
+          - name: Connect Azure DevOps Wiki
+            href: connect-ado-wiki.md
+          - name: Connect to PagerDuty
+            href: connect-pager-duty.md
+          - name: Connect to ServiceNow
+            href: connect-service-now.md
+          - name: Set Up Teams Bot
+            href: setup-teams-bot.md
+      - name: Create tools
+        items:
+          - name: Create a Kusto Tool
+            href: create-kusto-tool.md
+          - name: Create a Python Tool
+            href: create-python-tool.md
+          - name: Test a Tool in the Playground
+            href: test-tool-playground.md
+      - name: Use capabilities
+        items:
+          - name: Set Up Incident Response
+            href: tutorial-incident-response.md
+          - name: Set Up an Incident Trigger
+            href: setup-response-plan.md
+          - name: Run a Deep Investigation
+            href: tutorial-deep-investigation.md
+          - name: Use Code Interpreter
+            href: use-code-interpreter.md
+          - name: Configure Agent Hooks
+            href: tutorial-agent-hooks.md
+          - name: Create Scheduled Tasks
+            href: create-scheduled-task.md
+          - name: Upload Knowledge Documents
+            href: tutorial-upload-knowledge-document.md
+  - name: How-to guides
+    items:
+      - name: Upload Knowledge Documents
+        href: upload-knowledge-document.md
   - name: Reference
     items:
+      - name: Audit Agent Actions
+        href: audit-agent-actions.md
+      - name: Data Privacy and Residency
+        href: data-privacy.md
+      - name: Billing
+        href: billing.md
+      - name: Network Requirements
+        href: network-requirements.md
+      - name: Starter Prompts
+        href: starter-prompts.md
+      - name: Supported Regions
+        href: supported-regions.md
       - name: Frequently asked questions
         items:
           - name: General
             href: faq.md
           - name: Troubleshooting
             href: faq-troubleshooting.md
-          - name: Security and compliance
-            href: faq-security-compliance.md
-      - name: Billing
-        href: billing.md
-      - name: Data residency and privacy
-        href: data-privacy.md

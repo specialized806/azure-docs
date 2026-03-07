@@ -1,26 +1,6 @@
 {
   "redirections": [
     {
-      "source_path": "articles/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-dedicated-sku.md",
-      "redirect_url": "/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-billing",
-      "redirect_document_id": false
-    },
-    {
-      "source_path": "articles/azure-functions/durable/durable-functions-cloud-backup.md",
-      "redirect_url": "/azure/azure-functions/durable/durable-functions-fan-in-fan-out",
-      "redirect_document_id": false
-    },
-    {
-      "source_path": "articles/azure-functions/durable/durable-functions-monitor-python.md",
-      "redirect_url": "/azure/azure-functions/durable/durable-functions-monitor",
-      "redirect_document_id": false
-    },
-    {
-      "source_path": "articles/azure-functions/durable/durable-functions-phone-verification.md",
-      "redirect_url": "/azure/azure-functions/durable/durable-functions-human-interaction",
-      "redirect_document_id": false
-    },
-    {
       "source_path": "articles/expressroute/expressroute-troubleshooting-arp-resource-manager.md",
       "redirect_url": "/troubleshoot/azure/expressroute/expressroute-troubleshooting-arp-resource-manager",
     },
@@ -6755,11 +6735,6 @@
       "redirect_document_id": false
     },
     {
-      "source_path": "articles/sre-agent/permissions.md",
-      "redirect_url": "/azure/sre-agent/security-context",
-      "redirect_document_id": false
-    },
-    {
       "source_path": "articles/governance/policy/samples/hipaa-hitrust-9-2.md",
       "redirect_url": "/azure/governance/policy/samples/hipaa-hitrust",
       "redirect_document_id": false
@@ -6989,16 +6964,16 @@
       "redirect_url": "/azure/oracle/oracle-db/database-overview",
       "redirect_document_id": false
     },
-    {
+    { 
       "source_path": "articles/cyclecloud/how-to/ccws/register-entra-id-app.md",
       "redirect_url": "/azure/cyclecloud/how-to/create-app-registration",
       "redirect_document_id": false
     },
-    {
+    { 
       "source_path": "articles/cyclecloud/how-to/ccws/open-ondemand-add-users.md",
       "redirect_url": "/azure/cyclecloud/how-to/ccws/configure-open-ondemand",
       "redirect_document_id": false
-    },
+    },   
     {
       "source_path": "articles/reliability/reliability-health-insights.md",
       "redirect_url": "/azure/azure-health-insights/reliability-health-insights",
