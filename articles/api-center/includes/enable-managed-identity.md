@@ -11,7 +11,6 @@ ms.date: 12/20/2024
 ms.custom: Include file
 ---
 
-## Enable a managed identity in your API center
 
 For this scenario, your API center uses a [managed identity](/entra/identity/managed-identities-azure-resources/overview) to access Azure resources. Depending on your needs, enable either a system-assigned or one or more user-assigned managed identities. 
 
