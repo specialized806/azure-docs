@@ -1707,6 +1707,8 @@
         "articles/azure-center-sap-solutions/*.yml": "Azure Center for SAP solutions",
         "articles/azure-fluid-relay/**/*.md": "Azure Fluid Relay",
         "articles/azure-fluid-relay/**/*.yml": "Azure Fluid Relay",
+        "articles/azure-functions/durable/**/*.md": "Azure Durable",
+        "articles/azure-functions/durable/**/*.yml": "Azure Durable",
         "articles/azure-government/**/*.md": "Azure Government",
         "articles/azure-monitor/**/*.md": "Azure Monitor",
         "articles/azure-monitor/**/*.yml": "Azure Monitor",
