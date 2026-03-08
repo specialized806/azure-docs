@@ -24,7 +24,7 @@ Before you begin, ensure that you have:
 - An AWS account with access to the Amazon S3 bucket from which you want to migrate.
 - An [Azure Storage account](../storage/common/storage-account-create.md) to use as the destination.
 - A [Storage Mover resource](storage-mover-create.md) deployed in your Azure subscription.
-- A [private connection setup on Azure](loud-to-cloud-private-network-configs.md), if your AWS source data is in a Virtual Private Cloud (VPC).
+- A [private connection setup on Azure](migrations-requiring-private-connections.md), if your AWS source data is in a Virtual Private Cloud (VPC).
 
 ## Limits
 
