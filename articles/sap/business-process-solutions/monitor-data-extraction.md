@@ -25,13 +25,13 @@ Once the field metadata is processed, the **System Lookup** pipeline (p_s2s_syst
 
 These two jobs run sequentially, with the dimension extraction pipeline dependent on the successful completion of the fact extraction pipeline. If there's an issue with extracting facts, the subsequent dimension processing doesn't start.
 
-    :::image type="content" source="./media/monitoring-data-extraction/data-extraction-steps.png" alt-text="Screenshot showing different steps to extract data." lightbox="./media/monitoring-data-extraction/data-extraction-steps.png":::
+:::image type="content" source="./media/monitoring-data-extraction/data-extraction-steps.png" alt-text="Screenshot showing different steps to extract data." lightbox="./media/monitoring-data-extraction/data-extraction-steps.png":::
 
 Each pipeline executes a series of actions. If any step encounters an error, the entire pipeline registers a failure. This failure is reported back to the initiating pipelines, including System Lookup and Orchestration Master. Additionally, a failure in one pipeline prevents subsequent pipelines from starting. For example, a problem in the fact extraction step blocks the dimension extraction process.
 
 Below is an example of the monitoring view when a data processing step fails:
 
-    :::image type="content" source="./media/monitoring-data-extraction/data-processing-failure.png" alt-text="Screenshot showing monitoring view if data processing fails." lightbox="./media/monitoring-data-extraction/data-processing-failure.png":::
+:::image type="content" source="./media/monitoring-data-extraction/data-processing-failure.png" alt-text="Screenshot showing monitoring view if data processing fails." lightbox="./media/monitoring-data-extraction/data-processing-failure.png":::
 
 Each pipeline automatically determines the required actions based on the CDS View metadata. The following steps outline the logic:
 
@@ -42,7 +42,7 @@ Each pipeline automatically determines the required actions based on the CDS Vie
 
 Here's an example of the dimension extraction pipeline encountering some failed activities. Failures in specific actions can cascade back to the initiating actions, like pipeline failures. The For-Each loop iterates through all objects set for extraction, and the Select Connector action determines the appropriate processing steps based on the CDS View metadata. Generally, each issue will manifest as two failed actions.
 
-    :::image type="content" source="./media/monitoring-data-extraction/dim-pipeline-failure.png" alt-text="Screenshot showing dimension extraction pipeline failure." lightbox="./media/monitoring-data-extraction/dim-pipeline-failure.png":::
+:::image type="content" source="./media/monitoring-data-extraction/dim-pipeline-failure.png" alt-text="Screenshot showing dimension extraction pipeline failure." lightbox="./media/monitoring-data-extraction/dim-pipeline-failure.png":::
 
 When an extraction process fails, the first step is to review the error details. The nature of the error guides the corrective actions required.
 
