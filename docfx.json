@@ -1707,6 +1707,8 @@
         "articles/azure-center-sap-solutions/*.yml": "Azure Center for SAP solutions",
         "articles/azure-fluid-relay/**/*.md": "Azure Fluid Relay",
         "articles/azure-fluid-relay/**/*.yml": "Azure Fluid Relay",
+        "articles/azure-functions/durable/**/*.md": "Azure Durable",
+        "articles/azure-functions/durable/**/*.yml": "Azure Durable",
         "articles/azure-government/**/*.md": "Azure Government",
         "articles/azure-monitor/**/*.md": "Azure Monitor",
         "articles/azure-monitor/**/*.yml": "Azure Monitor",
@@ -1858,7 +1860,9 @@
           "articles/governance/policy/**/*.md",
           "articles/hdinsight/hdinsight-high-availability-components.md",
           "articles/hdinsight/optimize-hbase-ambari.md",
-          "articles/site-recovery/**/*.md"
+          "articles/site-recovery/**/*.md",
+          "articles/sentinel/ueba-useful-queries.md",
+          "articles/sentinel/identify-threats-with-entity-behavior-analytics.md"
         ]
       },
       "filename-incomplete": {
