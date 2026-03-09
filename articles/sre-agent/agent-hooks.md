@@ -3,7 +3,7 @@ title: Agent Hooks in Azure SRE Agent (preview)
 description: Intercept and control agent behavior with custom scripts or LLM-based validation that runs before or after specific agent actions.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -18,9 +18,9 @@ ms.custom: hooks, agent hooks, stop hook, post tool use, validation, audit, poli
 
 Hooks are custom checkpoints that intercept and control agent behavior at key moments. Use hooks to enforce quality gates on agent responses, audit and control tool usage, block dangerous operations with policy enforcement, and prevent early task completion by validating agent output.
 
-> [!VIDEO https://www.youtube.com/embed/VIDEO_ID]
+<!-- > [!VIDEO https://www.youtube.com/embed/VIDEO_ID]
 >
-> Replace `https://www.youtube.com/embed/VIDEO_ID` with the hosted URL for the Agent Hooks and Guardrails video.
+> Replace `https://www.youtube.com/embed/VIDEO_ID` with the hosted URL for the Agent Hooks and Guardrails video. -->
 
 ## The problem
 
@@ -98,7 +98,7 @@ Hooks require the **v2 YAML format** (`api_version: azuresre.ai/v2`, `kind: Exte
 >
 > Hooks configured through the API are active even though they don't appear in the portal YAML view. You can verify hooks are working by testing the agent in the portal's **Test playground**.
 >
-> :::image type="content" source="media/agent-hooks/hooks-portal-v1-limitation.png" alt-text="Screenshot of the portal YAML tab showing v1 format without hooks.":::
+> :::image type="content" source="media/agent-hooks/hooks-portal-v1-limitation.png" alt-text="Screenshot of the portal YAML tab showing v1 format without hooks." lightbox="media/agent-hooks/hooks-portal-v1-limitation.png":::
 >
 > The portal YAML tab displays v1 format. Hooks aren't visible here but are active on the server.
 
@@ -322,7 +322,7 @@ Follow these guidelines when you configure agent hooks:
 
 The following screenshot shows a Stop hook in action. The agent initially responds with just "4", but the hook rejects the response because the completion marker is missing. The agent then continues and adds the marker.
 
-:::image type="content" source="media/agent-hooks/hooks-stop-hook-working.png" alt-text="Screenshot showing a Stop hook in action where the agent response is decorated with a completion marker after hook rejection.":::
+:::image type="content" source="media/agent-hooks/hooks-stop-hook-working.png" alt-text="Screenshot showing a Stop hook in action where the agent response is decorated with a completion marker after hook rejection." lightbox="media/agent-hooks/hooks-stop-hook-working.png":::
 
 ## Next step
 

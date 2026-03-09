@@ -3,7 +3,7 @@ title: "Tutorial: Create a Kusto Tool in Azure SRE Agent (preview)"
 description: Build a reusable Kusto query tool for your Azure SRE Agent using the portal UI to run deterministic KQL queries.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -41,7 +41,7 @@ Open the subagent builder where you create and manage tools.
 1. Select **Builder** in the left navigation.
 1. Select **Subagent builder**.
 
-:::image type="content" source="media/create-kusto-tool/step-02-sub-agent-builder-view.png" alt-text="Subagent builder showing canvas view with subagent cards.":::
+:::image type="content" source="media/create-kusto-tool/step-02-sub-agent-builder-view.png" alt-text="Screenshot of subagent builder showing canvas view with subagent cards." lightbox="media/create-kusto-tool/step-02-sub-agent-builder-view.png" :::
 
 ## Open the tool creation form
 
@@ -50,7 +50,7 @@ Start the tool creation process from the toolbar.
 1. Select the **Create** dropdown in the top toolbar.
 1. Select **Tool** > **Kusto tool**.
 
-:::image type="content" source="media/create-kusto-tool/step-01-create-menu-tool-option.png" alt-text="Create menu showing Tool submenu with Kusto tool option.":::
+:::image type="content" source="media/create-kusto-tool/step-01-create-menu-tool-option.png" alt-text="Screenshot of Create menu showing Tool submenu with Kusto tool option." lightbox="media/create-kusto-tool/step-01-create-menu-tool-option.png":::
 
 ## Fill in the tool details
 
@@ -76,7 +76,7 @@ AppLogs
 
 The `##timeRange##` syntax creates a parameter. When someone asks "show errors from the last 24 hours," the agent fills in `timeRange = 24h`.
 
-:::image type="content" source="media/create-kusto-tool/step-02-kusto-tool-filled.png" alt-text="Kusto tool form with query and parameter filled in.":::
+:::image type="content" source="media/create-kusto-tool/step-02-kusto-tool-filled.png" alt-text="Screenshot of Kusto tool form with query and parameter filled in." lightbox="media/create-kusto-tool/step-02-kusto-tool-filled.png":::
 
 ## Add the parameter
 
@@ -99,7 +99,7 @@ Validate that the query runs successfully before saving.
 1. Enter a test value for `timeRange` (for example, `7d`).
 1. Verify the query executes successfully.
 
-:::image type="content" source="media/create-kusto-tool/step-03-kusto-tool-test-passed.png" alt-text="Tool test showing execution time and success status.":::
+:::image type="content" source="media/create-kusto-tool/step-03-kusto-tool-test-passed.png" alt-text="Screenshot of tool test showing execution time and success status." lightbox="media/create-kusto-tool/step-03-kusto-tool-test-passed.png":::
 
 The test shows execution time and confirms the query runs. Even if the query returns zero rows, a green checkmark means the query syntax is valid.
 
@@ -107,7 +107,7 @@ The test shows execution time and confirms the query runs. Even if the query ret
 
 Select **Create** to save your Kusto tool.
 
-:::image type="content" source="media/create-kusto-tool/step-04-kusto-tool-created.png" alt-text="Tool successfully created confirmation.":::
+:::image type="content" source="media/create-kusto-tool/step-04-kusto-tool-created.png" alt-text="Screenshot of tool successfully created confirmation." lightbox="media/create-kusto-tool/step-04-kusto-tool-created.png":::
 
 ## Add the tool to a subagent
 
@@ -119,7 +119,7 @@ Your tool is created but not yet attached to a subagent. Attach it so the agent 
 1. Check your Kusto tool from the list.
 1. Select **Add tools**.
 
-:::image type="content" source="media/create-kusto-tool/step-02-sub-agent-builder-canvas.png" alt-text="Canvas view showing subagent card with the add button on the right side.":::
+:::image type="content" source="media/create-kusto-tool/step-02-sub-agent-builder-canvas.png" alt-text="Screenshot of canvas view showing subagent card with the add button on the right side." lightbox="media/create-kusto-tool/step-02-sub-agent-builder-canvas.png":::
 
 The tool count on your subagent card increases after adding.
 
@@ -132,7 +132,7 @@ Test that the agent invokes your Kusto tool correctly.
 1. Ask: "Show me errors from the last 7 days"
 1. The agent invokes your tool with `timeRange = 7d`.
 
-:::image type="content" source="media/create-kusto-tool/kusto-playground-result.png" alt-text="Test playground showing Kusto query results with error entries from AppLogs table.":::
+:::image type="content" source="media/create-kusto-tool/kusto-playground-result.png" alt-text="Screenshot of test playground showing Kusto query results with error entries from AppLogs table." lightbox="media/create-kusto-tool/kusto-playground-result.png":::
 
 You should see the agent call your Kusto tool and return query results. The exact query you wrote runs against your cluster.
 

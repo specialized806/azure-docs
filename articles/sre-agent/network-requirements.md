@@ -1,13 +1,13 @@
 ---
 title: Network Requirements for Azure SRE Agent (preview)
-description: Review firewall allowlist domains, authentication requirements, and network configuration for Azure SRE Agent connectivity.
+description: Review firewall allow list domains, authentication requirements, and network configuration for Azure SRE Agent connectivity.
 ms.topic: reference
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
-ms.custom: firewall, network, allowlist, domain, prerequisites, connectivity
+ms.custom: firewall, network, allow list, domain, prerequisites, connectivity
 #customer intent: As a network administrator, I want to understand the network requirements for Azure SRE Agent so that I can configure my firewall and proxy settings correctly.
 ---
 
@@ -17,7 +17,7 @@ This article describes the network and firewall configuration required for Azure
 
 ## Required domains
 
-Add the following domains to your firewall allowlist for both HTTP and WebSocket traffic.
+Add the following domains to your firewall allow list for both HTTP and WebSocket traffic.
 
 | Domain | Purpose |
 |---|---|
@@ -29,7 +29,7 @@ Add the following domains to your firewall allowlist for both HTTP and WebSocket
 > [!WARNING]
 > Zscaler and some corporate proxies block `*.azuresre.ai` by default. If the portal doesn't load or the chat interface is unresponsive:
 >
-> 1. Add `*.azuresre.ai` to your firewall allowlist.
+> 1. Add `*.azuresre.ai` to your firewall allow list.
 > 1. Ensure your proxy doesn't block WebSocket connections.
 > 1. Try the portal in an incognito or private browser window to rule out extension conflicts.
 

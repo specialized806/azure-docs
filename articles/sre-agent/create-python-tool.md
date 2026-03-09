@@ -3,7 +3,7 @@ title: "Tutorial: Create a Python Tool in Azure SRE Agent (preview)"
 description: Build an SLA calculator tool for your Azure SRE Agent using AI-generated Python code.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -42,7 +42,7 @@ Navigate to the subagent builder and start creating a Python tool.
 1. Expand **Builder** and select **Subagent builder**.
 1. Select **Create** > **Tool** > **Python tool**.
 
-:::image type="content" source="media/create-python-tool/python-tool-create-menu.png" alt-text="Create menu showing Tool and Python tool options.":::
+:::image type="content" source="media/create-python-tool/python-tool-create-menu.png" alt-text="Screenshot of Create menu showing Tool and Python tool options.":::
 
 The Python tool dialog opens with three tabs: **Code**, **Test playground**, and **Identity**.
 
@@ -58,7 +58,7 @@ minutes. Return whether the SLA meets a target threshold (default 99.9%).
 Include the calculated percentage and a status message.
 ```
 
-:::image type="content" source="media/common/python-tool-generate.png" alt-text="Python tool dialog with description entered.":::
+:::image type="content" source="media/common/python-tool-generate.png" alt-text="Screenshot of Python tool dialog with description entered.":::
 
 > [!TIP]
 > For best results, specify input parameters and their types, describe the calculation or logic, state what the output should include, and mention default values when applicable.
@@ -102,7 +102,7 @@ def main(total_uptime_minutes: int, total_downtime_minutes: int,
     }
 ```
 
-:::image type="content" source="media/create-python-tool/python-tool-code.png" alt-text="Code tab showing generated Python function.":::
+:::image type="content" source="media/create-python-tool/python-tool-code.png" alt-text="Screenshot of Code tab showing generated Python function.":::
 
 The Code tab shows a `main()` function with typed parameters. The tool name is auto-generated from your description.
 
@@ -117,7 +117,7 @@ Before you create the tool, test it with actual values.
    - **target_sla_percent**: `99.9`
 1. Select **Test**.
 
-:::image type="content" source="media/common/python-tool-test-result.png" alt-text="Test playground showing successful execution.":::
+:::image type="content" source="media/common/python-tool-test-result.png" alt-text="Screenshot of test playground showing successful execution.":::
 
 The following example shows the expected result:
 

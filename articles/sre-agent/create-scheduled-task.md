@@ -35,7 +35,7 @@ Follow these steps to create a new scheduled task from the portal.
 
 1. Go to your agent, and select **Builder** > **Scheduled tasks**.
 
-    :::image type="content" source="media/common/portal-scheduled-tasks.png" alt-text="Scheduled tasks dashboard showing task list and toolbar.":::
+    :::image type="content" source="media/common/portal-scheduled-tasks.png" alt-text="Screenshot of scheduled tasks dashboard showing task list and toolbar.":::
 
 1. Select **Create task** in the toolbar.
 
@@ -76,7 +76,7 @@ If a run fails, the thread shows the error. After three consecutive failures, th
 
 To change the schedule, update instructions, or switch the agent mode, edit the task directly.
 
-:::image type="content" source="media/create-scheduled-task/portal-scheduled-task-edit-dialog.png" alt-text="Edit scheduled task dialog with pre-populated fields.":::
+:::image type="content" source="media/create-scheduled-task/portal-scheduled-task-edit-dialog.png" alt-text="Screenshot of edit scheduled task dialog with pre-populated fields.":::
 
 1. In the task list, either check the task's checkbox and select **Edit task** in the toolbar, or select **...** on the task row and choose **Edit task**.
 

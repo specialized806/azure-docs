@@ -1,19 +1,19 @@
 ---
 title: Python Tools in Azure SRE Agent (preview)
-description: Extend your agent to reach internal systems, multi-cloud platforms, and custom business logic by creating Python tools.
+description: Extend your agent to reach internal systems, multicloud platforms, and custom business logic by creating Python tools.
 ms.topic: how-to
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
-ms.custom: python, custom tools, extensibility, hybrid, multi-cloud, custom logic
+ms.custom: python, custom tools, extensibility, hybrid, multicloud, custom logic
 #customer intent: As an SRE builder, I want to create Python tools for my agent so that I can extend its capabilities to reach internal systems and apply custom business logic.
 ---
 
 # Python tools in Azure SRE Agent (preview)
 
-**Applies to:** preview
+Python tools extend your Azure SRE Agent beyond built-in Azure capabilities. Create custom tools that connect to internal APIs, on-premises databases, multicloud platforms, and proprietary systems using Python code. Describe what you need in plain English, paste existing scripts, or wrap HTTP endpoints, then test and deploy without a restart.
 
 > [!TIP]
 > - Extend your agent to reach systems it doesn't have built-in support for.
@@ -35,7 +35,7 @@ The agent can diagnose Azure problems, but it can't reach your internal systems 
 
 Python tools let you teach your agent new capabilities. Describe what you need, generate the code, test it, and deploy. Your agent can then reach systems and apply logic that weren't possible before.
 
-:::image type="content" source="media/common/python-tool-generate.png" alt-text="Python tool dialog with a plain English description and Generate button.":::
+:::image type="content" source="media/common/python-tool-generate.png" alt-text="Screenshot of the Python tool dialog.":::
 
 The generated code follows a consistent pattern:
 
@@ -45,7 +45,7 @@ The generated code follows a consistent pattern:
 
 Before creating the tool, test it with real inputs in the playground. Enter parameter values, select **Test**, and see actual results, not just syntax validation.
 
-:::image type="content" source="media/common/python-tool-test-result.png" alt-text="Test playground showing successful execution with SLA calculation result.":::
+:::image type="content" source="media/common/python-tool-test-result.png" alt-text="Screenshot of test playground showing successful execution with SLA calculation result.":::
 
 After you test the tool, select **Create tool**. Your agent can immediately use it with no restart and no deployment pipeline.
 
