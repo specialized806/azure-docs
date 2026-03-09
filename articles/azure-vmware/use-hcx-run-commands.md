@@ -92,10 +92,13 @@ Use the Scale VMware HCX Cloud Manager Run Command to increase the resource allo
 ### Automatic Failure Recovery
 If scaling fails at any point during execution, the system automatically recovers:
 
-    1. **Snapshot revert** - Automatically revers to the pre-scaling snapshot.
-    2. **Power on** - Powers on HCX Manager from the snapshot state (last known good configuration).
-    3. **Error reporting** - Returns detailed error information.
-    4. **No manual intervention required** - The systems automatically recovers to a working state.
+1. **Snapshot revert** - Automatically reverts to the pre-scaling snapshot.
+   
+2. **Power on** - Powers on HCX Manager from the snapshot state (last known good configuration).
+   
+3. **Error reporting** - Returns detailed error information.
+ 
+4. **No manual intervention required** - The systems automatically recovers to a working state.
 
 **Recovery time**: Typically 5-10 minutes to revert and power on.
 
