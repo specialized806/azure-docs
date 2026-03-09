@@ -52,11 +52,11 @@ Before deploying, gather the following values:
 
 | Value | Where to find it | Example |
 |---|---|---|
-| **Bot App Client ID** | Your agent's managed identity Client ID | `a1b2c3d4-...` |
+| **Bot App Client ID** | Your agent's managed identity Client ID | `aaaaaaaa-0000-1111-...` |
 | **Bot App Domain** | Your agent's container app FQDN | `my-agent.eastus2.azuresre.ai` |
 | **Bot Display Name** | The name you want the bot to display in Teams | `SRE Agent` |
 | **App Type** | `UserAssignedMsi` for managed identity (recommended) | `UserAssignedMsi` |
-| **Tenant ID** | Your Microsoft Entra tenant ID | `72f988bf-...` |
+| **Tenant ID** | Your Microsoft Entra tenant ID | `aaaaaaaa-0000-1111-...` |
 
 ### Deploy by using Azure CLI
 

@@ -85,7 +85,7 @@ You should see the following results:
 
 This screenshot shows a plan the agent creates in preparation for code investigation.
 
-:::image type="content" source="media/connect-source-code/todo-plan-source-code-investigation.png" alt-text="Screenshot of the agent To-Do Plan for a code investigation.":::
+:::image type="content" source="media/connect-source-code/to-do-plan-source-code-investigation.png" alt-text="Screenshot of the agent To-Do Plan for a code investigation.":::
 
 This screenshot shows how the agent analyzes the source code and returns specific file references.
 

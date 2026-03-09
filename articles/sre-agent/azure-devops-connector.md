@@ -3,7 +3,7 @@ title: "Tutorial: Set Up an Azure DevOps Connector in Azure SRE Agent (preview)"
 description: Connect your agent to Azure DevOps for repository access, work item management, and wiki documentation.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -12,8 +12,6 @@ ms.custom: azure devops, connector, repositories, work items, setup, tutorial
 ---
 
 # Tutorial: Set up an Azure DevOps connector in Azure SRE Agent (preview)
-
-**Applies to**: version 26.2.148.0 and later
 
 In this tutorial, you connect your agent to Azure DevOps so it can access repositories, wikis, and documentation across your organization. When you finish this tutorial, your agent has authenticated access to an Azure DevOps organization and can read repositories, create work items, and correlate code changes with incidents.
 
@@ -45,7 +43,7 @@ Open the connectors page where you can add and manage your agent's external conn
 
 The connectors list shows any existing connectors for your agent.
 
-:::image type="content" source="media/azure-devops-connector/oauth-connectors-list.png" alt-text="Connectors list page showing existing connectors with status indicators.":::
+:::image type="content" source="media/azure-devops-connector/oauth-connectors-list.png" alt-text="Screenshot of connectors list page showing existing connectors with status indicators." lightbox="media/azure-devops-connector/oauth-connectors-list.png":::
 
 ## Add an Azure DevOps OAuth connector
 
@@ -55,7 +53,7 @@ Select the Azure DevOps OAuth connector type from the wizard.
 1. In the **Add a connector** wizard, select **Azure DevOps OAuth connector**.
 1. Select **Next**.
 
-:::image type="content" source="media/azure-devops-connector/oauth-connector-picker-all.png" alt-text="Connector picker showing Azure DevOps OAuth connector option.":::
+:::image type="content" source="media/azure-devops-connector/oauth-connector-picker-all.png" alt-text="Screenshot of the connector picker showing Azure DevOps OAuth connector option." lightbox="media/azure-devops-connector/oauth-connector-picker-all.png":::
 
 > [!NOTE]
 > If you don't see the Azure DevOps OAuth connector in the picker, the OAuth feature might not be enabled for your agent. Contact your administrator.
