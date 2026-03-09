@@ -79,7 +79,7 @@ Python tools turn your agent from an Azure-native assistant into an extensible p
 
 | Before | After |
 |---|---|
-| "Our CMDB is on-prem, agent can't see it" | Python tool with network access queries internal systems |
+| "Our CMDB is on-premises, agent can't see it" | Python tool with network access queries internal systems |
 | "We have custom SLA formulas nobody has automated" | Encode your formulas as a tool; the agent applies them automatically |
 | "Compliance reports need specific PDF formatting" | Generate reports with ReportLab, served through the agent |
 
