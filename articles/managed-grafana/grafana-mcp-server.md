@@ -3,6 +3,7 @@ title: Configure an Azure Managed Grafana remote MCP server
 description: Discover MCP tools for Azure Managed Grafana. Query Application Insights, Azure Data Explorer, and more with secure authentication and easy setup.
 #customer intent: As a developer, I want to configure my application to interact with the AMG-MCP endpoint so that I can programmatically manage my Azure Managed Grafana instance.
 author: weng5e
+ms.author: wuweng
 ms.reviewer: malev
 ms.date: 03/09/2026
 ms.topic: concept-article

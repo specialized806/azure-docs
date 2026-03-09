@@ -2,7 +2,7 @@
 title: Configure Azure Managed Grafana MCP for Azure AI Foundry agents
 description: Learn how to configure Azure Managed Grafana MCP in Azure AI Foundry so your agent can query Azure resources, metrics, and logs.
 author: weng5e
-ms.author: weng5e
+ms.author: wuweng
 ms.reviewer: malev
 ms.date: 03/09/2026
 ms.topic: how-to
@@ -29,7 +29,7 @@ You use the endpoint hostname when you configure the tool in Foundry.
 1. In the [Azure portal](https://portal.azure.com), open your Azure Managed Grafana resource.
 1. On the **Overview** page, copy the **Endpoint** value. For example: `my-grafana-<id>.<region>.grafana.azure.com`.
 
-    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/1-find-amg-endoint.png" alt-text="Screenshot of Azure portal showing the Azure Managed Grafana endpoint on the Overview page.":::
+    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/1-find-grafana-endpoint.png" alt-text="Screenshot of Azure portal showing the Azure Managed Grafana endpoint on the Overview page.":::
 
 ## Grant your Foundry project identity access to Azure Managed Grafana
 
@@ -53,7 +53,7 @@ To find the correct principal:
 > [!NOTE]
 > Role assignments can take a few minutes to propagate. If the first validation attempt fails with authorization errors, wait and try again.
 
-:::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/2-add-rbac.png" alt-text="Screenshot of Azure portal showing a role assignment being added to Azure Managed Grafana.":::
+:::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/2-add-role-based-access-control.png" alt-text="Screenshot of Azure portal showing a role assignment being added to Azure Managed Grafana.":::
 
 ## Create an agent in Azure AI Foundry
 
