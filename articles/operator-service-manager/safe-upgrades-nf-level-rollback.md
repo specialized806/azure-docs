@@ -78,7 +78,7 @@ A rollback is considered successful if all prior completed NfApps reached the or
 ```
 
 ### Rollback unsuccessful
-A rollback is considered unsuccessful if any prior completed nfApps fail to reach the original snapshot state, instead generating a helm rollback failure. In such conditions, Azure Operator Service Manager stops processing any further rollback eligible nfApps and terminate with the following operational status and message:
+A rollback is considered unsuccessful if any prior completed nfApps fail to reach the original snapshot state, instead generating a helm rollback failure. In such conditions, Azure Operator Service Manager stops processing any further rollback-eligible nfApps and terminates with the following operational status and message:
 
 ```
   - Upgrade Failed, Rollback Failed
@@ -130,7 +130,7 @@ example:
 > * Each `roleOverrideValues` entry overrides the default behavior of the NfAapps.
 > * If multiple entries of `nfConfiguration` are found in the `roleOverrideValues`, then the NF reput is returned as a bad request.
 
-## Managing nfApps that don't support rollback
+## Manage nfApps that don't support rollback
 Almost all publishers report some nfApps that aren't compatible with helm rollback operations. These nfApps maybe sourced from third-parties who don't common support such strict resiliency requirements. These nfApps maybe related to database applications with complicated schema management requirements. In these cases, special consideration should be taken to deal with nfApps that don't support rollback.
 
 * The strong preference is to push vendors to support helm rollback.
