@@ -3,7 +3,7 @@ title: Threads in Azure SRE Agent (preview)
 description: Learn how threads organize conversations with your agent, including thread sources, filtering, search, chat commands, and keyboard shortcuts.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/06/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -41,7 +41,7 @@ Threads appear in the sidebar and are organized into two categories.
 | **Favorites** | Threads you pinned for quick access. |
 | **Chats** | All other conversations. |
 
-:::image type="content" source="media/threads/thread-sidebar-overview.png" alt-text="Thread sidebar showing Favorites and Chats categories, with filter buttons and thread list.":::
+:::image type="content" source="media/threads/thread-sidebar-overview.png" alt-text="Screenshot of thread sidebar showing Favorites and Chats categories, with filter buttons and thread list.":::
 
 Each thread in the sidebar displays its title. Unread threads appear in **bold** text, making them easy to spot.
 
@@ -56,9 +56,9 @@ Use the two filter buttons at the top of the thread list to find relevant conver
 
 When active, a filter button appears filled (blue). You can activate both filters at the same time so that only threads matching **both** conditions appear.
 
-:::image type="content" source="media/threads/thread-filter-mine-active.png" alt-text="Thread sidebar with the Mine filter active, showing only user-initiated threads.":::
+:::image type="content" source="media/threads/thread-filter-mine-active.png" alt-text="Screenshot of thread sidebar with the Mine filter active, showing only user-initiated threads.":::
 
-:::image type="content" source="media/threads/thread-filter-unread-active.png" alt-text="Thread sidebar with the Unread filter active, showing only unread threads.":::
+:::image type="content" source="media/threads/thread-filter-unread-active.png" alt-text="Screenshot of thread sidebar with the Unread filter active, showing only unread threads.":::
 
 ### Thread status
 
@@ -74,7 +74,7 @@ Each thread has a status that indicates its current state.
 
 Right-click any thread in the sidebar, or select the **...** (More options) menu, to access thread actions.
 
-:::image type="content" source="media/threads/thread-context-menu.png" alt-text="Thread context menu showing Add to favorites, Info, Copy link to thread, Rename, and Delete options.":::
+:::image type="content" source="media/threads/thread-context-menu.png" alt-text="Screenshot of thread context menu showing Add to favorites, Info, Copy link to thread, Rename, and Delete options.":::
 
 | Action | Description |
 |---|---|
@@ -84,19 +84,17 @@ Right-click any thread in the sidebar, or select the **...** (More options) menu
 | **Rename** | Change the thread title. |
 | **Delete** | Permanently remove the thread. |
 
-:::image type="content" source="media/threads/thread-favorites-populated.png" alt-text="Thread sidebar showing a thread pinned in the Favorites section above the Chats section.":::
+:::image type="content" source="media/threads/thread-favorites-populated.png" alt-text="Screenshot of thread sidebar showing a thread pinned in the Favorites section above the Chats section.":::
 
 ### View thread details
 
 Select a thread to open it. The title bar shows the thread name, a **...** (More options) menu, and a **View trace** button when Application Insights is configured.
 
-:::image type="content" source="media/threads/thread-detail-view.png" alt-text="Thread detail view showing the title bar with thread name, More options menu, and View trace button, along with the conversation history.":::
-
 ### Search threads
 
 Select **Search threads** in the sidebar to open the search dialog. Type any part of a thread title, or paste a full or partial thread ID, to find a specific conversation.
 
-:::image type="content" source="media/threads/thread-search-dialog.png" alt-text="Search dialog showing thread results with title, thread ID, and last message preview.":::
+:::image type="content" source="media/threads/thread-search-dialog.png" alt-text="Screenshot of search dialog showing thread results with title, thread ID, and last message preview.":::
 
 Search results display each thread's title, unique ID, and a preview of the last message. Your search text is highlighted wherever it matches, in the title, the ID, or both.
 
@@ -139,7 +137,7 @@ Shortcut hints appear next to the corresponding buttons in the sidebar. The app 
 
 Type `/` or `#` in the chat input to access quick commands.
 
-:::image type="content" source="media/threads/portal-slash-commands.png" alt-text="Slash commands menu showing available commands.":::
+:::image type="content" source="media/threads/portal-slash-commands.png" alt-text="Screenshot of slash commands menu showing available commands.":::
 
 | Command | Description | Learn more |
 |---|---|---|

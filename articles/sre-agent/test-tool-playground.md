@@ -3,7 +3,7 @@ title: "Tutorial: Test a Tool in the Playground in Azure SRE Agent (preview)"
 description: Debug and verify your tools in the Azure SRE Agent playground before deploying them to production.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -40,7 +40,7 @@ Navigate to the test playground in the subagent builder.
 1. Select **Builder** > **Subagent builder**.
 1. Select **Test playground** in the view toggle (next to **Canvas view** and **Table view**).
 
-:::image type="content" source="media/test-tool-in-playground/playground-empty-state.png" alt-text="Test playground view with empty state and Subagent/Tool selector at the top.":::
+:::image type="content" source="media/test-tool-in-playground/playground-empty-state.png" alt-text="Screenshot of test playground view with empty state and Subagent/Tool selector at the top.":::
 
 The playground displays an empty state with a **Subagent/Tool** selector at the top and the message "Select an agent or tool to start a playground session."
 
@@ -53,7 +53,7 @@ Choose the tool you want to test from the entity selector.
 1. Select the tool you want to test.
 1. Select **Apply**.
 
-:::image type="content" source="media/common/playground-entity-selector.png" alt-text="Entity selector dropdown showing agents and tools available for testing.":::
+:::image type="content" source="media/common/playground-entity-selector.png" alt-text="Screenshot of entity selector dropdown showing agents and tools available for testing.":::
 
 The playground loads the selected tool's configuration and test interface.
 

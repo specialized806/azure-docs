@@ -3,7 +3,7 @@ title: Skills in Azure SRE Agent (preview)
 description: Learn how skills extend your agent with procedural guidance and execution capabilities like Azure CLI, Kusto queries, and Python scripts.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/06/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -17,7 +17,7 @@ ms.custom: skills, expertise, domain knowledge, SKILL.md
 
 Skills extend your agent with procedures and execution capabilities. You can add a troubleshooting guide, attach tools like Azure CLI, Kusto queries, Python scripts, or MCP connectors, and your agent loads them when relevant to the user's question. The agent doesn't need an explicit `/skill` command.
 
-:::image type="content" source="media/skills/custom-skill-flow.svg" alt-text="Flow showing agent using custom skill with attached tools.":::
+:::image type="content" source="media/skills/custom-skill-flow.svg" alt-text="Flow showing agent using custom skill with attached tools." border="false":::
 
 ## How skills work
 
@@ -59,7 +59,7 @@ The following table compares skills with other extensibility concepts:
 
 Create skills in **Builder > Subagent builder**. A skill includes a `SKILL.md` file with procedural guidance and optional tool attachments for execution.
 
-:::image type="content" source="media/skills/portal-create-skill.png" alt-text="Create skill dialog in the portal.":::
+:::image type="content" source="media/skills/portal-create-skill.png" alt-text="Screenshot of create skill dialog in the portal.":::
 
 The following example shows a typical skill structure:
 

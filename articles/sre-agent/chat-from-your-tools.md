@@ -3,7 +3,7 @@ title: Chat from Your Tools in Azure SRE Agent (preview)
 description: Interact with your agent directly in Microsoft Teams without leaving your current workflow.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -25,7 +25,7 @@ That round-trip breaks your flow. Your team can't see what you asked or what the
 
 Your agent is accessible beyond the portal. Each channel connects to the same backend. Connecting to the identical backend allows the channel to connect to the same reasoning engine, the same connected data sources, and the same memory. A conversation started in Teams creates the same quality investigation as one in the portal.
 
-:::image type="content" source="media/chat-from-your-tools/conversation-channels-external.svg" alt-text="Diagram showing ways to chat with your agent including Teams Bot and the portal.":::
+:::image type="content" source="media/chat-from-your-tools/conversation-channels-external.svg" alt-text="Diagram showing ways to chat with your agent including Teams Bot and the portal." border="false":::
 
 ## Teams bot
 

@@ -3,7 +3,7 @@ title: Subagents in Azure SRE Agent (preview)
 description: Learn how subagents provide specialized domain expertise that you invoke on demand through the /agent command.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/06/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -19,7 +19,7 @@ Subagents are specialist agents that you invoke on demand. Type `/agent` in chat
 
 Unlike skills (which are always available), subagents require explicit invocation. This requirement scopes their expertise to specific tasks.
 
-:::image type="content" source="media/sub-agents/portal-sub-agent-canvas-full.png" alt-text="Subagent builder canvas showing subagents connected to triggers and tools.":::
+:::image type="content" source="media/sub-agents/portal-sub-agent-canvas-full.png" alt-text="Screenshot of subagent builder canvas showing subagents connected to triggers and tools." lightbox="media/sub-agents/portal-sub-agent-canvas-full.png":::
 
 ## How subagents work
 
@@ -201,7 +201,7 @@ Test subagents in the **Test playground** before deploying. Go to **Builder > Su
 
 For VS Code users, the SRE Agent MCP server extension lets you edit subagent YAML in your editor with changes syncing to your agent.
 
-:::image type="content" source="media/common/playground-agent-selected.png" alt-text="Agent playground with split-screen editor and chat test panel.":::
+:::image type="content" source="media/common/playground-agent-selected.png" alt-text="Screenshot of agent playground with split-screen editor and chat test panel.":::
 
 For full details, see [Agent playground](agent-playground.md).
 

@@ -27,5 +27,4 @@
   <text x="560" y="55" text-anchor="middle" font-family="Segoe UI, Arial" font-size="22" font-weight="bold" fill="white">Your Agent</text>
   <text x="560" y="82" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="rgba(255,255,255,0.85)">Same reasoning, memory,</text>
   <text x="560" y="100" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="rgba(255,255,255,0.85)">and tools — every channel</text>
-  <text x="560" y="122" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="rgba(255,255,255,0.55)">Kusto · Azure Monitor · GitHub · PagerDuty · MCP</text>
 </svg>

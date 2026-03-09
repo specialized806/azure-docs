@@ -3,7 +3,7 @@ title: Agent Playground in Azure SRE Agent (preview)
 description: Test and refine your agent configurations in real time before deploying changes with the split-screen editor and AI-powered evaluation.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -25,7 +25,7 @@ Without a dedicated testing environment, you deploy changes to see how they beha
 
 The playground is a dedicated view in the **Subagent builder** alongside Canvas and Table views. Select **Test playground** from the view toggle to enter a split-screen environment where you edit on the left and test on the right.
 
-:::image type="content" source="media/common/playground-agent-selected.png" alt-text="Agent playground showing split-screen layout with form editor on left and chat test panel on right.":::
+:::image type="content" source="media/common/playground-agent-selected.png" alt-text="Screenshot of agent playground showing split-screen layout with form editor on left and chat test panel on right.":::
 
 ### Select what to test
 
@@ -38,7 +38,7 @@ Use the **Subagent/Tool** dropdown at the top to choose what to test.
 | **System tool** | Execute built-in tools with custom parameters |
 | **Kusto tool** | Run queries against your connected clusters |
 
-:::image type="content" source="media/common/playground-entity-selector.png" alt-text="Entity selector dropdown showing subagents and tools available for testing.":::
+:::image type="content" source="media/common/playground-entity-selector.png" alt-text="Screenshot of entity selector dropdown showing subagents and tools available for testing.":::
 
 ### Edit and test side by side
 
