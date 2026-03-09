@@ -49,7 +49,7 @@ For Universal Print use, it’s important to set the access method (1) to **G**,
 
 With such SAP printer definition, SAP GUI uses the operating system printer details. The operating system already knows your added Universal Print printers. As with SAP web applications, there's no direct communication between the SAP system and Universal Print APIs. No settings to configure for your SAP system beyond the available output device for front-end printing.
 
-When using SAP GUI for HTML and front-end printing, you can print to an SAP defined printer, too. In the SAP system, you need a front-end printer with access method ‘G’ and a device type of PDF or derivate. For more information, see [SAP’s documentation](https://help.sap.com/docs/SAP_NETWEAVER_750/290ce8983cbc4848a9d7b6f5e77491b9/4e96c13b7e9e40fee10000000a421937.html). Such print output is displayed in browser as a PDF from the SAP system. You open the common OS printing dialog and select a Universal Print printer installed on your computer.
+When using SAP GUI for HTML and front-end printing, you can print to an SAP defined printer, too. In the SAP system, you need a front-end printer with access method **G** and a device type of PDF or derivate. For more information, see [SAP’s documentation](https://help.sap.com/docs/SAP_NETWEAVER_750/290ce8983cbc4848a9d7b6f5e77491b9/4e96c13b7e9e40fee10000000a421937.html). Such print output is displayed in browser as a PDF from the SAP system. You open the common OS printing dialog and select a Universal Print printer installed on your computer.
 
 ## Limitations
 
