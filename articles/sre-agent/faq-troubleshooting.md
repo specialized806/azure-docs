@@ -6,7 +6,7 @@ author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
 ms.topic: faq
-ms.date: 02/06/2026
+ms.date: 02/09/2026
 ms.service: azure-sre-agent
 ---
 
@@ -39,7 +39,7 @@ You might encounter an error that says the deployment isn't found for several re
 
 If your naming and your network configuration are correct, use the following steps to resolve the agent "DeploymentNotFound" error.
 
-:::image type="content" source="media/troubleshoot/sre-agent-failure-notification.png" alt-text="Screenshot that shows a notification of provisioning failure in Azure SRE Agent.":::
+:::image type="content" source="media/troubleshoot/sre-agent-failure-notification.png" alt-text="Screenshot that shows a notification of provisioning failure in Azure SRE Agent." lightbox="media/troubleshoot/sre-agent-failure-notification.png":::
 
 1. Confirm that your user account has owner or admin permissions, along with permissions to create resources in the *Sweden Central*, *East US 2*, or *Australia East* regions (depending on your deployment).
 
@@ -51,7 +51,7 @@ If your naming and your network configuration are correct, use the following ste
 
     If your subscription is in the allow list, you get output similar to the following message.
 
-    :::image type="content" source="media/troubleshoot/sre-agent-verify-access.png" alt-text="Screenshot of a console response that verifies user access to agents.":::
+    :::image type="content" source="media/troubleshoot/sre-agent-verify-access.png" alt-text="Screenshot of a console response that verifies user access to agents." lightbox="media/troubleshoot/sre-agent-verify-access.png":::
 
     Look specifically for `"resourcetype : agents"` and `"defaultApiVersion : 2025-05-01-preview"`.
 
@@ -81,11 +81,11 @@ The following sections address issues related to permissions and access control 
 
 If you can't chat or interact with the agent, the problem might be related to a 403 Forbidden error or a cross-origin resource sharing (CORS) policy error. The following screenshot shows an example of the error message.
 
-:::image type="content" source="media/troubleshoot/sre-agent-permission-errors.png" alt-text="Screenshot of errors that result from incorrect permissions.":::
+:::image type="content" source="media/troubleshoot/sre-agent-permission-errors.png" alt-text="Screenshot of errors that result from incorrect permissions." lightbox="media/troubleshoot/sre-agent-permission-errors.png":::
 
 Or, you might get the following output in your network trace.
 
-:::image type="content" source="media/troubleshoot/sre-agent-network-trace-error.png" alt-text="Screenshot of a browser network trace when the agent encounters a permissions error.":::
+:::image type="content" source="media/troubleshoot/sre-agent-network-trace-error.png" alt-text="Screenshot of a browser network trace when the agent encounters a permissions error." lightbox="media/troubleshoot/sre-agent-network-trace-error.png":::
 
 To resolve the problem:
 

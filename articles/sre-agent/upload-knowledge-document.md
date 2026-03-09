@@ -3,7 +3,7 @@ title: Upload Knowledge Documents to Azure SRE Agent (preview)
 description: Create and upload runbooks, troubleshooting guides, and documentation to the knowledge base during conversations to capture institutional knowledge automatically.
 ms.topic: how-to
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -38,7 +38,7 @@ connection pool exhaustion issue and save it to the knowledge base.
 
 Your agent generates a structured runbook and uploads it in seconds. The document is indexed automatically and becomes searchable for future investigations.
 
-:::image type="content" source="media/upload-knowledge-document/agent-generated-guide.png" alt-text="Agent generating and uploading a troubleshooting guide during a conversation":::
+:::image type="content" source="media/upload-knowledge-document/agent-generated-guide.png" alt-text="Agent generating and uploading a troubleshooting guide during a conversation" lightbox="media/upload-knowledge-document/agent-generated-guide.png":::
 
 ## Before and after
 
@@ -92,7 +92,7 @@ The Upload Knowledge Document tool supports text-based formats that your agent g
 > [!NOTE]
 > When you upload files through the API or CLI, you can use more text formats, including CSV, JSON, YAML, and log files. The upload API supports binary formats (PDF, Word, Excel, PowerPoint) and images. The agent tool focuses on `.md` and `.txt` formats because your agent generates text content during conversations.
 
-:::image type="content" source="media/upload-knowledge-document/add-file-dialog.png" alt-text="The Add file dialog in the Knowledge Base showing supported formats and drag-and-drop upload":::
+:::image type="content" source="media/upload-knowledge-document/add-file-dialog.png" alt-text="The Add file dialog in the Knowledge Base showing supported formats and drag-and-drop upload" lightbox="media/upload-knowledge-document/add-file-dialog.png":::
 
 ## Example: capture incident knowledge
 

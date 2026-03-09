@@ -3,7 +3,7 @@ title: "Step 4: Set Up Incident Response in Azure SRE Agent (preview)"
 description: Connect your incident platform and create response plans so your agent automatically investigates incoming incidents.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted

@@ -3,7 +3,7 @@ title: "Tutorial: Configure Agent Hooks in Azure SRE Agent (preview)"
 description: Add Stop and PostToolUse hooks to your agent to validate responses, audit tool usage, and enforce policies using the REST API.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.custom: hooks, agent-hooks, stop-hook, post-tool-use, configuration
@@ -35,7 +35,7 @@ In this tutorial, you learn how to:
 
 Hooks require the **v2 API** format. The portal's YAML editor only shows v1 and can't display or edit hooks. You use the REST API to configure hooks, then use the portal's **Test playground** to verify they work.
 
-:::image type="content" source="media/tutorial-agent-hooks/hooks-portal-yaml-v1.png" alt-text="Portal YAML tab showing v1 format. Hooks are not visible here.":::
+:::image type="content" source="media/tutorial-agent-hooks/hooks-portal-yaml-v1.png" alt-text="Portal YAML tab showing v1 format. Hooks are not visible here." lightbox="media/tutorial-agent-hooks/hooks-portal-yaml-v1.png":::
 
 The portal YAML tab shows v1 format. Hooks you configure through the API are active but don't appear in the portal YAML tab.
 
@@ -59,12 +59,9 @@ Run the following command to get an access token for the SRE Agent API:
 
 ```bash
 TOKEN=$(az account get-access-token \
-  --resource "59f0a04a-b322-4310-adc9-39ac41e9631e" \
+  --resource <RESOURCE_ID> \
   --query accessToken -o tsv)
 ```
-
-> [!TIP]
-> The resource ID `59f0a04a-b322-4310-adc9-39ac41e9631e` is the SRE Agent API audience. Using `https://management.azure.com` returns an auth error.
 
 ## Create a subagent with a Stop hook
 
@@ -143,7 +140,7 @@ Follow these steps to test the Stop hook:
 1. Select the **Test playground** radio button.
 1. Select the **Subagent/Tool** dropdown, find **my_hooked_agent**, and select **Apply**.
 
-    :::image type="content" source="media/tutorial-agent-hooks/hooks-playground-form.png" alt-text="Test playground with the hooked agent selected.":::
+    :::image type="content" source="media/tutorial-agent-hooks/hooks-playground-form.png" alt-text="Test playground with the hooked agent selected." lightbox="media/tutorial-agent-hooks/hooks-playground-form.png":::
 
 1. Type `What is 2+2?` in the chat and select **Send**.
 
@@ -154,7 +151,7 @@ Watch what happens:
 - A **Thought process** step appears where the agent continues.
 - The final response appears: **4 === RESPONSE COMPLETE ===**.
 
-:::image type="content" source="media/tutorial-agent-hooks/hooks-stop-hook-result.png" alt-text="Stop hook result showing the agent adds the RESPONSE COMPLETE marker after initial rejection.":::
+:::image type="content" source="media/tutorial-agent-hooks/hooks-stop-hook-result.png" alt-text="Stop hook result showing the agent adds the RESPONSE COMPLETE marker after initial rejection." lightbox="media/tutorial-agent-hooks/hooks-stop-hook-result.png":::
 
 The hook worked. It forced the agent to add the marker before stopping.
 
@@ -304,7 +301,6 @@ The following table lists common problems and solutions for agent hooks.
 | Hooks not visible in portal YAML tab | Expected behavior. The portal shows v1 only. Hooks are active; test them through the playground. |
 | `Unsupported kind: ExtendedAgent` | Use the v2 endpoint: `PUT /api/v2/extendedAgent/agents/{name}`. |
 | `Handoffs cannot be null` | Add `"handoffs": []` to the JSON payload. |
-| Auth error (audience validation) | Use resource `59f0a04a-b322-4310-adc9-39ac41e9631e` for the token. |
 | Hook has no effect | Include a `reason` field when rejecting. Without it, rejection is treated as approval. |
 | Agent loops forever | Lower `maxRejections` (default: 3, range: 1-25). |
 

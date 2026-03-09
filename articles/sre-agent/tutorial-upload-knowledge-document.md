@@ -3,7 +3,7 @@ title: "Tutorial: Upload Knowledge Documents to Azure SRE Agent (preview)"
 description: Upload knowledge documents to your Azure SRE Agent knowledge base through conversation and the portal UI so the agent can reference them in future investigations.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted

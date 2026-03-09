@@ -6,7 +6,7 @@ author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
 ms.topic: faq
-ms.date: 02/06/2026
+ms.date: 02/09/2026
 ms.service: azure-sre-agent
 ms.custom: references_regions
 ---

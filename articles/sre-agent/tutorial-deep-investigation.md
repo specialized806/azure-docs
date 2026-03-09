@@ -3,7 +3,7 @@ title: "Tutorial: Run a Deep Investigation in Azure SRE Agent (preview)"
 description: Learn how to use deep investigation for structured, hypothesis-driven analysis from chat and from incident response plans.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.custom: deep-investigation, hypothesis, root-cause, investigation, incident-response-plan
@@ -37,13 +37,13 @@ Use this mode when you want to investigate a specific question by using structur
 
 In your agent's chat, select the **+** button in the lower-left corner of the chat input area. This action opens the configuration menu.
 
-:::image type="content" source="media/common/plus-menu-deep-investigation.png" alt-text="The plus menu dropdown showing Deep investigation as the first menu item.":::
+:::image type="content" source="media/common/plus-menu-deep-investigation.png" alt-text="The plus menu dropdown showing Deep investigation as the first menu item." lightbox="media/common/plus-menu-deep-investigation.png":::
 
 Select **Deep investigation** from the menu.
 
 If you're enabling deep investigation for the first time, a confirmation dialog appears that explains deep investigations query multiple data sources and take several minutes. Select **Yes** to continue.
 
-:::image type="content" source="media/tutorial-deep-investigation/deep-investigation-confirmation-dialog.png" alt-text="Confirmation dialog asking if you want to proceed with deep investigation, with a checkbox to dismiss future warnings.":::
+:::image type="content" source="media/tutorial-deep-investigation/deep-investigation-confirmation-dialog.png" alt-text="Confirmation dialog asking if you want to proceed with deep investigation, with a checkbox to dismiss future warnings." lightbox="media/tutorial-deep-investigation/deep-investigation-confirmation-dialog.png":::
 
 > [!TIP]
 > Check **Don't show this message again** if you plan to use deep investigation regularly. You can toggle it off by selecting the **X** on the deep investigation badge.
@@ -52,10 +52,10 @@ If you're enabling deep investigation for the first time, a confirmation dialog 
 
 After you confirm, two indicators appear:
 
-1. A **status message** at the top of the chat: "Deep investigation is turned on" with a sparkle icon.
-1. A **sparkle badge** next to the **+** button in the chat footer, with an **X** to dismiss.
+- A **status message** at the top of the chat: "Deep investigation is turned on" with a sparkle icon.
+- A **sparkle badge** next to the **+** button in the chat footer, with an **X** to dismiss.
 
-:::image type="content" source="media/tutorial-deep-investigation/deep-investigation-enabled-badge.png" alt-text="Chat showing Deep investigation is turned on status message and the sparkle badge in the footer.":::
+:::image type="content" source="media/tutorial-deep-investigation/deep-investigation-enabled-badge.png" alt-text="Chat showing Deep investigation is turned on status message and the sparkle badge in the footer." lightbox="media/tutorial-deep-investigation/deep-investigation-enabled-badge.png":::
 
 ### Ask your question
 
@@ -80,7 +80,7 @@ Select **Send** (or press Enter).
 
 For chat-triggered investigations, your agent requests authorization before it proceeds. An **authorization card** appears in the chat with two options:
 
-:::image type="content" source="media/common/deep-investigation-working.png" alt-text="Authorization prompt showing the investigation card, approval message, and Continue and Cancel buttons.":::
+:::image type="content" source="media/common/deep-investigation-working.png" alt-text="Authorization prompt showing the investigation card, approval message, and Continue and Cancel buttons." lightbox="media/common/deep-investigation-working.png":::
 
 - **Continue**: Approve the investigation and grant your agent elevated permissions to query your Azure resources.
 - **Cancel**: Decline the investigation. Your agent falls back to a standard response.
@@ -94,17 +94,17 @@ Select **Continue** to approve. The card updates to show a green **Approved** ch
 
 The **investigation detail panel** opens on the right side of the chat, showing a live visualization of your agent's work.
 
-:::image type="content" source="media/tutorial-deep-investigation/deep-investigation-approved-in-progress.png" alt-text="Investigation in progress showing Approved status, incident research phase, and investigation steps.":::
+:::image type="content" source="media/tutorial-deep-investigation/deep-investigation-approved-in-progress.png" alt-text="Investigation in progress showing Approved status, incident research phase, and investigation steps." lightbox="media/tutorial-deep-investigation/deep-investigation-approved-in-progress.png":::
 
 The investigation follows four phases:
 
 **Phase 1, Incident research:** Your agent selects investigation tools and gathers context. The summary card shows what data was collected and the investigation steps completed.
 
-:::image type="content" source="media/tutorial-deep-investigation/deep-investigation-initial-research.png" alt-text="Incident research phase showing summary of findings and four completed investigation steps.":::
+:::image type="content" source="media/tutorial-deep-investigation/deep-investigation-initial-research.png" alt-text="Incident research phase showing summary of findings and four completed investigation steps." lightbox="media/tutorial-deep-investigation/deep-investigation-initial-research.png":::
 
 **Phase 2, Forming hypotheses:** Based on the gathered context, your agent generates two to four hypotheses about potential root causes. Each hypothesis card shows a title and brief description.
 
-:::image type="content" source="media/common/deep-investigation-hypotheses-forming.png" alt-text="Three hypotheses appearing in the tree, each with a blue Validating status pill.":::
+:::image type="content" source="media/common/deep-investigation-hypotheses-forming.png" alt-text="Three hypotheses appearing in the tree, each with a blue Validating status pill." lightbox="media/common/deep-investigation-hypotheses-forming.png":::
 
 **Phase 3, Validating hypotheses:** Your agent tests each hypothesis in parallel (up to three at once). Status pills update as validation completes:
 
