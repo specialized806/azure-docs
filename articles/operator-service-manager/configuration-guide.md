@@ -18,15 +18,15 @@ Consider the following meta-schema guidelines when you're designing configuratio
 
 * First, choose which parameters to expose to the operator.
   * A rule of thumb is to expose parameters backed by direct operation, such as a helm value.
-  * Surpress parameters backed by another agent, such as `cloudinit` `userdata`.
-* Sort the parameters into site-specific, instance-specific and decurity-specific sets. 
+  * Suppress parameters backed by another agent, such as `cloudinit` `userdata`.
+* Sort the parameters into site-specific, instance-specific, and security-specific sets. 
   * Ensure that parameters don't overlap between CGS resources.
 * Define required versus optional parameters.
 * For optional parameters, define a reasonable default value.
 
 ## One-CGS approach
 
-The original recommendation was to use only a single CGS for the entire NF. This approach consolidated site-specific, instance-specific, and security-specific parameters into a single set of configuration group resources. This approach avoided multiple resource sets, except for rare cases where a service had multiple components. Many partners successfully onboarded services using this approach, and it remains supported. However, this approach does not obscure secrets. All configuration values will be stored in resources as plain-text.
+The original recommendation was to use only a single CGS for the entire NF. This approach consolidated site-specific, instance-specific, and security-specific parameters into a single set of configuration group resources. This approach avoided multiple resource sets, except for rare cases where a service had multiple components. Many partners successfully onboarded services using this approach, and it remains supported. However, this approach doesn't obscure secrets. All configuration values are stored in resources as plain-text.
 
 ## Three-CGS approach
 
@@ -65,7 +65,7 @@ This example shows a sample CGS payload defining `abc`, `xyz`, and `qwe` as expo
 
 ## CGV without secrets
 
-This example shows a corresponding CGV input which an operator uses with the prior CGS:
+This example shows a corresponding CGV input that an operator uses with the prior CGS:
 
 ```json
 {
@@ -153,6 +153,6 @@ The following rules are applied when you're validating a default value. Consider
 * A default value shouldn't be applied to a required property.
 * A default value is evaluated in top-down order from where the keyword first appears.
 * Where a property value exists in the input CGV, only children of those properties are evaluated for defaults.
-* Where a property value doesn't exist in the input CGV, it's evaluated for a default, along with any children.
-* Where a property value is the `object` type, and neither it nor its key exists in the input CGV, no defaults for the object are evaluated.
+* Where a property value doesn't exist in the input CGV, a default is evaluated, along with any children.
+* Where a property value is the `object` type, and it's key doesn't exist in the input CGV, no defaults for the object are evaluated.
 
