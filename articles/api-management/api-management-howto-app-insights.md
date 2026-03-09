@@ -413,11 +413,6 @@ To improve performance issues, skip:
 * Request and responses headers
 * Body logging
 
-## Video
-
-> [!VIDEO https://learn-video.azurefd.net/vod/player?id=85acedcd-4200-4788-b7c0-41a11286fcab]
->
-
 ## Troubleshooting
 
 Addressing the issue of telemetry data flow from API Management to Application Insights:

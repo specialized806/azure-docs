@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Publish multiple versions of your API" 
+title: "Tutorial: Publish Multiple Versions of your API" 
 description: Learn how to publish multiple API versions in API Management.
 author: dlepow
 
