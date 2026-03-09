@@ -853,6 +853,9 @@ For more information on SessionWindow, see [Session Window](/stream-analytics-qu
 
 ## User defined functions in JavaScript and C#
 
+> [!NOTE]
+> This section doesn't apply to Fabric Eventstream. 
+
 Azure Stream Analytics query language can be extended with custom functions written either in JavaScript or C# language. User Defined Functions (UDF) are custom/complex computations that can’t be easily expressed using the **SQL** language. These UDFs can be defined once and used multiple times within a query. For example, an UDF can be used to convert a hexadecimal *nvarchar(max)* value to a *bigint* value.
 
 Sample **input**:
