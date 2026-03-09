@@ -1,16 +1,15 @@
 ---
 title: Common query patterns in Azure Stream Analytics
-description: This article describes several common query patterns and designs that are useful in Azure Stream Analytics jobs.
+description: This article describes several common query patterns and designs that are useful in Azure Stream Analytics jobs and Fabric Eventstream.
 ms.service: azure-stream-analytics
 ms.topic: how-to
 ms.date: 03/04/2026
 ms.custom: devx-track-js
 ---
 
-# Common query patterns in Azure Stream Analytics
+# Common query patterns in Azure Stream Analytics and Fabric Eventstream
 
-> [!NOTE]
-> This article applies to [Microsoft Fabric Eventstream Query Language](/stream-analytics-query/built-in-functions-azure-stream-analytics) too. 
+[!INCLUDE [stream-analytics-fabric-event-stream-query-language](./includes/stream-analytics-fabric-event-stream-query-language.md)]
 
 Queries in Azure Stream Analytics are expressed in a SQL-like query language. The language constructs are documented in the [Stream Analytics query language reference](/stream-analytics-query/stream-analytics-query-language-reference) guide. 
 
