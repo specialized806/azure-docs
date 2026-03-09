@@ -39,7 +39,7 @@ Examples of scenarios, requiring access to Azure public end point are:
 - Azure Fence Agent requires access to **management.azure.com** and **login.microsoftonline.com**
 - [Azure Backup](../../backup/backup-azure-sap-hana-database.md#establish-network-connectivity)
 - [Azure Site Recovery](../../site-recovery/azure-to-azure-about-networking.md#outbound-connectivity-for-urls)
-- Using public repository for patching the Operating system
+- Using public repository for patching the operating system
 - The SAP application data flow may require outbound connectivity to public end point
 
 If your SAP deployment doesn’t require outbound connectivity to public end points, you don’t need to implement extra configuration. It's sufficient to create internal standard SKU Azure Load Balancer for your high availability scenario, assuming that there's also no need for inbound connectivity from public end points.
@@ -50,19 +50,16 @@ If your SAP deployment doesn’t require outbound connectivity to public end poi
 
 ## Prerequisites
 
-Read the following articles first:
+**Azure Standard Load Balancer**:
 
-**Azure Standard Load Balancer**
+* [Azure Standard Load Balancer overview](../../load-balancer/load-balancer-overview.md) - Comprehensive overview of Azure Standard Load balancer, important principles, concepts, and tutorials.
+* [Outbound connections in Azure](../../load-balancer/load-balancer-outbound-connections.md#scenarios) - Scenarios on how to achieve outbound connectivity in Azure.
+* [Load balancer outbound rules](../../load-balancer/load-balancer-outbound-connections.md#outboundrules)- Explains the concepts of load balancer outbound rules and how to create outbound rules.
 
-  * [Azure Standard Load Balancer overview](../../load-balancer/load-balancer-overview.md) - Comprehensive overview of Azure Standard Load balancer, important principles, concepts, and tutorials.
-  * [Outbound connections in Azure](../../load-balancer/load-balancer-outbound-connections.md#scenarios) - Scenarios on how to achieve outbound connectivity in Azure.
-  * [Load balancer outbound rules](../../load-balancer/load-balancer-outbound-connections.md#outboundrules)- Explains the concepts of load balancer outbound rules and how to create outbound rules.
+**Azure Firewall**:
 
-**Azure Firewall**
-
-  * [Azure Firewall Overview](../../firewall/overview.md)- overview of Azure Firewall.
-  * [Tutorial: Deploy and configure Azure Firewall](../../firewall/tutorial-firewall-deploy-portal.md) - instructions on how to configure Azure Firewall via Azure portal.
-
+* [Azure Firewall Overview](../../firewall/overview.md)- overview of Azure Firewall.
+* [Tutorial: Deploy and configure Azure Firewall](../../firewall/tutorial-firewall-deploy-portal.md) - instructions on how to configure Azure Firewall via Azure portal.
 * [Virtual Networks - User defined rules](../../virtual-network/virtual-networks-udr-overview.md#user-defined) - Azure routing concepts and rules.
 * [Security Groups Service Tags](../../virtual-network/network-security-groups-overview.md#service-tags) - how to simplify your Network Security Groups (NSG) and Firewall configuration with service tags.
 
@@ -202,8 +199,6 @@ You could use proxy to allow Pacemaker calls to the Azure management API public 
 - Depending on the location of the proxy, it may introduce extra latency in the calls from the Azure Fence Agent to the Azure Management API. If your corporate proxy is still on the premises, while your Pacemaker cluster is in Azure, measure latency and consider, if this solution is suitable for you.
 - If there isn’t already highly available corporate proxy in place, we don't recommend this option as the customer would be incurring extra cost and complexity. If you decide to deploy extra proxy solution, to allow outbound connectivity from Pacemaker to Azure Management public API, you need to make sure the proxy is highly available. The latency from the VMs to the proxy is low.
 
----
-
 ### Pacemaker configuration with Proxy
 
 There are many different Proxy options available in the industry. Step-by-step instructions for the proxy deployment are outside of the scope of this document. In the following example, we assume that your proxy is responding to **MyProxyService** and listening to port **MyProxyPort**.
@@ -246,6 +241,8 @@ To allow pacemaker to communicate with the Azure management API, perform the fol
    # Take the cluster out of maintenance mode
    sudo pcs property set maintenance-mode=false
    ```
+
+---
 
 ## Other options
 
