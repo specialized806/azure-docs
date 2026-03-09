@@ -14,6 +14,53 @@ ms.author: anfdocs
 
 Advanced ransomware protection (ARP) in Azure NetApp Files is a built-in capability that helps safeguard your cloud file data against ransomware attacks. It uses intelligent, AI-driven monitoring to detect unusual file activity in real time and automatically creates a secure snapshot of your data when a potential ransomware threat is detected. This approach provides an extra line of defense at the storage layer – preserving clean recovery points and minimizing data loss if ransomware encrypts your files, without requiring any external appliances or software.
 
+## Supported regions 
+
+- Australia Central 
+- Australia Central 2 
+- Australia East 
+- Australia Southeast 
+- Brazil South 
+- Brazil Southeast 
+- Canada Central 
+- Canada East 
+- Central India 
+- Central US 
+- East Asia 
+- East US 
+- East US 2 
+- France Central 
+- Germany North 
+- Germany West Central 
+- Israel Central 
+- Italy North 
+- Japan East
+- Japan West 
+- Korea Central 
+- Korea South
+- New Zealand North 
+- North Central US 
+- North Europe 
+- Norway East
+- Norway West 
+- Qatar Central 
+- South Africa North 
+- South Central US
+- South India
+- Southeast Asia 
+- Spain Central 
+- Sweden Central 
+- Switzerland North 
+- Switzerland West 
+- UAE Central 
+- UAE North 
+- UK South 
+- UK West 
+- West Europe 
+- West US 
+- West US 2 
+- West US 3 
+
 ## Why do we need advanced protection?
 
 Ransomware attacks have become a serious and growing threat to organizations of all sizes. Attackers continually evolve methods to infiltrate environments (for example, through phishing emails or zero-day exploits) and can silently encrypt critical files, halting business operations. Traditional security measures such as firewalls, email filters, and anti-malware software do their best to prevent infections, but sophisticated ransomware can slip through these defenses. Once data is encrypted by malware, companies face an awful choice, either lose valuable data or pay a hefty ransom with no guarantee of recovery.

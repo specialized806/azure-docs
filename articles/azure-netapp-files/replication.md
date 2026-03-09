@@ -154,3 +154,4 @@ With cross-zone-region replication, you can protect your volumes by using a seco
 ## Next step
 
 - [Manage cross-zone-region replication](cross-zone-region-replication-configure.md)
+- [Requirements and considerations for Azure NetApp Files replication](replication-requirements.md)

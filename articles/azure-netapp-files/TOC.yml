@@ -247,8 +247,6 @@
           href: azacsnap-troubleshoot.md
         - name: Preview release features of AzAcSnap
           href: azacsnap-preview.md  
-    - name: Understand cloning
-      items:
     - name: Understand backup
       items: 
       - name: Understand Azure NetApp Files backup
@@ -264,13 +262,17 @@
     - name: Understand caching
       items: 
       - name: Understand Azure NetApp Files cache volumes
-        href: cache-volumes.md    
+        href: cache-volumes.md
+      - name: Requirements and considerations for Azure NetApp Files cache volumes
+        href: caching-requirements.md     
       - name: Understand resizing guidelines for Azure NetApp Files cache volumes
         href: cache-volumes-resize-guidelines.md  
     - name: Understand ransomware protection
       items:
       - name: Understand advanced ransomware protection
         href: advanced-ransomware-protection.md
+      - name: Requirements and considerations for Azure NetApp Files advanced ransomware protection
+        href: ransomware-protection-requirements.md    
   - name: Solutions and benefits
     items:
     - name: Solution architectures using Azure NetApp Files
@@ -437,34 +439,34 @@
           href: manage-file-access-logs.md
       - name: Update Terraform-managed volume
         href: terraform-manage-volume.md
-    - name: Manage application volume groups 
-      items:
-        - name: Manage application volume groups for SAP HANA
-          items: 
-          - name: Deploy the first SAP HANA host
-            href: application-volume-group-deploy-first-host.md
-          - name: Add hosts to a multiple-host SAP HANA system
-            href: application-volume-group-add-hosts.md
-          - name: Add volumes for an SAP HANA system as a secondary database in HSR
-            href: application-volume-group-add-volume-secondary.md
-          - name: Add volumes for an SAP HANA system as a DR system
-            href: application-volume-group-disaster-recovery.md
-          - name: Manage volumes in an application volume group for SAP HANA
-            href: application-volume-group-manage-volumes.md
-          - name: Configure application volume groups for SAP HANA using REST API
-            href: configure-application-volume-group-sap-hana-api.md
-        - name: Manage application volume groups for Oracle
-          items: 
-          - name: Deploy application volume group for Oracle
-            href: application-volume-group-oracle-deploy-volumes.md
-          - name: Manage volumes in an application volume group for Oracle
-            href: application-volume-group-manage-volumes-oracle.md
-          - name: Configure application volume group for Oracle using REST API
-            href: configure-application-volume-oracle-api.md 
-          - name: Deploy application volume group for Oracle using Azure Resource Manager
-            href: configure-application-volume-oracle-azure-resource-manager.md 
-        - name: Delete an application volume group
-          href: application-volume-group-delete.md
+  - name: Manage application volume groups 
+    items:
+      - name: Manage application volume groups for SAP HANA
+        items: 
+        - name: Deploy the first SAP HANA host
+          href: application-volume-group-deploy-first-host.md
+        - name: Add hosts to a multiple-host SAP HANA system
+          href: application-volume-group-add-hosts.md
+        - name: Add volumes for an SAP HANA system as a secondary database in HSR
+          href: application-volume-group-add-volume-secondary.md
+        - name: Add volumes for an SAP HANA system as a DR system
+          href: application-volume-group-disaster-recovery.md
+        - name: Manage volumes in an application volume group for SAP HANA
+          href: application-volume-group-manage-volumes.md
+        - name: Configure application volume groups for SAP HANA using REST API
+          href: configure-application-volume-group-sap-hana-api.md
+      - name: Manage application volume groups for Oracle
+        items: 
+        - name: Deploy application volume group for Oracle
+          href: application-volume-group-oracle-deploy-volumes.md
+        - name: Manage volumes in an application volume group for Oracle
+          href: application-volume-group-manage-volumes-oracle.md
+        - name: Configure application volume group for Oracle using REST API
+          href: configure-application-volume-oracle-api.md 
+        - name: Deploy application volume group for Oracle using Azure Resource Manager
+           href: configure-application-volume-oracle-azure-resource-manager.md 
+      - name: Delete an application volume group
+        href: application-volume-group-delete.md  
   - name: Manage hybrid data mobility and protection  
     items:
     - name: Manage snapshot-based protection 
@@ -525,13 +527,15 @@
         href: reestablish-deleted-volume-relationships.md
       - name: Test disaster recovery with cross-region replication
         href: test-disaster-recovery.md
+      - name: Enable cross-subscription replication
+        href: enable-cross-subscription-replication.md
     - name: Manage caching 
       items: 
         - name: Manage cache volumes 
           href: configure-cache-volumes.md
     - name: Manage ransomware protection 
       items: 
-      - name: Manage Azure NetApp Files advanced ransomware protection 
+      - name: Manage advanced ransomware protection 
         href: ransomware-configure.md
     - name: Manage volume relocation
       items:
