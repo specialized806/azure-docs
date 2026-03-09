@@ -233,7 +233,7 @@ finally {
 }
 
 # Call List SKUs
-$uri = "https://management.azure.com/subscriptions/$subscriptionID/providers/Microsoft.Storage/skus?api-version=2024-01-01"
+$uri = "https://management.azure.com/subscriptions/$subscriptionID/providers/Microsoft.Storage/skus?api-version=2025-08-01"
 $headers = @{ Authorization = "Bearer $plainToken" }
 
 $result = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
@@ -310,7 +310,7 @@ subscriptionID="your-subscription-id-number"
 token=$(az account get-access-token --query accessToken --output tsv)
 
 # Invoke SRP list SKU API, and get the returned SKU list
-result=$(az rest --method get --uri "https://management.azure.com/subscriptions/$subscriptionID/providers/Microsoft.Storage/skus?api-version=2024-01-01" --headers "Authorization=Bearer $token")
+result=$(az rest --method get --uri "https://management.azure.com/subscriptions/$subscriptionID/providers/Microsoft.Storage/skus?api-version=2025-08-01" --headers "Authorization=Bearer $token")
 
 # Filter the SKU list to get the required information, customization required here to get the best result.
 filteredResult=$(echo $result | jq '.value[] | select(.resourceType == "storageAccounts" and (.kind == "FileStorage" or .kind == "StorageV2") and (.name | test("^(?!Standard_RAGRS|Standard_RAGZRS)")))' )
