@@ -45,7 +45,7 @@ Open the connectors page where you can add and manage your agent's external conn
 
 The connectors list shows any existing connectors for your agent.
 
-:::image type="content" source="media/setup-azure-devops-connector/oauth-connectors-list.png" alt-text="Connectors list page showing existing connectors with status indicators.":::
+:::image type="content" source="media/azure-devops-connector/oauth-connectors-list.png" alt-text="Connectors list page showing existing connectors with status indicators.":::
 
 ## Add an Azure DevOps OAuth connector
 
@@ -55,7 +55,7 @@ Select the Azure DevOps OAuth connector type from the wizard.
 1. In the **Add a connector** wizard, select **Azure DevOps OAuth connector**.
 1. Select **Next**.
 
-:::image type="content" source="media/setup-azure-devops-connector/oauth-connector-picker-all.png" alt-text="Connector picker showing Azure DevOps OAuth connector option.":::
+:::image type="content" source="media/azure-devops-connector/oauth-connector-picker-all.png" alt-text="Connector picker showing Azure DevOps OAuth connector option.":::
 
 > [!NOTE]
 > If you don't see the Azure DevOps OAuth connector in the picker, the OAuth feature might not be enabled for your agent. Contact your administrator.

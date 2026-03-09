@@ -65,7 +65,7 @@ After saving, the settings page shows a green status indicator confirming PagerD
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Set up an incident trigger](./setup-response-plan.md)
+> [Set up an incident trigger](./response-plan.md)
 
 ## Related content
 

@@ -207,7 +207,7 @@ For more information, see [Subagents](sub-agents.md).
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Set up an MCP connector](./setup-mcp-connector.md)
+> [Set up an MCP connector](./mcp-connector.md)
 
 ## Related content
 

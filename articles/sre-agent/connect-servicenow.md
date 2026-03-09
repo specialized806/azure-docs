@@ -254,7 +254,7 @@ In this tutorial, you:
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Set up an incident trigger](./setup-response-plan.md)
+> [Set up an incident trigger](./response-plan.md)
 
 ## Related content
 

@@ -38,5 +38,5 @@ In this tutorial, you learn how to:
 
 ## Related content
 
-- [Set up the Teams bot](setup-teams-bot.md)
+- [Set up the Teams bot](teams-bot.md)
 - [Send notifications](send-notifications.md)
