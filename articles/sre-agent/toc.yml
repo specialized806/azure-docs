@@ -104,8 +104,6 @@ items:
             href: kusto-connector.md
           - name: Set up MCP connector
             href: mcp-connector.md
-          - name: Set up Outlook connector
-            href: outlook-connector.md
           - name: Connect Azure DevOps Wiki
             href: connect-azure-devops-wiki.md
           - name: Connect to PagerDuty
