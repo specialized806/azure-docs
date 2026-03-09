@@ -10,20 +10,20 @@ ms.service: azure-operator-service-manager
 
 # Control upgrade failure behavior
 
-This guide describes the Azure Operator Service Manager (AOSM) upgrade failure behavior features for container network functions (CNFs). These features, as part of the AOSM safe upgrade practices initiative, offer a choice between faster retries, with pause on failure, versus return to starting point, with rollback on failure.
+This guide describes the Azure Operator Service Manager (AOSM) upgrade failure behavior features for container network functions (CNFs). For faster retries, use pause on failure. To return to the starting point, use rollback on failure.
 
 ## Pause on failure
 Any upgrade using AOSM starts with a site network service (SNS) reput operation. The reput operation processes the network function applications (nfApps) found in the network function design version (NFDV). The reput operation implements the following default logic:
 * A user initiates an SNS reput operation with pause-on-failure enabled.
 * nfApps are processed following either `updateDependsOn` ordering, or in the sequential order they appear.
-* If an nfApp install or upgrade operation fails, the atomic rollback setting for that operation and nfApp is honored .
+* If an nfApp install or upgrade operation fails, the atomic rollback setting for that operation and nfApp is honored.
 * No prior completed NfApps are further operated upon.
 * The task terminates and leaves the SNS resource in a failed state.
 
-With pause on failure, AOSM rolls back only the failed nfApp, via the `testOptions`, `installOptions`, or `upgradeOptions` operation parameters. No action is taken on any nfApps which proceed the failed nfApp. This method allows the end user to troubleshoot the failed nfApp and then restart the upgrade from that point forward. As the default behavior, this method is the most efficient method, but may cause network function (NF) inconsistencies while in a mixed version state. 
+With pause on failure, AOSM rolls back only the failed nfApp, via the `testOptions`, `installOptions`, or `upgradeOptions` operation parameters. No action is taken on any nfApps proceeding the failed nfApp. This method allows the end user to troubleshoot the failed nfApp and then restart the upgrade from that point forward. As the default behavior, this method is the most efficient method, but may cause network function (NF) inconsistencies while in a mixed version state. 
 
 ### Upgrade successful
-An upgrade is considered successful if all nfApps reach the desired target state without generating helm install or helm ugrade failures. In such conditions, Azure Operator Service Manager returns the following operational status and message:
+An upgrade is considered successful if all nfApps reach the desired target state without generating helm install or helm upgrade failures. In such conditions, Azure Operator Service Manager returns the following operational status and message:
 
 ```
   - Upgrade Succeeded
@@ -32,7 +32,7 @@ An upgrade is considered successful if all nfApps reach the desired target state
 ```
 
 ### Upgrade unsuccessful
-An upgrade is considered unsuccessful if any nfApp generates a helm install or helm ugrade failure. In such conditions, Azure Operator Service Manager returns the following operational status and message:
+An upgrade is considered unsuccessful if any nfApp generates a helm install or helm upgrade failure. In such conditions, Azure Operator Service Manager returns the following operational status and message:
 
 ```
   - Upgrade Failed
@@ -57,10 +57,10 @@ To address risk of mismatched nfApp versions, Azure Operator Service Manager sup
 > [!NOTE]
 > * AOSM doesn't create a snapshot if a user doesn't enable rollback on failure.
 > * A rollback on failure only applies to the successfully completed nfApps.
-> * An error with the atomic rollback on the nfApp which failed to upgrade or install is not treated as a rollback failure.
+> * An error with the atomic rollback isn't treated as a rollback failure.
 
 ### Upgrade successful
-An upgrade is considered successful if all nfApps reach the desired target state without generating helm install or helm ugrade failures. In such conditions, Azure Operator Service Manager returns the following operational status and message:
+An upgrade is considered successful if all nfApps reach the desired target state without generating helm install or helm upgrade failures. In such conditions, Azure Operator Service Manager returns the following operational status and message:
 
 ```
   - Upgrade Succeeded
@@ -69,7 +69,7 @@ An upgrade is considered successful if all nfApps reach the desired target state
 ```
 
 ### Rollback successful
-A rollback is considered successful if all prior completed NfApps have reached the original snapshot state without generating a helm rollback failure. In such conditions, Azure Operator Service Manager returns the following operational status and message:
+A rollback is considered successful if all prior completed NfApps reached the original snapshot state without generating a helm rollback failure. In such conditions, Azure Operator Service Manager returns the following operational status and message:
 
 ```
   - Upgrade Failed, Rollback Succeeded
@@ -78,7 +78,7 @@ A rollback is considered successful if all prior completed NfApps have reached t
 ```
 
 ### Rollback unsuccessful
-A rollback is considered unsuccessful if any prior completed nfApps fail to reach the original snapshot state, instead generating a helm rollback failure. In such conditions, Azure Operator Service Manager will stop processing any further rollback eligble nfApps and terminate with the following operational status and message:
+A rollback is considered unsuccessful if any prior completed nfApps fail to reach the original snapshot state, instead generating a helm rollback failure. In such conditions, Azure Operator Service Manager stops processing any further rollback eligible nfApps and terminate with the following operational status and message:
 
 ```
   - Upgrade Failed, Rollback Failed
@@ -130,12 +130,12 @@ example:
 > * Each `roleOverrideValues` entry overrides the default behavior of the NfAapps.
 > * If multiple entries of `nfConfiguration` are found in the `roleOverrideValues`, then the NF reput is returned as a bad request.
 
-## Managing nfApps which don't support rollback
-Almost all publishers have reported some nfApps which are not compatible with helm rollback operations. Some of these nfApps maybe sourced from third-parties who do not common support such strict resilency requirements. Some of these nfApps maybe related to database applications which have complicated schema management requirements. In these cases special consideration should be taken to deal with these nfApps.
+## Managing nfApps that don't support rollback
+Almost all publishers report some nfApps that aren't compatible with helm rollback operations. These nfApps maybe sourced from third-parties who don't common support such strict resiliency requirements. These nfApps maybe related to database applications with complicated schema management requirements. In these cases, special consideration should be taken to deal with nfApps that don't support rollback.
 
 * The strong preference is to push vendors to support helm rollback.
-* nfApps which don't support rollback cannot be skipped.
-* nfApp rollback order cannot changed.
+* nfApps that don't support rollback can't be skipped.
+* nfApp rollback order can't change.
 * Incremental-NFDV approach must be used in these situations.
 
 ## How to troubleshoot rollback on failure
