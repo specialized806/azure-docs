@@ -5,7 +5,7 @@ description: Learn how to configure Microsoft Entra ID authentication for RDP an
 author: abell
 ms.service: azure-bastion
 ms.topic: how-to
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 ms.author: abell
 
 # Customer intent: "As a cloud administrator, I want to configure Microsoft Entra ID authentication with Azure Bastion, so that I can use identity-based access policies and MFA for my virtual machines."
@@ -57,19 +57,22 @@ Entra ID authentication is available through two connection methods:
 
 When all requirements are met, Microsoft Entra ID appears as the default authentication option on the Bastion connection page in the Azure portal. If any requirement isn't met, the option doesn't appear.
 
+> [!NOTE]
+> The sign-in experience differs between connection methods. Portal connections use passwordless authentication—you sign in with your Entra ID credentials and don't need a local VM password. Native client RDP connections prompt for password entry after MFA completes. For more information, see [Sign in using password/passwordless authentication with Microsoft Entra ID](/entra/identity/devices/howto-vm-sign-in-azure-ad-windows#sign-in-using-passwordpasswordless-authentication-with-microsoft-entra-id).
+
 ## Assign roles
 
-Users connecting with Entra ID authentication need the following role assignments:
+Users connecting with Entra ID authentication need **one of** the following role assignments:
 
 * **[Virtual Machine Administrator Login:](/azure/role-based-access-control/built-in-roles#virtual-machine-administrator-login)** Grants administrator-level access to the virtual machine.
 * **[Virtual Machine User Login:](/azure/role-based-access-control/built-in-roles#virtual-machine-user-login)** Grants regular user-level access to the virtual machine.
 
-The following [Bastion Reader roles](bastion-connect-vm-rdp-windows.md#prerequisites) are also required:
+The following [Reader](/azure/role-based-access-control/built-in-roles#reader) role assignments on the relevant resources are also required:
 
 * Reader role on the virtual machine.
 * Reader role on the NIC with private IP of the virtual machine.
 * Reader role on the Azure Bastion resource.
-* Reader role on the virtual network of the target virtual machine.
+* Reader role on the virtual network of the target virtual machine (if the Bastion deployment is in a peered virtual network).
 
 You can assign roles at the virtual machine, resource group, or subscription scope.
 
@@ -183,9 +186,6 @@ After you complete the role assignments and install the virtual machine extensio
 
 Connect to a Windows virtual machine using RDP with Entra ID authentication in the Azure portal. The [Basic SKU](bastion-sku-comparison.md) or higher is required.
 
-> [!NOTE]
-> Microsoft Entra ID authentication for RDP connections in the portal is in **public preview**.
-
 1. In the [Azure portal](https://portal.azure.com), navigate to your Windows virtual machine. Select **Connect** > **Bastion**.
 1. In the **Connection settings** section, set **Protocol** to **RDP**. Enter the port number if you changed it from the default of 3389.
 1. For **Authentication type**, select **Microsoft Entra ID (Preview)**. If this option doesn't appear, verify that the virtual machine extension is installed and the required roles are assigned.
@@ -220,9 +220,6 @@ az network bastion rdp \
 
 When prompted, sign in with your Microsoft Entra ID credentials.
 
-> [!IMPORTANT]
-> Remote connection to virtual machines joined to Microsoft Entra ID is allowed only from Windows 10 or later PCs that are [Microsoft Entra registered, Microsoft Entra joined, or Microsoft Entra hybrid joined](/entra/identity/devices/overview) to the *same* directory as the virtual machine.
-
 ### [Native client: SSH](#tab/native-ssh)
 
 Connect to a Linux virtual machine using the Azure CLI native client with Entra ID authentication. The [Standard SKU](bastion-sku-comparison.md) or higher is required, and Bastion must be configured for [native client support](native-client.md).
@@ -236,9 +233,6 @@ az network bastion ssh \
   --target-resource-id "<VMResourceId>" \
   --auth-type "AAD"
 ```
-
-> [!NOTE]
-> Microsoft Entra ID authentication isn't supported for [IP-based](connect-ip-address.md) SSH connections (using `--target-ip-address`).
 
 ---
 
