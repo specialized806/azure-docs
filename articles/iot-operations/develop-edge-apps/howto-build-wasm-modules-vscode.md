@@ -4,7 +4,7 @@ description: Learn how to build WebAssembly (WASM) modules for data flows using 
 author: dominicbetts 
 ms.author: dobett 
 ms.topic: how-to
-ms.date: 12/08/2025
+ms.date: 02/25/2026
 ms.service: azure-iot-operations
 
 # CustomerIntent: As a developer, I want to understand how to use the VS Code extension to build and deploy WASM modules to use in data flow graphs or the HTTP/REST connector.
@@ -26,7 +26,7 @@ The extension is supported on the following platforms:
 
 - Linux
 - Windows Subsystem for Linux (WSL)
-- Windows (be sure to use a Windows shell such as PowerShell or Command Prompt when when you run the extension commands on Windows)
+- Windows (be sure to use a Windows shell such as PowerShell or Command Prompt when you run the extension commands on Windows)
 
 To learn more about graphs and WASM in Azure IoT Operations, see:
 
@@ -431,7 +431,7 @@ To learn more, see [Azure IoT Operations schema registry concepts](../connect-to
 
 The `data/` folder contains three test files:
 
-- `temperature_humidity_payload_1.json` - Contains both temperature and humidity data and passes validation. However, the humidity value isn't an integer as specified in the schema, so the data is filtered out.
+- `temperature_humidity_payload_1.json` - Contains both temperature and humidity data. However, the humidity value (175.1) isn't an integer as specified in the schema, so the data fails schema validation and is filtered out.
 - `temperature_humidity_payload_2.json` - Contains only humidity data and is filtered out.
 - `temperature_humidity_payload_3.json` - Contains both temperature and humidity data and passes validation.
 
@@ -480,7 +480,7 @@ Complete the [Schema registry support for WASM modules](#schema-registry-support
 1. Locate the `filter` function and set a breakpoint by clicking in the margin next to the line number or by pressing `F9`.
 
     ```rust
-    fn filter(message: DataModel) -> Result<bool, Error> {
+    fn filter(input: DataModel) -> Result<bool, Error> {
         let DataModel::Message(message) = input else {
             return Err(Error {message: "Unexpected input type.".to_string()});
         };
@@ -583,3 +583,10 @@ kubectl logs -n azure-iot-operations -l app.kubernetes.io/instance=aio-dataflow-
 ### Recovery procedures
 
 **VS Code extension reset**: If the VS Code extension behaves unexpectedly, try uninstalling and reinstalling it, then restart VS Code.
+## Related content
+
+- [Develop custom WASM modules](howto-develop-wasm-modules.md)
+- [Configure graph definitions](howto-configure-wasm-graph-definitions.md)
+- [Deploy graph definitions](howto-deploy-wasm-graph-definitions.md)
+- [ONNX inference in WASM modules](howto-wasm-onnx-inference.md)
+- [Use WASM in dataflow graphs](../connect-to-cloud/howto-dataflow-graph-wasm.md)
