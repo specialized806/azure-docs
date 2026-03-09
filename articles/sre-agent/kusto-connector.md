@@ -3,7 +3,7 @@ title: "Tutorial: Set Up the Kusto Connector in Azure SRE Agent (preview)"
 description: Connect your SRE agent to Azure Data Explorer clusters so it can run KQL queries against your logs and telemetry data.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted

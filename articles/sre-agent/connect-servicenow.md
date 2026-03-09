@@ -3,7 +3,7 @@ title: "Tutorial: Connect to ServiceNow in Azure SRE Agent (preview)"
 description: Configure ServiceNow as your incident platform using basic authentication or OAuth 2.0 for automated incident management.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -73,11 +73,11 @@ Follow these steps to connect ServiceNow with OAuth 2.0 from the Azure SRE Agent
 1. Go to your agent in the [Azure SRE Agent portal](https://sre.azure.com).
 1. In the left navigation, go to **Settings** > **Incident platform**.
 
-   :::image type="content" source="media/connect-service-now/incident-platform-settings.png" alt-text="Screenshot of the Settings menu showing the Incident platform option.":::
+   :::image type="content" source="media/connect-servicenow/incident-platform-settings.png" alt-text="Screenshot of the Settings menu showing the Incident platform option.":::
 
 1. Select **ServiceNow** from the **Incident platform** dropdown.
 
-   :::image type="content" source="media/connect-service-now/platform-dropdown.png" alt-text="Screenshot of the Incident platform dropdown showing PagerDuty, Azure Monitor, ServiceNow, and Microsoft IcM options.":::
+   :::image type="content" source="media/connect-servicenow/platform-dropdown.png" alt-text="Screenshot of the Incident platform dropdown showing PagerDuty, Azure Monitor, ServiceNow, and Microsoft IcM options.":::
 
    > [!NOTE]
    > If another platform is already connected, a confirmation dialog appears. Confirm to disconnect the current platform before proceeding. Only one incident platform can be active at a time.
@@ -90,7 +90,7 @@ Follow these steps to connect ServiceNow with OAuth 2.0 from the Azure SRE Agent
    ```
 
 1. Enter your ServiceNow details:
-   - **ServiceNow endpoint**: Your instance URL (for example, `https://your-instance.service-now.com`).
+   - **ServiceNow endpoint**: Your instance URL (for example, `https://your-instance.servicenow.com`).
    - **OAuth Client ID**: From your ServiceNow OAuth application.
    - **OAuth Client Secret**: From your ServiceNow OAuth application.
 
@@ -112,7 +112,7 @@ After authorization, confirm that the connection is active.
 
 The settings page shows a green status indicator with **"ServiceNow is connected."** Your agent can now receive and manage incidents from ServiceNow.
 
-:::image type="content" source="media/connect-service-now/incident-platform-settings.png" alt-text="Screenshot of the Incident platform settings showing connected status with a green indicator.":::
+:::image type="content" source="media/connect-servicenow/incident-platform-settings.png" alt-text="Screenshot of the Incident platform settings showing connected status with a green indicator.":::
 
 > [!TIP]
 > Your agent can now automatically receive, investigate, and update ServiceNow incidents. Set up [response plans](#set-up-response-plans) to control which incidents your agent handles.
@@ -140,7 +140,7 @@ Follow these steps to connect ServiceNow with basic authentication.
 1. Select **ServiceNow** from the **Incident platform** dropdown.
 1. Don't change **Authentication Type** - keep it as **Basic Authentication** (default).
 1. Enter your ServiceNow details:
-   - **ServiceNow endpoint**: Your instance URL (for example, `https://your-instance.service-now.com`).
+   - **ServiceNow endpoint**: Your instance URL (for example, `https://your-instance.servicenow.com`).
    - **Username**: The integration user's username.
    - **Password**: The integration user's password.
 1. Select **Save**.
@@ -230,7 +230,7 @@ If the connection status shows as not connected after initial setup, try the fol
 
 If you see this error, check the following items:
 
-- Verify the endpoint URL format: `https://your-instance.service-now.com` (no trailing slash).
+- Verify the endpoint URL format: `https://your-instance.servicenow.com` (no trailing slash).
 - Confirm your ServiceNow instance is accessible from the public internet.
 - Check that the integration user has sufficient permissions.
 

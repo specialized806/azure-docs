@@ -3,7 +3,7 @@ title: "Tutorial: Set Up the Outlook Connector in Azure SRE Agent (preview)"
 description: Connect your SRE agent to Microsoft Outlook for email-based incident notifications and responses.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 ms.custom: outlook, email, connector, notifications, microsoft
 author: craigshoemaker
 ms.author: cshoe

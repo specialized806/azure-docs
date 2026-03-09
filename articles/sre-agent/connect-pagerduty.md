@@ -3,7 +3,7 @@ title: "Tutorial: Connect to PagerDuty in Azure SRE Agent (preview)"
 description: Integrate your agent with PagerDuty to diagnose and respond to incidents automatically.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted

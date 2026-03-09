@@ -3,7 +3,7 @@ title: Connectors in Azure SRE Agent (preview)
 description: Extend your agent's capabilities to external data sources, collaboration tools, and custom APIs using connectors.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/06/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -36,7 +36,7 @@ Even with no connectors configured, your agent has built-in capabilities through
 | **Log Analytics** | Query Log Analytics workspaces |
 | **Azure Monitor metrics** | List and query metrics, analyze trends and anomalies |
 | **Azure Resource Graph** | Discover and query any Azure resource across subscriptions |
-| **ARM / Azure CLI** | Read and modify any Azure resource type |
+| **Azure Resource Manager / Azure CLI** | Read and modify any Azure resource type |
 | **AKS diagnostics** | Run kubectl commands, diagnose Kubernetes issues |
 
 Azure Resource Graph and ARM operations work with any Azure resource type, including App Services, Container Apps, VMs, networking, storage, and more. If your logs and metrics live in Azure Monitor and Application Insights, your agent can start investigating problems immediately with no connector setup required. Connectors become valuable when you need the agent to reach systems *outside* Azure.
@@ -98,7 +98,7 @@ Your agent continuously monitors the health of every MCP server connection. Each
 
 Go to **Builder > Connectors** to see all your connectors with their current status.
 
-:::image type="content" source="media/connectors/connectors-status-indicators.png" alt-text="Connectors list showing status indicators for each MCP server connection.":::
+:::image type="content" source="media/connectors/connectors-status-indicators.png" alt-text="Screenshot of connectors list showing status indicators for each MCP server connection.":::
 
 For connectors in a **Failed**, **Error**, or **Not Available** state, a **See details** link appears in the status column. Select it to view diagnostic information including the error message, the number of tools loaded, and the last heartbeat timestamp.
 
@@ -141,7 +141,7 @@ Connector management requires **write** permission on the agent. The following t
 
 During setup, some connectors require **OAuth consent** from a user who has the appropriate permissions in the external system (for example, a GitHub org member for GitHub connectors, or a Microsoft Entra admin for Outlook/Teams). This consent is about permissions in the *external* service, not SRE Agent roles.
 
-For connectors that use the agent's **managed identity** (like Azure Data Explorer), an admin of the external system must allowlist the identity.
+For connectors that use the agent's **managed identity** (like Azure Data Explorer), an admin of the external system must allow list the identity.
 
 Once configured, all agent users benefit from connectors automatically. They just ask the agent questions and it uses the available connectors behind the scenes.
 

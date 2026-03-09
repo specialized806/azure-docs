@@ -3,7 +3,7 @@ title: "Tutorial: Connect an Azure DevOps Wiki to Azure SRE Agent (preview)"
 description: Connect an Azure DevOps wiki to your Azure SRE Agent so the agent can reference team runbooks and procedures during investigations.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted

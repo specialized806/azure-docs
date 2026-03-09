@@ -3,7 +3,7 @@ title: "Step 3: Connect Source Code to Azure SRE Agent (preview)"
 description: Connect your GitHub repository so your agent can perform root cause analysis and correlate production issues to specific code changes.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/06/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -41,7 +41,7 @@ You can connect source code in three ways.
 |---|---|
 | **Option A: Resource mapping** | Single repo linked to a specific Azure resource |
 | **Option B: MCP + subagent** | Access to all your GitHub repos |
-| **Option C: ADO Documentation connector** | Azure DevOps repos and wikis as knowledge sources |
+| **Option C: ADO Documentation connector** | Azure Repos and wikis as knowledge sources |
 
 > [!TIP]
 > Pick the approach that matches your setup. You can use multiple options together.
