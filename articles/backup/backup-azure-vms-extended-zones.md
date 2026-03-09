@@ -123,7 +123,7 @@ Two subtasks run at the back end. One is for the front-end backup job that you c
 
    :::image type="content" source="./media/backup-azure-arm-vms-prepare/backup-job-phase.png" alt-text="Screenshot that shows backup job status subtasks." lightbox="./media/backup-azure-arm-vms-prepare/backup-job-phase.png":::
 
-For details on VM backup job phases and how to interpret the progress bar, see [Verify the backup job status](backup-azure-arm-vms-prepare.md#verify-the-backup-job-status).
+For information on VM backup job phases and how to interpret the progress bar, see [Verify the backup job status](backup-azure-arm-vms-prepare.md#verify-the-backup-job-status).
 
 Transfer data to vault can take multiple days to complete depending on the size of the disks, churn per disk, and several other factors.
 

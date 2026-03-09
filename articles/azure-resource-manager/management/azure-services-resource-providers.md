@@ -1,8 +1,8 @@
-﻿---
+---
 title: Find resource providers by Azure services
 description: Lists all resource provider namespaces for Azure Resource Manager and shows the Azure service for that namespace.
 ms.topic: article
-ms.date: 01/09/2025
+ms.date: 02/27/2026
 ms.custom: devx-track-arm-template
 content_well_notification: 
   - AI-contribution

@@ -162,9 +162,9 @@ In job details, the subtasks provide visibility into the backup job phases.
 The progress bar tracks only **Transfer data to vault** and shows the proportion of data transferred. **Snapshot** and **Validate backup** durations aren't represented on the progress bar. Use the progress bar as a transfer indicator, not as an estimate of total backup completion time.
 
 > [!IMPORTANT]
-> - Completion of **Transfer data to vault** doesn't by itself confirm a restorable recovery point. The backup is considered restorable only after **Validate backup** succeeds.
+> - Completion of **Transfer data to vault** doesn't confirm a restorable recovery point. The backup is considered restorable only after **Validate backup** succeeds.
 > - **Snapshot** and **Validate backup** durations are excluded from the progress bar because they're not predictably time-bound.
-> - The progress bar doesn't represent total time remaining or ETA.
+> - The progress bar doesn't represent total time remaining or estimated timeline.
 > - This progress experience improves visibility only. It doesn't change the underlying backup workflow.
 
 **Transfer data to vault** can take multiple days to finish depending on the size of the disks, the churn per disk, and other factors.

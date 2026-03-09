@@ -6,6 +6,7 @@ ms.service: azure-container-storage
 ms.topic: how-to
 ms.date: 01/28/2026
 ms.author: saurabsharma
+ms.reviewer: kendownie
 ms.custom:
   - references_regions
 
@@ -34,13 +35,6 @@ Expanding the capacity of an Elastic SAN through Azure Container Storage is curr
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
   ```azurecli-interactive
   az provider register --namespace Microsoft.ElasticSan
-  ```
-
-- When [ZRS is newly enabled](enable-multi-zone-redundancy.md) in a region, you might need to register a subscription-level feature flag so Azure Container Storage can deploy SAN targets:
-  ```azurecli
-  az feature register \
-  --namespace Microsoft.ElasticSan \
-  --name EnableElasticSANTargetDeployment
   ```
 
 ## Setting up permissions
