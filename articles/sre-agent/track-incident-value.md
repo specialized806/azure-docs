@@ -3,7 +3,7 @@ title: Track Incident Value in Azure SRE Agent (preview)
 description: Measure your agent's impact with real-time metrics that show which incidents were mitigated, which response plans perform best, and where to invest next.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -32,7 +32,7 @@ Your agent records an activity snapshot every time it processes an incident. The
 
 Navigate to **Monitor > Incident metrics** to view the dashboard.
 
-:::image type="content" source="media/track-incident-value/incident-metrics-dashboard.png" alt-text="Incident metrics dashboard showing five stat cards with sparkline trends and an incident summary line chart":::
+:::image type="content" source="media/track-incident-value/incident-metrics-dashboard.png" alt-text="Screenshot of the incident metrics dashboard showing five stat cards with sparkline trends and an incident summary line chart.":::
 
 ### Metric cards
 
@@ -69,7 +69,7 @@ The following table compares incident tracking workflows before and after using 
 
 For a real-time view of every incident your agent handles, go to **Activities > Incidents**.
 
-:::image type="content" source="media/track-incident-value/incidents-overview.png" alt-text="Incidents overview showing incident grid with status cards, filterable by time range, priority, and investigation status":::
+:::image type="content" source="media/track-incident-value/incidents-overview.png" alt-text="Screenshot of the incidents overview showing incident grid with status cards, filterable by time range, priority, and investigation status.":::
 
 The page shows summary cards for incident status (Triggered, Acknowledged) and agent investigation status (Pending user input, In progress, Completed), plus a filterable grid of all incidents. Filter by time range, priority, status, investigation status, or search for specific incidents.
 
@@ -79,7 +79,7 @@ Each row links to the agent's investigation thread, so you can review exactly wh
 
 Your agent generates automated daily reports that you can access at **Activities > Daily reports**.
 
-:::image type="content" source="media/track-incident-value/daily-reports.png" alt-text="Daily report showing security findings, incident summary, resource health metrics, and recommended actions":::
+:::image type="content" source="media/track-incident-value/daily-reports.png" alt-text="Screenshot of the daily report showing security findings, incident summary, resource health metrics, and recommended actions.":::
 
 Select a date to view that day's report. Each report covers:
 

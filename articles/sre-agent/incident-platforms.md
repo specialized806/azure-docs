@@ -3,7 +3,7 @@ title: Incident Platforms in Azure SRE Agent (preview)
 description: Connect an incident platform to your agent so it can receive alerts, investigate issues, and take action automatically.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/06/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -15,7 +15,7 @@ ms.custom: incidents, incident platform, pagerduty, servicenow, azure monitor, r
 
 An incident platform is the system that tells your agent when something goes wrong. When you connect your incident platform, the agent receives alerts, investigates problems, and takes action automatically, without waiting for someone to start a chat.
 
-:::image type="content" source="media/incident-platforms/incident-platform-flow.svg" alt-text="Flow diagram showing an incident platform sending alerts through response plans to agent investigation and action.":::
+:::image type="content" source="media/incident-platforms/incident-platform-flow.svg" alt-text="Flow diagram showing an incident platform sending alerts through response plans to agent investigation and action." lightbox="media/incident-platforms/incident-platform-flow.svg":::
 
 Without an incident platform, your agent is reactive: users ask questions and the agent investigates on demand. When you connect an incident platform, your agent becomes proactive. It picks up incidents the moment they fire and starts working immediately.
 
@@ -74,7 +74,7 @@ Your agent can read from and write back to the incident platform.
 
 Response plans define what your agent does when specific types of incidents arrive. You configure rules based on incident severity, title patterns, or other criteria, and the agent follows the plan automatically.
 
-:::image type="content" source="media/incident-platforms/response-plan-flow.svg" alt-text="Diagram showing how response plans combine filters, autonomy levels, and custom instructions.":::
+:::image type="content" source="media/incident-platforms/response-plan-flow.svg" alt-text="Screenshot of diagram showing how response plans combine filters, autonomy levels, and custom instructions." lightbox="media/incident-platforms/response-plan-flow.svg":::
 
 A response plan can:
 
@@ -107,7 +107,7 @@ You can customize this default plan or create more response plans with different
 
 The **Monitor > Incident metrics** section gives you visibility into how your agent handles incidents over time.
 
-:::image type="content" source="media/incident-platforms/incident-metrics-dashboard.svg" alt-text="KPI cards showing incidents reviewed, mitigated by agent, assisted, and pending.":::
+:::image type="content" source="media/incident-platforms/incident-metrics-dashboard.svg" alt-text="Diagram of KPI cards showing incidents reviewed, mitigated by agent, assisted, and pending." lightbox="media/incident-platforms/incident-metrics-dashboard.svg":::
 
 | Metric | What it shows |
 |---|---|
@@ -139,6 +139,6 @@ Your agent uses both concepts: the incident platform *triggers* the investigatio
 
 ## Related content
 
-- [Set up incident response plans](setup-response-plan.md): End-to-end guide to set up automated incident handling.
+- [Set up incident response plans](response-plan.md): End-to-end guide to set up automated incident handling.
 - [Incident response plans](incident-response-plans.md): Define how your agent handles different incident types.
 - [Connectors](connectors.md): Give your agent access to data sources and actions.
