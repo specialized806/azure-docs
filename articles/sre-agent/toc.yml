@@ -84,7 +84,7 @@ items:
             href: agent-hooks.md
           - name: Code interpreter
             href: code-interpreter.md
-      - name: Knowledge & Data Sources
+      - name: Knowledge & data sources
         items:
           - name: Azure DevOps Wiki knowledge
             href: azure-devops-wiki-knowledge.md
@@ -96,7 +96,7 @@ items:
         items:
           - name: Chat from your tools
             href: chat-from-your-tools.md
-      - name: Measure & Govern
+      - name: Measure & govern
         items:
           - name: Track incident value
             href: track-incident-value.md
@@ -132,7 +132,7 @@ items:
             href: create-python-tool.md
           - name: Use code interpreter
             href: use-code-interpreter.md
-      - name: Knowledge & Data Sources
+      - name: Knowledge & data sources
         items:
           - name: Set up Kusto connector
             href: kusto-connector.md
