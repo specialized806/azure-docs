@@ -1,6 +1,7 @@
 ---
 title: Perform Advanced Tasks on Rulesets
 description: Perform advanced tasks and operations on rulesets by using the Microsoft Rules Composer.
+services: logic-apps
 ms.service: azure-logic-apps
 ms.suite: integration
 author: haroldcampos

@@ -1,6 +1,7 @@
 ---
 title: Test Rulesets with Microsoft Rules Composer
 description: Test rulesets by using the Microsoft Rules Composer along with output examples for rules testing.
+services: logic-apps
 ms.service: azure-logic-apps
 ms.suite: integration
 author: haroldcampos

@@ -1,6 +1,7 @@
 ---
 title: Execution Optimization for the Rules Engine
 description: Learn how the Azure Logic Apps Rules Engine evaluates conditions, executes actions, and resolves conflicts between rules, including agenda, priority, caching, and performance concepts.
+services: logic-apps
 ms.service: azure-logic-apps
 ms.suite: integration
 author: haroldcampos

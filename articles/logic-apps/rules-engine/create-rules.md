@@ -1,6 +1,7 @@
 ---
 title: Create Rules with Microsoft Rules Composer
 description: Create rules for an Azure Logic Apps Rules Engine project using the Microsoft Rules Composer.
+services: logic-apps
 ms.service: azure-logic-apps
 ms.suite: integration
 author: haroldcampos

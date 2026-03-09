@@ -1,5 +1,5 @@
 ---
-title: Build fact creators and retrievers
+title: Build Fact Creators and Retrievers
 description: Build fact creators and retrievers to develop and test rules in Microsoft Rules Composer.
 services: logic-apps
 ms.service: azure-logic-apps
