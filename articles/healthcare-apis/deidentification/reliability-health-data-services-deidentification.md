@@ -89,7 +89,7 @@ az afd profile create --profile-name myfrontdoorprofile --resource-group my-deid
 
 ### Add an endpoint
 
-To create an endpoint in your Azure Front Door profile, run [`az afd endpoint create`](/cli/azure/afd/endpoint#az-afd-endpoint-create). This endpoint routes requests to your services. You can create multiple endpoints in your profile after you finish this article.
+To create an endpoint in your Azure Front Door profile, run [`az afd endpoint create`](/cli/azure/afd/endpoint#az-afd-endpoint-create). This endpoint routes requests to your services. You can create multiple endpoints in your profile after you finish this tutorial.
 
 ```azurecli-interactive
 az afd endpoint create --resource-group my-deid --endpoint-name myendpoint --profile-name myfrontdoorprofile --enabled-state Enabled
@@ -122,7 +122,7 @@ az afd origin-group create --resource-group my-deid --origin-group-name myorigin
 
 ### Add origins to the origin group
 
-To add an origin to your origin group, run [`az afd origin create`](/cli/azure/afd/origin#az-afd-origin-create). For the `--host-name` and `--origin-host-header` parameters, replace the placeholder value `<service-url-east-us>` with your East US service URL, leaving out the scheme (`https://`). You should have a value like `abcdefghijk.api.eastus.deid.azure.com`.
+To add an origin to your origin group, run [`az afd origin create`](/cli/azure/afd/origin#az-afd-origin-create). For the `--host-name` and `--origin-host-header` parameters, replace the placeholder value `<service-url-east-us>` with your East US service URL, leaving out the scheme (`https://`). You have a value like `abcdefghijk.api.eastus.deid.azure.com`.
 
 ```azurecli-interactive
 az afd origin create --resource-group my-deid --host-name <service-url-east-us> --profile-name myfrontdoorprofile --origin-group-name myorigingroup --origin-name deid1 --origin-host-header <service-url-east-us> --priority 1 --weight 1000 --enabled-state Enabled --https-port 443
@@ -168,13 +168,13 @@ Allow about 15 minutes for this step to complete. It takes some time for this ch
 
 When you create the Azure Front Door profile, it takes a few minutes for the configuration to be deployed globally. After this period, you can access the host you created.
 
-To get the host name of the Azure Front Door endpoint, run [`az afd endpoint show`](/cli/azure/afd/endpoint#az-afd-endpoint-show). It should look like `abddefg.azurefd.net`.
+To get the host name of the Azure Front Door endpoint, run [`az afd endpoint show`](/cli/azure/afd/endpoint#az-afd-endpoint-show). It looks like `abddefg.azurefd.net`.
 
 ```azurecli-interactive
 az afd endpoint show --resource-group my-deid --profile-name myfrontdoorprofile --endpoint-name myendpoint --query "hostName"
 ```
 
-In a browser, go to the endpoint host name that the previous command returned: `<endpoint>.azurefd.net/health`. Your request should automatically get routed to the primary de-identification service in East US.
+In a browser, go to the endpoint host name that the previous command returned: `<endpoint>.azurefd.net/health`. Your request automatically gets routed to the primary de-identification service in East US.
 
 To test instant global failover:
 
@@ -182,16 +182,16 @@ To test instant global failover:
 
 1. Follow the steps at [Configure private access](/azure/healthcare-apis/deidentification/configure-private-endpoints#configure-private-access) to disable public network access for the de-identification service in East US.
 
-1. Refresh your browser. You should see the same information page because traffic is now directed to the de-identification service in West US 2.
+1. Refresh your browser. You see the same information page because traffic is now directed to the de-identification service in West US 2.
 
     > [!TIP]
     > You might need to refresh the page a few times for the failover to complete.
 
 1. Now disable public network access for the de-identification service in West US 2.
 
-1. Refresh your browser. This time, you should see an error message.
+1. Refresh your browser. This time, you see an error message.
 
-1. Re-enable public network access for one of the de-identification services. Refresh your browser and you should see the health status again.
+1. Re-enable public network access for one of the de-identification services. Refresh your browser and you see the health status again.
 
 You've now validated that you can access your services through Azure Front Door and that failover functions as intended. Enable public network access on the other service if you're done with failover testing.
 
