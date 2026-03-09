@@ -21,7 +21,7 @@ For more information about the retirement of Application Gateway V1, see [Migrat
 
 ## Why migrate to V2?
 
-[Application Gateway and Web Application Firewall V2](application-gateway-autoscaling-zone-redundant.md) offers the following benefits over V1:
+[Application Gateway V2 and Web Application Firewall V2](application-gateway-autoscaling-zone-redundant.md) offer the following benefits over V1:
 
 - **Resiliency**. Availability zone redundancy and autoscale.
 - **Security**. Azure Key Vault integration, improved Web Application Firewall capabilities, and bot protection.
@@ -51,7 +51,7 @@ This article focuses on the configuration stage of migration. Migration of clien
 
 - For V1, authentication certificates are required to set up TLS connections with backend servers. V2 requires uploading [trusted root certificates](./certificates-for-backend-authentication.md) for the same purpose. Whereas V1 allows the use of self-signed certificates as authentication certificates, V2 mandates [generating and uploading a self-signed root certificate](./self-signed-certificates.md) if self-signed certificates are used in the backend.
 
-- If you enable network isolation on the subscription, you must deploy all Application Gateway v2 deployments, whether public only or private only, in a subnet delegated to `Microsoft.Network/applicationGateways`. Use the [steps to set up subnet delegation](/azure/virtual-network/manage-subnet-delegation?tabs=manage-subnet-delegation-portal).
+- If you enable network isolation on the subscription, all Application Gateway V2 public-only or private-only deployments must be in a subnet delegated to `Microsoft.Network/applicationGateways`. Use the [steps to set up subnet delegation](/azure/virtual-network/manage-subnet-delegation?tabs=manage-subnet-delegation-portal).
 
 > [!NOTE]
 > Application Gateway V2 includes [customer-controlled backend TLS relaxation](configuration-http-settings.md#backend-https-validation-settings), a capability that streamlines backend certificate validation during migration. You can use this feature to temporarily relax TLS checks by skipping the certificate chain, skipping expiry validation, or overriding Server Name Indication (SNI) validation. This action aligns behavior with what's already permitted in V1.
@@ -73,7 +73,7 @@ The enhanced cloning script is the recommended option. It offers an improved mig
 - Eliminating the need for manual input of frontend SSL certificates and backend trusted root certificates.
 - Supporting the deployment of private-only V2 gateways.
 
-You can download the Enhanced cloning script from the [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAppGWClone).
+You can download the enhanced cloning script from the [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAppGWClone).
 
 ### Considerations
 
@@ -83,7 +83,7 @@ Private Application Gateway deployments must have subnet delegation configured t
 
 ### Parameters for the script
 
-- `AppGw V1 ResourceId -Required`: Azure resource ID for your existing Standard V1 or Web Application Firewall V1 gateway. To find this string value, go to the Azure portal, select your Application Gateway or Web Application Firewall resource, and then select the **Properties** link for the gateway. The resource ID is on that pane.
+- `AppGw V1 ResourceId -Required`. Azure resource ID for your existing Standard V1 or Web Application Firewall V1 gateway. To find this string value, go to the Azure portal, select your Application Gateway or Web Application Firewall resource, and then select the **Properties** link for the gateway. The resource ID is on that pane.
 
    You can also run the following Azure PowerShell commands to get the resource ID:
 
@@ -92,21 +92,21 @@ Private Application Gateway deployments must have subnet delegation configured t
    $appgw.Id
    ```
 
-- `SubnetAddressRange -Required`: Subnet address in CIDR notation, where Application Gateway V2 will be deployed.
+- `SubnetAddressRange -Required`. Subnet address in CIDR notation, where Application Gateway V2 will be deployed.
 
-- `AppGwName -Optional`: Name of the V2 application gateway. The default value is `{AppGwV1 Name}_migrated`.
+- `AppGwName -Optional`. Name of the V2 application gateway. The default value is `{AppGwV1 Name}_migrated`.
 
-- `AppGwResourceGroupName -Optional`: Name of resource group where the V2 application gateway will be created. If you don't provide it, the Application Gateway V1 resource group is used.
+- `AppGwResourceGroupName -Optional`. Name of resource group where the V2 application gateway will be created. If you don't provide it, the Application Gateway V1 resource group is used.
 
-- `PrivateIPAddress -Optional`: Private IP address to be assigned to Application Gateway V2. If you don't provide it, a random private IP is assigned.
+- `PrivateIPAddress -Optional`. Private IP address to be assigned to Application Gateway V2. If you don't provide it, a random private IP is assigned.
 
-- `ValidateBackendHealth -Optional`: Post-migration validation by comparing `ApplicationGatewayBackendHealth` responses. If you don't set it, this validation is skipped.
+- `ValidateBackendHealth -Optional`. Post-migration validation by comparing `ApplicationGatewayBackendHealth` responses. If you don't set it, this validation is skipped.
 
-- `PublicIpResourceId -Optional`: Resource ID of the public IP address (if it already exists) to be attached to the application gateway. If you don't provide it, the public IP name is `{AppGwName}-IP`.
+- `PublicIpResourceId -Optional`. Resource ID of the public IP address (if it already exists) to be attached to the application gateway. If you don't provide it, the public IP name is `{AppGwName}-IP`.
 
-- `DisableAutoscale -Optional`: Option to disable autoscale configuration for Application Gateway V2 instances. It's `false` by default.
+- `DisableAutoscale -Optional`. Option to disable autoscale configuration for Application Gateway V2 instances. It's `false` by default.
 
-- `WafPolicyName -Optional`: Name of the Web Application Firewall policy that will be created from the Web Application Firewall V1 configuration and attached to the Web Application Firewall V2 gateway.
+- `WafPolicyName -Optional`. Name of the Web Application Firewall policy that will be created from the Web Application Firewall V1 configuration and attached to the Web Application Firewall V2 gateway.
 
 ### Steps to run the script
 
@@ -197,9 +197,9 @@ The legacy script takes the following parameters:
 
 - `appgwName`. You specify this optional string as the name for the new Standard V2 or Web Application Firewall V2 gateway. If you don't supply this parameter, the name of your existing V1 gateway is used with the suffix `_V2` appended.
 
-- `AppGWResourceGroupName`. This optional string is the name of the resource group where you want V2 Application Gateway resources to be created. The default value is `<V1-app-gw-rgname>`.
+- `AppGWResourceGroupName`. This optional string is the name of the resource group where you want Application Gateway V2 resources to be created. The default value is `<V1-app-gw-rgname>`.
 
-  Ensure that there's no existing application gateway with the provided `AppGWV2Name` and `AppGWResourceGroupName` values in the V1 subscription. This parameter rewrites the existing resources.
+  Ensure that no existing application gateway with the provided `AppGWV2Name` and `AppGWResourceGroupName` values is in the V1 subscription. This parameter rewrites the existing resources.
 
 - `sslCertificates`. This parameter provides a comma-separated list of `PSApplicationGatewaySslCertificate` objects that you create to represent the TLS/SSL certificates from your V1 gateway that must be uploaded to the new V2 gateway.
 
@@ -251,7 +251,7 @@ The legacy script takes the following parameters:
 
    To create a list of `PSApplicationGatewayTrustedRootCertificate` objects, see [New-AzApplicationGatewayTrustedRootCertificate](/powershell/module/Az.Network/New-AzApplicationGatewayTrustedRootCertificate).
 
-- `privateIpAddress`. Use this optional string to provide a specific private IP address that you want to associate to your new V2 gateway. It must be from the same virtual network that you allocate for your new V2 gateway. If you don't specify this parameter, the script allocates a private IP address for your V2 gateway.
+- `privateIpAddress`. Use this optional string to provide a specific private IP address that you want to associate with your new V2 gateway. It must be from the same virtual network that you allocate for your new V2 gateway. If you don't specify this parameter, the script allocates a private IP address for your V2 gateway.
 
 - `publicIpResourceId`. Use this optional string to provide the resource ID of an existing public IP address (Standard tier) resource in your subscription that you want to allocate to the new V2 gateway. If you provide the public IP resource name, ensure that it exists in a succeeded state.
 
@@ -386,7 +386,7 @@ For the legacy cloning script, version 1.0.11 is the new version of the migratio
 
 After you successfully migrate the configuration and thoroughly test your new V2 gateway, this step focuses on redirecting live traffic.
 
-We provide an Azure PowerShell script that *retains the public IP address from V1*. Here are important considerations about the script:
+We provide an Azure PowerShell script that *retains the public IP address from V1*. Here are important considerations for the script:
 
 - The script reserves the Basic public IP from V1, converts it to Standard, and attaches it to the V2 gateway. This action effectively redirects all incoming traffic to the V2 gateway.
 - This IP swap operation typically results in a brief *downtime of approximately one to five minutes*. Plan accordingly.
@@ -467,17 +467,17 @@ Application Gateway V2 comes with a range of advantages, such as:
 - Policy associations.
 - Bot protection.
 
-Application Gateway V2 also offers high scalability, optimized traffic routing, and seamless integration with Azure services. These features can improve the overall user experience, prevent slowdowns during times of heavy traffic, and avoid expensive data breaches.
+Application Gateway V2 also offers high scalability, optimized traffic routing, and seamless integration with Azure services. These features can improve the overall user experience, prevent slowdowns during times of heavy traffic, and help you avoid expensive data breaches.
 
 Five variants are available in V1, based on the tier and size: Standard Small, Standard Medium, Standard Large, Web Application Firewall Medium, and Web Application Firewall Large. For pricing information according to your region, see the [pricing page](https://azure.microsoft.com/pricing/details/application-gateway/).
 
 The scenarios in the following table are examples for illustration purposes only. The calculations are based on East US and for a gateway with two instances in V1. The variable cost in V2 is based on one of the three dimensions with highest usage: new connections (50 per second), persistent connections (2,500 per minute), and throughput (2.22 Mbps per capacity unit).
 
-| SKU | V1 fixed price/month | V2 fixed price/month | Recommendation |
+| Variant | V1 fixed price/month | V2 fixed price/month | Recommendation |
 | --- | :---------------: | :---------------: | :------------: |
 | Standard Medium | 102.2 | 179.8 | V2 can handle a larger number of requests than a V1 gateway, so we recommend consolidating multiple V1 gateways into a single V2 gateway to optimize the cost. Ensure that consolidation doesn't exceed the Application Gateway [limits](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-application-gateway-limits). We recommend 3:1 consolidation. |
 | Web Application Firewall Medium | 183.96 | 262.8 | Same as for Standard Medium |
-| Standard Large | 467.2 | 179.58 | For these variants, in most cases, moving to a V2 gateway can provide a better price benefit compared to V1. |
+| Standard Large | 467.2 | 179.58 | For this variant, in most cases, moving to a V2 gateway can provide a better price benefit compared to V1. |
 | Web Application Firewall Large | 654.08 | 262.8 | Same as for Standard Large. |
 
 For further concerns about the pricing, work with your customer success account manager (CSAM) or get in touch with our support team for assistance.
