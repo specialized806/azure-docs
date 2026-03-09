@@ -225,7 +225,7 @@ Optionally:
 
     * The **Authorization request method** specifies how the authorization request is sent to the OAuth 2.0 server. Select **POST**.
 
-        :::image type="content" source="media/api-management-howto-oauth2/oauth-03.png" alt-text="Screenshot of authorization settings dialog.":::
+        :::image type="content" source="media/api-management-howto-oauth2/oauth-03.png" alt-text="Screenshot of the authorization settings dialog box.":::
 
 1. Specify **Token endpoint URL**, **Client authentication methods**, **Access token sending method**, and **Default scope**.
 
@@ -253,7 +253,7 @@ Optionally:
     - `/signin-oauth/code/callback/<authServerName>` for authorization code grant flow
     - `/signin-oauth/implicit/callback` for implicit grant flow
 
-    :::image type="content" source="media/api-management-howto-oauth2/oauth-04.png" alt-text="Add client credentials for the OAuth 2.0 service":::
+    :::image type="content" source="media/api-management-howto-oauth2/oauth-04.png" alt-text="Screenshot showing the Add client credentials for the OAuth 2.0 service dialog box.":::
 
     Copy the appropriate Redirect URI to the **Authentication** page of your client-app registration. In the app registration, select **Authentication** > **+ Add a platform** > **Web**, and then enter the Redirect URI.
 
@@ -274,13 +274,13 @@ After saving the OAuth 2.0 server configuration, configure an API or APIs to use
 > * Configuring OAuth 2.0 user authorization settings for an API enables API Management to acquire a token from the authorization server when you use the test console in the Azure portal or developer portal. The authorization server settings are also added to the API definition and documentation. 
 > * For OAuth 2.0 authorization at runtime, the client app must acquire and present the token and you need to configure token validation in API Management or the backend API. For an example, see [Protect an API in Azure API Management using OAuth 2.0 authorization with Microsoft Entra ID](api-management-howto-protect-backend-with-aad.md). 
 
-1. Select **APIs** from the **API Management** menu on the left.
+1. Under **APIs** on the sidebar menu, select **APIs**.
 
 1. Select the name of the desired API and select the **Settings** tab. Scroll to the **Security** section, and then select **OAuth 2.0**.
 
 1. Select the desired **Authorization server** from the drop-down list, and select **Save**.
 
-    :::image type="content" source="./media/api-management-howto-oauth2/oauth-07.png" alt-text="Configure OAuth 2.0 authorization server":::
+    :::image type="content" source="./media/api-management-howto-oauth2/oauth-07.png" alt-text="Screenshot showing the Configure OAuth 2.0 authorization server options.":::
 
 ## Developer portal - test the OAuth 2.0 user authorization
 
