@@ -957,7 +957,7 @@ For more information, see [MATCH_RECOGNIZE](/stream-analytics-query/match-recogn
 ## Geofencing and geospatial queries
 
 Azure Stream Analytics provides built-in geospatial functions that can be used to implement scenarios such as fleet management, ride sharing, connected cars, and asset tracking.
-Geospatial data can be ingested in either GeoJSON or WKT formats as part of event stream or reference data.
+Geospatial data can be ingested in either GeoJSON or WKT formats as part of eventstream or reference data.
 For example, a company that is specialized in manufacturing machines for printing passports, leases their machines to governments and consulates. The location of those machines is heavily controlled as to avoid the misplacing and possible use for counterfeiting of passports. Each machine is fitted with a GPS tracker, that information is relayed back to an Azure Stream Analytics job.
 The manufacture would like to keep track of the location of those machines and be alerted if one of them leaves an authorized area, this way they can remotely disable, alert authorities and retrieve the equipment.
 
