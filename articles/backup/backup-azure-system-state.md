@@ -2,7 +2,7 @@
 title: Back up Windows system state to Azure using Azure Backup
 description: Learn how to back up Windows Server system state to Azure using Azure Backup.
 ms.topic: how-to
-ms.date: 03/03/2026
+ms.date: 03/09/2026
 author: AbhishekMallick-MS
 ms.author: v-mallicka
 ms.service: azure-backup
@@ -142,7 +142,7 @@ To complete the initial backup, use the Microsoft Azure Recovery Services agent.
 >
 >
 
-[!INCLUDE [end-of-life-notes-windows-server-2008.md](../../includes/end-of-life-notes-windows-server-2008.md)]
+[!INCLUDE [end-of-support-notes-windows-server-2008.md](../../includes/end-of-support-notes-windows-server-2008.md)]
 
 
 ### Schedule the backup job

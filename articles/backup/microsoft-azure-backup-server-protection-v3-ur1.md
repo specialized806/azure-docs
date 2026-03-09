@@ -1,7 +1,7 @@
 ---
 title: MABS (Azure Backup Server) V3 UR1 protection matrix
 description: This article provides a support matrix listing all workloads, data types, and installations that Azure Backup Server protects.
-ms.date: 03/03/2026
+ms.date: 03/09/2026
 ms.topic: reference
 ms.custom: engagement-fy24, linux-related-content
 ms.service: azure-backup
@@ -87,7 +87,7 @@ For on-premises or hosted environments that you can't upgrade or migrate to Azur
 |------------|-----------|---------------|--------------|--------------|
 |Servers (64-bit) | Windows Server 2008 R2 SP1, Windows Server 2008 SP2 (You need to install [Windows Management Framework](https://www.microsoft.com/download/details.aspx?id=54616)) | Physical server <br><br> Hyper-V virtual machine <br><br> VMware virtual machine | Volume, share, folder, file, system state/bare metal |
 
-[!INCLUDE [end-of-life-notes-windows-server-2008.md](../../includes/end-of-life-notes-windows-server-2008.md)]
+[!INCLUDE [end-of-support-notes-windows-server-2008.md](../../includes/end-of-support-notes-windows-server-2008.md)]
 
 
 ## Cluster support
