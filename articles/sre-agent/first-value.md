@@ -33,7 +33,7 @@ By the end of this step, your agent:
 | **Documentation files** | Runbooks, playbooks, or troubleshooting guides (`.md`, `.txt`). |
 
 > [!NOTE]
-> This step covers **file uploads**, which is the fastest way to add knowledge. Your agent can also reference documentation from **Azure DevOps repositories** and **GitHub repositories** through connectors (see **Builder** > **Connectors**), and third-party data sources through [MCP connectors](chat-from-your-tools.md).
+> This step covers **file uploads**, which is the fastest way to add knowledge. Your agent can also reference documentation from **Azure DevOps repositories** and **GitHub repositories** through connectors (see **Builder** > **Connectors**), and non-Microsoft data sources through [MCP connectors](chat-from-your-tools.md).
 
 ## Open the knowledge base
 
