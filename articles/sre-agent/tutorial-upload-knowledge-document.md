@@ -180,5 +180,5 @@ Use the following table to resolve common issues with knowledge document uploads
 ## Related content
 
 - [Upload knowledge documents (capability)](upload-knowledge-document.md)
-- [Azure DevOps wiki knowledge](ado-wiki-knowledge.md)
+- [Azure DevOps wiki knowledge](azure-devops-wiki-knowledge.md)
 - [Memory and knowledge](memory.md)

@@ -147,11 +147,11 @@ Use the following table to resolve common issues with the Azure DevOps wiki conn
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Learn about ADO Wiki knowledge](./ado-wiki-knowledge.md)
+> [Learn about ADO Wiki knowledge](./azure-devops-wiki-knowledge.md)
 
 ## Related content
 
-- [Azure DevOps wiki knowledge](ado-wiki-knowledge.md)
+- [Azure DevOps wiki knowledge](azure-devops-wiki-knowledge.md)
 - [Upload knowledge documents](upload-knowledge-document.md)
 - [Connectors](connectors.md)
 - [Memory and knowledge](memory.md)

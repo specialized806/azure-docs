@@ -71,7 +71,7 @@ When you message the agent in Teams, it sends a brief acknowledgment while deepe
 
 ### Set up Teams
 
-Teams bot integration requires deploying an Azure Bot Service resource and a Teams app manifest. For step-by-step instructions, see [Tutorial: Set up a Teams bot](setup-teams-bot.md).
+Teams bot integration requires deploying an Azure Bot Service resource and a Teams app manifest. For step-by-step instructions, see [Tutorial: Set up a Teams bot](teams-bot.md).
 
 ## What makes this different
 
@@ -86,9 +86,9 @@ The following table compares working with and without the chat-from-your-tools i
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Set up the Teams bot](./setup-teams-bot.md)
+> [Set up the Teams bot](./teams-bot.md)
 
 ## Related content
 
-- [Tutorial: Set up a Teams bot](setup-teams-bot.md)
+- [Tutorial: Set up a Teams bot](teams-bot.md)
 - [Agent reasoning](agent-reasoning.md)

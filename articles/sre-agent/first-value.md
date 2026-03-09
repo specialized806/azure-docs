@@ -33,7 +33,7 @@ By the end of this step, your agent:
 | **Documentation files** | Runbooks, playbooks, or troubleshooting guides (`.md`, `.txt`). |
 
 > [!NOTE]
-> This step covers **file uploads**, which is the fastest way to add knowledge. Your agent can also reference documentation from **Azure DevOps repositories** and **GitHub repositories** through connectors (see **Builder** > **Connectors**), and third-party data sources through [MCP connectors](chat-from-your-tools.md).
+> This step covers **file uploads**, which is the fastest way to add knowledge. Your agent can also reference documentation from **Azure DevOps repositories** and **GitHub repositories** through connectors (see **Builder** > **Connectors**), and non-Microsoft data sources through [MCP connectors](chat-from-your-tools.md).
 
 ## Open the knowledge base
 
@@ -106,7 +106,7 @@ The following table lists common document types to upload and the value they pro
 ## Related content
 
 - [Upload knowledge documents](upload-knowledge-document.md)
-- [Azure DevOps Wiki knowledge](ado-wiki-knowledge.md)
+- [Azure DevOps Wiki knowledge](azure-devops-wiki-knowledge.md)
 - [Memory and knowledge](memory.md)
 - [Connectors](connectors.md)
-- [Tutorial: Set up an Azure DevOps connector](setup-azure-devops-connector.md)
+- [Tutorial: Set up an Azure DevOps connector](azure-devops-connector.md)

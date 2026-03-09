@@ -168,8 +168,8 @@ The following table provides setup guides based on the type of tool you want to 
 
 | What you want to connect | Connector | Setup guide |
 |---|---|---|
-| Dynatrace, Datadog, Splunk, custom tools | MCP server | [MCP connector tutorial](setup-mcp-connector.md) |
-| Azure Data Explorer (Kusto) | Kusto connector | [Kusto connector tutorial](setup-kusto-connector.md) |
+| Dynatrace, Datadog, Splunk, custom tools | MCP server | [MCP connector tutorial](mcp-connector.md) |
+| Azure Data Explorer (Kusto) | Kusto connector | [Kusto connector tutorial](kusto-connector.md) |
 | Reusable KQL queries | Kusto tools | [Create Kusto tools](kusto-tools.md) |
 
 ## When to use each approach

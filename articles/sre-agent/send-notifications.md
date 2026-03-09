@@ -38,7 +38,7 @@ The following table describes the built-in notification channels.
 | **Outlook** | Office 365 Outlook | Send email, reply to threads, list inbox |
 | **Teams** | Microsoft Teams | Post to channels, reply to threads, read messages |
 
-### Third-party tools via MCP
+### Non-Microsoft tools via MCP
 
 Any tool with an MCP server can receive notifications. If your team uses PagerDuty, Slack, Jira, or another system that exposes an MCP server, connect it through **Builder > Connectors > MCP server**. The agent discovers available tools automatically from the MCP server. No built-in integration is required.
 
@@ -138,7 +138,7 @@ The following table describes recommended practices for notifications.
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Set up the Teams bot](./setup-teams-bot.md)
+> [Set up the Teams bot](./teams-bot.md)
 
 ## Related content
 

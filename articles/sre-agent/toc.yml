@@ -32,12 +32,8 @@ items:
         href: connectors.md
       - name: Incident platforms
         href: incident-platforms.md
-      - name: Incident response plans
-        href: incident-response-plans.md
       - name: Memory & knowledge
         href: memory.md
-      - name: Azure DevOps Wiki knowledge
-        href: azure-devops-wiki-knowledge.md
       - name: Skills
         href: skills.md
       - name: Subagents
@@ -46,32 +42,20 @@ items:
         href: threads.md
       - name: Tools
         href: tools.md
-      - name: Kusto tools
-        href: kusto-tools.md
-      - name: Agent hooks
-        href: agent-hooks.md
-      - name: Agent playground
-        href: agent-playground.md
       - name: Agent reasoning
         href: agent-reasoning.md
-      - name: Chat from your tools
-        href: chat-from-your-tools.md
-      - name: Monitor agent usage
-        href: monitor-agent-usage.md
-      - name: Track incident value
-        href: track-incident-value.md
-      - name: Workflow automation
-        href: workflow-automation.md
   - name: Capabilities
     items:
       - name: Diagnose
         items:
           - name: Incident response
             href: incident-response.md
-          - name: Deep investigation
-            href: deep-investigation.md
+          - name: Incident response plans
+            href: incident-response-plans.md
           - name: Root cause analysis
             href: root-cause-analysis.md
+          - name: Deep investigation
+            href: deep-investigation.md
           - name: Diagnose with Azure observability
             href: diagnose-azure-observability.md
           - name: Diagnose with external observability
@@ -82,80 +66,102 @@ items:
             href: troubleshoot-azure-container-apps.md
       - name: Act
         items:
-          - name: Scheduled tasks
-            href: scheduled-tasks.md
           - name: Execute mitigations
             href: execute-mitigations.md
+          - name: Workflow automation
+            href: workflow-automation.md
+          - name: Scheduled tasks
+            href: scheduled-tasks.md
           - name: Send notifications
             href: send-notifications.md
       - name: Extend
         items:
-          - name: Code interpreter
-            href: code-interpreter.md
+          - name: Agent playground
+            href: agent-playground.md
           - name: Python tools
             href: python-code-execution.md
+          - name: Agent hooks
+            href: agent-hooks.md
+          - name: Code interpreter
+            href: code-interpreter.md
+      - name: Knowledge & data sources
+        items:
+          - name: Azure DevOps Wiki knowledge
+            href: azure-devops-wiki-knowledge.md
+          - name: Upload knowledge documents
+            href: upload-knowledge-document.md
+          - name: Kusto tools
+            href: kusto-tools.md
+      - name: Access
+        items:
+          - name: Chat from your tools
+            href: chat-from-your-tools.md
+      - name: Measure & govern
+        items:
+          - name: Track incident value
+            href: track-incident-value.md
+          - name: Monitor agent usage
+            href: monitor-agent-usage.md
+          - name: Audit agent actions
+            href: audit-agent-actions.md
   - name: Tutorials
     items:
-      - name: Set up connectors
+      - name: Diagnose
         items:
-          - name: Set up Azure DevOps connector
-            href: azure-devops-connector.md
-          - name: Set up Kusto connector
-            href: kusto-connector.md
-          - name: Set up MCP connector
-            href: mcp-connector.md
-          - name: Set up Outlook connector
-            href: outlook-connector.md
-          - name: Connect Azure DevOps Wiki
-            href: connect-azure-devops-wiki.md
+          - name: Run a deep investigation
+            href: tutorial-deep-investigation.md
+          - name: Set up an incident trigger
+            href: response-plan.md
+          - name: Set up incident response
+            href: tutorial-incident-response.md
           - name: Connect to PagerDuty
             href: connect-pagerduty.md
           - name: Connect to ServiceNow
             href: connect-servicenow.md
-          - name: Set up Teams bot
-            href: teams-bot.md
-      - name: Create tools
+      - name: Act
         items:
-          - name: Create a Kusto tool
-            href: create-kusto-tool.md
-          - name: Create a Python tool
-            href: create-python-tool.md
-          - name: Test a tool in the playground
-            href: test-tool-playground.md
-      - name: Use capabilities
-        items:
-          - name: Set up incident response
-            href: tutorial-incident-response.md
-          - name: Set up an incident trigger
-            href: response-plan.md
-          - name: Run a deep investigation
-            href: tutorial-deep-investigation.md
-          - name: Use code interpreter
-            href: use-code-interpreter.md
-          - name: Configure agent hooks
-            href: tutorial-agent-hooks.md
           - name: Create scheduled tasks
             href: create-scheduled-task.md
+      - name: Extend
+        items:
+          - name: Configure agent hooks
+            href: tutorial-agent-hooks.md
+          - name: Test a tool in the playground
+            href: test-tool-playground.md
+          - name: Create a Python tool
+            href: create-python-tool.md
+          - name: Use code interpreter
+            href: use-code-interpreter.md
+      - name: Knowledge & data sources
+        items:
+          - name: Set up Kusto connector
+            href: kusto-connector.md
+          - name: Set up Azure DevOps connector
+            href: azure-devops-connector.md
+          - name: Set up MCP connector
+            href: mcp-connector.md
+          - name: Create a Kusto tool
+            href: create-kusto-tool.md
           - name: Upload knowledge documents
             href: tutorial-upload-knowledge-document.md
-  - name: How-to guides
-    items:
-      - name: Upload knowledge documents
-        href: upload-knowledge-document.md
+          - name: Connect Azure DevOps Wiki
+            href: connect-devops-wiki.md
+      - name: Access
+        items:
+          - name: Set up Teams bot
+            href: teams-bot.md
   - name: Reference
     items:
-      - name: Audit agent actions
-        href: audit-agent-actions.md
-      - name: Data privacy and residency
-        href: data-privacy.md
-      - name: Billing
-        href: billing.md
+      - name: Supported regions
+        href: supported-regions.md
       - name: Network requirements
         href: network-requirements.md
       - name: Starter prompts
         href: starter-prompts.md
-      - name: Supported regions
-        href: supported-regions.md
+      - name: Data privacy and residency
+        href: data-privacy.md
+      - name: Billing
+        href: billing.md
       - name: Frequently asked questions
         items:
           - name: General
