@@ -56,7 +56,7 @@ This article focuses on the configuration stage of migration. Migration of clien
 > [!NOTE]
 > Application Gateway V2 includes [customer-controlled backend TLS relaxation](configuration-http-settings.md#backend-https-validation-settings), a capability that streamlines backend certificate validation during migration. You can use this feature to temporarily relax TLS checks by skipping the certificate chain, skipping expiry validation, or overriding Server Name Indication (SNI) validation. This action aligns behavior with what's already permitted in V1.
 >
-> When the [enhanced migration script](migrate-v1-v2.md#enhanced-cloning-script---recommended) runs, it enables these relaxation settings by default for HTTPS backends to prevent disruptions caused by the stricter certificate enforcement in V2. After you complete the migration, you can upload the appropriate trusted root certificates and disable backend TLS relaxation to align with the recommended security posture for V2.
+> When the [enhanced migration script](#enhanced-cloning-script-recommended) runs, it enables these relaxation settings by default for HTTPS backends to prevent disruptions caused by the stricter certificate enforcement in V2. After you complete the migration, you can upload the appropriate trusted root certificates and disable backend TLS relaxation to align with the recommended security posture for V2.
 
 [!INCLUDE [cloud-shell-try-it.md](~/reusable-content/ce-skilling/azure/includes/cloud-shell-try-it.md)]
 
@@ -164,7 +164,7 @@ Private Application Gateway deployments must have subnet delegation configured t
 
 - If you have FIPS mode enabled for your V1 gateway, it isn't migrated to your new V2 gateway.
 
-- Web Application Firewall V2 is configured to use CRS 3.0 by default. Because CRS 3.0 is on the path to deprecation, upgrade to the latest rule set (DRS 2.2) after migration. For more information, refer to [Web Application Firewall DRS and CRS rule groups and rules](../web-application-firewall/ag/application-gateway-crs-rulegroups-rules.md).
+- Web Application Firewall V2 is configured to use Core Rule Set (CRS) 3.0 by default. Because CRS 3.0 is on the path to deprecation, upgrade to the latest rule set after migration: Default Rule Set (DRS) 2.2. For more information, see [Web Application Firewall DRS and CRS rule groups and rules](../web-application-firewall/ag/application-gateway-crs-rulegroups-rules.md).
 
 > [!NOTE]
 > During migration, don't attempt any other operation on the V1 gateway or any associated resources.
@@ -323,10 +323,10 @@ The legacy script takes the following parameters:
 
 - The Web Application Firewall V2 instance is created in the old Web Application Firewall configuration mode. Migration to the Web Application Firewall policy is required.
 
-- Web Application Firewall V2 is configured to use CRS 3.0 by default. Because CRS 3.0 is on the path to deprecation, upgrade to the latest rule set (DRS 2.2) after migration. For more information, refer to [CRS and DRS rule groups and rules](../web-application-firewall/ag/application-gateway-crs-rulegroups-rules.md).
+- Web Application Firewall V2 is configured to use CRS 3.0 by default. Because CRS 3.0 is on the path to deprecation, upgrade to the latest rule set (DRS 2.2) after migration. For more information, see [CRS and DRS rule groups and rules](../web-application-firewall/ag/application-gateway-crs-rulegroups-rules.md).
 
 > [!NOTE]
-> Application Gateway V2 supports NTLM and Kerberos passthrough authentication. For more information, refer to [Dedicated backend connection](configuration-http-settings.md#dedicated-backend-connection).
+> Application Gateway V2 supports NTLM and Kerberos passthrough authentication. For more information, see [Dedicated backend connection](configuration-http-settings.md#dedicated-backend-connection).
 
 ## Installing the script
 
@@ -408,7 +408,7 @@ This script requires the following mandatory parameters:
 - `v1resourceId`. The resource ID of the V1 gateway whose public IP will be reserved and associated with V2.
 - `v2resourceId`. The resource ID of the V2 gateway to which the V1 public IP will be assigned. You can create the V2 gateway manually or by using any one of the cloning scripts.
 
-After you download and [install the script](../application-gateway/migrate-v1-v2.md#installing-the-script), run `AzureAppGWIPMigrate.ps1` with the required parameters:
+After you download and [install the script](#installing-the-script), run `AzureAppGWIPMigrate.ps1` with the required parameters:
 
 ```azurepowershell
    ./AzureAppGWIPMigrate.ps1
@@ -480,11 +480,11 @@ The scenarios in the following table are examples for illustration purposes only
 | Standard Large | 467.2 | 179.58 | For these variants, in most cases, moving to a V2 gateway can provide a better price benefit compared to V1. |
 | Web Application Firewall Large | 654.08 | 262.8 | Same as for Standard Large. |
 
-For further concerns about the pricing, work with your account manager or get in touch with our support team for assistance.
+For further concerns about the pricing, work with your customer success account manager (CSAM) or get in touch with our support team for assistance.
 
 ## Common questions
 
-For answers to common questions about migration, see [Frequently asked questions about Application Gateway V1 retirement](./retirement-faq.md#faq-on-v1-to-v2-migration).
+For answers to common questions about migration, see [Frequently asked questions about Application Gateway V1 retirement](./retirement-faq.md#common-questions-about-migration-from-v1-to-v2).
 
 ## Related content
 

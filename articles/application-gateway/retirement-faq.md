@@ -12,7 +12,7 @@ ms.author: mbender
 ---
 # Frequently asked questions about Application Gateway V1 retirement
 
-On April 28, 2023, Microsoft announced that Application Gateway V1 is retiring on *April 28, 2026*. If you're still using V1 SKU resources, be sure to plan and complete your migration to V2 before this date to avoid service disruptions.
+On April 28, 2023, Microsoft announced that Application Gateway V1 is retiring on *April 28, 2026*. If you're still using V1 resources, be sure to plan and complete your migration to V2 before this date to avoid service disruptions.
 
 This article answers commonly asked questions about the V1 retirement timeline, what to expect after retirement, and how to migrate from V1 to V2. For migration guidance, see [Migrate Azure Application Gateway and Web Application Firewall from V1 to V2](./migrate-v1-v2.md).
 
@@ -103,7 +103,7 @@ No, the script doesn't replicate this configuration for V2. You must add the log
 
 ### Does the script support certificates uploaded to Azure Key Vault?
 
-Yes, you can download the certificate from Azure Key Vault and provide it as input to the migration script. The [enhanced cloning script](./migrate-v1-v2.md#enhanced-cloning-script---recommended) automatically copies all the TLS/SSL certificates from V1 to the newly created V2 gateway.
+Yes, you can download the certificate from Azure Key Vault and provide it as input to the migration script. The [enhanced cloning script](./migrate-v1-v2.md#enhanced-cloning-script-recommended) automatically copies all the TLS/SSL certificates from V1 to the newly created V2 gateway.
 
 ### I ran into some problems with the migration. How can I get help?
 

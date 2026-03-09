@@ -47,7 +47,7 @@ Complete the migration as soon as possible to prevent business impact and to tak
 
   > [!VIDEO 7ed01e33-80a9-4daa-9322-e771f963a2fe]
 
-- For answers to frequently asked questions, see [FAQ on V1 to V2 migration](./retirement-faq.md#faq-on-v1-to-v2-migration).
+- For answers to frequently asked questions, see [FAQ on V1 to V2 migration](./retirement-faq.md).
 
 - For the announcement about the capabilities of V2, see the blog post [Taking advantage of the new Azure Application Gateway V2](https://azure.microsoft.com/blog/taking-advantage-of-the-new-azure-application-gateway-v2/).
 
