@@ -7,7 +7,6 @@ ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
-ms.custom: create agent, setup, deploy, getting started, azure sre agent
 #customer intent: As a site reliability engineer, I want to deploy an Azure SRE Agent so that I can monitor and investigate issues across my Azure resources.
 ms.custom: references_regions
 ---
