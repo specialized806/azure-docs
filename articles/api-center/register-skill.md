@@ -76,7 +76,7 @@ You can update skill information at any time:
 
 ## Integrate a Git repository to synchronize skills
 
-To automate skill registration and updates, you can integrate a Git repository with your API center. This allows you to synchronize information about one or more skills from the repository to your API center inventory. Whenever the skill information updates in the repository, those updates automatically synchronize to your API center, ensuring that your skill registry stays current.
+To automate skill registration and updates, you can integrate a Git repository with your API center. This allows you to synchronize information about one or more skills from the repository to your API center inventory. 
 
 When you integrate a Git repository:
 
@@ -116,7 +116,7 @@ To integrate a Git repository:
     | **Repository URL** | Enter the URL to the Git repository containing skill files, optionally specifying branch and subfolder (for example, `https://github.com/<org>/<repo>/tree/main/skills`). |
     | **Git provider** | Select the provider (for example, **GitHub**). |
     | **Asset type configuration** | API Center configures a default **skill** asset type with file pattern `**/skill.md.` <br/><br/>Select **+ Add asset type** to add one or more asset types to sync. |
-    | **Personal access token (PAT)** | Select the Key Vault secret that contains the PAT to access the repository (for example, `https://<your-vault-name>.vault.azure.net/secrets/<secret-name>`).<br/><br/>Optionally select **Automatically configure managed identity and assign permissions** if you haven't manually configured a managed identity to access the key vault secret. |
+    | **Personal access token (PAT)** | Enter a URL to a Key Vault secret that contains the PAT to access the repository (for example, `https://<your-vault-name>.vault.azure.net/secrets/<secret-name>`), or click **Select** to browse.<br/><br/>Optionally select **Automatically configure managed identity and assign permissions** if you haven't manually configured a managed identity to access the key vault secret. |
     | **Integration details** | Accept the generated link identifier or provide a custom ID for the integration link. |
     | **Environment details** | |
     | **Environment title** | Enter a friendly name for the repository environment (for example, *Git repository*). |
@@ -125,6 +125,8 @@ To integrate a Git repository:
     | **Description** | Optionally add a description for the environment. |
     | **Asset details** | |
     | **Lifecycle** | Select the lifecycle stage for assets synced from the repository (for example, **Design**). |
+
+        :::image type="content" source="media/register-skill/integrate-git-repository-small.png" lightbox="media/register-skill/integrate-git-repository.png" alt-text="Screenshot of integrating a Git repo in an API center in the portal.":::
 1. Select **Create**.
 
 The portal adds the environment to your API center. The portal adds the skills from the repository to the API center inventory.
