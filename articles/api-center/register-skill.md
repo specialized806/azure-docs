@@ -81,6 +81,7 @@ To automate skill registration and updates, you can integrate a Git repository w
 When you integrate a Git repository:
 
 * An [environment](key-concepts.md#environment) is created in your API center, representing the repository as a source of skills.
+* API Center regularly synchronizes skill information from the repository to your API center inventory, using a PAT stored in Azure Key Vault for authentication.
 
 ### Store PAT in Azure Key Vault
 
@@ -90,9 +91,9 @@ For more information, see [Quickstart: Set and retrieve a secret from Azure Key 
 
 ### Configure a managed identity for your API center
 
-Your API center uses a managed identity to authenticate to Azure Key Vault and retrieve the PAT needed to access the Git repository.
+Your API center uses a managed identity to authenticate to Azure Key Vault and retrieve the PAT needed to access the Git repository. The following procedures describe how to manually configure a managed identity for your API center and assign it the necessary permissions to access the Key Vault.
 
-When you set up the Git repository integration, API Center can automatically configure a managed identity for you and assign it the necessary permissions to access the Key Vault. Alternatively, you can manually configure a managed identity and assign it permissions before setting up the integration. For more information, see the following sections.
+If you don't configure the managed identity, API Center can do this for you automatically when you integrate the Git repository.
 
 [!INCLUDE [enable-managed-identity](includes/enable-managed-identity.md)]
 
@@ -115,7 +116,7 @@ To integrate a Git repository:
     | **Repository URL** | Enter the URL to the Git repository containing skill files, optionally specifying branch and subfolder (for example, `https://github.com/<org>/<repo>/tree/main/skills`). |
     | **Git provider** | Select the provider (for example, **GitHub**). |
     | **Asset type configuration** | API Center configures a default **skill** asset type with file pattern `**/skill.md.` <br/><br/>Select **+ Add asset type** to add one or more asset types to sync. |
-    | **Personal access token (PAT)** | Select the Key Vault secret that contains the PAT to access the repository (for example, `https://<your-vault-name>.vault.azure.net/secrets/<secret-name>`). |
+    | **Personal access token (PAT)** | Select the Key Vault secret that contains the PAT to access the repository (for example, `https://<your-vault-name>.vault.azure.net/secrets/<secret-name>`).<br/><br/>Optionally select **Automatically configure managed identity and assign permissions** if you haven't manually configured a managed identity to access the key vault secret. |
     | **Integration details** | Accept the generated link identifier or provide a custom ID for the integration link. |
     | **Environment details** | |
     | **Environment title** | Enter a friendly name for the repository environment (for example, *Git repository*). |
