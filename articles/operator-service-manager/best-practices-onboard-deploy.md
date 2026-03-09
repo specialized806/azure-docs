@@ -203,11 +203,12 @@ As the first step toward cleaning up an onboarded environment, delete publisher 
 
 Azure Operator Service Manager doesn't delete namespaces as part of any deletion operation. As such, after all resources are deleted, some artifacts might remain on the cluster. To remove any remaining artifacts, you should delete any workload namespaces created on the cluster. Including the namespace deletion operation as part of the workflow pipeline is a recommendation to automate the action.
 
-## Azure global service limits and constraints
-
-Azure enforces certain global service limits across all Azure services. The following is a curated list of those limits which should be considereed when onboarding, designing or operating workloads using Azure Operator Service Manager.
+## Azure global limits considerations
+Azure enforces certain global service limits and constraints across all Azure services. The following is a curated list of those limits which should be considereed when onboarding, designing or operating workloads using Azure Operator Service Manager.
 
 ### ARM template limits
+These limits would apply to rendered ARM templates used with Azure Operator Service Manager.
+
 | Value	| Limit |
 |-----------|-------|
 |Parameters |256 |
@@ -221,6 +222,8 @@ Azure enforces certain global service limits across all Azure services. The foll
 |Parameter file size|	4 MB |
 
 ### Azure RBAC limits
+These limits would apply to the target subscription used for Azure Operator Service Manager deployment.
+
 |Resource	|Limit|
 |---------|-----|
 |Number of Azure role assignments per Azure subscription|	4,000|
@@ -235,7 +238,11 @@ Azure enforces certain global service limits across all Azure services. The foll
 |Number of assignable scopes for Azure custom roles|	2,000|
 |Number of system-managed deny assignments per Azure subscription|	2,000|
 
+Generally, AOSM requires 8x the number of concurrent SNS operations against a target subscription.
+
 ### Other limits
+These limits have been observed in certain real-world use-cases.
+
 |Resource	|Limit|
 |---------|-----|
 |Maximum duration of system-assigned scope token (OBO) | 4h 30m no refresh|
