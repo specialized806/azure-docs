@@ -256,6 +256,12 @@ items:
           href: migrate-heroku-overview.md
         - name: Migrate from Heroku
           href: migrate-heroku.md
+        - name: Migrate Spring Boot applications
+          href: migrate-spring-boot-to-azure-container-apps.md
+        - name: Migrate Spring Cloud applications
+          href: migrate-spring-cloud-to-azure-container-apps.md
+        - name: Migrate Tomcat applications
+          href: migrate-tomcat-to-azure-container-apps.md
 - name: Observability
   items:
     - name: Overview
