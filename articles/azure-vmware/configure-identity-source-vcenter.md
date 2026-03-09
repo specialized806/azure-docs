@@ -46,6 +46,25 @@ In this article, you learn how to:
 > [!NOTE]
 > For more information about LDAPS and certificate issuance, contact your security team or your identity management team.
 
+## Microsoft Entra ID as an Identity Source
+
+Integrating Microsoft Entra ID as your external identity provider for Azure VMware Solution vCenter transforms your administrative security and operational efficiency. While Azure VMware Solution traditionally relies on Windows Server Active Directory via LDAPS, native Entra ID federation (using OIDC in vSphere 8.0 U2+) offers a modernized approach. The primary advantage is centralized identity management, which breaks down authentication silos between your cloud and on-premises environments.
+
+By relying on Entra ID, you can natively enforce advanced security policies—such as Multi-Factor Authentication (MFA) and Conditional Access—without deploying additional infrastructure. Because this is a federated model, vCenter never directly handles or stores user credentials; instead, it trusts Entra ID's validation. This protects credentials, ensures a seamless Single Sign-On (SSO) experience for your administrators, and provides centralized audit trails for better compliance.
+
+Azure VMware Solution is a managed service, standard CloudAdmin accounts do not have the elevated native vCenter permissions required to manage external identity provider directly. To bridge this gap, you must use Run Commands—specifically packaged PowerShell cmdlets executed directly through the Azure portal.
+
+| Category | Component/Feature | Description |
+| --- | --- | --- |
+| **Security Benefits** | MFA & Conditional Access | Enforces native Entra ID security policies to protect vCenter Access. |
+|  | Credential Protection | Federated authentication ensures vCenter never sees raw credentials. | 
+| **Run Commands** | Add-VCenterCloudAdminRoleVcIdentityProvidersManagePrivilege | Add required permission for external identity provider to Cloudadmin account. |
+|  | Remove-AVSIdentityProviderEntraId | Deletes the configured Entra ID from vCenter Server. |
+| **Permissions** | VcIdentityProviders.Manage | vCenter privilege required to create, update, or delete external identiy providers. |
+
+> [!NOTE]
+> Use Microsoft Entra ID or LDAPS authentication for external identity sources with vCenter. Azure VMware Solution supports both options. 
+
 ## Export the certificate for LDAPS authentication (Optional)
 
 First, verify that the certificate that's used for LDAPS is valid. If you don't have a certificate, complete the steps to [create a certificate for LDAPS](../active-directory-domain-services/tutorial-configure-ldaps.md#create-a-certificate-for-secure-ldap) before you continue.
