@@ -219,7 +219,7 @@ The legacy script takes the following parameters:
 
   You can pass in `$mySslCert1, $mySslCert2` (comma separated) in the previous example as values for this parameter in the script.
 
-- `sslCertificates`. You use this optional parameter for downloading the certificates stored in Azure Key Vault and pass it to migration script. To download the certificate as a PFX file, run the following command. These commands access `SecretId` and then save the content as a PFX file.
+- `sslCertificates`. You use this optional parameter to download the certificates stored in Azure Key Vault and pass it to the migration script. To download the certificate as a PFX file, run the following command. These commands access `SecretId` and then save the content as a PFX file.
 
     ```azurepowershell
         $vaultName = ConvertTo-SecureString <kv-name> -AsPlainText -Force
@@ -267,7 +267,7 @@ The legacy script takes the following parameters:
 
 2. Use `Import-Module Az` to import the Az modules.
 
-3. Run the `Set-AzContext` cmdlet to set the active Azure context to the correct subscription. This is an important step because the migration script might clean up the existing resource group if it doesn't exist in current subscription context.
+3. Run the `Set-AzContext` cmdlet to set the active Azure context to the correct subscription. This step is important because the migration script might clean up the existing resource group if it doesn't exist in current subscription context.
 
    ```
    Set-AzContext -Subscription '<V1 application gateway SubscriptionId>'
@@ -323,7 +323,7 @@ The legacy script takes the following parameters:
 
 - The Web Application Firewall V2 instance is created in the old Web Application Firewall configuration mode. Migration to the Web Application Firewall policy is required.
 
-- Web Application Firewall V2 is configured to use CRS 3.0 by default. ?Because CRS 3.0 is on the path to deprecation, upgrade to the latest rule set (DRS 2.2) after migration. For more information, refer to [CRS and DRS rule groups and rules](../web-application-firewall/ag/application-gateway-crs-rulegroups-rules.md).
+- Web Application Firewall V2 is configured to use CRS 3.0 by default. Because CRS 3.0 is on the path to deprecation, upgrade to the latest rule set (DRS 2.2) after migration. For more information, refer to [CRS and DRS rule groups and rules](../web-application-firewall/ag/application-gateway-crs-rulegroups-rules.md).
 
 > [!NOTE]
 > Application Gateway V2 supports NTLM and Kerberos passthrough authentication. For more information, refer to [Dedicated backend connection](configuration-http-settings.md#dedicated-backend-connection).
@@ -344,13 +344,13 @@ To determine if you have the Azure Az modules installed, run `Get-InstalledModul
 
 To use this option, you must not have the Azure Az modules installed on your computer. If they're installed, the following command displays an error. You can either uninstall the Azure Az modules or use the other option to download the script manually and run it.
 
-Run the script with the one of the following commands to get the latest version:
+Run the script with one of the following commands to get the latest version:
 
 - For the enhanced cloning script with public IP retention, use `Install-Script -Name AzureAppGWIPMigrate -Force`.
 - For the enhanced cloning script, use `Install-Script -Name AzureAppGWClone -Force`.
 - For the legacy cloning script, use `Install-Script -Name AzureAppGWMigration -Force`.
 
-This command also installs the required Az modules.
+The command also installs the required Az modules.
 
 ### Install by using the script directly
 
@@ -405,7 +405,7 @@ You can download this public IP retention script from the [PowerShell Gallery](h
 
 This script requires the following mandatory parameters:
 
-- `v1resourceId`. The resource ID of the V1 gateway whose Public IP will be reserved and associated with V2.
+- `v1resourceId`. The resource ID of the V1 gateway whose public IP will be reserved and associated with V2.
 - `v2resourceId`. The resource ID of the V2 gateway to which the V1 public IP will be assigned. You can create the V2 gateway manually or by using any one of the cloning scripts.
 
 After you download and [install the script](../application-gateway/migrate-v1-v2.md#installing-the-script), run `AzureAppGWIPMigrate.ps1` with the required parameters:
@@ -440,13 +440,13 @@ The following items are a few scenarios where your current application gateway (
   
   - If you use public IP addresses on your application gateway, you can do a controlled, granular migration by using an Azure Traffic Manager profile to incrementally route traffic to the new V2 gateway.
 
-   You can use this weighted traffic-routing method by adding the DNS labels of both the V1 and V2 application gateways to the [Traffic Manager profile](../traffic-manager/traffic-manager-routing-methods.md#weighted-traffic-routing-method). Then, apply CNAME on your custom DNS record (for example, `www.contoso.com`) to the Traffic Manager domain (for example, `contoso.trafficmanager.net`).
+    You can use this weighted traffic-routing method by adding the DNS labels of both the V1 and V2 application gateways to the [Traffic Manager profile](../traffic-manager/traffic-manager-routing-methods.md#weighted-traffic-routing-method). Then, apply CNAME on your custom DNS record (for example, `www.contoso.com`) to the Traffic Manager domain (for example, `contoso.trafficmanager.net`).
 
   - You can update your custom domain DNS record to point to the DNS label of the new V2 application gateway. Depending on the TTL configured on your DNS record, it can take a while for all your client traffic to migrate to your new V2 gateway.
 
 - **Your clients connect to the frontend IP address of your application gateway**.
 
-  Update your clients to use the IP address associated with the newly created V2 application gateway. We recommend that you don't use IP addresses directly. Consider using the DNS name label (for example, `yourgateway.eastus.cloudapp.azure.com`) associated with your application gateway that you can apply CNAME to your own custom DNS zone (for example, `contoso.com`).
+  Update your clients to use the IP address associated with the newly created V2 application gateway. We recommend that you don't use IP addresses directly. Consider using the DNS name label (for example, `yourgateway.eastus.cloudapp.azure.com`) associated with your application gateway that you can apply to your own custom DNS zone via CNAME (for example, `contoso.com`).
 
 ## Post-migration tasks
 
@@ -467,20 +467,20 @@ Application Gateway V2 comes with a range of advantages, such as:
 - Policy associations.
 - Bot protection.
 
-It also offers high scalability, optimized traffic routing, and seamless integration with Azure services. These features can improve the overall user experience, prevent slowdowns during times of heavy traffic, and avoid expensive data breaches.
+Application Gateway V2 also offers high scalability, optimized traffic routing, and seamless integration with Azure services. These features can improve the overall user experience, prevent slowdowns during times of heavy traffic, and avoid expensive data breaches.
 
 Five variants are available in V1, based on the tier and size: Standard Small, Standard Medium, Standard Large, Web Application Firewall Medium, and Web Application Firewall Large. For pricing information according to your region, see the [pricing page](https://azure.microsoft.com/pricing/details/application-gateway/).
 
-The scenarios in the following table are examples and are for illustration purposes only. The calculations are based on East US and for a gateway with two instances in V1. The variable cost in V2 is based on one of the three dimensions with highest usage: new connections (50 per second), persistent connections (2,500 per minute), and throughput (2.22 Mbps per capacity unit).
+The scenarios in the following table are examples for illustration purposes only. The calculations are based on East US and for a gateway with two instances in V1. The variable cost in V2 is based on one of the three dimensions with highest usage: new connections (50 per second), persistent connections (2,500 per minute), and throughput (2.22 Mbps per capacity unit).
 
 | SKU | V1 fixed price/month | V2 fixed price/month | Recommendation |
 | --- | :---------------: | :---------------: | :------------: |
-| Standard Medium | 102.2 | 179.8 | V2 can handle a larger number of requests than a V1 gateway, so we recommend consolidating multiple V1 gateways into a single V2 gateway, to optimize the cost. Ensure that consolidation doesn't exceed the Application Gateway [limits](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-application-gateway-limits). We recommend 3:1 consolidation. |
+| Standard Medium | 102.2 | 179.8 | V2 can handle a larger number of requests than a V1 gateway, so we recommend consolidating multiple V1 gateways into a single V2 gateway to optimize the cost. Ensure that consolidation doesn't exceed the Application Gateway [limits](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-application-gateway-limits). We recommend 3:1 consolidation. |
 | Web Application Firewall Medium | 183.96 | 262.8 | Same as for Standard Medium |
-| Standard Large | 467.2 | 179.58 | For these variants, in most cases, moving to a V2 gateway can provide you with a better price benefit compared to V1. |
+| Standard Large | 467.2 | 179.58 | For these variants, in most cases, moving to a V2 gateway can provide a better price benefit compared to V1. |
 | Web Application Firewall Large | 654.08 | 262.8 | Same as for Standard Large. |
 
-For further concerns regarding the pricing, work with your account manager or get in touch with our support team for assistance.
+For further concerns about the pricing, work with your account manager or get in touch with our support team for assistance.
 
 ## Common questions
 
