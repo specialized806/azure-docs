@@ -22,7 +22,7 @@
         },
         {
             "source_path_from_root": "/articles/sre-agent/custom-mcp-server.md",
-            "redirect_url": "/azure/sre-agent/setup-mcp-connector",
+            "redirect_url": "/azure/sre-agent/mcp-connector",
             "redirect_document_id": false
         },
         {
