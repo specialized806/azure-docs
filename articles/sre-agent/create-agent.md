@@ -3,12 +3,13 @@ title: "Step 1: Create Your Agent in Azure SRE Agent (preview)"
 description: Deploy an Azure SRE Agent and grant it access to your Azure resources.
 ms.topic: tutorial
 ms.service: azure-sre-agent
-ms.date: 03/06/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
 ms.custom: create agent, setup, deploy, getting started, azure sre agent
 #customer intent: As a site reliability engineer, I want to deploy an Azure SRE Agent so that I can monitor and investigate issues across my Azure resources.
+ms.custom: references_regions
 ---
 
 # Step 1: Create your agent in Azure SRE Agent (preview)

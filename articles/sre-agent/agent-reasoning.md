@@ -3,7 +3,7 @@ title: Agent Reasoning in Azure SRE Agent (preview)
 description: Learn how your agent processes requests, selects tools, classifies actions, and explains its thinking.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/06/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -19,7 +19,7 @@ Your agent reasons through problems rather than following scripts. It gathers ev
 
 Every message you send goes through the same loop.
 
-:::image type="content" source="media/agent-reasoning/agent-reasoning-flow.svg" alt-text="Agent reasoning flow: Your question goes through understand, gather context (parallel queries), reason (analyze patterns), and then execute safe actions, ask approval for destructive actions, or respond with findings. The loop iterates up to 10 times.":::
+:::image type="content" source="media/agent-reasoning/agent-reasoning-flow.svg" alt-text="Agent reasoning flow: understand request, gather context, reason, then act or respond. Loops up to 10 times.":::
 
 1. **Understand**: Parse your request and identify what data is needed.
 1. **Gather context**: Query data sources in parallel, including logs, metrics, resource status, deployment history, and [memory](memory.md).
@@ -32,7 +32,7 @@ If the problem requires more work, the loop iterates up to 10 times per turn. Af
 
 For complex problems, your agent shows its reasoning process in the chat. A collapsible **Thinking** section appears with descriptive titles for each step (like "Exploring Azure health issues" or "Analyzing active alerts") and elapsed time.
 
-:::image type="content" source="media/agent-reasoning/thinking-accordion-active.png" alt-text="Adaptive thinking showing reasoning steps with titles and elapsed time.":::
+:::image type="content" source="media/agent-reasoning/thinking-accordion-active.png" alt-text="Screenshot of adaptive thinking showing reasoning step.":::
 
 Your agent automatically adjusts reasoning depth. A status check gets a quick response. A multistep outage gets multistep reasoning with evidence correlation.
 

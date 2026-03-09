@@ -13,11 +13,11 @@ ms.custom: memory, knowledge, context, documents, citations, trajectories
 
 # Memory and knowledge in Azure SRE Agent (preview)
 
-> [!VIDEO <PATH_TO_VIDEO>/Agent_s_Perfect_Memory.mp4]
+<!-- > [!VIDEO <PATH_TO_VIDEO>/Agent_s_Perfect_Memory.mp4] -->
 
 Your agent becomes more effective over time by remembering what worked in past incidents and referencing your documentation.
 
-:::image type="content" source="media/memory/memory-unified-search.svg" alt-text="Diagram showing SearchMemory querying three sources: past incidents, user memories, and documents to provide grounded responses with citations.":::
+:::image type="content" source="media/memory/memory-unified-search.svg" alt-text="Diagram showing SearchMemory querying three sources: past incidents, user memories, and documents to provide grounded responses with citations." lightbox="media/memory/memory-unified-search.svg":::
 
 ## How memory works
 
@@ -35,7 +35,7 @@ The agent returns a grounded response with **clickable citations** that show exa
 
 Your agent learns from every conversation. No manual training is required.
 
-:::image type="content" source="media/memory/memory-auto-learning.svg" alt-text="Diagram showing the agent automatically extracting learnings after each session: symptoms, resolution steps, root cause, and pitfalls to avoid.":::
+:::image type="content" source="media/memory/memory-auto-learning.svg" alt-text="Diagram showing the agent automatically extracting learnings after each session: symptoms, resolution steps, root cause, and pitfalls to avoid." lightbox="media/memory/memory-auto-learning.svg":::
 
 After each thread completes, the agent captures the following information.
 

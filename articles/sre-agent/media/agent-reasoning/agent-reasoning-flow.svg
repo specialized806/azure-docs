@@ -71,5 +71,5 @@
   <text x="435" y="235" text-anchor="middle" class="sublabel">iterate (up to 10×)</text>
 
   <!-- Legend -->
-  <text x="20" y="300" class="sublabel">Your agent adjusts reasoning depth automatically — simple questions get quick answers, complex incidents get multi-step analysis.</text>
+  <text x="20" y="300" class="sublabel">Your agent adjusts reasoning depth automatically — simple questions get quick answers, complex incidents get multistep analysis.</text>
 </svg>
