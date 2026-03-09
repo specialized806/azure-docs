@@ -3,7 +3,7 @@ title: Monitor Agent Usage in Azure SRE Agent (preview)
 description: Track Azure AI Unit consumption, manage allocation limits, and generate session insights to review your agent's performance.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -23,7 +23,7 @@ Track Azure AI Unit (AAU) consumption, manage allocation limits, and review sess
 
 ## The problem: usage without visibility
 
-Your agent runs conversations, processes incidents, and executes scheduled tasks which all consumes Azure AI Units. Without visibility into consumption patterns, you can't predict costs, identify runaway usage, or make informed decisions about allocation changes. You need a single view that shows what you use, what's left, and where the consumption goes.
+Your agent runs conversations, processes incidents, and executes scheduled tasks which all consume Azure AI Units. Without visibility into consumption patterns, you can't predict costs, identify runaway usage, or make informed decisions about allocation changes. You need a single view that shows what you use, what's left, and where the consumption goes.
 
 ## Agent consumption
 

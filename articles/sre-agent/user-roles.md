@@ -3,7 +3,7 @@ title: User Roles and Permissions in Azure SRE Agent (preview)
 description: Learn how to control who can view, interact with, and administer your agent by using Azure RBAC roles and layered access control.
 ms.topic: conceptual
 ms.service: azure-sre-agent
-ms.date: 03/06/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -21,7 +21,7 @@ Your agent can investigate problems, take actions on production infrastructure, 
 
 Access control works across four layers.
 
-:::image type="content" source="media/user-roles/access-control-hierarchy.svg" alt-text="Access control hierarchy showing user roles, run modes, agent identity, and on-behalf-of fallback.":::
+:::image type="content" source="media/user-roles/access-control-hierarchy.svg" alt-text="Diagram of access control hierarchy showing user roles, run modes, agent identity, and on-behalf-of fallback." lightbox="media/user-roles/access-control-hierarchy.svg":::
 
 | Layer | Controls | Configured at |
 |---|---|---|
@@ -42,7 +42,7 @@ Your agent includes three built-in Azure RBAC roles.
 
 The user who creates the agent automatically gets the **SRE Agent Administrator** role.
 
-:::image type="content" source="media/user-roles/portal-sre-agent-roles-identity-access.png" alt-text="SRE Agent roles in Azure portal IAM showing Administrator, Reader, and Standard User.":::
+:::image type="content" source="media/user-roles/portal-sre-agent-roles-identity-access.png" alt-text="Screenshot of SRE Agent roles in Azure portal IAM showing Administrator, Reader, and Standard User." lightbox="media/user-roles/portal-sre-agent-roles-identity-access.png":::
 
 ## Who should have which role
 

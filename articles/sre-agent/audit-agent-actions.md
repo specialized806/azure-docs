@@ -3,7 +3,7 @@ title: Audit Agent Actions in Azure SRE Agent (preview)
 description: Query your agent's actions, tool calls, and incident outcomes using Application Insights telemetry and KQL.
 ms.topic: reference
 ms.service: azure-sre-agent
-ms.date: 03/04/2026
+ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
@@ -37,7 +37,7 @@ customEvents
 | sort by Count desc
 ```
 
-:::image type="content" source="media/audit-agent-actions/kql-event-summary-results.png" alt-text="KQL query results showing customEvents summarized by name including AgentToolExecution, AgentResponse, ModelGeneration, and other event types with their counts.":::
+:::image type="content" source="media/audit-agent-actions/kql-event-summary-results.png" alt-text="Screenshot of KQL query results showing customEvents summarized by name including AgentToolExecution, AgentResponse, ModelGeneration, and other event types with their counts." lightbox="media/audit-agent-actions/kql-event-summary-results.png":::
 
 | Event name | What it captures | Typical volume |
 |---|---|---|
@@ -68,7 +68,7 @@ The system logs this event every time your agent calls a tool. The system logs s
 | `ToolInput` | Arguments passed to the tool | `{"resourceTypes": ["microsoft.resources/subscriptions"]}` |
 | `ToolOutput` | Result returned (end only) | *(tool output JSON)* |
 | `SubAgentName` | Which subagent invoked the tool | `meta_agent` |
-| `ThreadId` | Conversation thread ID | `49c61d3c-d87d-4d0b-a38d-...` |
+| `ThreadId` | Conversation thread ID | `aaaabbbb-0000-cccc-1111-dddd2222eeee` |
 | `CallId` | Correlation ID for start/end pairing | `call_3DDMpLtzCljW...` |
 
 ```kql
@@ -84,7 +84,7 @@ customEvents
 | sort by timestamp desc
 ```
 
-:::image type="content" source="media/audit-agent-actions/kql-tool-execution-results.png" alt-text="KQL query results showing AgentToolExecution events with timestamp, ToolName, SubAgent, and JSON input.":::
+:::image type="content" source="media/audit-agent-actions/kql-tool-execution-results.png" alt-text="Screenshot of KQL query results showing AgentToolExecution events with timestamp, ToolName, SubAgent, and JSON input." lightbox="media/audit-agent-actions/kql-tool-execution-results.png":::
 
 ### Incident lifecycle (IncidentActivitySnapshot)
 
@@ -228,7 +228,7 @@ Every custom event includes the following fields for correlation and tracing.
 
 | Field | Description |
 |---|---|
-| `gen_ai.agent.id` | ARM resource ID of your agent |
+| `gen_ai.agent.id` | Azure Resource Manager ID of your agent |
 | `gen_ai.agent.name` | Agent name |
 | `TraceId` | OpenTelemetry trace ID which correlates events across a single request |
 | `SpanId` | OpenTelemetry span ID |
