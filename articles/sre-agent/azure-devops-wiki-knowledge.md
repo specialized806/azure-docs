@@ -7,7 +7,6 @@ ms.date: 03/09/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.ai-usage: ai-assisted
-ms.custom: azure-devops, wiki, knowledge-base, documentation, runbooks, ado, knowledge-source
 #customer intent: As an SRE, I want to connect my Azure DevOps wikis to SRE Agent so that my team's runbooks and procedures surface automatically during investigations.
 ---
 
@@ -108,7 +107,7 @@ Your agent searches your wiki, finds the "Payment Service Troubleshooting" page,
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Connect an ADO Wiki](./connect-ado-wiki.md)
+> [Connect an Azure DevOps wiki](./connect-azure-devops-wiki.md)
 
 ## Related content
 

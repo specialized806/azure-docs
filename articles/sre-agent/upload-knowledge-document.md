@@ -13,19 +13,13 @@ ms.custom: knowledge-base, upload, documents, runbooks, troubleshooting, automat
 
 # Upload knowledge documents to Azure SRE Agent (preview)
 
-> [!VIDEO <VIDEO_URL_FOR_AGENT_KNOWLEDGE_BASE>]
-<!-- Replace <VIDEO_URL_FOR_AGENT_KNOWLEDGE_BASE> with the hosted URL for the Agent's Knowledge Base video. -->
+<!-- > [!VIDEO <VIDEO_URL_FOR_AGENT_KNOWLEDGE_BASE>]
+Replace <VIDEO_URL_FOR_AGENT_KNOWLEDGE_BASE> with the hosted URL for the Agent's Knowledge Base video. -->
 
-**Applies to**: version 26.1.57.0 and later
+Your agent captures institutional knowledge during conversations by uploading runbooks, troubleshooting guides, and documentation directly to the knowledge base. When your agent discovers a fix or resolves an incident, it generates structured documents and indexes them for semantic search, so every future investigation benefits from past resolutions.
 
 > [!TIP]
 > Your agent creates and uploads runbooks during conversations without manual file management. The system indexes documents for semantic search, making them available to all future investigations. Incident resolutions automatically become institutional knowledge.
-
-## Overview
-
-Every incident your team resolves generates valuable knowledge: what went wrong, what commands fixed it, and what to check first next time. But that knowledge often stays in chat threads, engineer memory, and postmortems that nobody reads at 3 AM.
-
-Your team has runbooks, but they go stale. The fix discovered during last night's incident might be in someone's head or buried in a conversation that scrolls out of view by next week. The next time the same issue occurs, a different engineer starts from scratch.
 
 ## How your agent captures knowledge
 
@@ -142,7 +136,7 @@ The following table describes scenarios where a different approach is more appro
 
 | Scenario | Better approach |
 |----------|----------------|
-| Connecting live wiki content that stays in sync | [ADO wiki knowledge](ado-wiki-knowledge.md) |
+| Connecting live wiki content that stays in sync | [Azure DevOps wiki knowledge](azure-devops-wiki-knowledge.md) |
 | Uploading binary files (PDF, Word, images) | Upload manually through **Builder > Knowledge base > Add file** |
 | Bulk importing many documents at once | Use the `srectl doc upload --file <path>` CLI command |
 
@@ -153,6 +147,6 @@ The following table describes scenarios where a different approach is more appro
 
 ## Related content
 
-- [ADO wiki knowledge](ado-wiki-knowledge.md)
+- [Azure DevOps wiki knowledge](azure-devops-wiki-knowledge.md)
 - [Root cause analysis](root-cause-analysis.md)
 - [Tutorial: Upload knowledge documents](tutorial-upload-knowledge-document.md)
