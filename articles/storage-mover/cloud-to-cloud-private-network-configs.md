@@ -206,7 +206,16 @@ After creating the Direct Connect resource, create a private connection in Stora
 4. Only private connections in **Approved** state can be selected.
 5. Remaining job steps are the same as a public S3-to-Blob migration.
 
+## Architecture
+### Cloud-to-cloud Migration flow (private networking)
 
+:::image type="content" source="./media/cloud-to-cloud-networking/cloud-to-cloud-private-networking.png" alt-text="Architecture of cloud-to-cloud private networking architecture." lightbox="./media/cloud-to-cloud-networking/cloud-to-cloud-private-networking.png":::
+
+Above diagram shown with private networking to AWS but same applies for other private networking scenarios.
+
+### Cloud-to-cloud Migration flow (public S3 bucket to Azure Blob)
+
+:::image type="content" source="./media/cloud-to-cloud-networking/cloud-to-cloud-public.png" alt-text="Architecture of cloud-to-cloud public workflow." lightbox="./media/cloud-to-cloud-networking/cloud-to-cloud-public.png":::
 
 
 ## Troubleshooting
@@ -258,6 +267,7 @@ Review ExpressRoute concepts and planning in the [ExpressRoute documentation](/a
 Create a site-to-site VPN connection in Azure: [Tutorial - Create an S2S VPN connection](/azure/vpn-gateway/tutorial-site-to-site-portal).
 
 For BGP between Azure and AWS, follow: [Tutorial - Configure a BGP-enabled connection between Azure and AWS](/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).
+
 
 
 
