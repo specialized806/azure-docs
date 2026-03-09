@@ -27,7 +27,7 @@ If you want to create subscriptions for Enterprise Agreements, see [Create an EA
 [!INCLUDE [cost-management-billing-subscription-b2b-b2c-note](../../../includes/cost-management-billing-subscription-b2b-b2c-note.md)]
 
 >[!NOTE]
-> - Microsoft Online Services Program (MOSP) billing account is no longer able to add Azure subscriptions at https://signup.azure.com/.
+> Microsoft Online Services Program (MOSP) billing account is no longer able to add Azure subscriptions at https://signup.azure.com/.
 
 To learn more about billing accounts and identify your billing account type, see [View billing accounts in Azure portal](view-all-accounts.md).
 
