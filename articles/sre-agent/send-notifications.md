@@ -138,7 +138,7 @@ The following table describes recommended practices for notifications.
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Set up the Teams bot](./setup-teams-bot.md)
+> [Set up the Teams bot](./teams-bot.md)
 
 ## Related content
 

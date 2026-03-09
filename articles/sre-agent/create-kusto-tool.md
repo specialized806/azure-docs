@@ -29,7 +29,7 @@ In this tutorial, you learn how to:
 Before you begin, make sure you have the following:
 
 - An Azure Data Explorer cluster with the **AllDatabasesViewer** role granted to the agent's managed identity. For more information, see [Kusto tools prerequisites](kusto-tools.md#azure-data-explorer-permissions).
-- A Kusto connector configured. For more information, see [Set up a Kusto connector](setup-kusto-connector.md).
+- A Kusto connector configured. For more information, see [Set up a Kusto connector](kusto-connector.md).
 - Access to Builder in the Azure SRE Agent portal.
 
 ## Navigate to the subagent builder

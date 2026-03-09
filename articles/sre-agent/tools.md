@@ -71,7 +71,7 @@ Your agent integrates with incident management platforms and source code reposit
 
 - **Incident platforms**: Connect PagerDuty or ServiceNow to receive alerts and manage incident lifecycles. For more information, see [Incident platforms](incident-platforms.md) and [Incident response](incident-response.md).
 
-- **DevOps**: Connect GitHub or Azure DevOps to access repositories, pull requests, issues, and work items. For more information, see [Set up Azure DevOps connector](setup-azure-devops-connector.md).
+- **DevOps**: Connect GitHub or Azure DevOps to access repositories, pull requests, issues, and work items. For more information, see [Set up Azure DevOps connector](azure-devops-connector.md).
 
 ## Custom tools
 

@@ -74,7 +74,7 @@ Your trigger appears as a node connected to the subagent on the canvas.
 > [!TIP]
 > When you first connect an incident platform, the system might automatically create a default **quickstart** response plan. If you set up your own triggers through the Subagent builder, **delete the default plan** from **Builder** > **Incident response plans** to avoid conflicts. Two overlapping plans can cause incidents to be handled by the wrong subagent or duplicated.
 
-For the full step-by-step guide with screenshots, see the [Set up an incident trigger tutorial](setup-response-plan.md).
+For the full step-by-step guide with screenshots, see the [Set up an incident trigger tutorial](response-plan.md).
 
 :::image type="content" source="media/tutorial-incident-response/incident-response-plans.png" alt-text="Response plans displayed on the subagent builder canvas.":::
 
@@ -116,5 +116,5 @@ Your agent provides actionable recommendations based on evidence, not generic ad
 
 - [Incident response](incident-response.md)
 - [Incident response plans](incident-response-plans.md)
-- [Tutorial: Set up response plans](setup-response-plan.md)
+- [Tutorial: Set up response plans](response-plan.md)
 - [Tutorial: Create a scheduled task](create-scheduled-task.md)

@@ -107,11 +107,11 @@ Your agent searches your wiki, finds the "Payment Service Troubleshooting" page,
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Connect an Azure DevOps wiki](./connect-azure-devops-wiki.md)
+> [Connect an Azure DevOps wiki](./connect-devops-wiki.md)
 
 ## Related content
 
 - [Memory and knowledge](memory.md)
 - [Diagnose with external observability tools](diagnose-observability.md)
 - [Connectors](connectors.md)
-- [Tutorial: Set up Azure DevOps connector](setup-azure-devops-connector.md)
+- [Tutorial: Set up Azure DevOps connector](azure-devops-connector.md)

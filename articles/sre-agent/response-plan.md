@@ -43,7 +43,7 @@ In the SRE Agent portal, select your agent. In the left sidebar, go to **Builder
 
 The canvas view loads, showing your subagent nodes, any existing trigger nodes, and connected tools.
 
-:::image type="content" source="media/setup-response-plan/incident-trigger-step-01-canvas.png" alt-text="Screenshot of the subagent builder canvas view showing subagent nodes and existing trigger nodes.":::
+:::image type="content" source="media/response-plan/incident-trigger-step-01-canvas.png" alt-text="Screenshot of the subagent builder canvas view showing subagent nodes and existing trigger nodes.":::
 
 ## Add an incident trigger to a subagent
 
@@ -51,7 +51,7 @@ Find the subagent you want to handle matching incidents and select the circular 
 
 A menu appears with two groups. Under **Trigger**, select **Add incident trigger**.
 
-:::image type="content" source="media/setup-response-plan/incident-trigger-step-02-menu.png" alt-text="Screenshot of the menu showing Trigger group with Add incident trigger and Add scheduled task options.":::
+:::image type="content" source="media/response-plan/incident-trigger-step-02-menu.png" alt-text="Screenshot of the menu showing Trigger group with Add incident trigger and Add scheduled task options.":::
 
 The **Create incident trigger** dialog opens.
 
@@ -62,14 +62,14 @@ The **Create incident trigger** dialog opens.
 
 The dialog shows a two-step wizard. In step 1 (**Incident trigger**), enter the filter criteria:
 
-:::image type="content" source="media/setup-response-plan/incident-trigger-step-03-dialog.png" alt-text="Screenshot of the Create incident trigger dialog showing trigger details form with fields for name, service, type, and priority.":::
+:::image type="content" source="media/response-plan/incident-trigger-step-03-dialog.png" alt-text="Screenshot of the Create incident trigger dialog showing trigger details form with fields for name, service, type, and priority.":::
 
 1. **Trigger name**: Enter a descriptive name, such as `high-sev-api-trigger`.
 1. **Impacted service**: Select the service this trigger covers from the dropdown.
 1. **Incident type**: Choose the incident classification.
 1. **Priority**: Select one or more severity levels. Select multiple options to combine them, such as P1 and P2.
 
-    :::image type="content" source="media/setup-response-plan/incident-trigger-step-04-priority.png" alt-text="Screenshot of the priority multi-select dropdown showing P1 and P2 checked.":::
+    :::image type="content" source="media/response-plan/incident-trigger-step-04-priority.png" alt-text="Screenshot of the priority multi-select dropdown showing P1 and P2 checked.":::
 
 1. **Title contains** (optional): Add a keyword to narrow matches further.
 
@@ -79,7 +79,7 @@ Make sure you fill in all required fields: trigger name, impacted service, incid
 
 Scroll down to the **Subagent** section to configure the response behavior.
 
-:::image type="content" source="media/setup-response-plan/incident-trigger-step-05-sub-agent.png" alt-text="Screenshot of the subagent section showing pre-selected response subagent and autonomy level radio buttons.":::
+:::image type="content" source="media/response-plan/incident-trigger-step-05-sub-agent.png" alt-text="Screenshot of the subagent section showing pre-selected response subagent and autonomy level radio buttons.":::
 
 Configure the following options:
 
@@ -97,7 +97,7 @@ Select **Next**.
 
 The **Incidents preview** step shows a table of past incidents that match your filter criteria.
 
-:::image type="content" source="media/setup-response-plan/incident-trigger-step-06-preview.png" alt-text="Screenshot of the incidents preview step showing matching past incidents table with priority, date, title, incident ID, and status columns.":::
+:::image type="content" source="media/response-plan/incident-trigger-step-06-preview.png" alt-text="Screenshot of the incidents preview step showing matching past incidents table with priority, date, title, incident ID, and status columns.":::
 
 The table displays the following columns for each matching incident:
 
@@ -121,7 +121,7 @@ Select **Create** to save the trigger.
 
 After you create the trigger, the canvas refreshes. Your new trigger node appears with an edge connecting it to the subagent.
 
-:::image type="content" source="media/setup-response-plan/incident-trigger-step-07-created.png" alt-text="Screenshot of the subagent builder canvas showing new incident trigger node connected to the subagent with an edge.":::
+:::image type="content" source="media/response-plan/incident-trigger-step-07-created.png" alt-text="Screenshot of the subagent builder canvas showing new incident trigger node connected to the subagent with an edge.":::
 
 Confirm the following information:
 
@@ -150,5 +150,5 @@ When an incident that matches your filter criteria fires on your incident platfo
 ## Related content
 
 - [Subagents](sub-agents.md)
-- [Set up a Kusto connector](setup-kusto-connector.md)
+- [Set up a Kusto connector](kusto-connector.md)
 - [Incident response plans](incident-response-plans.md)

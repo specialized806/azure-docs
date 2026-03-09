@@ -129,7 +129,7 @@ Alternatively, in the Azure portal, navigate to your Azure Data Explorer cluster
 
 ### Kusto connector
 
-Before creating tools, [set up an ADX connector](setup-kusto-connector.md). When adding the connector:
+Before creating tools, [set up an ADX connector](kusto-connector.md). When adding the connector:
 
 - Select **Database query connector** for predefined queries, not schema learning.
 - Use the full cluster URL including the database: `https://<CLUSTER_NAME>.<REGION>.kusto.windows.net/<DATABASE_NAME>`.

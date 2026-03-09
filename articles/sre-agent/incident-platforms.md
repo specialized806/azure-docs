@@ -34,7 +34,7 @@ Only one incident platform can be active at a time. Azure Monitor is the default
 > [!NOTE]
 > **ServiceNow authentication options**
 >
-> ServiceNow supports two authentication methods: **Basic Authentication** (username/password) and **OAuth 2.0** (token-based). Use OAuth 2.0 for production because tokens refresh automatically and no passwords are stored in your agent configuration. For setup instructions, see [Connect to ServiceNow](connect-service-now.md).
+> ServiceNow supports two authentication methods: **Basic Authentication** (username/password) and **OAuth 2.0** (token-based). Use OAuth 2.0 for production because tokens refresh automatically and no passwords are stored in your agent configuration. For setup instructions, see [Connect to ServiceNow](connect-servicenow.md).
 
 ## What connecting an incident platform enables
 
@@ -135,7 +135,7 @@ Your agent uses both concepts: the incident platform *triggers* the investigatio
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Connect to PagerDuty](./connect-pager-duty.md)
+> [Connect to PagerDuty](./connect-pagerduty.md)
 
 ## Related content
 

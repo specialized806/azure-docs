@@ -115,7 +115,7 @@ For a complete list, see [Connect to external services](connectors.md).
 
 ### Can I connect custom tools or APIs?
 
-Yes, you can connect custom tools or APIs through Model Context Protocol (MCP) servers. For more information, see [Connect to custom MCP server](setup-mcp-connector.md).
+Yes, you can connect custom tools or APIs through Model Context Protocol (MCP) servers. For more information, see [Connect to custom MCP server](mcp-connector.md).
 
 ## Data and privacy
 

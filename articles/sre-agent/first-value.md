@@ -106,7 +106,7 @@ The following table lists common document types to upload and the value they pro
 ## Related content
 
 - [Upload knowledge documents](upload-knowledge-document.md)
-- [Azure DevOps Wiki knowledge](ado-wiki-knowledge.md)
+- [Azure DevOps Wiki knowledge](azure-devops-wiki-knowledge.md)
 - [Memory and knowledge](memory.md)
 - [Connectors](connectors.md)
-- [Tutorial: Set up an Azure DevOps connector](setup-azure-devops-connector.md)
+- [Tutorial: Set up an Azure DevOps connector](azure-devops-connector.md)

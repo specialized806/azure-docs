@@ -46,7 +46,7 @@ You can connect source code in three ways.
 > [!TIP]
 > Pick the approach that matches your setup. You can use multiple options together.
 
-For **Option C**, see the [ADO Wiki knowledge](ado-wiki-knowledge.md) capability page and the [Connect ADO Wiki tutorial](connect-ado-wiki.md).
+For **Option C**, see the [ADO Wiki knowledge](azure-devops-wiki-knowledge.md) capability page and the [Connect ADO Wiki tutorial](connect-devops-wiki.md).
 
 ## Option A: Resource mapping
 

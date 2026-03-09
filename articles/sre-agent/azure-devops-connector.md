@@ -25,7 +25,7 @@ In this tutorial, you:
 > - Verify that your agent can access your Azure DevOps repositories
 
 > [!NOTE]
-> Your agent references your Azure DevOps repositories and wikis during investigations to find relevant code, procedures, and documentation automatically. For more information, see [Azure DevOps wiki knowledge](ado-wiki-knowledge.md).
+> Your agent references your Azure DevOps repositories and wikis during investigations to find relevant code, procedures, and documentation automatically. For more information, see [Azure DevOps wiki knowledge](azure-devops-wiki-knowledge.md).
 
 ## Prerequisites
 
@@ -218,5 +218,5 @@ Another connector (of any type) already uses this name. Choose a different name 
 ## Related content
 
 - [Connect source code](connect-source-code.md)
-- [Azure DevOps wiki knowledge](ado-wiki-knowledge.md)
+- [Azure DevOps wiki knowledge](azure-devops-wiki-knowledge.md)
 - [Connectors](connectors.md)

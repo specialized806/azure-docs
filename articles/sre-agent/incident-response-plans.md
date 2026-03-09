@@ -124,7 +124,7 @@ Each incident gets specialized handling, and the routing is visible on the Subag
 
 ## Get started
 
-For a step-by-step guide, see [Tutorial: Set up an incident trigger](setup-response-plan.md).
+For a step-by-step guide, see [Tutorial: Set up an incident trigger](response-plan.md).
 
 ## Default settings
 
@@ -175,7 +175,7 @@ To test an existing incident response plan:
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Set up an incident trigger](./setup-response-plan.md)
+> [Set up an incident trigger](./response-plan.md)
 
 ## Related content
 
