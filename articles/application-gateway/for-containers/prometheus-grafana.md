@@ -117,7 +117,7 @@ A Grafana dashboard contains panels and rows. You can import a Grafana dashboard
 After you create the resources, you can combine them and configure Prometheus.
 1. Expand the menu on the left and select **Connections** > **Data sources**.
 
-   :::image type="content" source="./media/prometheus-grafana/monitordata-source-configuration.png" alt-text="Screenshot of the Monitor data source configuration.":::
+   :::image type="content" source="./media/prometheus-grafana/monitor-data-source-configuration.png" alt-text="Screenshot of the Monitor data source configuration.":::
 
 1. **Azure Monitor** is listed as a built-in data source for your Azure Managed Grafana workspace. Select **Azure Monitor**.
 1. In the **Settings** tab, authenticate through **Managed Identity** and select your subscription from the dropdown list. When you select managed identity, the authentication and authorization are made through the system-assigned or the user-assigned managed identity you configured in your Azure Managed Grafana workspace.
