@@ -19,7 +19,7 @@ Your agent reasons through problems rather than following scripts. It gathers ev
 
 Every message you send goes through the same loop.
 
-:::image type="content" source="media/agent-reasoning/agent-reasoning-flow.svg" alt-text="Agent reasoning flow: understand request, gather context, reason, then act or respond. Loops up to 10 times.":::
+:::image type="content" source="media/agent-reasoning/agent-reasoning-flow.svg" alt-text="A screenshot of Agent reasoning flow: understand request, gather context, reason, then act or respond. Loops up to 10 times.":::
 
 1. **Understand**: Parse your request and identify what data is needed.
 1. **Gather context**: Query data sources in parallel, including logs, metrics, resource status, deployment history, and [memory](memory.md).
