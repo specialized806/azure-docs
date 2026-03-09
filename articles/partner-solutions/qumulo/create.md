@@ -4,7 +4,7 @@ description: Learn how to create an Azure Native Qumulo Scalable File Service re
 ms.topic: quickstart
 ms.custom:
   - ignite-2023
-ms.date: 02/09/2025
+ms.date: 03/09/2026
 ---
 
 # Quickstart: Get started with Qumulo Scalable File Service
@@ -44,6 +44,7 @@ The *Basics* tab has four sections:
 - Administrator account credentials
 - Qumulo file system details
 
+<!-- TODO: Update screenshot to show the Pre-provisioned performance selection in Qumulo file system details. -->
 :::image type="content" source="media/create/basics-tab.png" alt-text="A screenshot of the Create a Qumulo resource in Azure options inside of the Azure portal's working pane with the Basics tab displayed.":::
 
 There are required fields (identified with a red asterisk) in each section that you need to fill out.
@@ -75,9 +76,10 @@ There are required fields (identified with a red asterisk) in each section that 
    |--------------------|-------------------------------------------------|
    | Storage class      | Choose the storage class for your resource.     |
    | Availability Zone  | Choose the availability zone for your resource. |
+   | Pre-provisioned performance | Select the suitable pre-provisioned performance for your resource. By default, it's set to *Elastic Pay-as-you-go*. You can choose to provision dedicated capacity to secure more VMs or a larger VM size during resource creation. |
 
    > [!NOTE]
-   > If you select *Hot ZRS* as your storage class, you won't specify an Availability Zone.
+   > If you select *Hot ZRS* as your storage class, you don't need to specify an Availability Zone.
    
    Select the **Change plan** link to change your billing plan.
 
