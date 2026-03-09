@@ -39,6 +39,7 @@ To register a skill in your API center:
 1. In the sidebar menu, under **Inventory**, select **Assets**.
 1. Select **+ Register an asset** > **Skill**.
 1. In the **Register a skill** form, provide the information in the following table:
+
     | Field | Description |
     |-------|-------------|
     | **Title** | Enter a descriptive name for the skill (for example, *Code Review Skill*). |
@@ -76,22 +77,17 @@ To automate skill registration and updates, you can integrate a Git repository w
 
 ### Assign the managed identity the Key Vault Secrets User role
 
-[!INCLUDE [configure-managed-identity-kv-secret-user](includes/configure-managed-identity-kv-secret-user.md)]mation about one or more skills from your repository.
-
-[!INCLUDE [enable-managed-identity](includes/enable-managed-identity.md)]
-
-## Assign the managed identity the Key Vault Secrets User role
-
 [!INCLUDE [configure-managed-identity-kv-secret-user](includes/configure-managed-identity-kv-secret-user.md)]
 
-
-
+## Integrate a Git repository
 
 To integrate a Git repository:
 
 1. In your API center, go to **Platforms** > **Integrations**.
 1. Select **+ New integration** and choose **From Git repository**.
 1. Follow the prompts to authenticate with GitHub and select the repository that contains your skill information. You can specify a branch, folder path, or file pattern to target specific skill definition files in your repository.
+
+
 ## Related content
 
 * [Register and discover MCP servers in your API inventory](register-discover-mcp-server.md)
