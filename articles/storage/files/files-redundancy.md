@@ -221,7 +221,7 @@ Connect-AzAccount
 $subscriptionID = "your-subscription-id-number"
 
 # Get token (now SecureString by default)
-$secureToken = (Get-AzAccessToken).Token  # SecureString now [1](https://learn.microsoft.com/en-us/powershell/module/az.accounts/get-azaccesstoken?view=azps-15.3.0)
+$secureToken = (Get-AzAccessToken).Token  # SecureString now [1](/powershell/module/az.accounts/get-azaccesstoken?view=azps-15.3.0)
 
 # Convert SecureString -> plaintext (Az 14 migration pattern)
 $ssPtr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureToken)
