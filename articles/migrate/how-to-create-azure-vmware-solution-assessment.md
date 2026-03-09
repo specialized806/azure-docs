@@ -9,8 +9,6 @@ ms.custom: sfi-image-nochange
 # Customer intent: "As a cloud architect, I want to create an Azure VMware Solution assessment for on-premises VMs so that I can evaluate migration options and ensure compatibility with Azure's infrastructure."
 ---
 
-
-
 # Create an Azure VMware Solution assessment
 
 This article describes how to create an Azure VMware Solution assessment for on-premises VMs in a VMware vSphere environment with Azure Migrate: Discovery and assessment.
