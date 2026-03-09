@@ -133,7 +133,7 @@ Traffic must originate from a VNet. A VNet enables clients to securely connect t
 
 To learn more, see [Network security recommendations for Blob storage](security-recommendations.md#networking).
 > [!Note]
-> Public IP whitelisting is not supported.
+> Public IP filtering to access your storage account is not supported.
 
 ### Supported network connections
 
