@@ -69,7 +69,7 @@ The system logs this event every time your agent calls a tool. The system logs s
 | `ToolOutput` | Result returned (end only) | *(tool output JSON)* |
 | `SubAgentName` | Which subagent invoked the tool | `meta_agent` |
 | `ThreadId` | Conversation thread ID | `aaaabbbb-0000-cccc-1111-dddd2222eeee` |
-| `CallId` | Correlation ID for start/end pairing | `call_3DDMpLtzCljW...` |
+| `CallId` | Correlation ID for start/end pairing | `call_aaaabbbb-0000-cccc-...` |
 
 ```kql
 // List all tools your agent used in the last 7 days
