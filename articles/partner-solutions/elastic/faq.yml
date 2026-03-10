@@ -92,10 +92,10 @@ sections:
     questions:
       - question: How is Elastic billed in Azure?
         answer: |
-            Elastic resource consumption and charges are tracked through the Azure billing system. Each Elastic resource appears as a line item in your Azure bill. A single Azure Marketplace SaaS unifies billing for multiple Elastic deployments.
+            A single Azure Marketplace SaaS unifies billing for multiple Elastic deployments.
       - question: How do I delete an Elastic resource?
         answer: |
-            To delete an Elastic resource, follow the standard Azure resource deletion process. If you wish to completely stop billing for the marketplace SaaS, delete all linked Elastic deployments created from the Azure portal or Elastic portal.
+            To delete all linked Elastic deployments and serverless projects created from the Azure portal and the Elastic console, follow the standard Azure resource deletion process. If you wish to completely stop billing for the marketplace SaaS, delete all linked Elastic deployments created from the Azure portal or Elastic portal.
       - question: Can I view all my connected Elastic resources in one place?
         answer: |
             Yes. To access all Elastic resources and deployments you created using the Azure or Elastic portal, go to the **Connected Elastic Resources** tab in any of your Azure Elastic resources. You can easily manage the corresponding Elastic deployments or Azure resources using the links, provided you have owner or contributor rights.
@@ -112,4 +112,4 @@ sections:
             For more help:
             - Review the [Elastic documentation](https://www.elastic.co/guide/en/cloud/current/ec-azure-marketplace-native.html) for Azure integration.
             - Check the [troubleshooting guide](troubleshoot.md) for common issues and solutions.
-            - Contact support through the Azure portal or Elastic support channels.
+            - Contact support through the Azure portal or [Elastic support channels](https://support.elastic.co/home).
