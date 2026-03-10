@@ -43,9 +43,18 @@ For an API that supports API key authentication, complete the following steps.
 
 ### 1. Store API key in Azure Key Vault
 
-Store the API key in Azure Key Vault, and access the key vault using your API center's managed identity. 
+To store the API key as a secret in the key vault, see [Set and retrieve secret in Key Vault](/azure/key-vault/secrets/quick-create-portal).
 
-[!INCLUDE [store-secret-key-vault](includes/store-secret-key-vault.md)]
+Access the key vault using your API center's managed identity. 
+
+
+#### Enable a managed identity in your API center
+
+[!INCLUDE [enable-managed-identity](includes/enable-managed-identity.md)]
+
+#### Assign the managed identity the Key Vault Secrets User role
+
+[!INCLUDE [configure-managed-identity-kv-secret-user](includes/configure-managed-identity-kv-secret-user.md)]
 
 
 ### 2. Add API key configuration
@@ -103,9 +112,18 @@ When configuring OAuth 2.0 in your API center, you need the following values fro
 
 ### 2. Store client secret in Azure Key Vault
 
-Store the secret in Azure Key Vault. Access the key vault using your API center's managed identity. 
+To store the client secret in the key vault, see [Set and retrieve secret in Key Vault](/azure/key-vault/secrets/quick-create-portal).
 
-[!INCLUDE [store-secret-key-vault](includes/store-secret-key-vault.md)]
+Access the key vault using your API center's managed identity. 
+
+
+#### Enable a managed identity in your API center
+
+[!INCLUDE [enable-managed-identity](includes/enable-managed-identity.md)]
+
+#### Assign the managed identity the Key Vault Secrets User role
+
+[!INCLUDE [configure-managed-identity-kv-secret-user](includes/configure-managed-identity-kv-secret-user.md)]
 
 ### 3. Add OAuth 2.0 configuration
 
@@ -134,9 +152,9 @@ Store the secret in Azure Key Vault. Access the key vault using your API center'
 
 1. Select **Create** to save the configuration.
 
-### Option 3: Configure settings for another HTTP security scheme
+## Option 3: Configure settings for another HTTP security scheme
 
-For APIs that use another HTTP security scheme, such as Basic authentication or bearer tokens that don't use OAuth 2.0, complete the following steps. You might need to choose this for legacy APIs. 
+For APIs that use another HTTP security scheme, such as Basic authentication or bearer tokens that don't use OAuth 2.0, complete the following steps. You might need to choose this option for legacy APIs. 
 
 In the [portal](https://azure.microsoft.com), go to your API center.
 1. Under **Governance**, select **Authorization (preview)** > **+ Add configuration**.
@@ -147,9 +165,9 @@ In the [portal](https://azure.microsoft.com), go to your API center.
     | **Title**              | Enter a name for the authorization.                                                |
     | **Description**        | Optionally, enter a description for the authorization.                  |
     | **Security scheme**    | Select **HTTP**.           |
-    | **Authentication scheme**    | Select the authentication scheme used by the API. Examples include the schemes in the following table |
+    | **Authentication scheme**    | Select the authentication scheme used by the API. Examples include the schemes in the following table. |
 
-    | Scheme | Description |
+    | Authentication scheme | Description |
     |---|---|
     | **Basic** | Sends `username:password` as a Base64-encoded string in the `Authorization: Basic <credentials>` header.  |
     | **Bearer** | Sends a token other than an OAuth 2.0 access token in the `Authorization: Bearer <token>` header.  |
