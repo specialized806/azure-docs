@@ -8,4 +8,4 @@ ms.author: godonnell
 ---
 
 > [!IMPORTANT]
-> **Azure AD External Identities P2 has been retired in B2C tenants.** P2-only features are no longer available in B2C tenants. For details on billing, alternatives, and workforce tenant availability, see the [P2 retirement FAQ](../articles/active-directory-b2c/faq.yml#azure-ad-external-identities-p2-retirement).
+> **Azure AD External Identities P2 has been retired in Azure AD B2C tenants.** ID Protection as part of P2 remains available in workforce tenants. For details on billing and alternatives, see the [P2 retirement FAQ](../articles/active-directory-b2c/faq.yml#azure-ad-external-identities-p2-retirement).
