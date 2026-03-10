@@ -215,6 +215,10 @@ Run the following command:
 az iot ops ns asset sse create --name mysseasset --instance {your instance name} -g {your resource group name} --device sse-connector-cli --endpoint sse-connector-0
 
 az iot ops ns asset sse dataset add --asset mysseasset --instance {your instance name} -g {your resource group name} --name weatherdata --data-source "/api/weather" --dest topic="azure-iot-operations/data/erp" retain=Never qos=Qos1 ttl=3600
+
+az iot ops ns asset sse event-group add --asset mysseasset --instance {your instance name} -g {your resource group name} --name alerts --data-source "" --dest topic="azure-iot-operations/events/mysseasset" retain=Never qos=Qos1 ttl=3600
+
+az iot ops ns asset sse event add --asset mysseasset --instance {your instance name} -g {your resource group name} --event-group alerts --name temperaturethreshold --data-source "/events/temperaturethreshold" --dest topic="azure-iot-operations/events/mysseasset" retain=Never qos=Qos1 ttl=3600
 ```
 
 To learn more, see [az iot ops ns asset sse](/cli/azure/iot/ops/ns/asset/sse).
@@ -269,6 +273,31 @@ resource asset 'Microsoft.DeviceRegistry/namespaces/assets@2025-10-01' = {
               retain: 'Never'
               ttl: 3600
             }
+          }
+        ]
+      }
+    ]
+
+    eventGroups: [
+      {
+        name: 'alerts'
+        eventGroupConfiguration: '{}'
+        events: [
+          {
+            name: 'temperaturethreshold'
+            dataSource: '/events/temperaturethreshold'
+            eventConfiguration: '{}'
+            destinations: [
+              {
+                target: 'Mqtt'
+                configuration: {
+                  topic: 'azure-iot-operations/events/mysseasset'
+                  qos: 'Qos1'
+                  retain: 'Never'
+                  ttl: 3600
+                }
+              }
+            ]
           }
         ]
       }
