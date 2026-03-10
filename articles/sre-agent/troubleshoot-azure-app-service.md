@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Troubleshoot an App Using Azure SRE Agent (preview) and Azure App Service'
+title: 'Tutorial: Troubleshoot an App Using Azure SRE Agent and Azure App Service'
 description: Learn how to use Azure SRE Agent and Azure App Service to identify and fix app problems through AI-assisted troubleshooting.
 author: craigshoemaker
 ms.author: cshoe
@@ -8,10 +8,7 @@ ms.date: 10/13/2025
 ms.service: azure-sre-agent
 ---
 
-# Tutorial: Troubleshoot an App Service app by using Azure SRE Agent (preview)
-
-> [!NOTE]
-> Azure SRE Agent is in. By using SRE Agent, you consent to the product-specific [Supplemental Terms of Use for Microsoft Azures](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+# Tutorial: Troubleshoot an App Service app by using Azure SRE Agent
 
 Site reliability engineering (SRE) focuses on creating reliable, scalable systems through automation and proactive management. Azure SRE Agent brings these principles to your cloud environment by providing AI-powered monitoring, troubleshooting, and remediation capabilities.
 
