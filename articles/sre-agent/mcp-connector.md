@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Set Up the MCP Connector in Azure SRE Agent (preview)"
+title: "Tutorial: Set Up the MCP Connector in Azure SRE Agent"
 description: Connect your SRE agent to external tools using the Model Context Protocol (MCP), then add those tools to subagents individually or all at once with the wildcard pattern.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.ai-usage: ai-assisted
 #customer intent: As an SRE, I want to connect my agent to external tools through MCP so that my subagents can use those tools during investigations.
 ---
 
-# Tutorial: Set up the MCP connector in Azure SRE Agent (preview)
-
+# Tutorial: Set up the MCP connector in Azure SRE Agent
 In this tutorial, you connect your SRE agent to an external tool or service through the Model Context Protocol (MCP), then add the available tools to your subagents. You can add tools individually or use the wildcard pattern to include all tools from a connection at once.
 
 **Estimated time**: 10 minutes
