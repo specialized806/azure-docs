@@ -31,7 +31,7 @@ Before you begin, verify that you meet the following criteria:
   |---|---|---|
   | Azure portal (browser) | Basic | None |
   | Azure portal with custom ports | Standard | None |
-  | IP-based connection | Standard | [IP-based connection](connect-ip-address.md#enable-ip-based-connection) enabled |
+  | IP-based connection | Standard | [IP-based connection](connect-ip-address.md#configure-bastion) enabled |
   | Native client (RDP) | Standard | [Native client support](native-client.md) enabled |
 
 * Users connecting via RDP must have rights on the target virtual machine. If the user isn't a local administrator, add them to the **Remote Desktop Users** group.
@@ -87,7 +87,7 @@ Use the Azure portal to create a browser-based RDP connection to your Windows vi
 1. Select **Connect** to open the RDP connection to your virtual machine in a new browser tab.
 
 > [!NOTE]
-> For troubleshooting tips, see [Troubleshooting RDP connections](troubleshoot-rdp.md) and [Troubleshoot Microsoft Entra sign in for a Windows virtual machine in Azure or Arc-enabled Windows Server](/entra/identity/devices/howto-vm-sign-in-azure-ad-windows#troubleshoot-sign-in-problems)
+> For troubleshooting tips, see [Troubleshooting RDP connections](troubleshoot.md) and [Troubleshoot Microsoft Entra sign in for a Windows virtual machine in Azure or Arc-enabled Windows Server](/entra/identity/devices/howto-vm-sign-in-azure-ad-windows#troubleshoot-sign-in-problems)
 
 
 # [IP address (portal)](#tab/ip-address)
@@ -124,7 +124,7 @@ Before you can connect using an IP address, you must enable IP-based connection 
 
 1. Select **Connect** to connect to your virtual machine.
 
-For native client RDP connections via IP address, see the [Native client](#tab/native-client) tab.
+For native client RDP connections via IP address, see the **Native client** tab on this page.
 
 # [Native client](#tab/native-client)
 
@@ -148,6 +148,7 @@ For SSH and tunnel connections, see [Connect to a VM using Bastion and the Windo
 
 ## Next steps
 
+* [Connect to a Windows VM using SSH](bastion-connect-vm-ssh-windows.md)
 * [What is Azure Bastion?](bastion-overview.md)
 * [Configure Microsoft Entra ID authentication](bastion-entra-id-authentication.md) for identity-based access.
 * [Configure Kerberos authentication](kerberos-authentication-portal.md) for domain-joined virtual machines.
