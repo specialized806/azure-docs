@@ -254,14 +254,16 @@ items:
       items:
         - name: Heroku migration overview
           href: migrate-heroku-overview.md
-        - name: Migrate from Heroku to Azure Container Apps
+        - name: Migrate from Heroku 
           href: migrate-heroku.md
-        - name: Migrate Spring Boot applications to Azure Container Apps
+        - name: Migrate Spring Boot applications 
           href: migrate-spring-boot-to-azure-container-apps.md
-        - name: Migrate Spring Cloud applications to Azure Container Apps
+        - name: Migrate Spring Cloud applications 
           href: migrate-spring-cloud-to-azure-container-apps.md
-        - name: Migrate Tomcat applications to Azure Container Apps
+        - name: Migrate Tomcat applications
           href: migrate-tomcat-to-azure-container-apps.md
+        - name: Migrate Java 
+          href: migrate-java-to-azure-container-apps-with-github-copilot-app-modernization.md
 - name: Observability
   items:
     - name: Overview
