@@ -57,7 +57,7 @@ Before you submit the request, pause all write and delete operations on the targ
    - All datasets in a path:
 
      ```http
-     PUT /api/v3/operation/change-tier?path=sd://{tenant}/{subproject}/{path}/&tier=Cool
+     PUT <instance>.energy.azure.com/seistore-svc/api/v3/operation/change-tier?path=sd://{tenant}/{subproject}/{path}/&tier=Cool
      Authorization: Bearer {access_token}
      Content-Type: application/json
      ```
@@ -65,7 +65,7 @@ Before you submit the request, pause all write and delete operations on the targ
    - Single dataset:
 
      ```http
-     PUT /api/v3/operation/change-tier?path=sd://{tenant}/{subproject}/{path}/{dataset_name}&tier=Cool
+     PUT <instance>.energy.azure.com/seistore-svc/api/v3/operation/change-tier?path=sd://{tenant}/{subproject}/{path}/{dataset_name}&tier=Cool
      Authorization: Bearer {access_token}
      Content-Type: application/json
      ```
@@ -85,7 +85,7 @@ After you initiate the change tier operation, poll the status endpoint to track 
 1. Poll the status endpoint with the `operation_id` until `status` is `Completed` or `Failed`:
 
    ```http
-   GET /api/v3/operation/change-tier/{operation_id}
+   GET <instance>.energy.azure.com/seistore-svc/api/v3/operation/change-tier/{operation_id}
    Authorization: Bearer {access_token}
    data-partition-id: {data_partition_id}
    ```
@@ -129,7 +129,7 @@ Use the `show_details=true` parameter to get per-dataset error information for a
 1. Add `show_details=true` to the status request:
 
    ```http
-   GET /api/v3/operation/change-tier/{operation_id}?show_details=true&limit=100
+   GET <instance>.energy.azure.com/seistore-svc/api/v3/operation/change-tier/{operation_id}?show_details=true&limit=100
    Authorization: Bearer {access_token}
    data-partition-id: {data_partition_id}
    ```
