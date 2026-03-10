@@ -12,13 +12,13 @@ ms.service: azure-managed-grafana
 
 # Configure an Azure Managed Grafana remote MCP server
 
-Every Azure Managed Grafana instance includes a built-in Model Context Protocol (MCP) server endpoint called AMG-MCP. The AMG-MCP endpoint allows tools and applications to interact programmatically with the Grafana instance using the MCP. The AMG-MCP endpoint uses the same authentication mechanism as the Grafana instance, supporting both Entra Id and the Grafana service account token.
+Every Azure Managed Grafana instance includes a built-in Model Context Protocol (MCP) server endpoint called AMG-MCP. The AMG-MCP endpoint allows tools and applications to interact programmatically with the Grafana instance using the MCP. The AMG-MCP endpoint uses the same authentication mechanism as the Grafana instance, supporting both Entra ID and the Grafana service account token.
 
 ## Endpoint path
 
 The AMG-MCP endpoint path format is `https://<grafana-endpoint>/api/azure-mcp`. For example, the endpoint could look like: `https://my-grafana-<guid>.<location>.grafana.azure.com/api/azure-mcp`.
 
-## Available MCP Tools
+## Available MCP tools
 
 AMG-MCP provides the following tools for interacting with Azure Managed Grafana:
 
@@ -43,10 +43,10 @@ AMG-MCP provides the following tools for interacting with Azure Managed Grafana:
 
 To connect to the AMG-MCP endpoint, you need to configure your MCP client with the appropriate settings. AMG-MCP supports two authentication methods:
 
-- [**Grafana Service Account Token:**](#grafana-service-account-token) A token generated from your Grafana instance (format: `glsa_xxx`)
-- [**Entra ID Token:**](#entra-id-token) An Azure AD/Entra ID token (e.g., from a managed identity or service principal)
+- [**Grafana service account token:**](#grafana-service-account-token) A token generated from your Grafana instance (format: `glsa_xxx`)
+- [**Entra ID token:**](#entra-id-token) An Azure AD/Entra ID token (e.g., from a managed identity or service principal)
 
-### Grafana Service Account Token
+### Grafana service account token
 
 Use a Grafana service account token for authentication. Start by creating a token:
 
@@ -69,7 +69,7 @@ Use a Grafana service account token for authentication. Start by creating a toke
     }
     ```
 
-### Entra ID Token
+### Entra ID token
 
 Use an Entra ID token (Azure AD token) for authentication. This approach is useful when using managed identities or service principals.
 
@@ -115,7 +115,7 @@ To configure MCP for Visual Studio Code, use configuration settings similar to t
 }
 ```
 
-**Configuration Parameters:**
+**Configuration parameters:**
 
 | Parameter | Description |
 |-----------|-------------|
@@ -141,7 +141,7 @@ To configure MCP for Cline, use configuration settings similar to the following 
 }
 ```
 
-**Configuration Parameters:**
+**Configuration parameters:**
 
 | Parameter | Description |
 |-----------|-------------|
