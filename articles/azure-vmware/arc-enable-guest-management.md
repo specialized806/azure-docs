@@ -3,7 +3,7 @@ title: Enable guest management and install extensions on Arc-enabled VMs
 description: Learn how to set up and enable guest management and install extensions on Arc-enabled VMs.
 ms.topic: how-to 
 ms.service: azure-vmware
-ms.date: 05/15/2024
+ms.date: 03/10/2026
 ms.custom: references_regions, devx-track-azurecli, engagement-fy23
 ---
 
@@ -43,9 +43,9 @@ These steps change the VM machine type from _Machine – Azure Arc_ to type _Mac
 
 There are two ways to refresh the integration between the Arc-enabled VMs and Azure VMware Solution:  
 
-1. In the Azure VMware Solution private cloud, navigate to the vCenter Server inventory and Virtual Machines section within the portal. Locate the virtual machine that requires updating and follow the process to 'Enable in Azure'. If the option is grayed out, you must first **Remove from Azure** and then proceed to **Enable in Azure**
+1. In the Azure VMware Solution private cloud, navigate to the vCenter Server inventory and Virtual Machines section within the portal. Locate the virtual machine that requires updating and follow the process to **Enable in Azure**. If the option is grayed out, you must first **Remove from Azure** and then proceed to **Enable in Azure**
 
-2. Run the [az connectedvmware vm create](/cli/azure/connectedvmware/vm?view=azure-cli-latest%22%20\l%20%22az-connectedvmware-vm-create&preserve-view=true) Azure CLI command on the VM in Azure VMware Solution to update the machine type. 
+2. Run the [**az connectedvmware vm create**](/cli/azure/connectedvmware/vm?view=azure-cli-latest%22%20\l%20%22az-connectedvmware-vm-create&preserve-view=true) Azure CLI command on the VM in Azure VMware Solution to update the machine type. 
 
 ```azurecli
 az connectedvmware vm create --subscription <subscription-id> --location <Azure region of the machine> --resource-group <resource-group-name> --custom-location /providers/microsoft.extendedlocation/customlocations/<custom-location-name> --name <machine-name> --inventory-item /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.ConnectedVMwarevSphere/VCenters/<vcenter-name>/InventoryItems/<machine-name>
