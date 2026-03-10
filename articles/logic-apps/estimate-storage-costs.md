@@ -17,7 +17,7 @@ Azure Logic Apps uses [Azure Storage](../storage/index.yml) for any storage oper
 
 > [!NOTE]
 >
-> This guide applies to Standard workflows in single-tenant Azure Logic Apps. These workflows exist in the same logic app and in a single tenant that share the same storage. For more information, see [Single-tenant versus multitenant in Azure Logic Apps](single-tenant-overview-compare.md).
+> This guide applies to Standard workflows in single-tenant Azure Logic Apps. These workflows exist in the same logic app that is in a single tenant where all share the same storage. For more information, see [Single-tenant versus multitenant in Azure Logic Apps](single-tenant-overview-compare.md).
 
 Storage costs change based on your workflows' content. Different triggers, actions, and payloads result in different storage operations and needs. This article describes how to estimate your storage costs when you're using your own Azure Storage account with single-tenant based logic apps. First, you can [estimate the number of storage operations you'll perform](#estimate-storage-needs) using the Logic Apps storage calculator. Then, you can [estimate your possible storage costs](#estimate-storage-costs) using these numbers in the Azure pricing calculator.
 
