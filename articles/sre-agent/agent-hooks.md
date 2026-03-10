@@ -1,5 +1,5 @@
 ---
-title: Agent Hooks in Azure SRE Agent (preview)
+title: Agent Hooks in Azure SRE Agent
 description: Intercept and control agent behavior with custom scripts or LLM-based validation that runs before or after specific agent actions.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,10 +11,7 @@ ms.custom: hooks, agent hooks, stop hook, post tool use, validation, audit, poli
 #customer intent: As an SRE, I want to add custom hooks to my agent so that I can enforce quality gates, audit tool usage, and block dangerous operations automatically.
 ---
 
-# Agent hooks in Azure SRE Agent (preview)
-
-> [!IMPORTANT]
-> Agent hooks are currently in preview.
+# Agent hooks in Azure SRE Agent
 
 Hooks are custom checkpoints that intercept and control agent behavior at key moments. Use hooks to enforce quality gates on agent responses, audit and control tool usage, block dangerous operations with policy enforcement, and prevent early task completion by validating agent output.
 

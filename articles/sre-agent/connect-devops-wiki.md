@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Connect an Azure DevOps Wiki to Azure SRE Agent (preview)"
+title: "Tutorial: Connect an Azure DevOps Wiki to Azure SRE Agent"
 description: Connect an Azure DevOps wiki to your Azure SRE Agent so the agent can reference team runbooks and procedures during investigations.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: azure-devops, wiki, knowledge-base, connector, setup, documentation
 #customer intent: As an SRE, I want to connect my Azure DevOps wiki to my agent so that it can reference runbooks during investigations.
 ---
 
-# Tutorial: Connect an Azure DevOps wiki to Azure SRE Agent (preview)
-
+# Tutorial: Connect an Azure DevOps wiki to Azure SRE Agent
 In this tutorial, you connect an Azure DevOps wiki as a knowledge source for your Azure SRE Agent. After you complete these steps, your agent can search your team's wiki for runbooks and procedures when it answers questions during investigations.
 
 In this tutorial, you learn how to:

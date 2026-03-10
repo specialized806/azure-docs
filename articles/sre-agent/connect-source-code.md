@@ -1,5 +1,5 @@
 ---
-title: "Step 3: Connect Source Code to Azure SRE Agent (preview)"
+title: "Step 3: Connect Source Code to Azure SRE Agent"
 description: Connect your GitHub repository so your agent can perform root cause analysis and correlate production issues to specific code changes.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: source code, github, root cause analysis, connectors, getting started
 #customer intent: As a site reliability engineer, I want to connect my source code repository so that my agent can correlate production issues to specific code changes during investigations.
 ---
 
-# Step 3: Connect source code to Azure SRE Agent (preview)
-
+# Step 3: Connect source code to Azure SRE Agent
 **Estimated time**: 10 minutes
 
 Connect your GitHub repository so your agent can perform root cause analysis, correlating production problems to specific code.

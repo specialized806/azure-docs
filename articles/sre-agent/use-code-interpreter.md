@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Use Code Interpreter in Azure SRE Agent (preview)"
+title: "Tutorial: Use Code Interpreter in Azure SRE Agent"
 description: Enable Code Interpreter for your Azure SRE Agent and use it to analyze data, generate charts, and create reports from chat.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: code-interpreter, data-analysis, python, reports, sandbox
 #customer intent: As an SRE, I want to enable Code Interpreter for my agent so that I can analyze data, generate visualizations, and create reports from chat.
 ---
 
-# Tutorial: Use Code Interpreter in Azure SRE Agent (preview)
-
+# Tutorial: Use Code Interpreter in Azure SRE Agent
 In this tutorial, you enable Code Interpreter for your Azure SRE Agent and use it to analyze Azure data, generate visualizations, and create downloadable files directly from chat prompts.
 
 > [!NOTE]
