@@ -236,7 +236,7 @@ To get visibility into all the on-premises data gateways in a Microsoft Entra te
 
 ## Restart gateway
 
-By default, the gateway installation on your local computer runs as a Windows service account named "On-premises data gateway service." However, the gateway installation uses the `NT SERVICE\PBIEgwService` name for its **Log On As** account credentials and has **Log on as a service** permissions.
+By default, the gateway installation on your local computer runs as a Windows service account named **On-premises data gateway service**. However, the gateway installation uses the **NT SERVICE\PBIEgwService** name for its **Log On As** account credentials and has **Log on as a service** permissions.
 
 > [!NOTE]
 >

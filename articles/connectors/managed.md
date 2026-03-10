@@ -383,7 +383,7 @@ For more information, review the following documentation:
 [slack-doc]: ./connectors-create-api-slack.md "Connect to Slack and post messages to Slack channels"
 [smtp-doc]: ./connectors-create-api-smtp.md "Connect to an SMTP server and send email with attachments"
 [sparkpost-doc]: ./connectors-create-api-sparkpost.md "Connects to SparkPost for communication"
-[sql-server-doc]: ./connectors-create-api-sqlazure.md "Connect to Azure SQL Database or SQL Server. Create, update, get, and delete entries in an SQL database table"
+[sql-server-doc]: ./connectors-create-api-sqlazure.md "Connect to Azure SQL Database or SQL Server. Create, update, get, and delete entries in a SQL database table"
 [teradata-doc]: /connectors/teradata/ "Connect to your Teradata database to read data from tables"
 [twilio-doc]: ./connectors-create-api-twilio.md "Connect to Twilio. Send and get messages, get available numbers, manage incoming phone numbers, and more"
 [youtube-doc]: ./connectors-create-api-youtube.md "Connect to YouTube. Manage your videos and channels"

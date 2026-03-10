@@ -200,7 +200,7 @@ As your vector databases continue to ingest data, make sure the data is easily s
 
 The following pattern is only one example that shows how a chat workflow might look:
 
-:::image type="content" source="media/azure-ai/chat-workflow.png" alt-text="Screenshot that the shows Azure portal, Standard workflow designer, and workflow operations that implement a chat interaction.":::
+:::image type="content" source="media/azure-ai/chat-workflow.png" alt-text="Screenshot that shows the Azure portal, Standard workflow designer, and workflow operations that implement a chat interaction.":::
 
 | Step | Task | Underlying operation | Description |
 |------|------|----------------------|-------------|

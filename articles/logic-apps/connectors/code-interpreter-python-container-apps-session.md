@@ -39,7 +39,7 @@ When the workflow receives an HTTPS request for a specified file through the **R
 > You can use the **Code Interpreter (Python Container Apps session)** operations outside an agent loop 
 > action or in non-agentic workflows in a Standard logic app. However, you must provide your own Python 
 > code for the **Execute Python code** action. In these cases, the **Code Interpreter** operations 
-> don't have access to agentic capabilities provided by the agent loop-linked AI model, which include 
+> don't have access to agentic capabilities provided by the agent loop-linked AI model, which includes 
 > natural language interactions and model-generated code.
 
 Your agentic workflow can process files that contain diverse or fragmented data and have formats such as CSV, Excel, or JSON, which can include thousands to millions of rows. However, raw data often needs extra work before you can extract useful information and insights, for example:
