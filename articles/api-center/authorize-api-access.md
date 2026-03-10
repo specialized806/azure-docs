@@ -4,7 +4,7 @@ description: Configure access to APIs in your Azure API Center inventory using A
 
 ms.service: azure-api-center
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 03/10/2026
  
 ms.custom: 
 # Customer intent: As an API program manager, I want to store API authorization information in my API center and enable authorized users to test APIs in the API Center portal.
@@ -74,6 +74,8 @@ Access the key vault using your API center's managed identity.
     | **API key Key Vault secret reference**      | Select **Select** and select the subscription, key vault, and secret that you stored. Example: `https://<key-vault-name>.vault.azure.net/secrets/<secret-name>`  |
 
 1. Select **Create**.
+
+After completing this configuration, go to the [Add authentication configuration to an API version](#add-authentication-configuration-to-an-api-version) section to associate the API key configuration with an API version. 
 
 ## Option 2: Configure OAuth 2.0 authorization
 
@@ -152,6 +154,8 @@ Access the key vault using your API center's managed identity.
 
 1. Select **Create** to save the configuration.
 
+After completing this configuration, go to the [Add authentication configuration to an API version](#add-authentication-configuration-to-an-api-version) section to associate the OAuth 2.0 configuration with an API version.
+
 ## Option 3: Configure settings for another HTTP security scheme
 
 For APIs that use another HTTP security scheme, such as Basic authentication or bearer tokens that don't use OAuth 2.0, complete the following steps. You might need to choose this option for legacy APIs. 
@@ -173,7 +177,8 @@ In the [portal](https://azure.microsoft.com), go to your API center.
     | **Bearer** | Sends a token other than an OAuth 2.0 access token in the `Authorization: Bearer <token>` header.  |
     | **Digest** | A challenge-response mechanism where the server sends a nonce; the client responds with a hash of credentials + nonce. |
     | **Custom** | Another mechanism scheme such as a vendor-specific scheme. |
-     
+
+After completing this configuration, go to the next section to [associate the configuration with an API version](#add-authentication-configuration-to-an-api-version).
 
 ## Add authentication configuration to an API version
 
