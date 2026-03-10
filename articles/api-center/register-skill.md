@@ -126,7 +126,7 @@ To integrate a Git repository:
     | **Asset details** | |
     | **Lifecycle** | Select the lifecycle stage for assets synced from the repository (for example, **Design**). |
 
-    :::image type="content" source="media/register-skill/integrate-git-repository-small.png" lightbox="media/register-skill/integrate-git-repository.png" alt-text="Screenshot of integrating a Git repo in an API center in the portal.":::
+    :::image type="content" source="media/register-skill/integrate-git-repository-small.png" alt-text="Screenshot of integrating a Git repo in an API center in the portal." lightbox="media/register-skill/integrate-git-repository.png":::
 1. Select **Create**.
 
 The portal adds the environment to your API center. The portal adds the skills from the repository to the API center inventory.
