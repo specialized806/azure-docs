@@ -121,10 +121,15 @@ After authentication, run the same command to download the certificate:
 
 #### [Azure PowerShell](#tab/azurepowershell)
 
-Generate the OpenSSH certificate by using [PowerShell Az.Sftp](https://www.powershellgallery.com/packages/Az.Sftp/0.1.0) as shown in the following example:
+Sign in to your Azure subscription with the `Connect-AzAccount` command and follow the on-screen directions. Service principals and managed identity authorization is not yet supported for generating a certificate.
 
     ```powershell
     Connect-AzAccount
+    ```
+
+Generate the OpenSSH certificate by using [PowerShell Az.Sftp](https://www.powershellgallery.com/packages/Az.Sftp/0.1.0) as shown in the following example:
+
+    ```powershell
     New-AzSftpCertificate -CertificatePath "\my_cert.cert"
     ```
 
@@ -135,9 +140,6 @@ Optionally, use the following command to generate the OpenSSH certificate by usi
     ```
 
 Learn more about the PowerShell module [here](/powershell/module/az.sftp/).
-
-> [!NOTE]
-> PowerShell currently doesn't support Service Principal and Managed Identity sign-ins. 
 
 #### [.NET](#tab/dotnet)
 
@@ -240,7 +242,7 @@ For security reasons, the OpenSSH certificate is valid for 65 minutes. After thi
 
 If the principal uses the format [username@domain.com](mailto:username@domain.com), make sure to exclude the domain section in the command and use only the username portion.
 
-Both [User and Service principals](/entra/identity-platform/app-objects-and-service-principals) are supported. For Service principals, use the service principal ID in place of the username in the connection string.
+Both [User and service principals](/entra/identity-platform/app-objects-and-service-principals) are supported. For Service principals, use the service principal ID in place of the username in the connection string.
 
 > [!NOTE]
 > Adding the container name directly to the connection string or setting it up via Home directory isn't currently supported.
@@ -304,6 +306,8 @@ Additionally, you can get the OpenSSH certificate and connect to SFTP by using a
     ```
 
 For more information about the commands, see [here](/powershell/module/az.sftp/connect-azsftp).
+
+
 
 ##### [.NET](#tab/dotnet)
 
