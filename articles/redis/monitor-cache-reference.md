@@ -73,5 +73,4 @@ Microsoft.Cache/redisEnterprise
 
 ## Related content
 
-- See [Monitor Azure Cache for Redis](monitor-cache.md) for a description of monitoring Azure Cache for Redis.
 - See [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for details on monitoring Azure resources.
