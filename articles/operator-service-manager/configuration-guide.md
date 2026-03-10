@@ -36,10 +36,12 @@ We now recommend that you use at least three CGSs for the entire NF, by organizi
   * Examples include IP addresses and unique names.
   * Uses CGS without secrets.
   * Stores values in plain-text during deployments.
+    
 * Instance-specific parameters
   * Examples include timeouts and debug levels.
   * Uses CGS without secrets.
   * Stores values in plain-text during deployment.
+    
 * Security-specific parameters
   * Examples include passwords and certificates. 
   * Uses CGS with secrets.
