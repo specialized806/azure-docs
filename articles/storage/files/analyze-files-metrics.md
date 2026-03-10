@@ -147,16 +147,15 @@ public static async Task ListStorageMetricDefinition()
 {
     var resourceId = "<resource-ID>";
     var client = new MetricsQueryClient(new DefaultAzureCredential());
-
-    AsyncPageable<MetricDefinition> metricDefinitions = client.GetMetricDefinitionsAsync(resourceId);
-
+    
+    AsyncPageable<MetricDefinition> metricDefinitions = client.GetMetricDefinitionsAsync(resourceId, metricsNamespace);
+    
     await foreach (var metricDefinition in metricDefinitions)
     {
-        // Enumerate metric definition:
-        //    Name
-        //    Unit
-        //    PrimaryAggregationType
-        //    Dimensions
+        Console.WriteLine(metricDefinition.Id);
+        Console.WriteLine(metricDefinition.ResourceId);
+        Console.WriteLine(metricDefinition.Name);
+        Console.WriteLine(metricDefinition.Unit);
     }
 }
 ```
@@ -170,7 +169,7 @@ public static async Task ReadStorageMetricValue()
 {
     var resourceId = "<resource-ID>";
     var client = new MetricsQueryClient(new DefaultAzureCredential());
-
+    
     Response<MetricsQueryResult> result = await client.QueryResourceAsync(
         resourceId,
         new[] { "UsedCapacity" },
@@ -180,15 +179,24 @@ public static async Task ReadStorageMetricValue()
             Aggregations = { MetricAggregationType.Average },
             TimeRange = new QueryTimeRange(TimeSpan.FromHours(3))
         });
-
+    
     foreach (MetricResult metric in result.Value.Metrics)
     {
-        // Enumerate metric value
-        //    Name
-        //    Unit
-        //    TimeSeries
-        //        - Values
-        //        - Metadata
+        Console.WriteLine(metric.Name);
+        Console.WriteLine(metric.Unit);
+        foreach(var item in metric.TimeSeries)
+        {
+            Console.WriteLine("Metadata:");
+            foreach(var metadata in item.Metadata)
+            {
+                Console.WriteLine($"{metadata.Key}: {metadata.Value}");
+            }
+            Console.WriteLine("Values:");
+            foreach(var value in item.Values)
+            {
+                Console.WriteLine($"TimeStamp: {value.TimeStamp}, Average: {value.Average}");
+            }
+        }
     }
 }
 ```
@@ -203,9 +211,9 @@ The following example shows how to read metric data on the metric supporting mul
 public static async Task ReadStorageMetricValueTest()
 {
     // Resource ID for Azure Files
-    var resourceId = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}/fileServices/default";
+    var resourceId = "<resource-ID>";
     var client = new MetricsQueryClient(new DefaultAzureCredential());
-
+    
     // Define a dimension filter to read metric data on specific dimension values
     // More conditions can be added with the 'or' and 'and' operators, example: BlobType eq 'BlockBlob' or BlobType eq 'PageBlob'
     Response<MetricsQueryResult> result = await client.QueryResourceAsync(
@@ -218,17 +226,25 @@ public static async Task ReadStorageMetricValueTest()
             TimeRange = new QueryTimeRange(TimeSpan.FromHours(3)),
             Filter = "BlobType eq 'BlockBlob'"
         });
-
+    
     foreach (MetricResult metric in result.Value.Metrics)
     {
-        // Enumerate metric value
-        //    Name
-        //    Unit
-        //    TimeSeries
-        //        - Values
-        //        - Metadata
+        Console.WriteLine(metric.Name);
+        Console.WriteLine(metric.Unit);
+        foreach(var item in metric.TimeSeries)
+        {
+            Console.WriteLine("Metadata:");
+            foreach(var metadata in item.Metadata)
+            {
+                Console.WriteLine($"{metadata.Key}: {metadata.Value}");
+            }
+            Console.WriteLine("Values:");
+            foreach(var value in item.Values)
+            {
+                Console.WriteLine($"TimeStamp: {value.TimeStamp}, Average: {value.Average}");
+            }
+        }
     }
-}
 ```
 
 ---
