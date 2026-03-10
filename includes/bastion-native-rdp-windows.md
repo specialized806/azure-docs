@@ -1,4 +1,6 @@
 ---
+title: Connect to a Windows VM using native RDP client
+description: Steps to connect to a Windows virtual machine using Azure Bastion with a native RDP client via Azure CLI.
 author: abell
 ms.service: azure-bastion
 ms.topic: include

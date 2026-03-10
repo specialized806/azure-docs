@@ -132,7 +132,7 @@ Connect to your Windows virtual machine from a local Windows computer using Azur
 
 :::image type="content" source="./media/native-client/native-client-architecture.png" alt-text="Diagram shows a connection via native client." lightbox="./media/native-client/native-client-architecture.png":::
 
-[!INCLUDE [Native client RDP to Windows VM](../../includes/bastion-native-rdp-windows.md)]
+[!INCLUDE [Native client RDP to Windows VM](../includes/bastion-native-rdp-windows.md)]
 
 For SSH and tunnel connections, see [Connect to a VM using Bastion and the Windows native client](connect-vm-native-client-windows.md).
 
