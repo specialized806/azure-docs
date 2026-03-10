@@ -135,7 +135,7 @@ An assignment becomes a sub resource of the targeted storage account. Therefore,
    $task = Get-AzStorageActionTask -Name <"storage-task-name"> -ResourceGroupName "<resource-group>"
    ```
 
-1. Create a storage task assignment by using the `New-AzStorageTaskAssignment` command. The following assignment targets the `mycontainer` container of an account named `mystorageaccount`. This assignment specifies that the task will run only one time, and will save execution reports to a folder named `storage-tasks-report`. The task is scheduled to run `10` minutes from the present time. 
+4. Create a storage task assignment by using the `New-AzStorageTaskAssignment` command. The following assignment targets the `mycontainer` container of an account named `mystorageaccount`. This assignment specifies that the task will run only one time, and will save execution reports to a folder named `storage-tasks-report`. The task is scheduled to run `10` minutes from the present time. 
 
    ```powershell
    New-AzStorageTaskAssignment `
@@ -151,7 +151,7 @@ An assignment becomes a sub resource of the targeted storage account. Therefore,
    -TargetPrefix $targetPrefix
    ```
    
-2. Give the storage task permission to perform operations on the target storage account by assigning a role to the managed identity. You can choose the managed identity type (system-assigned or user-assigned) when you create the storage task.  
+5. Give the storage task permission to perform operations on the target storage account by assigning a role to the managed identity. You can choose the managed identity type (system-assigned or user-assigned) when you create the storage task.  
 
    The following commands assign the role of `Storage Blob Data Owner` to the system-assigned managed identity of the storage task. 
 
