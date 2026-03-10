@@ -1,5 +1,5 @@
 ---
-title: Agent Reasoning in Azure SRE Agent (preview)
+title: Agent Reasoning in Azure SRE Agent
 description: Learn how your agent processes requests, selects tools, classifies actions, and explains its thinking.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: reasoning, thinking, tool selection, action classification, approval,
 #customer intent: As an SRE, I want to understand how my agent reasons through problems so that I can trust its actions and guide its behavior effectively.
 ---
 
-# Agent reasoning in Azure SRE Agent (preview)
-
+# Agent reasoning in Azure SRE Agent
 Your agent reasons through problems rather than following scripts. It gathers evidence, selects the right tools, classifies actions by risk, and explains its thinking, all visible in the chat interface.
 
 ## The reasoning loop

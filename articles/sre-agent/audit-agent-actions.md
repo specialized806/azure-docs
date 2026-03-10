@@ -1,5 +1,5 @@
 ---
-title: Audit Agent Actions in Azure SRE Agent (preview)
+title: Audit Agent Actions in Azure SRE Agent
 description: Query your agent's actions, tool calls, and incident outcomes using Application Insights telemetry and KQL.
 ms.topic: reference
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: audit, telemetry, application-insights, kql, custom-events, tool-exec
 #customer intent: As an SRE, I want to query my agent's actions in Application Insights so that I can audit tool calls, track incident outcomes, and understand token consumption.
 ---
 
-# Audit agent actions in Azure SRE Agent (preview)
-
+# Audit agent actions in Azure SRE Agent
 Every agent action, including tool calls, model invocations, incident handling, and approval decisions, is logged to your Application Insights resource. Query the `customEvents` table by using Kusto Query Language (KQL) to see exactly what your agent did, when, and why. Access logs directly from **Monitor** > **Logs** in the agent portal.
 
 ## Where to find your logs
