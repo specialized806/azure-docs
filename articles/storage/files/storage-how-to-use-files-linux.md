@@ -424,7 +424,7 @@ password2=<new-rotating-key>
 
 ### Update existing volume mount
 
-If you have already a volume mounted on a supported distro with an appropiate version of cifs-utils, you can use the following command to modify the mount option by adding the `password2=` option.
+If you have already a volume mounted on a supported distro with an appropriate version of cifs-utils, you can use the following command to modify the mount option by adding the `password2=` option.
 
 ```bash
 # During rotation:
@@ -458,6 +458,7 @@ You can use the following mount options when mounting SMB Azure file shares on L
 | `file_mode=` | n/a | Optional. If the server doesn't support the CIFS Unix extensions, this overrides the default file mode. |
 | `dir_mode=` | n/a | Optional. If the server doesn't support the CIFS Unix extensions, this overrides the default mode for directories. |
 | `handletimeout=` | n/a | Optional. The time (in milliseconds) for which the server should reserve the file handle after a failover waiting for the client to reconnect. |
+| `max_channels=` | 4 | Enables SMB Multichannel on Linux CIFS mounts. Customers should always use the recommended value (4) of SMB Multichannel connections when accessing Azure Files from Linux clients. |
 
 ## Next step
 
