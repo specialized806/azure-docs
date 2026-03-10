@@ -1,5 +1,5 @@
 ---
-title: Send Notifications in Azure SRE Agent (preview)
+title: Send Notifications in Azure SRE Agent
 description: Send contextual notifications to Microsoft Teams, Outlook, or MCP-enabled tools with investigation summaries, root cause analysis, and recommended actions.
 ms.topic: how-to
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: notifications, alerts, Teams, Outlook, email, messages, MCP, attachme
 #customer intent: As an SRE, I want to send contextual notifications from my agent so that my team gets investigation summaries instead of raw alerts.
 ---
 
-# Send notifications in Azure SRE Agent (preview)
-
+# Send notifications in Azure SRE Agent
 Azure SRE Agent sends contextual notifications to Microsoft Teams, Outlook, or any MCP-enabled tool. Instead of forwarding raw alerts, the agent investigates first and then delivers summaries that include root cause analysis, impact assessment, and recommended actions so your team can act immediately.
 
 <!-- > [!VIDEO <VIDEO_URL_FOR_AZURE_SRE_SMART_NOTIFICATIONS>]
