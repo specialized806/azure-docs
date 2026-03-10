@@ -8,7 +8,7 @@ ms.custom:
   - linux-related-content
   - build-2025
 ms.topic: overview
-ms.date: 12/09/2025
+ms.date: 01/29/2026
 ms.author: anfdocs
 # Customer intent: As a cloud administrator, I want to learn about the latest enhancements in Azure NetApp Files, so that I can effectively utilize new features for improved data security, resilience, and operational efficiency in my organization's cloud storage solutions.
 ---
@@ -17,7 +17,20 @@ ms.author: anfdocs
 
 Azure NetApp Files is updated regularly. This article provides a summary about the latest new features and enhancements.
 
+
+## March 2026
+
+* [Large volumes improvement:](large-volumes-requirements-considerations.md#requirements-and-considerations) removed 30% default limit imposed on large volumes
+
+    Large volumes operational improvement no longer requires a support ticket to increase a large volume past the 30% imposed limit. This allows customer to automate their large volume size increases without waiting for approval and human intervention.
+    
 ## January 2026
+
+* [Elastic zone-redundant storage service level](elastic-zone-redundant-concept.md) (preview)
+
+    Azure NetApp Files Elastic zone-redundant storage service level is an advanced high-availability service level for Azure NetApp Files that provides continuous data access with zero data loss, even if an entire Azure Availability Zone goes offline. Built on Azure’s Zone-redundant storage (ZRS) architecture and compute infrastructure, Azure NetApp Files Elastic zone-redundant storage synchronously replicates file data across availability zones within one region. By eliminating single points of failure, it ensures mission-critical workloads remain online and protected without requiring special configuration or manual intervention. This makes it ideal for applications that demand uncompromising resilience and in-region data protection. 
+    
+    As a modern data platform, Azure NetApp Files Elastic zone-redundant storage provides consistent performance for metadata-heavy workloads across VMs and containers, making it well suited for AI, analytics, and Kubernetes/OpenShift environments. Whether you're running AKS and containerized apps, cloud‑native applications, or general file shares, Azure NetApp Files Elastic zone-redundant storage delivers continuity without compromise, cost‑effective scalability, and operational simplicity. You can create volumes as small as 1 GiB, giving you the flexibility to optimize storage for workloads of any size. 
 
 * [Application volume group for Oracle](configure-application-volume-oracle-api.md#replication) support for cross-zone and cross-region replication is now generally available (GA)
 
@@ -87,7 +100,7 @@ Azure NetApp Files is updated regularly. This article provides a summary about t
 
 * [Object REST API](object-rest-api-access-configure.md) (preview)
 
-    The [Object REST API (an S3-compatible REST API)](object-rest-api-introduction.md) on Azure NetApp Files bridges the gap between traditional file-based storage and modern cloud services, enabling you to use your existing data in new ways. With the Object REST API, you can seamlessly integrate Azure NetApp Files data with Microsoft Fabric, Azure AI services, and other Azure offerings without the need to move or replicate data. This unlocks new use cases such as advanced analytics, machine learning, and real-time business intelligence, while reducing costs and accelerating innovation.
+    The [Object REST API (an S3-compatible REST API)](object-rest-api-introduction.md) on Azure NetApp Files bridges the gap between traditional file-based storage and modern cloud services, enabling you to use your existing data in new ways. With the Object REST API, you can seamlessly integrate Azure NetApp Files data with Microsoft Fabric, Foundry Tools, and other Azure offerings without the need to move or replicate data. This unlocks new use cases such as advanced analytics, machine learning, and real-time business intelligence, while reducing costs and accelerating innovation.
 
     The Object REST API introduces native S3-compatible read/write access, allowing modern applications to interact with your data directly and efficiently. Enterprises benefit from simplified integration, enhanced productivity, and improved data security, as data remains in place and protected by Azure NetApp Files' robust security measures. This feature is ideal for organizations looking to leverage AI-driven insights, streamline workflows, and maintain compliance with industry standards. This feature is currently in preview.
 
