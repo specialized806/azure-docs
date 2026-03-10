@@ -2,11 +2,11 @@
 title: Set subscriptions filters in Azure Service Bus | Microsoft Docs
 description: This article provides examples for defining filters and actions on Azure Service Bus topic subscriptions.
 ms.topic: how-to
-ms.date: 05/28/2025
+ms.date: 03/10/2026
 ms.devlang: csharp
 ms.custom:
   - devx-track-dotnet
-  - sfi-ropc-nochange
+  - passwordless-dotnet
 ---
 
 # Set subscription filters (Azure Service Bus)
@@ -136,6 +136,7 @@ For more information, see the inline code comments.
 ```csharp
 namespace CreateTopicsAndSubscriptionsWithFilters
 {
+    using Azure.Identity;
     using Azure.Messaging.ServiceBus.Administration;
     using System;
     using System.Threading.Tasks;
@@ -145,8 +146,8 @@ namespace CreateTopicsAndSubscriptionsWithFilters
         // Service Bus Administration Client object to create topics and subscriptions
         static ServiceBusAdministrationClient adminClient;
 
-        // connection string to the Service Bus namespace
-        static readonly string connectionString = "<YOUR SERVICE BUS NAMESPACE - CONNECTION STRING>";
+        // fully qualified namespace for the Service Bus
+        static readonly string fullyQualifiedNamespace = "<YOUR SERVICE BUS NAMESPACE>.servicebus.windows.net";
 
         // name of the Service Bus topic
         static readonly string topicName = "topicfiltersampletopic";
@@ -163,7 +164,7 @@ namespace CreateTopicsAndSubscriptionsWithFilters
             {
 
                 Console.WriteLine("Creating the Service Bus Administration Client object");
-                adminClient = new ServiceBusAdministrationClient(connectionString);
+                adminClient = new ServiceBusAdministrationClient(fullyQualifiedNamespace, new DefaultAzureCredential());
                 
                 Console.WriteLine($"Creating the topic {topicName}");
                 await adminClient.CreateTopicAsync(topicName);
@@ -223,6 +224,7 @@ namespace SendAndReceiveMessages
     using System;
     using System.Text;
     using System.Threading.Tasks;
+    using Azure.Identity;
     using Azure.Messaging.ServiceBus;
     using Newtonsoft.Json;
     
@@ -234,8 +236,8 @@ namespace SendAndReceiveMessages
         const string SubscriptionColorRed = "ColorRed";
         const string SubscriptionHighPriorityOrders = "HighPriorityRedOrders";
 
-        // connection string to your Service Bus namespace
-        static string connectionString = "<YOUR SERVICE BUS NAMESPACE - CONNECTION STRING>";
+        // fully qualified namespace for the Service Bus
+        static string fullyQualifiedNamespace = "<YOUR SERVICE BUS NAMESPACE>.servicebus.windows.net";
 
         // the client that owns the connection and can be used to create senders and receivers
         static ServiceBusClient client;
@@ -246,27 +248,27 @@ namespace SendAndReceiveMessages
         // the receiver used to receive messages from the subscription 
         static ServiceBusReceiver receiver;
 
-        public async Task SendAndReceiveTestsAsync(string connectionString)
+        public async Task SendAndReceiveTestsAsync(string fullyQualifiedNamespace)
         {
             // This sample demonstrates how to use advanced filters with ServiceBus topics and subscriptions.
             // The sample creates a topic and 3 subscriptions with different filter definitions.
             // Each receiver will receive matching messages depending on the filter associated with a subscription.
 
             // Send sample messages.
-            await this.SendMessagesToTopicAsync(connectionString);
+            await this.SendMessagesToTopicAsync(fullyQualifiedNamespace);
 
             // Receive messages from subscriptions.
-            await this.ReceiveAllMessageFromSubscription(connectionString, SubscriptionAllMessages);
-            await this.ReceiveAllMessageFromSubscription(connectionString, SubscriptionColorBlueSize10Orders);
-            await this.ReceiveAllMessageFromSubscription(connectionString, SubscriptionColorRed);
-            await this.ReceiveAllMessageFromSubscription(connectionString, SubscriptionHighPriorityOrders);
+            await this.ReceiveAllMessageFromSubscription(SubscriptionAllMessages);
+            await this.ReceiveAllMessageFromSubscription(SubscriptionColorBlueSize10Orders);
+            await this.ReceiveAllMessageFromSubscription(SubscriptionColorRed);
+            await this.ReceiveAllMessageFromSubscription(SubscriptionHighPriorityOrders);
         }
 
 
-        async Task SendMessagesToTopicAsync(string connectionString)
+        async Task SendMessagesToTopicAsync(string fullyQualifiedNamespace)
         {
             // Create the clients that we'll use for sending and processing messages.
-            client = new ServiceBusClient(connectionString);
+            client = new ServiceBusClient(fullyQualifiedNamespace, new DefaultAzureCredential());
             sender = client.CreateSender(TopicName);
 
             Console.WriteLine("\nSending orders to topic.");
@@ -309,7 +311,7 @@ namespace SendAndReceiveMessages
             Console.WriteLine("Sent order with Color={0}, Quantity={1}, Priority={2}", order.Color, order.Quantity, order.Priority);
         }
 
-        async Task ReceiveAllMessageFromSubscription(string connectionString, string subsName)
+        async Task ReceiveAllMessageFromSubscription(string subsName)
         {
             var receivedMessages = 0;
 
@@ -344,7 +346,7 @@ namespace SendAndReceiveMessages
             try
             {
                 Program app = new Program();
-                await app.SendAndReceiveTestsAsync(connectionString);
+                await app.SendAndReceiveTestsAsync(fullyQualifiedNamespace);
             }
             catch (Exception e)
             {
