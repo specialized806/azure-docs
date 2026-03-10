@@ -1,27 +1,29 @@
 ---
-title: Prevent or Recover After Automigration to v3
+title: Troubleshoot App Service Environment Automigration
 titleSuffix: App Service Environment
-description: Prevent automigration of your App Service Environment v1 or v2 resource to App Service Environment v3, or recover after the automigration and address issues.
+description: Troubleshoot issues after automigration of App Service Environment v1 or v2 to App Service Environment v3. Learn how you can select manual migration.
 author: seligj95
 ms.topic: upgrade-and-migration-article 
 ms.date: 03/10/2026
 ms.author: jordanselig
 ms.custom: references_regions
 ms.service: azure-app-service
-#customer intent: As an App Service developer, I want to prevent or recover after automigration of my App Service Environment v1 or v2 to App Service Environment v3, so I can continue to use my existing apps and other resources.
+#customer intent: As an App Service developer, I want to address issues after automigration of my App Service Environment v1 or v2 to App Service Environment v3, so I can continue to use my existing apps and other resources.
 ---
-# Prevent or recover after automigration of App Service Environment v1 or v2 to v3
+# Troubleshoot automigration to App Service Environment v3
 
-All App Service Environment v1 and v2 resources are automatically migrated to App Service Environment v3. The platform initiates automigration to ensure the App Service Environment runs on a supported platform.
+Microsoft automatically migrates all App Service Environment v1 and v2 resources to App Service Environment v3. The automigration helps ensure the App Service Environment runs on a supported platform.
 
 > [!IMPORTANT]
 > App Service Environment v1 and v2 are retired and no longer supported.
 >
-> As of September 1, 2024, the Microsoft platform automigrates App Service Environment v1 and v2 on a best-effort basis. Microsoft makes no claim or guarantees about application availability after automigration. You might need to perform manual configuration to complete the migration or optimize your App Service plan SKU choice to meet your needs. If automigration isn't feasible, your resources and associated app data are deleted.
+> As of September 1, 2024, Microsoft automigrates App Service Environment v1 and v2 on a best-effort basis. Microsoft makes no claim or guarantees about application availability after automigration. You might need to perform manual configuration to complete the migration or optimize your App Service plan SKU choice to meet your needs.
+>
+> If automigration isn't feasible, your resources and associated app data are deleted.
 
-The automigration process takes about one hour of downtime. The inbound and outbound IP addresses of your App Service Environment might change during the migration process. Downtime might be longer if you have dependencies on these IP addresses. Downtime might also be longer if you use features that aren't supported in App Service Environment v3.
+Automigration causes about one hour of downtime for your resources. The inbound and outbound IP addresses of your App Service Environment might change during the migration. The downtime can be longer if you have dependencies on the IP addresses or you use features that are unsupported in App Service Environment v3.
 
-This article provides guidance on how you can address any issues after an App Service Environment v1 or v2 is automigrated to App Service Environment v3.
+This article provides guidance on how you can address any issues after automigration of App Service Environment v1 or v2 to App Service Environment v3.
 
 ## Automigration limitations
 
@@ -124,11 +126,11 @@ az rest --method delete --url "https://management.azure.com/subscriptions/<SUBSC
 
 ## Augmented automigration features
 
-The augmented features of the automigration process help reduce the effects of migration:
+The augmented features of the automigration process help reduce the usual effects of migration:
 
-- Preserve the outbound IP address
-- Enable custom domain suffix certificate compatibility with Azure Key Vault
-- Migrate apps with IP-based TLS/SSL bindings
+- Automigration attempts to preserve the existing outbound IP address.
+- The certificate for a custom domain suffix configuration is temporarily compatible with Azure Key Vault.
+- Apps with IP-based TLS/SSL bindings are migrated, but they're nonfunctioning until you remove the bindings.
 
 ### Outbound IP address preservation
 
@@ -234,7 +236,7 @@ _**App Service Environment v1 and v2**_
 
 _This support policy expires at the end of any extension or grace-period that you have been granted written approval by Microsoft to run the services past the scheduled retirement date. Failure to migrate by that date will result in all remaining Azure App Service Environments v1 and v2 being retired which may include but not be limited to deletion of the apps and data, automated in-place migration, and other retirement procedures._
 
-The extended support policy includes the following items:
+The extended support policy for App Service Environment v1 and v2 includes the following items:
   
 - As of September 1, 2024, the [Service Level Agreement (SLA)](https://aka.ms/postEOL/ASE/SLA) is no longer applicable for App Service Environment v1 and v2. Through continued use of the product beyond the retirement date, you acknowledge that Azure doesn't commit to the SLA of 99.95% for the retired environment.
 
