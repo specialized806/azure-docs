@@ -32,13 +32,19 @@ The original recommendation was to use only a single CGS for the entire NF. This
 
 We now recommend that you use at least three CGSs for the entire NF, by organizing parameters into these sets of configuration resource groups:
 
-* Instance-specific parameters**: Examples include timeouts and debug levels.
-  * Uses CGS without secrets
-* Security-specific parameters**: Examples include passwords and certificates. With security-specific parameters, you use Azure Key Vault to store secure values.
-  * Uses CGS without secrets
-* Site-specific parameters**: Examples include IP addresses and unique names.
-  * Uses CGS with secrets
- 
+* Site-specific parameters
+  * Examples include IP addresses and unique names.
+  * Uses CGS without secrets.
+  * Stores values in plain-text during deployments.
+* Instance-specific parameters
+  * Examples include timeouts and debug levels.
+  * Uses CGS without secrets.
+  * Stores values in plain-text during deployment.
+* Security-specific parameters
+  * Examples include passwords and certificates. 
+  * Uses CGS with secrets.
+  * Store values in Azure Key Vault to obscure during deployments.
+
 ## CGS without secrets
 
 This example shows a sample CGS payload defining `abc`, `xyz`, and `qwe` as exposed parameters. Two of the parameters have default values and one is required.
@@ -154,5 +160,4 @@ The following rules are applied when you're validating a default value. Consider
 * A default value is evaluated in top-down order from where the keyword first appears.
 * Where a property value exists in the input CGV, only children of those properties are evaluated for defaults.
 * Where a property value doesn't exist in the input CGV, a default is evaluated, along with any children.
-* Where a property value is the `object` type, and it's key doesn't exist in the input CGV, no defaults for the object are evaluated.
-
+* Where a property value is the `object` type, and its key doesn't exist in the input CGV, no defaults for the object are evaluated.
