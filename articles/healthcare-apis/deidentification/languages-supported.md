@@ -11,7 +11,7 @@ ms.date: 10/23/2025
 #customer intent: As a user of this service, I want to know what languages I can use for de-identification of patient data, so that I can improve privacy.
 ---
 
-# Languages supported by the Azure Health Data Services de-identification service
+# Language support for the Azure Health Data Services de-identification service
 
 The Azure Health Data Services de-identification service currently works in four languages, and includes six language-locale pairings. To tag, redact, or replace unstructured textual data for purposes of de-identification, you can use the languages listed in the following table.
 
@@ -26,7 +26,7 @@ The Azure Health Data Services de-identification service currently works in four
 
 The following table provides examples of inputs and outputs you can expect, according to the type of de-identification operation you want to do (such as redaction or surrogation).
 
-| Operation   | Language-Locale pair | Input                                                                                                                                                          | Output                                                                                                                                          |
+| Operation   | Language-locale pair | Input                                                                                                                                                          | Output                                                                                                                                          |
 |-------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | Redaction   | en-US                | `Kimberly Brown is a 34 y.o. female presenting with bilateral eye discomfort. Last seen by her PCP 2/6/2025 Dr. Orlo at Contoso Clinics Downtown Bellevue PCP` | `[patient] is a [age] y.o. female presenting with bilateral eye discomfort. Last seen by her PCP [date] [doctor] at [hospital] PCP.`            |
 | Redaction   | fr-CA                | `André, âgé de 45 ans, a été admis à l'Hôpital de Laval le 23 avril 2025 après une évaluation avec Dr Jeanne Dubuc.`                                           | `[patient], âgé de [age], a été admis à l'[hospital] le [date] après une évaluation avec [doctor].`                                             |

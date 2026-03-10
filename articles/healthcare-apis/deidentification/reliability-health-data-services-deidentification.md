@@ -12,7 +12,7 @@ ms.date: 09/27/2024
 
 # Reliability in the Azure Health Data Services de-identification service
 
-This article describes reliability support in the de-identification service. For a more detailed overview of reliability principles in Azure, see [Azure reliability](/azure/architecture/framework/resiliency/overview).
+This article describes reliability support in the Azure Health Data Services de-identification service. For a more detailed overview of reliability principles in Azure, see [Azure reliability](/azure/architecture/framework/resiliency/overview).
 
 ## Cross-region disaster recovery
 
@@ -20,7 +20,7 @@ This article describes reliability support in the de-identification service. For
 
 Each de-identification service is deployed to a single Azure region. If an entire region isn't available or performance is significantly degraded:
 
-- The control plane functionality of Azure Resource Manager is limited to read-only during the outage. Your service metadata (such as resource properties) is always backed up outside of the region by Microsoft. After the outage is over, you can read and write to the control plane.
+- The control plane functionality of Azure Resource Manager is limited to read-only during the outage. Microsoft always backs up your service metadata (such as resource properties) outside the region. After the outage is over, you can read and write to the control plane.
 
 - All data plane requests, such as de-identification or job API requests, fail during the outage. No customer data is lost, but there's the potential for job progress metadata to be lost. After the outage is over, you can read and write to the data plane.
 
@@ -50,7 +50,7 @@ To complete this tutorial:
 
 You need two instances of a de-identification service in different Azure regions for this tutorial. The tutorial uses the East US and West US 2 regions, but feel free to choose your own regions.
 
-To make management and clean-up simpler, you use a single resource group for all resources in this tutorial. Consider using separate resource groups for each region/resource to further isolate your resources in a disaster recovery situation.
+To make management and clean-up simpler, you use a single resource group for all resources in this tutorial. Consider using separate resource groups for each region or resource to further isolate your resources in a disaster recovery situation.
 
 Run the following command to create your resource group.
 
@@ -64,7 +64,7 @@ Follow the steps at [Quickstart: Deploy the de-identification service](/azure/he
 
 Note the service URL of each de-identification service. You need this information when you deploy Azure Front Door in the next step.
 
-### Create a front door
+### Create a deployment
 
 A multiregion deployment can use an active-active or active-passive configuration. An active-active configuration distributes requests across multiple active regions. An active-passive configuration keeps running instances in the secondary region, but doesn't send traffic there unless the primary region fails.
 
@@ -75,7 +75,7 @@ You can enable these configurations in Azure Front Door. For more information on
 You now create a profile in Azure Front Door to route traffic to your services. Run [`az afd profile create`](/cli/azure/afd/profile#az-afd-profile-create).
 
 > [!NOTE]
-> If you want to deploy Azure Front Door Standard instead of Premium, substitute the value of the `--sku` parameter with `Standard_AzureFrontDoor`. You can't deploy managed rules with a WAF policy if you choose the Standard tier. For a detailed comparison of the pricing tiers, see [Azure Front Door tier comparison](/azure/frontdoor/standard-premium/tier-comparison).
+> If you want to deploy Azure Front Door Standard instead of Premium, substitute the value of the `--sku` parameter with `Standard_AzureFrontDoor`. You can't deploy managed rules with a web application firewall (WAF) policy if you choose the Standard tier. For a detailed comparison of the pricing tiers, see [Azure Front Door tier comparison](/azure/frontdoor/standard-premium/tier-comparison).
 
 ```azurecli-interactive
 az afd profile create --profile-name myfrontdoorprofile --resource-group my-deid --sku Premium_AzureFrontDoor
@@ -111,14 +111,14 @@ az afd origin-group create --resource-group my-deid --origin-group-name myorigin
 |Parameter                            |Value          |Description                                                                          |
 |-------------------------------------|---------------|-------------------------------------------------------------------------------------|
 |`origin-group-name`                  |`myorigingroup`|Name of the origin group.                                                            |
-|`probe-request-type`                 |`GET`          |The type of health probe request that is made.                                       |
+|`probe-request-type`                 |`GET`          |Type of health probe request that is made.                                           |
 |`probe-protocol`                     |`Https`        |Protocol to use for health probe.                                                    |
-|`probe-interval-in-seconds`          |`60`           |The number of seconds between health probes.                                         |
-|`probe-path`                         |`/health`      |The path relative to the origin that is used to determine the health of the origin.  |
-|`sample-size`                        |`1`            |The number of samples to consider for load balancing decisions.                      |
-|`successful-samples-required`        |`1`            |The number of samples within the sample period that must succeed.                    |
-|`additional-latency-in-milliseconds` |`50`           |The extra latency in milliseconds for probes to fall into the lowest latency bucket. |
-|`enable-health-probe`                |not applicable | Switch to control the status of the health probe.                                   |
+|`probe-interval-in-seconds`          |`60`           |Number of seconds between health probes.                                             |
+|`probe-path`                         |`/health`      |Path relative to the origin that is used to determine the health of the origin.      |
+|`sample-size`                        |`1`            |Number of samples to consider for load balancing decisions.                          |
+|`successful-samples-required`        |`1`            |Number of samples within the sample period that must succeed.                        |
+|`additional-latency-in-milliseconds` |`50`           |Extra latency in milliseconds for probes to fall into the lowest latency bucket.     |
+|`enable-health-probe`                |Not applicable |Switch to control the status of the health probe.                                    |
 
 ### Add origins to the origin group
 
@@ -134,7 +134,7 @@ az afd origin create --resource-group my-deid --host-name <service-url-east-us> 
 |`origin-name`          |`deid1`                 |Name of the origin.                                                                                  |
 |`origin-host-header`   |`<service-url-east-us>` |The host header to send for requests to this origin.                                                 |
 |`priority`             |`1`                     |The priority. Set this parameter to 1 to direct all traffic to the primary de-identification service.|
-|`weight`               |`1000`                  |Weight of the origin in specified origin group for load balancing. Must be between 1 and 1000.       |
+|`weight`               |`1000`                  |Weight of the origin in specified origin group for load balancing. Must be between `1` and `1000`.   |
 |`enabled-state`        |`Enabled`               |Whether to enable this origin.                                                                       |
 |`https-port`           |`443`                   |The port used for HTTPS requests to the origin.                                                      |
 
@@ -162,11 +162,11 @@ az afd route create --resource-group my-deid --profile-name myfrontdoorprofile -
 |`supported-protocols`      |`Https`        |List of supported protocols for this route.                        |
 |`link-to-default-domain`   |`Enabled`      |Whether this route is linked to the default endpoint domain.       |
 
-Allow about 15 minutes for this step to complete. It takes some time for this change to propagate globally. After this period, your Azure Front Door is fully functional.
+Allow about 15 minutes for this step to finish. It takes some time for this change to propagate globally. After this period, your Azure Front Door profile is fully functional.
 
-### Test the front door
+### Test the profile
 
-When you create the Azure Front Door profile, it takes a few minutes for the configuration to be deployed globally. After this period, you can access the host you created.
+When you create the Azure Front Door profile, it takes a few minutes for the configuration to be deployed globally. After this period, you can access the host that you created.
 
 To get the host name of the Azure Front Door endpoint, run [`az afd endpoint show`](/cli/azure/afd/endpoint#az-afd-endpoint-show). It looks like `abddefg.azurefd.net`.
 
@@ -203,7 +203,7 @@ In the preceding steps, you created Azure resources in a resource group. If you 
 az group delete --name my-deid
 ```
 
-This command might take a few minutes to complete.
+This command might take a few minutes to finish.
 
 ### Initiate recovery
 
