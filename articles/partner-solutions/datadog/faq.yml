@@ -16,7 +16,7 @@ sections:
     questions:
       - question: What is Datadog on Azure?
         answer: |
-          Datadog is a monitoring and analytics platform for large-scale applications integrated with Azure. It encompasses infrastructure monitoring, application performance monitoring, log management, and user-experience monitoring. Datadog aggregates data across your entire stack with 400+ integrations for troubleshooting, alerting, and graphing. The Azure integration enables you to manage Datadog directly from the Azure portal as an integrated service.
+          Datadog is a monitoring and analytics platform for large-scale applications integrated with Azure. It encompasses infrastructure monitoring, application performance monitoring, log management, and user-experience monitoring. Datadog aggregates data across your entire stack with 400+ integrations for troubleshooting, alerting, and graphing. The Azure integration enables you to manage Datadog directly from the Azure portal as an integrated service. For more information, see [Azure Native Integration for Datadog](https://docs.datadoghq.com/integrations/guide/azure-native-integration/).
 
       - question: How do I get Datadog on Azure?
         answer: |
