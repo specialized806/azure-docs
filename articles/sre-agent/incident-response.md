@@ -1,5 +1,5 @@
 ---
-title: Automate Incident Response in Azure SRE Agent (preview)
+title: Automate Incident Response in Azure SRE Agent
 description: Learn how your agent monitors, investigates, and resolves incidents automatically — learning from every fix to improve over time.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: incidents, pagerduty, servicenow, icm, azure-monitor, alerts, automat
 #customer intent: As an SRE, I want to automate incident response so that my agent can acknowledge, investigate, and resolve incidents without waking me up at 3 AM.
 ---
 
-# Automate incident response in Azure SRE Agent (preview)
-
+# Automate incident response in Azure SRE Agent
 Your agent monitors, investigates, and resolves incidents while you sleep. It learns from every fix to get smarter over time. Stop switching context at 3 AM.
 
 > [!VIDEO <VIDEO_URL>/Automated_Incident_Response.mp4]
