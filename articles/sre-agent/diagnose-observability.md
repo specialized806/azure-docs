@@ -1,5 +1,5 @@
 ---
-title: Diagnose with External Observability in Azure SRE Agent (preview)
+title: Diagnose with External Observability in Azure SRE Agent
 description: Query Azure Monitor and external observability tools like Dynatrace, Datadog, and Splunk in a single investigation through MCP.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: kusto, datadog, splunk, dynatrace, new relic, elasticsearch, third-pa
 #customer intent: As an SRE, I want my agent to query both Azure Monitor and my external observability platforms in one investigation so that I can find root causes faster without manually correlating data across tools.
 ---
 
-# Diagnose with external observability in Azure SRE Agent (preview)
-
+# Diagnose with external observability in Azure SRE Agent
 > [!TIP]
 > - Reduce 15–30 minutes of manual data stitching across platforms to minutes in a single conversation.
 > - Eliminate blind spots by correlating infrastructure, application, and business metrics in one investigation.

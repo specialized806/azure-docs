@@ -1,5 +1,5 @@
 ---
-title: Memory and Knowledge in Azure SRE Agent (preview)
+title: Memory and Knowledge in Azure SRE Agent
 description: Learn how your agent remembers past incident resolutions and references your documentation to improve over time.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: memory, knowledge, context, documents, citations, trajectories
 #customer intent: As an SRE, I want to understand how my agent learns from past incidents and uses my documentation so that it provides more accurate and grounded responses.
 ---
 
-# Memory and knowledge in Azure SRE Agent (preview)
-
+# Memory and knowledge in Azure SRE Agent
 <!-- > [!VIDEO <PATH_TO_VIDEO>/Agent_s_Perfect_Memory.mp4] -->
 
 Your agent becomes more effective over time by remembering what worked in past incidents and referencing your documentation.

@@ -1,5 +1,5 @@
 ---
-title: Execute Mitigations in Azure SRE Agent (preview)
+title: Execute Mitigations in Azure SRE Agent
 description: Learn how your agent diagnoses issues and fixes them by restarting services, scaling resources, hardening security settings, and collecting diagnostics with the level of control you choose.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: mitigation, remediation, actions, restart, scale, security-hardening,
 #customer intent: As an SRE, I want my agent to execute mitigations so that I can resolve incidents faster without manually navigating the Azure portal.
 ---
 
-# Execute mitigations in Azure SRE Agent (preview)
-
+# Execute mitigations in Azure SRE Agent
 Your agent diagnoses problems and fixes them. It restarts services, scales resources, hardens security settings, and collects diagnostics, all with the level of control you choose.
 
 > [!VIDEO <VIDEO_URL>/Azure_SRE_Agent__Verified_Fix.mp4]

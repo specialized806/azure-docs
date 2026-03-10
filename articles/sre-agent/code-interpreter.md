@@ -1,5 +1,5 @@
 ---
-title: Run code with code interpreter in Azure SRE Agent (preview)
+title: Run code with code interpreter in Azure SRE Agent
 description: Learn how to use code interpreter to execute Python code, run shell commands, and generate reports in an isolated sandbox environment.
 #customer intent: As a developer, I want to execute Python code in a secure sandbox so that I can analyze data and create visualizations without leaving the Azure SRE Agent interface.
 author: craigshoemaker
@@ -10,8 +10,7 @@ ms.topic: how-to
 ms.date: 01/26/2026
 ---
 
-# Run code by using code interpreter in Azure SRE Agent (preview)
-
+# Run code by using code interpreter in Azure SRE Agent
 The SRE Agent code interpreter enables you to execute Python code and shell commands in a secure, isolated sandbox environment. Use Code Interpreter to analyze data, create visualizations, generate PDF reports, and automate file operations without leaving your SRE Agent conversation.
 
 In this article, you learn how to:

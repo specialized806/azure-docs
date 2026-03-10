@@ -1,5 +1,5 @@
 ---
-title: Kusto Tools in Azure SRE Agent (preview)
+title: Kusto Tools in Azure SRE Agent
 description: Create deterministic query tools that run exact KQL queries against Azure Data Explorer, turning tribal knowledge into reusable agent capabilities.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: kusto, adx, azure-data-explorer, queries, tools, data-source, charts,
 #customer intent: As an SRE, I want to create reusable Kusto query tools so that my agent runs the same proven KQL every time instead of generating ad-hoc queries.
 ---
 
-# Kusto tools in Azure SRE Agent (preview)
-
+# Kusto tools in Azure SRE Agent
 Kusto tools help you turn your best KQL queries into reusable, parameterized tools. Your agent runs the exact query you write with no interpretation, no variation. Your team's expertise becomes a shared capability.
 
 > [!TIP]

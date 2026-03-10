@@ -1,5 +1,5 @@
 ---
-title: Tools in Azure SRE Agent (preview)
+title: Tools in Azure SRE Agent
 description: Learn how your agent's tools are organized, including built-in Azure tools, MCP extensibility, code execution, knowledge, and communication.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: tools, built-in tools, mcp, code execution, knowledge, communication,
 #customer intent: As an SRE, I want to understand the different tool categories so that I can extend my agent with the right capabilities for my environment.
 ---
 
-# Tools in Azure SRE Agent (preview)
-
+# Tools in Azure SRE Agent
 Tools are the atomic capabilities your agent uses to take action. They enable querying logs, running commands, executing code, searching documents, and sending notifications. Your agent selects the right tools automatically based on the task at hand.
 
 | Category | What it covers | Setup |
