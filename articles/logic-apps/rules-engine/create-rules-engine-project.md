@@ -397,7 +397,7 @@ After you confirm that your code compiles and that your logic app rules engine p
 
    On the workflow designer that opens, the default workflow, included with your logic app project, appears with the following trigger and actions:
 
-   - The built-in [Request trigger named **When a HTTP request is received**](../../connectors/connectors-native-reqres.md).
+   - The built-in [Request trigger named **When an HTTP request is received**](../../connectors/connectors-native-reqres.md).
    - The built-in action named **Call a local rules function in this logic app**.
    - The built-in [Response action named **Response**](../../connectors/connectors-native-reqres.md), which you use to reply to the caller only when you use the Request trigger.
 
