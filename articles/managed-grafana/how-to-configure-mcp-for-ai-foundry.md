@@ -29,7 +29,7 @@ You use the endpoint hostname when you configure the tool in Foundry.
 1. In the [Azure portal](https://portal.azure.com), open your Azure Managed Grafana resource.
 1. On the **Overview** page, copy the **Endpoint** value. For example: `my-grafana-<id>.<region>.grafana.azure.com`.
 
-    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/1-find-grafana-endpoint.png" alt-text="Screenshot of Azure portal showing the Azure Managed Grafana endpoint on the Overview page.":::
+    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/1-find-grafana-endpoint.png" alt-text="Screenshot of Azure portal showing the Azure Managed Grafana endpoint on the Overview page." lightbox="media/how-to-configure-mcp-for-ai-foundry/1-find-grafana-endpoint-expanded.png":::
 
 ## Grant your Foundry project identity access to Azure Managed Grafana
 
@@ -53,7 +53,7 @@ To find the correct principal:
 > [!NOTE]
 > Role assignments can take a few minutes to propagate. If the first validation attempt fails with authorization errors, wait and try again.
 
-:::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/2-add-role-based-access-control.png" alt-text="Screenshot of Azure portal showing a role assignment being added to Azure Managed Grafana.":::
+:::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/2-add-role-based-access-control.png" alt-text="Screenshot of Azure portal showing a role assignment being added to Azure Managed Grafana." lightbox="media/how-to-configure-mcp-for-ai-foundry/2-add-role-based-access-control-expanded.png":::
 
 ## Create an agent in Azure AI Foundry
 
@@ -62,7 +62,7 @@ To find the correct principal:
 1. Select a model that supports tool calling. In this example, we use `gpt-5.1`.
 1. Enter a name and description for the agent.
 
-    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/3-create-new-agent.png" alt-text="Screenshot of Azure AI Foundry showing the New agent creation flow.":::
+    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/3-create-new-agent.png" alt-text="Screenshot of Azure AI Foundry showing the New agent creation flow." lightbox="media/how-to-configure-mcp-for-ai-foundry/3-create-new-agent-expanded.png":::
 
 ## Add the Azure Managed Grafana MCP tool
 
@@ -70,7 +70,7 @@ To find the correct principal:
 1. Select **+ Add tool**.
 1. Select **Catalog**, then select **Azure Managed Grafana**.
 
-    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/4-agent-add-mcp.png" alt-text="Screenshot of Azure AI Foundry agent tool catalog with Azure Managed Grafana selected.":::
+    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/4-agent-add-mcp.png" alt-text="Screenshot of Azure AI Foundry agent tool catalog with Azure Managed Grafana selected." lightbox="media/how-to-configure-mcp-for-ai-foundry/4-agent-add-mcp-expanded.png":::
 
 1. Configure the tool settings:
 
@@ -82,7 +82,7 @@ To find the correct principal:
    | **Audience** | The application ID for Azure Managed Grafana: `ce34e7e5-485f-4d76-964f-b3d2b16d1e4f` |
 
 
-    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/5-mcp-config.png" alt-text="Screenshot of Azure AI Foundry showing Azure Managed Grafana MCP tool configuration values.":::
+    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/5-mcp-config.png" alt-text="Screenshot of Azure AI Foundry showing Azure Managed Grafana MCP tool configuration values." lightbox="media/how-to-configure-mcp-for-ai-foundry/5-mcp-config-expanded.png":::
 
 ## Validate the sample
 
@@ -92,7 +92,7 @@ After you save the tool configuration, validate the setup from the agent chat.
 1. Submit a connectivity prompt, like *List all Azure subscriptions available through Azure Managed Grafana MCP*.
 1. Confirm that the response includes grounded tool output rather than a generic model-only answer.
 
-    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/6-agent-trigger-resource-graph.png" alt-text="Screenshot of Azure AI Foundry chat where the agent invokes Azure Managed Grafana MCP tools.":::
+    :::image type="content" source="media/how-to-configure-mcp-for-ai-foundry/6-agent-trigger-resource-graph.png" alt-text="Screenshot of Azure AI Foundry chat where the agent invokes Azure Managed Grafana MCP tools." lightbox="media/how-to-configure-mcp-for-ai-foundry/6-agent-trigger-resource-graph-expanded.png":::
 
 ### Sample prompts
 
