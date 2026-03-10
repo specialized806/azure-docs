@@ -9,10 +9,9 @@ ms.service: azure-operator-service-manager
 ---
 
 # Control upgrade failure behavior
-
 This guide describes the Azure Operator Service Manager (AOSM) upgrade failure behavior features for container network functions (CNFs). For faster retries, use pause on failure. To return to the starting point, use rollback on failure.
 
-## Pause on failure
+## Pause on failure overview
 Any upgrade using AOSM starts with a site network service (SNS) reput operation. The reput operation processes the network function applications (nfApps) found in the network function design version (NFDV). The reput operation implements the following default logic:
 * A user initiates an SNS reput operation with pause-on-failure enabled.
 * nfApps are processed following either `updateDependsOn` ordering, or in the sequential order they appear.
@@ -40,7 +39,7 @@ An upgrade is considered unsuccessful if any nfApp generates a helm install or h
     - Message: Application(<ComponentName>) : <Failure Reason>
 ```
 
-## Rollback on failure
+## Rollback on failure overview
 To address risk of mismatched nfApp versions, Azure Operator Service Manager supports NF level rollback on failure. With this option enabled, if an nfApp operation fails, both the failed nfApp, and all prior completed nfApps, can be rolled back to initial version state. This method minimizes, or eliminates, the amount of time the NF is exposed to nfApp version mismatches. The optional rollback on failure feature works as follows:
 * A user initiates an SNS reput operation with rollback on failure enabled.
 * nfApps are processed following either `updateDependsOn` ordering, or in the sequential order they appear.
@@ -86,7 +85,7 @@ A rollback is considered unsuccessful if any prior completed nfApps fail to reac
     - Message: Application(<ComponentName>) : <Failure reason>; Rollback Failed (<RollbackComponentName>) : <Rollback Failure reason>
 ```
 
-## How to configure rollback on failure
+## Configure rollback on failure
 The most flexible method to control failure behavior is to extend a new configuration group schema (CGS) parameter, `rollbackEnabled`, to allow for configuration group value (CGV) control via `roleOverrideValues` in the NF payload. First, define the CGS parameter: 
 ```
 {
@@ -133,10 +132,47 @@ example:
 ## Manage nfApps that don't support rollback
 Almost all publishers report some nfApps that aren't compatible with helm rollback operations. These nfApps maybe sourced from third-parties who don't common support such strict resiliency requirements. These nfApps maybe related to database applications with complicated schema management requirements. In these cases, special consideration should be taken to deal with nfApps that don't support rollback.
 
-* The strong preference is to push vendors to support helm rollback.
+* The strong preference is to push publishers to support helm rollback for all nfApps.
 * nfApps that don't support rollback can't be skipped.
 * nfApp rollback order can't change.
 * Incremental-NFDV approach must be used in these situations.
+
+### Selective rollback using incremental NFDVs
+A network function’s composition often includes one, or more, nfApplications that cannot support a helm rollback operation, such as Elastic or VoltDb. If a rollback is attempted on one of these nfApplications, the resulting nfApplication will be broken. Pursuing additional automation, or other enhancements, to make these nfApplications rollback complaint is underway, but with a long lead time AOSM must support a method to prevent execution of rollback on selective nfApplications. Please note that skipping rollback for selective applications requires thorough testing by the Network Function owners as it caused multiple permutations and combinations of application versions during upgrade and rollback. 
+
+#### Problem Statement
+At the NF level, AOSM currently supports rollback-on-failure. When nfRollbackEnabled is true, if a non-compliant nfApplication is upgraded, and a failure occurs later in the order, a rollback is executed on the non-compliant nfApplication. At the nfApplication level, AOSM currently supports applicationEnablement, atomic and skipUpgrade via RoleOverrideValues in CGVs, but does not support selective rollback. Currently, AOSM relies on NFDVs to ensure deterministic workload states that map to well-defined and tested deployment configurations. Allowing selective rollbacks introduces the risk of ending up in an undefined state that does not correspond to any known NFDV. This leads to non-deterministic behavior, increases the testing surface significantly, and undermines the reliability guarantees of our deployment process.
+
+#### Proposed Solution 
+AOSM proposes that publishers should use a combination of skipUpgrade and nfRollbackEnabled configurations in CGVs, along with multiple NFDVs, to logically segment nfApplications based on rollback compatibility. This multi-NFDV strategy allows customers to bypass rollback for select charts while preserving safety for the rest. This approach is production-safe and aligns with existing AOSM mechanisms. This staged approach effectively simulates per-chart rollback behavior using NFDV-level constructs. Consider the following example where a network function is composed of 20 nfApps with 5 nfApps that don't support rollback.
+
+* NFDV1
+  * Performs initial install of all 20 charts with version v1.0.
+  * In CGV1: rollbackEnabled: irrelevant (fresh install).
+* NFDV2:
+  * Contains all 20 charts but the 5 Helm charts without rollback support, upgraded to v2.0.
+  * In CGV2:
+    * Use skipUpgrade: true for the remaining 15 charts.
+    * Set nfRollbackEnabled: false.
+  * Result: 
+    * Success: Only 5 charts upgrade
+    * Failure:
+      * no rollback if upgrade fails.
+      * NOTE: In this case the workload will be left in a non-deterministic state due to chart limitation no rollback is possible and intentionally kept disabled. To recover this state this state there are 2 options:
+        * Upgrade with a working NFDV2
+        * Upgrade with NFDV1 and skipUpgrade disabled for every nfApplication
+* NFDV3:
+  * Contains all charts but the 15 rollback-compatible charts upgraded to v2.0.
+  * In CGV3:
+    * Use skipUpgrade: true for the 5 charts already handled in NFDV2.
+    * Set nfRollbackEnabled: true.
+  * Result: Remaining 15 charts upgrade; rollback occurs on failure.
+
+> [!NOTE]
+> * The 5 rollback-incompatible charts must not have runtime upgrade dependencies on charts in NFDV3.
+> * AOSM's rollback design assumes that rollback restores the workload state to the previous NFDV state.
+
+This approach providers cleaner separation and manageability of applications not supporting standard helm operations. Maintains the operation’s idempotency and state on the cluster is reflected by the last operation. NFDV 2/3 can directly be used for install operations as well (installation of previous version not needed) with any difference in goal state. Overall upgrade time and deployment reliability remains the same. 
 
 ## How to troubleshoot rollback on failure
 ### Understand pod states
