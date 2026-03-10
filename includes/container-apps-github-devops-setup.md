@@ -22,6 +22,9 @@ ms.author: wujia
       --ingress external 
     ```
 
+    > [!TIP]
+    > If the build fails with a Debian repository error, make sure you're using the latest Azure CLI version and containerapp extension by running `az extension add --name containerapp --upgrade`. Alternatively, add a Dockerfile to your project for more control over the build.
+
 1. In the command output, note the name of the Azure container registry.
 
 1. Get the full resource ID of the container registry:

@@ -143,7 +143,7 @@ To deploy to Container Apps, you need to create an Azure DevOps service connecti
 
 1. Select **Azure Resource Manager**, and then select **Next**.
 
-1. Select **Service principal (automatic)**, and then select **Next**.
+1. Select **App registration (automatic)**, and then select **Next**.
 
 1. Provide the following values, and then select **Save**:
 
@@ -162,6 +162,9 @@ To learn more about service connections, see [Connect to Microsoft Azure](/azure
 1. Select **Create pipeline**.
 
 1. Select **Azure Repos Git**.
+
+    > [!NOTE]
+    > If you don't see **Azure Repos Git** as an option, make sure your source code is pushed to a Git repository in your Azure DevOps project.
 
 1. Select the repo that contains your source code (`my-container-app`).
 
