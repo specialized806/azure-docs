@@ -1,6 +1,8 @@
 ---
 title: Migrate Java applications to Azure Container Apps with GitHub Copilot app modernization
 description: Learn how to use GitHub Copilot app modernization to assess, remediate, containerize, and deploy Java applications to Azure Container Apps.
+author: deepganguly
+ms.author: deepganguly
 ms.service: azure-container-apps
 ms.topic: conceptual
 ms.date: 03/10/2026
@@ -32,7 +34,7 @@ GitHub Copilot app modernization integrates GitHub Copilot's AI-powered capabili
   - The latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download). Must be version 2023.3 or later.
     - [GitHub Copilot](https://plugins.jetbrains.com/plugin/17718-github-copilot). Must be version 1.5.59 or later. For more instructions, see [Set up GitHub Copilot in IntelliJ IDEA](https://docs.github.com/en/copilot/get-started/quickstart). Be sure to sign in to your GitHub account within IntelliJ IDEA.
     - [GitHub Copilot app modernization](https://plugins.jetbrains.com/plugin/28791-github-copilot-app-modernization). Restart IntelliJ IDEA after installation.
-- [Java 21](https://learn.microsoft.com/java/openjdk/download) or later.
+- [Java 21](/java/openjdk/download) or later.
 - [Maven](https://maven.apache.org/download.cgi) or [Gradle](https://gradle.org/install/) to build Java projects.
 - [Docker](https://www.docker.com/get-started) installed and running (for containerization).
 - [Azure CLI](/cli/azure/install-azure-cli) installed and configured.
@@ -322,8 +324,8 @@ After migrating your Java application to Azure Container Apps, consider the foll
 
 ## Related content
 
-- [GitHub Copilot app modernization documentation](https://learn.microsoft.com/azure/developer/github-copilot-app-modernization/)
-- [GitHub Copilot app modernization for Java developers](https://learn.microsoft.com/azure/developer/java/migration/migrate-github-copilot-app-modernization-for-java)
-- [Predefined tasks for GitHub Copilot app modernization](https://learn.microsoft.com/azure/developer/java/migration/migrate-github-copilot-app-modernization-for-java-predefined-tasks)
+- [GitHub Copilot app modernization documentation](/azure/developer/github-copilot-app-modernization/)
+- [GitHub Copilot app modernization for Java developers](/azure/developer/java/migration/migrate-github-copilot-app-modernization-for-java)
+- [Predefined tasks for GitHub Copilot app modernization](/azure/developer/java/migration/migrate-github-copilot-app-modernization-for-java-predefined-tasks)
 - [Azure Container Apps overview](overview.md)
 - [Quickstart: Deploy your first container app](get-started.md)
