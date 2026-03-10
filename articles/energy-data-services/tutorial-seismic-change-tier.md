@@ -16,7 +16,7 @@ ms.date: 03/10/2026
 > [!IMPORTANT]
 > This feature is currently in preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-Use the Seismic DDMS Change Tier operation in Azure Data Manager for Energy to move datasets between storage tiers — **Hot**, **Cool**, and **Cold** — based on how frequently you access the data. Move datasets that you rarely access to cooler tiers with lower storage costs. Keep frequently accessed datasets in the Hot tier for optimal performance.
+Use the Seismic DDMS Change Tier operation in Azure Data Manager for Energy to move datasets between storage tiers—Hot**, **Cool**, and **Cold—based on how frequently you access the data. Move datasets that you rarely access to cooler tiers with lower storage costs. Keep frequently accessed datasets in the Hot tier for optimal performance.
 
 The Change Tier operation is especially valuable for seismic data management, where large volumes of historical data might not require immediate access but must remain available for future analysis or compliance.
 
@@ -42,7 +42,7 @@ Each tier has a minimum retention period. Moving data out of a tier before the m
 
 ## Prerequisites
 
-Before you begin, make sure you have the following:
+Before you begin, make sure you meet the following prerequisites:
 
 - An Azure Data Manager for Energy resource with Seismic DDMS configured.
 - A registered `tenant` and `subproject` in the Seismic DDMS service.
