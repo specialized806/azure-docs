@@ -337,5 +337,4 @@ Include a JSON snippet similar to the following in your Azure Resource Manager t
 
 - [Storage task assignments](storage-task-assignment.md)
 - [Azure Storage Actions overview](../overview.md)
-
 - [Analyze storage task runs](storage-task-runs.md)
