@@ -11,24 +11,24 @@ ms.custom:
 ---
 
 # Get started with safe upgrade practices
-This article introduces Azure Operator Service Manager safe upgrade practices (SUP). These practices, supported by a series of features, enable complex upgrades of network functions hosted on Azure Operator Nexus. Compliance with in-service software upgrades (ISSU), in-service software downgrade (ISSD), and in-service rollback (ISSR) is supported within documented limits. This article focuses on basic upgrade concepts, look for other series articles to expand on advanced capabilities.
+This article introduces Azure Operator Service Manager safe upgrade practices (SUP). These practices enable complex upgrades of network functions hosted on Azure Operator Nexus. Compliance with in-service software upgrades (ISSU), in-service software downgrade (ISSD), and in-service rollback (ISSR) is supported within documented limits. This article focuses on basic upgrade concepts, look for other articles to expand on more advanced capabilities.
 
 ## Introduction to safe upgrades
-A given container network function is composed of one to many nf Applications (nfApps) which, over time, require lifecycle software version and configuration provisioning management. This genearlly requires the execution of the appropriate helm operations on each nfApp to set the active software or configuration version in-use. Azure Operator Service Manager SUP intelligently automates managing thes operations at-scale, to occur a particular order, and in a manner which least impacts the network service. The following feature list summarizes SUP available capabilities. These feature should be considered during the approate stage of publishing, designing and operating.
+A given container network function is composed of one to many nf Applications (nfApps) which, over time, require lifecycle software version and configuration provisioning management. This genearlly requires the execution of the appropriate helm operations on each nfApp to set the active software or configuration version. SUP intelligently automates managing thes operations at-scale, to occur a particular order, and in a manner which least impacts the network service. The following feature list summarizes SUP available capabilities. These features should be considered during the appropriate stage of publishing, designing and operating.
   
 * SNS Reput Support - Calculate and execute correct helm operations in sequence across a series of nfApps.
-* Azure Operator Nexus Cluster - Support for workloads hosted by against arc-enabled kubernetes clusters. 
+* Azure Operator Nexus Cluster - Support for workloads hosted by Nexus arc-enabled kubernetes clusters. 
 * Helm Parameter - Ability to set helm operating parameters like atomic, timeout, and wait for each nfApp operation.
-* Synchronous Operations - Ability to run one serial nfApp operation at a time.
-* Control Upgrade Order - Define different nfApp sequences for installs and upgrades.
-* Single Chart Test Validation - Run a helm test operation after a create or update.
+* Synchronous Operations - Ability to run one operation against one nfApp at-a-time.
+* Control Upgrade Order - Define different nfApp sequences for installs, upgrades and deletes.
+* nfApp Validation - Run a helm test hook operation after a helm create or update operation.
 * Pause On Failure - If an nfApp fails, pause sequence of operations for diagnostics.
 * Rollback On Failure - If an nfApp fails, rollback any prior completed nfApps to starting state.
-* Skip nfApp on No Change - Manual or automatic skip processing of nfApps where no changes is required.
+* Skip nfApp on No Change - Manual or automatic skipping of nfApps where no change is required.
 * Interruption - Set a cancellation flag to stop sequence of operations before next nfApp.
   
 ## Safe upgrade approach
-To update an existing Azure Operator Service Manager site network service (SNS), the operator starts with executing a reput request against the deployed SNS resource. Where the SNS contains multiple nfApps, the proper helm operation is calculateed for each nfpp. Those operations are then fanned out serially across all nfApps defined in the network function definition version (NFDV). By default, in the order, which they appear, or optionally in the order defined by `updateDependsOn` parameter. The reput request supports various per nfApp changes including increasing a helm chart version, adding/removing helm values and/or adding/removing any nfApps. Some helm parameters, like atomic, timeout and wait can be set per nfApp. The basic logic used by the reput operation is as follows:
+To update an existing Azure Operator Service Manager site network service (SNS), the operator starts by executing a reput request against a previously deployed SNS resource. Where the SNS contains multiple nfApps, the proper helm operation is calculateed for each nfpp. Those operations are then fanned out across all nfApps defined in the network function definition version (NFDV). By default, in the order, which they appear, or optionally in the order defined by `updateDependsOn` parameter. The reput request supports various per nfApp changes including increasing a helm chart version, adding/removing helm values and/or adding/removing any nfApps. Some helm parameters, like `atomic`, `timeout` and `wait` can be set per nfApp. The basic logic used by the reput operation is as follows:
 
 * nfApps are processed following either `updateDependsOn` ordering, or in the sequential order they appear.
 * nfApps with parameter `applicationEnabled` set to disable are skipped.
@@ -39,36 +39,36 @@ To update an existing Azure Operator Service Manager site network service (SNS),
   
 To ensure outcomes, nfApp testing is supported using helm methods, either tests triggered by helm pre or post hooks, or using the standalone helm test hook. For pre or post hook failure, the `atomic` parameter is honored. With atomic/true, the failed chart is rolled back. With atomic/false, no rollback is executed. For standalone helm test hook failure, the `rollbackOnTestFailure` is honored, following similar logic as atomic. For more information on standalone helm testing, see the following article: [Run tests after install or upgrade](safe-upgrades-helm-test.md)
 
-When an nfApp operation failure occurs, and after the failed nfApp is handled, the operator can control behavior of nfApps changed before the failed nfApp. With pause-on-failure the operator can force the reput operation to terminate after the failure. This best allows for diagnostic, as the broken environment is preserved. With rollback-on-failure the operator can force the reput operation to rollback any nfApp completed prior to the failure. This restores the starting state environment and has the least impact to the running service. For more information on controlling upgrade failure behavior, see the following article: [Control upgrade failure behavior](safe-upgrades-nf-level-rollback.md)
+When an nfApp operation failure occurs, and after the failed nfApp is handled, the operator can control behavior of nfApps changed before the failed nfApp. With pause-on-failure the operator can force the reput operation to terminate after the failure. This best allows for diagnostics, as the broken environment is preserved. With rollback-on-failure the operator can force the reput operation to rollback any nfApp completed prior to the failure. This restores the starting state environment and has the least impact to the running service. For more information on controlling upgrade failure behavior, see the following article: [Control upgrade failure behavior](safe-upgrades-nf-level-rollback.md)
 
 ## Considerations for in-service upgrades
-Azure Operator Service Manager generally supports three stages of in-service operations. These stages advance, downgrade or rollback a deployment version without interrupting the running service. 
-
+Azure Operator Service Manager generally supports three stages of in-service operations. These stages advance, downgrade or rollback a deployed version with minimal to no interruption of the running service. 
 * ISSU: In-service upgrades. Advance software or configuration versions forward, to a specific NFDV target.
 * ISSD: In-service downgrades. Reduce software or configuration version backwards, to a specific NFDV target.
 * ISSR: In-service rollback. Rollback software or configuration versions, to the last helm release.
 
-While ISSU and ISSD are both operator submitted operations, ISSR only applies when a failures occurs in a ISSU or ISSD operation. Some considerations are necessary to ensure the network function behaves as required when invoked durring ISSU, ISSD or ISSR opreations.
+While ISSU and ISSD are both operator executed operations, ISSR only applies when a failures occurs in a ISSU or ISSD operation. Consider the follow high level requirements to ensure a network function behaves as desired when operated against durring ISSU, ISSD or ISSR stages.
 
-* The reput operation upgrades or installs new nfApps first, then deletes nfApps last.
+* The reput operation upgrades or installs new nfApps first, then deletes missing nfApps last.
   * This approach ensures service isn't impacted until all new nfApps are ready.
   * This approach requires sufficient platform capacity for transient hosting of both old and new nfApps. 
-* The reput operation honors the nfApp's helm deployment profile settings, either rolling or recreate.
+* The reput operation honors the nfApp's helm rolling or recreate deployment profile settings.
+  * Make sure the right setting is used to preserve service functionality during helm operations. 
   * Where rolling is used, consider exposing the values `maxUnavailable` and `maxSurge` as CGS parameters.
 
-Ultimately, the ability for a given network function to be upgraded without service interruption requires careful co-ordination betwen both Azure Operator Service Manager and the network function itself. Consult further with the network function publisher to better understand supported in-service upgrade capabilities and ensure they're aligned with the proper Azure Operator Service Manager configuration options.
+Ultimately, the ability for a given network function to be upgraded without service interruption requires careful co-ordination betwen both Azure Operator Service Manager and the network function. Consult further with the network function publisher to better understand supported in-service upgrade capabilities and ensure they're aligned with the proper Azure Operator Service Manager configuration options. All ISSU, ISSD and ISSU operations should be testing first in a controlled lab environment.
 
 ## Safe upgrade prerequisites
 When planning for an upgrade, address the following requirements in advance, to optimize time spent attempting and ensure success of the upgrade.
 
 - Onboard updated artifacts using publisher and/or designer workflows.
   - In most cases, use the existing publisher to host new version artifacts.
-    - Using an existing publisher supports `helm upgrade` to update an SNS to a different version.
+    - Using an existing publisher supports `helm upgrade` to upgrade an SNS to a different version.
     - Using a new publisher requires a `helm delete` on the current SNS and then a `helm install` for the new SNS version.
   - Artifact store, network service design group (NSDG), and network function design group (NFDG) are immutable and can't change.
     - Changing one of these resources requires deployment of a new SNS.
-  - A new artifact manifest is needed to store the new charts and images.
-    - See [onboarding documentation](how-to-manage-artifacts-nexus.md) for details on uploading new charts and images.
+  - A new artifact manifest is needed to store any new charts or images.
+    - See [onboarding documentation](how-to-manage-artifacts-nexus.md) for details on uploading new charts oe images.
   - A new NFDV, and optionally network service design version (NSDV), is needed.
     - NFDV changes can be complex. We cover only basic changes in this article.
     - New NSDV is only required if a new configuration group schema (CGS) version is being introduced.
