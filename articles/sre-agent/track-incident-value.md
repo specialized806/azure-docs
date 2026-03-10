@@ -1,5 +1,5 @@
 ---
-title: Track Incident Value in Azure SRE Agent (preview)
+title: Track Incident Value in Azure SRE Agent
 description: Measure your agent's impact with real-time metrics that show which incidents were mitigated, which response plans perform best, and where to invest next.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: incidents, metrics, value, daily-reports, incident-scorecard, respons
 #customer intent: As an engineering manager, I want to track my agent's incident response impact so that I can prove ROI and optimize my automation strategy.
 ---
 
-# Track incident value in Azure SRE Agent (preview)
-
+# Track incident value in Azure SRE Agent
 > [!TIP]
 > - See your agent's mitigation rate, assist rate, and pending actions with trend sparklines that show week-over-week change.
 > - Drill into each response plan to identify which automation strategies resolve the most incidents.

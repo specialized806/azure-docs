@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Connect to ServiceNow in Azure SRE Agent (preview)"
+title: "Tutorial: Connect to ServiceNow in Azure SRE Agent"
 description: Configure ServiceNow as your incident platform using basic authentication or OAuth 2.0 for automated incident management.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: servicenow, itsm, incidents, integration, oauth, oauth2, connector, i
 #customer intent: As an SRE or IT operations engineer, I want to connect my ServiceNow instance to Azure SRE Agent so that I can automate incident response and management.
 ---
 
-# Tutorial: Connect to ServiceNow in Azure SRE Agent (preview)
-
+# Tutorial: Connect to ServiceNow in Azure SRE Agent
 In this tutorial, you connect your ServiceNow instance to Azure SRE Agent so the agent can receive, investigate, and update incidents automatically. You can choose between OAuth 2.0 (recommended for production) or basic authentication.
 
 > [!TIP]

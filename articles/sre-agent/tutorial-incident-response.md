@@ -1,5 +1,5 @@
 ---
-title: "Step 4: Set Up Incident Response in Azure SRE Agent (preview)"
+title: "Step 4: Set Up Incident Response in Azure SRE Agent"
 description: Connect your incident platform and create response plans so your agent automatically investigates incoming incidents.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: incident response, pagerduty, azure monitor, execution plan, getting 
 #customer intent: As a site reliability engineer, I want to connect my incident platform and create response plans so that my agent automatically investigates and responds to incidents.
 ---
 
-# Step 4: Set up incident response in Azure SRE Agent (preview)
-
+# Step 4: Set up incident response in Azure SRE Agent
 **Estimated time**: 10 minutes
 
 Connect your incident platform and create a response plan. When incidents arrive, your agent automatically investigates and generates detailed execution plans.

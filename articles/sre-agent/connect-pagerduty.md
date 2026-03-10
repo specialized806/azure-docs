@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Connect to PagerDuty in Azure SRE Agent (preview)"
+title: "Tutorial: Connect to PagerDuty in Azure SRE Agent"
 description: Integrate your agent with PagerDuty to diagnose and respond to incidents automatically.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: pagerduty, incidents, integration, alerting
 #customer intent: As an SRE, I want to connect my agent to PagerDuty so that I can automate incident diagnosis and response.
 ---
 
-# Tutorial: Connect to PagerDuty in Azure SRE Agent (preview)
-
+# Tutorial: Connect to PagerDuty in Azure SRE Agent
 In this tutorial, you connect your PagerDuty account to Azure SRE Agent so the agent can receive, investigate, and respond to incidents automatically.
 
 ## Prerequisites

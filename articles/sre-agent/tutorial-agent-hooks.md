@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Configure Agent Hooks in Azure SRE Agent (preview)"
+title: "Tutorial: Configure Agent Hooks in Azure SRE Agent"
 description: Add Stop and PostToolUse hooks to your agent to validate responses, audit tool usage, and enforce policies using the REST API.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.ai-usage: ai-assisted
 #customer intent: As an SRE, I want to configure agent hooks so that I can validate responses, audit tool usage, and enforce security policies on my agent.
 ---
 
-# Tutorial: Configure agent hooks in Azure SRE Agent (preview)
-
+# Tutorial: Configure agent hooks in Azure SRE Agent
 In this tutorial, you create a subagent with a Stop hook that forces the agent to add a completion marker to every response. You configure the hook through the REST API, then test it in the portal's playground.
 
 **Estimated time**: 15 minutes

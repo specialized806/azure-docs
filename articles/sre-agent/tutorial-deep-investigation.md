@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Run a Deep Investigation in Azure SRE Agent (preview)"
+title: "Tutorial: Run a Deep Investigation in Azure SRE Agent"
 description: Learn how to use deep investigation for structured, hypothesis-driven analysis from chat and from incident response plans.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.ai-usage: ai-assisted
 #customer intent: As an SRE, I want to run a deep investigation so that I can identify root causes for complex incidents using structured, hypothesis-driven analysis.
 ---
 
-# Tutorial: Run a deep investigation in Azure SRE Agent (preview)
-
+# Tutorial: Run a deep investigation in Azure SRE Agent
 Deep investigation gives your agent a structured methodology for complex problems. The agent forms multiple hypotheses and validates each one with evidence. In this tutorial, you trigger a deep investigation from chat and explore the results.
 
 In this tutorial, you learn how to:
