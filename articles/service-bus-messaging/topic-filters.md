@@ -2,8 +2,8 @@
 title: Azure Service Bus topic filters | Microsoft Docs
 description: This article explains how subscribers can define which messages they want to receive from a topic by specifying filters. 
 ms.topic: conceptual
-ms.date: 03/21/2025
-ms.custom: sfi-ropc-nochange
+ms.date: 03/10/2026
+ms.custom: passwordless-dotnet
 ---
 
 # Topic filters and actions
@@ -35,6 +35,28 @@ A **SqlFilter** holds a SQL-like conditional expression that is evaluated in the
 
 Here's a .NET example for defining a SQL filter:
 
+#### [Passwordless](#tab/passwordless)
+
+```csharp
+adminClient = new ServiceBusAdministrationClient(fullyQualifiedNamespace, new DefaultAzureCredential());    
+
+// Create a SQL filter with color set to blue and quantity to 10
+await adminClient.CreateSubscriptionAsync(
+		new CreateSubscriptionOptions(topicName, "ColorBlueSize10Orders"), 
+		new CreateRuleOptions("BlueSize10Orders", new SqlRuleFilter("color='blue' AND quantity=10")));
+
+// Create a SQL filter with color set to red
+// Action is defined to set the quantity to half if the color is red
+await adminClient.CreateRuleAsync(topicName, "ColorRed", new CreateRuleOptions 
+{ 
+	Name = "RedOrdersWithAction",
+	Filter = new SqlRuleFilter("user.color='red'"),
+	Action = new SqlRuleAction("SET quantity = quantity / 2;")
+}
+```
+
+#### [Connection String](#tab/connection-string)
+
 ```csharp
 adminClient = new ServiceBusAdministrationClient(connectionString);    
 
@@ -52,6 +74,8 @@ await adminClient.CreateRuleAsync(topicName, "ColorRed", new CreateRuleOptions
 	Action = new SqlRuleAction("SET quantity = quantity / 2;")
 }
 ```
+
+---
 ### Boolean filters
 The **TrueFilter** and **FalseFilter** either cause all arriving messages (**true**) or none of the arriving messages (**false**) to be selected for the subscription. These two filters derive from the SQL filter. 
 
@@ -109,6 +133,23 @@ With SQL filter conditions, you can define an action that can annotate the messa
 
 Here's a .NET example that creates a SQL rule with an action to update the quantity when the color is Red. 
 
+#### [Passwordless](#tab/passwordless)
+
+```csharp
+adminClient = new ServiceBusAdministrationClient(fullyQualifiedNamespace, new DefaultAzureCredential());    
+
+// Create a SQL filter with color set to red
+// Action is defined to set the quantity to half if the color is red
+await adminClient.CreateRuleAsync(topicName, "ColorRed", new CreateRuleOptions 
+{ 
+	Name = "RedOrdersWithAction",
+	Filter = new SqlRuleFilter("user.color='red'"),
+	Action = new SqlRuleAction("SET quantity = quantity / 2;")
+}
+```
+
+#### [Connection String](#tab/connection-string)
+
 ```csharp
 adminClient = new ServiceBusAdministrationClient(connectionString);    
 
@@ -121,6 +162,8 @@ await adminClient.CreateRuleAsync(topicName, "ColorRed", new CreateRuleOptions
 	Action = new SqlRuleAction("SET quantity = quantity / 2;")
 }
 ```
+
+---
 
 > [!IMPORTANT]
 > When you update system properties through rule actions, it might change the expected behavior. Some properties are only evaluated when a message is received in a queue or a topic. Therefore, when you update these properties in a rule action and then deliver them in a subscription, they're ignored. Although when auto-forwarding to another queue or topic, they're reevaluated. 
