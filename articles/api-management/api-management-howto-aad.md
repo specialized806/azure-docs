@@ -87,6 +87,7 @@ For options and links to steps, see [Identity providers for External ID in workf
 To allow external users to register for access to the developer portal, complete the following steps:
 
 a. Enable self-service sign-up for your tenant. 
+
 b. Add your app to the self-service sign-up user flow. 
 
 For more information and detailed steps, see [Add self-service sign-up user flows for B2B collaboration](/entra/external-id/self-service-sign-up-user-flow).
