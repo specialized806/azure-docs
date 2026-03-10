@@ -37,7 +37,7 @@ Optional run command parameters.
 ## Scale VMware HCX manager  
 Use the Scale VMware HCX Cloud Manager Run Command to increase the resource allocation of your VMware HCX Cloud Manager virtual machine, ensuring scalability for larger deployments and increased concurrent migrations.
 
-**Suported in HCX 4.10+**
+**Supported in HCX 4.10+**
 
 **Scenario**: Mobility Optimize Networking (MON) requires VMware HCX Scalability. For more details on [MON scaling](https://kb.vmware.com/s/article/88401)  
 
@@ -66,14 +66,14 @@ Use the Scale VMware HCX Cloud Manager Run Command to increase the resource allo
 
 4. Select **Run** to execute. This process takes between 10-15 minutes.  
    
-    >[!NOTE]
-    > VMware HCX Cloud Manager will be unavailable during the scaling.
+ >[!NOTE]
+ > VMware HCX Cloud Manager will be unavailable during the scaling.
 
 ### Form Factor Specifications
 
 | Form Factor | vCPU | Memory | Disk | Use Case |
 | :--- | :--- | :--- | :--- | :--- |
-| **Small** (current default) | 4 | 12 GB | 60 GB | Small deploymennts, <500 VMs |
+| **Small** (current default) | 4 | 12 GB | 60 GB | Small deployments, <500 VMs |
 | **Medium** | 8 | 24 GB | 120 GB | Medium deployments, 500-2000 VMs |
 | **Large** | 32 | 48 GB | 300 GB | Large deployments, >2000 VMs |
 >[!NOTE]
@@ -86,7 +86,8 @@ Use the Scale VMware HCX Cloud Manager Run Command to increase the resource allo
 | **Thin**  | Lazy-zeroed thin provisioning | Good | High | Default, most environments |
 | **Thick** | Eager-zeroed thick provisioning | Better | Low | Performance-critical |
 | **EagerZeroedThick** | Zeroed at creation | Best | Lowest | Maximum performance |
->[!Recommendation]
+
+>[!NOTE]
 >Use the default "Thin" unless specific performance requirements dictate otherwise. Thin disks grow on-demand, while Thick and EagerZeroedThick allocate full space immediately.
 
 ### Automatic Failure Recovery
