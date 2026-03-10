@@ -441,7 +441,7 @@ Make sure that every health check result is **OK**. If some checks don't display
 [1928533]:https://launchpad.support.sap.com/#/notes/1928533
 [2015553]:https://launchpad.support.sap.com/#/notes/2015553
 [std-extension]:vm-extension-for-sap-standard.md (Standard Version of Azure VM extension for SAP solutions)
-[configure]:vm-extension-for-sap-new.md#configure (Configure the New Azure VM extension for SAP solutions with PowerShell)
+[configure]:vm-extension-for-sap-new.md#configure-the-azure-vm-extension-for-sap-solutions (Configure the New Azure VM extension for SAP solutions with PowerShell)
 [azure-cli-2]:/cli/azure/install-azure-cli
 [health-check]:vm-extension-for-sap-new.md#health-checks (Health checks)
 [1031096]:https://launchpad.support.sap.com/#/notes/1031096
