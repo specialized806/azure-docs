@@ -25,7 +25,7 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 
 ## March 2026
 
-### Windows Hybrid Worker Extension (1.3.74) - Security Update
+### Security Update: Azure Automation Windows Hybrid Worker Extension (1.3.74)
 
 Windows Hybrid Worker Extension Version 1.3.74 includes a security improvement that strengthens access controls strengthens access controls for communication with Hybrid Instance Metadata Service (HIMDS).
 Under specific startup timing conditions, the Windows Hybrid Worker Extension tries to connect to HIMDS before the service is fully initialized. In this narrow window, a local nonprivileged process can impersonate the metadata service endpoint and gain unauthorized read access to protected metadata or configuration information.
