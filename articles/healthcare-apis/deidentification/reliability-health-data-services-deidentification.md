@@ -84,8 +84,8 @@ az afd profile create --profile-name myfrontdoorprofile --resource-group my-deid
 |Parameter         |Value                    |Description                                                                       |
 |------------------|-------------------------|----------------------------------------------------------------------------------|
 |`profile-name`    |`myfrontdoorprofile`     |Name for the Azure Front Door profile, which is unique within the resource group. |
-|`resource-group`  |`my-deid`                |The resource group that contains the resources from this tutorial.                |
-|`sku`             |`Premium_AzureFrontDoor` |The pricing tier of the Azure Front Door profile.                                 |
+|`resource-group`  |`my-deid`                |Resource group that contains the resources from this tutorial.                    |
+|`sku`             |`Premium_AzureFrontDoor` |Pricing tier of the Azure Front Door profile.                                     |
 
 ### Add an endpoint
 
@@ -130,13 +130,13 @@ az afd origin create --resource-group my-deid --host-name <service-url-east-us> 
 
 |Parameter              |Value                   |Description                                                                                          |
 |-----------------------|------------------------|-----------------------------------------------------------------------------------------------------|
-|`host-name`            |`<service-url-east-us>` |The host name of the primary de-identification service.                                              |
+|`host-name`            |`<service-url-east-us>` |Host name of the primary de-identification service.                                                  |
 |`origin-name`          |`deid1`                 |Name of the origin.                                                                                  |
-|`origin-host-header`   |`<service-url-east-us>` |The host header to send for requests to this origin.                                                 |
-|`priority`             |`1`                     |The priority. Set this parameter to 1 to direct all traffic to the primary de-identification service.|
+|`origin-host-header`   |`<service-url-east-us>` |Host header to send for requests to this origin.                                                     |
+|`priority`             |`1`                     |Priority. Set this parameter to 1 to direct all traffic to the primary de-identification service.    |
 |`weight`               |`1000`                  |Weight of the origin in specified origin group for load balancing. Must be between `1` and `1000`.   |
 |`enabled-state`        |`Enabled`               |Whether to enable this origin.                                                                       |
-|`https-port`           |`443`                   |The port used for HTTPS requests to the origin.                                                      |
+|`https-port`           |`443`                   |Port used for HTTPS requests to the origin.                                                          |
 
 Repeat this step to add your second origin. For the `--host-name` and `--origin-host-header` parameters, replace the placeholder value `<service-url-west-us-2>` with your West US 2 service URL, leaving out the scheme (`https://`).
 
