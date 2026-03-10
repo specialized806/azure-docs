@@ -21,7 +21,7 @@ ms.custom:
 
 This guide shows how to test rulesets by using the Microsoft Rules Composer and includes output examples for rule testing.
 
-Whe test rulesets incrementally?
+## Why test rulesets incrementally?
 
 As you build a ruleset to integrate business logic with your Standard logic app workflows, test your ruleset incrementally, or at least before you use the rules in your application. That way, you can confirm that each rule works the way you expect, or find and fix problems sooner when your rules are less complex and easier to troubleshoot.
 
@@ -67,7 +67,7 @@ If you wait to test all your rules at the same time, especially when your rules 
    |------|------------------|
    | Clear all text from the Output window. | **Clear All** |
    | Copy the selected text in the Output window to the clipboard. | **Copy** |
-   | Select all the text in the Output window. | **Select All** |
+   | Select all text in the Output window. | **Select All** |
    | Save the text contained in the Output window to a specified file. | **Save to File** |
 
 <a name="ruleset-test-trace-output"></a>
