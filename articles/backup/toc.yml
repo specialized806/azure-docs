@@ -113,7 +113,7 @@
       href: multi-user-authorization-tutorial.md
     - name: Configure Multi-user authorization using Resource Guard
       href: multi-user-authorization.md
-  - name: Immutablity
+  - name: Immutability
     items:
     - name: Overview  
       href: backup-azure-immutable-vault-concept.md  
