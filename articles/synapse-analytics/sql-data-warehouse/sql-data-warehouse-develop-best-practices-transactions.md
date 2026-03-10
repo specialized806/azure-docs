@@ -5,8 +5,8 @@ ms.service: azure-synapse-analytics
 ms.topic: conceptual
 ms.subservice: sql-dw
 ms.date: 04/19/2018
-author: KevinConanMSFT
-ms.author: kecona
+author: whhender
+ms.author: whhender
 
 ms.custom: azure-synapse
 ---

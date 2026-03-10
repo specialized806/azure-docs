@@ -1,10 +1,8 @@
 ---
 title: Backup and restore - snapshots, geo-redundant
 description: Learn how backup and restore works in Azure Synapse Analytics dedicated SQL pool. Use backups to restore your data warehouse to a restore point in the primary region. Use geo-redundant backups to restore to a different geographical region.
-author: realAngryAnalytics
-ms.author: stevehow
-manager: joannapea
-ms.reviewer: joanpo
+author: whhender
+ms.author: whhender
 ms.date: 03/21/2024
 ms.service: azure-synapse-analytics
 ms.subservice: sql-dw

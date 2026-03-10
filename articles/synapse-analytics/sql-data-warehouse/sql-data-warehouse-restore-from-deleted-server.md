@@ -6,7 +6,8 @@ ms.service: azure-synapse-analytics
 ms.topic: how-to
 ms.subservice: sql-dw
 ms.date: 08/24/2022
-ms.author: stevehow
+ms.author: author: whhender
+ms.author: whhender
 
 ---
 
