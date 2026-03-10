@@ -20,8 +20,6 @@ Release notes describe features, enhancements, and bug fixes released in 2026 fo
 ## March 2026
 ### FHIR service
 
-**Revert of hard deletes in transaction bundles**: In January's release, support was added for hard deletes inside transaction bundles. This change has been reverted due to regressions. For the list of transaction bundle unsupported interactions, see [Batch and transaction bundles](./fhir/rest-api-capabilities.md#batch-and-transaction-bundles).
-
 **Token search behavior update**: After 2 March 2026, the Azure FHIR service was updated so that token values longer than 128 characters are no longer truncated during indexing. If your workspace is affected, you may notice changes in the number of resources returned for token-based queries, along with improved overall query performance. The goal for this update is to improve search behavior accuracy and strengthen service reliability. An Azure service notification was sent to affected accounts with more details.
 
 #### Bug fixes:
