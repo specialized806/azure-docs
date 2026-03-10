@@ -106,7 +106,7 @@ Run the following command to create a new AKS cluster and install Azure Containe
 az aks create -n <cluster-name> -g <resource-group> --node-vm-size Standard_L8s_v3 --enable-azure-container-storage ephemeralDisk --generate-ssh-keys
 ```
 
-This command installs the installer, deploys the local NVMe CSI driver, and creates a default storage class. You can install and use both local NVMe and Elastic SAN by providing comma-separated values such as `ephemeralDisk,elasticSan`.
+This command installs the installer, deploys the local NVMe CSI driver, and creates a default storage class called `local-csi`. You can install and use both local NVMe and Elastic SAN by providing comma-separated values such as `ephemeralDisk,elasticSan`.
 
 ## Install Azure Container Storage on an existing AKS cluster
 
@@ -128,7 +128,7 @@ Run the following command to enable Azure Container Storage on an existing AKS c
 az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage elasticSan
 ```
 
-This command installs the installer, deploys the Elastic SAN CSI driver, and creates a default storage class. You can install and use both local NVMe and Elastic SAN by providing comma-separated values such as `ephemeralDisk,elasticSan`.
+This command installs the installer, deploys the Elastic SAN CSI driver, and creates a default storage class called `azuresan`. You can install and use both local NVMe and Elastic SAN by providing comma-separated values such as `ephemeralDisk,elasticSan`.
 
 ::: zone-end
 
