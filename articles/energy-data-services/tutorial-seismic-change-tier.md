@@ -14,13 +14,11 @@ ms.date: 03/10/2026
 # Tutorial: Change the storage tier of seismic datasets
 
 > [!IMPORTANT]
-> This feature is currently in preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> This feature is currently in preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability. To enable this feature, please raise a support request in the Azure portal.
 
-Use the Seismic DDMS Change Tier operation in Azure Data Manager for Energy to move datasets between storage tiers—Hot**, **Cool**, and **Cold—based on how frequently you access the data. Move datasets that you rarely access to cooler tiers with lower storage costs. Keep frequently accessed datasets in the Hot tier for optimal performance.
+Use the Seismic DDMS Change Tier operation in Azure Data Manager for Energy to move datasets between **Hot**, **Cool**, and **Cold** storage tiers based on access frequency. Moving rarely accessed data to cooler tiers reduces storage costs, while keeping active datasets in the Hot tier ensures optimal performance. This operation is especially valuable for seismic data management, where large volumes of historical data must remain available for future analysis or compliance but don't require frequent access.
 
-The Change Tier operation is especially valuable for seismic data management, where large volumes of historical data might not require immediate access but must remain available for future analysis or compliance.
-
-In this tutorial, you complete the following tasks:
+In this tutorial, you'll learn how to:
 
 > [!div class="checklist"]
 >
@@ -52,8 +50,7 @@ Before you begin, make sure you meet the following prerequisites:
 
 ## Initiate a change tier operation
 
-> [!WARNING]
-> Pause all write and delete operations on the target path before you start the operation. Adding or deleting datasets while a change tier operation is in progress can lead to inconsistent results.
+Before you submit the request, pause all write and delete operations on the target path. Adding or deleting datasets while a change tier operation is in progress can lead to inconsistent results.
 
 1. Submit a PUT request with the path and target tier. Use a trailing `/` for directory paths (for example, `sd://tenant/subproject/a/b/c/`) and no trailing slash for a single dataset (for example, `sd://tenant/subproject/a/b/c/dataset-name`):
 
@@ -99,7 +96,7 @@ After you initiate the change tier operation, poll the status endpoint to track 
    {
      "operation_id": "c3d282e6-e7d1-40d8-8ac2-edc15b6d174c",
      "created_at": "2026-03-10T06:15:00Z",
-     "created_by": "user@example.com",
+     "created_by": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
      "last_updated_at": "2026-03-10T06:17:30Z",
      "status": "Running",
      "dataset_cnt": 500,
@@ -115,7 +112,7 @@ After you initiate the change tier operation, poll the status endpoint to track 
    {
      "operation_id": "c3d282e6-e7d1-40d8-8ac2-edc15b6d174c",
      "created_at": "2026-03-10T06:15:00Z",
-     "created_by": "user@example.com",
+     "created_by": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
      "last_updated_at": "2026-03-10T06:25:00Z",
      "status": "Completed",
      "dataset_cnt": 500,
@@ -149,24 +146,39 @@ Use the `show_details=true` parameter to get per-dataset error information for a
 
    ```json
    {
-     "operation_id": "c3d282e6-e7d1-40d8-8ac2-edc15b6d174c",
-     "status": "Completed",
-     "dataset_cnt": 500,
-     "completed_cnt": 497,
-     "failed_cnt": 3,
-     "target_tier": "Cool",
+     "operation_id": "9a8f2e31-4c67-4b8a-b123-abcdef123456",
+     "created_at": "2026-03-10T08:00:00Z",
+     "created_by": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
+     "last_updated_at": "2026-03-10T08:45:00Z",
+     "status": "CompletedWithErrors",
+     "dataset_cnt": 2000,
+     "completed_cnt": 1994,
+     "failed_cnt": 6,
+     "target_tier": "Cold",
      "failed_datasets": [
        {
-         "sdpath": "sd://tenant1/subproject1/data/dataset-alpha",
-         "error": "Storage tier change failed: Permission denied"
+         "sdpath": "sd://opendes/project-alpha/seismic/survey-2024-001",
+         "error": "Failed to change tier for 12 blob(s)"
        },
        {
-         "sdpath": "sd://tenant1/subproject1/data/dataset-beta",
-         "error": "Storage tier change failed: Blob not found"
+         "sdpath": "sd://opendes/project-alpha/seismic/survey-2024-002",
+         "error": "Access denied: user is not authorized to modify this dataset (ACL validation failed)"
        },
        {
-         "sdpath": "sd://tenant1/subproject1/data/dataset-gamma",
-         "error": "Storage tier change failed: Minimum retention period not met"
+         "sdpath": "sd://opendes/project-alpha/seismic/survey-2024-003",
+         "error": "Failed to acquire lock"
+       },
+       {
+         "sdpath": "sd://opendes/project-alpha/seismic/survey-2024-004",
+         "error": "Dataset has no associated storage location"
+       },
+       {
+         "sdpath": "sd://opendes/project-alpha/seismic/survey-2024-005",
+         "error": "Dataset storage location has invalid format"
+       },
+       {
+         "sdpath": "sd://opendes/project-alpha/seismic/survey-2024-006",
+         "error": "Tier changed but metadata update failed after retries"
        }
      ],
      "cursor": "ZXlKamIyNTBhVzUxWVhScGIyNVViMnRsYmlJNkltVjRZVzF3YkdVaWZRPT0"
@@ -203,4 +215,5 @@ There are no billable Azure resources created in this tutorial. If you changed s
 - [Azure Blob Storage access tiers overview](../storage/blobs/access-tiers-overview.md)
 - [Azure Blob Storage lifecycle management policies](../storage/blobs/lifecycle-management-overview.md)
 - [Azure Blob Storage pricing](https://azure.microsoft.com/pricing/details/storage/blobs/)
+- [Seismic DDMS API reference](https://microsoft.github.io/adme-samples/)
 
