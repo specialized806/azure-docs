@@ -1,5 +1,5 @@
 ---
-title: Threads in Azure SRE Agent (preview)
+title: Threads in Azure SRE Agent
 description: Learn how threads organize conversations with your agent, including thread sources, filtering, search, chat commands, and keyboard shortcuts.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: threads, conversations, chat, history, slash commands, compaction, th
 #customer intent: As an SRE, I want to understand threads so that I can organize and navigate my agent conversations efficiently.
 ---
 
-# Threads in Azure SRE Agent (preview)
-
+# Threads in Azure SRE Agent
 A thread is a conversation with your agent. Each time you start a new investigation or ask a question, you create a thread that maintains context throughout the conversation.
 
 ## Thread sources

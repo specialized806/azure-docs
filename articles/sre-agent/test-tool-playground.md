@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Test a Tool in the Playground in Azure SRE Agent (preview)"
+title: "Tutorial: Test a Tool in the Playground in Azure SRE Agent"
 description: Debug and verify your tools in the Azure SRE Agent playground before deploying them to production.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: playground, testing, tools, kusto, system-tools, debug
 #customer intent: As an SRE, I want to test my tools in the playground so that I can verify they work correctly before deploying them.
 ---
 
-# Tutorial: Test a tool in the playground in Azure SRE Agent (preview)
-
+# Tutorial: Test a tool in the playground in Azure SRE Agent
 In this tutorial, you use the test playground in the Azure SRE Agent portal to run and verify your tools before deploying them. The playground lets you execute tools in isolation with custom parameters and review results immediately.
 
 In this tutorial, you learn how to:
