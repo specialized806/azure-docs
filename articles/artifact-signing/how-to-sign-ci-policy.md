@@ -36,7 +36,7 @@ To complete the steps in this article, you need:
    }
    ```
 
-1. Get the [root certificate](/powershell/module/az.artifactsigning/get-azartifactsigningcertificateroot) that you want to add to the trust store:
+1. Get the [root certificate](/powershell/module/az.artifactsigning/get-azartifactsigningcertificateroot?view=azps-15.4.0) that you want to add to the trust store:
 
    ```powershell
    Get-AzArtifactSigningCertificateRoot -AccountName TestAccount -ProfileName TestCertProfile -EndpointUrl https://xxx.codesigning.azure.net/ -Destination c:\temp\root.cer
@@ -48,7 +48,7 @@ To complete the steps in this article, you need:
    Get-AzArtifactSigningCertificateRoot -MetadataFilePath C:\temp\metadata.json -Destination c:\temp\root.cer 
    ```
 
-1. To get the [Extended Key Usage (EKU)](/powershell/module/az.artifactsigning/get-azartifactsigningcustomereku) to insert into your policy:
+1. To get the [Extended Key Usage (EKU)](/powershell/module/az.artifactsigning/get-azartifactsigningcustomereku?view=azps-15.4.0) to insert into your policy:
 
    ```powershell
    Get-AzArtifactSigningCustomerEku -AccountName TestAccount -ProfileName TestCertProfile -EndpointUrl https://xxx.codesigning.azure.net/ 
@@ -60,7 +60,7 @@ To complete the steps in this article, you need:
    Get-AzArtifactSigningCustomerEku -MetadataFilePath C:\temp\metadata.json 
    ```
 
-1. To [sign your policy](/powershell/module/az.artifactsigning/invoke-azartifactsigningcipolicysigning), run the `invoke` command:
+1. To [sign your policy](/powershell/module/az.artifactsigning/invoke-azartifactsigningcipolicysigning?view=azps-15.4.0), run the `invoke` command:
 
    ```powershell
    Invoke-AzArtifactSigningCIPolicySigning -accountName TestAccount -profileName TestCertProfile -endpointurl "https://xxx.codesigning.azure.net/" -Path C:\Temp\defaultpolicy.bin -Destination C:\Temp\defaultpolicy_signed.bin -TimeStamperUrl: http://timestamp.acs.microsoft.com 
