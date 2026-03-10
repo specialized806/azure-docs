@@ -1,7 +1,6 @@
 ---
 title: Restore an existing dedicated SQL pool
 description: How-to guide for restoring an existing dedicated SQL pool.
-author: realAngryAnalytics
 author: whhender
 ms.author: whhender
 ms.date: 01/23/2024
