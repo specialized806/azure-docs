@@ -1,5 +1,5 @@
 ---
-title: User Roles and Permissions in Azure SRE Agent (preview)
+title: User Roles and Permissions in Azure SRE Agent
 description: Learn how to control who can view, interact with, and administer your agent by using Azure RBAC roles and layered access control.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: rbac, roles, permissions, access control, user access, admin, reader,
 #customer intent: As an SRE or cloud admin, I want to understand user roles so that I can control who can interact with and manage my agent.
 ---
 
-# User roles and permissions in Azure SRE Agent (preview)
-
+# User roles and permissions in Azure SRE Agent
 <!-- Video: SRE_Agent__User_Roles.mp4 — Replace with the hosted video URL using > [!VIDEO https://...] syntax -->
 
 Your agent can investigate problems, take actions on production infrastructure, and access sensitive data across your environment. Access control determines who can request actions, who can approve them, and who can modify the agent's configuration.
