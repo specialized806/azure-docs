@@ -50,7 +50,7 @@ This quickstart enables you to register an existing SAP system with *Azure Cente
     - To start instance sapstartsrv, use the command: `sapcontrol -nr instanceNr -function StartService S0S`
     - To check status of hostctrl sapstartsrv use this command for Windows VMs: `C:\Program Files\SAP\hostctrl\exe\saphostexec –status`
 
-- For successful discovery and registration of the SAP system, ensure there's network connectivity between ASCS, Application Server, and Database VMs. The `ping` command for App instance hostname must be successful from ASCS Virtual Machine. When you ping the Database hostname, it must be successful from the App server VM.
+- For successful discovery and registration of the SAP system, ensure there's network connectivity between ASCS, Application Server, and Database VMs. The `ping` command for the App instance hostname must be successful from an ASCS VM. When you ping the Database hostname, it must be successful from the App server VM.
 
 - On App server profile, SAPDBHOST, DBTYPE, DBID parameters must have the right values configured for the discovery and registration of Database instance details.
 
