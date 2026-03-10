@@ -2,8 +2,8 @@
 title: Known issues
 titleSuffix: Azure Synapse Analytics
 description: Learn about the currently known issues with Azure Synapse Analytics and their possible workarounds or resolutions.
-author: whhender
-ms.author: whhender
+author: joannapea 
+ms.author: joanpo
 ms.date: 01/30/2025
 ms.service: azure-synapse-analytics
 ms.subservice: overview

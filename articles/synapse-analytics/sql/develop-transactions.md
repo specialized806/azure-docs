@@ -5,8 +5,8 @@ ms.service: azure-synapse-analytics
 ms.topic: conceptual
 ms.subservice: sql
 ms.date: 04/15/2020
-author: whhender
-ms.author: whhender
+author: joannapea 
+ms.author: joanpo
  
 ---
 

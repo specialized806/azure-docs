@@ -6,8 +6,8 @@ ms.service: azure-synapse-analytics
 ms.subservice: sql-dw
 tags: azure-resource-manager, bicep
 ms.topic: quickstart
-author: whhender
-ms.author: whhender
+author: joannapea 
+ms.author: joanpo
 ms.date: 05/20/2022
 ms.custom: subject-armqs, mode-arm, devx-track-bicep
 ---
