@@ -12,7 +12,8 @@ ms.author: kendownie
 
 # Mount NFS Azure file shares on Linux
 
-:heavy_check_mark: **Applies to:** NFS Azure classic file shares (Microsoft.Storage)
+:heavy_check_mark: **Applies to:** Classic NFS file shares created with the Microsoft.Storage resource provider
+
 
 :heavy_check_mark: **Applies to:** File shares created with the Microsoft.FileShares resource provider (preview)
 
