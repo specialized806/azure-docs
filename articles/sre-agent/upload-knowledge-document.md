@@ -1,5 +1,5 @@
 ---
-title: Upload Knowledge Documents to Azure SRE Agent (preview)
+title: Upload Knowledge Documents to Azure SRE Agent
 description: Create and upload runbooks, troubleshooting guides, and documentation to the knowledge base during conversations to capture institutional knowledge automatically.
 ms.topic: how-to
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: knowledge-base, upload, documents, runbooks, troubleshooting, automat
 #customer intent: As an SRE, I want my agent to upload knowledge documents during conversations so that incident resolutions become reusable institutional knowledge.
 ---
 
-# Upload knowledge documents to Azure SRE Agent (preview)
-
+# Upload knowledge documents to Azure SRE Agent
 <!-- > [!VIDEO <VIDEO_URL_FOR_AGENT_KNOWLEDGE_BASE>]
 Replace <VIDEO_URL_FOR_AGENT_KNOWLEDGE_BASE> with the hosted URL for the Agent's Knowledge Base video. -->
 
