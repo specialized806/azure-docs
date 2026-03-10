@@ -14,7 +14,7 @@ One of the most important aspects of any Azure VMware Solution deployment is dis
 
 In this article, you discover critical known issues related to vSphere upgrades, Azure VMware Solution, Microsoft security enhancements, and other key technical considerations. This information is essential for you to evaluate before selecting a vendor and as the platform continues to evolve.
 
-Azure VMware Solution currently offers [VMware Live Site Recovery](disaster-recovery-using-vmware-site-recovery-manager.md) and several third party partner solutions.
+Azure VMware Solution currently offers [VMware Live Site Recovery](disaster-recovery-using-vmware-site-recovery-manager.md) and several other non-Microsoft partner solutions.
 
 You can find more information about their solutions in the following links:
 - [VMware Live Site Recovery](/azure/azure-vmware/disaster-recovery-using-vmware-site-recovery-manager)
@@ -36,7 +36,7 @@ You can find more information about their solutions in the following links:
 |Refer to Backup Recovery Partner Compatibility Guidance |Refer to Backup Recovery Partner Compatibility Guidance                     | [Backup solutions for Azure VMware Solution VMs](/azure/azure-vmware/ecosystem-back-up-vms) | Kindly reach out to the Backup and Recovery Product team for all support cases.                                                            |
 
 > [!NOTE] 
-> The preview means that the product is in preview mode due to known issues, limited functionality, or specific restrictions. For assistance, reach out to the third-party partners directly.
+> The preview means that the product is in preview mode due to known issues, limited functionality, or specific restrictions. For assistance, reach out to the non-Microsoft partners directly.
 
 Customers aren't permitted to open Microsoft support tickets for partner product-related issues, including error messages or run commands
 
