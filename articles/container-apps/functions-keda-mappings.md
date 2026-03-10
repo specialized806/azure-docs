@@ -150,37 +150,10 @@ Use this value as the target for the total lag (sum of all partition lags) to tr
 
 `metadata.lagThreshold` = `LagThreshold`
 
-### Azure Cosmos DB
-
-The [Azure Cosmos DB trigger](/azure/azure-functions/functions-bindings-cosmosdb-v2-trigger) doesn't map to a KEDA scaler. Use custom scaling instead.
-
-The Functions trigger sets the maximum number of items received per function call. Transaction scope is preserved for stored procedures.
-
-| Parameter | Functions Configuration | KEDA Configuration |
-|--|--|--|
-| **Parameter name** | `MaxItemsPerInvocation` | N/A |
-| **Configuration path** | Function trigger attribute | N/A |
-| **Default value** | 100 | N/A |
-
-#### Example
-
-```csharp
-[CosmosDBTrigger(
-  databaseName: "ToDoItems",
-  containerName: "Items",
-  Connection = "CosmosDBConnection",
-  MaxItemsPerInvocation = 100)]
-```
 
 ### HTTP trigger
 
 The [HTTP trigger](/azure/azure-functions/functions-bindings-http-webhook) doesn't map to a KEDA scaler. Instead, use the Container Apps built-in HTTP scaling capabilities or external monitoring solutions.
-
-| Parameter | Functions Configuration | KEDA Configuration |
-|--|--|--|
-| **Parameter name** | `maxConcurrentRequests` | N/A |
-| **Configuration path** | `extensions.http.maxConcurrentRequests` (host.json) | N/A |
-| **Default value** | 100 (Consumption), -1 (Premium/Dedicated) | N/A |
 
 
 ## Related content
