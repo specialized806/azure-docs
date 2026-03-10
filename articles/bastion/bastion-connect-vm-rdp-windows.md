@@ -13,9 +13,13 @@ ms.author: abell
 
 # Create an RDP connection to a Windows VM using Azure Bastion
 
-This article describes how to create a secure RDP connection to your Windows virtual machines using Azure Bastion. You can connect through the Azure portal (browser-based), via a specified private IP address, or using a native client on your local Windows computer. When you use Azure Bastion, your virtual machines don't require a client, agent, or additional software. Azure Bastion securely connects to all virtual machines in the virtual network without exposing RDP/SSH ports to the public internet. For more information, see [What is Azure Bastion?](bastion-overview.md)
+This article describes how to create a secure RDP connection to your Windows virtual machines using Azure Bastion. You can connect through the Azure portal (browser-based), via a specified IP address, or using a native client on your local Windows computer. When you use Azure Bastion, your virtual machines don't require a client, agent, or additional software. Azure Bastion securely connects to all virtual machines in the virtual network without exposing RDP/SSH ports to the public internet. For more information, see [What is Azure Bastion?](bastion-overview.md)
 
 For native client connections using Azure CLI (including SSH and tunnel), see [Connect to a VM using a native client](connect-vm-native-client-windows.md). To connect to a Windows virtual machine using SSH, see [Create an SSH connection to a Windows VM](bastion-connect-vm-ssh-windows.md).
+
+The following diagram shows the dedicated deployment architecture using an RDP connection.
+
+:::image type="content" source="./media/connect-vm-rdp-windows/host-architecture-rdp.png" alt-text="Diagram that shows the Azure Bastion architecture." lightbox="./media/connect-vm-rdp-windows/host-architecture-rdp.png":::
 
 ## Prerequisites
 
@@ -39,25 +43,13 @@ Before you begin, verify that you meet the following criteria:
 * **Required roles:**
 
   * Reader role on the virtual machine.
-  * Reader role on the NIC with private IP of the virtual machine.
+  * Reader role on the NIC with the IP of the virtual machine.
   * Reader role on the Azure Bastion resource.
   * Reader role on the virtual network of the target virtual machine (if the Bastion deployment is in a peered virtual network).
   * Virtual Machine Administrator Login or Virtual Machine User Login role (only required for [Microsoft Entra ID authentication](bastion-entra-id-authentication.md)).
 
 
-
-
-
 See the [Azure Bastion FAQ](bastion-faq.md) for additional requirements.
-
-## Known limitations
-
-* **IP-based connections:** IP-based connection doesn't work with force tunneling over VPN, or when a default route is advertised over an ExpressRoute circuit. Azure Bastion requires access to the Internet and force tunneling, or the default route advertisement, results in traffic blackholing.
-* **IP-based connections:** UDR isn't supported on the Bastion subnet, including with IP-based connections.
-* **IP-based connections:** Custom ports and protocols aren't currently supported when connecting to a virtual machine via native client with IP-based connections.
-* **Microsoft Entra ID:** Microsoft Entra authentication isn't supported for IP-based RDP connections. IP-based SSH connections via native client do support Entra ID authentication. For Entra ID auth details, see [About Microsoft Entra ID authentication](bastion-entra-id-authentication.md).
-* **Session recording:** RDP + Entra ID authentication in the portal can't be used concurrently with [graphical session recording](session-recording.md).
-
 
 <a name="entra-id"></a>
 
@@ -102,11 +94,27 @@ Use the Azure portal to create a browser-based RDP connection to your Windows vi
 
 <a name="ip-address"></a>
 
-Use the Azure portal to create a browser-based RDP connection to your Windows virtual machine using a specified private IP address. This method connects through your browser and doesn't require a native RDP client or additional software on your local computer. The Standard SKU or higher is required, and you must enable [IP-based connection](connect-ip-address.md).
+Use the Azure portal to create a browser-based RDP connection to your Windows virtual machine using a specified IP address. This method connects through your browser and doesn't require a native RDP client or additional software on your local computer. The Standard SKU or higher is required, and you must enable [IP-based connection](connect-ip-address.md).
 
-1. To connect to a virtual machine using a specified private IP address, make the connection from Bastion, not directly from the virtual machine page. On your Bastion resource, select **Connect** to open the Connect page.
+### Enable IP-based connection
 
-1. On the Bastion **Connect** page, for **IP address**, enter the private IP address of the target virtual machine.
+Before you can connect using an IP address, you must enable IP-based connection on your Bastion deployment.
+
+1. In the [Azure portal](https://portal.azure.com), go to your Bastion deployment.
+
+1. On the **Configuration** page, for **Tier**, verify the SKU is set to the **Standard** SKU or higher. If the SKU is set to the Basic SKU, select a higher SKU from the dropdown.
+
+1. Select **IP based connection**.
+
+1. Select **Apply** to apply the changes. It takes a few minutes for the Bastion configuration to complete.
+
+1. You specify the IP address of the target virtual machine directly on the Bastion **Connect** page, rather than selecting a virtual machine from the Azure portal.
+
+### Connect using an IP address
+
+1. To connect to a virtual machine using a specified IP address, make the connection from Bastion, not directly from the virtual machine page. On your Bastion resource, select **Connect** to open the Connect page.
+
+1. On the Bastion **Connect** page, for **IP address**, enter the IP address of the target virtual machine.
 
     :::image type="content" source="./media/connect-ip-address/ip-address.png" alt-text="Screenshot of the Connect using Azure Bastion page." lightbox="./media/connect-ip-address/ip-address.png":::
 
@@ -130,6 +138,13 @@ For SSH and tunnel connections, see [Connect to a VM using Bastion and the Windo
 
 ---
 
+## Limitations
+
+* **IP-based connections:** IP-based connection doesn't work with force tunneling over VPN, or when a default route is advertised over an ExpressRoute circuit. Azure Bastion requires access to the Internet and force tunneling, or the default route advertisement, results in traffic blackholing.
+* **IP-based connections:** UDR isn't supported on the Bastion subnet, including with IP-based connections.
+* **IP-based connections:** Custom ports and protocols aren't currently supported when connecting to a virtual machine via native client with IP-based connections.
+* **Microsoft Entra ID:** Microsoft Entra authentication isn't supported for IP-based RDP connections. IP-based SSH connections via native client do support Entra ID authentication. For Entra ID auth details, see [About Microsoft Entra ID authentication](bastion-entra-id-authentication.md).
+* **Session recording:** RDP + Entra ID authentication in the portal can't be used concurrently with [graphical session recording](session-recording.md).
 
 ## Next steps
 
