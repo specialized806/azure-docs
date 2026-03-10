@@ -22,7 +22,7 @@ For general information about Azure Storage lifecycle management policies, see [
 > Lifecycle management policies do not impact blobs that are in a soft-deleted state. Lifecycle management policies that delete blobs in a storage account with soft-delete enabled will put the blob in a soft-deleted state. Such blobs are retained for the duration of the soft-delete retention period. See [Soft delete for blobs](./soft-delete-blob-overview.md).
 
 > [!TIP]
-> Use Azure Storage Actions to restore/undelete blobs from a soft-deleted state.
+> Use [Azure Storage Actions](../../storage-actions/overview.md) to restore/undelete blobs from a soft-deleted state.
 
 ## Expire data based on age
 
