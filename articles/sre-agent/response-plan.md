@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Set Up an Incident Trigger for Azure SRE Agent (preview)"
+title: "Tutorial: Set Up an Incident Trigger for Azure SRE Agent"
 description: Create an incident trigger that routes specific incident types to a specialized subagent in the Subagent builder.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: incident trigger, response plan, filter, subagent, automation, tutori
 #customer intent: As an SRE, I want to set up an incident trigger so that matching incidents are automatically routed to the right subagent for investigation.
 ---
 
-# Tutorial: Set up an incident trigger for Azure SRE Agent (preview)
-
+# Tutorial: Set up an incident trigger for Azure SRE Agent
 In this tutorial, you create an incident trigger on the Subagent builder canvas that filters incidents by severity and service, and routes matching incidents to a specific subagent for automated investigation.
 
 **Estimated time**: 5-10 minutes
