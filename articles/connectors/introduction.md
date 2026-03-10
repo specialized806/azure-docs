@@ -1,12 +1,13 @@
 ---
-title: What are connectors
+title: What are Connectors
 description: Learn how connectors in Azure Logic Apps help you access data, events, and resources in other apps, services, and systems from workflows.
 services: logic-apps
 ms.suite: integration
-ms.reviewer: estfan, azla
+ms.reviewers: estfan, azla
 ms.topic: concept-article
-ms.date: 03/27/2025
-# Customer intent: As a developer, I want to learn how connectors help me access data, events, and resources in other apps, services, systems, and platforms from my workflow in Azure Logic Apps.
+ms.update-cycle: 1095-days
+ms.date: 03/09/2026
+#Customer intent: As an integration developer who works with Azure Logic Apps, I want to learn how connectors provide access to data, events, and resources in other services, systems, apps, and ecosystems from my logic app workflows.
 ---
 
 # What are connectors in Azure Logic Apps

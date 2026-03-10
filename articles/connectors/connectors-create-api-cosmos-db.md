@@ -5,13 +5,15 @@ services: logic-apps
 ms.suite: integration
 author: jcocchi
 ms.author: jucocchi
-ms.reviewer: estfan, azla
+ms.reviewers: estfan, azla
 ms.topic: how-to
-ms.date: 04/15/2025
+ms.update-cycle: 365-days
+ms.date: 03/10/2026
 ms.custom: sfi-image-nochange
+# Customer intent: As an integration developer who works with Azure Logic Apps, I want to access and manage documents in Azure Cosmos DB from my workflows.
 ---
 
-# Access, create, or process documents in Azure Cosmos DB with workflows in Azure Logic Apps
+# Access, create, or process documents in Azure Cosmos DB from workflows in Azure Logic Apps
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
@@ -27,7 +29,7 @@ You can connect to Azure Cosmos DB from both Consumption and Standard logic app 
 
 ## Prerequisites
 
-- An Azure account and subscription. If you don't have an Azure subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An [Azure Cosmos DB account](/azure/cosmos-db/sql/create-cosmosdb-resources-portal).
 
