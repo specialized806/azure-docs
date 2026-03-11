@@ -104,6 +104,7 @@ Cache volumes are supported in the following regions:
 
 ## Next steps
 
+- [Requirements and considerations for cache volumes](https://review.learn.microsoft.com/en-us/azure/azure-netapp-files/caching-requirements)
 - [Configure a cache volume for Azure NetApp Files](configure-cache-volumes.md)
 
 For more details, visit Configure a cache volume for Azure NetApp Files. 

@@ -269,7 +269,7 @@
         href: cache-volumes-resize-guidelines.md  
     - name: Understand ransomware protection
       items:
-      - name: Understand advanced ransomware protection
+      - name: Understand Azure NetApp Files advanced ransomware protection
         href: advanced-ransomware-protection.md
       - name: Requirements and considerations for Azure NetApp Files advanced ransomware protection
         href: ransomware-protection-requirements.md    
