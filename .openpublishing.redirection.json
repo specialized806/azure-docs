@@ -7291,7 +7291,7 @@
     },
     {
       "source_path": "articles/certification/edge-secured-core-get-certified.md",
-      "redirect_url": "articles/certification/requirements-edge-secured-core.md",
+      "redirect_url": "/azure/certification/requirements-edge-secured-core",
       "redirect_document_id": false
     },
   ]
