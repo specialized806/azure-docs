@@ -1,11 +1,11 @@
 ---
 title: Use Client Tools to Access Data in Azure Managed Redis
-description: Learn how to use *RedisInsight* and *redis-cli* as client tools to access data and for troubleshooting and debugging Azure Managed Redis.
+description: Learn how to use *Redis Insight* and *redis-cli* as client tools to access data and for troubleshooting and debugging Azure Managed Redis.
 ms.date: 03/11/2026
 ms.topic: concept-article
 ms.custom:
 appliesto:
-  - ✅ Azure Cache for Redi
+  - ✅ Azure Cache for Redis
 ---
 # Use client tools to manage data in Azure Managed Redis
 
