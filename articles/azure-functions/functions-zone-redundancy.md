@@ -86,7 +86,7 @@ Follow these steps to create a zone-redundant Flex Consumption plan when you cre
 
     |Setting|Suggested value|Notes for zone redundancy|
     |-------|---------------|-------------------------|
-    |**Storage account**|A [zone-redundant storage account](/azure/azure-functions/storage-considerations#storage-account-requirements)|As described in the [prerequisites](#prerequisites) section, we strongly recommend using a zone-redundant storage account for your zone-redundant function app.|
+    |**Storage account**|A [zone-redundant storage account](/azure/azure-functions/storage-considerations#storage-account-requirements)|As described in the [reliability guide for Azure Functions](/azure/reliability/reliability-functions?pivots=flex-consumption#resilience-to-availability-zone-failures), we strongly recommend using a zone-redundant storage account for your zone-redundant function app.|
   
 1. For the rest of the function app creation process, create your function app as normal. There are no settings in the rest of the creation process that affect zone redundancy.
 
@@ -206,7 +206,7 @@ Follow these steps to create a zone-redundant Premium plan and app.
 
     |Setting|Suggested value|Notes for zone redundancy|
     |-------|---------------|-------------------------|
-    |**Storage account**|A [zone-redundant storage account](/azure/azure-functions/storage-considerations#storage-account-requirements)|As described in the [prerequisites](#prerequisites) section, we strongly recommend using a zone-redundant storage account for your zone-redundant function app.|
+    |**Storage account**|A [zone-redundant storage account](/azure/azure-functions/storage-considerations#storage-account-requirements)|As described in the [reliability guide for Azure Functions](/azure/reliability/reliability-functions?pivots=premium#resilience-to-availability-zone-failures), we strongly recommend using a zone-redundant storage account for your zone-redundant function app.|
   
 1. For the rest of the function app creation process, create your function app as normal. There are no settings in the rest of the creation process that affect zone redundancy.
 
