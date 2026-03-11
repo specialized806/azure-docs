@@ -4,7 +4,6 @@ description: Learn how to configure zone redundancy for Azure Functions, create 
 author: glynnniall
 ms.author: glynnniall
 ms.topic: how-to
-ms.custom: references_regions
 ms.date: 02/19/2026
 zone_pivot_groups: reliability-functions-hosting-plan
 
