@@ -22,7 +22,7 @@ ms.custom: H1Hack27Feb2017
 [sap-high-availability-guide-wsfc-file-share]:sap-high-availability-guide-wsfc-file-share.md
 [sap-high-availability-infrastructure-wsfc-file-share]:sap-high-availability-infrastructure-wsfc-file-share.md
 
-[sap-high-availability-installation-wsfc-shared-disk-create-ascs-virt-host]:sap-high-availability-installation-wsfc-shared-disk.md#create-a-virtual-host-name-for-the-clustered-sap-ascs-scs-instance
+[sap-high-availability-installation-wsfc-shared-disk-create-ascs-virt-host]:sap-high-availability-installation-wsfc-shared-disk.md#create-a-virtual-host-name-for-the-clustered-sap-ascsscs-instance
 [sap-high-availability-installation-wsfc-shared-disk-add-probe-port]:sap-high-availability-installation-wsfc-shared-disk.md#add-a-probe-port
 
 This article describes how to install and configure a high-availability SAP system on Azure, with Windows Server Failover Cluster (WSFC) and Scale-Out File Server as an option for clustering SAP ASCS/SCS instances.

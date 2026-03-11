@@ -120,7 +120,7 @@ When considering Azure NetApp Files for the SAP Netweaver architecture, be aware
 You need the following software from SAP:
    * SAP Software Provisioning Manager (SWPM) installation tool version SPS25 or later.
    * SAP Kernel 7.22 or later
-   * Create a virtual host name (cluster network name)  for the clustered SAP ASCS/SCS instance, as described in [Create a virtual host name for the clustered SAP ASCS/SCS instance](./sap-high-availability-installation-wsfc-shared-disk.md#create-a-virtual-host-name-for-the-clustered-sap-ascs-scs-instance).
+   * Create a virtual host name (cluster network name)  for the clustered SAP ASCS/SCS instance, as described in [Create a virtual host name for the clustered SAP ASCS/SCS instance](./sap-high-availability-installation-wsfc-shared-disk.md#create-a-virtual-host-name-for-the-clustered-sap-ascsscs-instance).
 
 ### Install an ASCS/SCS instance on the first ASCS/SCS cluster node
 
