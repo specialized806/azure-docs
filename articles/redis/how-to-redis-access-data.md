@@ -53,9 +53,13 @@ You can gather the information needed to access the cache using these methods:
 - Azure PowerShell using [Get-AzRedisEnterpriseCacheKey](/powershell/module/az.redisenterprisecache/get-azredisenterprisecachekey)
 - Using the Azure portal
 
-In this section, you retrieve the keys from the Azure portal.
+In this section, you retrieve the information from the Azure portal.
 
-[!INCLUDE [redis-cache-create](includes/redis-cache-access-keys.md)]
+To connect your Azure Cache for Redis server, the cache client needs the cache endpoint, port, and a key for the cache. Some clients might refer to these items by slightly different names. You can get this information from the [Azure portal](https://portal.azure.com).
+
+- To get the endpoint and port for your cache, select **Overview** from the **Resource** menu. The endpoint is of the form `<DNS name>.<region>.redis.azure.net`. The port is `10000` for all Azure Managed Redis instances.
+
+- To get the access keys, select **Authentication** from the **Settings** menu. Then, select the **Access keys** tab. Here, you can find the primary and secondary keys for the cache. You can use either key to connect with your client tool.
 
 ### Connect using redis-cli
 
