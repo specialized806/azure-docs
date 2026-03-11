@@ -55,7 +55,7 @@ Installing SAP with a high-availability ASCS/SCS instance involves these tasks:
 
 1. In the Windows **DNS Manager**, create a DNS entry for the virtual host name of the ASCS/SCS instance. For example:
 
-   ![A screenshot of the Windows DNS Manager New Host dialog box.][sap-ha-guide-figure-3046]
+   ![A screenshot of the Windows DNS Manager New Host dialog box for ERS-1 configuration.][sap-ha-guide-figure-3046]
 
    _Define the DNS entry for the SAP ASCS/SCS cluster virtual name and TCP/IP address_
 
@@ -67,7 +67,8 @@ Installing SAP with a high-availability ASCS/SCS instance involves these tasks:
    > [!IMPORTANT]
    > The IP address that you assign to the virtual host name of the ERS2 instance must be the second IP address that you assigned to Azure Load Balancer.
 
-   ![A screenshot of the Windows DNS Manager New Host dialog box.][sap-ha-guide-figure-3046-ers2]
+
+   ![A screenshot of the Windows DNS Manager New Host dialog box for ERS-2 configuration.][sap-ha-guide-figure-3046-ers2]
 
    _Define the DNS entry for the SAP ERS2 cluster virtual name and TCP/IP address_
 
