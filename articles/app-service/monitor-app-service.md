@@ -42,71 +42,41 @@ The following table lists monitoring methods to use for different scenarios.
 
 ### Application Insights
 
-Application Insights is an Azure Monitor feature that helps you monitor availability, performance, and usage for your web app. For supported App Service stacks, you can enable Application Insights from the Azure portal without changing your code. If you need custom telemetry, unsupported hosting scenarios, or more control over configuration, [instrument through code](/azure/azure-monitor/app/opentelemetry-enable). For more information about Application Insights, see [Application Insights overview](/azure/azure-monitor/app/app-insights-overview).
+For supported [App Service stacks](/azure/azure-monitor/app/codeless-overview), you can turn on [Application Insights](/azure/azure-monitor/app/app-insights-overview) from the Azure portal without changing your code. Use a [connection string](/azure/azure-monitor/app/connection-strings) to connect the app to your [Application Insights resource](/azure/azure-monitor/app/create-workspace-resource). For more information, see [Application Insights overview](/azure/azure-monitor/app/app-insights-overview) and [Connection strings in Application Insights](/azure/azure-monitor/app/connection-strings).
 
-> [!NOTE]
-> Use a connection string to connect your app to Application Insights. For more information, see [Connection strings in Application Insights](/azure/azure-monitor/app/connection-strings).
+> [!TIP]
+> If you need custom telemetry, unsupported hosting scenarios, or more control over configuration, use [code-based instrumentation](/azure/azure-monitor/app/opentelemetry-enable) for your stack.
 
-Open your app in the Azure portal, select **Application Insights** > **Enable**, create or select an Application Insights resource, and then select **Apply monitoring settings**. App Service restarts the app.
-
-For Resource Manager or scripted deployments, set the same app settings on the site resource. `ApplicationInsightsAgent_EXTENSION_VERSION` selects the App Service-managed extension or agent line. Use `~2` or `~3` as shown in the following tabs. App Service updates monitoring extensions and agents automatically and applies the new version after restart. For ASP.NET and ASP.NET Core, App Service uses the preinstalled site extension from version `2.8.9` onward. The example snippets in the following tabs show only `siteConfig.appSettings` entries. Keep any other app settings that your app already uses. For more information about managing app settings, see [Configure App Service app settings](configure-common.md#configure-app-settings).
-
-To generate a baseline template with the required settings, create a web app with Application Insights enabled in the Azure portal, go to **Review + create**, and then download the automation template.
-
-<details>
-<summary>Example App Service app settings structure for Resource Manager</summary>
-
-```json
-"resources": [
-  {
-    "name": "appsettings",
-    "type": "config",
-    "apiVersion": "2015-08-01",
-    "dependsOn": [
-      "[resourceId('Microsoft.Web/sites', variables('webSiteName'))]"
-    ],
-    "properties": {
-      "key1": "value1",
-      "key2": "value2"
-    }
-  }
-]
-```
-
-</details>
+In the Azure portal, open your app, select **Application Insights** > **Enable**, create or select a resource, and then select **Apply monitoring settings**. App Service restarts the app.
 
 #### [ASP.NET Core](#tab/aspnetcore)
 
 ##### Support and requirements
 
-App Service autoinstrumentation supports .NET [Long Term Support](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) releases. [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) aren't supported.
-
-##### Enable in the Azure portal
-
-After you create or select an Application Insights resource, choose **Recommended** to turn on monitoring or **Disabled** to turn it off.
+Use supported .NET [Long Term Support (LTS)](/dotnet/core/releases-and-support) releases. ASP.NET Core follows the .NET support policy. [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) aren't supported.
 
 ##### Telemetry collected
 
-**Recommended** collects requests, dependencies, exceptions, and browser monitoring.
+Select **Recommended** to turn on monitoring or **Disabled** to turn it off. **Recommended** collects requests, dependencies, exceptions, and browser monitoring.
 
 ##### Configure monitoring
 
-App Service doesn't expose extra extension settings for ASP.NET Core. To change sampling, enrichment, or custom telemetry, [instrument through code](/azure/azure-monitor/app/opentelemetry-enable?tabs=aspnetcore).
+App Service doesn't provide extra extension settings for ASP.NET Core. To change sampling, enrichment, or custom telemetry, use code-based instrumentation. For more information, see [Enable OpenTelemetry with Application Insights for ASP.NET Core](/azure/azure-monitor/app/opentelemetry-enable?tabs=aspnetcore).
 
 ##### Client-side monitoring
 
-Client-side monitoring is on by default when you use **Recommended**. To turn it off, add the `APPINSIGHTS_JAVASCRIPT_ENABLED` app setting and set it to `false`, then restart the app.
+Client-side monitoring is on by default with **Recommended**. To turn it off, set `APPINSIGHTS_JAVASCRIPT_ENABLED` to `false` in App Service app settings and restart the app.
 
 ##### Deploy at scale
 
-Add these app settings to your deployment:
+For automated deployments, add these app settings. `ApplicationInsightsAgent_EXTENSION_VERSION` selects the App Service-managed site extension line: `~2` on Windows or `~3` on Linux. App Service updates the site extension automatically and applies updates after restart. With version `2.8.9`, App Service uses the preinstalled site extension. The example shows only the app settings section. Keep any other app settings that your app already uses.
 
 | App setting | Value | Required | Use |
 |---|---|---|---|
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | `<connection string>` | Yes | Connects the app to Application Insights. |
-| `ApplicationInsightsAgent_EXTENSION_VERSION` | `~2` on Windows or `~3` on Linux | Yes | Uses the App Service-managed monitoring extension. |
+| `ApplicationInsightsAgent_EXTENSION_VERSION` | `~2` on Windows or `~3` on Linux | Yes | Turns on the App Service-managed site extension. |
 | `XDT_MicrosoftApplicationInsights_Mode` | `recommended` or `disabled` | Yes | Sets the collection mode. |
-| `XDT_MicrosoftApplicationInsights_PreemptSdk` | `1` | Yes | Enables ASP.NET Core App Service interop. |
+| `XDT_MicrosoftApplicationInsights_PreemptSdk` | `1` | Yes | Required for ASP.NET Core App Service autoinstrumentation. |
 
 The following example uses Linux. Use `~2` on Windows.
 
@@ -138,29 +108,29 @@ The following example uses Linux. Use `~2` on Windows.
 
 </details>
 
+To generate a baseline template, create a web app with Application Insights enabled in the Azure portal and download the automation template from **Review + create**.
+
 #### [.NET](#tab/net)
 
 ##### Support and requirements
 
-ASP.NET apps offer two collection levels: **Basic** and **Recommended**.
-
-##### Enable in the Azure portal
-
-After you create or select an Application Insights resource, choose **Basic** or **Recommended**.
+Use supported ASP.NET and .NET Framework releases. Modern .NET uses [Long Term Support (LTS)](/dotnet/core/releases-and-support) releases, but ASP.NET Core apps use the ASP.NET Core tab. For support details, see [ASP.NET official support policy](https://dotnet.microsoft.com/platform/support/policy/aspnet).
 
 ##### Telemetry collected
+
+Select **Basic** or **Recommended**. The following table summarizes the collection levels.
 
 | Telemetry or capability | Basic | Recommended |
 |---|---|---|
 | Usage trends and availability-to-transaction correlation | Yes | Yes |
 | Host-process unhandled exceptions | Yes | Yes |
-| More accurate application performance monitoring (APM) metrics under load when sampling is enabled | Yes | Yes |
+| Improves application performance monitoring (APM) metrics under load when sampling is enabled | Yes | Yes |
 | CPU, memory, and I/O trends | No | Yes |
 | Correlation across request and dependency boundaries | No | Yes |
 
 ##### Configure monitoring
 
-To configure adaptive sampling through App Service app settings, use app settings that start with `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_`.
+To configure adaptive sampling, use app settings that start with `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_`.
 
 Common settings include:
 
@@ -169,20 +139,20 @@ Common settings include:
 - `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_EvaluationInterval`
 - `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MaxTelemetryItemsPerSecond`
 
-To turn off adaptive sampling, set `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MinSamplingPercentage` to `100`. For more information, see [Configure adaptive sampling for ASP.NET applications](/azure/azure-monitor/app/sampling#configuring-adaptive-sampling-for-aspnet-applications).
+To turn off adaptive sampling, set `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MinSamplingPercentage` to `100`. For more information, see [Configure adaptive sampling for ASP.NET applications](/azure/azure-monitor/app/sampling#configuring-adaptive-sampling-for-aspnet-applications) and [Monitor .NET and Node.js applications with Application Insights (Classic API)](/azure/azure-monitor/app/classic-api).
 
 ##### Client-side monitoring
 
-Client-side monitoring is off by default. To turn it on, add the `APPINSIGHTS_JAVASCRIPT_ENABLED` app setting and set it to `true`, then restart the app. To turn it off, remove the app setting or set it to `false`. The combination of `APPINSIGHTS_JAVASCRIPT_ENABLED` and `urlCompression` isn't supported.
+Client-side monitoring is off by default. To turn it on, set `APPINSIGHTS_JAVASCRIPT_ENABLED` to `true` in App Service app settings and restart the app. To turn it off, remove the app setting or set it to `false`. The combination of `APPINSIGHTS_JAVASCRIPT_ENABLED` and `urlCompression` isn't supported.
 
 ##### Deploy at scale
 
-Add these app settings to your deployment:
+For automated deployments, add these app settings. `ApplicationInsightsAgent_EXTENSION_VERSION` selects the App Service-managed site extension line. Use `~2` for ASP.NET apps. App Service updates the site extension automatically and applies updates after restart. With version `2.8.9`, App Service uses the preinstalled site extension. The example shows only the app settings section. Keep any other app settings that your app already uses.
 
 | App setting | Value | Required | Use |
 |---|---|---|---|
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | `<connection string>` | Yes | Connects the app to Application Insights. |
-| `ApplicationInsightsAgent_EXTENSION_VERSION` | `~2` | Yes | Uses the App Service-managed site extension. |
+| `ApplicationInsightsAgent_EXTENSION_VERSION` | `~2` | Yes | Turns on the App Service-managed site extension. |
 | `XDT_MicrosoftApplicationInsights_Mode` | `default` or `recommended` | Yes | Sets the collection level. `default` maps to **Basic**. |
 | `InstrumentationEngine_EXTENSION_VERSION` | `~1` | No | Turns on the binary rewrite engine. This setting can increase cold start time. |
 | `XDT_MicrosoftApplicationInsights_BaseExtensions` | `~1` | No | Captures SQL and Azure Table text with dependency calls. This setting requires `InstrumentationEngine_EXTENSION_VERSION` and can increase cold start time. |
@@ -211,23 +181,21 @@ Add these app settings to your deployment:
 
 </details>
 
+To generate a baseline template, create a web app with Application Insights enabled in the Azure portal and download the automation template from **Review + create**.
+
 #### [Java](#tab/java)
 
 ##### Support and requirements
 
-App Service adds the Application Insights Java 3.x agent and starts collecting telemetry. For Spring Boot native image apps, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) instead. Snapshot Debugger isn't available for Java applications.
-
-##### Enable in the Azure portal
-
-After you create or select an Application Insights resource, App Service starts collecting telemetry with the attached Java agent.
+App Service adds the Application Insights Java 3.x agent. For Spring Boot native image apps, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) instead. Snapshot Debugger isn't available for Java applications.
 
 ##### Telemetry collected
 
-The Java agent collects requests, dependencies, heartbeats, and standard metrics. It autocollects logs from Log4j, Logback, JBoss Logging, and `java.util.logging`. If your app uses Micrometer or Spring Boot Actuator, the agent autocollects those metrics too.
+The Java agent autocollects requests, dependencies, logs, metrics, and heartbeats. It autocollects logs from Log4j, Logback, JBoss Logging, and `java.util.logging`. If your app uses Micrometer or Spring Boot Actuator, those metrics are autocollected too.
 
 ##### Configure monitoring
 
-Use a valid Java agent JSON configuration when you need to customize monitoring. Use `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` for inline JSON or `APPLICATIONINSIGHTS_CONFIGURATION_FILE` for a file path. For supported settings and example JSON, see [Configuration options: Azure Monitor Application Insights for Java](/azure/azure-monitor/app/java-standalone-config). To add custom telemetry, see [Add, modify, and filter telemetry](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java#modify-telemetry).
+Use `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` for inline JSON or `APPLICATIONINSIGHTS_CONFIGURATION_FILE` for a file path. If you configure the agent in the Azure portal, don't include the connection string or preview settings. For supported settings and example JSON, see [Configuration options: Azure Monitor Application Insights for Java](/azure/azure-monitor/app/java-standalone-config). To add custom telemetry, see [Add, modify, and filter telemetry](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java#modify-telemetry).
 
 ##### Client-side monitoring
 
@@ -235,12 +203,12 @@ To enable client-side monitoring, use the [Browser SDK Loader (Preview)](/azure/
 
 ##### Deploy at scale
 
-Add these app settings to your deployment:
+For automated deployments, add these app settings. `ApplicationInsightsAgent_EXTENSION_VERSION` selects the App Service-managed Java agent line: `~2` on Windows or `~3` on Linux. App Service updates the agent automatically and applies updates after restart. The example shows only the app settings section. Keep any other app settings that your app already uses.
 
 | App setting | Value | Required | Use |
 |---|---|---|---|
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | `<connection string>` | Yes | Connects the app to Application Insights. |
-| `ApplicationInsightsAgent_EXTENSION_VERSION` | `~2` on Windows or `~3` on Linux | Yes | Uses the App Service-managed Java agent. |
+| `ApplicationInsightsAgent_EXTENSION_VERSION` | `~2` on Windows or `~3` on Linux | Yes | Turns on the App Service-managed Java agent. |
 | `XDT_MicrosoftApplicationInsights_Java` | `1` | Windows only | Turns on the Java agent on Windows. |
 | `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` or `APPLICATIONINSIGHTS_CONFIGURATION_FILE` | Valid JSON or a file path | No | Adds custom Java agent configuration. |
 
@@ -266,15 +234,13 @@ The following example uses Linux. On Windows, also set `XDT_MicrosoftApplication
 
 </details>
 
+To generate a baseline template, create a web app with Application Insights enabled in the Azure portal and download the automation template from **Review + create**.
+
 #### [Node.js](#tab/nodejs)
 
 ##### Support and requirements
 
 App Service supports Node.js autoinstrumentation on Linux for code-based apps and custom containers, and on Windows for code-based apps. This integration is in public preview. Snapshot Debugger isn't available for Node.js applications.
-
-##### Enable in the Azure portal
-
-After you create or select an Application Insights resource, App Service starts collecting telemetry with the attached Node.js agent.
 
 ##### Telemetry collected
 
@@ -290,12 +256,12 @@ To enable client-side monitoring, [add the JavaScript SDK to your application](/
 
 ##### Deploy at scale
 
-Add these app settings to your deployment:
+For automated deployments, add these app settings. `ApplicationInsightsAgent_EXTENSION_VERSION` selects the App Service-managed Node.js agent line: `~2` on Windows or `~3` on Linux. App Service updates the agent automatically and applies updates after restart. The example shows only the app settings section. Keep any other app settings that your app already uses.
 
 | App setting | Value | Required | Use |
 |---|---|---|---|
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | `<connection string>` | Yes | Connects the app to Application Insights. |
-| `ApplicationInsightsAgent_EXTENSION_VERSION` | `~2` on Windows or `~3` on Linux | Yes | Uses the App Service-managed Node.js agent. |
+| `ApplicationInsightsAgent_EXTENSION_VERSION` | `~2` on Windows or `~3` on Linux | Yes | Turns on the App Service-managed Node.js agent. |
 | `XDT_MicrosoftApplicationInsights_NodeJS` | `1` | Windows only | Turns on the Node.js agent on Windows. |
 | `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` or `APPLICATIONINSIGHTS_CONFIGURATION_FILE` | Valid JSON or a file path | No | Adds custom Node.js agent configuration. |
 
@@ -321,23 +287,21 @@ The following example uses Linux. On Windows, also set `XDT_MicrosoftApplication
 
 </details>
 
+To generate a baseline template, create a web app with Application Insights enabled in the Azure portal and download the automation template from **Review + create**.
+
 #### [Python](#tab/python)
 
 ##### Support and requirements
 
 Python autoinstrumentation is supported for Python 3.9 through 3.13 on Linux App Service apps that use **Deploy as Code**. Custom containers aren't supported. Live Metrics isn't available for App Service Python autoinstrumentation. Snapshot Debugger isn't available for Python applications.
 
-##### Enable in the Azure portal
-
-After you create or select an Application Insights resource, App Service starts collecting telemetry for your Python app.
-
 ##### Telemetry collected
 
-App Service collects logs from the root logger and autoinstruments common libraries, including `Django`, `FastAPI`, `Flask`, `psycopg2`, `requests`, `urllib`, and `urllib3`. For supported version ranges, see [OpenTelemetry community instrumentations](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
+App Service gathers and correlates dependencies, logs, and metrics from supported libraries. It collects logs from the root logger and autoinstruments `Django`, `FastAPI`, `Flask`, `psycopg2`, `requests`, `urllib`, and `urllib3`. For supported version ranges, see [OpenTelemetry community instrumentations](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
 
 ##### Configure monitoring
 
-For Django apps, set `DJANGO_SETTINGS_MODULE` in your App Service app settings.
+For Django apps, set `DJANGO_SETTINGS_MODULE` in App Service app settings.
 
 To collect telemetry from other libraries, add supported OpenTelemetry community instrumentation packages to your app's `requirements.txt` file. App Service detects installed instrumentations automatically.
 
@@ -362,12 +326,12 @@ To enable client-side monitoring, [add the JavaScript SDK to your application](/
 
 ##### Deploy at scale
 
-Add these app settings to your deployment:
+For automated deployments, add these app settings. `ApplicationInsightsAgent_EXTENSION_VERSION` selects the App Service-managed Python agent line. Use `~3` on Linux. App Service updates the agent automatically and applies updates after restart. The example shows only the app settings section. Keep any other app settings that your app already uses.
 
 | App setting | Value | Required | Use |
 |---|---|---|---|
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | `<connection string>` | Yes | Connects the app to Application Insights. |
-| `ApplicationInsightsAgent_EXTENSION_VERSION` | `~3` | Yes | Uses the App Service-managed Python agent on Linux. |
+| `ApplicationInsightsAgent_EXTENSION_VERSION` | `~3` | Yes | Turns on the App Service-managed Python agent. |
 | `OTEL_*` app settings | See **Configure monitoring** | No | Adds optional OpenTelemetry configuration. |
 
 <details>
@@ -389,6 +353,8 @@ Add these app settings to your deployment:
 ```
 
 </details>
+
+To generate a baseline template, create a web app with Application Insights enabled in the Azure portal and download the automation template from **Review + create**.
 
 ---
 
