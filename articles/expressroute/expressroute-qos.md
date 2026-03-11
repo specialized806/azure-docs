@@ -37,6 +37,6 @@ The following table provides a list of DSCP markings used by Microsoft Teams and
 * Refer to the requirements for [Routing](expressroute-routing.md) and [NAT](expressroute-nat.md).
 * See the following links to configure your ExpressRoute connection.
   
-  * [Create an ExpressRoute circuit](/previous-versions/azure/expressroute/expressroute-howto-circuit-classic)
-  * [Configure routing](/previous-versions/azure/expressroute/expressroute-howto-routing-classic)
-  * [Link a VNet to an ExpressRoute circuit](/previous-versions/azure/expressroute/expressroute-howto-linkvnet-classic)
+  * [Create an ExpressRoute circuit](expressroute-howto-circuit-portal-resource-manager.md)
+  * [Configure routing](expressroute-howto-routing-arm.md)
+  * [Link a VNet to an ExpressRoute circuit](expressroute-howto-linkvnet-portal-resource-manager.md)
