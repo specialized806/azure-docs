@@ -27,7 +27,7 @@ Windows 365 is a Cloud PC platform that streams a familiar, secure and personali
 
 Effective November 1, 2025, the following changes took effect:
 - The Microsoft Dev Box service stopped accepting new customers.
-    - *Net new customers* are defined as those with no prior Dev Box deployment in any form within their Entra ID tenant.
+    - *Net new customers* are defined as those with no prior Dev Box deployment in any form within their Microsoft Entra ID tenant.
     - Customers interested in using Windows 365 as a platform for developers should reach out to their Microsoft account team.
 - There's no immediate change for existing customers.
     - Customers who have run a POC, experimented, or begun configuring Dev Box are considered existing customers, and they can continue using and scaling their current Dev Box deployments.
@@ -41,7 +41,7 @@ As new developer capabilities are released in Windows 365, Microsoft will provid
 Dev Box is built on Windows 365, the Cloud PC platform that streams a familiar, secure, and personalized Windows experience to any device, anywhere. As Windows 365 continues to evolve with additional developer capabilities, developers benefit from increased productivity and flexibility, more SKU options, and enhanced integration with enterprise identity and security. For organizations across industries, Windows 365 provides a single platform to support cloud desktops across information workers, agent makers, and developers.
 
 ### How do we define net-new customers?
-Net-new customers are those with no prior deployment of Dev Box in any form in their Entra ID tenant. Existing customers, or those who have run a POC, experimented, or begun configuring Dev Box, are not affected and can continue to use their deployments.
+Net-new customers are those with no prior deployment of Dev Box in any form in their Microsoft Entra ID tenant. Existing customers, or those who have run a POC, experimented, or begun configuring Dev Box, are not affected and can continue to use their deployments.
 
 ### I am an existing customer. Will there be any changes to my core Dev Box experience?
 There are no planned changes to your core Dev Box workflows. Existing customers can continue using Microsoft Dev Box as they do today. You can engage with your Microsoft account team to discuss your needs and how Windows 365 might better support you.
