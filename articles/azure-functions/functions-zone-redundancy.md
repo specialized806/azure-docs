@@ -42,17 +42,17 @@ Before configuring zone redundancy, review the requirements and details listed i
 
 Zone-redundant Flex Consumption plans can be deployed into a specific set of regions. For the current list, use the Azure CLI:
 
-    1. If you haven't done so already, install and sign in to Azure using the Azure CLI:
+1. If you haven't done so already, install and sign in to Azure using the Azure CLI:
 
-        ```azurecli
-        az login
-        ```
+  ```azurecli
+  az login
+  ```
 
-    1. Use the [`az functionapp list-flexconsumption-locations`](/cli/azure/functionapp#az-functionapp-list-flexconsumption-locations) command with the `--zone-redundant=true` argument, which returns a list of regions that currently support zone-redundant Flex Consumption plans:
+1. Use the [`az functionapp list-flexconsumption-locations`](/cli/azure/functionapp#az-functionapp-list-flexconsumption-locations) command with the `--zone-redundant=true` argument, which returns a list of regions that currently support zone-redundant Flex Consumption plans:
 
-        ```azurecli-interactive
-        az functionapp list-flexconsumption-locations --zone-redundant=true --query "sort_by(@, &name)[].{Region:name}" -o table
-        ```
+  ```azurecli-interactive
+  az functionapp list-flexconsumption-locations --zone-redundant=true --query "sort_by(@, &name)[].{Region:name}" -o table
+  ```
 
 ::: zone-end
 
