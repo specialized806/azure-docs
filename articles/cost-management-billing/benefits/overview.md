@@ -28,7 +28,7 @@ Commitments are long-term agreements where customers commit to spending a certai
 
 Examples include:
 
-- [Azure Consumption Commitment](../../marketplace/azure-consumption-commitment-benefit.md#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
+- [Azure Consumption Commitment (MACC)](../../marketplace/azure-consumption-commitment-benefit.md#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
 - [Reservations](../reservations/save-compute-costs-reservations.md)
 - [Savings plans](../savings-plan/savings-plan-compute-overview.md)
 
@@ -39,7 +39,7 @@ Credits act like a monetary balance applied toward applicable Azure usage.
 Examples include:
 
 - Promotional credits
-- [Azure Credit Offers](credits/mca-check-azure-credits-balance.md)
+- [Azure Credit Offers (ACO)](credits/mca-check-azure-credits-balance.md)
 
 ### Discounts
 

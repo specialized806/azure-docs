@@ -1,6 +1,6 @@
 ---
-title: Track Your Azure Consumption Commitment
-description: Learn how to track your Azure Consumption Commitment for a Microsoft Customer Agreement.
+title: Track Your Microsoft Azure Consumption Commitment (MACC)
+description: Learn how to track your Microsoft Azure Consumption Commitment (MACC) for a Microsoft Customer Agreement.
 author: shrutis06
 ms.reviewer: shrshett
 ms.service: cost-management-billing
@@ -11,18 +11,18 @@ ms.author: shrshett
 ms.custom: sfi-image-nochange
 ---
 
-# Track your Azure Consumption Commitment
+# Track your Microsoft Azure Consumption Commitment (MACC)
 
-An Azure Consumption Commitment is a contractual agreement in which your organization commits to a specified level of Azure spending over a defined period. If your organization has an Azure Consumption Commitment associated with a Microsoft Customer Agreement or Enterprise Agreement billing account, you can track key details through the Azure portal or REST APIs. These details include start and end dates, remaining balance, and eligible spending.
+A Microsoft Azure Consumption Commitment (MACC) is a contractual agreement in which your organization commits to a specified level of Azure spending over a defined period. If your organization has a MACC associated with a Microsoft Customer Agreement or Enterprise Agreement billing account, you can track key details through the Azure portal or REST APIs. These details include start and end dates, remaining balance, and eligible spending.
 
-Azure Consumption Commitment functionality in the Azure portal is available only to direct Microsoft Customer Agreement and direct Enterprise Agreement customers. A direct agreement is one signed directly between Microsoft and the customer, whereas an indirect agreement involves a customer signing through a Microsoft partner.
+MACC functionality in the Azure portal is available only to direct Microsoft Customer Agreement and direct Enterprise Agreement customers. A direct agreement is one signed directly between Microsoft and the customer, whereas an indirect agreement involves a customer signing through a Microsoft partner.
 
 ## Prerequisites
 
-- If you have an Enterprise Agreement, you must have the Enterprise Administrator role to view the Azure Consumption Commitment balance.
-- If you have a Microsoft Customer Agreement, you must have the Owner, Contributor, or Reader role on the billing account to view the Azure Consumption Commitment balance.
+- If you have an Enterprise Agreement, you must have the Enterprise Administrator role to view the MACC balance.
+- If you have a Microsoft Customer Agreement, you must have the Owner, Contributor, or Reader role on the billing account to view the MACC balance.
 
-## Actions for tracking your Azure Consumption Commitment
+## Actions for tracking your MACC
 
 ### [Azure portal](#tab/portal)
 
@@ -45,11 +45,11 @@ Azure Consumption Commitment functionality in the Azure portal is available only
 
     - For a Microsoft Customer Agreement, select **Properties** on the left pane, and then select **Microsoft Azure Consumption Commitment (MACC)**.  
 
-      :::image type="content" source="../../manage/media/track-consumption-commitment/select-macc-tab.png" alt-text="Screenshot that shows selecting the Azure Consumption Commitment tab for a Microsoft Customer Agreement." lightbox="../../manage/media/track-consumption-commitment/select-macc-tab.png" :::
+      :::image type="content" source="../../manage/media/track-consumption-commitment/select-macc-tab.png" alt-text="Screenshot that shows selecting the Microsoft Azure Consumption Commitment tab for a Microsoft Customer Agreement." lightbox="../../manage/media/track-consumption-commitment/select-macc-tab.png" :::
 
     - For an Enterprise Agreement, select **Credits + Commitments** on the left pane, and then select **Microsoft Azure Consumption Commitment (MACC)**.  
 
-      :::image type="content" source="../../manage/media/track-consumption-commitment/select-macc-tab-ea.png" alt-text="Screenshot that shows selecting the Azure Consumption Commitment tab for an Enterprise Agreement." lightbox="../../manage/media/track-consumption-commitment/select-macc-tab-ea.png" :::
+      :::image type="content" source="../../manage/media/track-consumption-commitment/select-macc-tab-ea.png" alt-text="Screenshot that shows selecting the Microsoft Azure Consumption Commitment tab for an Enterprise Agreement." lightbox="../../manage/media/track-consumption-commitment/select-macc-tab-ea.png" :::
 
 The **Microsoft Azure Consumption Commitment (MACC)** tab has the following sections.
 
@@ -57,47 +57,47 @@ The **Microsoft Azure Consumption Commitment (MACC)** tab has the following sect
 
 The **Remaining commitment** section displays the remaining commitment amount since your last invoice.
 
-:::image type="content" source="../../manage/media/track-consumption-commitment/macc-remaining-commitment.png" alt-text="Screenshot of remaining commitment for an Azure Consumption Commitment." lightbox="../../manage/media/track-consumption-commitment/macc-remaining-commitment.png" :::
+:::image type="content" source="../../manage/media/track-consumption-commitment/macc-remaining-commitment.png" alt-text="Screenshot of remaining commitment for a Microsoft Azure Consumption Commitment." lightbox="../../manage/media/track-consumption-commitment/macc-remaining-commitment.png" :::
 
 #### Details
 
 The **Details** section displays other important aspects of your commitment.
 
-:::image type="content" source="../../manage/media/track-consumption-commitment/macc-details.png" alt-text="Screenshot of Azure Consumption Commitment details." lightbox="../../manage/media/track-consumption-commitment/macc-details.png" :::
+:::image type="content" source="../../manage/media/track-consumption-commitment/macc-details.png" alt-text="Screenshot of Microsoft Azure Consumption Commitment details." lightbox="../../manage/media/track-consumption-commitment/macc-details.png" :::
 
 | Term | Definition |
 | --- | --- |
-| **ID** | Identifier that uniquely identifies your Azure Consumption Commitment. It's used to get your Azure Consumption Commitment information through REST APIs. |
+| **ID** | Identifier that uniquely identifies your MACC. It's used to get your MACC information through REST APIs. |
 | **Purchase date** | Date when you made the commitment. |
 | **Start date** | Date when the commitment became effective. |
 | **End date** | Date when the commitment expired. |
-| **Commitment amount** | Amount that you commit to spending on Azure Consumption Commitment-eligible products and services. |
+| **Commitment amount** | Amount that you commit to spending on MACC-eligible products and services. |
 | **Status** | Status of your commitment. |
 
-Your Azure Consumption Commitment can have one of the following statuses:
+Your MACC can have one of the following statuses:
 
-- **Active**. The Azure Consumption Commitment is currently in effect. Eligible Azure spending contributes toward fulfilling your commitment.
-- **Complete**. You fully met the Azure Consumption Commitment amount. No further action is required.
-- **Expired**. The Azure Consumption Commitment end date passed without the commitment being fully met. Contact your Microsoft account team for more information.
-- **Canceled**. The Azure Consumption Commitment was terminated before the end date. New Azure spending doesn't contribute toward your Azure Consumption Commitment. Contact your Microsoft account team for more information.
+- **Active**. The MACC is currently in effect. Eligible Azure spending contributes toward fulfilling your commitment.
+- **Complete**. You fully met the MACC amount. No further action is required.
+- **Expired**. The MACC end date passed without the commitment being fully met. Contact your Microsoft account team for more information.
+- **Canceled**. The MACC was terminated before the end date. New Azure spending doesn't contribute toward your MACC. Contact your Microsoft account team for more information.
 
 #### Events
 
-The **Events** section displays events (invoiced spending) that decremented your Azure Consumption Commitment.
+The **Events** section displays events (invoiced spending) that decremented your MACC.
 
-:::image type="content" source="../../manage/media/track-consumption-commitment/macc-events.png" alt-text="Screenshot of Azure Consumption Commitment events." lightbox="../../manage/media/track-consumption-commitment/macc-events.png" :::
+:::image type="content" source="../../manage/media/track-consumption-commitment/macc-events.png" alt-text="Screenshot of Microsoft Azure Consumption Commitment events." lightbox="../../manage/media/track-consumption-commitment/macc-events.png" :::
 
 | Term | Definition |
 | --- | --- |
 | **Date** | Date when the event happened. |
 | **Description** | Description of the event. |
 | **Billing profile** | Billing profile for which the event happened. The billing profile applies only to Microsoft Customer Agreements. If you have an Enterprise Agreement enrollment, the billing profile doesn't appear. |
-| **MACC decrement** | Amount of Azure Consumption Commitment decrement from the event. |
-| **Remaining commitment** | Remaining Azure Consumption Commitment after the event. |
+| **MACC decrement** | Amount of MACC decrement from the event. |
+| **Remaining commitment** | Remaining MACC after the event. |
 
 ### [REST API](#tab/rest)
 
-You can use the [Azure Billing](/rest/api/billing/) and [Consumption](/rest/api/consumption/) APIs to programmatically get Azure Consumption Commitment information for your billing account.
+You can use the [Azure Billing](/rest/api/billing/) and [Consumption](/rest/api/consumption/) APIs to programmatically get MACC information for your billing account.
 
 The following examples use REST APIs. Currently, PowerShell and the Azure CLI aren't supported. The response example is for Microsoft Customer Agreements. The response for Enterprise Agreements differs.
 
@@ -140,9 +140,9 @@ The API response returns a list of billing accounts.
 }
 ```
 
-Use the `displayName` property of the billing account to identify the billing account for which you want to track Azure Consumption Commitment. Copy the `name` value of the billing account. For example, if you want to track Azure Consumption Commitment for the `Contoso` billing account, copy `9a157b81-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx`. Paste this value somewhere so that you can use it in the next step.
+Use the `displayName` property of the billing account to identify the billing account for which you want to track MACC. Copy the `name` value of the billing account. For example, if you want to track MACC for the `Contoso` billing account, copy `9a157b81-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx`. Paste this value somewhere so that you can use it in the next step.
 
-### Get a list of Azure Consumption Commitments
+### Get a list of Microsoft Azure Consumption Commitments
 
 Make the following request. Replace `<billingAccountName>` with the `name` value that you copied (`9a157b81-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx`).
 
@@ -150,7 +150,7 @@ Make the following request. Replace `<billingAccountName>` with the `name` value
 GET https://management.azure.com/providers/Microsoft.Billing/billingAccounts/<billingAccountName>/providers/Microsoft.Consumption/lots?api-version=2021-05-01&$filter=source%20eq%20%27ConsumptionCommitment%27
 ```
 
-The API response returns lists of Azure Consumption Commitments for your billing account.
+The API response returns lists of MACCs for your billing account.
 
 ```json
     {
@@ -203,22 +203,22 @@ The API response returns lists of Azure Consumption Commitments for your billing
 
 | Element name | Description |
 | ------------ | ----------- |
-| `purchasedDate` | Date when you purchased the Azure Consumption Commitment. |
+| `purchasedDate` | Date when you purchased the MACC. |
 | `status` | Status of your commitment. |
 | `originalAmount` | Original commitment amount. |
 | `closedBalance` | Remaining commitment since the last invoice. |
-| `source` | Agreement source. For Azure Consumption Commitment, the source is always `ConsumptionCommitment`. |
-| `startDate` | Date when the Azure Consumption Commitment became active. |
-| `expirationDate` | Date when the Azure Consumption Commitment expires. |
+| `source` | Agreement source. For MACC, the source is always `ConsumptionCommitment`. |
+| `startDate` | Date when the MACC became active. |
+| `expirationDate` | Date when the MACC expires. |
 
-Your Azure Consumption Commitment can have one of the following statuses:
+Your MACC can have one of the following statuses:
 
-- `Active`. The Azure Consumption Commitment is currently in effect. Eligible Azure spending contributes toward fulfilling your commitment.
-- `Complete`. You fully met the Azure Consumption Commitment amount. No further action is required.
-- `Expired`. The Azure Consumption Commitment end date passed without the commitment being fully met. Contact your Microsoft account team for more information.
-- `Canceled`. The Azure Consumption Commitment was terminated before the end date. New Azure spending doesn't contribute toward your Azure Consumption Commitment. Contact your Microsoft account team for more information.
+- `Active`. The MACC is currently in effect. Eligible Azure spending contributes toward fulfilling your commitment.
+- `Complete`. You fully met the MACC amount. No further action is required.
+- `Expired`. The MACC end date passed without the commitment being fully met. Contact your Microsoft account team for more information.
+- `Canceled`. The MACC was terminated before the end date. New Azure spending doesn't contribute toward your MACC. Contact your Microsoft account team for more information.
 
-### Get events that affected Azure Consumption Commitment
+### Get events that affected MACC
 
 Make the following request. Replace `<billingAccountName>` with the `name` value that you copied earlier (`5e98e158-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx`). You need to pass a `startDate` value and an `endDate` value to get events for your required duration.
 
@@ -226,7 +226,7 @@ Make the following request. Replace `<billingAccountName>` with the `name` value
 GET https://management.azure.com/providers/Microsoft.Billing/billingAccounts/<billingAccountName>/providers/Microsoft.Consumption/events?api-version=2021-05-01&startDate=<startDate>&endDate=<endDate>&$filter=lotsource%20eq%20%27ConsumptionCommitment%27
 ```
 
-The API response returns all events that affected your Azure Consumption Commitment.
+The API response returns all events that affected your MACC.
 
 ```json
 {
@@ -288,43 +288,43 @@ The API response returns all events that affected your Azure Consumption Commitm
 | ------------ | ----------- |
 | `billingProfileId` | Unique identifier for the billing profile for which the event happened. |
 | `billingProfileDisplayName` | Display name for the billing profile for which the event happened. |
-| `lotId` | Unique identifier for the Azure Consumption Commitment. |
-| `lotSource` | Lot source for the agreement. The value is `ConsumptionCommitment` for Azure Consumption Commitment. |
+| `lotId` | Unique identifier for the MACC. |
+| `lotSource` | Lot source for the agreement. The value is `ConsumptionCommitment` for MACC. |
 | `transactionDate` | Date when the event occurred. |
 | `description` | Description of the event. |
-| `charges` | Azure Consumption Commitment decrement amount. |
+| `charges` | MACC decrement amount. |
 | `closedBalance` | Remaining balance after the event. |
-| `eventType` | Type of event. Only `SettledCharges` events are supported for Azure Consumption Commitment. |
-| `invoiceNumber` | Unique ID of the invoice whose charges decremented the Azure Consumption Commitment. |
+| `eventType` | Type of event. Only `SettledCharges` events are supported for MACC. |
+| `invoiceNumber` | Unique ID of the invoice whose charges decremented the MACC. |
 
 ---
 
-## Azure Consumption Commitment milestones
+## MACC milestones
 
-Milestones are predefined financial targets within the Azure Consumption Commitment framework that you must meet within a specific timeframe. They help track progress against your Azure Consumption Commitment and include both a due date and a milestone commitment amount.
+Milestones are predefined financial targets within the MACC framework that you must meet within a specific timeframe. They help track progress against your MACC and include both a due date and a milestone commitment amount.
 
-Not every Azure Consumption Commitment includes milestones. If your Azure Consumption Commitment has milestones configured, they appear in the Azure portal when you select an event.
+Not every MACC includes milestones. If your MACC has milestones configured, they appear in the Azure portal when you select an event.
 
-:::image type="content" source="../../manage/media/track-consumption-commitment/macc-main-page-milestones.png" alt-text="Screenshot that shows Azure Consumption Commitment events." lightbox="../../manage/media/track-consumption-commitment/macc-main-page-milestones.png" :::
+:::image type="content" source="../../manage/media/track-consumption-commitment/macc-main-page-milestones.png" alt-text="Screenshot that shows Microsoft Azure Consumption Commitment events." lightbox="../../manage/media/track-consumption-commitment/macc-main-page-milestones.png" :::
 
-:::image type="content" source="../../manage/media/track-consumption-commitment/macc-milestones-page.png" alt-text="Screenshot that shows Azure Consumption Commitment milestones." lightbox="../../manage/media/track-consumption-commitment/macc-milestones-page.png" :::
+:::image type="content" source="../../manage/media/track-consumption-commitment/macc-milestones-page.png" alt-text="Screenshot that shows Microsoft Azure Consumption Commitment milestones." lightbox="../../manage/media/track-consumption-commitment/macc-milestones-page.png" :::
 
-Here are key points about Azure Consumption Commitment milestones:
+Here are key points about MACC milestones:
 
 - **Missed milestone**. If you don't meet a milestone by its due date, a shortfall charge is applied to your account to fulfill the milestone commitment. The charge takes the form of an Azure prepayment credit.
 
-- **Missed Azure Consumption Commitment**. If you don't meet the total Azure Consumption Commitment amount by the Azure Consumption Commitment end date, a shortfall charge is applied to your account for the remaining balance. The charge takes the form of an Azure prepayment credit.
+- **Missed MACC**. If you don't meet the total MACC amount by the MACC end date, a shortfall charge is applied to your account for the remaining balance. The charge takes the form of an Azure prepayment credit.
 
 > [!IMPORTANT]
-> Consumption charges covered by shortfall credits don't accrue toward your Azure Consumption Commitment. For more information, see [Azure credits and Azure Consumption Commitment](#azure-credits-and-azure-consumption-commitment) later in this article.
+> Consumption charges covered by shortfall credits don't accrue toward your MACC. For more information, see [Azure credits and MACC](#azure-credits-and-azure-consumption-commitment) later in this article.
 
-## Azure Consumption Commitment shortfalls and alerts
+## MACC shortfalls and alerts
 
-Microsoft emails billing account admins to help you meet Azure Consumption Commitments and milestones on time. These alerts give advance notice so you can act before getting shortfall charges.
+Microsoft emails billing account admins to help you meet MACCs and milestones on time. These alerts give advance notice so you can act before getting shortfall charges.
 
-### Azure Consumption Commitment expiry alerts
+### MACC expiry alerts
 
-If you don't meet your Azure Consumption Commitment target, billing account admins get email notifications at the following intervals:
+If you don't meet your MACC target, billing account admins get email notifications at the following intervals:
 
 - 90 days before commitment expiry
 - 60 days before commitment expiry
@@ -332,7 +332,7 @@ If you don't meet your Azure Consumption Commitment target, billing account admi
 
 ### Milestone alerts
 
-If your Azure Consumption Commitment includes milestones and you don't meet a milestone target, billing account admins get email alerts at the following intervals:
+If your MACC includes milestones and you don't meet a milestone target, billing account admins get email alerts at the following intervals:
 
 - 90 days before milestone end date
 - 60 days before milestone end date
@@ -340,23 +340,23 @@ If your Azure Consumption Commitment includes milestones and you don't meet a mi
 
 ### Shortfall charges
 
-If you don't meet the Azure Consumption Commitment or the milestone target by the end date, an email alert notifies you about a shortfall charge for the remaining balance. This shortfall charge is an Azure prepayment credit that's applied to your account to fulfill your remaining commitment.
+If you don't meet the MACC or the milestone target by the end date, an email alert notifies you about a shortfall charge for the remaining balance. This shortfall charge is an Azure prepayment credit that's applied to your account to fulfill your remaining commitment.
 
-## Azure services and Marketplace offers that are eligible for Azure Consumption Commitment
+## Azure services and Marketplace offers that are eligible for MACC
 
-You can determine which Azure services and Microsoft Marketplace offers are eligible for Azure Consumption Commitment decrement in the Azure portal. See [Azure Consumption Commitment benefit](/marketplace/azure-consumption-commitment-benefit).
+You can determine which Azure services and Microsoft Marketplace offers are eligible for MACC decrement in the Azure portal. See [Azure Consumption Commitment benefit](/marketplace/azure-consumption-commitment-benefit).
 
-## Azure credits and Azure Consumption Commitment
+## Azure credits and MACC
 
-If your organization receives Azure credits from Microsoft, consumption or purchases that those credits cover don't contribute to your Azure Consumption Commitment.
+If your organization receives Azure credits from Microsoft, consumption or purchases that those credits cover don't contribute to your MACC.
 
-If your organization purchased Azure prepayment, consumption or purchases that the prepayment covers don't contribute to your Azure Consumption Commitment. However, the Azure prepayment purchase itself decrements your Azure Consumption Commitment.
+If your organization purchased Azure prepayment, consumption or purchases that the prepayment covers don't contribute to your MACC. However, the Azure prepayment purchase itself decrements your MACC.
 
 ### Example
 
-Contoso makes an Azure Consumption Commitment of $50,000 in May. In June, it purchases an Azure prepayment of $10,000. This purchase decrements the Azure Consumption Commitment, leaving a remaining balance of $40,000.
+Contoso makes a MACC of $50,000 in May. In June, it purchases an Azure prepayment of $10,000. This purchase decrements the MACC, leaving a remaining balance of $40,000.
 
-During June, Contoso consumes $10,000 of Azure prepayment-eligible services. These service charges are covered by the Azure prepayment and don't decrement the Azure Consumption Commitment. After Contoso fully uses the Azure prepayment, all Azure service consumption and other eligible purchases decrement the Azure Consumption Commitment.
+During June, Contoso consumes $10,000 of Azure prepayment-eligible services. These service charges are covered by the Azure prepayment and don't decrement the MACC. After Contoso fully uses the Azure prepayment, all Azure service consumption and other eligible purchases decrement the MACC.
 
 ## Steps for checking access to a Microsoft Customer Agreement
 
@@ -368,5 +368,5 @@ If you need help, [contact support](https://portal.azure.com/?#blade/Microsoft_A
 
 ## Related content
 
-- [Determine which offers are eligible for Azure Consumption Commitment](/marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
+- [Determine which offers are eligible for MACC](/marketplace/azure-consumption-commitment-benefit)
 - [Track your Azure credit balance](../credits/mca-check-azure-credits-balance.md)
