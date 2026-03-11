@@ -23,9 +23,9 @@ The process uses **Azure Key Vault** and a **Disk Encryption Set (DES)**.
 
 - Access to an Extended Zone. For more information, see [Request access to an Azure Extended Zone](request-access.md).
 
-- Azure CLI installed (version 2.26 or later). [Install Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli).
+- Azure CLI installed (version 2.26 or later). [Install Azure CLI](/cli/azure/install-azure-cli).
 
-- Basic understanding of Azure Key Vault and disk encryption concepts. For more information, see [Azure Key Vault documentation](https://learn.microsoft.com/azure/key-vault/general/overview) and [Azure Disk Encryption documentation](https://learn.microsoft.com/azure/virtual-machines/windows/disk-encryption-overview).
+- Basic understanding of Azure Key Vault and disk encryption concepts. For more information, see [Azure Key Vault documentation](/azure/key-vault/general/overview) and [Azure Disk Encryption documentation](/azure/virtual-machines/windows/disk-encryption-overview).
 
 ## High-level architecture context 
 
@@ -99,7 +99,7 @@ az group delete --name 'myResourceGroup' --yes --no-wait
 ```
 
 ## Related content
-- [Azure Key Vault documentation](https://learn.microsoft.com/azure/key-vault/general/overview)
+- [Azure Key Vault documentation](/azure/key-vault/general/overview)
 - [What is Azure Extended Zones?](overview.md)
 - [Deploy a virtual machine in an Extended Zone](deploy-vm-portal.md)
 - [Frequently asked questions](faq.md)
