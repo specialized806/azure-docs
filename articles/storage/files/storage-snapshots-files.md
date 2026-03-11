@@ -11,6 +11,10 @@ ms.author: kendownie
 
 # Use share snapshots with Azure Files
 
+:heavy_check_mark: **Applies to:** Classic SMB and NFS file shares created with the Microsoft.Storage resource provider
+
+:heavy_check_mark: **Applies to:** File shares created with the Microsoft.FileShares resource provider (preview)
+
 Azure Files provides the capability to take snapshots of SMB and NFS file shares. Share snapshots capture the share state at that point in time. This article describes the capabilities that file share snapshots provide and how you can use them to recover previous versions of files.
 
 > [!IMPORTANT]
