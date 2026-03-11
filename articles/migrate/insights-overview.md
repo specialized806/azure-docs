@@ -231,7 +231,7 @@ To review Database instances with identified security risks, follow these steps:
 1. Go to the **Insights** (preview) pane.
 1. In the **Database instances** card, select the link that shows the number of Database instances with security risks.
 
-  :::image type="content" source="./media/security-insights-overview/database-instances.png" alt-text="Screenshot shows the database instances with security risks." lightbox="./media/security-insights-overview/database-instances.png":::
+      :::image type="content" source="./media/security-insights-overview/database-instances.png" alt-text="Screenshot shows the database instances with security risks." lightbox="./media/security-insights-overview/database-instances.png":::
 
 1. You can view the detailed list of database instances, examine associated metadata, and export the data as a .csv file.
 
