@@ -125,7 +125,7 @@ Consider the following Azure Resource Manager (ARM) template requirements to pro
   * This configuration obscures the display of the secrets as template variables.
 
 > [!NOTE]
-> * ARM template only support Azure Key Vault for secret reference substitution.
+> * ARM templates only support Azure Key Vault for secret reference substitution.
 
 This example shows how to include an AKV reference to a secret named `secretName` in an ARM template. 
 
