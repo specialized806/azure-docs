@@ -3,7 +3,7 @@ title: Control upgrade failure behavior with Azure Operator Service Manager
 description: Learn about recovery behaviors including pause on failure and rollback on failure.
 author: msftadam
 ms.author: adamdor
-ms.date: 03/06/2026
+ms.date: 03/10/2026
 ms.topic: upgrade-and-migration-article
 ms.service: azure-operator-service-manager
 ---
@@ -172,7 +172,7 @@ It's recommended that publishers use a combination of `applicationEnablement`, `
 
 This approach providers cleaner separation and manageability of applications not supporting standard helm operations. Maintains the operation’s idempotency and state on the cluster reflected by the last operation. NFDV 2/3 can directly be used for install operations as well (installation of previous version not needed) with any difference in goal state. Overall upgrade time and deployment reliability remain the same. 
 
-## How to troubleshoot rollback on failure
+## Troubleshoot rollback on failure
 ### Understand pod states
 Understanding the different pod states is crucial for effective troubleshooting. The following are the most common pod states:
 * Pending: Pod scheduling is in progress by Kubernetes.
