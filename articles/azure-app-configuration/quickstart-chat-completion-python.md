@@ -9,7 +9,7 @@ ms.devlang: python
 ms.custom: devx-track-python, mode-other
 ms.topic: quickstart
 ms.tgt_pltfrm: Python
-ms.date: 03/04/2026
+ms.date: 03/11/2026
 ms.update-cycle: 180-days
 ms.author: mametcal
 ms.collection: ce-skilling-ai-copilot
@@ -40,7 +40,7 @@ The full sample source code is available in the [Azure App Configuration GitHub 
     ```console
     pip install azure-appconfiguration-provider
     pip install azure-identity
-    pip install azure-ai-inference
+    pip install azure-ai-projects
     ```
 
 1. Create a file named `app.py` and add the following import statements:
@@ -49,7 +49,7 @@ The full sample source code is available in the [Azure App Configuration GitHub 
     import os
     from azure.appconfiguration.provider import load, SettingSelector, WatchKey
     from azure.identity import DefaultAzureCredential
-    from azure.ai.inference import ChatCompletionsClient
+    from azure.ai.projects import AIProjectClient
     ```
 
 1. Create a function to load configuration from Azure App Configuration.
@@ -101,18 +101,18 @@ The full sample source code is available in the [Azure App Configuration GitHub 
 
 1. Create the main function that configures the chat client and runs the chat loop.
 
-    Create an instance of the `ChatCompletionsClient` to connect to your Azure AI Foundry project. You use `DefaultAzureCredential` to authenticate. Assign the **Cognitive Services OpenAI User** role to the identity represented by `DefaultAzureCredential`. For detailed steps, refer to the [Role-based access control for Azure OpenAI service](/azure/ai-services/openai/how-to/role-based-access-control) guide. Be sure to allow sufficient time for the permission to propagate before running your application.
+    Create an instance of the `AIProjectClient` to connect to your Azure AI Foundry project. You use `DefaultAzureCredential` to authenticate. Assign the **Cognitive Services OpenAI User** role to the identity represented by `DefaultAzureCredential`. For detailed steps, refer to the [Role-based access control for Azure OpenAI service](/azure/ai-services/openai/how-to/role-based-access-control) guide. Be sure to allow sufficient time for the permission to propagate before running your application.
 
     ```python
     def main():
         config = load_azure_app_configuration()
 
-        # Create a chat client using Microsoft Entra ID
-        client = ChatCompletionsClient(
+        # Create a project client using Microsoft Entra ID
+        project_client = AIProjectClient(
             endpoint=config["AzureAIFoundry:Endpoint"],
             credential=credential,
-            credential_scopes=["https://cognitiveservices.azure.com/.default"],
         )
+        openai_client = project_client.get_openai_client()
 
         # Initialize chat conversation
         chat_conversation = []
@@ -134,7 +134,7 @@ The full sample source code is available in the [Azure App Configuration GitHub 
             chat_conversation.append({"role": "user", "content": user_input})
 
             # Get AI response and add it to chat conversation
-            response = get_ai_response(client, config, chat_conversation)
+            response = get_ai_response(openai_client, config, chat_conversation)
             print(f"AI: {response}")
             chat_conversation.append({"role": "assistant", "content": response})
 
@@ -150,7 +150,7 @@ The full sample source code is available in the [Azure App Configuration GitHub 
     import os
     from azure.appconfiguration.provider import load, SettingSelector, WatchKey
     from azure.identity import DefaultAzureCredential
-    from azure.ai.inference import ChatCompletionsClient
+    from azure.ai.projects import AIProjectClient
 
     credential = DefaultAzureCredential()
 
@@ -185,9 +185,10 @@ The full sample source code is available in the [Azure App Configuration GitHub 
         messages.extend(chat_conversation)
 
         # Create chat completion
-        response = client.complete(
+        response = client.chat.completions.create(
             model=chat_completion_config["model"],
             messages=messages,
+            max_completion_tokens=chat_completion_config["max_completion_tokens"],
         )
         return response.choices[0].message.content
 
@@ -195,12 +196,12 @@ The full sample source code is available in the [Azure App Configuration GitHub 
     def main():
         config = load_azure_app_configuration()
 
-        # Create a chat client using Microsoft Entra ID
-        client = ChatCompletionsClient(
+        # Create a project client using Microsoft Entra ID
+        project_client = AIProjectClient(
             endpoint=config["AzureAIFoundry:Endpoint"],
             credential=credential,
-            credential_scopes=["https://cognitiveservices.azure.com/.default"],
         )
+        openai_client = project_client.get_openai_client()
 
         # Initialize chat conversation
         chat_conversation = []
@@ -222,7 +223,7 @@ The full sample source code is available in the [Azure App Configuration GitHub 
             chat_conversation.append({"role": "user", "content": user_input})
 
             # Get AI response and add it to chat conversation
-            response = get_ai_response(client, config, chat_conversation)
+            response = get_ai_response(openai_client, config, chat_conversation)
             print(f"AI: {response}")
             chat_conversation.append({"role": "assistant", "content": response})
 
