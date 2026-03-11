@@ -19,7 +19,7 @@ IP-based connection lets you connect to your on-premises, non-Azure, and Azure v
 
 The following diagram shows the IP-based connection architecture. Azure Bastion, deployed in its virtual network, connects to a target virtual machine using the virtual machine's  IP address over an ExpressRoute circuit or VPN site-to-site connection. The connection doesn't require the target virtual machine to have a public IP address or to be an Azure resource.
 
-:::image type="content" source="./media/connect-ip-address/architecture.png" alt-text="IP-based connections work over Azure ExpressRoute private peering or VPN site-to-site connections, extending Azure Bastion's secure connectivity beyond Azure-hosted workloads." lightbox="./media/connect-ip-address/architecture.png":::
+:::image type="content" source="./media/connect-ip-address/architecture.png" alt-text="Screenshot of IP-based connections work over Azure ExpressRoute private peering or VPN site-to-site connections, extending Azure Bastion's secure connectivity beyond Azure-hosted workloads." lightbox="./media/connect-ip-address/architecture.png":::
 
 In this scenario:
 * Azure Bastion routes the RDP or SSH traffic through the ExpressRoute or VPN connection to reach the target virtual machine at the specified IP address.
@@ -31,7 +31,7 @@ IP-based connection supports the following scenarios:
 
 * **On-premises virtual machines:** Connect to virtual machines running in your on-premises datacenter through an [ExpressRoute private peering](../expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering.md) or [VPN site-to-site connection](../vpn-gateway/add-remove-site-to-site-connections.md).
 * **Non-Azure virtual machines:** Connect to virtual machines hosted in other cloud environments that are reachable from the Azure virtual network through ExpressRoute or VPN.
-* **Azure virtual machines:** Connect to Azure virtual machines by specifying a  IP address instead of selecting the virtual machine resource in the portal. This is useful when the target virtual machine is in a peered or connected virtual network.
+* **Azure virtual machines:** Connect to Azure virtual machines by specifying an IP address instead of selecting the virtual machine resource in the portal. This is useful when the target virtual machine is in a peered or connected virtual network.
 
 ## Supported connection methods
 
@@ -39,7 +39,7 @@ The following table summarizes the connection methods available with IP-based co
 
 | Connection method | Protocol | Details |
 |---|---|---|
-| Azure portal (browser) | RDP, SSH | Provides browser-based RDP or SSH sessions from the Bastion **Connect** page by targeting a  IP address. For step-by-step guidance, see [Connect to a Windows VM using RDP](bastion-connect-vm-rdp-windows.md). |
+| Azure portal (browser) | RDP, SSH | Provides browser-based RDP or SSH sessions from the Bastion **Connect** page by targeting an IP address. For step-by-step guidance, see [Connect to a Windows VM using RDP](bastion-connect-vm-rdp-windows.md). |
 | Native client (Azure CLI) | RDP | Provides RDP connectivity from a Windows client using `az network bastion rdp` with the `--target-ip-address` parameter. For connection steps, see [Connect from a Windows native client](connect-vm-native-client-windows.md). |
 | Native client (Azure CLI) | SSH | Provides SSH connectivity from Windows or Linux clients using `az network bastion ssh` with the `--target-ip-address` parameter. For connection steps, see [Connect from a Windows native client](connect-vm-native-client-windows.md) or [Connect from a Linux native client](connect-vm-native-client-linux.md). |
 | Native client (Azure CLI) | Tunnel | Creates an IP-based TCP tunnel using `az network bastion tunnel` with the `--target-ip-address` parameter. For configuration steps, see [Configure Bastion native client support](native-client.md). |
