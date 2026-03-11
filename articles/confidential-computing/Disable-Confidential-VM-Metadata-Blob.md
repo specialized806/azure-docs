@@ -1,7 +1,7 @@
 ---
 title: Disable VMMD blob creation for Confidential VMs
 description: Instructions for opting out of the Virtual Machine Metablob Disk (VMMD).
-author: rakeshginjupalli
+author: linuxelf001
 ms.topic: include
 ms.service: azure-virtual-machines
 ms.subservice: sizes
