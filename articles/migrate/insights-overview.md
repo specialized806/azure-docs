@@ -242,6 +242,7 @@ To review Database instances with identified security risks, follow these steps:
     - End-of-support database platform
     - Known vulnerabilities (CVEs) in database platform
 
+    :::image type="content" source="./media/security-insights-overview/end-of-support-with-vulnerabilities.png" alt-text="Screenshot shows the database instances with security risks and vulnerabilities." lightbox="./media/security-insights-overview/end-of-support-with-vulnerabilities.png":::
 
 ### Review detailed Security Insights for a Database instance 
 
@@ -261,11 +262,12 @@ To review web apps with identified security risks, follow these steps:
 1. Go to the **Insights** (preview) pane.
 1. In the **Web apps** card, select the link that shows the number of Web apps with security risks.
 
+    :::image type="content" source="./media/security-insights-overview/web-apps-security-risks.png" alt-text="Screenshot shows the web apps with security risks along with vulnerabilities." lightbox="./media/security-insights-overview/web-apps-security-risks.png":::
   
 
 1. You can view the detailed list of Web apps, examine associated metadata, and export the data as a .csv file.
 
-   
+   :::image type="content" source="./media/security-insights-overview/web-apps-across-workloads.png" alt-text="Screenshot shows the web apps with security risks across workloads." lightbox="./media/security-insights-overview/web-apps-across-workloads.png":::
 
 1. To view Web apps with specific security risks, go to the **Insights** (preview) pane. Here, you see a detailed list of Web apps affected due to the following issues:
 
