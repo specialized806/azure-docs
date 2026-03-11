@@ -142,7 +142,7 @@ The API response returns a list of billing accounts.
 
 Use the `displayName` property of the billing account to identify the billing account for which you want to track MACC. Copy the `name` value of the billing account. For example, if you want to track MACC for the `Contoso` billing account, copy `9a157b81-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx`. Paste this value somewhere so that you can use it in the next step.
 
-### Get a list of Microsoft Azure Consumption Commitments
+### Get a list of MACCs
 
 Make the following request. Replace `<billingAccountName>` with the `name` value that you copied (`9a157b81-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx`).
 
@@ -218,7 +218,7 @@ Your MACC can have one of the following statuses:
 - `Expired`. The MACC end date passed without the commitment being fully met. Contact your Microsoft account team for more information.
 - `Canceled`. The MACC was terminated before the end date. New Azure spending doesn't contribute toward your MACC. Contact your Microsoft account team for more information.
 
-### Get events that affected MACC
+### Get events that affected a MACC
 
 Make the following request. Replace `<billingAccountName>` with the `name` value that you copied earlier (`5e98e158-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx_xxxx-xx-xx`). You need to pass a `startDate` value and an `endDate` value to get events for your required duration.
 
@@ -316,7 +316,7 @@ Here are key points about MACC milestones:
 - **Missed MACC**. If you don't meet the total MACC amount by the MACC end date, a shortfall charge is applied to your account for the remaining balance. The charge takes the form of an Azure prepayment credit.
 
 > [!IMPORTANT]
-> Consumption charges covered by shortfall credits don't accrue toward your MACC. For more information, see [Azure credits and MACC](#azure-credits-and-azure-consumption-commitment) later in this article.
+> Consumption charges covered by shortfall credits don't accrue toward your MACC. For more information, see [Azure credits and MACC](#azure-credits-and-macc) later in this article.
 
 ## MACC shortfalls and alerts
 

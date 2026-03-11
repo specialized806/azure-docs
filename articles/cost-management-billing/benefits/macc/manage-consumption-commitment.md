@@ -78,7 +78,7 @@ If your organization has a MACC associated with a Microsoft Customer Agreement o
 
 ### View MACC milestones
 
-If your MACC includes milestones, you can view milestone details in the Azure portal. Go to your MACC resource and select the **Milestones** tab. For more information about milestones, see [Azure Consumption Commitment milestones](track-consumption-commitment.md#azure-consumption-commitment-milestones).
+If your MACC includes milestones, you can view milestone details in the Azure portal. Go to your MACC resource and select the **Milestones** tab. For more information about milestones, see [Azure Consumption Commitment milestones](track-consumption-commitment.md#macc-milestones).
 
 The **Milestones** tab displays the following information for each milestone:
 
