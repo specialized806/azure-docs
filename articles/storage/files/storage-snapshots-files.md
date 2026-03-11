@@ -371,10 +371,10 @@ az storage share list --account-name <storage-account-name> --include-snapshots
 
 To mount an NFS classic file share snapshot to a Linux VM (NFS client) and restore files, follow these steps.
 
-1. Run the following command in a console. See [Mount options](storage-files-how-to-mount-nfs-shares.md#mount-options) for other recommended mount options. To improve copy performance, mount the snapshot by using [nconnect](nfs-performance.md#nfs-nconnect) to use multiple TCP channels.
+1. Run the following command in a console. See [Mount options](storage-files-how-to-mount-nfs-shares.md#mount-options) for other recommended mount options. To improve copy performance, mount the snapshot by using [nconnect](nfs-performance.md#nfs-nconnect) to use multiple TCP channels. Replace the placeholder values, including brackets, with your own values. Replace `/media/nfs` with your local mount path, if different.
    
    ```bash
-   sudo mount -o vers=4,minorversion=1,proto=tcp,sec=sys $server:/nfs4account/share /media/nfs
+   sudo mount -o vers=4,minorversion=1,proto=tcp,sec=sys <StorageAccountName>.file.core.windows.net:/<StorageAccountName>/<FileShareName> /media/nfs
    ```
    
 1. Change the directory to `/media/nfs/.snapshots` so you can view the available snapshots. The `.snapshots` directory is hidden by default, but you can access and read from it like any directory. If you just created the snapshot, wait at least 30 seconds for the `.snapshots` directory to become available.
@@ -539,7 +539,9 @@ $filesharesnapshot.properties.metadata
 ```
 
 # [Azure CLI](#tab/cli)
+
 To list all file share snapshots, run the following Azure CLI command. Replace `<subscription-ID>`, `<resource-group-name>`, and `<file-share-name>` with your own values.
+
 ```bash
 az rest --method get \
 --uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/?api-version=2025-09-01-preview"
@@ -551,10 +553,10 @@ az rest --method get \
 
 To mount an NFS file share snapshot to a Linux VM (NFS client) and restore files, follow these steps.
 
-1. Run the following command in a console. See [Mount options](storage-files-how-to-mount-nfs-shares.md#mount-options) for other recommended mount options. To improve copy performance, mount the snapshot by using [nconnect](nfs-performance.md#nfs-nconnect) to use multiple TCP channels. Make sure you change `/media/nfs` to your corresponding path to the file share.
+1. Run the following command in a console. See [Mount options](storage-files-how-to-mount-nfs-shares.md#mount-options) for other recommended mount options. To improve copy performance, mount the snapshot by using [nconnect](nfs-performance.md#nfs-nconnect) to use multiple TCP channels. Replace the placeholder values, including brackets, with your own values. Replace `/media/nfs` with your local mount path for the file share, if different.
    
    ```bash
-   sudo mount -o vers=4,minorversion=1,proto=tcp,sec=sys $server:/nfs4account/share /media/nfs
+   sudo mount -o vers=4,minorversion=1,proto=tcp,sec=sys <StorageAccountName>.file.core.windows.net:/<StorageAccountName>/<FileShareName> /media/nfs
    ```
    
 1. Change the directory to `/media/nfs/.snapshots` so you can view the available snapshots. The `.snapshots` directory is hidden by default, but you can access and read from it like any directory. If you just created the snapshot, wait at least 30 seconds for the `.snapshots` directory to become available.
