@@ -144,13 +144,13 @@ The **Software card** shows a summary of all discovered software with security r
 
 The **Database instances card** shows a summary of all database instances with security risks. Database instance is flagged to be at risk if its database platform is either end-of-support or has known vulnerabilities (CVEs). The card displays the number of database instances on end-of-support platform and database instances with vulnerabilities as fractions of total database instances with security risks.
 
-:::image type="content" source="./media/security-insights-overview/database-risk-assessment.png" alt-text="Screenshot database instances with security risks." lightbox="./media/security-insights-overview/database-risk-assessment.png":::
+:::image type="content" source="./media/security-insights-overview/database-risk-assessment.png" alt-text="Screenshot shows database instances with security risks." lightbox="./media/security-insights-overview/database-risk-assessment.png":::
 
 ### Review Web apps risk assessment 
 
 The **Web apps card** shows a summary of all web apps with security risks. Web app is flagged to be at risk if its runtime is either end-of-support or has known vulnerabilities (CVEs). The card displays the number of web apps with end-of-support runtime and web apps with vulnerabilities as fractions of total web apps with security risks.
 
-
+:::image type="content" source="./media/security-insights-overview/review-web-app-risk-assessment.png" alt-text="Screenshot shows web app risk with security risks." lightbox="./media/security-insights-overview/review-web-app-risk-assessment.png":::
 
 ## Review detailed Security Insights 
 
@@ -231,11 +231,11 @@ To review Database instances with identified security risks, follow these steps:
 1. Go to the **Insights** (preview) pane.
 1. In the **Database instances** card, select the link that shows the number of Database instances with security risks.
 
-  
+  :::image type="content" source="./media/security-insights-overview/database-instances.png" alt-text="Screenshot shows the database instances with security risks." lightbox="./media/security-insights-overview/database-instances.png":::
 
 1. You can view the detailed list of database instances, examine associated metadata, and export the data as a .csv file.
 
-   
+   :::image type="content" source="./media/security-insights-overview/database-instances-across-workloads.png" alt-text="Screenshot shows the database instances across workloads." lightbox="./media/security-insights-overview/database-instances-across-workloads.png":::
 
 1. To view database instances with specific security risks, go to the **Insights** (preview) pane. Here, you see a detailed list of database instances affected due to the following issues:
 
