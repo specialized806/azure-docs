@@ -4,7 +4,6 @@ description: Learn how to configure zone redundancy for Azure Functions, create 
 author: glynnniall
 ms.author: glynnniall
 ms.topic: how-to
-ms.service: azure-functions
 ms.custom: references_regions
 ms.date: 02/19/2026
 zone_pivot_groups: reliability-functions-hosting-plan
@@ -14,7 +13,7 @@ zone_pivot_groups: reliability-functions-hosting-plan
 
 # Configure zone redundancy for Azure Functions
 
-Zone redundancy enables your function apps to be resilient to problems in Azure availability zones, so your app remains available when a datacenter or zone has an outage. This article provides step-by-step guidance for configuring Azure Functions to be zone-redundant. For information about how availability zones work with Azure Functions, see [Reliability in Azure Functions](/azure/reliability/reliability-functions).
+Zone redundancy enables your function apps to be resilient to problems in Azure availability zones, so your app remains available when a datacenter or zone has an outage. This article provides step-by-step guidance for configuring Azure Functions to be zone-redundant, depending on your hosting plan. For information about how availability zones work with Azure Functions, see [Reliability in Azure Functions](/azure/reliability/reliability-functions).
 
 Availability zone configuration for Azure Functions depends on your [Functions hosting plan](/azure/azure-functions/functions-scale):
 
@@ -25,13 +24,18 @@ Availability zone configuration for Azure Functions depends on your [Functions h
 | [Dedicated (App Service) plan](/azure/azure-functions/dedicated-plan) | GA | See [Configure availability zones for App Service](../app-service/how-to-zone-redundancy.md). |
 | [Consumption plan](/azure/azure-functions/consumption-plan) | n/a | Not supported by the Consumption plan. |
 
-## Prerequisites
+::: zone pivot="flex-consumption-plan"
 
-Before configuring zone redundancy, review the requirements and details listed in [Reliability in Azure Functions - Resilience to availability zone failures](/azure/reliability/reliability-functions#resilience-to-availability-zone-failures).
+> [!IMPORTANT]  
+> Before configuring zone redundancy, review the requirements and details listed in [Reliability in Azure Functions - Resilience to availability zone failures](/azure/reliability/reliability-functions?pivots=flex-consumption#resilience-to-availability-zone-failures).
+
+::: zone-end
 
 ::: zone pivot="premium-plan"
 
-> [!NOTE]
+> [!IMPORTANT]  
+> Before configuring zone redundancy, review the requirements and details listed in [Reliability in Azure Functions - Resilience to availability zone failures](/azure/reliability/reliability-functions?pivots=premium#resilience-to-availability-zone-failures).
+> 
 > You can only enable availability zones in the plan when you create your app. You can't convert an existing Premium plan to use availability zones.
 
 ::: zone-end
@@ -60,7 +64,7 @@ Zone-redundant Flex Consumption plans can be deployed into a specific set of reg
 
 ::: zone pivot="flex-consumption-plan"
 
-Follow these steps to create a zone-redundant Flex Consumption plan and app.
+Follow these steps to create a zone-redundant Flex Consumption plan when you create your app.
 
 #### [Azure portal](#tab/azure-portal)
 
