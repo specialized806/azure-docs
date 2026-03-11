@@ -82,7 +82,7 @@ Use the following steps to run the assessment:
 
 1. The GitHub Copilot chat window with agent mode opens to call the modernization assessor. Select **Continue** to confirm.
 1. The modernization assessor verifies your local environment first. If AppCAT and its dependencies aren't installed, the agent helps you install them. After installation, the agent calls AppCAT to assess your project. This step can take several minutes to complete.
-1. When the assessment finishes, the modernization assessor produces a categorized view of cloud readiness issues in the Assessment Report.
+1. When the assessment finishes, the modernization assessor produces a categorized view of cloud readiness problems in the Assessment Report.
 
    :::image type="content" source="media/migrate-java-copilot-app-modernization/assessment-report.png" alt-text="Screenshot of the Visual Studio Code pane that shows the assessment report." lightbox="media/migrate-java-copilot-app-modernization/assessment-report.png":::
 
@@ -124,7 +124,7 @@ The extension supports importing, exporting, and deleting assessment reports so 
 
 ## Remediate migration issues
 
-After you complete the assessment, remediate the identified issues by using predefined or custom tasks. GitHub Copilot app modernization provides two approaches: predefined tasks that address common migration patterns, and custom tasks you define for your organization's specific needs.
+After you complete the assessment, remediate the identified problems by using predefined or custom tasks. GitHub Copilot app modernization provides two approaches: predefined tasks that address common migration patterns, and custom tasks you define for your organization's specific needs.
 
 ### Select the AppModernization agent
 
@@ -136,7 +136,7 @@ The AppModernization agent provides the best experience for Java application mig
 :::image type="content" source="media/migrate-java-copilot-app-modernization/agent-selector.png" alt-text="Screenshot of Visual Studio Code that shows the agent selector dropdown in the chat window." lightbox="media/migrate-java-copilot-app-modernization/agent-selector.png":::
 
 > [!NOTE]
-> In Visual Studio Code, app modernization uses the `AppModernization` custom agent with Claude Sonnet 4.5 by default for best results. It falls back to the auto model if Sonnet 4.5 isn't available. You can change the model by selecting **Configure Custom Agents** from the Agent menu.
+> In Visual Studio Code, app modernization uses the `AppModernization` custom agent with the recommended model selected by default for best results. You can change the model by selecting **Configure Custom Agents** from the Agent menu.
 
 With the AppModernization agent selected, use simple, natural language prompts to perform migration tasks:
 
@@ -239,6 +239,8 @@ Select **Run** at the bottom of the task file, or find your task in the **TASKS 
 
 :::image type="content" source="media/migrate-java-copilot-app-modernization/run-custom-task.png" alt-text="Screenshot of Visual Studio Code that shows the Tasks section with the Run task and Run button highlighted." lightbox="media/migrate-java-copilot-app-modernization/run-custom-task.png":::
 
+If your application uses an Oracle database, continue to the next section. Otherwise, skip to [Containerize your application](#containerize-your-application).
+
 ## Migrate from Oracle to PostgreSQL
 
 > [!NOTE]
@@ -246,7 +248,7 @@ Select **Run** at the bottom of the task file, or find your task in the **TASKS 
 
 GitHub Copilot app modernization provides a dedicated migration task for the Oracle to Azure Database for PostgreSQL scenario that includes:
 
-- **AI-powered database migration tooling**: PostgreSQL tooling powered by AI that efficiently manages the database migration process from Oracle to PostgreSQL. For more information, see [What is the PostgreSQL extension for Visual Studio Code preview?](/azure/postgresql/extensions/vs-code-extension/overview).
+- **AI-powered database migration tooling**: For more information, see [What is the PostgreSQL extension for Visual Studio Code preview?](/azure/postgresql/extensions/vs-code-extension/overview).
 - **Smart SQL conversion in app code**: Built-in SQL conversion functionality in GitHub Copilot app modernization, seamlessly integrated as part of a unified task workflow.
 
 ### Use the Oracle to PostgreSQL migration task
@@ -256,7 +258,7 @@ GitHub Copilot app modernization provides a dedicated migration task for the Ora
 
    :::image type="content" source="media/migrate-java-copilot-app-modernization/oracle-postgresql-report.png" alt-text="Screenshot of Visual Studio Code that shows the GitHub Copilot app modernization assessment report for Oracle." lightbox="media/migrate-java-copilot-app-modernization/oracle-postgresql-report.png":::
 
-1. Optionally, check whether `coding_notes.md` is present in the `.github\postgre-migrations\*\results\application_guidance\` folder. If present, app modernization references these notes for higher quality SQL conversion. If not, contact your database team to generate them by using the [PostgreSQL Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-ossdata.vscode-pgsql).
+1. Optionally, check whether `coding_notes.md` is present in the `.github/postgre-migrations/*/results/application_guidance/` folder. If present, app modernization references these notes for higher quality SQL conversion. If not, contact your database team to generate them by using the [PostgreSQL Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-ossdata.vscode-pgsql).
 1. Select **Run Task** to execute the migration.
 
    :::image type="content" source="media/migrate-java-copilot-app-modernization/oracle-postgresql-coding-notes.png" alt-text="Screenshot of Visual Studio Code that shows the GitHub Copilot app modernization task execution for Oracle to PostgreSQL." lightbox="media/migrate-java-copilot-app-modernization/oracle-postgresql-coding-notes.png":::
@@ -281,7 +283,7 @@ After you complete code migration, containerize your Java application to prepare
    - Creates a summary of the containerization results.
 
 > [!NOTE]
-> For the best results, use Claude Sonnet 4 or later models. It might take Copilot a few iterations to correct containerization errors.
+> For the best results, use the latest recommended model shown in the extension's agent settings. It might take Copilot a few iterations to correct containerization errors.
 
 For more information about the containerization tools, see the [containerization-assist](https://github.com/Azure/containerization-assist) repository on GitHub.
 
@@ -305,7 +307,7 @@ After you containerize your application, deploy it to Azure Container Apps.
    - Generates a summary file that explains the results of the deployment.
 
 > [!NOTE]
-> For the best results, use Claude Sonnet 4 or later models. It might take Copilot a few iterations to correct deployment errors.
+> For the best results, use the latest recommended model shown in the extension's agent settings. It might take Copilot a few iterations to correct deployment errors.
 
 ## Post-migration best practices
 

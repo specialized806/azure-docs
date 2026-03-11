@@ -257,9 +257,9 @@ items:
         - name: Migrate from Heroku 
           href: migrate-heroku.md
         - name: Migrate Spring Boot applications 
-          href: migrate-spring-boot-to-azure-container-apps.md
+          href: migrate-spring-boot.md
         - name: Migrate Spring Cloud applications 
-          href: migrate-spring-cloud-to-azure-container-apps.md
+          href: migrate-spring-cloud.md
         - name: Migrate Tomcat applications
           href: migrate-tomcat-to-azure-container-apps.md
         - name: Migrate Java with GitHub Copilot app modernization
