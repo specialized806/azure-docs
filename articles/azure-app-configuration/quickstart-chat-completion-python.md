@@ -135,10 +135,8 @@ The full sample source code is available in the [Azure App Configuration GitHub 
 
             # Get AI response and add it to chat conversation
             response = get_ai_response(openai_client, config, chat_conversation)
-            print(f"AI: {response}")
+            print(f"AI: {response}\n")
             chat_conversation.append({"role": "assistant", "content": response})
-
-            print()
 
     if __name__ == "__main__":
         main()
@@ -224,10 +222,8 @@ The full sample source code is available in the [Azure App Configuration GitHub 
 
             # Get AI response and add it to chat conversation
             response = get_ai_response(openai_client, config, chat_conversation)
-            print(f"AI: {response}")
+            print(f"AI: {response}\n")
             chat_conversation.append({"role": "assistant", "content": response})
-
-            print()
 
 
     if __name__ == "__main__":
