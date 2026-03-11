@@ -65,7 +65,6 @@ Follow these steps to assign App Configuration Data roles to your credential.
 When using Entra ID and the following Azure App Configuration libraries in clouds other than Azure cloud, Azure Government, and Microsoft Azure operated by 21Vianet, an appropriate Entra ID audience must be configured to enable authentication.
 
 ### [.NET](#tab/dotnet)
-
 #### .NET configuration provider
 
 **Package**: Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.2.0
@@ -109,7 +108,6 @@ var configurationClient = new ConfigurationClient(
 ```
 
 ### [Java](#tab/java)
-
 #### Spring configuration provider
 
 **Package**: spring-cloud-azure-appconfiguration-config >= 5.22.0
@@ -176,7 +174,6 @@ ConfigurationClient configurationClient = new ConfigurationClientBuilder()
 ```
 
 ### [JavaScript](#tab/javascript)
-
 #### JavaScript configuration provider
 
 **Package**: @azure/app-configuration-provider >= 1.0.0
