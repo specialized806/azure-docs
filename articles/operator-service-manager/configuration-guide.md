@@ -97,10 +97,32 @@ Other then seperating secrets into a unique CGS, no special requirements exist f
 ## CGV with secrets
 Consider the following Azure Resource Manager (ARM) template reqiurements to properly obscure secret values throughout the entire CGV resource lifecycle.
 
-* Use `configurationType: 'Secret'` in the template resource properties.
+* Use `configurationType: 'Secret'` in the template under resource properties.
   * Once a CGV is deployed, this prevents displaying the secret data via most Azure methods.
+ 
+```json
+"parameters": {
+   "secretCgvContent": {
+     "type": "SecureObject"
+    }
+}
+```
+
+* Use `"type": "secureObject"` in the template under parameter type 
+  * This obscures the display of the secrets as template parameters.
+ 
+```json
+{
+  "type": "Microsoft.HybridNetwork/configurationGroupValues",
+  "properties": {
+    "configurationType": "Secret"
+    "secretDeploymentValues": "[string(parameters('secretCgvContent'))]"
+  }
+}
+```
+
 * Use a template reference to Azure Key Vault (AKV) in place of the plain-text secret.
-  * This obscures the display of the secret in the CGV deployment template.
+  * This obscures the display of the secrets as template variables.
 
 > [!NOTE]
 > * Only Azure Key Vault is supported by ARM for secret reference substition.
