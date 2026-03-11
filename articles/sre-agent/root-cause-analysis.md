@@ -1,5 +1,5 @@
 ---
-title: Root Cause Analysis in Azure SRE Agent (preview)
+title: Root Cause Analysis in Azure SRE Agent
 description: Learn how your agent reasons like an expert SRE by forming hypotheses, testing them with evidence, and explaining its conclusions.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: RCA, root cause, investigation, hypothesis, diagnostics, incident, de
 #customer intent: As an SRE, I want my agent to perform hypothesis-driven root cause analysis so that I can identify the actual cause of incidents instead of manually correlating logs.
 ---
 
-# Root cause analysis in Azure SRE Agent (preview)
-
+# Root cause analysis in Azure SRE Agent
 > [!TIP]
 > - Use hypothesis-driven investigation, not random log searching.
 > - Provide a full evidence chain showing *why* this is the cause.

@@ -1,5 +1,5 @@
 ---
-title: Agent Playground in Azure SRE Agent (preview)
+title: Agent Playground in Azure SRE Agent
 description: Test and refine your agent configurations in real time before deploying changes with the split-screen editor and AI-powered evaluation.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: playground, testing, subagent, evaluation, quality, iterate
 #customer intent: As an SRE, I want to test my agent configurations in an isolated playground so that I can iterate quickly without affecting production workflows.
 ---
 
-# Agent playground in Azure SRE Agent (preview)
-
+# Agent playground in Azure SRE Agent
 Test subagent behavior in real time before deploying changes. Edit instructions, tools, and handoffs with instant feedback in a split-screen layout. Evaluate agent quality with AI-powered scoring and quick fixes.
 
 ## The problem

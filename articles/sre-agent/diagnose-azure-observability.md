@@ -1,5 +1,5 @@
 ---
-title: Diagnose with Azure Observability in Azure SRE Agent (preview)
+title: Diagnose with Azure Observability in Azure SRE Agent
 description: Learn how your agent queries Application Insights, Log Analytics, Azure Monitor metrics, Activity Logs, Resource Graph, and resource-specific diagnostics automatically without connectors.
 ms.topic: conceptual
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: azure, application-insights, log-analytics, azure-monitor, resource-g
 #customer intent: As an SRE, I want to understand how my agent uses Azure's built-in observability tools so that I can diagnose incidents faster without switching between portals.
 ---
 
-# Diagnose with Azure observability in Azure SRE Agent (preview)
-
+# Diagnose with Azure observability in Azure SRE Agent
 Your agent queries Application Insights, Log Analytics, Azure Monitor metrics, Resource Graph, Activity Logs, and resource-specific diagnostics in a single investigation. No connectors are required because everything works through managed identity and Azure RBAC. Your agent decides which sources to query based on the symptom, correlates evidence across them, and explains the findings.
 
 > [!TIP]

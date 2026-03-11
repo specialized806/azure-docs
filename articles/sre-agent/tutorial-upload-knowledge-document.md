@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Upload Knowledge Documents to Azure SRE Agent (preview)"
+title: "Tutorial: Upload Knowledge Documents to Azure SRE Agent"
 description: Upload knowledge documents to your Azure SRE Agent knowledge base through conversation and the portal UI so the agent can reference them in future investigations.
 ms.topic: tutorial
 ms.service: azure-sre-agent
@@ -11,8 +11,7 @@ ms.custom: knowledge-base, upload, documents, runbooks, knowledge-management
 #customer intent: As an SRE, I want to upload knowledge documents to my agent so that it can reference them during future investigations.
 ---
 
-# Tutorial: Upload knowledge documents to Azure SRE Agent (preview)
-
+# Tutorial: Upload knowledge documents to Azure SRE Agent
 In this tutorial, you upload knowledge documents to your Azure SRE Agent's knowledge base using two methods: by asking the agent to create a runbook from an investigation, and by uploading a file through the portal UI.
 
 Your agent can capture knowledge discovered during investigations and store it for future use, building institutional knowledge automatically. For more information, see [Upload knowledge documents](upload-knowledge-document.md).
