@@ -33,7 +33,7 @@ We'll inform you about the timeline for deleting your Application Gateway V1 dep
 
 ## Required action
 
-To start planning your migration to Application Gateway V2, make a list of all Application Gateway V1 gateways. On April 28, 2023, we sent email with the subject "Retirement Notice: Transition to Application Gateway V2 by 28 April 2026" to V1 subscription owners. The email provided details about the subscription, the names of gateways, and Application Gateway V1 resources. Use these details to build the list.
+To start planning your migration to Application Gateway V2, make a list of all Application Gateway V1 gateways. On April 28, 2023, we sent an email with the subject "Retirement Notice: Transition to Application Gateway V2 by 28 April 2026" to V1 subscription owners. The email provided details about the subscription, the names of gateways, and Application Gateway V1 resources. Use these details to build the list.
 
 Complete the migration as soon as possible to prevent business impact and to take advantage of the improved performance, security, and new features of Application Gateway V2.
 
