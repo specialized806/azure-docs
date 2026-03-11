@@ -11,7 +11,7 @@ ms.service: azure-app-service
 ---
 # Create an App Service Environment by using an Azure Resource Manager template
 
-An App Service Environment v3 can be created in the Azure portal or by using an Azure Resource Manager (ARM) template.
+An App Service Environment v3 can be created in the Azure portal or by using an Azure Resource Manager template (ARM template).
 
 In the Azure portal, you create an App Service Environment with a specific configuration for immediate deployment. When you [create the environment in the portal](creation.md), you select or create the supporting resources at the same time, including the resource group for the deployment region, and the virtual network with subnet. 
 
@@ -81,7 +81,7 @@ The following table describes the core properties and other options you can use 
 | `internalLoadBalancingMode` | Yes | Identify the type of load balancer for the ILB App Service Environment.<br> - The most common value is `Web, Publishing`, which means both HTTP/HTTPS traffic and FTP traffic is on an internal VIP (Internal Load Balancer).<br> - When the value is `None`, all traffic remains on the public VIP (External Load Balancer). |
 | `zoneRedundant` | No | Indicate whether the App Service Environment is deployable to an availability zone. The value is boolean True or False. For more information, see [Reliability in Azure App Service](/azure/reliability/reliability-app-service). |
 | `dedicatedHostCount` | No | Specify how many hosts to dedicate for the App Service Environment.<br> - The most common value is 0 or unspecified.<br> - To deploy your App Service Environment with physical hardware isolation on dedicated hosts, set the value to 2. |
-| `upgradePreference` | No | Specify your preference for automatic upgrades. There are four possible values:<br> `None`: (Default) Upgrade automatically during the upgrade process for the region.<br> - `Early`: Upgrade automatically with a high prioritization compared with other resources in the region.<br> - `Late`: Upgrade automatically with a low prioritization compared with other resources in the region.<br> - `Manual`: Receive a notification when an upgrade is available, and start the process within 15 days. After 15 days, the upgrade occurs with other automatic upgrades in the region.<br> For more information, see [Upgrade preference for App Service Environment planned maintenance](how-to-upgrade-preference.md). |
+| `upgradePreference` | No | Specify your preference for automatic upgrades. There are four possible values:<br> - `None`: (Default) Upgrade automatically during the upgrade process for the region.<br> - `Early`: Upgrade automatically with a high prioritization compared with other resources in the region.<br> - `Late`: Upgrade automatically with a low prioritization compared with other resources in the region.<br> - `Manual`: Receive a notification when an upgrade is available, and start the process within 15 days. After 15 days, the upgrade occurs with other automatic upgrades in the region.<br> For more information, see [Upgrade preference for App Service Environment planned maintenance](how-to-upgrade-preference.md). |
 | `clusterSettings` | No | Customize the behavior of the App Service Environment. For more information, see [Custom configuration settings for App Service Environments](app-service-app-service-environment-custom-settings.md). |
 | `networkingConfiguration` -> `allowNewPrivateEndpointConnections` | No | Specify whether to allow creation of a new private endpoint connection for an ILB App Service Environment or External App Service Environment. By default, the option is disabled. For more information, see [Network configuration settings > Allow new private endpoint connections](configure-network-settings.md#allow-new-private-endpoint-connections). |
 | `networkingConfiguration` -> `remoteDebugEnabled` | No | Specify whether to enable remote debugging for the App Service Environment. By default, the option is disabled. For more information, see [Network configuration settings > Remote debugging access](configure-network-settings.md#remote-debugging-access). |
@@ -122,6 +122,6 @@ Creating the App Service Environment usually takes about an hour, but if it's a 
 
 ## Related content
 
-- [Use an App Service Environment](using.md)
+- [Host an app in an App Service Environment](using.md)
 - [App Service Environment networking](networking.md)
 - [Certificates and the App Service Environment](overview-certificates.md)
