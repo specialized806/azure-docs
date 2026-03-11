@@ -5,7 +5,6 @@ author: jeevanbalanmanoj
 ms.date: 02/24/2026
 ms.topic: how-to
 ms.service: azure-blob-storage
-ms.date: 02/26/2026
 ms.author: normesta
 ---
 
@@ -68,10 +67,10 @@ Register the `SFTP Entra ID Support` preview feature on your Azure subscription.
 
 Generate the OpenSSH certificate with the Azure CLI [az sftp](/cli/azure/sftp) command as shown in the following example.
 
-    ```azurecli
-    az login
-        az sftp cert --file /my_cert.pub
-    ``` 
+```azurecli
+az login
+az sftp cert --file /my_cert.pub
+``` 
 For security reasons, the certificate is valid for only 65 minutes. After it expires, you need to rerun the command to get a new certificate.
 
 > [!NOTE]
@@ -81,9 +80,9 @@ Optionally, you can generate your own SSH key pair and use it when downloading t
 
 Generate SSH key pair: You must use RSA keys, as Microsoft Entra ID supports only RSA certificates. 
 
-    ```bash
-    ssh-keygen -t rsa
-    ```
+```bash
+ssh-keygen -t rsa
+```
 
 The following key files will be generated:
 
@@ -94,127 +93,127 @@ The following key files will be generated:
 
 Use the following command to generate the SSH certificate with the generated keys:
 
-    ```azurecli
-    az login
-    az sftp cert --public-key-file /id_rsa.pub --file /my_cert.pub
-    ```
+```azurecli
+az login
+az sftp cert --public-key-file /id_rsa.pub --file /my_cert.pub
+```
 
 If you're using a service principal, you can sign in by using either a client secret or a certificate:
 
 To sign in by using a certificate, use the following command:
 
-    ```azurecli
-    az login --service-principal -u <application_id_or_client_id> --tenant <tenant_id> --certificate <path_to_certificate>
-    ```
+```azurecli
+az login --service-principal -u <application_id_or_client_id> --tenant <tenant_id> --certificate <path_to_certificate>
+```
 
 To sign in by using a client secret, use the following command:
 
-    ```azurecli
-    az login --service-principal -u <application_id_or_client_id> -p <secret_value> --tenant <tenant_id>
-    ```
+```azurecli
+az login --service-principal -u <application_id_or_client_id> -p <secret_value> --tenant <tenant_id>
+```
 
 After authentication, run the same command to download the certificate:
 
-    ```azurecli
-    az sftp cert --public-key-file /id_rsa.pub --file /my_cert.pub
-    ```
+```azurecli
+az sftp cert --public-key-file /id_rsa.pub --file /my_cert.pub
+```
 
 #### [Azure PowerShell](#tab/azurepowershell)
 
 Sign in to your Azure subscription with the `Connect-AzAccount` command and follow the on-screen directions. Service principals and managed identity authorization is not yet supported for generating a certificate.
 
-    ```powershell
-    Connect-AzAccount
-    ```
+```powershell
+Connect-AzAccount
+```
 
 Generate the OpenSSH certificate by using [PowerShell Az.Sftp](https://www.powershellgallery.com/packages/Az.Sftp/0.1.0) as shown in the following example:
 
-    ```powershell
-    New-AzSftpCertificate -CertificatePath "\my_cert.cert"
-    ```
+```powershell
+New-AzSftpCertificate -CertificatePath "\my_cert.cert"
+```
 
 Optionally, use the following command to generate the OpenSSH certificate by using your SSH keys:
 
-    ```powershell
-    New-AzSftpCertificate -PublicKeyFile "\id_rsa.pub" -CertificatePath "\my_cert.cert"
-    ```
+```powershell
+New-AzSftpCertificate -PublicKeyFile "\id_rsa.pub" -CertificatePath "\my_cert.cert"
+```
 
 Learn more about the PowerShell module [here](/powershell/module/az.sftp/).
 
 #### [.NET](#tab/dotnet)
 
-    ```csharp
-    
-    using Microsoft.Identity.Client;
-    using Microsoft.Identity.Client.SSHCertificates;
-    using Newtonsoft.Json;
-    using System.Security.Cryptography;
-    using System.Text;
-    public class Program
+```csharp
+
+using Microsoft.Identity.Client;
+using Microsoft.Identity.Client.SSHCertificates;
+using Newtonsoft.Json;
+using System.Security.Cryptography;
+using System.Text;
+public class Program
+{
+    private const string AZURE_CLI_CLIENT_ID = "<your-azure-cli-client-id>";
+    private const string MY_TENANT_ID = "<your-tenant-id>";
+    public static async Task Main(string[] args)
     {
-        private const string AZURE_CLI_CLIENT_ID = "<your-azure-cli-client-id>";
-        private const string MY_TENANT_ID = "<your-tenant-id>";
-        public static async Task Main(string[] args)
+        var options = new PublicClientApplicationOptions
         {
-            var options = new PublicClientApplicationOptions
-            {
-                ClientId = AZURE_CLI_CLIENT_ID,
-            };
-            var app = PublicClientApplicationBuilder.CreateWithApplicationOptions(options)
-                .WithTenantId(MY_TENANT_ID)
-                .WithDefaultRedirectUri()
-                .Build();
-            var scopes = new string[]
-            {
-                "`<https://pas.windows.net/CheckMyAccess/Linux/.default>`",
-            };
-            var keyId = new byte[32];
-            Random.Shared.NextBytes(keyId);
-            var rsa = RSA.Create();
-            var key = rsa.ExportParameters(includePrivateParameters: true);
-            if (key.Modulus == null || key.Exponent == null)
-                throw new InvalidOperationException("RSA key generation failed: Modulus or Exponent is null.");
-            var localKey = new
-            {
-                kty = "RSA",
-                n = Convert.ToBase64String(key.Modulus).Replace("+", "-").Replace("/", "_"),
-                e = Convert.ToBase64String(key.Exponent).Replace("+", "-").Replace("/", "_"),
-                kid = BitConverter.ToString(keyId).Replace("-", string.Empty).ToLower(),
-            };
-            var localKeyJson = JsonConvert.SerializeObject(localKey);
-            Console.WriteLine("RSA Key:");
-            Console.WriteLine(localKeyJson);
-            Console.WriteLine();
+            ClientId = AZURE_CLI_CLIENT_ID,
+        };
+        var app = PublicClientApplicationBuilder.CreateWithApplicationOptions(options)
+            .WithTenantId(MY_TENANT_ID)
+            .WithDefaultRedirectUri()
+            .Build();
+        var scopes = new string[]
+        {
+            "`<https://pas.windows.net/CheckMyAccess/Linux/.default>`",
+        };
+        var keyId = new byte[32];
+        Random.Shared.NextBytes(keyId);
+        var rsa = RSA.Create();
+        var key = rsa.ExportParameters(includePrivateParameters: true);
+        if (key.Modulus == null || key.Exponent == null)
+            throw new InvalidOperationException("RSA key generation failed: Modulus or Exponent is null.");
+        var localKey = new
+        {
+            kty = "RSA",
+            n = Convert.ToBase64String(key.Modulus).Replace("+", "-").Replace("/", "_"),
+            e = Convert.ToBase64String(key.Exponent).Replace("+", "-").Replace("/", "_"),
+            kid = BitConverter.ToString(keyId).Replace("-", string.Empty).ToLower(),
+        };
+        var localKeyJson = JsonConvert.SerializeObject(localKey);
+        Console.WriteLine("RSA Key:");
+        Console.WriteLine(localKeyJson);
+        Console.WriteLine();
 
-            // Get SSH certificate
+        // Get SSH certificate
 
-            AuthenticationResult result = await app.AcquireTokenInteractive(scopes)
-                .WithSSHCertificateAuthenticationScheme(localKeyJson, localKey.kid)
-                .ExecuteAsync();
+        AuthenticationResult result = await app.AcquireTokenInteractive(scopes)
+            .WithSSHCertificateAuthenticationScheme(localKeyJson, localKey.kid)
+            .ExecuteAsync();
 
-            // Define output directory and certificate path
+        // Define output directory and certificate path
 
-            var sshDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".ssh", "entra");
-            Directory.CreateDirectory(sshDir);
-            var certPath = Path.Combine(sshDir, "id_rsa-cert.pub");
+        var sshDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".ssh", "entra");
+        Directory.CreateDirectory(sshDir);
+        var certPath = Path.Combine(sshDir, "id_rsa-cert.pub");
 
-            // Remove read-only attribute if certificate already exists so it can be overwritten
+        // Remove read-only attribute if certificate already exists so it can be overwritten
 
-            if (File.Exists(certPath))
-            {
-                File.SetAttributes(certPath, FileAttributes.Normal);
-            }
-            // Save the certificate
-            var cert = `[$"ssh-rsa-cert-v01@openssh.com](mailto:$%22ssh-rsa-cert-v01@openssh.com)` {result.AccessToken}";
-            await File.WriteAllTextAsync(certPath, cert);
-            File.SetAttributes(certPath, FileAttributes.ReadOnly);
-            // Dump certificate content to console
-            Console.WriteLine("Cert");
-            Console.WriteLine(cert);
-            Console.WriteLine();
-    }
-    }
-    ```
+        if (File.Exists(certPath))
+        {
+            File.SetAttributes(certPath, FileAttributes.Normal);
+        }
+        // Save the certificate
+        var cert = `[$"ssh-rsa-cert-v01@openssh.com](mailto:$%22ssh-rsa-cert-v01@openssh.com)` {result.AccessToken}";
+        await File.WriteAllTextAsync(certPath, cert);
+        File.SetAttributes(certPath, FileAttributes.ReadOnly);
+        // Dump certificate content to console
+        Console.WriteLine("Cert");
+        Console.WriteLine(cert);
+        Console.WriteLine();
+}
+}
+```
 
 ---
 
@@ -234,11 +233,11 @@ For security reasons, the OpenSSH certificate is valid for 65 minutes. After thi
 
 #### Connect by using an SFTP command
 
-    ```bash
-    C:\Users\username> sftp -o PubkeyAcceptedKeyTypes="rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-256" -o IdentityFile="C:\path\to\key\.ssh\id_rsa" -o CertificateFile="C:\path\to\cert\.ssh\my_cert.pub" storageaccountname.username@storageaccountname.blob.core.windows.net
-    Connected to storageaccountname.blob.core.windows.net.
-    sftp>
-    ```
+```bash
+C:\Users\username> sftp -o PubkeyAcceptedKeyTypes="rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-256" -o IdentityFile="C:\path\to\key\.ssh\id_rsa" -o CertificateFile="C:\path\to\cert\.ssh\my_cert.pub" storageaccountname.username@storageaccountname.blob.core.windows.net
+Connected to storageaccountname.blob.core.windows.net.
+sftp>
+```
 
 If the principal uses the format [username@domain.com](mailto:username@domain.com), make sure to exclude the domain section in the command and use only the username portion.
 
@@ -249,9 +248,9 @@ Both [User and service principals](/entra/identity-platform/app-objects-and-serv
 
 Once connected, use the following command to upload a file to Azure Storage via SFTP:
 
-    ```bash
-    sftp> put 'C:\path\to\blob\blog.jpeg'
-    ```
+```bash
+sftp> put 'C:\path\to\blob\blog.jpeg'
+```
 
 If you receive a permission denied error, ensure that you have the necessary Azure roles such as Storage Blob Data Contributor or Storage Blob Data Owner.
 
@@ -277,16 +276,16 @@ SFTP clients such as WinSCP and PuTTY support OpenSSH-based authentication. The 
 
 Use the following command to connect by using the OpenSSH certificate obtained in the previous steps:
 
-    ```azurecli
-    az sftp connect --storage-account <<account_name>> --certificate-file /my_cert.pub
-    ```
+```azurecli
+az sftp connect --storage-account <<account_name>> --certificate-file /my_cert.pub
+```
 
 Additionally, you can get the OpenSSH certificate and connect to SFTP by using a single command as follows:
 
-    ```azurecli
-    az sftp connect
-    az sftp connect --storage-account <<account_name>>
-    ```
+```azurecli
+az sftp connect
+az sftp connect --storage-account <<account_name>>
+```
 
 For more information about the commands, see [here](/cli/azure/sftp).
 
@@ -294,20 +293,18 @@ For more information about the commands, see [here](/cli/azure/sftp).
 
 Use the following command to connect by using the OpenSSH certificate obtained in the previous steps:
 
-    ```powershell
-    Connect-AzSftp -StorageAccount "<<account_name>>" -CertificateFile "/my_cert.pub"
-    ```
+```powershell
+Connect-AzSftp -StorageAccount "<<account_name>>" -CertificateFile "/my_cert.pub"
+```
 
 Additionally, you can get the OpenSSH certificate and connect to SFTP by using a single command as follows:
 
-    ```powershell
-    Connect-AzAccount
-    Connect-AzSftp -StorageAccount "<<account_name>>"
-    ```
+```powershell
+Connect-AzAccount
+Connect-AzSftp -StorageAccount "<<account_name>>"
+```
 
 For more information about the commands, see [here](/powershell/module/az.sftp/connect-azsftp).
-
-
 
 ##### [.NET](#tab/dotnet)
 
