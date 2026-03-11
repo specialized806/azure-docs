@@ -56,6 +56,14 @@
     - name: Run scheduled tasks
       displayName: timer trigger, schedule
       href: scenario-scheduled-tasks.md
+    - name: Using external dependencies or large files via Azure Files mounts
+      items:
+      - name: Durable text analysis
+        displayName: Azure Files, OS mount, Durable Functions, Flex Consumption
+        href: quickstart-durable-text-analysis-azure-files.md
+      - name: FFmpeg image processing
+        displayName: Azure Files, OS mount, ffmpeg, Flex Consumption
+        href: quickstart-ffmpeg-processing-azure-files.md
   - name: Developer tools
     items:
     - name: Azure Developer CLI
@@ -117,7 +125,10 @@
     href: functions-twitter-email.md
   - name: Host MCP servers for AI-enabled functions
     displayName: agent, agentic, Foundry
-    href: functions-mcp-tutorial.md 
+    href: functions-mcp-tutorial.md
+  - name: Shared file access with Azure Files OS mounts
+    displayName: Azure Files, OS mount, Flex Consumption, shared files
+    href: tutorial-shared-file-access-azure-files.md
   - name: Develop Python functions with VS Code
     href: ./create-first-function-vs-code-python.md
   - name: Create serverless APIs using Visual Studio

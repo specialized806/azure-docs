@@ -13,8 +13,7 @@ ms.custom:
 When you're using the Consumption plan, instances of the Azure Functions host are dynamically added and removed based on the number of incoming events. 
 
 [!INCLUDE [functions-linux-consumption-retirement](../../includes/functions-linux-consumption-retirement.md)]
-
-The Consumption plan scales automatically, even during periods of high load. When running functions in a Consumption plan, you're charged for compute resources only when your functions are running. On a Consumption plan, a function execution times out after a configurable period of time.
+The Consumption plan scales automatically in response to demand. With this plan, you're billed only for the compute resources used while your functions are running, and function execution times out after a configurable period.
 
 > [!TIP]  
 > [!INCLUDE [functions-flex-consumption-recommended-serverless](../../includes/functions-flex-consumption-recommended-serverless.md)]
@@ -24,20 +23,6 @@ The Consumption plan scales automatically, even during periods of high load. Whe
 Billing is based on number of executions, execution time, and memory used. Usage is aggregated across all functions within a function app. For more information, see [Azure Functions pricing](https://azure.microsoft.com/pricing/details/functions/).
 
 To learn more about how to estimate costs when running in a Consumption plan, see [Understanding Consumption plan costs](functions-consumption-costs.md).
-
-## Create a Consumption plan function app
-
-When you create a function app in the Azure portal, the Consumption plan is the default. When using APIs to create your function app, you don't have to first create an App Service plan as you do with Premium and Dedicated plans.
-
-In Consumption plan hosting, each function app typically runs in its own plan. In the Azure portal or in code, you might also see the Consumption plan referred to as `Dynamic` or `Y1`.
-
-Use the following links to learn how to create a serverless function app in a Consumption plan, either programmatically or in the Azure portal:
-
-- [Azure CLI](functions-cli-samples.md#create)
-- [Azure portal](./functions-get-started.md)
-- [Azure Resource Manager template](functions-create-first-function-resource-manager.md)
-
-You can also create function apps in a Consumption plan when you publish a Functions project from [Visual Studio Code](./how-to-create-function-vs-code.md#create-the-function-app-in-azure) or [Visual Studio](functions-create-your-first-function-visual-studio.md#publish-the-project-to-azure).
 
 ## Multiple apps in the same plan
 
