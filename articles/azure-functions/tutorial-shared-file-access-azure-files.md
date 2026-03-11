@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Shared file access patterns with Azure Files OS mounts"
+title: "Tutorial: Shared file access patterns with Azure Files OS mounts in Azure Functions"
 description: Learn when and how to use Azure Files OS mounts with Azure Functions Flex Consumption for shared file access, large binaries, and cross-app data sharing.
 ms.service: azure-functions
 ms.topic: tutorial

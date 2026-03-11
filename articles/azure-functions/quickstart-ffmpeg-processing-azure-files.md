@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: FFmpeg image processing with Azure Files OS mount"
+title: "Quickstart: Image processing with FFmpeg in an Azure Files OS mount in Azure Functions"
 description: Learn how to deploy a Python Azure Functions app that uses an ffmpeg binary hosted on an Azure Files OS mount to process images on a Flex Consumption plan.
 ms.service: azure-functions
 ms.topic: quickstart
@@ -10,7 +10,7 @@ ms.custom:
 #customer intent: As a developer, I want to host large third-party binaries like ffmpeg on an Azure Files OS mount so I can keep my function deployment small and cold starts fast.
 ---
 
-# Quickstart: FFmpeg image processing with Azure Files OS mount
+# Quickstart: Image processing with FFmpeg in an Azure Files OS mount
 
 In this quickstart, you deploy a Python Azure Functions app that uses an **ffmpeg binary on an OS-mounted Azure Files share** to process images. When you upload an image to Azure Blob Storage, the function triggers, downloads the image, converts it by using ffmpeg from the mount, and saves the result back to storage.
 

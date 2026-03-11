@@ -29,8 +29,13 @@
       displayName: Flex Consumption plan
       href: create-first-function-azure-developer-cli.md
     - name: Process file uploads
-      displayName: storage, blob, Event Grid
-      href: scenario-blob-storage-events.md  
+      items:
+      - name: Respond to blob storage events by using Azure Functions
+        displayName: storage, blob, Event Grid
+        href: scenario-blob-storage-events.md
+      - name: Image processing with FFmpeg in an Azure Files OS mount
+        displayName: Azure Files, OS mount, ffmpeg, Flex Consumption
+        href: quickstart-ffmpeg-processing-azure-files.md  
     - name: AI tools and MCP
       items:
       - name: Custom remote MCP server
@@ -51,19 +56,16 @@
         displayName: data validation, database
         href: scenario-database-changes-azure-sqldb.md
     - name: Build a serverless workflow
-      displayName: workflow, Durable Functions
-      href: ./durable/scenario-build-serverless-workflow.md?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
-    - name: Run scheduled tasks
-      displayName: timer trigger, schedule
-      href: scenario-scheduled-tasks.md
-    - name: Using external dependencies or large files via Azure Files mounts
       items:
+      - name: Serverless workflow with Durable Functions
+        displayName: workflow, Durable Functions
+        href: ./durable/scenario-build-serverless-workflow.md?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
       - name: Durable text analysis
         displayName: Azure Files, OS mount, Durable Functions, Flex Consumption
         href: quickstart-durable-text-analysis-azure-files.md
-      - name: FFmpeg image processing
-        displayName: Azure Files, OS mount, ffmpeg, Flex Consumption
-        href: quickstart-ffmpeg-processing-azure-files.md
+    - name: Run scheduled tasks
+      displayName: timer trigger, schedule
+      href: scenario-scheduled-tasks.md
   - name: Developer tools
     items:
     - name: Azure Developer CLI

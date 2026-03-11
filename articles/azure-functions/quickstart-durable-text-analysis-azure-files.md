@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Durable text analysis with Azure Files OS mount"
+title: "Quickstart: Durable text analysis with Azure Files OS mount in Azure Functions"
 description: Learn how to deploy a Python Azure Functions app that uses Durable Functions to orchestrate parallel text file analysis by using an Azure Files OS mount on a Flex Consumption plan.
 ms.service: azure-functions
 ms.topic: quickstart
