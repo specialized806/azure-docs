@@ -1,6 +1,7 @@
 ---
 title:  Authorize SFTP access to blobs using Microsoft Entra ID (preview)
 titleSuffix: Azure Storage
+description: Learn how to authorize SSH File Transfer Protocol (SFTP) access to blobs by using Microsoft Entra ID.
 author: jeevanbalanmanoj
 ms.date: 02/24/2026
 ms.topic: how-to
@@ -225,7 +226,7 @@ Use the following command to view the OpenSSH certificate:
 
 The _Principals_ section contains the username:
 
-:::image type="content" source="./media/secure-file-transfer-protocol-support/verify-opensshcert.png" alt-text="Screenshot of the principals section in the command ouput.":::
+:::image type="content" source="./media/secure-file-transfer-protocol-support/verify-certificate.png" alt-text="Screenshot of the principals section in the command ouput.":::
 
 For security reasons, the OpenSSH certificate is valid for 65 minutes. After this period, you need to request a new certificate to initiate any further transactions.
 
@@ -262,15 +263,15 @@ SFTP clients such as WinSCP and PuTTY support OpenSSH-based authentication. The 
 1. Obtain the OpenSSH certificate from the previous step (Generate OpenSSH certificate)
 1. In WinSCP, enter the Host name and Username, and then select **Advanced**
 
-   :::image type="content" source="./media/secure-file-transfer-protocol-support/winscp-login.png" alt-text="Screenshot of of the Login window and the Advanced option.":::
+   :::image type="content" source="./media/secure-file-transfer-protocol-support/login-dialog.png" alt-text="Screenshot of of the Login window and the Advanced option.":::
 
 1. In the SSH tab, go to the Authentication section. Attach the private key and certificate files obtained from the previous sections, and then select **OK**.
 
-   :::image type="content" source="./media/secure-file-transfer-protocol-support/winscp-advanced-settings.png" alt-text="Screenshot of the Authentication settings in the Advanced Site Settings dialog box.":::
+   :::image type="content" source="./media/secure-file-transfer-protocol-support/advanced-settings.png" alt-text="Screenshot of the Authentication settings in the Advanced Site Settings dialog box.":::
 
 1. Select **Login** to sign in by using the Microsoft Entra ID account and OpenSSH certificate.
 
-   :::image type="content" source="./media/secure-file-transfer-protocol-support/winscp-login-highlight.png" alt-text="Screenshot Login dialog box.":::
+   :::image type="content" source="./media/secure-file-transfer-protocol-support/login-button.png" alt-text="Screenshot Login dialog box.":::
 
 ##### [Azure CLI](#tab/azurecli)
 
@@ -364,9 +365,9 @@ An `Access denied` error can happen even if you're able to connect to storage ac
 
 This error can happen because WinSCP automatically tries to **canonicalize every directory** it enters. That means that for _every_ `cd` or directory listing, it sends one or more extra protocol requests to figure out the "true" absolute path.
 
-    - The **root directory** shows _containers_.
-    - Each container acts as **a virtual chroot**. Once you're inside it, you can't go above or outside it.
-    - Paths are **virtual**, not physical. Azure doesn't support `/`-based absolute traversal above containers.
+- The **root directory** shows _containers_.
+- Each container acts as **a virtual chroot**. Once you're inside it, you can't go above or outside it.
+- Paths are **virtual**, not physical. Azure doesn't support `/`-based absolute traversal above containers.
 
 Resolve this problem by using one of the following options:
 
