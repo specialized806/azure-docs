@@ -553,10 +553,16 @@ az rest --method get \
 
 To mount an NFS file share snapshot to a Linux VM (NFS client) and restore files, follow these steps.
 
-1. Run the following command in a console. See [Mount options](storage-files-how-to-mount-nfs-shares.md#mount-options) for other recommended mount options. To improve copy performance, mount the snapshot by using [nconnect](nfs-performance.md#nfs-nconnect) to use multiple TCP channels. Replace the placeholder values, including brackets, with your own values. Replace `/media/nfs` with your local mount path for the file share, if different.
+1. Sign in to the Azure portal and go to your file share.
+
+1. Select **JSON view** from the upper right. In the JSON view, under properties, copy the value for **hostName**. The format looks like `fs-xxxxxxxxxxxxxxxxx.xx.file.storage.azure.net`.
+
+1. Run the following command in a console. Replace the placeholder values, including brackets, with your own values. The value for `<hostName>` should be the entire value you copied in step 2. The value for `<hostNamePrefix>` is the first segment of the hostName (up to but not including the first period), which includes everything before `.xx.file.storage.azure.net`.
+ 
+   Replace `/media/nfs` with your local mount path for the file share, if different. To improve copy performance, mount the snapshot by using [nconnect](nfs-performance.md#nfs-nconnect) to use multiple TCP channels. See [Mount options](storage-files-how-to-mount-nfs-shares.md#mount-options) for other recommended mount options.
    
    ```bash
-   sudo mount -o vers=4,minorversion=1,proto=tcp,sec=sys <StorageAccountName>.file.core.windows.net:/<StorageAccountName>/<FileShareName> /media/nfs
+   sudo mount -o vers=4,minorversion=1,proto=tcp,sec=sys <hostName>:/<hostNamePrefix>/<fileShareName> /media/nfs
    ```
    
 1. Change the directory to `/media/nfs/.snapshots` so you can view the available snapshots. The `.snapshots` directory is hidden by default, but you can access and read from it like any directory. If you just created the snapshot, wait at least 30 seconds for the `.snapshots` directory to become available.
