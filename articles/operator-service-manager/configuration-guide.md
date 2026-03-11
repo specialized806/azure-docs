@@ -12,7 +12,7 @@ ms.service: azure-operator-service-manager
 
 This article provides Azure Operator Service Manager guidelines to optimize the design of configuration group schemas (CGSs) and the operation of configuration group values (CGVs). Network function (NF) vendors, telco operators, and their partners should keep these practices in mind when onboarding and deploying NFs.
 
-## Configurarion group approach
+## Configuration group approach
 
 Consider the following meta-schema guidelines when you're designing configuration resources:
 
@@ -26,7 +26,7 @@ Consider the following meta-schema guidelines when you're designing configuratio
 
 ## One-CGS approach
 
-The original recommendation was to use only a single CGS/CGV set for the entire NF. This approach consolidated site-specific, instance-specific, and security-specific parameters together. Only in rare cases, where a service had multiple nfs, were multiple sets used. Many partners successfully onboarded using this approach, and it remains supported. However, this approach doesn't obscure secrets. All configuration values are stored in plain-text and are displayable via most Azure methods.
+The original recommendation was to use only a single CGS/CGV set for the entire NF. This approach consolidated site-specific, instance-specific, and security-specific parameters together. Only in rare cases, where a service had multiple NFs, were multiple sets used. Many partners successfully onboarded using this approach, and it remains supported. However, this approach doesn't obscure secrets. All configuration values are stored in plain-text and are displayable via most Azure methods.
 
 ## Three-CGS approach
 
@@ -92,13 +92,13 @@ This example shows the rendered CGV resource created after the CGV deployment co
 ```
 
 ## CGS with secrets
-Other then seperating secrets into a unique CGS, no special requirements exist for CGS secret support.
+Other than separating secrets into a unique CGS, no special requirements exist for CGS secret support.
 
 ## CGV with secrets
-Consider the following Azure Resource Manager (ARM) template reqiurements to properly obscure secret values throughout the entire CGV resource lifecycle.
+Consider the following Azure Resource Manager (ARM) template requirements to properly obscure secret values throughout the entire CGV resource lifecycle.
 
 * Use `configurationType: 'Secret'` in the template under resource properties.
-  * Once a CGV is deployed, this prevents displaying the secret data via most Azure methods.
+  * Once a CGV is deployed, this configuration prevents displaying the secret data via most Azure methods.
  
 ```json
 "parameters": {
@@ -109,7 +109,7 @@ Consider the following Azure Resource Manager (ARM) template reqiurements to pro
 ```
 
 * Use `"type": "secureObject"` in the template under parameter type 
-  * This obscures the display of the secrets as template parameters.
+  * This configuration obscures the display of the secrets as template parameters.
  
 ```json
 {
@@ -122,10 +122,10 @@ Consider the following Azure Resource Manager (ARM) template reqiurements to pro
 ```
 
 * Use a template reference to Azure Key Vault (AKV) in place of the plain-text secret.
-  * This obscures the display of the secrets as template variables.
+  * This configuration obscures the display of the secrets as template variables.
 
 > [!NOTE]
-> * Only Azure Key Vault is supported by ARM for secret reference substition.
+> * ARM template only support Azure Key Vault for secret reference substitution.
 
 This example shows how to include an AKV reference to a secret named `secretName` in an ARM template. 
 
@@ -139,7 +139,7 @@ This example shows how to include an AKV reference to a secret named `secretName
       }
 ```
 
-To further secure resources, consinder restricting access to the RBAC scope `Microsoft.Resources/deployments/exportTemplate/action` to only roles which absolutely need to this access.
+To further secure resources, consider restricting access to the role based access control (RBAC) scope `Microsoft.Resources/deployments/exportTemplate/action` to only roles that absolutely need to this access.
 
 ## Overview of JSON Schema
 
