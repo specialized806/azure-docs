@@ -26,6 +26,7 @@ To compare SKU features and determine which tier is right for you, see [Choose t
 
 Before upgrading your Azure Bastion SKU, verify the following requirements:
 
+- **Azure CLI**: If using Azure CLI, install the [bastion extension](/cli/azure/network/bastion). The extension installs automatically the first time you run an `az network bastion` command. Requires Azure CLI version 2.62.0 or higher.
 - **Permissions**: You need Contributor or Owner role on the resource group containing your Bastion host.
 - **Subnet requirements** (Developer SKU upgrade only): A subnet named **AzureBastionSubnet** with a prefix of /26 or larger (/25, /24, etc.) must exist in your virtual network or be created before upgrading.
 - **Public IP** (Developer SKU upgrade only): A Standard SKU public IP address with static allocation is required unless you're deploying Premium SKU with private-only configuration.
@@ -56,6 +57,9 @@ Run the following command to view your current Bastion SKU:
 ```azurecli
 az network bastion show --name <bastion-name> --resource-group <resource-group-name> --query sku.name --output tsv
 ```
+
+> [!IMPORTANT]
+> When using `az network bastion update`, you must include the `--location` parameter matching the region of your existing Bastion host. If omitted, the CLI may default to a different region, resulting in an `InvalidResourceLocation` error.
 
 ---
 
@@ -107,15 +111,23 @@ The upgrade takes approximately 10 minutes to complete.
 
 1. **Upgrade the Bastion host**:
 
+   The `az network bastion update` command can't add the IP configuration required for dedicated infrastructure. Delete the Developer SKU Bastion host and create a new one with the target SKU:
+
    ```azurecli
-   az network bastion update \
+   az network bastion delete \
        --name <bastion-name> \
-       --resource-group <resource-group-name> \
-       --sku <Standard|Premium>
+       --resource-group <resource-group-name>
    ```
 
-   > [!NOTE]
-   > If the update command fails when upgrading from Developer SKU, delete and recreate the Bastion host with the new SKU. The Developer to dedicated infrastructure transition isn't always supported via CLI update.
+   ```azurecli
+   az network bastion create \
+       --name <bastion-name> \
+       --resource-group <resource-group-name> \
+       --vnet-name <vnet-name> \
+       --public-ip-address <public-ip-name> \
+       --sku <Basic|Standard|Premium> \
+       --location <location>
+   ```
 
 ---
 
@@ -141,7 +153,8 @@ Run the following command to upgrade your Bastion SKU:
 az network bastion update \
     --name <bastion-name> \
     --resource-group <resource-group-name> \
-    --sku <Standard|Premium>
+    --location <location> \
+    --sku name=<Standard|Premium>
 ```
 
 To enable features during the upgrade, add the appropriate parameters. For example, to enable native client support and IP-based connection:
@@ -150,7 +163,8 @@ To enable features during the upgrade, add the appropriate parameters. For examp
 az network bastion update \
     --name <bastion-name> \
     --resource-group <resource-group-name> \
-    --sku Standard \
+    --location <location> \
+    --sku name=Standard \
     --enable-tunneling true \
     --enable-ip-connect true
 ```
