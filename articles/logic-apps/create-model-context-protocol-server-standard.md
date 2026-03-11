@@ -8,7 +8,7 @@ ms.author: kewear
 ms.reviewers: estfan, azla
 ms.topic: how-to
 ms.collection: ce-skilling-ai-copilot
-ms.date: 02/16/2026
+ms.date: 02/25/2026
 ms.update-cycle: 180-days
 #Customer intent: As an AI developer working with Azure Logic Apps, I want to create and register a remote MCP server that provides tools for AI agents and large language models (LLMs) to use for completing tasks. I can build these tools from connector actions in Azure Logic Apps.
 ---

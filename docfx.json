@@ -1303,7 +1303,8 @@
         "articles/partner-solutions/qumulo/**/*.yml": "qumulo",
         "articles/partner-solutions/split-experimentation/**/*.md": "split-experimentation",
         "articles/partner-solutions/split-experimentation/**/*.yml": "split-experimentation",
-        "articles/governance/management-groups/**/*.md": "azure-governance"
+        "articles/governance/management-groups/**/*.md": "azure-governance",
+        "articles/sentinel/**/*.md": "sentinel-siem"
       },
       "monikerRange": {
         "articles/migrate/**/*.md": "<=migrate-classic >=migrate"
@@ -1706,6 +1707,8 @@
         "articles/azure-center-sap-solutions/*.yml": "Azure Center for SAP solutions",
         "articles/azure-fluid-relay/**/*.md": "Azure Fluid Relay",
         "articles/azure-fluid-relay/**/*.yml": "Azure Fluid Relay",
+        "articles/azure-functions/durable/**/*.md": "Azure Durable",
+        "articles/azure-functions/durable/**/*.yml": "Azure Durable",
         "articles/azure-government/**/*.md": "Azure Government",
         "articles/azure-monitor/**/*.md": "Azure Monitor",
         "articles/azure-monitor/**/*.yml": "Azure Monitor",
@@ -1828,6 +1831,93 @@
         ],
         "articles/migrate/tutorial-discover-spring-boot.md": [
           "migrate"
+        ],
+        "articles/migrate/best-practices-assessment.md": [
+          "migrate"
+        ],
+        "articles/migrate/concepts-assessment-calculation.md": [
+          "migrate"
+        ],
+        "articles/migrate/concepts-azure-sap-systems-assessment.md": [
+          "migrate"
+        ],
+        "articles/migrate/concepts-azure-sql-assessment-calculation.md": [
+          "migrate"
+        ],
+        "articles/migrate/concepts-azure-vmware-solution-assessment-calculation.md": [
+          "migrate"
+        ],
+        "articles/migrate/concepts-azure-webapps-assessment-calculation.md": [
+          "migrate"
+        ],
+        "articles/migrate/concepts-migration-planning.md": [
+          "migrate"
+        ],
+        "articles/migrate/concepts-migration-webapps.md": [
+          "migrate"
+        ],
+        "articles/migrate/how-to-create-a-group.md": [
+          "migrate"
+        ],
+        "articles/migrate/how-to-create-azure-app-service-assessment.md": [
+          "migrate"
+        ],
+        "articles/migrate/how-to-create-azure-sql-assessment.md": [
+          "migrate"
+        ],
+        "articles/migrate/how-to-discover-applications.md": [
+          "migrate"
+        ],
+        "articles/migrate/how-to-create-sql-assessment.md": [
+          "migrate"
+        ],
+        "articles/migrate/how-to-migrate.md": [
+          "migrate"
+        ],
+        "articles/migrate/how-to-modify-assessment.md": [
+          "migrate"
+        ],
+        "articles/migrate/how-to-review-sql-assessment.md": [
+          "migrate"
+        ],
+        "articles/migrate/how-to-set-up-appliance-hyper-v.md": [
+          "migrate"
+        ],
+        "articles/migrate/how-to-set-up-appliance-vmware.md": [
+          "migrate"
+        ],
+        "articles/migrate/migrate-replication-appliance.md": [
+          "migrate"
+        ],
+        "articles/migrate/review-sap-assessment.md": [
+          "migrate"
+        ],
+        "articles/migrate/tutorial-assess-aspnet-aks.md": [
+          "migrate"
+        ],
+        "articles/migrate/tutorial-assess-aws.md": [
+          "migrate"
+        ],
+        "articles/migrate/tutorial-assess-gcp.md": [
+          "migrate"
+        ],
+        "articles/migrate/tutorial-assess-hyper-v.md": [
+          "migrate"
+        ],
+        "articles/migrate/tutorial-assess-sap-systems.md": [
+          "migrate"
+        ],
+        "articles/migrate/tutorial-assess-webapps.md": [
+          "migrate"
+        ],
+        "articles/migrate/tutorial-discover-sap-systems.md": [
+          "migrate"
+        ],
+        "articles/migrate/tutorial-migrate-gcp-virtual-machines.md": [
+          "migrate"
+        ],
+        "articles/migrate/migrate-support-matrix-physical-migration.md": [
+          "migrate"
         ]
       }
     },
@@ -1857,7 +1947,14 @@
           "articles/governance/policy/**/*.md",
           "articles/hdinsight/hdinsight-high-availability-components.md",
           "articles/hdinsight/optimize-hbase-ambari.md",
-          "articles/site-recovery/**/*.md"
+          "articles/site-recovery/**/*.md",
+          "articles/sentinel/ueba-useful-queries.md",
+          "articles/sentinel/identify-threats-with-entity-behavior-analytics.md"
+        ]
+      },
+      "filename-incomplete": {
+        "exclude": [
+          "articles/azure-functions/errors-diagnostics/**/*.md"
         ]
       },
       "sensitive-language-sl": {
