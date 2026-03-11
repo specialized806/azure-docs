@@ -95,6 +95,12 @@ Here is the code that implements the orchestrator function:
 > [!NOTE]
 > The sample linked in the prerequisites (`samples/precompiled`) uses the in-process model. The following **Isolated model** sections show equivalent code for the .NET isolated worker model.
 
+Notice the `await Task.WhenAll(tasks);` line. The code doesn't await the individual calls to `E2_CopyFileToBlob`, so they run in parallel. When the orchestrator passes the task array to `Task.WhenAll`, it returns a task that doesn't complete until all copy operations complete. If you're familiar with the Task Parallel Library (TPL) in .NET, this pattern is familiar. The difference is that these tasks could be running on multiple virtual machines concurrently, and the Durable Functions extension ensures that the end-to-end execution is resilient to process recycling.
+
+After the orchestrator awaits `Task.WhenAll`, all function calls are complete and return values. Each call to `E2_CopyFileToBlob` returns the number of bytes uploaded. Calculate the total by adding the return values.
+
+<br>
+
 <details>
 <summary><b>Isolated model</b></summary>
 
@@ -133,9 +139,7 @@ public static class BackupSiteContent
 
 </details>
 
-Notice the `await Task.WhenAll(tasks);` line. The code doesn't await the individual calls to `E2_CopyFileToBlob`, so they run in parallel. When the orchestrator passes the task array to `Task.WhenAll`, it returns a task that doesn't complete until all copy operations complete. If you're familiar with the Task Parallel Library (TPL) in .NET, this pattern is familiar. The difference is that these tasks could be running on multiple virtual machines concurrently, and the Durable Functions extension ensures that the end-to-end execution is resilient to process recycling.
-
-After the orchestrator awaits `Task.WhenAll`, all function calls are complete and return values. Each call to `E2_CopyFileToBlob` returns the number of bytes uploaded. Calculate the total by adding the return values.
+<br>
 
 # [JavaScript](#tab/javascript)
 
@@ -362,6 +366,8 @@ The helper activity functions are regular functions that use the `activityTrigge
 
 [!code-csharp[Main](~/samples-durable-functions/samples/precompiled/BackupSiteContent.cs?range=44-54)]
 
+<br>
+
 <details>
 <summary><b>Isolated model</b></summary>
 
@@ -391,6 +397,8 @@ public static class BackupSiteContent
 ```
 
 </details>
+
+<br>
 
 # [JavaScript](#tab/javascript)
 
@@ -451,6 +459,13 @@ Java sample coming soon.
 
 [!code-csharp[Main](~/samples-durable-functions/samples/precompiled/BackupSiteContent.cs?range=56-81)]
 
+> [!NOTE]
+> To run the sample code, install the `Microsoft.Azure.WebJobs.Extensions.Storage` NuGet package.
+
+The function uses Azure Functions binding features like the [`Binder` parameter](../functions-dotnet-class-library.md#binding-at-runtime). You don't need those details for this walkthrough.
+
+<br>
+
 <details>
 <summary><b>Isolated model</b></summary>
 
@@ -501,10 +516,7 @@ public static class BackupSiteContent
 
 </details>
 
-> [!NOTE]
-> To run the sample code, install the `Microsoft.Azure.WebJobs.Extensions.Storage` NuGet package.
-
-The function uses Azure Functions binding features like the [`Binder` parameter](../functions-dotnet-class-library.md#binding-at-runtime). You don't need those details for this walkthrough.
+<br>
 
 # [JavaScript](#tab/javascript)
 
