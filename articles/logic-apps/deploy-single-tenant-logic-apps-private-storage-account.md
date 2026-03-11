@@ -64,9 +64,9 @@ This deployment method requires temporary public access to your storage account.
 
    1. On the logic app resource menu, under **Settings**, select **Environment variables**.
 
-   1. On the **App settings** tab, add the **WEBSITE_CONTENTOVERVNET** app setting, if none exist, and set the value to **1**.
+   1. On the **App settings** tab, add the **WEBSITE_CONTENTOVERVNET** app setting, if none exists, and set the value to **1**.
 
-   1. If you use your own domain name server (DNS) with your virtual network, add the **WEBSITE_DNS_SERVER** app setting, if none exist, and set the value to the IP address for your DNS. If you have a secondary DNS, add another app setting named **WEBSITE_DNS_ALT_SERVER**, and set the value to the IP for your secondary DNS.
+   1. If you use your own domain name server (DNS) with your virtual network, add the **WEBSITE_DNS_SERVER** app setting, if none exists, and set the value to the IP address for your DNS. If you have a secondary DNS, add another app setting named **WEBSITE_DNS_ALT_SERVER**, and set the value to the IP for your secondary DNS.
 
 1. After you apply these app settings, you can remove public access from your storage account.
 
