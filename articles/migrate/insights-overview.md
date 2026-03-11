@@ -274,6 +274,7 @@ To review web apps with identified security risks, follow these steps:
     - End-of-support runtime/framework
     - Known vulnerabilities (CVEs) in runtime/framework
 
+    :::image type="content" source="./media/security-insights-overview/web-apps-end-of-support-vulnerabilities.png" alt-text="Screenshot shows the web apps with security risks along with end of support and vulnerabilities." lightbox="./media/security-insights-overview/web-apps-end-of-support-vulnerabilities.png":::
 
 ### Review detailed Security Insights for a Web app
 
