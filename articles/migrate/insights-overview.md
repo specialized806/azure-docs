@@ -144,9 +144,13 @@ The **Software card** shows a summary of all discovered software with security r
 
 The **Database instances card** shows a summary of all database instances with security risks. Database instance is flagged to be at risk if its database platform is either end-of-support or has known vulnerabilities (CVEs). The card displays the number of database instances on end-of-support platform and database instances with vulnerabilities as fractions of total database instances with security risks.
 
+:::image type="content" source="./media/security-insights-overview/database-risk-assessment.png" alt-text="Screenshot database instances with security risks." lightbox="./media/security-insights-overview/database-risk-assessment.png":::
+
 ### Review Web apps risk assessment 
 
 The **Web apps card** shows a summary of all web apps with security risks. Web app is flagged to be at risk if its runtime is either end-of-support or has known vulnerabilities (CVEs). The card displays the number of web apps with end-of-support runtime and web apps with vulnerabilities as fractions of total web apps with security risks.
+
+
 
 ## Review detailed Security Insights 
 
