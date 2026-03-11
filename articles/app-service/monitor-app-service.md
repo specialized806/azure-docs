@@ -3,7 +3,7 @@ title: Monitor Azure App Service
 description: Learn about options in Azure App Service for monitoring resources for availability, performance, and operation.
 ms.date: 04/18/2025
 ms.custom: horz-monitor
-ms.topic: concept-article
+ms.topic: conceptual
 author: msangapu-msft
 ms.author: msangapu
 ms.service: azure-app-service
@@ -42,9 +42,56 @@ The following table lists monitoring methods to use for different scenarios.
 
 ### Application Insights
 
-Application Insights uses the powerful data analysis platform in Azure Monitor to provide you with deep insights into your application's operations. Application Insights monitors the availability, performance, and usage of your web applications, so you can identify and diagnose errors without waiting for a user to report them.
+Application Insights is an Azure Monitor feature that helps you monitor availability, performance, and usage for your web app. For supported App Service stacks, you can enable Application Insights from the Azure portal without changing your code. If you need custom telemetry, unsupported hosting scenarios, or more control over configuration, use [manual instrumentation](/azure/azure-monitor/app/opentelemetry-overview). For more information about Application Insights, see [Application Insights overview](/azure/azure-monitor/app/app-insights-overview).
 
-Application Insights includes connection points to various development tools and integrates with Visual Studio to support your DevOps processes. For more information, see [Application monitoring for App Service](/azure/azure-monitor/app/azure-web-apps).
+> [!NOTE]
+> Use a connection string to connect your app to Application Insights. For more information, see [Connection strings in Application Insights](/azure/azure-monitor/app/connection-strings).
+
+To enable Application Insights for any supported language, open your app in the Azure portal, select **Application Insights** > **Enable**, create or select an Application Insights resource, and then select **Apply monitoring settings**. App Service restarts the app.
+
+Don't enable App Service autoinstrumentation and code-based instrumentation for the same app. If you see duplicate telemetry or missing data, see [Troubleshoot Application Insights integration with Azure App Service](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-app-service-issues).
+
+## [ASP.NET Core](#tab/aspnetcore)
+
+Use **Recommended** to collect telemetry. Use **Disabled** to turn off App Service autoinstrumentation for ASP.NET Core.
+
+> [!NOTE]
+> Only .NET [Long Term Support](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) (LTS) releases are supported. [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) aren't supported. Use [manual instrumentation](/azure/azure-monitor/app/opentelemetry-overview) instead.
+
+## [.NET](#tab/net)
+
+Use **Recommended** or **Basic** for ASP.NET apps.
+
+- **Basic** collects usage trends, correlation from availability results to transactions, host-process unhandled exceptions, and more accurate application performance monitoring (APM) metrics under load when sampling is enabled.
+- **Recommended** includes **Basic** and adds CPU, memory, and I/O trends plus correlation across request and dependency boundaries.
+
+## [Java](#tab/java)
+
+App Service adds the Application Insights Java 3.x agent and starts collecting telemetry.
+
+For Spring Boot native image apps, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) instead.
+
+For agent configuration, see [Configuration options: Azure Monitor Application Insights for Java](/azure/azure-monitor/app/java-standalone-config). To add custom telemetry, see [Add, modify, and filter telemetry](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java#modify-telemetry).
+
+## [Node.js](#tab/nodejs)
+
+App Service supports Node.js autoinstrumentation on Linux for code-based apps and custom containers, and on Windows for code-based apps. This integration is in public preview.
+
+To configure the attached agent, set `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` or `APPLICATIONINSIGHTS_CONFIGURATION_FILE` in App Service app settings. For supported options, see [Node.js configuration](https://github.com/microsoft/ApplicationInsights-node.js#configuration).
+
+## [Python](#tab/python)
+
+Python autoinstrumentation is supported for Python 3.9 through 3.13 on Linux App Service apps that are deployed as code. Custom containers aren't supported.
+
+Live Metrics isn't available for App Service Python autoinstrumentation. If you need Live Metrics, use the [Azure Monitor OpenTelemetry Distro](/azure/azure-monitor/app/opentelemetry-enable?tabs=python).
+
+App Service collects logs from the root logger and autoinstruments common libraries, including Django, FastAPI, Flask, psycopg2, requests, urllib, and urllib3.
+
+For Django apps, set `DJANGO_SETTINGS_MODULE` in your App Service app settings.
+
+To collect more telemetry from other libraries, add supported OpenTelemetry community instrumentation libraries to your app's `requirements.txt` file. App Service detects installed instrumentations automatically. For more information, see [OpenTelemetry community instrumentations](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
+
+To configure Python autoinstrumentation, set [OpenTelemetry environment variables](https://opentelemetry.io/docs/reference/specification/sdk-environment-variables/) in App Service app settings.
 
 [!INCLUDE [horz-monitor-resource-types](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-types.md)]
 For more information about the resource types for App Service, see [App Service monitoring data reference](monitor-app-service-reference.md).
