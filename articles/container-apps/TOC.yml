@@ -261,7 +261,7 @@ items:
         - name: Migrate Spring Cloud applications 
           href: migrate-spring-cloud.md
         - name: Migrate Tomcat applications
-          href: migrate-tomcat-to-azure-container-apps.md
+          href: migrate-tomcat.md
         - name: Migrate Java with GitHub Copilot app modernization
           href: migrate-java-github-copilot-app-modernization.md
 - name: Observability
