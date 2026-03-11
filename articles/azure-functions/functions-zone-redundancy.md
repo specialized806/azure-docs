@@ -27,7 +27,7 @@ Availability zone configuration for Azure Functions depends on your [Functions h
 
 ## Prerequisites
 
-Before configuring zone redundancy, review the requirements and details listed in [Reliability in Azure Functions - Resilience to availability zone failures](/azure/reliability/reliability-functions#resilience-to-availability-zone-failures). 
+Before configuring zone redundancy, review the requirements and details listed in [Reliability in Azure Functions - Resilience to availability zone failures](/azure/reliability/reliability-functions#resilience-to-availability-zone-failures).
 
 ::: zone pivot="premium-plan"
 
@@ -74,7 +74,7 @@ Follow these steps to create a zone-redundant Flex Consumption plan and app.
 
     |Setting|Suggested value|Notes for zone redundancy|
     |-------|---------------|-------------------------|
-    |**Region**|Your preferred supported region|The region in which your Flex Consumption plan is created. You must select a region that supports availability zones. See the [region availability list](#regional-availability).|
+    |**Region**|Your preferred supported region|The region in which your Flex Consumption plan is created. For a list of regions that support zone redundancy for Azure Functions Premium plans, see [Reliability in Azure Functions - Resilience to availability zone failures - Requirements](/azure/reliability/reliability-functions#requirements).|
     |**Zone redundancy**|Enabled|This setting specifies whether your app is zone redundant. You can only select `Enabled` when you've chosen a region that supports zone redundancy.|
 
     :::image type="content" source="./media/functions-az-redundancy/azure-functions-flex-basics-az.png" alt-text="Screenshot of the Basics tab of the Flex Consumption function app create page.":::
@@ -193,7 +193,7 @@ Follow these steps to create a zone-redundant Premium plan and app.
 
     |Setting|Suggested value|Notes for zone redundancy|
     |-------|---------------|-------------------------|
-    |**Region**|Your preferred supported region|The region in which your Elastic Premium plan is created. You must pick a region that supports availability zones. See the [region availability list](#regional-availability).|
+    |**Region**|Your preferred supported region|The region in which your Elastic Premium plan is created. You must pick a region that supports availability zones. For a list of regions that support zone redundancy for Azure Functions Premium plans, see [Reliability in Azure Functions - Resilience to availability zone failures - Requirements](/azure/reliability/reliability-functions#requirements).|
     |**Pricing plan**|One of the Elastic Premium plans. For more information, see [Available instance SKUs](/azure/azure-functions/functions-premium-plan#available-instance-skus).|This article describes how to create a zone redundant app in a Premium plan. Zone redundancy isn't currently available in Consumption plans. For information on zone redundancy on App Service plans, see [Configure availability zones for App Service](../app-service/how-to-zone-redundancy.md).|
     |**Zone redundancy**|Enabled|This setting specifies whether your app is zone redundant. You won't be able to select `Enabled` unless you have chosen a region that supports zone redundancy, as described previously.|
 
@@ -447,7 +447,7 @@ You can't change the availability zone support of an existing Elastic Premium pl
 
 ### Downtime
 
-The downtime required for this migration depends on how you choose to redirect traffic during the migration from your old app to your new availability zone-enabled function app:
+The downtime required for this migration depends on how you redirect traffic during the migration to your new availability zone-enabled function app:
 
 - Consider HTTP-based functions that use an [Application Gateway](/azure/app-service/networking/app-gateway-with-service-endpoints), [custom domain](/azure/app-service/app-service-web-tutorial-custom-domain), or [Azure Front Door](/azure/frontdoor/front-door-overview). In this case, downtime depends on how long it takes to update those respective services with the new app information.
 - You might also be routing traffic to multiple apps at the same time using a service such as [Azure Traffic Manager](/azure/app-service/web-sites-traffic-manager). In this scenario, you can only fully switch to the new zone-redundant app after everything is deployed and tested fully.
@@ -455,7 +455,7 @@ The downtime required for this migration depends on how you choose to redirect t
 
 ### Migration steps
 
-To enable an existing Premium plan function app to use availability zones, you must redeploy your project files to a new function app hosted in an zone-redundant Premium plan. Follow these steps:
+To enable an existing Premium plan function app to use availability zones, redeploy your project files to a new function app hosted in an zone-redundant Premium plan. Follow these steps:
 
 1. If you're already hosted in a Premium plan in a supported region, you can reuse your existing resource group and skip to the next step. Otherwise, create a new resource group in a supported region. For a list of regions that support zone redundancy for Azure Functions Premium plans, see [Reliability in Azure Functions - Resilience to availability zone failures - Requirements](/azure/reliability/reliability-functions#requirements).
 1. Create a zone-redundant Premium plan in a supported region.
