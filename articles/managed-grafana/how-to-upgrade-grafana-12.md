@@ -12,10 +12,9 @@ ms.topic: how-to
 
 # Upgrade to Grafana 12
 
-Azure Managed Grafana support for Grafana 11 for new resources will be discontinued starting June 15, 2026. This guide provides information about the upcoming retirement of Grafana 11 and guides you through updating your Azure Managed Grafana workspace to Grafana 12.
+Starting June 15th, 2026, Azure Managed Grafana support for Grafana 11 will be retired. This guide provides information about the upcoming retirement of Grafana 11 and guides you through upgrading your Azure Managed Grafana workspace to Grafana 12 by June 15, 2026. 
 
-> [!IMPORTANT]
-> We recommend that you familiarize yourself with the [breaking changes introduced in Grafana 12](https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v12-0/) and upgrade your workspace to Grafana 12 by June 15, 2026. Workspaces still running Grafana version 11 after this date will be automatically upgraded to Grafana 12.
+Workspaces still running Grafana version 11 after June 15, 2026, will be automatically upgraded to Grafana 12.
 
 ## Prerequisites
 
