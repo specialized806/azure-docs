@@ -5,7 +5,7 @@ description: Discover how Microsoft Dev Box capabilities are transitioning to Wi
 author: RoseHJM
 ms.author: rosemalcolm
 ms.reviewer: rosemalcolm
-ms.date: 10/03/2026
+ms.date: 03/10/2026
 ms.topic: concept-article
 ms.service: dev-box
 ---
