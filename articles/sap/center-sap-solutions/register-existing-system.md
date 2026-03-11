@@ -90,7 +90,7 @@ The following SAP system configurations aren't supported in Azure Center for SAP
 
 ## Enable resource permissions
 
-When you register an existing SAP system as a VIS, Azure Center for SAP solutions service needs a **User-assigned managed identity** that has **Azure Center for SAP solutions service role** access on the Compute (VMs, Disks, Load balancers) resource group and **Reader** role access on the Virtual Network resource group of the SAP system. Before you register an SAP system with Azure Center for SAP solutions, either [create a new user-assigned managed identity or update role access for an existing managed identity](#setup-user-assigned-managed-identity).
+When you register an existing SAP system as a VIS, Azure Center for SAP solutions service needs a **User-assigned managed identity** that has **Azure Center for SAP solutions service role** access on the Compute (VMs, Disks, Load balancers) resource group and **Reader** role access on the Virtual Network resource group of the SAP system. Before you register an SAP system with Azure Center for SAP solutions, either [create a new user-assigned managed identity or update role access for an existing managed identity](#set-up-user-assigned-managed-identity).
 
 Azure Center for SAP solutions uses this user-assigned managed identity to install VM extensions on the ASCS, Application Server, and Database VMs. This step allows Azure Center for SAP solutions to discover the SAP system components, and other SAP system metadata. User-assigned managed identity is required to enable SAP system monitoring and management capabilities.
 
@@ -144,7 +144,7 @@ To register an existing SAP system in Azure Center for SAP solutions:
 
 You can now review the VIS resource in the Azure portal. The resource page shows the SAP system resources, and information about the system.
 
-If the registration doesn't succeed, see [what to do when an SAP system registration fails in Azure Center for SAP solutions](#fix-registration-failure). Once you fix the configuration causing the issue, retry registration using the **Retry** action available on the VIS resource page on Azure portal.
+If the registration doesn't succeed, see [what to do when an SAP system registration fails in Azure Center for SAP solutions](#fix-registration-failures). Once you fix the configuration causing the issue, retry registration using the **Retry** action available on the VIS resource page on Azure portal.
 
 ## Fix registration failures
 
@@ -191,13 +191,13 @@ This error happens when the Database identifier is incorrectly configured on the
 
 1. Delete the VIS resource whose registration failed.
 
-1. [Register the SAP system](#register-sap-system) again.
+1. [Register the SAP system](#register-an-sap-system) again.
 
 ### Error: Azure VM Agent not in desired provisioning state
 
 **Cause:** This issue occurs when Azure VM agent's provisioning state isn't as expected on the specified VM. Expected state is **Ready**. Verify the agent status by checking the properties section in the VM overview page.
 
-**Solution:** To fix the Linux VM Agent,
+**Solution:** To fix the Linux VM Agent, perform the following steps:
 
 1. Sign in to the VM using bastion or serial console.
 1. If the VM agent exists and isn't running, then restart the `waagent`.
