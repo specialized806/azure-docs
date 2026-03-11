@@ -30,9 +30,9 @@ First, you need to Azure Arc-enable VMware vSphere for Azure VMware Solution. Th
 1. Enable guest management for the individual VMs that run SQL Server. Make sure the Azure Extension for SQL Server is installed. To confirm that the extension is installed, see the section [View ESU subscription status](#view-esu-subscription-status).
 
 > [!WARNING]
-> If you register SQL Server instances in a different manner from the preceding steps, the VM isn't registered as part of Azure VMware Solution and you'll be billed for ESUs.
+> If you register SQL Server instances in a different manner from the preceding steps, the VM isn't registered as part of Azure VMware Solution. In that case, you're billed for ESUs.
 
-After you Azure Arc-enable the VMware vSphere in Azure VMware Solution and enable guest management, you can subscribe to ESUs by updating the SQL Server configuration on the Azure Arc-enabled VM.
+You need to use Azure Arc to enable the VMware vSphere in Azure VMware Solution and enable guest management. Once you do that, you can subscribe to ESUs by updating the SQL Server configuration on the Azure Arc-enabled VM.
 
 To find the SQL Server configuration from the Azure portal:
 
@@ -77,13 +77,13 @@ To enable ESUs for Windows Server environments that run in VMs in Azure VMware S
    - Your name and tenant ID
    - Number of VMs you want to register
    - OS versions
-   - ESU year of coverage (for example, Year 1, Year 2, or Year 3). See [ESU Availability and End Dates](/lifecycle/faq/extended-security-updates?msclkid=65927660d02011ecb3792e8849989799#esu-availability-and-end-dates) for ESU End Date and Year. The support ticket provides you with ESU keys for one year. You need to create a new support request for upcoming years. The recomendation is to create a new request before your current ESU End Date Year date approaches.
+   - ESU year of coverage (for example, Year 1, Year 2, or Year 3). See [ESU Availability and End Dates](/lifecycle/faq/extended-security-updates?msclkid=65927660d02011ecb3792e8849989799#esu-availability-and-end-dates) for ESU End Date and Year. The support ticket provides you with ESU keys for one year. You need to create a new support request for upcoming years. The recommendation is to create a new request before your current ESU End Date Year date approaches.
 
 > [!WARNING]
 > If you create ESU licenses for Windows through Azure Arc, you're charged for the ESUs.
 
 ## Related content
 
-- [What are Extended Security Updates - SQL Server](/sql/sql-server/end-of-support/sql-server-extended-security-updates)
+- [Extended Security Updates - SQL Server](/sql/sql-server/end-of-support/sql-server-extended-security-updates)
 - [Extend Security Updates for Windows Server overview](/windows-server/get-started/extended-security-updates-overview)
 - [Plan your Windows Server and SQL Server end of support](https://www.microsoft.com/windows-server/extended-security-updates)
