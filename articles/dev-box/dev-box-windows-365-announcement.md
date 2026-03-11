@@ -41,9 +41,9 @@ As new developer capabilities are released in Windows 365, Microsoft will provid
 Dev Box is built on Windows 365, the Cloud PC platform that streams a familiar, secure, and personalized Windows experience to any device, anywhere. As Windows 365 continues to evolve with additional developer capabilities, developers benefit from increased productivity and flexibility, more SKU options, and enhanced integration with enterprise identity and security. For organizations across industries, Windows 365 provides a single platform to support cloud desktops across information workers, agent makers, and developers.
 
 ### How do we define net-new customers?
-Net-new customers are those with no prior deployment of Dev Box in any form in their Microsoft Entra ID tenant. Existing customers, or those who have run a POC, experimented, or begun configuring Dev Box, are not affected and can continue to use their deployments.
+Net-new customers are those with no prior deployment of Dev Box in any form in their Microsoft Entra ID tenant. Existing customers, or those who have run a POC, experimented, or begun configuring Dev Box, aren't affected and can continue to use their deployments.
 
-### I am an existing customer. Will there be any changes to my core Dev Box experience?
+### I'm an existing customer. Will there be any changes to my core Dev Box experience?
 There are no planned changes to your core Dev Box workflows. Existing customers can continue using Microsoft Dev Box as they do today. You can engage with your Microsoft account team to discuss your needs and how Windows 365 might better support you.
 
 ### What is the transition timeline for existing customers?
