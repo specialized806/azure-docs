@@ -18,7 +18,7 @@ ms.custom: subject-rbac-steps
 
 SAP Information Lifecycle Management (ILM) provides a broad range of capabilities. These capabilities manage data volumes, provides Retention Management, and the decommissioning of legacy systems while balancing total cost of ownership, risks, and legal compliance. SAP ILM Store (a component of ILM) would enable storing of these archive files and attachments from SAP system into Microsoft Azure Blob storage, thus enabling cloud storage.
 
-![Fig: Azure Blob Storage with ILM Store](media/sap-information-lifecycle-management/ilm-azure.png)
+![A diagram of an Azure Blob Storage with the ILM Store.](media/sap-information-lifecycle-management/ilm-azure.png)
 
 This document covers creation and configuration of Azure blob storage account to be used with SAP ILM. This account is used to store archive data from S/4HANA System.
 
@@ -40,16 +40,12 @@ The QuickStart template is an automated approach to create the Azure account. Yo
 
 Azure blob storage account can be configured manually. The steps to be followed are:
 
-1. Register a new application
-
-   The details are available at [Register an application with the Microsoft identity platform](../../active-directory/develop/quickstart-register-app.md)
+1. Register a new application. The details are available at [Register an application with the Microsoft identity platform](../../active-directory/develop/quickstart-register-app.md).
 
    > [!NOTE]
    > Make sure that Client secret is added as per the section Add Credentials – Add a Client Secret
 
-Create a Blob Storage account.
-
-1. Refer to steps in the page [Create a storage account](../../storage/common/storage-account-create.md?tabs=azure-portal).
+1. Create a Blob Storage account. Refer to steps in the page [Create a storage account](../../storage/common/storage-account-create.md?tabs=azure-portal).
 1. Ensure **Enable secure transfer** is set. We recommend you set the following property values:
 
    * Enable blob public access = false
