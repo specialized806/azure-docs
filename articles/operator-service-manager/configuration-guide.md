@@ -18,38 +18,38 @@ Consider the following meta-schema guidelines when you're designing configuratio
 
 * First, choose which parameters to expose to the operator.
   * A rule of thumb is to expose parameters backed by direct operation, such as a helm value.
-  * Suppress parameters backed by another agent, such as `cloudinit` `userdata`.
+  * Suppress parameters backed by another agent, such as `cloudinit userdata`.
 * Sort the parameters into site-specific, instance-specific, and security-specific sets. 
-  * Ensure that parameters don't overlap between CGS resources.
+  * Ensure that parameters don't overlap between sets.
 * Define required versus optional parameters.
 * For optional parameters, define a reasonable default value.
 
 ## One-CGS approach
 
-The original recommendation was to use only a single CGS for the entire NF. This approach consolidated site-specific, instance-specific, and security-specific parameters into a single set of configuration group resources. This approach avoided multiple resource sets, except for rare cases where a service had multiple components. Many partners successfully onboarded services using this approach, and it remains supported. However, this approach doesn't obscure secrets. All configuration values are stored in resources as plain-text.
+The original recommendation was to use only a single CGS/CGV set for the entire NF. This approach consolidated site-specific, instance-specific, and security-specific parameters together. Only in rare cases, where a service had multiple nfs, were multiple sets used. Many partners successfully onboarded using this approach, and it remains supported. However, this approach doesn't obscure secrets. All configuration values are stored in plain-text and are displayable via most Azure methods.
 
 ## Three-CGS approach
 
-We now recommend that you use at least three CGSs for the entire NF, by organizing parameters into these sets of configuration resource groups:
+We now recommend that you use at least three CGS/CGV sets, organizing parameters as follows:
 
 * Site-specific parameters
   * Examples include IP addresses and unique names.
-  * Uses CGS without secrets.
+  * Uses CGS/CGV without secrets.
   * Stores values in plain-text during deployments.
     
 * Instance-specific parameters
   * Examples include timeouts and debug levels.
-  * Uses CGS without secrets.
+  * Uses CGS/CGV without secrets.
   * Stores values in plain-text during deployment.
     
 * Security-specific parameters
   * Examples include passwords and certificates. 
-  * Uses CGS with secrets.
+  * Uses CGS/CGV with secrets.
   * Store values in Azure Key Vault to obscure during deployments.
 
 ## CGS without secrets
 
-This example shows a sample CGS payload defining `abc`, `xyz`, and `qwe` as exposed parameters. Two of the parameters have default values and one is required.
+This example shows a CGS exposing `abc`, `xyz`, and `qwe` parameters. Two of the parameters have default values and one is marked required.
 
 ```json
 { 
@@ -73,7 +73,7 @@ This example shows a sample CGS payload defining `abc`, `xyz`, and `qwe` as expo
 
 ## CGV without secrets
 
-This example shows a corresponding CGV input that an operator uses with the prior CGS:
+This example shows the CGV input provided by the operator during CGV deployment to satisfy the prior CGS.
 
 ```json
 {
@@ -81,7 +81,7 @@ This example shows a corresponding CGV input that an operator uses with the prio
 }
 ```
 
-This example shows the resulting CGV resource that Azure Operator Service Manager generates:
+This example shows the rendered CGV resource created after the CGV deployment completes.
 
 ```json
 {
@@ -92,16 +92,21 @@ This example shows the resulting CGV resource that Azure Operator Service Manage
 ```
 
 ## CGS with secrets
-Other then seperating secrets into a unique CGS, no special CGS requirements exist for secret support.
+Other then seperating secrets into a unique CGS, no special requirements exist for CGS secret support.
 
 ## CGV with secrets
-Considering the following configuration reqiurements to properly obscure secret values:
-* Use `configurationType: 'Secret'` in the resource properties.
- * Once a CGV is deployed, this prevents the display of the resource in most Azure methods.
-* Use a reference to Azure Key Vault (AKV) in place of the plain-text secret.
- * This obscures the display of the secret in the CGV deployment template.
+Consider the following Azure Resource Manager (ARM) template reqiurements to properly obscure secret values throughout the entire CGV resource lifecycle.
 
-The following example shows how to include an AKF reference in an ARM template: 
+* Use `configurationType: 'Secret'` in the template resource properties.
+  * Once a CGV is deployed, this prevents displaying the secret data via most Azure methods.
+* Use a template reference to Azure Key Vault (AKV) in place of the plain-text secret.
+  * This obscures the display of the secret in the CGV deployment template.
+
+> [!NOTE]
+> * Only Azure Key Vault is supported by ARM for secret reference substition.
+
+This example shows how to include an AKV reference to a secret named `secretName` in an ARM template. 
+
 ```json
   "password": {
       "reference": {
@@ -112,7 +117,7 @@ The following example shows how to include an AKF reference in an ARM template:
       }
 ```
 
-To further secure resources restrict access to the following RBAC scope: `Microsoft.Resources/deployments/exportTemplate/action` 
+To further secure resources, consinder restricting access to the RBAC scope `Microsoft.Resources/deployments/exportTemplate/action` to only roles which absolutely need to this access.
 
 ## Overview of JSON Schema
 
