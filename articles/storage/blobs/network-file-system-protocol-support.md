@@ -9,14 +9,14 @@ ms.custom: linux-related-content
 ms.topic: concept-article
 ms.date: 08/18/2023
 ms.author: normesta
-# Customer intent: "As a cloud developer, I want to leverage NFS 3.0 support in Azure Blob Storage so that I can efficiently run legacy high-throughput applications with hierarchical namespace access from both Azure VMs and on-premises systems."
+# Customer intent: "As a cloud developer, I want to use NFS 3.0 support in Azure Blob Storage so that I can efficiently run legacy high-throughput applications with hierarchical namespace access from both Azure VMs and on-premises systems."
 ---
 
 # Network File System (NFS) 3.0 protocol support for Azure Blob Storage
 
 Azure Blob Storage now supports the Network File System (NFS) 3.0 protocol. This support provides Linux file system compatibility at object storage scale and prices and enables Linux clients to mount a container in Blob Storage from an Azure virtual machine (VM) or a computer on-premises.
 
-It's a challenge to run large-scale legacy workloads, such as high-performance computing (HPC), in the cloud. One reason is that applications often use traditional file protocols such as NFS to access data. Also, native cloud storage services focused on object storage that have a flat namespace and extensive metadata instead of file systems that provide a hierarchical namespace and efficient metadata operations.
+It's a challenge to run large-scale legacy workloads, such as high-performance computing (HPC), in the cloud. One reason is that applications often use traditional file protocols, such as NFS, to access data. Also, native cloud storage services focused on object storage that have a flat namespace and extensive metadata instead of file systems that provide a hierarchical namespace and efficient metadata operations.
 
 Blob Storage now supports a hierarchical namespace. When combined with NFS 3.0 protocol support, Azure makes it much easier to run legacy applications on top of large-scale cloud object storage.
 
@@ -34,21 +34,21 @@ The NFS 3.0 protocol feature is optimized for high-throughput, large-scale, read
 
    - **Machine learning**: Feeding training data to GPU clusters by using standard file I/O.
    - **Log analytics**: Aggregating logs from thousands of sources.
-- **Advanced Driver Assistance Systems (ADAS)**: ADAS workflows produce petabytes of sequential sensor data, such as LiDAR point clouds and high-resolution camera feeds. The data must be ingested efficiently and analyzed at scale for simulation and model training. For example, storing raw LiDAR scans and multi-camera video streams from autonomous test vehicles by using NFS 3.0, then running large-scale replay simulations across thousands of compute nodes to validate perception algorithms.
+- **Advanced Driver Assistance Systems (ADAS)**: ADAS workflows produce petabytes of sequential sensor data, such as LiDAR point clouds and high-resolution camera feeds. The data must be ingested efficiently and analyzed at scale for simulation and model training. An example is storing raw LiDAR scans and multi-camera video streams from autonomous test vehicles by using NFS 3.0 and then running large-scale replay simulations across thousands of compute nodes to validate perception algorithms.
 - **Media and entertainment**: Rendering farms need efficient access to large asset libraries. NFS 3.0 over blob provides a file interface for legacy rendering tools that expect file paths. Here are some examples:
 
    - **Video rendering**: Reading source assets with distributed nodes.
    - **Transcoding**: Converting large raw video files into streaming formats.
-- **Database backup**: This feature offers a cost-effective, high-throughput NFS 3.0 target without complex connectors or expensive snapshots. , Oracle RMAN can write large backup pieces directly for long-term archival and enable direct restore from any NFS-mounted Linux VM.
+- **Database backup**: A cost-effective, high-throughput NFS 3.0 target without complex connectors or expensive snapshots. Oracle RMAN can write large backup pieces directly for long-term archival and enable direct restore from any NFS-mounted Linux VM.
 
 ### When not to use NFS 3.0 with Blob Storage
 
-Avoid for general-purpose file shares or transactional workloads because of object storage characteristics:
+Avoid use for general-purpose file shares or transactional workloads because of object storage characteristics:
 
 |Workload type|Reason|Better alternative|
 |-----|-------|------|
-|Transactional databases|Requires granular locking, submillisecond latency, and frequent random writes.|Managed Disks or Azure NetApp Files or Azure Files|
-|In-place file editing|Editing files forces full blob rewrites, making operations inefficient.|Azure Files|
+|Transactional databases|Requires granular locking, submillisecond latency, and frequent random writes.|Managed disks or Azure NetApp Files or Azure Files|
+|In-place file editing|Editing files forces full blob rewrites, which make operations inefficient.|Azure Files|
 
 ## NFS 3.0 and the hierarchical namespace
 
@@ -61,7 +61,7 @@ Azure Data Lake Storage introduced the ability to use a hierarchical namespace. 
 
 ## Data stored as block blobs
 
-When your application makes a request by using the NFS 3.0 protocol, that request is translated into combination of block blob operations. For example, NFS 3.0 read Remote Procedure Call (RPC) requests are translated into [Get Blob](/rest/api/storageservices/get-blob) operation. NFS 3.0 write RPC requests are translated into a combination of [Get Block List](/rest/api/storageservices/get-block-list), [Put Block](/rest/api/storageservices/put-block), and [Put Block List](/rest/api/storageservices/put-block-list).
+When your application makes a request by using the NFS 3.0 protocol, that request is translated into a combination of block blob operations. For example, NFS 3.0 read Remote Procedure Call (RPC) requests are translated into [Get Blob](/rest/api/storageservices/get-blob) operations. NFS 3.0 write RPC requests are translated into a combination of [Get Block List](/rest/api/storageservices/get-block-list), [Put Block](/rest/api/storageservices/put-block), and [Put Block List](/rest/api/storageservices/put-block-list).
 
 Block blobs are optimized to efficiently process large amounts of read-heavy data. Block blobs are composed of blocks. A block ID identifies each block. A block blob can include up to 50,000 blocks. Each block in a block blob can be a different size, up to the maximum size permitted for the service version that your account uses.
 
@@ -102,7 +102,7 @@ Cache hit or miss outcomes might trigger other `Get Blob Properties` requests to
 
 ## General workflow: Mount a storage account container
 
-Your Linux clients can mount a container in Blob Storage from an Azure VM or a computer on-premises. To mount a storage account container, you have to do these tasks.
+Your Linux clients can mount a container in Blob Storage from an Azure VM or a computer on-premises. To mount a storage account container, perform these tasks:
 
 1. Create an Azure virtual network.
 1. Configure network security.
@@ -118,26 +118,29 @@ Traffic must originate from a virtual network. A virtual network enables clients
 
 To learn more, see [Network security recommendations for Blob Storage](security-recommendations.md#networking).
 
+> [!Note]
+> Public IP filtering to access your storage account isn't supported.
+
 ### Supported network connections
 
-A client can connect over a public or a [private endpoint](../common/storage-private-endpoints.md) and can connect from any of the following network locations:
+Clients can connect via a public or [private endpoint](../common/storage-private-endpoints.md) if the connection originates from any of the following network locations:
 
 - The virtual network that you configure for your storage account.
 
   In this article, we refer to that virtual network as the *primary virtual network*. To learn more, see [Grant access from a virtual network](../common/storage-network-security.md#grant-access-from-a-virtual-network).
-
+  
 - A peered virtual network that's in the same region as the primary virtual network.
 
   You have to configure your storage account to allow access to this peered virtual network. To learn more, see [Grant access from a virtual network](../common/storage-network-security.md#grant-access-from-a-virtual-network).
-
+  
 - An on-premises network that's connected to your primary virtual network by using [Azure VPN Gateway](../../vpn-gateway/vpn-gateway-about-vpngateways.md) or an [Azure ExpressRoute gateway](../../expressroute/expressroute-howto-add-gateway-portal-resource-manager.md).
 
   To learn more, see [Configure access from on-premises networks](../common/storage-network-security.md#configuring-access-from-on-premises-networks).
-
+  
 - An on-premises network that's connected to a peered network.
 
-  To do this step, you can use a [VPN gateway](../../vpn-gateway/vpn-gateway-about-vpngateways.md) or an [ExpressRoute gateway](../../expressroute/expressroute-howto-add-gateway-portal-resource-manager.md) along with [Gateway transit](/azure/architecture/reference-architectures/hybrid-networking/vnet-peering#gateway-transit).
-
+  You can use a [VPN gateway](../../vpn-gateway/vpn-gateway-about-vpngateways.md) or an [ExpressRoute gateway](../../expressroute/expressroute-howto-add-gateway-portal-resource-manager.md) along with [gateway transit](/azure/architecture/reference-architectures/hybrid-networking/vnet-peering#gateway-transit).
+  
 > [!IMPORTANT]
 > The NFS 3.0 protocol uses ports 111 and 2048. If you connect from an on-premises network, make sure that your client allows outgoing communication through those ports. If you granted access to specific virtual networks, make sure that any network security groups associated with those virtual networks don't contain security rules that block incoming communication through those ports.
 
