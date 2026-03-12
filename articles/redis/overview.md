@@ -1,7 +1,7 @@
 ---
 title: What is Azure Managed Redis?
 description: Learn about Azure Managed Redis to enable cache-aside, content caching, user session caching, job and message queuing, and distributed transactions.
-ms.date: 03/04/2026
+ms.date: 03/11/2026
 ms.topic: overview
 ai-usage: ai-assisted
 ms.custom:
@@ -97,9 +97,11 @@ The following table helps describe some of the features supported by tier:
 | [Time Series database capability (that is, Redis TimeSeries)](redis-modules.md)            | Yes                    | Yes                    | Yes                    | Yes                    |
 | [Import/Export](how-to-import-export-data.md)                                              | Yes                    | Yes                    | Yes                    | Yes                    |
 
-\* When **High availability** is enabled, an Azure Managed Redis instance is deployed with primary and replica shards distributed across at least two nodes. In regions that support availability zones, Azure Managed Redis distributes the nodes across zones by default. 
+\* When **High availability** is enabled, an Azure Managed Redis instance is deployed with primary and replica shards distributed across at least two nodes.
 
-In regions without availability zones, the primary and replica shards are distributed across at least two nodes in the same zone. For more information, see [Reliability in Azure Managed Redis](/azure/reliability/reliability-managed-redis).
+In regions that support availability zones, Azure Managed Redis distributes the nodes across zones by default. For more information, see [Reliability in Azure Managed Redis](/azure/reliability/reliability-managed-redis). 
+
+In regions without availability zones, the primary and replica shards are distributed across at least two nodes in the same zone. 
 
 > [!IMPORTANT]
 > The Balanced B0 and B1 SKU options don't support active geo-replication.
