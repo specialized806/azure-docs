@@ -3,7 +3,7 @@ title: Deploy ARM Templates for Consumption Workflows
 description: Deploy Azure Resource Manager templates (ARM templates) for Consumption logic app workflows in multitenant Azure Logic Apps.
 services: logic-apps
 ms.suite: integration
-ms.reviewer: estfan, azla
+ms.reviewers: estfan, azla
 ms.topic: how-to
 ms.update-cycle: 1095-days
 ms.date: 03/11/2026

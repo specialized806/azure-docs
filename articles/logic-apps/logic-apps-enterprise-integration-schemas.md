@@ -281,7 +281,7 @@ The following steps apply only if you're deleting a schema that you added to you
 
 ---
 
-## Next steps
+## Related content
 
-* [Validate XML for workflows in Azure Logic Apps](logic-apps-enterprise-integration-xml-validation.md)
-* [Transform XML for workflows in Azure Logic Apps](logic-apps-enterprise-integration-transform.md)
+- [Validate XML for workflows in Azure Logic Apps](logic-apps-enterprise-integration-xml-validation.md)
+- [Transform XML for workflows in Azure Logic Apps](logic-apps-enterprise-integration-transform.md)
