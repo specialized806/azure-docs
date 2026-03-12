@@ -47,6 +47,9 @@ We now recommend that you use at least three CGS/CGV sets, organizing parameters
   * Uses CGS/CGV with secrets.
   * Store values in Azure Key Vault to obscure during deployments.
 
+> [!NOTE]
+> * Consider restricting access to the role based access control (RBAC) scope `Microsoft.Resources/deployments/exportTemplate/action` to only admin roles.
+
 ## CGS without secrets
 
 This example shows a CGS exposing `abc`, `xyz`, and `qwe` parameters. Two of the parameters have default values and one is marked required.
@@ -91,10 +94,8 @@ This example shows the rendered CGV resource created after the CGV deployment co
 }
 ```
 
-## CGS with secrets
-Other than separating secrets into a unique CGS, no special requirements exist for CGS secret support.
-
 ## CGV with secrets without AKV
+
 Where AKV isn't being used, consider the following CGV Azure Resource Manager (ARM) template requirements to properly obscure secret values throughout CGV resource lifecycle.
 
 * To contain all secrets, define an object parameter with `"type": "secureObject"` .
@@ -129,12 +130,13 @@ This example shows how to pass all secrets in the object `secretCgvContent` to t
 ```
 
 ## CGV with secrets with AKV
+
 Where AKV is being used, consider the following CGV Azure Resource Manager (ARM) template requirements to properly obscure secret values throughout CGV resource lifecycle.
 
 * Define a string `parameter` for each secret and one object `variable` to collect all secret values.
   * The object variable contains only a reference to the parameter string and exposes no secrets.   
 
-This example shows how to define a paremter `secretPassword` contained within the object variable `secretVal.configurationValue`. 
+This example shows how to define a parameter `secretPassword` contained within the object variable `secretVal.configurationValue`. 
 
 ```json
 "parameters": {
@@ -185,6 +187,7 @@ This example shows how to pass all secrets in the object `secretVal.configuratio
 ```
 
 ## NF with secrets
+
 Consider the following Azure Resource Manager (ARM) template requirements when creating a network function to properly obscure secret values throughout network function resource lifecycle.
 
 * Use `"type": "secureObject"` in the template for type of the `secretValues` and `config` parameter
@@ -223,9 +226,6 @@ Consider the following Azure Resource Manager (ARM) template requirements when c
   }
 ]
 ```
-
-> [!NOTE]
-> * Consider restricting access to the role based access control (RBAC) scope `Microsoft.Resources/deployments/exportTemplate/action` to only admin roles.
 
 ## Overview of JSON Schema
 
