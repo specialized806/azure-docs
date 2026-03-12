@@ -249,9 +249,9 @@ For the complete list, see [Supported metrics - Microsoft.App/sessionpools - Azu
 #### Option 2: Container Apps environment metrics
 
 1. In the Azure portal, open your Container Apps environment.
-2. Select **Metrics**.
-3. Use **Scope** to select your custom container session pool.
-4. Choose a metric and aggregation to view.
+1. Select **Metrics**.
+1. Use **Scope** to select your custom container session pool.
+1. Choose a metric and aggregation to view.
 
 ## Related content
 
