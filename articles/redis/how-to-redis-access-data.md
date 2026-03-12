@@ -5,7 +5,7 @@ ms.date: 03/11/2026
 ms.topic: concept-article
 ms.custom:
 appliesto:
-  - ✅ Azure Cache for Redis
+  - ✅ Azure Managed Redis
 ---
 # Use client tools to manage data in Azure Managed Redis
 
