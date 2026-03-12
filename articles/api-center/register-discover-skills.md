@@ -3,7 +3,7 @@ title: Register Skills in Your API Center
 description: Learn how to register skills in Azure API Center to create a centralized skills registry for your organization. 
 ms.service: azure-api-center
 ms.topic: how-to
-ms.date: 03/09/2026
+ms.date: 03/12/2026
 ai-usage: ai-assisted
 
 
@@ -30,8 +30,8 @@ By registering skills in your API center, you create a centralized registry that
 - An API center. If you don't have an API center yet, see the quickstart to [Create an API center](set-up-api-center.md).
 - One or more skills that you want to register, typically hosted in a source code repository such as GitHub.
 - For integration with a Git repository for continuous synchronization of skill information (optional): 
-    - An Azure Key Vault. If you need to create one, see [Quickstart: Create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal). To add or manage secrets in the key vault, you need at least the **Key Vault Secrets Officer** role or equivalent permissions. 
-    - For non-public repositories, a personal access token (PAT) to access the repository where your skill information is stored. The PAT must have appropriate permissions to read the repository content. To create a PAT for GitHub, see [Create a fine-grained personal access token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token).  
+    - For non-public repositories, a personal access token (PAT) to access the repository where your skill information is stored. The PAT must have appropriate permissions to read the repository content. To create a PAT for GitHub, see [Create a fine-grained personal access token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token).
+    - An Azure key vault to store a PAT. If you need to create one, see [Quickstart: Create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal). To add or manage secrets in the key vault, you need at least the **Key Vault Secrets Officer** role or equivalent permissions.   
     - For Azure CLI:.
         [!INCLUDE [include](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 
@@ -83,7 +83,7 @@ To automate skill registration and updates, integrate a Git repository with your
 When you integrate a Git repository:
 
 * Your API center creates an [environment](key-concepts.md#environment) that represents the repository as a source of skills.
-* API Center regularly synchronizes skill information from the repository to your API center inventory, using a PAT stored in Azure Key Vault for authentication.
+* API Center regularly synchronizes skill information from the repository to your API center inventory.
 
 ### Store PAT in Azure Key Vault
 
@@ -130,7 +130,7 @@ To integrate a Git repository:
     | **Asset details** | |
     | **Lifecycle** | Select the lifecycle stage for assets synced from the repository (for example, **Design**). |
 
-    :::image type="content" source="media/register-discover-skills/integrate-git-repository.png" alt-text="Screenshot of integrating a Git repo in an API center in the portal.":::
+    :::image type="content" source="media/register-discover-skills/integrate-git-repository-small.png" alt-text="Screenshot of integrating a Git repo in an API center in the portal." lightbox="media/register-discover-skills/integrate-git-repository-small.png":::
 1. Select **Create**.
 
 The portal adds the environment to your API center. The portal adds the skills from the repository to the API center inventory on the **Inventory** > **Assets** page. You can identify linked skills by the link icon in the list.
