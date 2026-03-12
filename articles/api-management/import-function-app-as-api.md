@@ -1,5 +1,5 @@
 ---
-title: Import an Azure Function App as an API in API Management
+title: Import an Azure Function App as an API
 titleSuffix: Azure API Management
 description: Learn how to import an Azure function app into Azure API Management as an API.
 services: api-management
@@ -13,7 +13,7 @@ ms.custom: sfi-image-nochange
 #customer intent: As an API developer, I want to import an Azure function app as an API in API Management. 
 ---
 
-# Import an Azure function app as an API in Azure API Management
+# Import an Azure function app as an API
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
@@ -45,9 +45,9 @@ To create a new API from an Azure function app:
 
 1. Navigate to your API Management service in the Azure portal.
 
-1. Select **APIs** > **APIs** in the sidebar menu.
+1. In the sidebar menu, select **APIs** > **APIs**, and then select **+ Add API**.
 
-1. Under **Create from Azure resource**, select **Function App**:
+1. Under **Create from Azure resource**, select the **Function App** tile:
 
     :::image type="content" source="./media/import-function-app-as-api/add-01.png" alt-text="Screenshot that shows the Function App tile in the Azure portal.":::
 

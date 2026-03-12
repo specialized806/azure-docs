@@ -40,7 +40,7 @@ In this article, you learn how to:
 
 1. In the sidebar menu, in the **APIs** section, select **APIs**, and then select **+ Add API**.
 
-1. Select **Logic App** in the **Create from Azure resource** list:
+1. Under **Create from Azure resource**, select the **Logic App** tile:
 
     :::image type="content" source="./media/import-logic-app-as-api/logic-app-select.png" alt-text="Screenshot that shows the Logic App tile.":::
 

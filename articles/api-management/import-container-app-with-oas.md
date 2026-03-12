@@ -79,9 +79,9 @@ The wildcard operation allows the same requests to the backend service as the op
 
 1. Navigate to your API Management service in the [Azure portal](https://portal.azure.com).
 
-1. In the sidebar menu, under **APIs**, select **APIs**, and then select **+ Add API**.
+1. In the sidebar menu, select **APIs** > **APIs**, and then select **+ Add API**.
 
-1. Under **Create from Azure resource**, select **Container App**:
+1. Under **Create from Azure resource**, select the **Container App** tile:
 
     :::image type="content" source="media/import-container-app-with-oas/add-api.png" alt-text="Screenshot that shows the Container App tile.":::
 
