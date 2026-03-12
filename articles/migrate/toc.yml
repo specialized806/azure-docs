@@ -101,6 +101,8 @@ items:
         items: 
         - name: Discover MySQL database instances
           href: tutorial-discover-mysql-database-instances.md
+  - name: Discovery using collector
+    href: how-to-discover-using-collector.md
   - name: Discovery using Azure Arc
     items:
     - name: Overview
