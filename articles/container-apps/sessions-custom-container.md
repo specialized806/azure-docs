@@ -239,7 +239,7 @@ For the complete list, see [Supported metrics - Microsoft.App/sessionpools - Azu
 | **Ready Sessions Count**<br>Number of ready session pods in the session pool | `PoolReadyPodCount` | Count | Total (Sum), Average, Maximum, Minimum | `poolName` | PT1M | Yes |
 
 ### View session metrics
-
+You can either use Azure Monitor or Container Apps environment metrics to view session-based metrics.
 #### Option 1: Azure Monitor Metrics
 
 1. Open the [Azure Monitor Metrics page](https://ms.portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/metrics).
