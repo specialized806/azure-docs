@@ -6,6 +6,7 @@ ms.service: azure-container-storage
 ms.topic: how-to
 ms.date: 01/28/2026
 ms.author: saurabsharma
+ms.reviewer: kendownie
 ms.custom:
   - references_regions
 
@@ -34,13 +35,6 @@ Expanding the capacity of an Elastic SAN through Azure Container Storage is curr
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
   ```azurecli-interactive
   az provider register --namespace Microsoft.ElasticSan
-  ```
-
-- When [ZRS is newly enabled](enable-multi-zone-redundancy.md) in a region, you might need to register a subscription-level feature flag so Azure Container Storage can deploy SAN targets:
-  ```azurecli
-  az feature register \
-  --namespace Microsoft.ElasticSan \
-  --name EnableElasticSANTargetDeployment
   ```
 
 ## Setting up permissions
@@ -91,7 +85,7 @@ Create a YAML manifest file such as `storageclass.yaml`, then use the following 
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: azuresan
+  name: azuresan-csi
 provisioner: san.csi.azure.com
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
@@ -119,9 +113,9 @@ Alternatively, you can create the storage class using Terraform.
       config_path = "~/.kube/config"
     }
 
-    resource "kubernetes_storage_class_v1" "azuresan" {
+    resource "kubernetes_storage_class_v1" "azuresan_csi" {
       metadata {
-        name = "azuresan"
+        name = "azuresan-csi"
       }
 
       storage_provisioner    = "san.csi.azure.com"
@@ -146,7 +140,7 @@ If you need a different initial capacity than the default 1 TiB, set the `initia
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: azuresan
+  name: azuresan-csi
 provisioner: san.csi.azure.com
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
@@ -183,7 +177,7 @@ If you don't already have Azure Container Storage installed, [install it](instal
    apiVersion: storage.k8s.io/v1
    kind: StorageClass
    metadata:
-     name: azuresan
+     name: azuresan-csi
    provisioner: san.csi.azure.com
    reclaimPolicy: Delete
    volumeBindingMode: Immediate
@@ -216,6 +210,9 @@ If you don't already have Azure Container Storage installed, [install it](instal
    az network vnet subnet update -g <node-resource-group> --vnet-name <vnet-name> --name <subnet-name> --service-endpoints "Microsoft.Storage"
    ```
 
+   > [!IMPORTANT]
+   > If your AKS cluster uses multiple node pools in different subnets, **you must include all node pool subnet IDs in the Elastic SAN volume group network ACLs**. Elastic SAN volume groups allow access only from the virtual network subnets explicitly authorized in the volume group rules, and requests from other subnets are blocked by default.
+
 1. Create the volume group.
 
    ```azurecli
@@ -228,7 +225,7 @@ If you don't already have Azure Container Storage installed, [install it](instal
    apiVersion: storage.k8s.io/v1
    kind: StorageClass
    metadata:
-     name: azuresan
+     name: azuresan-csi
    provisioner: san.csi.azure.com
    reclaimPolicy: Delete
    volumeBindingMode: Immediate
@@ -249,14 +246,14 @@ kubectl apply -f storageclass.yaml
 Verify that the storage class is created:
 
 ```azurecli
-kubectl get storageclass azuresan
+kubectl get storageclass azuresan-csi
 ```
 
 You should see output similar to:
 
 ```output
-NAME       PROVISIONER          RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
-azuresan   san.csi.azure.com    Delete          Immediate           true                   10s
+NAME           PROVISIONER          RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+azuresan-csi   san.csi.azure.com    Delete          Immediate           true                   10s
 ```
 
 ## Create a persistent volume claim
@@ -276,7 +273,7 @@ A persistent volume claim (PVC) automatically provisions storage based on a stor
      resources:
        requests:
          storage: 1Gi
-     storageClassName: azuresan
+     storageClassName: azuresan-csi
    ```
 
 1. Apply the manifest to create the PVC.
@@ -363,7 +360,7 @@ Use the following YAML manifest to create a default Elastic SAN storage class:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: azuresan
+  name: azuresan-csi
 provisioner: san.csi.azure.com
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
@@ -379,7 +376,7 @@ kubectl apply -f storageclass.yaml
 Verify the storage class:
 
 ```azurecli
-kubectl get storageclass azuresan
+kubectl get storageclass azuresan-csi
 ```
 
 ### Create an Elastic SAN volume
@@ -413,7 +410,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: azuresan
+  storageClassName: azuresan-csi
   csi:
     driver: san.csi.azure.com
     volumeHandle: #{rg}#{san}#{vg}#{vol}
@@ -446,7 +443,7 @@ spec:
     requests:
       storage: 5Gi
   volumeName: pv-san
-  storageClassName: azuresan
+  storageClassName: azuresan-csi
 ```
 
 Apply the manifest to create the PVC.
