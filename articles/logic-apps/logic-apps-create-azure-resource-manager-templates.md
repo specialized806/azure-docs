@@ -48,10 +48,6 @@ These samples show how to create and deploy logic apps by using Azure Resource M
 * [Sample: Set up an Azure Functions action for Azure Logic Apps and deploy with Azure Pipelines in Azure DevOps](https://github.com/Azure-Samples/azure-logic-apps-deployment-samples/tree/master/function-app-actions)
 * [Sample: Connect to an integration account from Azure Logic Apps and deploy with Azure Pipelines in Azure DevOps](https://github.com/Azure-Samples/azure-logic-apps-deployment-samples/tree/master/integration-account-connections)
 
-## Prerequisites
-
-You need an Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-
 ### Install PowerShell modules
 
 1. If you haven't already, install [Azure PowerShell](/powershell/azure/install-azure-powershell).
