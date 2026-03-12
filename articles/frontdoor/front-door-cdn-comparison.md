@@ -51,7 +51,7 @@ The following table provides a comparison between the Azure Front Door and Azure
 | HTTPS support | &check; | &check; | &check; | &check; |
 | Custom domain HTTPS | &check; | &check; | &check; | &check; |
 | Bring your own certificate | &check; | &check; | &check; | &check; |
-| Supported TLS versions | TLS1.3, TLS1.2 | TLS1.3, TLS1.2 | TLS1.3, TLS1.2 | TLS1.3, TLS 1.2 |
+| Supported TLS versions | TLS 1.3, TLS 1.2 | TLS 1.3, TLS 1.2 | TLS 1.3, TLS 1.2 | TLS 1.3, TLS 1.2 |
 | **Caching** | | | | |
 | Query string caching | &check; | &check; | &check; | &check; |
 | Cache management (deletion, rules, and compression) | &check; | &check; | &check; | &check; |
@@ -71,7 +71,7 @@ The following table provides a comparison between the Azure Front Door and Azure
 | Mobile device rules | &check; | &check; | &check; | &check; (using standard rules engine) |
 | **Security** | | | | |
 | Custom web application firewall (WAF) rules | &check; | &check; | &check; | |
-| Microsoft-managed rule set | | &check; | &check; (only default rule set 1.1 or less) | |
+| Microsoft-managed rule set | | &check; | &check; (only default rule set 1.1 or earlier) | |
 | Bot protection | | &check; | &check; (only bot manager rule set 1.0) | |
 | Private Link connection to origin | | &check; | | |
 | Geo-filtering | &check; | &check; | &check; | &check; |

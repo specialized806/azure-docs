@@ -12,7 +12,7 @@ ms.custom: portfolio-consolidation-2025
 
 # What is Azure Front Door?
 
-Whether you're delivering content and files or developing global applications and APIs, Azure Front Door enhances your user experience by providing higher availability, reduced latency, increased scalability, and improved security, no matter where your users are located.
+Whether you're delivering content and files or developing global applications and APIs, Azure Front Door enhances your user experience by providing higher availability, reduced latency, increased scalability, and improved security. It provides these benefits no matter where your users are located.
 
 Azure Front Door is an advanced content delivery network (CDN) for the cloud. It's designed to provide fast, reliable, and secure access to your applications' static and dynamic web content globally. By using Microsoft's extensive global edge network, Azure Front Door provides efficient content delivery through [global and local points of presence (PoPs)](edge-locations-by-region.md) strategically positioned close to both enterprise and consumer users.
 
@@ -32,7 +32,7 @@ Azure Front Door enables internet-facing applications to:
 
 * *Accelerate and deliver your applications and content globally* at scale to your users wherever they are. This ability creates opportunities for you to compete and quickly adapt to new demand and markets.
 
-* *Help secure your digital estate* against known and new threats with intelligent security that embraces a *Zero Trust* framework.
+* *Help secure your digital estate* against known and new threats with intelligent security that embraces a Zero Trust framework.
 
 ## What are the key benefits?
 
@@ -80,13 +80,13 @@ Modernize your internet-first applications on Azure with cloud-native experience
 
 ### Intelligent, secure internet perimeter
 
-* Help secure applications with built-in layer 3-4 DDoS protection, seamlessly attached [WAF](../web-application-firewall/afds/afds-overview.md), and [Azure DNS to help protect your domains](how-to-configure-endpoints.md).
+* Help secure applications with built-in layer 3-4 DDoS protection, a seamlessly attached [WAF](../web-application-firewall/afds/afds-overview.md), and [Azure DNS to help protect your domains](how-to-configure-endpoints.md).
 
-* Help protect your applications against layer 7 DDoS attacks by using WAF. For more information, see [Application DDoS protection](../web-application-firewall/shared/application-ddos-protection.md).
+* Help protect your applications against layer 7 DDoS attacks by using a WAF. For more information, see [Application DDoS protection](../web-application-firewall/shared/application-ddos-protection.md).
 
 * Help protect your applications from malicious actors with bot manager rules based on Microsoft Threat Intelligence.
 
-* Privately connect to your backend behind Azure Front Door by using [Azure Private Link](private-link.md), and embrace a Zero Trust access model.
+* Privately connect to your back end behind Azure Front Door by using [Azure Private Link](private-link.md), and embrace a Zero Trust access model.
 
 * Provide a centralized security experience for your application via Azure Policy and Azure Advisor that provides consistent security features across apps.
 

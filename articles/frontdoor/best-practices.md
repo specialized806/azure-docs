@@ -36,7 +36,7 @@ When you work with Azure Front Door by using APIs, Azure Resource Manager templa
 
 ### Configure logs
 
-Azure Front Door tracks extensive performance data for every request. When you enable caching, your origin servers might not receive every request, so it's important that you use the Azure Front Door logs to understand how your solution is running and responding to your clients. For more information about the metrics and logs that Azure Front Door records, see [Monitor metrics and logs in Azure Front Door](front-door-diagnostics.md) and [WAF logs](../web-application-firewall/afds/waf-front-door-monitor.md#waf-logs).
+Azure Front Door tracks extensive performance data for every request. When you enable caching, your origin servers might not receive every request. It's important that you use the Azure Front Door logs to understand how your solution is running and responding to your clients. For more information about the metrics and logs that Azure Front Door records, see [Monitor metrics and logs in Azure Front Door](front-door-diagnostics.md) and [WAF logs](../web-application-firewall/afds/waf-front-door-monitor.md#waf-logs).
 
 To configure logging for your own application, see [Configure Azure Front Door logs](./standard-premium/how-to-logs.md).
 
