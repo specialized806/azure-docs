@@ -139,7 +139,7 @@ The portal adds the environment to your API center. The portal adds the skills f
 
 ## Discover skills in the API Center portal
 
-Set up your [API Center](set-up-api-center-portal.md) portal so that developers and other stakeholders in your organization can discover skills in your API inventory. From the API Center portal, users can:
+Set up your [API Center portal](set-up-api-center-portal.md) so that developers and other stakeholders in your organization can discover skills in your API inventory. From the API Center portal, users can:
 
 * Browse and filter skills in the inventory.
 * View detailed information about each skill.
