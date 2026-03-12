@@ -67,11 +67,10 @@ When using Entra ID and the following Azure App Configuration libraries in cloud
 ### [.NET](#tab/dotnet)
 #### .NET configuration provider
 
-**Package**: Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.2.0
-
-In the **.NET configuration provider**, audience is configured by utilizing the following API calls:
-
-* AzureAppConfigurationOptions exposes a [ConfigureClientOptions](/dotnet/api/microsoft.extensions.configuration.azureappconfiguration.azureappconfigurationoptions.configureclientoptions#microsoft-extensions-configuration-azureappconfiguration-azureappconfigurationoptions-configureclientoptions(system-action((azure-data-appconfiguration-configurationclientoptions)))) method
+Audience is configured by utilizing the [ConfigureClientOptions](/dotnet/api/microsoft.extensions.configuration.azureappconfiguration.azureappconfigurationoptions.configureclientoptions#microsoft-extensions-configuration-azureappconfiguration-azureappconfigurationoptions-configureclientoptions(system-action((azure-data-appconfiguration-configurationclientoptions)))) method if you use version **8.2.0** or later of any of the following packages.
+ - `Microsoft.Extensions.Configuration.AzureAppConfiguration`
+ - `Microsoft.Azure.AppConfiguration.AspNetCore`
+ - `Microsoft.Azure.AppConfiguration.Functions.Worker`
 
 The following code snippet demonstrates how to add the Azure App Configuration provider into a .NET application with a cloud-specific audience.
 
@@ -82,15 +81,14 @@ builder.AddAzureAppConfiguration(o =>
             myStoreEndpoint,
             new DefaultAzureCredential());
 
-        o.ConfigureClientOptions(clientOptions => clientOptions.Audience = "{Cloud specific audience here}");
+        o.ConfigureClientOptions(clientOptions =>
+            clientOptions.Audience = "{Cloud specific audience here}");
     });
 ```
 
 #### Azure SDK for .NET
 
-**Package**: Azure.Data.AppConfiguration >= 1.6.0
-
-In the **Azure SDK for .NET**, audience is configured by utilizing the following API calls:
+Audience is configured by utilizing the following API calls if you use version **1.6.0** or later of the package `Azure.Data.AppConfiguration`:
 
 * The ConfigurationClient constructor [accepts ConfigurationClientOptions](/dotnet/api/azure.data.appconfiguration.configurationclient.-ctor#azure-data-appconfiguration-configurationclient-ctor(system-uri-azure-core-tokencredential-azure-data-appconfiguration-configurationclientoptions))
 * ConfigurationClientOptions allows [Audience](/dotnet/api/azure.data.appconfiguration.configurationclientoptions.audience#azure-data-appconfiguration-configurationclientoptions-audience) to be set
