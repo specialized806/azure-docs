@@ -294,7 +294,7 @@ If some of the infrastructure data isn't delivered correctly as indicated by the
 
 1. The script tests the configuration of the VM you select.
 
-   ![A screenshot successfully running a health check of the Azure extension for SAP.][deployment-guide-figure-1300]
+   ![A screenshot of successfully running a health check of the Azure extension for SAP.][deployment-guide-figure-1300]
 
 Make sure that every health check result is **OK**. If some checks don't display **OK**, run the update cmdlet as described in [Configure the Azure VM extension for SAP solutions with Azure CLI][configure-linux] or [Configure the Azure VM extension for SAP solutions with PowerShell][configure-windows].
 
