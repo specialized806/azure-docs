@@ -1,7 +1,7 @@
 ---
 title: Network File System 3.0 Support for Azure Blob Storage
 titleSuffix: Azure Storage
-description: Azure Blob Storage now supports the Network File System (NFS) 3.0 protocol. This NFS support enables Linux clients to mount a container in Blob Storage from an Azure virtual machine (VM) or a computer that runs on-premises.
+description: Azure Blob Storage now supports the Network File System (NFS) 3.0 protocol. This NFS support enables Linux clients to mount a container in Blob Storage from an Azure virtual machine or a computer that runs on-premises.
 author: normesta
 
 ms.service: azure-blob-storage
