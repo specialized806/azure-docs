@@ -4,7 +4,6 @@ description: Instructions for opting out of the Virtual Machine Metablob Disk (V
 author: linuxelf001
 ms.topic: include
 ms.service: azure-virtual-machines
-ms.subservice: sizes
 ms.date: 03/11/2026
 ms.author: raginjup
 ms.reviewer: raginjup
