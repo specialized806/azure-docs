@@ -399,7 +399,7 @@ The directory `\var\lib\waagent\` doesn't have a subdirectory for the Azure exte
 
 The extension isn't installed. Determine whether it's a proxy issue (as described earlier). You might need to restart the machine and/or rerun the `Set-AzVMAEMExtension` configuration script.
 
-#### The execution of Set-AzVMAEMExtension and Test-AzVMAEMExtension show warning messages stating that Standard Managed Disks aren't supported
+### The execution of Set-AzVMAEMExtension and Test-AzVMAEMExtension show warning messages stating that Standard Managed Disks aren't supported
 
 **Issue**:
 
@@ -419,8 +419,6 @@ When you run `azperfli.exe`, as described earlier, you can get a result that's i
 
 You receive these messages because the Standard Managed Disks aren't delivering the APIs used by the SAP extension for SAP to check on statistics of the Standard Azure Storage Accounts. Don't worry about these messages. The reason for introducing the collection of data for Standard Disk Storage accounts was throttling inputs and outputs that occurred frequently. Managed disks avoid such throttling by limiting the number of disks in a storage account. Therefore, not having that type of that data isn't critical.
 
----
-
 ### Some Azure performance counters are missing
 
 A daemon collects performance metrics in Azure, which retrieves data from several sources. Some configuration data is collected locally, and some performance metrics are read from Azure Diagnostics. Storage counters come from the logs in your storage subscription.
@@ -428,6 +426,8 @@ A daemon collects performance metrics in Azure, which retrieves data from severa
 For a complete and up-to-date list of known issues, see SAP Note [1999351], which has more troubleshooting information for Azure extension for SAP.
 
 If troubleshooting by using SAP Note [1999351] doesn't resolve the issue, rerun the `Set-AzVMAEMExtension` configuration script as described in [Configure the Azure VM extension for SAP solutions with Azure CLI][configure-linux] or [Configure the Azure VM extension for SAP solutions with PowerShell][configure-windows]. You might have to wait for an hour because storage analytics or diagnostics counters might not be created immediately after they're enabled. If the problem persists, open an SAP customer support message on the component BC-OP-NT-AZR for Windows or BC-OP-LNX-AZR for a Linux VM.
+
+---
 
 ## Azure extension error codes
 
