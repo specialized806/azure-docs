@@ -3,7 +3,7 @@ title: Monitor Azure App Service
 description: Learn about options in Azure App Service for monitoring resources for availability, performance, and operation.
 ms.date: 03/11/2026
 ms.custom: horz-monitor
-ms.topic: conceptual
+ms.topic: concept-article
 author: msangapu-msft
 ms.author: msangapu
 ms.service: azure-app-service
@@ -357,6 +357,8 @@ For automated deployments, add these app settings. `ApplicationInsightsAgent_EXT
 To generate a baseline template, create a web app with Application Insights enabled in the Azure portal and download the automation template from **Review + create**.
 
 ---
+
+For troubleshooting assistance, see our [dedicated troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-app-service-issues).
 
 [!INCLUDE [horz-monitor-resource-types](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-types.md)]
 For more information about the resource types for App Service, see [App Service monitoring data reference](monitor-app-service-reference.md).
