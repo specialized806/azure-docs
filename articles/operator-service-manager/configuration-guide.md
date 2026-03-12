@@ -95,12 +95,12 @@ This example shows the rendered CGV resource created after the CGV deployment co
 Other than separating secrets into a unique CGS, no special requirements exist for CGS secret support.
 
 ## CGV with secrets without AKV
-Where AKV is not being useed, consider the following CGV Azure Resource Manager (ARM) template requirements to properly obscure secret values throughout CGV resource lifecycle.
+Where AKV isn't being used, consider the following CGV Azure Resource Manager (ARM) template requirements to properly obscure secret values throughout CGV resource lifecycle.
 
-* Define a object paramerter `secretCgvContent` with `"type": "secureObject"` to contain all secrets.
+* To contain all secrets, define an object parameter with `"type": "secureObject"` .
   * Before a CGV is deployed, this configuration obscures the display of secrets as template parameters.
 
-This example shows how to define a object paremter `secretCgvContent` to contain all secrets.
+This example shows how to define an object parameter `secretCgvContent`.
 
 ```json
 "parameters": {
@@ -111,9 +111,9 @@ This example shows how to define a object paremter `secretCgvContent` to contain
 ```
 
 > [!NOTE]
-> * Do not hydrate `secretCgvContent` using the bicep loadJsonContent() function as it forces the use of insecure variables.
+> * Don't hydrate `secretCgvContent` using the bicep loadJsonContent() function as it forces the use of insecure variables.
 
-* Under CGV resource properties use `configurationType: 'Secret'` and `"secretConfigurationValue": "[string(parameters('secretCgvContent'))]"`.
+* Under CGV resource properties, use `configurationType: 'Secret'` and `"secretConfigurationValue": "[string(parameters('secretCgvContent'))]"`.
   * Once a CGV is deployed, this configuration prevents displaying the secret data via most Azure user interfaces.
 
 This example shows how to pass all secrets in the object `secretCgvContent` to the new CGV.
@@ -129,7 +129,7 @@ This example shows how to pass all secrets in the object `secretCgvContent` to t
 ```
 
 ## CGV with secrets with AKV
-Where AKV is being useed, consider the following CGV Azure Resource Manager (ARM) template requirements to properly obscure secret values throughout CGV resource lifecycle.
+Where AKV is being used, consider the following CGV Azure Resource Manager (ARM) template requirements to properly obscure secret values throughout CGV resource lifecycle.
 
 * Define a string `parameter` for each secret and one object `variable` to collect all secret values.
   * The object variable contains only a reference to the parameter string and exposes no secrets.   
@@ -167,7 +167,7 @@ This example shows how to hydrate the secret `secretPassword` using Azure Key Va
 }
 ```
 
-* Under CGV resource properties use `configurationType: 'Secret'` and `"secretConfigurationValue": "string(secretVal.configurationValue)"`.
+* Under CGV resource properties, use `configurationType: 'Secret'` and `"secretConfigurationValue": "string(secretVal.configurationValue)"`.
   * Once a CGV is deployed, this configuration prevents displaying the secret data via most Azure user interfaces.
 
 This example shows how to pass all secrets in the object `secretVal.configurationValue` to the new CGV.
@@ -209,9 +209,9 @@ Consider the following Azure Resource Manager (ARM) template requirements when c
 ```
 
 > [!NOTE]
-> * Do not hydrate `secretCgvContent` using the bicep loadJsonContent() function as it forces the use of insecure variables.
+> * Don't hydrate `secretCgvContent` using the bicep loadJsonContent() function as it forces the use of insecure variables.
 
-* Under networkFunctions resource properties use `configurationType: 'Secret'` and `"secretDeploymentValues": "[string(parameters('config'))]"`.
+* Under networkFunctions resource properties, use `configurationType: 'Secret'` and `"secretDeploymentValues": "[string(parameters('config'))]"`.
   * Once a network function is deployed, this configuration prevents displayed the secret data via most Azure user interfaces. 
 
 ```json
@@ -245,7 +245,7 @@ For the CGS meta-schema, Azure Operator Service Manager implements support for J
 * For string types, keyword support isn't limited or filtered. See [string](https://json-schema.org/understanding-json-schema/reference/string) in the JSON Schema reference.
 * For numeric types, keyword support isn't limited or filtered. See [Numeric types](https://json-schema.org/understanding-json-schema/reference/numeric) in the JSON Schema reference.
 
-## Optional and required fields
+### Optional and required fields
 
 You declare a property as optional by including a `required` keyword, which omits the optional property. If you don't specify the `required` keyword, all properties are considered required. You need at least one required property type to support an optional property type.
 
@@ -266,11 +266,11 @@ You declare a property as optional by including a `required` keyword, which omit
 } 
 ```
 
-## Default values in JSON Schema
+### Default values in JSON Schema
 
 For optional properties, Azure Operator Service Manager implements a custom method of handling default values. When a default value is defined in CGS meta-schema, Azure Operator Service Manager uses that value where the property is missing or undefined in the input CGV data. Azure Operator Service Manager validator logic essentially hydrates the CGV value with the default value when the operator doesn't provide a value.
 
-### How to define defaults
+#### How to define defaults
 
 Defaults must be specified either inside properties or inside items of an array. The following example demonstrates defaults with integer and string property types:
 
@@ -290,7 +290,7 @@ Defaults must be specified either inside properties or inside items of an array.
 } 
 ```
 
-### Rules for defining defaults
+#### Rules for defining defaults
 
 The following rules are applied when you're validating a default value. Consider these rules when you're using default values to ensure expected outcomes.
 
