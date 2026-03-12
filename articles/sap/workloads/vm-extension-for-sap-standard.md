@@ -15,16 +15,13 @@ ms.date: 03/12/2026
 # Customer intent: "As an IT administrator managing SAP solutions, I want to configure the Azure VM extension for SAP using PowerShell or Azure CLI, so that I can effectively monitor and collect performance metrics for my SAP applications running on Azure VMs."
 ---
 
-# Standard Version of Azure VM extension for SAP solutions
+# Standard version of Azure VM extension for SAP solutions
 
 There are two versions of the Azure virtual machine (VM) extension. This article covers the **Standard** version of the Azure VM extension for SAP. For guidance on how to install the new version, see [New Version of Azure VM extension for SAP solutions][new-extension].
 
 ## Prerequisites
 
 Make sure to uninstall the VM extension before switching between the standard and the new version of the Azure extension for SAP.
-
-
-
 
 The Azure PowerShell module or Azure CLI must be installed. See the following instructions:
 
