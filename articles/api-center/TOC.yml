@@ -60,7 +60,7 @@
         href: export-to-copilot-studio.yml
       - name: Track API dependencies
         href: track-resource-dependencies.md
-    - name: Agent-to-Agent
+    - name: Agents
       items:
       - name: Overview
         href: agent-to-agent-overview.md
