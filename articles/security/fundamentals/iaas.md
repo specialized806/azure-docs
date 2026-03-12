@@ -57,7 +57,7 @@ Virtual Machine Scale Sets let you create and manage a group of load balanced VM
 You can deploy virtual machines in a scale set into multiple availability zones, a single availability zone, or regionally.
 
 ## Protect against malware
-Install antimalware protection to help identify and remove viruses, spyware, and other malicious software. You can install [Microsoft Antimalware](antimalware.md) or a Microsoft partner's endpoint protection solution ([Trend Micro](https://cloudone.trendmicro.com/docs/workload-security/), [Broadcom](https://www.broadcom.com/products), [McAfee](https://www.mcafee.com/us/products.aspx), [Windows Defender](https://www.microsoft.com/windows/comprehensive-security), and [System Center Endpoint Protection](/configmgr/protect/deploy-use/endpoint-protection)).
+Install antimalware protection to help identify and remove viruses, spyware, and other malicious software. You can install [Microsoft Antimalware](antimalware.md) or a Microsoft partner's endpoint protection solution ([Trend Micro](https://cloudone.trendmicro.com/docs/workload-security/), [Broadcom](https://www.broadcom.com/products), [McAfee](https://www.mcafee.com/en-us/antivirus.html), [Windows Defender](https://www.microsoft.com/windows/comprehensive-security), and [System Center Endpoint Protection](/configmgr/protect/deploy-use/endpoint-protection)).
 
 Microsoft Antimalware includes features like real-time protection, scheduled scanning, malware remediation, signature updates, engine updates, samples reporting, and exclusion event collection. For environments that are hosted separately from your production environment, use an antimalware extension to help protect your VMs and cloud services.
 
