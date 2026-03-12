@@ -38,7 +38,7 @@ You need an Azure account and subscription. [Get a free Azure account](https://a
 
 You can create Resource Manager templates by using Azure PowerShell with the [LogicAppTemplate module](https://github.com/jeffhollan/LogicAppTemplateCreator). This open-source module first evaluates your logic app and any connections that the logic app uses. The module then generates template resources with the necessary parameters for deployment.
 
-For example, suppose you have a logic app that receives a message from an Azure Service Bus queue and uploads data to Azure SQL Database. The module preserves all the orchestration logic and parameterizes the SQL and Service Bus connection strings so that you can provide and change those values based on your deployment needs.
+For example, suppose you have a logic app that receives a message from an Azure Service Bus queue and uploads data to Azure SQL Database. The module preserves the orchestration logic and parameterizes the SQL and Service Bus connection strings so that you can provide and change those values based on your deployment needs.
 
 These samples show how to create and deploy logic apps by using Azure Resource Manager templates, Azure Pipelines in Azure DevOps, and Azure PowerShell:
 
@@ -72,7 +72,7 @@ Or, to install manually, follow the steps in GitHub for [Logic App Template Crea
 
 ### Install Azure Resource Manager client
 
-For the LogicAppTemplate module to work with any Azure tenant and subscription access token, install the [Azure Resource Manager client tool](https://github.com/projectkudu/ARMClient), which is a simple command line tool that calls the Azure Resource Manager API.
+For the LogicAppTemplate module to work with any Azure tenant and subscription access token, install the [Azure Resource Manager client tool](https://github.com/projectkudu/ARMClient). This simple command line tool calls the Azure Resource Manager API.
 
 When you run the `Get-LogicAppTemplate` command with this tool, the command first gets an access token through the ARMClient tool, pipes the token to the PowerShell script, and creates the template as a JSON file. For more information about the tool, see this [article about the Azure Resource Manager client tool](https://blog.davidebbo.com/2015/01/azure-resource-manager-client.html).
 
