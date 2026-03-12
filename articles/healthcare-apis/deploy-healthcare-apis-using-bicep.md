@@ -25,7 +25,7 @@ In this quickstart, you use a Bicep file to create an Azure Health Data Services
 
 An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-[!INCLUDE [Azure CLI](~/reusable-content/azure-cli/azure-cli-prepare-your-enviornment-no-header.md)]
+[!INCLUDE [Azure CLI](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 
 ## Review the Bicep file
 
