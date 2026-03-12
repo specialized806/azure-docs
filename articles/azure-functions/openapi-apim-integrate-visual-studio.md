@@ -40,7 +40,7 @@ The Azure Functions project template in Visual Studio creates a project that you
 
 1. In **Configure your new project**, enter a **Project name** for your project like `TurbineRepair`, and then select **Next**.
 
-1. For the **Create a new Azure Functions application** settings, select one of these options for **Functions worker**, where the option you choose depends on your chosen process model:
+1. For the **Additional information** settings, select one of these options for **Functions worker**, where the option you choose depends on your chosen process model:
 
     ### [Isolated worker model](#tab/isolated-process)
 
@@ -60,7 +60,6 @@ The Azure Functions project template in Visual Studio creates a project that you
     | ------------ |  ------- |----------------------------------------- |
     | **Function template** | **Empty** | This creates a project without a trigger, which gives you more control over the name of the HTTP triggered function when you add it later.   |
     | **Use Azurite for runtime storage account (AzureWebJobsStorage)**  | **Selected** | You can use the emulator for local development of HTTP trigger functions. Because a function app in Azure requires a storage account, one is assigned or created when you publish your project to Azure. |
-    | **Authorization level** | **Function** | When running in Azure, clients must provide a key when accessing the endpoint. For more information, see [Authorization level](functions-bindings-http-webhook-trigger.md#http-auth). |
 
 1. Select **Create** to create the function project.
 
@@ -153,7 +152,7 @@ Before you can publish your project, you must have a function app in your Azure 
 
 1. In **Solution Explorer**, right-click the project and select **Publish** and in **Target**. Select **Azure** and then **Next**.
 
-1. For the **Specific target**, choose **Azure Function App (Windows)** to create a function app that runs on Windows. Then select **Next**.
+1. For the **Specific target**, choose **Azure Function App** to create a function app that runs on Windows. Then select **Next**.
 
 1. In **Function Instance**, choose **+ Create a new Azure Function...**.
 
@@ -166,7 +165,7 @@ Before you can publish your project, you must have a function app in your Azure 
     | **Name** | Globally unique name | Name that uniquely identifies your new function app. Accept this name or enter a new name. Valid characters are: `a-z`, `0-9`, and `-`. |
     | **Subscription** | Your subscription | The Azure subscription to use. Accept this subscription, or select a new one from the drop-down list. |
     | **[Resource group](../azure-resource-manager/management/overview.md)** | Name of your resource group |  The resource group in which to create your function app. Select an existing resource group from the drop-down list, or choose **New** to create a new resource group.|
-    | **[Plan Type](functions-scale.md)** | Consumption | When you publish your project to a function app that runs in a [Consumption plan](consumption-plan.md), you pay only for executions of your functions app. Other hosting plans incur higher costs. |
+    | **[Plan Type](functions-scale.md)** | Flex Consumption | When you publish your project to a function app that runs in a [Flex Consumption plan](consumption-plan.md), you pay only for executions of your functions app. Other hosting plans incur higher costs. |
     | **Location** | Location of the service | Choose a **Location** in a [region](https://azure.microsoft.com/regions/) near you or other services your functions access. |
     | **[Azure Storage](storage-considerations.md)** | General-purpose storage account | The Functions runtime requires an Azure Storage account. Select **New** to configure a general-purpose storage account. You can also choose an existing account that meets the [storage account requirements](storage-considerations.md#storage-account-requirements).  |
 
@@ -176,7 +175,7 @@ Before you can publish your project, you must have a function app in your Azure 
 
 1. Back in **Functions instance**, make sure that **Run from package file** is checked. Your function app is deployed using [Zip Deploy](functions-deployment-technologies.md#zip-deploy) with [Run-From-Package](run-functions-from-deployment-package.md) mode enabled. This deployment method is recommended for your functions project, since it results in better performance.
 
-1. Select **Next**, and in the **API Management** page, also choose **+ Create an API Management API**.
+1. Select **Next**, and in the **API Management** page, also choose **+ Create new** or **Create a new instance**.
 
 1.  Create an **API in API Management** by using values in the following table:
 
