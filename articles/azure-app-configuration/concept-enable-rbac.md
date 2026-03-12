@@ -169,6 +169,43 @@ public class Application {
 }
 ```
 
+### [Python](#tab/python)
+
+The Audience for the target cloud must be configured for the following packages.
+
+- Azure SDK for Python: azure-appconfiguration >= 1.8.0
+- Python configuration provider: azure-appconfiguration-provider >= 2.4.0
+
+In the **Azure SDK for Python**, audience is configured by passing the `audience` keyword argument to the `AzureAppConfigurationClient` constructor.
+
+The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
+
+```python
+from azure.appconfiguration import AzureAppConfigurationClient
+from azure.identity import DefaultAzureCredential
+
+client = AzureAppConfigurationClient(
+    myStoreEndpoint,
+    DefaultAzureCredential(),
+    audience="{Cloud specific audience here}",
+)
+```
+
+In the **Python configuration provider**, audience is configured by passing the `audience` keyword argument to the `load` function.
+
+The following code snippet demonstrates how to load Azure App Configuration in a Python application with a cloud-specific audience.
+
+```python
+from azure.appconfiguration.provider import load
+from azure.identity import DefaultAzureCredential
+
+config = load(
+    endpoint=myStoreEndpoint,
+    credential=DefaultAzureCredential(),
+    audience="{Cloud specific audience here}",
+)
+```
+
 ### [JavaScript](#tab/javascript)
 
 The Audience for the target cloud must be configured for the following packages.
