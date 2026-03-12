@@ -89,7 +89,7 @@ Select a **Connection type** and fill in the required fields.
 
 If you select **Azure Data Factory** as the connection type, provide Azure resource details and SAP system connection information. For detailed prerequisites and field descriptions, see [Configure a source system with Azure Data Factory](configure-source-system-with-data-factory.md).
 
-:::image type="content" source="./media/configure-insights/wizard-connection-adf.png" alt-text="Screenshot showing the Azure Data Factory connection setup with Azure resources and system connection fields." lightbox="./media/configure-insights/wizard-connection-adf.png":::
+:::image type="content" source="./media/configure-insights/wizard-connection.png" alt-text="Screenshot showing the Azure Data Factory connection setup with Azure resources and system connection fields." lightbox="./media/configure-insights/wizard-connection.png":::
 
 ##### Open Mirroring
 
