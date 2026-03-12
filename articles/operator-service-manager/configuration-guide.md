@@ -95,9 +95,23 @@ This example shows the rendered CGV resource created after the CGV deployment co
 Other than separating secrets into a unique CGS, no special requirements exist for CGS secret support.
 
 ## CGV with secrets
-Consider the following Azure Resource Manager (ARM) template requirements to properly obscure secret values throughout the entire CGV resource lifecycle.
+Consider the following Azure Resource Manager (ARM) template requirements when creating a CGV to properly obscure secret values throughout the entire CGV resource lifecycle.
 
-* Use `configurationType: 'Secret'` in the template under resource properties.
+* Use `"type": "secureObject"` in the template for type of the `secretCgvContent` parameter
+  * This configuration obscures the CGV play of the secrets as template parameters.
+ 
+```json
+"parameters": {
+   "secretCgvContent": {
+     "type": "SecureObject"
+    }
+}
+```
+
+> [!NOTE]
+> * Do not hydrate `secretCgvContent` using the loadJsonContent() function in bicep as this will expose the data using insecure variables.
+
+* Use `configurationType: 'Secret'` and `"secretDeploymentValues": "[string(parameters('secretCgvContent'))]"` in the template under CGV resource properties.
   * Once a CGV is deployed, this configuration prevents displaying the secret data via most Azure methods.
 
 ```json
@@ -107,17 +121,6 @@ Consider the following Azure Resource Manager (ARM) template requirements to pro
     "configurationType": "Secret"
     "secretDeploymentValues": "[string(parameters('secretCgvContent'))]"
   }
-}
-```
-
-* Use `"type": "secureObject"` in the template under parameter type 
-  * This configuration obscures the display of the secrets as template parameters.
- 
-```json
-"parameters": {
-   "secretCgvContent": {
-     "type": "SecureObject"
-    }
 }
 ```
 
@@ -135,6 +138,57 @@ This example shows how to include an AKV reference to a secret named `secretName
         "secretName": "passwd"
       }
 ```
+
+## NF with secrets
+Consider the following Azure Resource Manager (ARM) template requirements when creating a NF to properly obscure secret values throughout the entire NF resource lifecycle.
+
+* Use `"type": "secureObject"` in the template for type of the `secretValues` and `config` parameter
+  * This configuration obscures the display of the secrets as template parameters.
+ 
+```json
+"parameters": {
+   "siteSpecificValues": {
+     "type": "object"
+    },
+   "secretValues": {
+     "type": "secureObject"
+    },
+    "nfValues": {
+     "type": "object"
+    },
+    "config": {
+      "type": "secureObject",
+      "defaultValue": "[union(parameters('nfValues'),parameters('siteSpecificValues'), parameters('secretValues'))]"
+    }
+}
+```
+
+* Use `configurationType: 'Secret'` and `"secretDeploymentValues": "[string(parameters('secretCgvContent'))]"` in the template under CGV resource properties.
+  * Once a CGV is deployed, this configuration prevents displaying the secret data via most Azure methods.
+
+```json
+"properties": {
+  "configurationType": "Secret",
+  "secretDeploymentValues": "[string(parameters('config'))]"
+ }
+```
+
+> [!NOTE]
+> * Do not hydrate `secretCgvContent` using the loadJsonContent() function in bicep as this will expose the data using insecure variables.
+
+* Use `configurationType: 'Secret'` and `"secretDeploymentValues": "[string(parameters('secretCgvContent'))]"` in the template under CGV resource properties.
+  * Once a CGV is deployed, this configuration prevents displaying the secret data via most Azure methods.
+
+```json
+{
+  "type": "Microsoft.HybridNetwork/configurationGroupValues",
+  "properties": {
+    "configurationType": "Secret"
+    "secretDeploymentValues": "[string(parameters('secretCgvContent'))]"
+  }
+}
+```
+
 
 > [!NOTE]
 > * ARM templates only support Azure Key Vault for secret reference substitution.
