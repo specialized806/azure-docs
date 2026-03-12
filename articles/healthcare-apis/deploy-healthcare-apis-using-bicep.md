@@ -4,184 +4,97 @@ description: This document describes how to deploy Azure Health Data Services us
 author: chachachachami
 ms.service: azure-health-data-services
 ms.subservice: fhir
-ms.topic: quickstart
-ms.date: 02/25/2026
+ms.topic: quickstart-bicep
+ms.date: 03/11/2026
 ms.author: chrupa
+ms.reviewer: v-catheribun
 ms.custom:
   - mode-api
   - devx-track-bicep
   - build-2025
+  - subject-bicepqs
 ---
 
-# Deploy Azure Health Data Services using Azure Bicep
+# Quickstart: Deploy Azure Health Data Service with Bicep
 
-In this article, you learn how to create Azure Health Data Services, including workspaces, Fast Healthcare Interoperability Resources (FHIR) services, and Digital Imaging Communications in Medicine (DICOM) services, using Azure Bicep. 
+In this quickstart, you use a Bicep file to create an Azure Health Data Services workspace with a Fast Healthcare Interoperability Resources (FHIR) service and a Digital Imaging Communications in Medicine (DICOM) service. 
 
-## What is Azure Bicep
+[!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]
 
-Bicep is built on top of Azure Resource Manager (ARM) template. Bicep immediately supports all preview and generally available (GA) versions for Azure services, including Azure Health Data Services. For more information on Bicep, see [What is Bicep](../azure-resource-manager/bicep/overview.md).
+## Prerequisites
+
+An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
+[!INCLUDE [Azure CLI](~/reusable-content/azure-cli/azure-cli-prepare-your-enviornment-no-header.md)]
+
+## Review the Bicep file
+
+The Bicep file used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/<template-name>).
 
 
-During development, you can generate a JSON ARM template file using the `az bicep build` command. Conversely, you can decompile a JSON ARM template file to Bicep using the `az bicep decompile` command. During deployment, the Bicep CLI converts a Bicep file into an ARM template JSON.
+:::code language="bicep" source="~/quickstart-templates/<template-name>/main.bicep":::
 
-You can continue to work with JSON ARM templates, or use Bicep to develop your ARM templates. 
+The Bicep file defines three Azure resources.
 
->[!Note]
->The templates and scripts in the article are tested in Visual Studio Code during the public preview. Some changes may be necessary to adapt the code to run in your environment.
+- [Microsoft.HealthcareApis workspaces](/azure/templates/microsoft.healthcareapis/workspaces)
+- [Microsoft.HealthcareApis workspaces/fhirservices](/azure/templates/microsoft.healthcareapis/workspaces/fhirservices)
+- [Microsoft.HealthcareApis workspaces/dicomservices](/azure/templates/microsoft.healthcareapis/workspaces/dicomservices)
 
-## Define parameters and variables
 
-In this example, create a Bicep template file named `ahds.bicep` Using Bicep parameters and variables instead of hard coding names and other values allows you to debug and reuse your Bicep files. They’re used when you run the template in the CLI command line with the "--parameters" option.
 
-First, define parameters with the keyword *param* for workspace and the services you want to deploy. Also, define parameters for Azure subscription and Microsoft Entra tenant. 
+## Prepare your environment
 
-Then define variables for resources with the keyword *var*. Also, if you're deploying a FHIR service, define variables for properties such as the authority and the audience. They’re specified and used internally in the Bicep file and can be used in combination of parameters, Bicep functions, and other variables. Unlike parameters, they aren’t used in the CLI command line.
+You can deploy the Bicep file by using Azure CLI or Azure PowerShell. This example uses Azure CLI in Bash.
 
-It's important to note that one Bicep function and environment are required to specify the login URL, `https://login.microsoftonline.com`. For more information on Bicep functions, see [Deployment functions for Bicep](../azure-resource-manager/bicep/bicep-functions-deployment.md#environment).
+1. Save your Bicep file locally as `main.bicep`
+1. Open a Bash shell and go to the directory where you saved the Bicep file.
+1. Run the following command to sign in to Azure from the CLI. Follow the prompts to complete the authentication process.
+    
+    ```azurecli
+    az login
+    ```
+1. Run the upgrade command to make sure you're running the latest version of Azure CLI.
 
-```
-//Define parameters
-param workspaceName string
-param fhirName string
-param dicomName string
-param tenantId string
-param location string
+    ```azurecli
+    az upgrade
+    ```
 
-//Define variables
-var fhirservicename = '${workspaceName}/${fhirName}'
-var dicomservicename = '${workspaceName}/${dicomName}'
+## Create resource group
 
-var loginURL = environment().authentication.loginEndpoint
-var authority = '${loginURL}${tenantId}'
-var audience = 'https://${workspaceName}-${fhirName}.fhir.azurehealthcareapis.com'
-```
+Use the [az group create](/cli/azure/group#az-group-create) command to create a resource group. Replace the `<placeholders>` with your values. 
 
-## Create a workspace template
-
-To define a resource, use the keyword *resource*. For the workspace resource, the required properties include the workspace name and location. In the template, the location of the resource group is used, but you can specify a different value for the location. For the resource name, you can reference the defined parameter or variable.
-
-For more information on resource and module, see [Resource declaration in Bicep](../azure-resource-manager/bicep/resource-declaration.md).
-
-```
-//Create a workspace
-resource exampleWorkspace 'Microsoft.HealthcareApis/workspaces@2021-06-01-preview' = {
-  name: workspaceName
-  location: resourceGroup().location
-}
+```azurecli
+az group create --name <resource group name> --location westus2
 ```
 
-To use or reference an existing workspace without creating one, use the keyword *existing*. Specify the workspace resource name and the existing workspace instance name for the name property. A different name for the existing workspace resource is used in the template, but that isn't a requirement.
+## Deploy resources
+
+Use the [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) command to deploy your resources. Replace the `<placeholders>` with your values.
+
+```azurecli
+az deployment group create --resource-group <resource group name> --template-file main.bicep
 
 ```
-//Use an existing workspace
-resource exampleExistingWorkspace 'Microsoft.HealthcareApis/workspaces@2021-06-01-preview' existing = {
-   name: workspaceName
-}
-```
 
-You're now ready to deploy the workspace resource using the `az deployment group create` command. You can also deploy it along with its other resources, as described further in this article.
+The output of this command is a JSON-formatted listing of the deployment. You can view and manage these resources through the [az healthcareapis workspace](/cli/azure/healthcareapis/workspace) commands.
 
-For more information about workspace templates, see [Microsoft.HealthcareApis workspaces](/azure/templates/microsoft.healthcareapis/workspaces)
+## Debug Bicep files
 
-## Create a FHIR service template
-
-For the FHIR service resource, the required properties include service instance name, location, kind, and managed identity. Also, it has a dependency on the workspace resource. For the FHIR service itself, the required properties include authority and audience, which are specified in the properties element.
-
-```
-resource exampleFHIR 'Microsoft.HealthcareApis/workspaces/fhirservices@2021-11-01' = {
-  name: fhirservicename
-  location: resourceGroup().location
-  kind: 'fhir-R4'
-  identity: {
-    type: 'SystemAssigned'
-  }
-  dependsOn: [
-    exampleWorkspace  
-    //exampleExistingWorkspace
-  ]
-  properties: {
-    accessPolicies: []
-    authenticationConfiguration: {
-      authority: authority
-      audience: audience
-      smartProxyEnabled: false
-    }
-    }
-}
-```
-
-Similarly, you can use or reference an existing FHIR service using the keyword *existing*.
-
-```
-//Use an existing FHIR service
-resource exampleExistingFHIR 'Microsoft.HealthcareApis/workspaces/fhirservices@2021-11-01' existing = {
-    name: fhirservicename
-}
-```
-
-For more information about FHIR service templates, see [Microsoft.HealthcareApis workspaces/fhirservices](/azure/templates/microsoft.healthcareapis/workspaces/fhirservices)
-
-## Create a DICOM service template
-
-For the DICOM service resource, the required properties include service instance name and location, and the dependency on the workspace resource type.  
-
-```
-//Create DICOM service
-resource exampleDICOM 'Microsoft.HealthcareApis/workspaces/dicomservices@2021-11-01' = {
-  name: dicomservicename
-  location: resourceGroup().location
-  dependsOn: [
-    exampleWorkspace
-  ]
-  properties: {}
-}
-```
-
-Similarly, you can use or reference an existing DICOM service using the keyword *existing*.
-
-```
-//Use an existing DICOM service
- resource exampleExistingDICOM 'Microsoft.HealthcareApis/workspaces/dicomservices@2021-11-01' existing = {
-   name: dicomservicename
-}
-```
-
-For more information about DICOM service templates, see [Microsoft.HealthcareApis workspaces/dicomservices](/azure/templates/microsoft.healthcareapis/workspaces/dicomservices)[!INCLUDE [FHIR and DICOM trademark statement](./includes/healthcare-apis-fhir-dicom-trademark.md)]
-
-
-
-## Deploy Azure Health Data Services
-
-You can use the `az deployment group create` command to deploy individual Bicep file or combined templates, similar to the way you deploy Azure resources with JSON templates. Specify the resource group name, and include the parameters in the command line. With the "--parameters" option, specify the parameter and value pair as "parameter = value", and separate the parameter and value pairs by a space if more than one parameter is defined.
-
-For the Azure subscription and tenant, you can specify the values, or use CLI commands to obtain them from the current sign-in session.
-
-```
-deploymentname=xxx
-resourcegroupname=rg-$deploymentname
-location=centralus
-workspacename=ws$deploymentname
-fhirname=fhir$deploymentname
-dicomname=dicom$deploymentname
-bicepfilename=ahds.bicep
-subscriptionid=$(az account show --query id --output tsv)
-tenantid=$(az account show --subscription $subscriptionid --query tenantId --output tsv)
-
-az group create --name $resourcegroupname --location $location
-az deployment group create --resource-group $resourcegroupname --template-file $bicepfilename --parameters workspaceName=$workspacename fhirName=$fhirname dicomName=$dicomname tenantId=$tenantid location=$location
-```
-
-The child resource name such as the FHIR service includes the parent resource name, and the "dependsOn" property is required. However, when the child resource is created within the parent resource, its name doesn't need to include the parent resource name, and the "dependsOn" property isn't required. For more info on nested resources, see [Set name and type for child resources in Bicep](../azure-resource-manager/bicep/child-resource-name-type.md).
-
-## Debugging Bicep files
-
-You can debug Bicep files in Visual Studio Code, or in other environments and troubleshoot issues based on the response. Also, you can review the activity log for a specific resource in the resource group while debugging.
+You can debug Bicep files in Visual Studio Code or in other environments. Troubleshoot issues based on the response. You can also review the activity log for a specific resource in the resource group while debugging.
 
 In addition, you can use the **output** value for debugging or as part of the deployment response. For example, you can define two output values to display the values of authority and audience for the FHIR service in the response. For more information, see [Outputs in Bicep](../azure-resource-manager/bicep/outputs.md).
 
 ```
 output stringOutput1 string = authority
 output stringOutput2 string = audience
+```
+
+## Clean up resources
+
+When you're finished with the resources you created, delete the resource group. Deleting the resource group deletes all the resources created in this exercise. To delete the resource group, run the [az group delete](/cli/azure/group#az-group-delete) command. Replace the `<placeholders>` with your values.
+
+```azurecli
+az group delete --resource-group <resource group name>
 ```
 
 ## Next steps
