@@ -19,6 +19,7 @@ VMware HCX offers five options with the HCX Enterprise Edition license when migr
 - Bulk Migration
 - Replication Assisted vMotion
 - OS Assisted Migration
+- HCX Assisted vMotion
 
 The cost of the VMware HCX Enterprise Edition license is included in the cost of the Azure VMware Solution service.
 
