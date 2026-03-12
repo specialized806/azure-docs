@@ -243,8 +243,8 @@ For the complete list, see [Supported metrics - Microsoft.App/sessionpools - Azu
 #### Option 1: Azure Monitor Metrics
 
 1. Open the [Azure Monitor Metrics page](https://ms.portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/metrics).
-2. Select your custom container session pool as the scope.
-3. Choose a metric and aggregation to view.
+1. Select your custom container session pool as the scope.
+1. Choose a metric and aggregation to view.
 
 #### Option 2: Container Apps environment metrics
 
