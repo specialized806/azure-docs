@@ -515,7 +515,7 @@ Manually setting a static IP address inside the Azure VM isn't supported, and mi
 [configure-proxy]:deployment-guide.md#baccae00-6f79-4307-ade4-40292ce4e02d
 [troubleshoot-windows]:vm-extension-for-sap-standard.md#troubleshooting (Troubleshooting for Windows)
 [troubleshoot-linux]:vm-extension-for-sap-standard.md#troubleshooting (Troubleshooting for Linux)
-[healthcheck]:vm-extension-for-sap-standard.md#health-check (Health check for the Azure extension for SAP configuration)
+[healthcheck]:vm-extension-for-sap-standard.md#health-checks (Health check for the Azure extension for SAP configuration)
 [deployment-guide-4.1]:vm-extension-for-sap-standard.md#prerequisites (Deploying Azure PowerShell cmdlets)
 [deploy-cli]:vm-extension-for-sap-standard.md#prerequisites (Deploying Azure CLI)
 [deployment-guide-figure-1000]:media/virtual-machines-shared-sap-deployment-guide/1000-service-properties.png
