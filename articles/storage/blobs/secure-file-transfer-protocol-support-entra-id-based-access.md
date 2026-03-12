@@ -224,7 +224,7 @@ Use the following command to view the OpenSSH certificate:
 
 `ssh-keygen -L -f my_cert.pub`
 
-The _Principals_ section contains the username:
+In the output, the _Principals_ section contains the username.
 
 :::image type="content" source="./media/secure-file-transfer-protocol-support/verify-certificate.png" alt-text="Screenshot of the principals section in the command ouput.":::
 
