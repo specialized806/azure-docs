@@ -1,5 +1,5 @@
 ---
-title: Azure Front Door
+title: Azure Front Door Overview
 description: This article provides an overview of Azure Front Door.
 author: halkazwini
 ms.author: halkazwini
@@ -7,7 +7,7 @@ ms.service: azure-frontdoor
 ms.topic: overview
 ms.date: 11/12/2024
 ms.custom: portfolio-consolidation-2025
-#customer intent: As an IT admin, I want to learn about Front Door and what I can use it for.
+#customer intent: As an IT admin, I want to learn about Azure Front Door and what I can use it for.
 ---
 
 # What is Azure Front Door?
@@ -32,15 +32,15 @@ Azure Front Door enables internet-facing applications to:
 
 * *Accelerate and deliver your applications and content globally* at scale to your users wherever they are. This ability creates opportunities for you to compete and quickly adapt to new demand and markets.
 
-* *Help secure your digital estate* against known and new threats with intelligent security that embrace a *Zero Trust* framework.
+* *Help secure your digital estate* against known and new threats with intelligent security that embraces a *Zero Trust* framework.
 
 ## What are the key benefits?
 
 ### Global delivery scale through the Microsoft network
 
-Scale out and improve performance of your applications and content by using Microsoft's global cloud CDN and wide area network (WAN).
+Scale out and improve performance of your applications and content by using Microsoft's global cloud CDN and wide area network (WAN):
 
-* Take advantage of more than [118 edge locations](edge-locations-by-region.md) across 100 metro areas connected to Azure by using a private enterprise-grade WAN, and improve latency for applications by up to three times.
+* Take advantage of more than [118 edge locations](edge-locations-by-region.md) across 100 metro areas connected to Azure by using a private enterprise-grade WAN. Improve latency for applications by up to three times.
 
 * Accelerate application performance by using the Azure Front Door [anycast](front-door-traffic-acceleration.md#select-the-front-door-edge-location-for-the-request-anycast) network and [split TCP](front-door-traffic-acceleration.md#connect-to-the-front-door-edge-location-split-tcp) connections.
 
@@ -50,7 +50,7 @@ Scale out and improve performance of your applications and content by using Micr
 
 ### Delivery of modern apps and architectures
 
-Modernize your internet-first applications on Azure with cloud-native experiences
+Modernize your internet-first applications on Azure with cloud-native experiences:
 
 * Integrate with DevOps-friendly command-line tools across SDKs of different languages, Bicep, Azure Resource Manager templates, the Azure CLI, and PowerShell.
 
@@ -78,7 +78,7 @@ Modernize your internet-first applications on Azure with cloud-native experience
 
 * Integrated egress pricing that removes the separate egress charge from Azure regions to Azure Front Door. For more information, see [Azure Front Door pricing](https://azure.microsoft.com/pricing/details/frontdoor/).
 
-### Intelligent secure internet perimeter
+### Intelligent, secure internet perimeter
 
 * Help secure applications with built-in layer 3-4 DDoS protection, seamlessly attached [WAF](../web-application-firewall/afds/afds-overview.md), and [Azure DNS to help protect your domains](how-to-configure-endpoints.md).
 
@@ -86,7 +86,7 @@ Modernize your internet-first applications on Azure with cloud-native experience
 
 * Help protect your applications from malicious actors with bot manager rules based on Microsoft Threat Intelligence.
 
-* Privately connect to your backend behind Azure Front Door by using [Azure Private Link](private-link.md) and embrace a Zero Trust access model.
+* Privately connect to your backend behind Azure Front Door by using [Azure Private Link](private-link.md), and embrace a Zero Trust access model.
 
 * Provide a centralized security experience for your application via Azure Policy and Azure Advisor that provides consistent security features across apps.
 
@@ -104,7 +104,7 @@ For pricing information, see [Azure Front Door pricing](https://azure.microsoft.
 
 ## What's new?
 
-Subscribe to the RSS feed and view the latest Azure Front Door feature updates on the [Azure Updates](https://azure.microsoft.com/updates?filters=%5B%22Azure+Front+Door%22%5D) page.
+Subscribe to the RSS feed, and view the latest Azure Front Door feature updates on the [Azure Updates](https://azure.microsoft.com/updates?filters=%5B%22Azure+Front+Door%22%5D) page.
 
 ## Related content
 
