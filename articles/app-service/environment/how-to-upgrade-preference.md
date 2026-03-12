@@ -49,7 +49,7 @@ If you choose manual upgrades, there are important considerations to keep in min
 
 - **A manual upgrade can transition to automatic**. In rare cases, the availability of an upgrade for manual application can transition to an automatic upgrade. A security hotfix might supersede the planned upgrade. A regression might be discovered in a planned upgrade before the updates are applied to your instance. In these cases, the available upgrade is removed and the process transitions to automatic upgrade.
 
-- **An upgrade is available, but you don't receive a notification**. You might see a notice in the Azure portal that an upgrade is available for your App Service Environment, but you don't receive a Service Health notification. (Notifications are sent according to [your configuration](#configure-notifications)). If you don't receive the notification, the available upgrade isn't required and the 15-day time limit doesn't apply. This issue is currently under investigation.
+- **An upgrade is available, but you don't receive a notification**. You might see a notice in the Azure portal that an upgrade is available for your App Service Environment, but you don't receive a Service Health notification. (Notifications are sent according to [your configuration](#configure-notifications).) If you don't receive the notification, the available upgrade isn't required and the 15-day time limit doesn't apply. This issue is currently under investigation.
 
 ## View upgrade notifications
 
@@ -101,9 +101,11 @@ If you set the **Upgrade preference** for your App Service Environment to **Manu
 
 1. Allow time for the notification to send. [Verify the test notification](#view-upgrade-notifications) is listed on the **Service Health** dashboard in the Azure portal.
 
+You can also send a test notification by using the Azure CLI. For more information, see the procedure described in [Apply upgrade to App Service Environment (Azure CLI)](./how-to-upgrade-preference.md#apply-upgrade-to-app-service-environment?tabs=azure-cli).
+
 ## Configure upgrade preference
 
-Use the following procedure to configure the upgrade preference for your App Service Environment.
+Use the following procedure to configure the upgrade preference for your App Service Environment. The recommended approach is to use the Azure portal.
 
 # [Azure portal](#tab/azure-portal)
 
@@ -120,9 +122,6 @@ Use the following procedure to configure the upgrade preference for your App Ser
 # [Azure CLI](#tab/azure-cli)
 
 Run the following commands with the [Azure CLI](/cli/azure/install-azure-cli) or use the [Azure Cloud Shell](https://shell.azure.com/).
-
-> [!TIP]
-> You can easily configure the upgrade preference in the [Azure portal](#configure-upgrade-preferencetabs=azure-portal).
 
 1. Set the `<placeholder>` command parameters to the values for your App Service Environment:
 
@@ -152,9 +151,7 @@ Run the following commands with the [Azure CLI](/cli/azure/install-azure-cli) or
       Confirm the upgrade preference is set as expected:
 
       ```output
-      ...
       "upgradePreference": "Manual",
-      ...
       ```
 
    - For automatic upgrade, set the `upgradePreference` property to the automatic value: **Early**, **Late**, or **None**. The following example sets the preference to **Early** automatic upgrades:
@@ -166,9 +163,7 @@ Run the following commands with the [Azure CLI](/cli/azure/install-azure-cli) or
       Confirm the upgrade preference is set as expected:
       
       ```output
-      ...
       "upgradePreference": "Early",
-      ...
       ```
 
 ---
@@ -195,6 +190,8 @@ When an upgrade is available, a banner displays in the Azure portal. Use the fol
 
 Run the following commands with the [Azure CLI](/cli/azure/install-azure-cli) or use the [Azure Cloud Shell](https://shell.azure.com/).
 
+The following procedure sends a test upgrade notification for the App Service Environment.
+
 1. Set the `<placeholder>` command parameters to the values for your App Service Environment:
 
    ```azurecli
@@ -208,12 +205,6 @@ Run the following commands with the [Azure CLI](/cli/azure/install-azure-cli) or
    ASE_ID=$(az appservice ase show --name $ASE_NAME --resource-group $ASE_RG --query id --output tsv)
    ```
 
-1. Send a test upgrade notification:
-
-   ```azurecli
-   az rest --method POST --uri "${ASE_ID}/testUpgradeAvailableNotification?api-version=2022-03-01"
-   ```
-
 1. Start the upgrade process:
 
    ```azurecli
@@ -222,9 +213,10 @@ Run the following commands with the [Azure CLI](/cli/azure/install-azure-cli) or
 
 ---
 
-During the upgrade process, the platform sends notifications, according to [your configuration](#configure-notifications)).
+During the upgrade process, the platform sends notifications, according to [your configuration](#configure-notifications).
 
 ## Related content
 
 - [Create an App Service Environment](creation.md)
+- [Create service health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal)
 - [App Service Environment networking](networking.md)
