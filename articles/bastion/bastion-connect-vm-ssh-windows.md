@@ -16,8 +16,6 @@ This article describes how to create a secure SSH connection to your Windows vir
 
 For RDP connections to a Windows virtual machine, see [Create an RDP connection to a Windows VM](bastion-connect-vm-rdp-windows.md). For native client connections using Azure CLI (including SSH tunnels), see [Connect to a VM using a native client](connect-vm-native-client-windows.md).
 
-The SSH private key must be in a format that begins with `"-----BEGIN RSA PRIVATE KEY-----"` and ends with `"-----END RSA PRIVATE KEY-----"`.
-
 ## Prerequisites
 
 Before you begin, verify that you meet the following criteria:
