@@ -18,10 +18,6 @@ You can use the following tools to access and manage data in Azure Managed Redis
 
 [Redis Insight](https://redis.com/redis-enterprise/redis-insight/) is a rich open-source graphical tool for issuing Redis commands and viewing the contents of a Redis instance. It works with Azure Managed Redis and is supported on Linux, Windows, and macOS.
 
-> [!TIP]
-> Redis Insight now supports integration with Azure Managed Redis using Microsoft Entra ID authentication. See the [Azure setup guide](https://github.com/redis/RedisInsight/blob/main/docs/azure-setup.md) in the Redis Insight documentation.
-
-
 ## redis-cli command-line tool
 
 Use the [redis-cli command-line tool](https://redis.io/docs/latest/operate/rs/references/cli-utilities/redis-cli/#connect-to-a-database) to interact with an Azure Managed Redis instance as a client. Use _redis_cli_ as a lightweight way to issue commands and for repeatable testing in scripts.  
@@ -57,7 +53,7 @@ In this section, you retrieve the information from the Azure portal.
 
 To connect your Azure Cache for Redis server, the cache client needs the cache endpoint, port, and a key for the cache. Some clients might refer to these items by slightly different names. You can get this information from the [Azure portal](https://portal.azure.com).
 
-- To get the endpoint and port for your cache, select **Overview** from the **Resource** menu. The endpoint is of the form `<DNS name>.<region>.redis.azure.net`. The port is `10000` for all Azure Managed Redis instances.
+- To get the endpoint and port for your cache, select **Overview** from the **Resource** menu. The endpoint is of the form `{yourcachename}.{region}.redis.azure.net`. The port is `10000` for all Azure Managed Redis instances.
 
 - To get the access keys, select **Authentication** from the **Settings** menu. Then, select the **Access keys** tab. Here, you can find the primary and secondary keys for the cache. You can use either key to connect with your client tool.
 
