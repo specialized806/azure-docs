@@ -99,18 +99,7 @@ Consider the following Azure Resource Manager (ARM) template requirements to pro
 
 * Use `configurationType: 'Secret'` in the template under resource properties.
   * Once a CGV is deployed, this configuration prevents displaying the secret data via most Azure methods.
- 
-```json
-"parameters": {
-   "secretCgvContent": {
-     "type": "SecureObject"
-    }
-}
-```
 
-* Use `"type": "secureObject"` in the template under parameter type 
-  * This configuration obscures the display of the secrets as template parameters.
- 
 ```json
 {
   "type": "Microsoft.HybridNetwork/configurationGroupValues",
@@ -121,11 +110,19 @@ Consider the following Azure Resource Manager (ARM) template requirements to pro
 }
 ```
 
+* Use `"type": "secureObject"` in the template under parameter type 
+  * This configuration obscures the display of the secrets as template parameters.
+ 
+```json
+"parameters": {
+   "secretCgvContent": {
+     "type": "SecureObject"
+    }
+}
+```
+
 * Use a template reference to Azure Key Vault (AKV) in place of the plain-text secret.
   * This configuration obscures the display of the secrets as template variables.
-
-> [!NOTE]
-> * ARM templates only support Azure Key Vault for secret reference substitution.
 
 This example shows how to include an AKV reference to a secret named `secretName` in an ARM template. 
 
@@ -139,7 +136,9 @@ This example shows how to include an AKV reference to a secret named `secretName
       }
 ```
 
-To further secure resources, consider restricting access to the role based access control (RBAC) scope `Microsoft.Resources/deployments/exportTemplate/action` to only roles that absolutely need to this access.
+> [!NOTE]
+> * ARM templates only support Azure Key Vault for secret reference substitution.
+> * Consider restricting access to the role based access control (RBAC) scope `Microsoft.Resources/deployments/exportTemplate/action` to only admin roles.
 
 ## Overview of JSON Schema
 
