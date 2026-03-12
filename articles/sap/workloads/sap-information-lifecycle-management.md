@@ -43,7 +43,7 @@ Azure blob storage account can be configured manually. The steps to be followed 
 1. Register a new application. The details are available at [Register an application in Microsoft Entra ID](../../active-directory/develop/quickstart-register-app.md).
 
    > [!NOTE]
-   > Make sure that Client secret is added. To learn more, see [Add and manage application credentials in Microsoft Entra ID](../../../../entra-docs-pr/docs/identity-platform/how-to-add-credentials.md#add-a-credential-to-your-application).
+   > Make sure that Client secret is added. To learn more, see [Add and manage application credentials in Microsoft Entra ID](/entra/identity-platform/how-to-add-credentials?tabs=client-secret#add-a-credential-to-your-application).
 
 1. Create a Blob Storage account. Refer to steps in the page [Create a storage account](../../storage/common/storage-account-create.md?tabs=azure-portal).
 1. Ensure **Enable secure transfer** is set. We recommend you set the following property values:
