@@ -6,7 +6,7 @@ description: Learn how to enable user sign-in to the API Management developer po
 author: dlepow
 ms.service: azure-api-management
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 03/12/2026
 ms.author: danlep
 ms.custom:
   - engagement-fy23
