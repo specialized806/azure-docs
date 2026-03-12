@@ -101,7 +101,7 @@ If you set the **Upgrade preference** for your App Service Environment to **Manu
 
 1. Allow time for the notification to send. [Verify the test notification](#view-upgrade-notifications) is listed on the **Service Health** dashboard in the Azure portal.
 
-You can also send a test notification by using the Azure CLI. For more information, see the procedure described in [Apply upgrade to App Service Environment (Azure CLI)](./how-to-upgrade-preference.md#apply-upgrade-to-app-service-environment?tabs=azure-cli).
+You can also send a test notification by using the Azure CLI. For more information, see the procedure described in [Apply upgrade to App Service Environment (Azure CLI)](/azure/app-service/environment/how-to-upgrade-preference#apply-upgrade-to-app-service-environment?tabs=azure-cli).
 
 ## Configure upgrade preference
 
@@ -138,7 +138,7 @@ Run the following commands with the [Azure CLI](/cli/azure/install-azure-cli) or
 
    The output displays "Manual" for manual upgrade, or the automatic upgrade type: "Early," "Late," or "None."
 
-1. Set the **Upgrade preference** setting for the App Service Environment:
+1. Configure the **Upgrade preference** setting for the App Service Environment:
 
    - For manual upgrade, set the `upgradePreference` property to **Manual**:
 
@@ -190,7 +190,7 @@ When an upgrade is available, a banner displays in the Azure portal. Use the fol
 
 Run the following commands with the [Azure CLI](/cli/azure/install-azure-cli) or use the [Azure Cloud Shell](https://shell.azure.com/).
 
-The following procedure sends a test upgrade notification for the App Service Environment.
+The following procedure sends a test upgrade notification for the App Service Environment, and demonstrates how to initiate the upgrade process.
 
 1. Set the `<placeholder>` command parameters to the values for your App Service Environment:
 
