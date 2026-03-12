@@ -23,10 +23,10 @@ This document is about Azure Premium Files file shares used for SAP workload. Bo
 
 For SAP workloads, the supported uses of Azure Files shares are:
 
-- `sapmnt` volume for a distributed SAP system
-- Transport directory for SAP landscape
-- `/hana/shared` for HANA scale-out. Review carefully the [Considerations for the HANA shared file system](hana-vm-operations-storage.md#considerations-for-the-hana-shared-file-system), as appropriately sized `/hana/shared` volume contributes to system's stability
-- File interface between your SAP landscape and other applications
+- `sapmnt` volume for a distributed SAP system.
+- Transport directory for SAP landscape.
+- `/hana/shared` for HANA scale-out. Review carefully the [Considerations for the HANA shared file system](hana-vm-operations-storage.md#considerations-for-the-hana-shared-file-system), as appropriately sized `/hana/shared` volume contributes to system's stability.
+- File interface between your SAP landscape and other applications.
 
 > [!NOTE]
 > No SAP DBMS workloads are supported on Azure Premium Files volumes, NFS, or SMB. For support restrictions on Azure storage types for SAP NetWeaver/application layer of S/4HANA, read SAP Note [2015553](https://launchpad.support.sap.com/#/notes/2015553).
