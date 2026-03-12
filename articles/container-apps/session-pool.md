@@ -274,9 +274,10 @@ The following endpoints are available for managing sessions in a pool:
 | Endpoint path | Method | Description |
 |----------|--------|-------------|
 | `executions` | `POST` | Execute code in a session. |
-| `files/upload` | `POST` | Upload a file to a session. |
-| `files/content/{filename}` | `GET` | Download a file from a session. |
+| `files` | `POST` | Upload a file to a session. |
 | `files` | `GET` | List the files in a session. |
+| `files/{filename}` | `GET` | Get file metadata in a session. |
+| `files/{filename}/content` | `GET` | Download a file from a session. |
 
 You build the full URL for each endpoint by concatenating the pool's management API endpoint with the endpoint path. The query string must include an `identifier` parameter containing the session identifier, and an `api-version` parameter with the value `2025-10-02-preview`.
 

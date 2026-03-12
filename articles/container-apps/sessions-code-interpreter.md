@@ -86,7 +86,7 @@ File names and paths must use only the following supported characters:
 
 ### Upload a file
 
-To upload a file to a session, send a `POST` request to the `uploadFile` endpoint in a multipart form data request. Include the file data in the request body. The file must include a file name.
+To upload a file to a session, send a `POST` request to the `files` endpoint in a multipart form data request. Include the file data in the request body. The file must include a file name.
 
 Uploaded files are stored in the session's file system in the `/mnt/data` directory.
 
@@ -95,7 +95,7 @@ The following example shows how to upload a file to a session.
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/upload?api-version=2025-10-02-preview&identifier=<SESSION_ID>
+POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Authorization: Bearer <TOKEN>
 
@@ -109,14 +109,27 @@ Content-Type: application/octet-stream
 
 ### Download a file
 
-To download a file from a session's `/mnt/data` directory, send a `GET` request to the `file/content/{filename}` endpoint. The response includes the file data.
+To download a file from a session's `/mnt/data` directory, send a `GET` request to the `files/{filename}/content` endpoint. The response includes the file data.
 
 The following example demonstrates how to format a `GET` request to download a file.
 
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/content/<FILE_NAME_AND_EXTENSION>?api-version=2025-10-02-preview&identifier=<SESSION_ID>
+GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/<FILE_NAME_AND_EXTENSION>/content?api-version=2025-10-02-preview&identifier=<SESSION_ID>
+Authorization: Bearer <TOKEN>
+```
+
+### Get file metadata
+
+To get metadata for a file in a session's `/mnt/data` directory, send a `GET` request to the `files/{filename}` endpoint. The response includes file properties such as size and last modified time.
+
+The following example demonstrates how to format a `GET` request to retrieve file metadata.
+
+Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
+
+```http
+GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/<FILE_NAME_AND_EXTENSION>?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Authorization: Bearer <TOKEN>
 ```
 
@@ -207,14 +220,14 @@ To reuse a session, specify the same session identifier in subsequent requests.
 
 #### Upload a file to a session
 
-To upload a file to a session, send a `POST` request to the `uploadFile` endpoint in a multipart form data request. Include the file data in the request body. The file must include a file name.
+To upload a file to a session, send a `POST` request to the `files` endpoint in a multipart form data request. Include the file data in the request body. The file must include a file name.
 
 Uploaded files are stored in the session's file system in the `/mnt/data` directory.
 
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/upload?api-version=2025-10-02-preview&identifier=<SESSION_ID>
+POST https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Authorization: Bearer <TOKEN>
 
@@ -231,12 +244,23 @@ Content-Type: application/octet-stream
 
 #### Download a file from a session
 
-To download a file from a session's `/mnt/data` directory, send a `GET` request to the `file/content/{filename}` endpoint. The response includes the file data.
+To download a file from a session's `/mnt/data` directory, send a `GET` request to the `files/{filename}/content` endpoint. The response includes the file data.
 
 Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
 
 ```http
-GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/content/<FILE_NAME_AND_EXTENSION>?api-version=2025-10-02-preview&identifier=<SESSION_ID>
+GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/<FILE_NAME_AND_EXTENSION>/content?api-version=2025-10-02-preview&identifier=<SESSION_ID>
+Authorization: Bearer <TOKEN>
+```
+
+#### Get file metadata
+
+To get metadata for a file in a session's `/mnt/data` directory, send a `GET` request to the `files/{filename}` endpoint. The response includes file properties such as size and last modified time.
+
+Before you send the request, replace the placeholders between the `<>` brackets with values that are specific to your request.
+
+```http
+GET https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/files/<FILE_NAME_AND_EXTENSION>?api-version=2025-10-02-preview&identifier=<SESSION_ID>
 Authorization: Bearer <TOKEN>
 ```
 

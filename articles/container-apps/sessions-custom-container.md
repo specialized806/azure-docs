@@ -102,8 +102,8 @@ For the full API specification, see [SessionPools API](/rest/api/resource-manage
 If your session pool isn't maintaining the expected number of healthy `readySessionInstances`, consider the following:
 
 1. **Check container logs** - Review session container logs to identify issues with probe endpoints or container startup. See [View logs for custom container session pools](troubleshooting.md#view-logs).
-2. **Verify probe configuration** - Ensure probe paths, ports, and thresholds are configured correctly for your application.
-3. **Review container health** - Check for issues inside your container that prevent probe endpoints from responding successfully.
+1. **Verify probe configuration** - Ensure probe paths, ports, and thresholds are configured correctly for your application.
+1. **Review container health** - Check for issues inside your container that prevent probe endpoints from responding successfully.
 
 ## Stop a session
 
@@ -194,8 +194,8 @@ Once diagnostic settings are configured, logs are sent to your Log Analytics wor
 #### Query logs in Log Analytics
 
 1. Navigate to your **Log Analytics workspace** in the Azure portal.
-2. Select **Logs** under **General**.
-3. Use [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) to query session logs.
+1. Select **Logs** under **General**.
+1. Use [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) to query session logs.
 
 #### Example queries
 
