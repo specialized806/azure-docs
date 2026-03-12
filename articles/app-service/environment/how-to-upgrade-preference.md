@@ -101,7 +101,7 @@ If you set the **Upgrade preference** for your App Service Environment to **Manu
 
 1. Allow time for the notification to send. [Verify the test notification](#view-upgrade-notifications) is listed on the **Service Health** dashboard in the Azure portal.
 
-You can also send a test notification by using the Azure CLI. For more information, see the procedure described in [Apply upgrade to App Service Environment (Azure CLI)](/azure/app-service/environment/how-to-upgrade-preference#apply-upgrade-to-app-service-environment?tabs=azure-cli).
+You can also send a test notification by using the Azure CLI. For more information, see the procedure described in [Apply upgrade to App Service Environment (Azure CLI)](#apply-upgrade-to-app-service-environment).
 
 ## Configure upgrade preference
 
