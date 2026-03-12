@@ -171,12 +171,12 @@ Custom container session pools integrate with Azure Monitor and Log Analytics. A
 #### Step 2: Configure diagnostic settings
 
 1. In your Container Apps Environment, navigate to **Diagnostic settings** under **Monitoring**.
-2. Select **+ Add diagnostic setting**.
-3. Provide a name for your diagnostic setting.
-4. Under **Logs**, select the session-related log categories you want to capture.
-5. Under **Destination details**, select **Send to Log Analytics workspace**.
-6. Choose your Log Analytics workspace (or create a new one).
-7. Select **Save**.
+1. Select **+ Add diagnostic setting**.
+1. Provide a name for your diagnostic setting.
+1. Under **Logs**, select the session-related log categories you want to capture.
+1. Under **Destination details**, select **Send to Log Analytics workspace**.
+1. Choose your Log Analytics workspace (or create a new one).
+1. Select **Save**.
 
 ### Log Analytics tables
 
