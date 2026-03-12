@@ -32,10 +32,11 @@ Before you start:
 
 ## Step 1: Run an assessment in Azure Synapse Analytics
 
-1. In **Azure Synapse Analytics**, open the workspace you want to assess.
-2. In the **Integrate** hub, select **Migrate to Fabric (Preview)**, then select **Get started**.
-3. Review the assessment pane. Expand pipelines to see activity-level details.
-
+- In **Azure Synapse Analytics**, open the workspace you want to assess.
+- In the **Integrate** hub, select **Migrate to Fabric (Preview)**, then select **Get started**.
+- Review the assessment pane. Expand pipelines to see activity-level details.
+   
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/start-synapse-pipelines-migration-assessment.png" alt-text="Screenshot showing how to run the Azure Synapse Analytics migration assessment." lightbox="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/start-synapse-pipelines-migration-assessment.png":::
 
 ### Understand assessment statuses
 
