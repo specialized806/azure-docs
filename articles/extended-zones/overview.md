@@ -62,7 +62,7 @@ The following table lists the key Independent Software Vendors services that are
 | **Aviatrix** | Cloud Native Security Fabric (CNSF) |
 | **Check Point** | Firewall |
 | **Fortinet** | Firewall |
-| **HPE Aruba (Silverpeak)** | [Networking EdgeConnect SD-WAN](https://arubanetworking.hpe.com/techdocs/sdwan-PDFs/deployments/dg_ECV-Azure_latest.pdf) |
+| **HPE Aruba Networking** | [EdgeConnect SD-WAN](https://arubanetworking.hpe.com/techdocs/sdwan-PDFs/deployments/dg_ECV-Azure_latest.pdf) |
 
 
 ## Frequently asked questions (FAQ)
