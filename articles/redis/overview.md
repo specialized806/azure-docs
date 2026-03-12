@@ -101,8 +101,6 @@ The following table helps describe some of the features supported by tier:
 
 In regions that support availability zones, Azure Managed Redis distributes the nodes across zones by default. For more information, see [Reliability in Azure Managed Redis](/azure/reliability/reliability-managed-redis). 
 
-In regions without availability zones, the primary and replica shards are distributed across at least two nodes in the same zone. 
-
 > [!IMPORTANT]
 > The Balanced B0 and B1 SKU options don't support active geo-replication.
 >
