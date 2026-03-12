@@ -1,17 +1,17 @@
 ---
-title: Parse document or chunk text
-description: Parse a document or chunk text for workflows in Azure Logic Apps.
+title: Parse Documents and Chunk Text in Workflows
+description: Parse documents and chunk text in logic app workflows for Azure Logic Apps.
 services: azure-logic-apps
 ms.suite: integration
 ms.collection: ce-skilling-ai-copilot
-ms.reviewer: estfan, azla
+ms.reviewers: estfan, azla
 ms.topic: how-to
-ms.date: 08/14/2025
 ms.update-cycle: 180-days
-# Customer intent: As an integration developer using Azure Logic Apps, I want to parse a document or chunk text that I want to use with Azure AI operations for my workflow in Azure Logic Apps.
+ms.date: 03/11/2026
+# Customer intent: As an integration developer who uses Azure Logic Apps, I want to parse a document or chunk text for Azure AI Search or Azure OpenAI actions in logic app workflows.
 ---
 
-# Parse or chunk content for workflows in Azure Logic Apps
+# Parse documents and chunk text for AI actions in workflows for Azure Logic Apps
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
@@ -31,7 +31,7 @@ For these scenarios, use the **Data Operations** actions named **Parse a documen
 >
 > To find Azure Copilot, on the [Azure portal](https://portal.azure.com) toolbar, select **Copilot**.
 
-This how-to guide shows how to add and set up these operations in your workflow.
+This guide shows how to add and set up actions for parsing documents and chunking text in your workflow.
 
 ## Known issues and limitations
 
