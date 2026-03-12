@@ -13,7 +13,7 @@ ms.date: 10/23/2025
 
 # Language support for the Azure Health Data Services de-identification service
 
-The Azure Health Data Services de-identification service currently works in four languages, and includes six language-locale pairings. To tag, redact, or replace unstructured textual data for purposes of de-identification, you can use the languages listed in the following table.
+The Azure Health Data Services de-identification service currently works on four languages, and includes six language-locale pairings. To tag, redact, or replace unstructured textual data for purposes of de-identification, you can use the languages listed in the following table.
 
 |Language|Locale        |Language-locale pair|Availability         |
 |:-------|:-------------|:-------------------|:--------------------|
