@@ -22,7 +22,7 @@ This article provides the release notes for Azure Migrate application and code a
 
 This release contains the following features:
 - Replaced Code Impact with Story Points in the static report.
-- Added detection for the Azure legacy Java SDK.
+- Added detection for the legacy Azure SDK for Java.
 
 ### 7.7.0.8
 
