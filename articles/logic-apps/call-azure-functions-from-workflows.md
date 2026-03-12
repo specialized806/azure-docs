@@ -1,6 +1,6 @@
 ---
-title: Call Azure Functions from Workflows
-description: Learn how to call and run Azure Functions from workflows in Azure Logic Apps. Extend workflows with custom code, advanced computations, and dynamic data processing.
+title: Call Azure Functions from workflows in Azure Logic Apps
+description: Learn how to call and run functions in Azure Functions from workflows in Azure Logic Apps. Extend workflows with custom code, advanced computations, and dynamic data processing.
 services: logic-apps, azure-functions
 ms.suite: integration
 ms.reviewer: estfan, azla
@@ -21,7 +21,7 @@ Azure Logic Apps and Azure Functions work together so that you can extend and en
 - Perform calculations in your workflow.
 - Apply advanced formatting or compute fields in your workflow.
 
-This guide shows how to call and run a function in Azure Functions from your workflow, whether you're using the Consumption or Standard plan. You also learn about prerequisites, limitations, and tips for working with Azure Functions to ensure seamless integration and optimal performance. For more information, see [Azure Functions](../azure-functions/functions-overview.md) and [Azure Logic Apps](logic-apps-overview.md).
+This guide shows how to call and run a function in Azure Functions from your Azure Logic Apps workflow, whether you're using the Consumption or Standard plan. You also learn about prerequisites, limitations, and tips for working with Azure Functions to ensure seamless integration and optimal performance. For more information, see [Azure Functions](../azure-functions/functions-overview.md) and [Azure Logic Apps](logic-apps-overview.md).
 
 > [!NOTE]
 >
@@ -46,17 +46,17 @@ For Azure Functions to operate correctly in your workflow, the following limitat
 
   If your function has an OpenAPI definition, the workflow designer gives you a richer experience when you work with function parameters. Before your workflow can find and access functions that have OpenAPI definitions, [set up your function app with these steps](#open-ai-definition).
 
-- For Azure function call authentication, only Consumption workflows currently support managed identity authentication with Microsoft Entra ID. For more information, see [how to enable authentication for Azure function calls](#enable-authentication-functions). 
+- For Azure function call authentication, only Consumption workflows support managed identity authentication with Microsoft Entra ID. For more information, see [how to enable authentication for Azure function calls](#enable-authentication-functions). 
 
-  Standard workflows currently don't support managed identity authentication.
+  Standard workflows don't support managed identity authentication.
 
 - Azure Logic Apps doesn't support using Azure Functions with deployment slots enabled.
 
-  Although this scenario might sometimes work, this behavior is unpredictable and might result in authorization problems when your workflow tries call the Azure function.
+  Although this scenario might sometimes work, this behavior is unpredictable and might result in authorization problems when your workflow tries to call the Azure function.
 
 ## Prerequisites
 
-- Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An [Azure function app resource](../azure-functions/functions-get-started.md), which can contain one or more Azure functions.
 
@@ -137,9 +137,9 @@ To set up your function app so that your workflow can find and use functions tha
 
 Webhook-based functions can accept HTTPS requests as inputs and pass these requests to other functions.
 
-Azure Logic Apps has [functions that convert DateTime values](workflow-definition-language-functions-reference.md#date-and-time-functions). Alternatively, you can also access a property in a request object that passes to the function and perform operations on that property value, as shown in the following basic sample JavaScript function.
+For example, although Azure Logic Apps has [functions that convert DateTime values](workflow-definition-language-functions-reference.md#date-and-time-functions), you can  access a property in a request object that passes to the function and perform operations on that property value.
 
-To access properties in objects, this example uses the [dot (.) operator](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation):
+This basic sample JavaScript function uses the [dot (.) operator](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation) to access properties in objects:
 
 ```javascript
 function convertToDateString(request, response){
@@ -188,7 +188,7 @@ To call an Azure function from your workflow, add that function like any other a
 
 ### [Consumption](#tab/consumption)
 
-1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource. Open the workflow in the designer.
+1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource, and then open the workflow in the designer.
 
 1. In the designer, follow the [general steps](create-workflow-with-trigger-or-action.md?tabs=consumption#add-action) to add the **Azure Functions** action named **Choose an Azure function**.
 
@@ -230,7 +230,7 @@ To call an Azure function from your workflow, add that function like any other a
 
 ### [Standard](#tab/standard)
 
-1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource. Open the workflow you want in the designer.
+1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource, and then open the workflow in the designer.
 
 1. In the designer, follow the [general steps](create-workflow-with-trigger-or-action.md?tabs=standard#add-action) to add the **Azure Functions** action named **Call an Azure function**.
 
@@ -371,13 +371,13 @@ Either run the PowerShell command named [**Get-AzContext**](/powershell/module/a
 
 After you set up the user-assigned managed identity for your Consumption logic app resource, find the object ID for the managed identity. You use this ID to find the associated Enterprise application in your Microsoft Entra tenant.
 
-1. On the logic app sidebar, under **Settings**, select **Identity**, and then select **User assigned**.
+1. On the logic app sidebar, expand **Settings**, select **Identity**, and then select the **User assigned** tab.
 
 1. On the **User assigned** tab, select the managed identity:
 
    :::image type="content" source="media/call-azure-functions-from-workflows/user-identity-consumption.png" alt-text="Screenshot shows Consumption logic app's Identity page with selected tab named User assigned." lightbox="media/call-azure-functions-from-workflows/user-identity-consumption.png":::
 
-1. Copy the identity's **Object (principal) ID**:
+1. On the **Managed Identity** page, copy the identity's **Object (principal) ID** value:
 
    :::image type="content" source="media/call-azure-functions-from-workflows/user-identity-object-id.png" alt-text="Screenshot shows that shows a Consumption logic app's user-assigned identity Overview page with the object (principal) ID selected." lightbox="media/call-azure-functions-from-workflows/user-identity-object-id.png":::
 
@@ -387,27 +387,27 @@ After you set up the user-assigned managed identity for your Consumption logic a
 
 After you enable the managed identity for your Consumption logic app resource, Azure automatically creates an associated [Azure Enterprise application](/entra/identity/enterprise-apps/add-application-portal) that has the same name.
 
-You need to find the associated Enterprise application and copy its **Application ID**. You use this application ID to add an identity provider for your function app by creating an app registration.
+You need to find the associated Enterprise application and copy its **Application ID**. You use this application ID to add an identity provider for your function app by creating an app registration. Follow these steps:
 
 1. In the [Azure portal](https://portal.azure.com), open your Microsoft Entra tenant.
 
-1. On the tenant sidebar, under **Manage**, select **Enterprise applications**.
+1. On the tenant sidebar, expand **Manage**, and then select **Enterprise applications**.
 
-1. On the **All applications** page, in the search box, enter the object ID for your managed identity. From the results, find the matching enterprise application, and copy the **Application ID**:
+1. On the **All applications** page, in the search box, enter the object ID for your managed identity. From the results, find the matching enterprise application, and copy the **Application ID** value:
 
    :::image type="content" source="media/call-azure-functions-from-workflows/find-enterprise-application-id.png" alt-text="Screenshot that shows the Microsoft Entra tenant page named All applications with the enterprise application object ID entered in the search box, and the matching application ID selected." lightbox="media/call-azure-functions-from-workflows/find-enterprise-application-id.png":::
 
-1. Continue to the next section to [add an identity provider to your function app](#create-app-registration) by using the copied application ID.
+1. Continue to the next section to [add an identity provider to your function app](#create-app-registration) by using the copied application ID value.
 
 <a name="create-app-registration"></a>
 
 ### Add an identity provider for your function app (Consumption workflows only)
 
-After you get the tenant ID and the application ID, set up your function app to use Microsoft Entra authentication by adding an identity provider and creating an app registration.
+After you get the tenant ID and the application ID, set up your function app to use Microsoft Entra authentication by adding an identity provider and creating an app registration:
 
 1. In the [Azure portal](https://portal.azure.com), open your function app.
 
-1. On the function app sidebar, under **Settings**, select **Authentication**, and then select **Add identity provider**, for example:
+1. On the function app sidebar, expand **Settings**, select **Authentication**, and then select **Add identity provider**, for example:
 
    :::image type="content" source="media/call-azure-functions-from-workflows/add-identity-provider.png" alt-text="Screenshot that shows the function app menu with the Authentication setting selected and the Add identity provider option highlighted." lightbox="media/call-azure-functions-from-workflows/add-identity-provider.png":::
 
@@ -433,7 +433,7 @@ After you get the tenant ID and the application ID, set up your function app to 
 
    The **Authentication** page lists the identity provider and the app registration's application (client) ID. Your function app can now use this app registration for authentication.
 
-1. Copy and save the app registration's **App (client) ID**.
+1. Copy and save the app registration's **App (client) ID** value.
 
    :::image type="content" source="media/call-azure-functions-from-workflows/identity-provider-application-id.png" alt-text="Screenshot that shows the new identity provider for the function app." lightbox="media/call-azure-functions-from-workflows/identity-provider-application-id.png":::
 
