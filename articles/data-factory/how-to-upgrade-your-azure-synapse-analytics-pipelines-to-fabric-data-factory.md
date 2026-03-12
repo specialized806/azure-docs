@@ -35,6 +35,7 @@ Before you start:
 - In **Azure Synapse Analytics**, open the workspace you want to assess.
 - In the **Integrate** hub, select **Migrate to Fabric (Preview)**, then select **Get started**.
 - Review the assessment pane. Expand pipelines to see activity-level details.
+- Export assessment results as a **.csv** file to support offline planning and remediation (optional)
    
 :::image type="content" source="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/start-synapse-pipelines-migration-assessment.png" alt-text="Screenshot showing how to run the Azure Synapse Analytics migration assessment." lightbox="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/start-synapse-pipelines-migration-assessment.png":::
 
@@ -49,14 +50,12 @@ Each pipeline is categorized using one of the following statuses:
 | **Coming soon** | Support is in progress; migrate later. |
 | **Unsupported / Not compatible** | No equivalent in Fabric; refactor required. |
 
-### Export results to CSV (optional)
-
-Export assessment results as a **.csv** file to support offline planning and remediation.
-
 
 ## Step 2: Select pipelines to migrate
 
 After reviewing results, select the Synapse pipelines you want to migrate to your Fabric workspace.
+
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/view-synapse-pipelines-assessment-results.png" alt-text="Screenshot showing Synapse Analytics migration assessment results with option to select pipelines for migration." lightbox="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/view-synapse-pipelines-assessment-results.png":::
 
 A phased approach works well:
 - Start with **Ready** pipelines to validate end-to-end behavior.
@@ -72,13 +71,17 @@ In the migration flow, select a destination **Fabric workspace**, then map **Syn
 For guidance on creating and managing connections in Fabric, see
 [Data source management - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/fabric/data-factory/data-source-management).
 
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/synapse-linked-service-to-connection-mapping.png" alt-text="Screenshot showing Fabric migration workspace selection followed by Synapse linked services to Fabric connection mapping." lightbox="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/synapse-linked-service-to-connection-mapping.png":::
+
 > [!IMPORTANT]
 > Pipelines can migrate even if you don’t map connections, but **activities that use those connections remain deactivated** until you configure them in Fabric and reactivate them.
 
 
 ## Step 4: Complete migration
 
-After you map linked services to Fabric connections, select **Confirm** to start migration.
+After you map linked services to Fabric connections, select **Confirm** to complete migration.
+
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/successful-migration-completion.png" alt-text="Screenshot showing successful migration." lightbox="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/successful-migration-completiong.png":::
 
 When migration completes, open the destination folder in your Fabric workspace and review the migrated pipelines.
 
