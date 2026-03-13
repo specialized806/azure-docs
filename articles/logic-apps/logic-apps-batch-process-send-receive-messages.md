@@ -133,7 +133,7 @@ Now create one or more batch sender logic app workflows that send messages to th
 
 * Make sure that you previously [created and deployed your batch receiver](#batch-receiver) so when you create your batch sender, you can select the existing batch receiver as the destination batch. While batch receivers don't need to know anything about batch senders, batch senders must know where to send messages.
 
-* Make sure that your batch receiver and batch sender share the same Azure region *and* Azure subscription. If they don't, you can't select the batch receiver when you create the batch sender because they're not visible to each other.
+* Make sure that your batch receiver and batch sender both share the same Azure region *and* Azure subscription. If they don't, you can't select the batch receiver when you create the batch sender because they're not visible to each other.
 
 1. Create another logic app resource and workflow named **BatchSender**.
 

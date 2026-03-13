@@ -1,22 +1,23 @@
 ---
-title: Create common SAP workflows
-description: Build workflows for common SAP scenarios in Azure Logic Apps.
-services: logic-apps
+title: Create Common SAP Integration Workflows
+description: Build integration workflows for common SAP integration scenarios by using workflows in Azure Logic Apps.
+services: azure-logic-apps
 ms.suite: integration
 author: daviburg
 ms.author: daviburg
-ms.reviewer: estfan, azla
+ms.reviewers: estfan, azla
 ms.topic: how-to
-ms.date: 02/12/2025
+ms.update-cycle: 1095-days
+ms.date: 03/13/2026
 ms.custom: sfi-ropc-nochange
-#As an integration solution developer, I want to learn how I can build automated workflows that perform tasks with SAP resources.
+#Customer intent: As an SAP integration solution developer who works with Azure Logic Apps, I want to create automation and integration workflows that perform tasks with SAP resources.
 ---
 
 # Create workflows for common SAP integration scenarios in Azure Logic Apps
 
-[!INCLUDE [logic-apps-sku-consumption-standard](../../../includes/logic-apps-sku-consumption-standard.md)]
+[!INCLUDE [logic-apps-sku-consumption-standard](../includes/logic-apps-sku-consumption-standard.md)]
 
-This how-to guide shows how to create example logic app workflows for some common SAP integration scenarios using Azure Logic Apps and the SAP connector.
+This guide shows how to create example logic app workflows for some common SAP integration scenarios using Azure Logic Apps and the SAP connector.
 
 Both Standard and Consumption logic app workflows offer the SAP *managed* connector that's hosted and run in multitenant Azure. Standard workflows also offer the SAP *built-in service provider* connector that's hosted and run in single-tenant Azure Logic Apps. For more information, see [Connector technical reference](sap.md#connector-technical-reference).
 
