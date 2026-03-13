@@ -458,7 +458,7 @@ The downtime required for this migration depends on how you redirect traffic dur
 
 ### Migration steps
 
-To enable an existing Premium plan function app to use availability zones, redeploy your project files to a new function app hosted in an zone-redundant Premium plan. Follow these steps:
+To enable an existing Premium plan function app to use availability zones, redeploy your project files to a new function app hosted in a zone-redundant Premium plan. Follow these steps:
 
 1. If you're already hosted in a Premium plan in a supported region, you can reuse your existing resource group and skip to the next step. Otherwise, create a new resource group in a supported region. For a list of regions that support zone redundancy for Azure Functions Premium plans, see [Reliability in Azure Functions - Resilience to availability zone failures - Requirements](/azure/reliability/reliability-functions#requirements).
 1. Create a zone-redundant Premium plan in a supported region.
