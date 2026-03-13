@@ -46,9 +46,9 @@ Refer [this article](prepare-azure-accounts.md) to prepare Azure accounts.
 
 ## Prepare VMware
 
-On vCenter Server, check that your account has [permissions](migrate-support-matrix-vmware-migration.md#vmware-vsphere-requirements-agentless) to create a VM by using a VMware Open Virtualization Appliance (OVA) virtual machine (VM) installation file. You must have these [permissions](migrate-support-matrix-vmware-migration.md#vmware-vsphere-requirements-agentless) when you deploy the Azure Migrate appliance as a VMware VM by using an OVA file.
-
 Azure Migrate can use the cloudadmin account you have with your Azure VMware Solution account to discover and assess servers running in your VMware environment. If you also want to run discovery of installed applications and agentless dependency analysis, the cloudadmin account has [permissions](migrate-support-matrix-vmware-migration.md#vmware-vsphere-requirements-agentless) enabled for VM guest operations.
+
+On vCenter Server, check that your account has [permissions](migrate-support-matrix-vmware-migration.md#vmware-vsphere-requirements-agentless) to create a VM by using a VMware Open Virtualization Appliance (OVA) virtual machine (VM) installation file. You must have these [permissions](migrate-support-matrix-vmware-migration.md#vmware-vsphere-requirements-agentless) when you deploy the Azure Migrate appliance as a VMware VM by using an OVA file.
 
 ## Set up a project
 

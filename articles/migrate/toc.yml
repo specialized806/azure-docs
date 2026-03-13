@@ -402,8 +402,6 @@ items:
     href: centralized-issue-tracking.md
   - name: Server discovery
     href: troubleshoot-discovery.md
-#   - name: Spring Boot discovery
-#     href: troubleshoot-spring-boot-discovery.md
   - name: Dependency analysis
     items:
     - name: Troubleshoot dependency visualization
