@@ -38,6 +38,10 @@ Before you begin, ensure that you have:
 >[!NOTE]
 > The Azure Copilot migration agent isn't supported when Bring your own storage (BYOS) is enabled for conversation history. For more information, see [Bring your own storage for conversation history in Azure Copilot](/azure/copilot/bring-your-own-storage).
 
+## Get started
+
+
+
 ### Migration strategy analysis 
 
 Azure Copilot migration agent analyzes migration strategies by evaluating infrastructure characteristics, migration objectives, and available Azure Migrate data. It explains trade-offs between different approaches, such as lift‑and‑shift and modernization strategies, and provides guidance tailored to your environment and goals. This enables you to evaluate migration paths and understand implications before committing to a strategy.  
