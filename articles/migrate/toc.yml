@@ -65,10 +65,8 @@ items:
           href: add-server-credentials.md
     - name: Discover VMware estate
       items:
-      - name: Discover on-premises Virtual Machines
+      - name: Discover Virtual Machines
         href: tutorial-discover-vmware.md
-      - name: Discover Azure VMware Solution Virtual Machines
-        href: tutorial-discover-azure-vmware-solution.md
       - name: Scoped discovery of VMware hosted VMs
         href: set-discovery-scope.md
       - name: Support matrix for VMware discovery 
