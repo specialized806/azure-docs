@@ -335,7 +335,7 @@ After you complete the migration, verify that your application works as expected
 
 The following recommendations help you strengthen reliability, observability, and deployment practices for your migrated application.
 
-[!INCLUDE [migrate-java-postmigration-operations](includes/migrate-java-postmigration-operations.md)]
+[!INCLUDE [migrate-java-post-migration-operations](includes/migrate-java-post-migration-operations.md)]
 
 ### Tomcat-specific recommendations
 

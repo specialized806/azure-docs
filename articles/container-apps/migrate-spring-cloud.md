@@ -242,13 +242,13 @@ After you complete the migration, verify that your application works as expected
 
 The following recommendations help you adopt Spring Cloud components and Azure Container Apps managed Java components to make your application more cloud-native.
 
-[!INCLUDE [migrate-java-postmigration-spring-components](includes/migrate-java-postmigration-spring-components.md)]
+[!INCLUDE [migrate-java-post-migration-spring-components](includes/migrate-java-post-migration-spring-components.md)]
 
 ### Improve operational readiness
 
 The following recommendations help you strengthen reliability, observability, and deployment practices for your migrated application.
 
-[!INCLUDE [migrate-java-postmigration-operations](includes/migrate-java-postmigration-operations.md)]
+[!INCLUDE [migrate-java-post-migration-operations](includes/migrate-java-post-migration-operations.md)]
 
 ### Replace legacy Spring Cloud Netflix components
 
