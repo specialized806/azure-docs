@@ -8,7 +8,7 @@ ms.custom: devx-track-arm-template, devx-track-azurecli
 ms.date: 03/13/2026
 ms.author: jordanselig
 ms.service: azure-app-service
-#customer intent: As an App Service developer, I want to configure network settings for my App Service environments, so I can control FTP access, private endpoint creation, and remote debugging.
+#customer intent: As an App Service developer, I want to configure networking settings for my App Service environments, so I can control FTP access, private endpoint creation, and remote debugging.
 ---
 
 # Configure networking settings for App Service Environments
@@ -19,9 +19,9 @@ App Service Environment v3 provides a fully isolated and dedicated environment f
 
 - An App Service Environment v3. To create a new environment, follow the steps in [Quickstart: Create an App Service Environment](creation.md).
 
-## Review network settings
+## Review networking settings
 
-The App Service Environment network settings are located in a single ARM template subresource:
+The App Service Environment networking settings are located in a single ARM template subresource:
 
 `Microsoft.Web/hostingEnvironments/{aseName}/configurations/networking`
 
@@ -35,7 +35,7 @@ All of the properties are of type `bool` and are set to false (disabled) by defa
 
 ## Use ARM template for repeatable deployment
 
-When you configure network settings for an App Service Environment by using an ARM template, you create a configuration that's available for repeatable deployment of the same environment or other App Service Environments.
+When you configure networking settings for an App Service Environment by using an ARM template, you create a configuration that's available for repeatable deployment of the same environment or other App Service Environments.
 
 The following snippet shows an abbreviated ARM template with configurations for the networking settings:
 
