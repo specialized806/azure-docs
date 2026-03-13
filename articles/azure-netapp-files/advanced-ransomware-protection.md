@@ -7,6 +7,7 @@ ms.service: azure-netapp-files
 ms.topic: concept-article
 ms.date: 01/13/2026
 ms.author: anfdocs
+ms.custom: references_regions
 # Customer intent: "As a data engineer, I want to understand the advanced ransomware protection features of Azure NetApp Files, so that I can safeguard the cloud file data against ransomware attacks."
 ---
 

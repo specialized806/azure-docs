@@ -7,7 +7,6 @@ ms.service: azure-netapp-files
 ms.topic: how-to
 ms.date: 03/05/2026
 ms.author: anfdocs
-ms.custom: references_regions
 ---
 # Configure advanced ransomware protection for Azure NetApp Files volumes (preview)
 
