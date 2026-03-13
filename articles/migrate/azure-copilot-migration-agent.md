@@ -40,7 +40,7 @@ Before you begin, ensure that you have:
 
 ## Get started
 
-
+Add the new steps
 
 ### Migration strategy analysis 
 
