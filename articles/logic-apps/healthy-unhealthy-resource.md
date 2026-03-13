@@ -135,7 +135,7 @@ If you use a storage account as the destination for your Azure Logic Apps diagno
 ]
 ```
 
-# Related content
+## Related content
 
 - [Monitor Standard workflow health with Health Check](monitor-health-standard-workflows.md)
 - [Monitor workflows in Azure Logic Apps](monitor-logic-apps-overview.md)
