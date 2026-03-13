@@ -54,7 +54,7 @@ To get started on Azure Migration agent, follow the steps:
 >[!NOTE]
 > To use the Azure Copilot migration agent, you must enable the agent preview in Azure Copilot.
 
-    :::image type="content" source="./media/azure-copilot-migration-agent/accelerate-migration.png" alt-text="Screenshot shows how to accelarate migration agent." lightbox="./media/azure-copilot-migration-agent/accelerate-migration.png" :::
+:::image type="content" source="./media/azure-copilot-migration-agent/accelerate-migration.png" alt-text="Screenshot shows how to accelarate migration agent." lightbox="./media/azure-copilot-migration-agent/accelerate-migration.png" :::
 
 1. In the **Azure Migrate Project**, select either **Existing project** or **New project**, and then select:
     -  Subscription
