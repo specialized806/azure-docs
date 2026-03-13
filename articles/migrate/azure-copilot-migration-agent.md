@@ -40,7 +40,24 @@ Before you begin, ensure that you have:
 
 ## Get started
 
-Add the new steps
+You can get started on Azure Migration agent, by following the below steps"
+
+1. In the **Azure portal**, open the **Azure Migrate** service.
+
+ :::image type="content" source="./media/azure-copilot-migration-agent/migrate-agent.png" alt-text="Screenshot shows how to access the Azure Migration agent." lightbox="./media/create-manage-projects/migrate-agent.png" :::
+
+1. In **Get started**, select **Accelerate migration**.
+
+ :::image type="content" source="./media/azure-copilot-migration-agent/accelerate-migration.png" alt-text="Screenshot shows how to accelarate migration agent." lightbox="./media/create-manage-projects/accelerate-migration.png" :::
+
+1. In the **Azure Migrate Project**, select either **Existing project** or **New project**.
+
+ :::image type="content" source="./media/azure-copilot-migration-agent/azure-migrate-project.png" alt-text="Screenshot shows how to select the project and other related fields." lightbox="./media/create-manage-projects/azure-migrate-project.png" :::
+
+1. Select the **Subscription**, **Resource group**, **Geography** and then **Select project**
+1. Select **Continue**.
+
+ :::image type="content" source="./media/azure-copilot-migration-agent/migration-agent.png" alt-text="Screenshot shows the migration agent experience." lightbox="./media/create-manage-projects/migration-agent.png" :::
 
 ### Migration strategy analysis 
 
