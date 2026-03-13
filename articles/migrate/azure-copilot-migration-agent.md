@@ -40,9 +40,9 @@ Before you begin, ensure that you have:
 
 ## Get started
 
-Use the Azure Migrate migration agent to move your servers and workloads to Azure. It helps you get ready, replicate workloads, and complete the migration.
+You can use the Azure Migration agent to move your servers and workloads to Azure. It helps you get ready, replicate workloads, and complete the migration.
 
-You can get started on Azure Migration agent, by following the below steps:
+To get started on Azure Migration agent, follow the steps:
 
 1. Sign in to the **Azure portal**.
 1. In the **Azure portal**, open the **Azure Migrate** service.
@@ -51,16 +51,19 @@ You can get started on Azure Migration agent, by following the below steps:
 
 1. In **Get started**, select **Accelerate migration**.
 
+>[!NOTE]
+> To use the Azure Copilot migration agent, you must enable the agent preview in Azure Copilot.
+
     :::image type="content" source="./media/azure-copilot-migration-agent/accelerate-migration.png" alt-text="Screenshot shows how to accelarate migration agent." lightbox="./media/azure-copilot-migration-agent/accelerate-migration.png" :::
 
-1. In the **Azure Migrate Project**, select either **Existing project** or **New project**.
+1. In the **Azure Migrate Project**, select either **Existing project** or **New project**, and then select:
     -  Subscription
     - Resource group
     - Geography
 
     :::image type="content" source="./media/azure-copilot-migration-agent/azure-migrate-project.png" alt-text="Screenshot shows how to select the project and other related fields." lightbox="./media/azure-copilot-migration-agent/azure-migrate-project.png" :::
 
-1. Select **Continue**.
+1. Select **Continue** to go to the Migration Agent.
 
     :::image type="content" source="./media/azure-copilot-migration-agent/migration-agent.png" alt-text="Screenshot shows the migration agent experience." lightbox="./media/azure-copilot-migration-agent/migration-agent.png" :::
 
