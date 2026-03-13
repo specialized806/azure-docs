@@ -111,6 +111,8 @@ items:
       href: native-create-azure-vmware-virtual-network-private-cloud.md
   - name: Architecture
     items:
+    - name: Reliability in Azure VMware Solution
+      href: /azure/reliability/reliability-vmware-solution?pivots=avs-gen1
     - name: Design considerations for Gen 2
       href: native-network-design-consideration.md
   - name: Security
@@ -286,6 +288,8 @@ items:
     href: ecosystem-external-storage-solutions.md
   - name: Configure Azure Elastic SAN
     href: configure-azure-elastic-san.md
+  - name: Performance with Elastic SAN
+    href: ../storage/elastic-san/elastic-san-performance-on-azure-vmware-solutions.md?context=%2fazure%2fazure-vmware%2fcontext%2fcontext
   - name: Configure Azure NetApp Files
     items:
     - name: Attach Azure NetApp Files datastores to Azure VMware Solution hosts
