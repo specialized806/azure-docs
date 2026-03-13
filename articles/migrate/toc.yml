@@ -65,8 +65,10 @@ items:
           href: add-server-credentials.md
     - name: Discover VMware estate
       items:
-      - name: Discover Virtual Machines
+      - name: Discover on-premises Virtual Machines
         href: tutorial-discover-vmware.md
+      - name: Discover Azure VMware Solution Virtual Machines
+        href: tutorial-discover-azure-vmware-solution.md
       - name: Scoped discovery of VMware hosted VMs
         href: set-discovery-scope.md
       - name: Support matrix for VMware discovery 
@@ -400,6 +402,8 @@ items:
     href: centralized-issue-tracking.md
   - name: Server discovery
     href: troubleshoot-discovery.md
+#   - name: Spring Boot discovery
+#     href: troubleshoot-spring-boot-discovery.md
   - name: Dependency analysis
     items:
     - name: Troubleshoot dependency visualization
