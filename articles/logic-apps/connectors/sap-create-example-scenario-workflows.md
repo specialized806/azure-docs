@@ -356,7 +356,7 @@ Next, create an action to send your IDoc to SAP when the workflow's **Request** 
 
    1. Browse the SAP action type folders using the arrows to find and select the SAP action that you want to use.
 
-      This example selects the following folders all the way to the SAP action named **Send**: **ORDERS** > **ORDERS05** > **720** > **Send**.
+      This example selects the following folders up to the SAP action named **Send**: **ORDERS** > **ORDERS05** > **720** > **Send**.
 
       :::image type="content" source="media/sap-create-example-scenario-workflows/sap-send-message-find-orders-action-consumption.png" alt-text="Screenshot shows Consumption workflow and selections for folders named Orders, Orders05, 720, and so on.":::
 
