@@ -336,15 +336,17 @@ This project is configured to use `azd` to deploy this project to a new function
    | _Azure subscription_ | Subscription in which your resources are created. |
    | _Azure location_ | Azure region in which to create the resource group that contains the new Azure resources. Only regions that currently support the Flex Consumption plan are shown. |
    | _vnetEnabled_ | `False` to skip creating virtual network resources, which simplifies the deployment. |
-    When prompted, pick your subscription, an Azure region for the resources, and choose `false` to skip creating virtual network resources to simplify the deployment.
+
+   When prompted, pick your subscription, an Azure region for the resources, and choose `false` to skip creating virtual network resources to simplify the deployment.
 
 1. Run the `azd deploy` command to deploy the `weather` app to Azure:
 
     ```console
     azd deploy --service weather
     ```
-::: zone-end
 
+::: zone-end
+::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-typescript" 
 ## Connect to your remote MCP server
 
 [!INCLUDE [connect-remote](../../includes/functions-mcp-connect-remote.md)]
