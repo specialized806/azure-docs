@@ -9,7 +9,7 @@ ms.custom: devx-track-azurepowershell
 ms.topic: how-to
 ms.date: 08/12/2024
 ms.author: abell
-# Customer intent: As someone with a networking background, I want to configure host scaling using Azure PowerShell.
+# Customer intent: As a network administrator, I want to configure scale units and understand what the impact it will be on my cloud environment.
 ---
 
 # Configure host scaling using Azure PowerShell

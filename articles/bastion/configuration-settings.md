@@ -78,7 +78,7 @@ You can configure this setting using the following methods:
 | Method | Value | Links | Requires Standard SKU or higher|
 | --- | --- | --- | ---|
 | Azure portal |Instance count  | [How-to](configure-host-scaling.md)| Yes |
-| Azure PowerShell | ScaleUnit | [How-to](configure-host-scaling-powershell.md) | Yes |
+| Azure PowerShell | ScaleUnit | [How-to](configure-host-scaling.md) | Yes |
 
 ## <a name="ports"></a>Custom ports
 
