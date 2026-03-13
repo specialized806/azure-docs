@@ -44,19 +44,19 @@ Before migrating to Azure Container Apps, ensure that your code doesn't contain 
 
 ### Review file system usage
 
-[!INCLUDE [migrate-java-premigration-file-system](includes/migrate-java-premigration-file-system.md)]
+[!INCLUDE [migrate-java-pre-migration-file-system](includes/migrate-java-pre-migration-file-system.md)]
 
 ### Check for OS-specific code
 
-[!INCLUDE [migrate-java-premigration-os-code](includes/migrate-java-premigration-os-code.md)]
+[!INCLUDE [migrate-java-pre-migration-os-code](includes/migrate-java-pre-migration-os-code.md)]
 
 ### Verify platform compatibility
 
-[!INCLUDE [migrate-java-premigration-platform](includes/migrate-java-premigration-platform.md)]
+[!INCLUDE [migrate-java-pre-migration-platform](includes/migrate-java-pre-migration-platform.md)]
 
 #### Identify your Spring Boot version
 
-[!INCLUDE [migrate-java-premigration-spring-boot-version](includes/migrate-java-premigration-spring-boot-version.md)]
+[!INCLUDE [migrate-java-pre-migration-spring-boot-version](includes/migrate-java-pre-migration-spring-boot-version.md)]
 
 ### Identify scheduled jobs
 
@@ -72,15 +72,15 @@ Identify external resources, such as data sources, JMS message brokers, and URLs
 
 #### Databases
 
-[!INCLUDE [migrate-java-premigration-databases](includes/migrate-java-premigration-databases.md)]
+[!INCLUDE [migrate-java-pre-migration-databases](includes/migrate-java-pre-migration-databases.md)]
 
 #### JMS message brokers
 
-[!INCLUDE [migrate-java-premigration-jms](includes/migrate-java-premigration-jms.md)]
+[!INCLUDE [migrate-java-pre-migration-jms](includes/migrate-java-pre-migration-jms.md)]
 
 #### External caches
 
-[!INCLUDE [migrate-java-premigration-caches](includes/migrate-java-premigration-caches.md)]
+[!INCLUDE [migrate-java-pre-migration-caches](includes/migrate-java-pre-migration-caches.md)]
 
 #### Identity providers
 
@@ -106,7 +106,7 @@ Check all properties, configuration files, and environment variables in the prod
 
 #### Certificates
 
-[!INCLUDE [migrate-java-premigration-certificates](includes/migrate-java-premigration-certificates.md)]
+[!INCLUDE [migrate-java-pre-migration-certificates](includes/migrate-java-pre-migration-certificates.md)]
 
 ### Assess logging and APM
 

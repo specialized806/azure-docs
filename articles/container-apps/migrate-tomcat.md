@@ -62,17 +62,17 @@ Check all properties and configuration files on the production servers for any s
 
 #### Certificates
 
-[!INCLUDE [migrate-java-premigration-certificates](includes/migrate-java-premigration-certificates.md)]
+[!INCLUDE [migrate-java-pre-migration-certificates](includes/migrate-java-pre-migration-certificates.md)]
 
 ### Review file system usage
 
-[!INCLUDE [migrate-java-premigration-file-system](includes/migrate-java-premigration-file-system.md)]
+[!INCLUDE [migrate-java-pre-migration-file-system](includes/migrate-java-pre-migration-file-system.md)]
 
 If your application currently serves static content from the Tomcat *webapps/* directory, plan to move that content to an external storage solution as part of the migration.
 
 ### Check for OS-specific code
 
-[!INCLUDE [migrate-java-premigration-os-code](includes/migrate-java-premigration-os-code.md)]
+[!INCLUDE [migrate-java-pre-migration-os-code](includes/migrate-java-pre-migration-os-code.md)]
 
 ### Verify platform compatibility
 
