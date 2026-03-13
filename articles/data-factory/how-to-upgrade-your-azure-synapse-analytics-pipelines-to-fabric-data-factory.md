@@ -81,7 +81,7 @@ For guidance on creating and managing connections in Fabric, see
 
 After you map linked services to Fabric connections, select **Confirm** to complete migration.
 
-:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/successful-migration-completion.png" alt-text="Screenshot showing successful migration." lightbox="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/successful-migration-completiong.png":::
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/successful-migration-completion.png" alt-text="Screenshot showing successful migration." lightbox="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/successful-migration-completion.png":::
 
 When migration completes, open the destination folder in your Fabric workspace and review the migrated pipelines.
 
@@ -101,10 +101,10 @@ After migration:
 
 Use these resources to round out your end-to-end Synapse-to-Fabric migration plan:
 
-- [Assess your Azure Data Factory and Synapse pipelines for migration to Fabric](https://learn.microsoft.com/en-us/azure/data-factory/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration)
-- [Upgrade your Azure Data Factory pipelines to Fabric](https://learn.microsoft.com/en-us/azure/data-factory/how-to-upgrade-your-azure-data-factory-pipelines-to-fabric-data-factory)
-- [Migration Assistant for Fabric Data Warehouse - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/en-us/fabric/data-warehouse/migration-assistant)
-- [Spark Synapse to Fabric Spark Migration Assistant (Preview)](https://learn.microsoft.com/en-us/fabric/data-engineering/synapse-to-fabric-spark-migration-assistant)
+- [Assess your Azure Data Factory and Synapse pipelines for migration to Fabric](/fabric/data-factory/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration)
+- [Upgrade your Azure Data Factory pipelines to Fabric](/fabric/data-factory/how-to-upgrade-your-azure-data-factory-pipelines-to-fabric-data-factory)
+- [Migration Assistant for Fabric Data Warehouse - Microsoft Fabric | Microsoft Learn]/fabric/data-warehouse/migration-assistant)
+- [Spark Synapse to Fabric Spark Migration Assistant (Preview)](/fabric/data-engineering/synapse-to-fabric-spark-migration-assistant)
 - [Spark Synapse to Fabric Spark Migration Assistant (Preview) (review branch)](https://review.learn.microsoft.com/en-us/fabric/data-engineering/synapse-to-fabric-spark-migration-assistant?branch=release-fabsqlcon-2026-de)
 
 
