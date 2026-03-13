@@ -264,7 +264,7 @@
       - name: Understand Azure NetApp Files cache volumes
         href: cache-volumes.md
       - name: Requirements and considerations for Azure NetApp Files cache volumes
-        href: caching-requirements.md     
+        href: cache-requirements.md     
       - name: Understand resizing guidelines for Azure NetApp Files cache volumes
         href: cache-volumes-resize-guidelines.md  
     - name: Understand ransomware protection
