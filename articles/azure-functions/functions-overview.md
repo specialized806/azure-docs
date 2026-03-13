@@ -43,7 +43,9 @@ Functions also integrates with Azure Monitor and Azure Application Insights to p
 
 ## Hosting options
 
-Functions provides various [hosting options](functions-scale.md) for your business needs and application workload. [Event-driven scaling hosting options](event-driven-scaling.md) range from fully serverless, where you only pay for execution time (Consumption plan), to always-warm instances kept ready for the fastest response times (Premium plan).
+Functions provides various [hosting options](functions-scale.md) for your business needs and application workload. The [Flex Consumption plan](flex-consumption-plan.md) is the recommended serverless hosting plan, offering fast event-driven scaling, virtual network integration, and pay-as-you-go billing. Other [event-driven scaling hosting options](event-driven-scaling.md) include the [Premium plan](functions-premium-plan.md), which provides always-warm instances for the fastest response times and unlimited execution duration.
+
+The original Consumption plan (legacy, Windows only) is still available, but we recommend the Flex Consumption plan for new serverless function apps.
 
 When you have excess App Service hosting resources, you can host your functions in an existing App Service plan. This kind of Dedicated hosting plan is also a good choice when you need predictable scaling behaviors and costs from your functions.
 
