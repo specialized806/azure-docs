@@ -77,7 +77,7 @@ After the failover is complete, the original primary region becomes the new seco
 
 While in the failover state, perform your disaster recovery testing.
 > [!NOTE]
-> Azure Files access is stateful, so applications must remount file shares or restart after a planned or unplanned failover to establish new connections; otherwise, existing connections may fail.
+> Azure Files maintains stateful connections, which means applications may need to remount file shares or restart after a failover to continue accessing data.
 
 ### The planned failback process (GRS/RA-GRS)
 
