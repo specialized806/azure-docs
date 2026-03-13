@@ -1,6 +1,6 @@
 ---
 title: Enable cross-subscription replication
-description: Describes how to enable cross-subscription replication.
+description: Describes how to enable cross-subscription replication for Azure NetApp Files.
 services: azure-netapp-files
 author: netapp-manishc
 ms.service: azure-netapp-files
@@ -10,7 +10,7 @@ ms.author: anfdocs
 ms.custom:
 
 ---
-# Enable cross-subscription replication
+# Enable cross-subscription replication for Azure NetApp Files
 
 Cross-subscription replication is supported in all regions that support [availability zones](/azure/reliability/regions-list) and is subject to the regional pairings for [cross-region replication](replication.md#supported-region-pairs).
 
