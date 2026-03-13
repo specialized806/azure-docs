@@ -139,13 +139,9 @@ For detailed migration guidance, see [Migrate from Durable Functions to the Dura
 
 ### Durable Task Framework (DTFx)
 
-The [Durable Task Framework](https://github.com/Azure/durabletask) (DTFx) is a community-maintained, open-source .NET library for durable orchestration. It provides similar orchestration primitives to the modern Durable Task SDKs and continues to be actively used in production by many teams, including within Microsoft. However, it doesn't come with official Microsoft support—bugs and feature requests are addressed on a best-effort basis. It also requires you to manage hosting and operational infrastructure yourself.
+The [Durable Task Framework](https://github.com/Azure/durabletask) (DTFx) is a community-maintained, open-source .NET library for durable orchestration. It provides similar orchestration primitives to the modern Durable Task SDKs and continues to be actively used in production by many teams, including within Microsoft. Notably, DTFx is used internally as a dependency of Azure Durable Functions, which is one of the reasons it continues to be maintained. However, it doesn't come with official Microsoft support—bugs and feature requests are addressed on a best-effort basis. It also requires you to manage hosting and operational infrastructure yourself.
 
 If you're starting a new project or need official Microsoft support, we recommend using the modern Durable Task SDKs or Durable Functions instead.
-
-
-> [!NOTE]
-> If you're interested in using Durable Task with Go with formal support from Microsoft, consider providing feedback by opening an issue in the [durabletask-go GitHub repository](https://github.com/Azure/durabletask-go/issues).
 
 ## Next steps
 
