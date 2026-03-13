@@ -40,24 +40,29 @@ Before you begin, ensure that you have:
 
 ## Get started
 
-You can get started on Azure Migration agent, by following the below steps"
+Use the Azure Migrate migration agent to move your servers and workloads to Azure. It helps you get ready, replicate workloads, and complete the migration.
 
+You can get started on Azure Migration agent, by following the below steps:
+
+1. Sign in to the **Azure portal**.
 1. In the **Azure portal**, open the **Azure Migrate** service.
 
- :::image type="content" source="./media/azure-copilot-migration-agent/migrate-agent.png" alt-text="Screenshot shows how to access the Azure Migration agent." lightbox="./media/azure-copilot-migration-agent/migrate-agent.png" :::
+    :::image type="content" source="./media/azure-copilot-migration-agent/migrate-agent.png" alt-text="Screenshot shows how to access the Azure Migration agent." lightbox="./media/azure-copilot-migration-agent/migrate-agent.png" :::
 
 1. In **Get started**, select **Accelerate migration**.
 
- :::image type="content" source="./media/azure-copilot-migration-agent/accelerate-migration.png" alt-text="Screenshot shows how to accelarate migration agent." lightbox="./media/azure-copilot-migration-agent/accelerate-migration.png" :::
+    :::image type="content" source="./media/azure-copilot-migration-agent/accelerate-migration.png" alt-text="Screenshot shows how to accelarate migration agent." lightbox="./media/azure-copilot-migration-agent/accelerate-migration.png" :::
 
 1. In the **Azure Migrate Project**, select either **Existing project** or **New project**.
+    -  Subscription
+    - Resource group
+    - Geography
 
- :::image type="content" source="./media/azure-copilot-migration-agent/azure-migrate-project.png" alt-text="Screenshot shows how to select the project and other related fields." lightbox="./media/azure-copilot-migration-agent/azure-migrate-project.png" :::
+    :::image type="content" source="./media/azure-copilot-migration-agent/azure-migrate-project.png" alt-text="Screenshot shows how to select the project and other related fields." lightbox="./media/azure-copilot-migration-agent/azure-migrate-project.png" :::
 
-1. Select the **Subscription**, **Resource group**, **Geography** and then **Select project**
 1. Select **Continue**.
 
- :::image type="content" source="./media/azure-copilot-migration-agent/migration-agent.png" alt-text="Screenshot shows the migration agent experience." lightbox="./media/azure-copilot-migration-agent/migration-agent.png" :::
+    :::image type="content" source="./media/azure-copilot-migration-agent/migration-agent.png" alt-text="Screenshot shows the migration agent experience." lightbox="./media/azure-copilot-migration-agent/migration-agent.png" :::
 
 ### Migration strategy analysis 
 
