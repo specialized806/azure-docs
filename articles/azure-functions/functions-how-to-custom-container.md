@@ -103,8 +103,10 @@ The Azure Functions extension for Visual Studio Code creates your Dockerfile whe
 
 Instead of using a generated Dockerfile, you can manually create one when you need more control over your container image. The [custom-container](https://github.com/Azure/azure-functions-docker/tree/dev/custom-container) folder of the `azure-functions-docker` repository provides these templates to get you started:
 
-- [template.Dockerfile](https://github.com/Azure/azure-functions-docker/blob/dev/custom-container/template.Dockerfile): A commented, step-by-step guide for building a custom container. It includes instructions for multiple language runtimes (Java, .NET isolated, Node.js, PowerShell, Python), optional CA certificate installation, running as a non-root user, and enabling SSH for Kudu debugging.
-- [sample.Dockerfile](https://github.com/Azure/azure-functions-docker/blob/dev/custom-container/sample.Dockerfile): A ready-to-use example built from the template that creates a Java-based Azure Functions container with SSH enabled for Kudu debugging.
+| Template | Description |
+|----------|-------------|
+| [template.Dockerfile](https://github.com/Azure/azure-functions-docker/blob/dev/custom-container/template.Dockerfile) | A commented, step-by-step guide for building a custom container. It includes instructions for multiple language runtimes (Java, .NET isolated, Node.js, PowerShell, Python), optional CA certificate installation, running as a non-root user, and enabling SSH for Kudu debugging. |
+| [sample.Dockerfile](https://github.com/Azure/azure-functions-docker/blob/dev/custom-container/sample.Dockerfile) | A ready-to-use example built from the template that creates a Java-based Azure Functions container with SSH enabled for Kudu debugging. |
 
 ## Create your function app in a container
 
