@@ -5,96 +5,101 @@ author: chachachachami
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: tutorial
-ms.date: 06/09/2025
+ms.date: 03/16/2026
 ms.author: chrupa
+ms.reviewer: v-catheribun
 ms.custom: sfi-image-blocked
 ---
 
 # Register a client application in Microsoft Entra ID
 
-In this article, you'll learn how to register a client application in Microsoft Entra ID in order to access Azure Health Data Services. You can find more information on [Register an application with the Microsoft identity platform](../active-directory/develop/quickstart-register-app.md).
+In this article, you learn how to register a client application in Microsoft Entra ID to access Azure Health Data Services. For more information, see [Register an application with the Microsoft identity platform](../active-directory/develop/quickstart-register-app.md).
 
 ## Register a new application
 
 1. In the [Azure portal](https://portal.azure.com), select **Microsoft Entra ID**.
 2. Select **App registrations**.
-[ ![Screen shot of new app registration window.](media/register-application-one.png) ](media/register-application-one.png#lightbox)
+[ ![Screen shot of new app registration window.](media/register-application-new-app-registration.png) ](media/register-application-new-app-registration.png#lightbox)
 3. Select **New registration**.
-4. For Supported account types, select **Accounts in this organization directory only**. Leave the other options as is.
-[ ![Screenshot of new registration account options.](media/register-application-two.png) ](media/register-application-two.png#lightbox)
+4. For Supported account types, select **Accounts in this organization directory only**. Don't change the other options.
+[ ![Screenshot of new registration account options.](media/register-application-account-types.png) ](media/register-application-account-types.png#lightbox)
 5. Select **Register**.
 
 ## Application ID (client ID)
 
-After registering a new application, you can find the application (client) ID and Directory (tenant) ID from the overview menu option. Make a note of the values for use later.
+After registering a new application, you can find the application (client) ID and Directory (tenant) ID in the **Overview** menu option. Make a note of the values for use later.
 
-[![Screenshot of client ID overview panel.](media/register-application-three.png) ](media/register-application-three.png#lightbox)
-
-[![Screenshot of client ID.](media/register-application-four-fix-nov-24.png) ](media/register-application-four-fix-nov-24.png#lightbox)
+[![Screenshot of client ID overview panel.](media/register-application-app-overview.png) ](media/register-application-app-overview.png#lightbox)
 
 ## Authentication setting: confidential vs. public
 
-Select **Authentication** to review the settings. The default value for **Allow public client flows** is "No".
+Select **Authentication** > **Settings** to review the settings. The default value for **Allow public client flows** is **No**.
 
-If you keep this default value, the application registration is a **confidential client application** and a certificate or secret is required.
+If you keep this default value, the application registration is a **confidential client application** and requires a certificate or secret.
 
-[ ![Screenshot of confidential client application.](media/register-application-five.png) ](media/register-application-five.png#lightbox)
+[ ![Screenshot of confidential client application.](media/register-application-allow-public-client-flows.png) ](media/register-application-allow-public-client-flows.png#lightbox)
 
-If you change the default value to "Yes" for the "Allow public client flows" option in the advanced setting, the application registration is a **public client application** and a certificate or secret isn't required. The "Yes" value is useful when you want to build a public client application using the OAuth authorization protocol or features as described in [Public client and confidential client applications](/entra/identity-platform/msal-client-applications#when-should-you-enable-a-public-client-flow-in-your-app-registration).
+If you change the default value to **Yes** for the **Allow public client flows** option in the advanced setting, the application registration is a **public client application** and doesn't require a certificate or secret. The **Yes** value is useful when you want to build a public client application using the OAuth authorization protocol or features as described in [Public client and confidential client applications](/entra/identity-platform/msal-client-applications#when-should-you-enable-a-public-client-flow-in-your-app-registration).
 
-For tools that require a redirect URL, select **Add a platform** to configure the platform.
+For tools that require a redirect URI, such as [OAuth 2.0](/entra/identity-platform/v2-app-types), go to the **Redirect URI configuration** tab and select **Add Redirect URI** to configure the platform.
 
-[ ![Screenshot of add a platform.](media/register-application-five-alpha.png) ](media/register-application-five-alpha.png#lightbox)
+[ ![Screenshot of select a platform.](media/register-application-select-platform.png) ](media/register-application-select-platform.png#lightbox)
 
-[ ![Screenshot of configure other services.](media/register-application-five-bravo-fix-nov-24.png) ](media/register-application-five-bravo-fix-nov-24.png#lightbox)
+For example, when you choose **Mobile and desktop applications**, you then select the redirect URI for that platform.
 
-## Certificates & secrets
+[ ![Screenshot of configure other platform.](media/register-application-add-redirect-uri-mobile-desktop-platform.png) ](media/register-application-add-redirect-uri-mobile-desktop-platform.png#lightbox)
 
-Select **Certificates & Secrets** and select **New Client Secret**. Select **Recommended 6 months** in the **Expires** field. This new secret will be valid for six months. You can also choose different values such as:
- 
-* 03 months
-* 12 months
-* 24 months
-* Custom start date and end date.
+
+
+## Certificates and secrets
+
+To create a new client secret, use the following steps.
+
+1. Go to **Certificates & Secrets** > **Client secrets**.
+1. Select **New Client Secret**. 
+1. In **Add a client secret**, enter a **Description**.
+1. Accept the recommended 180-day value in the **Expires** field, or select a different value from the list.
+1. Select **Add**.
+    [ ![Screenshot of certificates and secrets.](media/register-application-new-client-secret.png) ](media/register-application-new-client-secret.png#lightbox)
+
+1. Copy the secret value by selecting the copy button next to the **Value**.
+    [ ![Screenshot of certificates and secrets.](media/register-application-copy-client-secret.png) ](media/register-application-copy-client-secret.png#lightbox)
+
 
 >[!NOTE]
->It is important that you save the secret value, not the secret ID.
+>It's important that you save the secret value, not the secret ID.
 
-[ ![Screenshot of certificates and secrets.](media/register-application-six.png) ](media/register-application-six.png#lightbox)
+[ ![Screenshot of certificates and secrets.](media/register-application-new-client-secret.png) ](media/register-application-new-client-secret.png#lightbox)
 
-Optionally, you can upload a certificate (public key) and use the Certificate ID, a GUID value associated with the certificate. For testing purposes, you can create a self-signed certificate using tools such as the PowerShell command line, `New-SelfSignedCertificate`, and then export the certificate from the certificate store.
+Optionally, you can upload a certificate (public key) and use the Certificate ID, a GUID value associated with the certificate. For testing purposes, you can create a self-signed certificate by using tools such as the PowerShell command `New-SelfSignedCertificate`, and then export the certificate from the certificate store.
 
 ## API permissions
 
-The following steps are required for the DICOM service, but optional for the FHIR service. In addition, user access permissions or role assignments for the Azure Health Data Services are managed through RBAC. For more details, visit [Configure Azure RBAC for Azure Health Data Services](configure-azure-rbac.md).
+The following steps are required for the DICOM service, but optional for the FHIR service. In addition, you manage user access permissions or role assignments for Azure Health Data Services through RBAC. For more details, see [Configure Azure RBAC for Azure Health Data Services](configure-azure-rbac.md).
 
-1. Select the **API permissions** blade.
+1. Select **API permissions**.
 
    [ ![Screenshot of API permission page with Add a permission button highlighted.](dicom/media/dicom-add-apis-permissions.png) ](dicom/media/dicom-add-apis-permissions.png#lightbox)
 
 2. Select **Add a permission**.
 
-   If you're using Azure Health Data Services, you'll add a permission to the DICOM service by searching for **Azure API for DICOM** under **APIs my organization** uses. 
+   If you're using Azure Health Data Services, add a permission to the DICOM service by searching for **Azure API for DICOM** under **APIs my organization** uses. 
 
    [ ![Screenshot of Search API permissions page with the APIs my organization uses tab selected.](dicom/media/dicom-search-apis-permissions.png) ](dicom/media/dicom-search-apis-permissions.png#lightbox)
 
-   The search result for Azure API for DICOM will only return if you've already deployed the DICOM service in the workspace.
+   The search result for Azure API for DICOM appears only if you already deployed the DICOM service in the workspace.
 
    If you're referencing a different resource application, select your DICOM API Resource Application Registration that you created previously under **APIs my organization**.
 
-3. Select scopes (permissions) that the confidential client application will ask for on behalf of a user. Select **Dicom.ReadWrite**, and then select **Add permissions**.
+3. Select scopes (permissions) that the confidential client application asks for on behalf of a user. Select **Dicom.ReadWrite**, and then select **Add permissions**.
 
    [ ![Screenshot of scopes (permissions) that the client application will ask for on behalf of a user.](dicom/media/dicom-select-scope.png) ](dicom/media/dicom-select-scope.png#lightbox)
 
 >[!NOTE]
->Use  grant_type of client_credentials when trying to obtain an access token for the FHIR service using tools such as REST Client. For more details, visit [Accessing Azure Health Data Services using the REST Client Extension in Visual Studio Code](./fhir/using-rest-client.md).
->>Use  grant_type of client_credentials or authentication_code when trying to obtain an access token for the DICOM service. For more details, visit [Using DICOM with cURL](dicom/dicomweb-standard-apis-curl.md).
+>Use `grant_type` of `client_credentials` when getting an access token for the FHIR service using tools such as REST Client. For more details, see [Accessing Azure Health Data Services using the REST Client Extension in Visual Studio Code](./fhir/using-rest-client.md).
+>>Use `grant_type` of `client_credentials` or `authentication_code` when getting an access token for the DICOM service. For more details, see [Using DICOM with cURL](dicom/dicomweb-standard-apis-curl.md).
 
-Your application registration is now complete.
+## Related content
 
-## Next steps
-
-In this article, you learned how to register a client application in the Microsoft Entra ID. Additionally, you learned how to add a secret and API permissions to Azure Health Data Services. For more information about Azure Health Data Services, see
-
->[!div class="nextstepaction"]
->[Overview of Azure Health Data Services](healthcare-apis-overview.md)
+[Register an application with REST API](register-application-cli-rest.md)
+[Access Azure Health Data Services with a REST Client](fhir/using-rest-client.md)
