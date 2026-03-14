@@ -22,8 +22,6 @@ When you create a function app in Azure, you must choose a hosting option for yo
 > [!IMPORTANT]
 > The Consumption plan is a legacy hosting plan. For new serverless function apps, use the [Flex Consumption plan]. For existing Consumption plan apps, [migrate to the Flex Consumption plan](migration/migrate-plan-consumption-to-flex.md).
 
-[!INCLUDE [functions-linux-consumption-retirement](../../includes/functions-linux-consumption-retirement.md)]
-
 The Azure App Service infrastructure on both Linux and Windows virtual machines facilitates the Azure Functions hosting options. The hosting option you choose dictates the following behaviors:
 
 - How your function app is scaled.
@@ -59,11 +57,12 @@ This table shows operating system support for the hosting options.
 | **[Premium plan]** | ✅ Code-only<br/>✅ Container | ✅ Code-only | 
 | **[Dedicated plan]** | ✅ Code-only<br/>✅ Container | ✅ Code-only |
 | **[Container Apps]** | ✅ Container-only | ❌ Not supported |
-| **[Consumption plan]**<sup>3</sup> | ✅ Code-only (Retired)<br/>❌ Container (not supported) | ✅ Code-only |
+| **[Consumption plan]** | ✅ Code-only (Retired)<br/>❌ Container (not supported) | ✅ Code-only (legacy) |
 
 1. Linux is the only supported operating system for the [Python runtime stack](./functions-reference-python.md).  
 2. Windows deployments are code-only. Azure Functions doesn't currently support Windows containers. 
-3. The ability to run your app on Linux in a Consumption plan will be retired on 30 September 2028. For more information, see [Consumption plan].   
+
+[!INCLUDE [functions-linux-consumption-retirement](../../includes/functions-linux-consumption-retirement.md)]
 
 [!INCLUDE [Timeout Duration section](../../includes/functions-timeout-duration.md)]
 
