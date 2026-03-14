@@ -62,9 +62,9 @@ For more information, see:
 
 - The target Azure resource that you want to access.
 
-- [Microsoft Entra administrator permissions](/entra/identity/role-based-access-control/permissions-reference)
+- [Microsoft Entra administrator permissions](/entra/identity/role-based-access-control/permissions-reference).
 
-  Later in this guide, you must assign a role to the managed identity that has the required access on the target resource. For this task, you need permissions that let you assign roles to identities in a Microsoft Entra tenant.
+  Later in this guide, you must assign an Azure role to the managed identity with the required access on the target resource. For this task, you need permissions that let you assign Azure roles to identities in a Microsoft Entra tenant.
 
 ## Considerations for using managed identities
 
@@ -529,75 +529,103 @@ For more information about Azure Resource Manager templates and managed identiti
 
 ## Give resource access to an identity
 
-Before you can use the managed identity for authentication, you need to grant the identity access on the target protected Azure resource. The way that you set up access differs based on the target resource.
+Before you can use the managed identity for authentication, you need to grant the identity access to the target protected Azure resource. The way that you set up access might differ based on the target resource, for example:
 
-For example, to give a managed identity access to a Blob storage account or key vault in Azure, you need to set up Azure role-based access control (RBAC) by assigning the appropriate role to the identity on the storage account or key vault resource, respectively.
+- Azure role-based access control (RBAC)
 
-This section shows how to assign role-based access by using the [Azure portal](#azure-portal-assign-role) and [Azure Resource Manager template (ARM template)](../role-based-access-control/role-assignments-template.md). For Azure PowerShell, Azure CLI, and Azure REST API, see:
+  Some Azure resources, such as storage accounts, require that you use RBAC to assign a role on the target resource with the necessary permissions for your identity.
 
-| Tool | Documentation |
-|------|---------------|
-| Azure PowerShell | [Add role assignment](/entra/identity/managed-identities-azure-resources/how-to-assign-app-role-managed-identity-powershell) |
-| Azure CLI | [Add role assignment](/entra/identity/managed-identities-azure-resources/how-to-assign-app-role-managed-identity-cli) |
-| Azure REST API | [Add role assignment](../role-based-access-control/role-assignments-rest.md) |
+  For example, to give a managed identity access to a Blob storage account in Azure, you need to assign the necessary Azure role on the storage account resource to your identity.
 
-For Azure Key Vault, you also have the option to create an access policy for your managed identity on your key vault and assign the appropriate permissions for that identity on that key vault. The later steps in this section show how to complete this task by using the [Azure portal](#azure-portal-access-policy). For Resource Manager templates, PowerShell, and Azure CLI, see:
+  This section shows how to assign a role by using the [Azure portal](#azure-portal-assign-role) and [Azure Resource Manager template (ARM template)](../role-based-access-control/role-assignments-template.md).
+  
+  For Azure PowerShell, Azure CLI, and Azure REST API, see:
 
-| Tool | Documentation |
-|------|---------------|
-| Azure Resource Manager template (ARM template) | [Key Vault access policy resource definition](/azure/templates/microsoft.keyvault/vaults) |
-| Azure PowerShell | [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy?tabs=azure-powershell) |
-| Azure CLI | [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy?tabs=azure-cli) |
+  | Tool | Documentation |
+  |------|---------------|
+  | Azure PowerShell | [Add role assignment](/entra/identity/managed-identities-azure-resources/how-to-assign-app-role-managed-identity-powershell) |
+  | Azure CLI | [Add role assignment](/entra/identity/managed-identities-azure-resources/how-to-assign-app-role-managed-identity-cli) |
+  | Azure REST API | [Add role assignment](../role-based-access-control/role-assignments-rest.md) |
 
-> [!NOTE]
->
-> If a managed identity has access to a resource in the same subscription, the identity can access only that resource, not other resources in its hierarchy. In the workflow designer, some triggers and actions require you to first select a subscription or resource group before you can select the target resource. If the identity lacks access to these higher level resources, the designer doesn't show the target resource.
->
-> To fix this problem, give the identity access to each higher-level resource that you must first select.
->
-> In some cases, the identity also needs access to the resource where you enabled the identity is enabled. For example, suppose you have a workflow action that updates the application settings on the workflow's parent logic app. If the action uses a managed identity to access these settings, give the identity access to that parent logic app.
+- Access policy
+
+  Other Azure resources, such as key vaults, also let you create an access policy on the target resource with the necessary permissions for your identity.
+
+  For example, you can create an access policy on the key vault resource to assign the necessary permissions for your managed identity.
+  
+  This section show how to create an access policy by using the [Azure portal](#azure-portal-access-policy). 
+  
+  For Resource Manager templates, Azure PowerShell, and Azure CLI, see:
+
+  | Tool | Documentation |
+  |------|---------------|
+  | Azure Resource Manager template (ARM template) | [Key Vault access policy resource definition](/azure/templates/microsoft.keyvault/vaults) |
+  | Azure PowerShell | [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy?tabs=azure-powershell) |
+  | Azure CLI | [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy?tabs=azure-cli) |
+
+#### Managed identity access to higher-level resources
+
+If a managed identity has access to a resource in the same subscription, the identity can access only that resource, not other resources in that resource's parent hierarchy. In the workflow designer, some triggers and actions require you to first select a subscription or resource group before you can select the target resource. If the identity lacks access to these higher-level resources, the designer doesn't show the target resource.
+
+To fix this problem, give the identity access to each higher-level resource that you must first select.
+
+In other cases, the identity also needs access to the resource where you enabled the identity. For example, suppose you have a workflow action that updates the application settings on the workflow's parent logic app. If the action uses a managed identity to access these settings, give the identity access to that parent logic app.
 
 <a name="azure-portal-assign-role"></a>
 
-### Assign role-based access to a managed identity in the Azure portal
+### Assign role-based access to a managed identity (portal)
 
-To use a managed identity for authentication, some Azure resources, such as Azure storage accounts, require that you assign that identity to a role with the appropriate permissions on the target resource. Other Azure resources, such as key vaults, support multiple options. You can choose either role-based access or an [access policy that has the appropriate permissions on the target resource for that identity](#azure-portal-access-policy).
+For Azure resources that require you to assign a role for your managed identity, follow these steps:
 
-1. In the [Azure portal](https://portal.azure.com), open the resource where you want to use the identity.
+1. In the [Azure portal](https://portal.azure.com), open the resource where the identity needs access.
 
-1. On the resource sidebar, select **Access control (IAM)** > **Add** > **Add role assignment**.
+   This example uses a storage account as the target Azure resource.
+
+1. On the resource sidebar, select **Access control (IAM)**.
+
+1. On the **Access control (IAM)** page toolbar, select **Add** > **Add role assignment**.
 
    > [!NOTE]
    >
-   > If the **Add role assignment** option is disabled, you don't have permissions to assign roles. 
-   > For more information, see [Microsoft Entra built-in roles](/entra/identity/role-based-access-control/permissions-reference).
+   > If you can't select **Add role assignment**, you don't have the permissions to assign roles. You need [Microsoft Entra administrator permissions](/entra/identity/role-based-access-control/permissions-reference) so you can assign roles to managed identities.
 
-1. Assign the necessary role to your managed identity. On the **Role** tab, assign a role that gives your identity the required access to the current resource.
+1. To assign the required role to your managed identity, follow these steps:
 
-   For this example, assign the role that's named **Storage Blob Data Contributor**, which includes write access for blobs in an Azure Storage container. For more information about specific storage container roles, see [Roles that can access blobs in an Azure Storage container](../storage/blobs/authorize-access-azure-active-directory.md#assign-azure-roles-for-access-rights).
+   1. On the **Role** tab, find and select the [Microsoft Entra built-in role](/entra/identity/role-based-access-control/permissions-reference) that gives your identity the required access to the current resource, and then select **Next**.
 
-1. Next, choose the managed identity where you want to assign the role. Under **Assign access to**, select **Managed identity** > **Add members**.
+      This example selects the role named **Storage Blob Data Contributor**. This role gives write access to blob content in an Azure storage container.
+      
+      For more information, see [Roles that access blob content in an Azure storage container](../storage/blobs/authorize-access-azure-active-directory.md#assign-azure-roles-for-access-rights).
 
-1. Based on your managed identity's type, select or provide the following values:
+   1. On the **Members** tab, follow these steps to select the managed identity:
+   
+      1. For **Assign access to**, select **Managed identity**.
 
-   | Type | Azure service instance | Subscription | Member |
-   |------|------------------------|--------------|--------|
-   | **System-assigned** | **Logic App** | <*Azure-subscription-name*> | <*your-logic-app-name*> |
-   | **User-assigned** | Not applicable | <*Azure-subscription-name*> | <*your-user-assigned-identity-name*> |
+      1. For **Add members**, select **+ Select members**.
+      
+      1. On the **Select managed identities** pane, select your Azure subscription. Based on your managed identity, select the **Managed identity** type, and then select your managed identity.
 
-   For more information about assigning roles, see [Assign roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+         > [!NOTE]
+         >
+         > Although **Logic app** is an option
 
-After you're done, you can use the identity to [authenticate access for triggers and actions that support managed identities](#authenticate-access-with-identity).
+      1. When you finish, select **Select**.
 
-For more general information about this task, see [Assign a managed identity access to an Azure resource or another resource](/entra/identity/managed-identities-azure-resources/how-to-assign-access-azure-resource).
+   For more information, see:
+
+   - [Assign Azure roles to managed identities](/azure/role-based-access-control/role-assignments-portal-managed-identity)
+   - [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal)
+   - [Assign a managed identity access to an Azure resource or another resource](/entra/identity/managed-identities-azure-resources/how-to-assign-access-azure-resource)
+
+1. Now use the identity to [authenticate access for triggers and actions that support managed identities](#authenticate-access-with-identity).
 
 <a name="azure-portal-access-policy"></a>
 
 ### Create an access policy in the Azure portal
 
-To use a managed identity for authentication, other Azure resources also support or require that you create an access policy that has the appropriate permissions on the target resource for that identity. Other Azure resources, such as Azure storage accounts, instead require that you [assign that identity to a role that has the appropriate permissions on the target resource](#azure-portal-assign-role).
+For Azure resources where you want to create an access policy for your managed identity, follow these steps:
 
-1. In the [Azure portal](https://portal.azure.com), open the target resource where you want to use the identity.
+1. In the [Azure portal](https://portal.azure.com), open the resource where the identity needs access.
 
    This example uses a key vault as the target Azure resource.
 
