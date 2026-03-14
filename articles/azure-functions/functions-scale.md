@@ -87,7 +87,7 @@ Maximum instances are given on a per-function app (Consumption) or per-plan (Pre
 2. In some regions, Linux apps on a Premium plan can scale to 100 instances. For more information, see the [Premium plan article](functions-premium-plan.md#region-max-scale-out). 
 3. For specific limits for the various App Service plan options, see the [App Service plan limits](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-app-service-limits).
 4. On Container Apps, the default is 10 instances, but you can set the [maximum number of replicas](../container-apps/scale-app.md#scale-definition), which has an overall maximum of 1000. This setting is honored as long as there's enough cores quota available. For more information, see [Quotas for Azure Container Apps](/azure/container-apps/quotas). When you create your function app from the Azure portal, you're limited to 300 instances.
-5. During scale-out, there's currently a limit of 500 instances per subscription per hour for Linux apps on a Consumption plan.  
+5. During scale-out, there's currently a limit of 500 instances per subscription per hour for Linux apps on a Consumption plan. 
 6. For private endpoint restricted http triggers, scaling out is limited to at most 20 instances.
 
 ## Cold start behavior
