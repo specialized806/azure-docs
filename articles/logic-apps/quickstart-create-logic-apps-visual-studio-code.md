@@ -6,7 +6,7 @@ ms.suite: integration
 ms.reviewers: estfan, azla
 ms.topic: quickstart
 ms.update-cycle: 365-days
-ms.date: 03/10/2026
+ms.date: 03/13/2026
 ms.custom:
   - mvc
   - mode-ui
@@ -18,11 +18,11 @@ ms.custom:
 
 [!INCLUDE [logic-apps-sku-consumption](~/reusable-content/ce-skilling/azure/includes/logic-apps-sku-consumption.md)]
 
-This quickstart shows how to create logic app workflows in multitenant [Azure Logic Apps](../logic-apps/logic-apps-overview.md) that automate tasks and integrate processes across services, systems, apps, and data in organizations and enterprises by using Visual Studio Code. You can create and edit the underlying workflow definitions, which use JavaScript Object Notation (JSON), for workflows through a code-based experience. You can also work on existing logic app workflows that are already deployed to Azure. For more information about multitenant versus single-tenant model, see [Single-tenant versus multitenant in Azure Logic Apps](single-tenant-overview-compare.md).
+This quickstart shows how to create logic app workflows in multitenant [Azure Logic Apps](../logic-apps/logic-apps-overview.md). These workflows automate tasks and integrate processes across services, systems, apps, and data in organizations and enterprises by using Visual Studio Code. You can create and edit the underlying workflow definitions, which use JavaScript Object Notation (JSON), for workflows through a code-based experience. You can also work on existing logic app workflows that are already deployed to Azure. For more information about multitenant versus single-tenant models, see [Single-tenant versus multitenant in Azure Logic Apps](single-tenant-overview-compare.md).
 
-Although you can perform these same tasks in the [Azure portal](https://portal.azure.com), you can get started faster in Visual Studio Code when you're already familiar with logic app definitions and want to work directly in code. For example, you can disable, enable, delete, and refresh already created logic app workflows. Also, you can work on logic apps and integration accounts from any development platform where Visual Studio Code runs, such as Linux, Windows, and Mac.
+Although you can perform these same tasks in the [Azure portal](https://portal.azure.com), you can get started faster in Visual Studio Code if you're already familiar with logic app definitions and want to work directly in code. For example, you can disable, enable, delete, and refresh already created logic app workflows. Also, you can work on logic apps and integration accounts from any development platform where Visual Studio Code runs, such as Linux, Windows, and Mac.
 
-For this article, you can create the same logic app workflow from this [quickstart](../logic-apps/quickstart-create-example-consumption-workflow.md), which focuses more on the basic concepts. You can also [learn to create and manage apps through the Azure CLI](quickstart-logic-apps-azure-cli.md). In Visual Studio Code, the logic app workflow looks like the following example:
+For this article, you can create the same logic app workflow from this [quickstart](../logic-apps/quickstart-create-example-consumption-workflow.md), which focuses more on the basic concepts. You can also [learn to create and manage workflows through the Azure CLI](quickstart-logic-apps-azure-cli.md). In Visual Studio Code, the logic app workflow looks like the following example:
 
 ![Example logic app workflow definition](./media/quickstart-create-logic-apps-visual-studio-code/visual-studio-code-overview.png)
 
@@ -30,7 +30,8 @@ For this article, you can create the same logic app workflow from this [quicksta
 
 Before you start, make sure that you have these items:
 
-* If you don't have an Azure account and subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* An Azure account and subscription. If you don't have an Azure subscription, 
+[sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * Basic knowledge about [logic app workflow definitions](../logic-apps/logic-apps-workflow-definition-language.md) and their structure as described with JSON
 
@@ -54,7 +55,7 @@ Before you start, make sure that you have these items:
 
     For more information, see [Extension Marketplace](https://code.visualstudio.com/docs/editor/extension-gallery). To contribute to this extension's open-source version, visit the [Azure Logic Apps extension for Visual Studio Code on GitHub](https://github.com/Microsoft/vscode-azurelogicapps).
 
-* If your logic app workflow needs to communicate through a firewall that limits traffic to specific IP addresses, that firewall needs to allow access for *both* the [inbound](logic-apps-limits-and-config.md#inbound) and [outbound](logic-apps-limits-and-config.md#outbound) IP addresses used by Azure Logic Apps or runtime in the Azure region where your logic app workflow exists. If your logic app workflow also uses [managed connectors](../connectors/managed.md), such as the Office 365 Outlook connector or SQL connector, or uses [custom connectors](/connectors/custom-connectors/), the firewall also needs to allow access for *all* the [managed connector outbound IP addresses](logic-apps-limits-and-config.md#outbound) in your logic app's Azure region.
+* If your logic app workflow needs to communicate through a firewall that limits traffic to specific IP addresses, that firewall must allow access for *both* the [inbound](logic-apps-limits-and-config.md#inbound) and [outbound](logic-apps-limits-and-config.md#outbound) IP addresses used by Azure Logic Apps or runtime in the Azure region where your logic app workflow exists. If your logic app workflow also uses [managed connectors](../connectors/managed.md), such as the Office 365 Outlook connector or SQL connector, or uses [custom connectors](/connectors/custom-connectors/), the firewall must allow access for *all* the [managed connector outbound IP addresses](logic-apps-limits-and-config.md#outbound) in your logic app's Azure region.
 
 <a name="access-azure"></a>
 
@@ -105,7 +106,7 @@ Before you start, make sure that you have these items:
 
 ## Create new logic app
 
-1. If you haven't signed in to your Azure account and subscription yet from inside Visual Studio Code, follow the [previous steps to sign in now](#access-azure).
+1. Sign in to your Azure account and subscription from [inside Visual Studio Code](#access-azure), if you haven't already.
 
 1. In Visual Studio Code, under **Logic Apps**, open your subscription's shortcut menu, and select **Create Logic App**.
 
@@ -133,14 +134,13 @@ Before you start, make sure that you have these items:
 
    ![Empty logic app workflow definition JSON file](./media/quickstart-create-logic-apps-visual-studio-code/empty-logic-app-workflow-definition.png)
 
-   For example, here is a sample logic app workflow definition, which starts with an RSS trigger and an Office 365 Outlook action. Usually, JSON elements appear alphabetically in each section. However, this sample shows these elements roughly in the order that the logic app's steps appear in the designer.
+   For example, here's a sample logic app workflow definition, which starts with an RSS trigger and an Office 365 Outlook action. Usually, JSON elements appear alphabetically in each section. However, this sample shows these elements roughly in the order that the logic app's steps appear in the designer.
 
    > [!IMPORTANT]
    > If you want to reuse this sample logic app workflow definition, you need an organizational account, 
    > for example, @fabrikam.com. Make sure that you replace the fictitious email address with your own 
    > email address. To use a different email connector, such as Outlook.com or Gmail, replace the 
-   > `Send_an_email_action` action with a similar action available from an 
-   > [email connector that's supported by Azure Logic Apps](/connectors/connector-reference/connector-reference-logicapps-connectors).
+   > `Send_an_email_action` action with a similar action available from an [email connector that Azure Logic Apps supports](/connectors/connector-reference/connector-reference-logicapps-connectors).
    >
    > If you want to use the Gmail connector, only G-Suite business accounts can use this connector without restriction in logic apps. 
    > If you have a Gmail consumer account, you can use this connector with only specific Google-approved services, or you can 
@@ -204,7 +204,7 @@ Before you start, make sure that you have these items:
    }
    ```
 
-1. When you're done, save your logic app's workflow definition. (File menu > Save, or press Ctrl+S)
+1. When you're done, save your logic app's workflow definition (**File** > **Save** or press Ctrl+S).
 
 1. When you're prompted to upload your logic app workflow definition to your Azure subscription, select **Upload**.
 
@@ -226,7 +226,7 @@ The read-only designer opens in a separate window and shows your logic app's wor
 
 To review your logic app workflow definition in Azure portal, follow these steps:
 
-1. Sign in to the [Azure portal](https://portal.azure.com) by using the same Azure account and subscription that's associated with your logic app.
+1. Sign in to the [Azure portal](https://portal.azure.com) by using the same Azure account and subscription associated with your logic app.
 
 1. In the Azure portal's search box, enter the logic app workflow definition name. From the results list, select the logic app.
 
@@ -243,7 +243,7 @@ In Visual Studio Code, you can open and edit the workflow definition for an alre
 > Before you edit an actively running logic app workflow in production, avoid the risk in breaking that logic 
 > app and minimize disruption by [disabling your logic app resource first](#disable-enable-logic-apps).
 
-1. If you haven't signed in to your Azure account and subscription yet from inside Visual Studio Code, follow the [previous steps to sign in now](#access-azure).
+1. Sign in to your Azure account and subscription from [inside Visual Studio Code](#access-azure), if you haven't already.
 
 1. In the Azure window, under **Logic Apps**, expand your Azure subscription, and select the logic app resource you want.
 
@@ -257,7 +257,7 @@ In Visual Studio Code, you can open and edit the workflow definition for an alre
 
 1. Make your changes in the logic app's workflow definition.
 
-1. When you're done, save your changes. (File menu > Save, or press Ctrl+S)
+1. When you're done, save your changes (**File** > **Save** or press Ctrl+S).
 
 1. When you're prompted to upload your changes and *overwrite* your existing logic app in the Azure portal, select **Upload**.
 
@@ -306,7 +306,9 @@ In Visual Studio Code, you can open and review the earlier versions for your log
 
 ## Disable or enable logic apps
 
-In Visual Studio Code, if you edit a published logic app workflow and save your changes, you *overwrite* your already deployed app. To avoid breaking your logic app workflow in production and minimize disruption, disable your logic app resource first. You can then reactivate your logic app after you've confirmed that your logic app still works.
+In Visual Studio Code, if you edit a published logic app workflow and save your changes, you *overwrite* your already deployed app. To avoid breaking your logic app workflow in production and minimize disruption, disable your logic app resource first. You can then reactivate your logic app after you confirm that your logic app still works.
+
+Disabling or enabling a logic app affects workflow instances in the following ways:
 
 * Azure Logic Apps continues all in-progress and pending runs until they finish. Based on the volume or backlog, this process might take time to complete.
 
@@ -324,7 +326,9 @@ In Visual Studio Code, if you edit a published logic app workflow and save your 
 
 * When a workflow is disabled, you can still resubmit runs.
 
-1. If you haven't signed in to your Azure account and subscription yet from inside Visual Studio Code, follow the [previous steps to sign in now](#access-azure).
+To disable or enable a logic app in Visual Studio Code, follow these steps:
+
+1. Sign in to your Azure account and subscription from [inside Visual Studio Code](#access-azure), if you haven't already.
 
 1. In the Azure window, under **Logic Apps**, expand your Azure subscription so that you can view all the logic apps in that subscription.
 
@@ -348,9 +352,11 @@ Deleting a logic app affects workflow instances in the following ways:
 
 * Azure Logic Apps doesn't create or run new workflow instances.
 
-* If you delete a workflow and then recreate the same workflow, the recreated workflow won't have the same metadata as the deleted workflow. You have to resave any workflow that called the deleted workflow. That way, the caller gets the correct information for the recreated workflow. Otherwise, calls to the recreated workflow fail with an `Unauthorized` error. This behavior also applies to workflows that use artifacts in integration accounts and workflows that call Azure functions.
+* If you delete a workflow and then recreate the same workflow, the recreated workflow has different metadata. You have to resave any workflow that called the deleted workflow. That way, the caller gets the correct information for the recreated workflow. Otherwise, calls to the recreated workflow fail with an `Unauthorized` error. This behavior also applies to workflows that use artifacts in integration accounts and workflows that call Azure functions.
 
-1. If you haven't signed in to your Azure account and subscription yet from inside Visual Studio Code, follow the [previous steps to sign in now](#access-azure).
+To delete a logic app in Visual Studio Code, follow these steps:
+
+1. Sign in to your Azure account and subscription from [inside Visual Studio Code](#access-azure), if you haven't already.
 
 1. In the Azure window, under **Logic Apps**, expand your Azure subscription so that you can view all the logic apps in that subscription.
 
@@ -361,4 +367,4 @@ Deleting a logic app affects workflow instances in the following ways:
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Create single-tenant based logic app workflows in Visual Studio Code](../logic-apps/create-single-tenant-workflows-visual-studio-code.md)
+> [Create Standard single-tenant logic app workflows in Visual Studio Code](../logic-apps/create-standard-workflows-visual-studio-code.md)
