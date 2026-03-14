@@ -105,8 +105,6 @@
       href: durable-functions-http-features.md 
     - name: Data persistence and serialization
       href: durable-functions-serialization-and-persistence.md
-    - name: Large payload support - Durable Task Scheduler
-      href: ./durable-task-scheduler/durable-task-scheduler-large-payloads.md?pivots=durable-functions
     - name: Performance & scale
       href: durable-functions-perf-and-scale.md
     - name: High availability
@@ -147,6 +145,8 @@
         items:
         - name: Author Durable Functions apps using the PowerShell SDK
           href: durable-functions-powershell-v2-sdk-migration-guide.md
+      - name: Large payload support - Durable Task Scheduler
+        href: ./durable-task-scheduler/durable-task-scheduler-large-payloads.md?pivots=durable-functions
     - name: Deploy
       items:
       - name: Continuous deployment
