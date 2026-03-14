@@ -124,9 +124,9 @@ The following tables provide a sample connector selection that supports managed 
 <a name="system-assigned-azure-portal"></a>
 <a name="azure-portal-system-logic-app"></a>
 
-## Step 1: Enable system-assigned identity in the Azure portal
+## Enable system-assigned identity (portal)
 
-Based on your logic app type, follow the corresponding steps:
+Based on your logic app type, follow the corresponding steps for the Azure portal:
 
 ### [Consumption](#tab/consumption)
 
@@ -177,9 +177,11 @@ On a Standard logic app resource, the system-assigned identity is automatically 
 <a name="system-assigned-template"></a>
 <a name="template-system-logic-app"></a>
 
-## Enable system-assigned identity in an ARM template
+## Enable system-assigned identity (ARM template)
 
-To automate creating and deploying logic app resources, use an [ARM template](logic-apps-azure-resource-manager-templates-overview.md). To enable the system-assigned identity in the template for your logic app resource, add the `identity` object and the `type` child property to the workflow definition, for example:
+To automate creating and deploying logic app resources, use an [ARM template](logic-apps-azure-resource-manager-templates-overview.md).
+
+In your template, at the root level, your logic app resouce definition requires an `identity` object with the `type` property set to `SystemAssigned`, for example:
 
 ### [Consumption](#tab/consumption)
 
@@ -216,7 +218,7 @@ To automate creating and deploying logic app resources, use an [ARM template](lo
 
 ---
 
-When Azure creates your logic app resource definition, the `identity` object gets the following properties:
+When Azure creates your logic app resource definition, the `identity` object gets the following `principalId` and `tenantId` properties:
 
 ```json
 "identity": {
@@ -228,15 +230,15 @@ When Azure creates your logic app resource definition, the `identity` object get
 
 | Property (JSON) | Value | Description |
 |-----------------|-------|-------------|
-| **principalId** | <*principal-ID*> | The Globally Unique Identifier (GUID) of the service principal object for the managed identity that represents your logic app in the Microsoft Entra tenant. This GUID sometimes appears as an "object ID" or **objectID**. |
-| **tenantId** | <*Microsoft-Entra-ID-tenant-ID*> | The Globally Unique Identifier (GUID) that represents the Microsoft Entra tenant where the logic app is now a member. Inside the Microsoft Entra tenant, the service principal has the same name as the logic app instance. |
+| **principalId** | <*principal-ID*> | The Globally Unique Identifier (GUID) that Microsoft Entra uses to admiminister the service principal object for your managed identity in the Microsoft Entra tenant. This GUID sometimes appears as an "object ID" or **objectID**. |
+| **tenantId** | <*Microsoft-Entra-tenant-ID*> | The Globally Unique Identifier (GUID) that represents the Microsoft Entra tenant where the logic app is now a member. Inside the Microsoft Entra tenant, the service principal has the same name as the logic app instance. |
 
 <a name="azure-portal-user-identity"></a>
 <a name="user-assigned-azure-portal"></a>
 
-## Create user-assigned identity in the Azure portal
+## Create user-assigned identity (portal)
 
-Before you can enable the user-assigned identity on a Consumption logic app resource or Standard logic app resource, create the identity as a separate Azure resource.
+You need to create the identity as a separate Azure resource before you can enable the user-assigned identity on a Consumption or Standard logic app resource.
 
 1. In the [Azure portal](https://portal.azure.com) search box, enter `managed identities`. From the results list, select **Managed Identities**.
 
@@ -250,94 +252,96 @@ Before you can enable the user-assigned identity on a Consumption logic app reso
 
    | Property | Required | Value | Description |
    |----------|----------|-------|-------------|
-   | **Subscription** | Yes | <*Azure-subscription-name*> | The Azure subscription name |
-   | **Resource group** | Yes | <*Azure-resource-group-name*> | The Azure resource group name. Create a new group, or select an existing group. This example creates a new group named **fabrikam-managed-identities-RG**. |
-   | **Region** | Yes | <*Azure-region*> | The Azure region where to store information about your resource. This example uses **West US**. |
-   | **Name** | Yes | <*user-assigned-identity-name*> | The name to give your user-assigned identity. This example uses **Fabrikam-user-assigned-identity**. |
+   | **Subscription** | Yes | <*Azure-subscription-name*> | The Azure subscription name. |
+   | **Resource group** | Yes | <*Azure-resource-group-name*> | The Azure resource group name. Create a new group, or select an existing group. This example creates a new group named `fabrikam-managed-identities-RG`. |
+   | **Region** | Yes | <*Azure-region*> | The Azure region where to store information about your resource. This example uses `West US`. |
+   | **Name** | Yes | <*user-assigned-identity-name*> | The name to give your user-assigned identity. This example uses `Fabrikam-user-assigned-identity`. |
+   | **Isolation Scope** | No | - **None** (default) <br>- **Region** | The effective scope for the managed identity. |
 
 1. When you finish, select **Review + create**.
 
    After Azure validates the information, Azure creates your managed identity. Now you can add the user-assigned identity to your logic app resource.
 
-## Add user-assigned identity to logic app in the Azure portal
+## Add user-assigned identity to logic app (portal)
+
+After you create the user-assigned identity, add the identity to your Consumption or Standard logic app resource.
 
 ### [Consumption](#tab/consumption)
 
 1. In the Azure portal, open your Consumption logic app resource.
 
-1. On the logic app menu, under **Settings**, select **Identity**.
+1. On the logic app sidebar, under **Settings**, select **Identity**.
 
 1. On the **Identity** page, select **User assigned**, and then select **Add**.
 
-   :::image type="content" source="media/authenticate-with-managed-identity/add-user-assigned-identity-logic-app-consumption.png" alt-text="Screenshot shows Consumption logic app and Identity page with selected option for Add." lightbox="media/authenticate-with-managed-identity/add-user-assigned-identity-logic-app-consumption.png":::
+   :::image type="content" source="media/authenticate-with-managed-identity/add-user-assigned-identity-logic-app-consumption.png" alt-text="Screenshot that shows a Consumption logic app and Identity page with selected option for Add." lightbox="media/authenticate-with-managed-identity/add-user-assigned-identity-logic-app-consumption.png":::
 
 1. On the **Add user assigned managed identity** pane, follow these steps:
 
    1. From the **Select a subscription** list, select your Azure subscription.
 
-      1. From the list that shows the managed identities in your subscription, select the user-assigned identity you want. To filter the list, in the **User assigned managed identities** search box, enter the name for the identity or resource group.
+   1. From the managed identities list, select the user-assigned identity you want.
+      
+      To filter the list, in the **User assigned managed identities** search box, enter the name for the identity or resource group, for example:
 
-      :::image type="content" source="media/authenticate-with-managed-identity/select-user-assigned-identity.png" alt-text="Screenshot shows Consumption logic app and selected user-assigned identity." lightbox="media/authenticate-with-managed-identity/select-user-assigned-identity.png":::
+      :::image type="content" source="media/authenticate-with-managed-identity/select-user-assigned-identity.png" alt-text="Screenshot that shows a Consumption logic app and selected user-assigned identity." lightbox="media/authenticate-with-managed-identity/select-user-assigned-identity.png":::
 
-   1. When you're done, select **Add**.
-
-      > [!NOTE]
-      >
-      > If you get an error that you can have only a single managed identity, your logic app 
-      > is already associated with the system-assigned identity. Before you can add the 
-      > user-assigned identity, you have to first disable the system-assigned identity.
+   1. When you finish, select **Add**.
 
    Your logic app is now associated with the user-assigned identity.
 
-   :::image type="content" source="media/authenticate-with-managed-identity/added-user-assigned-identity-consumption.png" alt-text="Screenshot shows Consumption logic app with associated user-assigned identity." lightbox="media/authenticate-with-managed-identity/added-user-assigned-identity-consumption.png":::
+   :::image type="content" source="media/authenticate-with-managed-identity/added-user-assigned-identity-consumption.png" alt-text="Screenshot shows a Consumption logic app with associated user-assigned identity." lightbox="media/authenticate-with-managed-identity/added-user-assigned-identity-consumption.png":::
 
-1. Now follow the [steps that give the identity access to the resource](#access-other-resources) later in this guide.
+1. [Give the identity access to the protected resource](#access-other-resources).
 
 ### [Standard](#tab/standard)
 
 1. In the Azure portal, open your Standard logic app resource.
 
-1. On the logic app menu, under **Settings**, select **Identity**.
+1. On the logic app sidebar, under **Settings**, select **Identity**.
 
 1. On the **Identity** page, select **User assigned**, and then select **Add**.
 
-   :::image type="content" source="media/authenticate-with-managed-identity/add-user-assigned-identity-logic-app-standard.png" alt-text="Screenshot shows Standard logic app and Identity page with selected option for Add." lightbox="media/authenticate-with-managed-identity/add-user-assigned-identity-logic-app-standard.png":::
+   :::image type="content" source="media/authenticate-with-managed-identity/add-user-assigned-identity-logic-app-standard.png" alt-text="Screenshot shows a Standard logic app and Identity page with selected option for Add." lightbox="media/authenticate-with-managed-identity/add-user-assigned-identity-logic-app-standard.png":::
 
 1. On the **Add user assigned managed identity** pane, follow these steps:
 
    1. From the **Select a subscription** list, select your Azure subscription.
 
-   1. From the list with *all* the managed identities in your subscription, select the user-assigned identity that you want. To filter the list, in the **User assigned managed identities** search box, enter the name for the identity or resource group.
+   1. From the managed identity list, select the user-assigned identity you want.
+   
+      To filter the list, in the **User assigned managed identities** search box, enter the name for the identity or resource group, for example:
 
       :::image type="content" source="media/authenticate-with-managed-identity/select-user-assigned-identity.png" alt-text="Screenshot shows Standard logic app and selected user-assigned identity." lightbox="media/authenticate-with-managed-identity/select-user-assigned-identity.png":::
 
-   1. When you're done, select **Add**.
+   1. When you finish, select **Add**.
 
       Your logic app is now associated with the user-assigned identity.
 
       :::image type="content" source="media/authenticate-with-managed-identity/added-user-assigned-identity-standard.png" alt-text="Screenshot shows Standard logic app and associated user-assigned identity." lightbox="media/authenticate-with-managed-identity/added-user-assigned-identity-standard.png":::
 
-   1. To have multiple user-assigned identities, repeat the same steps to add those identities.
+   1. To add another user-assigned identity, repeat these steps.
 
-1. Now follow the [steps that give the identity access to the resource](#access-other-resources) later in this guide.
+1. [Give the identity access to the protected resource](#access-other-resources).
 
 ---
 
 <a name="template-user-identity"></a>
 
-## Create user-assigned identity in an ARM template
+## Create user-assigned identity (ARM template)
 
 To automate creating and deploying logic app resources, use an [ARM template](logic-apps-azure-resource-manager-templates-overview.md). These templates support [user-assigned identities for authentication](/azure/templates/microsoft.managedidentity/userassignedidentities?pivots=deployment-language-arm-template).
 
-In your template's **resources** section, your logic app's resource definition requires the following items:
+In your template's `resources` section, your logic app resource definition requires the following items:
 
-- An **identity** object with the **type** property set to **UserAssigned**
-
-- A child **userAssignedIdentities** object that specifies the user-assigned resource and name
+- An `identity` object with the `type` property set to `UserAssigned`.
+- A child `userAssignedIdentities` object that specifies the user-assigned resource and name.
 
 ### [Consumption](#tab/consumption)
 
-This example shows a Consumption logic app resource and workflow definition for an HTTP PUT request with a nonparameterized **identity** object. The response to the PUT request and subsequent GET operation also includes this **identity** object:
+The following example shows a Consumption logic app resource and workflow definition for an HTTP `PUT` request with a nonparameterized `identity` object. The response to the `PUT` request and subsequent `GET` operation also includes this `identity` object.
+
+A Consumption logic app resource can enable and have both the system-assigned identity and multiple user-assigned identities defined.
 
 ```json
 {
@@ -367,7 +371,7 @@ This example shows a Consumption logic app resource and workflow definition for 
 }
 ```
 
-If your template also includes the managed identity's resource definition, you can parameterize the **identity** object. The following example shows how the child **userAssignedIdentities** object references a **userAssignedIdentityName** variable that you define in your template's **variables** section. This variable references the resource ID for your user-assigned identity.
+If your template includes the managed identity's resource definition, you can parameterize the `identity` object. The following example shows how the `userAssignedIdentities` child object references a `userAssignedIdentityName` variable that you define in your template's `variables` section. This variable references the resource ID for your user-assigned identity.
 
 ```json
 {
@@ -418,9 +422,9 @@ If your template also includes the managed identity's resource definition, you c
 
 ### [Standard](#tab/standard)
 
-A Standard logic app resource can enable and have both the system-assigned identity and multiple user-assigned identities defined. The Standard logic app resource definition is based on the Azure Functions function app resource definition.
+The following example shows a Standard logic app resource and workflow definition for an HTTP `PUT` request with a nonparameterized `identity` object. The response to the `PUT` request and subsequent `GET` operation also includes this `identity` object.
 
-This example shows a Standard logic app resource and workflow definition that includes a nonparameterized **identity** object:
+A Standard logic app resource can enable and have both the system-assigned identity and multiple user-assigned identities defined. The Standard logic app resource definition is based on the Azure Functions function app resource definition.
 
 ```json
 {
@@ -454,7 +458,7 @@ This example shows a Standard logic app resource and workflow definition that in
 }
 ```
 
-If your template also includes the managed identity's resource definition, you can parameterize the **identity** object. The following example shows how the child **userAssignedIdentities** object references a **userAssignedIdentityName** variable that you define in your template's **variables** section. This variable references the resource ID for your user-assigned identity.
+If your template includes the managed identity's resource definition, you can parameterize the `identity` object. The following example shows how the `userAssignedIdentities` child object references a `userAssignedIdentityName` variable that you define in your template's `variables` section. This variable references the resource ID for your user-assigned identity.
 
 ```json
 {
@@ -498,7 +502,9 @@ If your template also includes the managed identity's resource definition, you c
 }
 ```
 
-When the template creates a logic app resource, the **identity** object includes the following properties:
+---
+
+When the template creates your logic app resource definition, the `identity` object includes the following `principalId` and `clientId` properties:
 
 ```json
 "identity": {
@@ -512,37 +518,20 @@ When the template creates a logic app resource, the **identity** object includes
 }
 ```
 
-The **principalId** property value is a unique identifier for the identity that's used for Microsoft Entra administration. The **clientId** property value is a unique identifier for the logic app's new identity that's used for specifying which identity to use during runtime calls. For more information about Azure Resource Manager templates and managed identities for Azure Functions, see the following documentation:
+| Property (JSON) | Value | Description |
+|-----------------|-------|-------------|
+| **principalId** | <*principal-ID*> | The Globally Unique Identifier (GUID) that Microsoft Entra uses to admiminister the service principal object for your managed identity in the Microsoft Entra tenant. This GUID sometimes appears as an "object ID" or **objectID**. In the Microsoft Entra tenant, the service principal has the same name as the logic app instance. |
+| **clientId** | <*client-ID*> | The Globally Unique Identifier (GUID) that represents the logic app's identity and specifies the identity to use during runtime calls. |
 
-- [ARM template - Azure Functions](../azure-functions/functions-create-first-function-resource-manager.md#review-the-template)
-
-- [Add a user-assigned identity using an ARM template for Azure Functions](../app-service/overview-managed-identity.md?tabs=arm%2Chttp#add-a-user-assigned-identity).
-
----
+For more information about Azure Resource Manager templates and managed identities for Azure Functions, see  [ARM template - Azure Functions](../azure-functions/functions-create-first-function-resource-manager.md#review-the-template).
 
 <a name="access-other-resources"></a>
 
-## Give identity access to resources
+## Give resource access to an identity
 
-Before you can use your logic app's managed identity for authentication, you need to set up access for the identity on the target Azure resource where you want to use the identity. The way that you set up access varies based on the target resource.
+Before you can use the managed identity for authentication, you need to grant the identity access on the target protected Azure resource. The way that you set up access differs based on the target resource.
 
-> [!NOTE]
->
-> When a managed identity has access to an Azure resource in the same subscription, the identity can 
-> access only that resource. However, in some triggers and actions that support managed identities, 
-> you need to first select the Azure resource group that contains the target resource. If the identity 
-> doesn't have access at the resource group level, no resources in that group are listed, despite having 
-> access to the target resource.
->
-> To handle this behavior, you must also give the identity access to the resource group, not just 
-> the resource. Likewise, if you need to select your subscription before you can select the 
-> target resource, you must give the identity access to the subscription.
->
-> In some cases, you need the identity to get access to the associated resource. For example, 
-> suppose you have a managed identity for a logic app that needs access to update the application 
-> settings for that same logic app from a workflow. You must give that identity access to the associated logic app.
-
-For example, to use a managed identity for authenticating access to a Blob storage account or key vault in Azure, you need to set up Azure role-based access control (RBAC) and assign the appropriate role for that identity to the storage account or key vault, respectively.
+For example, to give a managed identity access to a Blob storage account or key vault in Azure, you need to set up Azure role-based access control (RBAC) by assigning the appropriate role to the identity on the storage account or key vault resource, respectively.
 
 This section shows how to assign role-based access by using the [Azure portal](#azure-portal-assign-role) and [Azure Resource Manager template (ARM template)](../role-based-access-control/role-assignments-template.md). For Azure PowerShell, Azure CLI, and Azure REST API, see:
 
@@ -552,13 +541,21 @@ This section shows how to assign role-based access by using the [Azure portal](#
 | Azure CLI | [Add role assignment](/entra/identity/managed-identities-azure-resources/how-to-assign-app-role-managed-identity-cli) |
 | Azure REST API | [Add role assignment](../role-based-access-control/role-assignments-rest.md) |
 
-For Azure Key Vault, you also have the option to create an access policy for your managed identity on your key vault and assign the appropriate permissions for that identity on that key vault. The later steps in this section describe how to complete this task by using the [Azure portal](#azure-portal-access-policy). For Resource Manager templates, PowerShell, and Azure CLI, see the following documentation:
+For Azure Key Vault, you also have the option to create an access policy for your managed identity on your key vault and assign the appropriate permissions for that identity on that key vault. The later steps in this section show how to complete this task by using the [Azure portal](#azure-portal-access-policy). For Resource Manager templates, PowerShell, and Azure CLI, see:
 
 | Tool | Documentation |
 |------|---------------|
 | Azure Resource Manager template (ARM template) | [Key Vault access policy resource definition](/azure/templates/microsoft.keyvault/vaults) |
 | Azure PowerShell | [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy?tabs=azure-powershell) |
 | Azure CLI | [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy?tabs=azure-cli) |
+
+> [!NOTE]
+>
+> If a managed identity has access to a resource in the same subscription, the identity can access only that resource, not other resources in its hierarchy. In the workflow designer, some triggers and actions require you to first select a subscription or resource group before you can select the target resource. If the identity lacks access to these higher level resources, the designer doesn't show the target resource.
+>
+> To fix this problem, give the identity access to each higher-level resource that you must first select.
+>
+> In some cases, the identity also needs access to the resource where you enabled the identity is enabled. For example, suppose you have a workflow action that updates the application settings on the workflow's parent logic app. If the action uses a managed identity to access these settings, give the identity access to that parent logic app.
 
 <a name="azure-portal-assign-role"></a>
 
@@ -568,7 +565,7 @@ To use a managed identity for authentication, some Azure resources, such as Azur
 
 1. In the [Azure portal](https://portal.azure.com), open the resource where you want to use the identity.
 
-1. On the resource menu, select **Access control (IAM)** > **Add** > **Add role assignment**.
+1. On the resource sidebar, select **Access control (IAM)** > **Add** > **Add role assignment**.
 
    > [!NOTE]
    >
@@ -604,7 +601,7 @@ To use a managed identity for authentication, other Azure resources also support
 
    This example uses a key vault as the target Azure resource.
 
-1. On the resource menu, select **Access policies** > **Create**, which opens the **Create an access policy** pane.
+1. On the resource sidebar, select **Access policies** > **Create**, which opens the **Create an access policy** pane.
 
    > [!NOTE]
    >
@@ -1382,7 +1379,7 @@ In other scenarios, you might not want to set up the system-assigned identity on
 
 1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource.
 
-1. On the resource menu, under **Workflows**, select **Connections**.
+1. On the resource sidebar, under **Workflows**, select **Connections**.
 
 1. On the **Connections** pane, select **JSON View**.
 
@@ -1496,7 +1493,7 @@ The following steps remove access to the target resource from the managed identi
 
 1. In the [Azure portal](https://portal.azure.com), go to the target Azure resource where you want to remove access for the managed identity.
 
-1. From the target resource's menu, select **Access control (IAM)**. Under the toolbar, select **Role assignments**.
+1. From the target resource sidebar, select **Access control (IAM)**. Under the toolbar, select **Role assignments**.
 
 1. In the roles list, select the managed identities that you want to remove. On the toolbar, select **Remove**.
 
@@ -1512,7 +1509,7 @@ The following steps remove access to the target resource from the managed identi
 
 1. In the [Azure portal](https://portal.azure.com), open your logic app resource.
 
-1. On the logic app resource menu, under **Settings**, select **Identity**, and then follow the steps for your identity:
+1. On the logic app resource sidebar, under **Settings**, select **Identity**, and then follow the steps for your identity:
 
    - Select **System assigned** > **Off** > **Save**. When Azure prompts you to confirm, select **Yes**.
 
