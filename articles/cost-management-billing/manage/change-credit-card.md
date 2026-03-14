@@ -36,6 +36,11 @@ The Reserve Bank of India has a [regulation for storing credit card information]
 
 If you get an error after you add a credit card, see [Troubleshoot a declined card](../troubleshoot-billing/troubleshoot-declined-card.md).
 
+> [!NOTE]
+> Additional information for SEPA Direct Debit users in Europe:
+> - SEPA Direct Debit is connected to the specific billing account where it is set up. If you have multiple billing accounts and want to use SEPA Direct Debit, you need to add this payment method separately to each account.
+> - If you have an MCA billing account type, you must have Billing account owner or Billing account contributor role to add or manage SEPA Direct Debit payment method. You can learn more about administrative roles [here](understand-mca-roles.md).
+
 <a id="addcard"></a>
 
 ## Manage pay-as-you-go credit cards
