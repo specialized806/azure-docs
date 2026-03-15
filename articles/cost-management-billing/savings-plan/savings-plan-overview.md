@@ -1,7 +1,7 @@
 ---
-title: What is Azure savings plans for compute?
+title: What are savings plans?
 titleSuffix: Microsoft Cost Management
-description: Learn how Azure savings plans help you save money by committing an hourly spend for one-year or three-year plan for Azure compute resources.
+description: Learn how savings plans help you save money by committing an hourly spend for one-year or three-year plan for Azure compute resources.
 author: nwokolo
 ms.reviewer: onwokolo
 ms.service: cost-management-billing
@@ -11,16 +11,16 @@ ms.date: 01/08/2026
 ms.author: onwokolo
 ---
 
-# What is Azure savings plans for compute?
+# What are savings plans?
 
-Azure savings plan for compute enables organizations to reduce eligible compute usage costs by up to 65% (off list pay-as-you-go rates) by making an hourly spend commitment for 1 or 3 years.
+Savings plan enables organizations to reduce eligible compute usage costs by up to 65% (off list pay-as-you-go rates) by making an hourly spend commitment for 1 or 3 years.
 Unlike Azure reservations, which are targeted at stable and predictable workloads, Azure savings plans are targeted for dynamic and/or evolving workloads. To learn more, visit [Decide between a savings plan and a reservation](decide-between-savings-plan-reservation.md). A savings plan is a billing discount - it doesn't affect the runtime state of your resources. 
 
 Azure savings plans is available to organizations with either Enterprise Agreement (EA), Microsoft Customer Agreement (MCA), or Microsoft Partner Agreement (MPA) agreements. Enterprise Agreement customers must have an offer type of MS-AZR-0017P (EA) or MS-AZR-0148P (DevTest) to purchase Azure savings plans. To learn more, visit [Buy an Azure savings plan](buy-savings-plan.md).
 
 Savings plan rates are priced in USD for MCA and MPA customers, and in local currency for EA customers. Each hour, eligible compute usage, up to commitment amount, is discounted and used to burn down the hourly commitment. Once the commitment amount is consumed, the remainder of the usage is billed at the customer's pay-as-you-go rate. Any unused commitment from any hour is lost. To learn more, visit [How savings plan discount is applied](discount-application.md).
 
-Azure savings plan for compute supports products in different compute services. To learn more, visit [savings plan-eligible services](https://azure.microsoft.com/pricing/offers/savings-plan-compute/#Select-services). Savings plan discounts vary by product and by commitment term (1- or 3-years), not the commitment amount. To learn about included products, visit [included compute products](download-savings-plan-price-sheet.md).  Usage from certain virtual machines that power select compute and non-compute services (e.g. Azure Virtual Desktop, Azure Kubernetes Service, Azure Red Hat OpenShift and Azure Machine Learning) may be eligible for savings plan benefits.
+Savings plan supports products in different compute services. To learn more, visit [savings plan-eligible services](https://azure.microsoft.com/pricing/offers/savings-plan-compute/#Select-services). Savings plan discounts vary by product and by commitment term (1- or 3-years), not the commitment amount. To learn about included products, visit [included compute products](download-savings-plan-price-sheet.md).  Usage from certain virtual machines that power select compute and non-compute services (e.g. Azure Virtual Desktop, Azure Kubernetes Service, Azure Red Hat OpenShift and Azure Machine Learning) may be eligible for savings plan benefits.
 
 Azure provides commitment recommendations based on your savings plan eligible on-demand usage, your pay-as-you-go rates (inclusive of any discounts) and the 1- and 3-year savings plan rates. To learn more, visit [Azure savings plan recommendations](purchase-recommendations.md).
 
@@ -77,13 +77,13 @@ To understand which properties and settings of a savings plan can be modified af
 Savings plan purchases can't be canceled or refunded.
 
 ## Changes to savings plans discounts
-Like the pay-as-you-go model, prices under savings plans are subject to change. All price changes take effect on the first day of the month. Regardless of when an active saving plan was purchased, current savings plan pricing is used when applying savings plan benefits.
+Like the pay-as-you-go model, prices under savings plans are subject to change. All price changes take effect on the first day of the month. Regardless of when an active savings plan was purchased, current savings plan pricing is used when applying savings plan benefits.
 
 ## Charges covered by savings plan
 A savings plan covers compute charges from [savings plan-eligible products](https://azure.microsoft.com/pricing/offers/savings-plan-compute/#Select-services). It doesn't cover software, networking, or storage charges. For Windows virtual machines and SQL Database, the savings plan discount doesn't apply to the software costs. You might be able to cover the licensing costs with [Azure Hybrid Benefit](https://azure.microsoft.com/pricing/hybrid-benefit/).
 
 ## Need help? Contact us.
-If you have Azure savings plan for compute questions, contact your account team, or [create a support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest). Temporarily, Microsoft only provides Azure savings plan for compute expert support requests in English.
+If you have savings plan questions, contact your account team, or [create a support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest). Temporarily, Microsoft only provides savings plan expert support requests in English.
 
 ## Next steps
 - Learn [how discounts apply to savings plans](discount-application.md).

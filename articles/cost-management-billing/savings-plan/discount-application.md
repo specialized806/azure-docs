@@ -1,5 +1,5 @@
 ---
-title: How an Azure saving plan discount is applied
+title: How a savings plan discount is applied
 titleSuffix: Microsoft Cost Management
 description: Learn about how the discounts you receive are applied.
 author: nwokolo
@@ -11,7 +11,7 @@ ms.topic: conceptual
 ms.date: 01/08/2026
 ---
 
-# How saving plan discount is applied
+# How a savings plan discount is applied
 
 Azure savings plans save you money when you have consistent usage of Azure compute resources. An Azure savings plan can help you save money by allowing you to commit to a fixed hourly spend on compute services for one-year or three-year terms. The savings can significantly reduce your resource costs by up to 65% from pay-as-you-go prices. Discount rates per meter vary by commitment term (1-year or 3-year), not commitment amount.
 
