@@ -138,6 +138,18 @@ Run the following command to create the deployer and the SAP library. The comman
 
 # [Linux](#tab/linux)
 
+Set the environment variables for managed identity:
+
+```bash
+
+export ARM_SUBSCRIPTION_ID="<subscriptionId>"
+export       ARM_CLIENT_ID="<managedIdentityAppId>"
+export       ARM_TENANT_ID="<tenantId>"
+
+```
+
+
+
 Set the environment variables for the service principal:
 
 ```bash
@@ -162,7 +174,10 @@ export CONFIG_REPO_PATH="${HOME}/Azure_SAP_Automated_Deployment/WORKSPACES"
 export SAP_AUTOMATION_REPO_PATH="${HOME}/Azure_SAP_Automated_Deployment/sap-automation"
 
 az logout
-az login --service-principal -u "${ARM_CLIENT_ID}" -p="${ARM_CLIENT_SECRET}" --tenant "${ARM_TENANT_ID}"
+az login --identity --client-id "${ARM_CLIENT_ID}"
+
+# Uncomment next line for service principal based login
+# az login --service-principal -u "${ARM_CLIENT_ID}" -p="${ARM_CLIENT_SECRET}" --tenant "${ARM_TENANT_ID}"
 
 cd ~/Azure_SAP_Automated_Deployment/WORKSPACES
 
