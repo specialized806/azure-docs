@@ -1,6 +1,6 @@
 ---
-title: Large payload support with Durable Task Scheduler
-description: Learn how to use large payload support in Durable Functions and the Durable Task SDKs with Durable Task Scheduler and Azure Blob Storage.
+title: Large payload support with Durable Task Scheduler (Preview)
+description: Learn how to use preview large payload support in Durable Functions and the Durable Task SDKs with Durable Task Scheduler and Azure Blob Storage.
 ms.topic: conceptual
 ms.date: 03/14/2026
 ms.author: torosent
@@ -10,7 +10,7 @@ ms.devlang: csharp
 zone_pivot_groups: azure-durable-approach
 ---
 
-# Large payload support with Durable Task Scheduler
+# Large payload support with Durable Task Scheduler (Preview)
 
 Large payload support lets your app pass orchestration inputs and activity outputs that exceed the [Durable Task Scheduler](durable-task-scheduler.md) message size limit. When a payload goes over the configured threshold, the framework stores the serialized payload in Azure Blob Storage and sends a small reference through Durable Task Scheduler.
 
@@ -298,6 +298,9 @@ The sample apps also validate the round trip:
 - The .NET Durable Task SDK sample prints whether the run creates new payload blobs.
 
 Because the runtime stores externalized payloads with gzip content encoding, Azure reports the compressed on-disk blob size. With the current low-compressibility sample payloads, those blob sizes should stay reasonably close to the logical payload size.
+
+> [!NOTE]
+> Purging orchestration instances doesn't currently delete the corresponding externalized payload blobs from Azure Blob Storage. If you need to remove those payloads, delete the blobs from the storage account separately.
 
 ## Next steps
 
