@@ -32,8 +32,8 @@ The following sheets and columns are necessary for importing all data:
  
 ### Will the data import fail if I don’t have sheets apart from vInfo? 
 
-- Storage sizing is captured using data from the vPartition and vMemory sheets. If these sheets aren't available, it is taken from the vInfo sheet and this data may not be accurate.
-- The other sheets providing readiness information. Without the presence of those files, readiness data may not be accurate.
+- Storage sizing is captured using data from the vPartition and vMemory sheets. If these sheets aren't available, it's taken from the vInfo sheet and this data might not be accurate.
+- The other sheets providing readiness information. Without the presence of those files, readiness data might not be accurate.
 
 
 ### My RVTools XLSX import keeps failing. What do I need to do? 
