@@ -70,7 +70,7 @@ To track migration progress for your servers, follow the steps:
     - **Preparation**: Servers that are enabled for replication remain in the Preparation stage while initial replication (data replication) is in progress. After initial replication is complete, the servers move to the Testing stage.
     - **Testing**: Servers for which initial replication is complete and delta replication is in progress appear in this stage. Use this stage to run test migrations (recommended). Ensure that you clean up test migrations after validation. You can skip the Testing stage and start migration directly by using the actions available in the **Completion** drop-downs.
     - **Completion**: Servers for which testing is completed or skipped appear at this stage. From the Completion drop-down menu (available when you select a server), you can start migration and complete migration.
-    After migration finishes, ensure that you select **Complete migration** to clean up resources and shut down the source virtual machines.
+    After migration finishes, ensure that you select **Complete Migration** to clean up resources and shut down the source virtual machines.
 
 ## Related content
 
