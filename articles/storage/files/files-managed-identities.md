@@ -192,13 +192,15 @@ To configure a managed identity on a Linux VM running in Azure, follow these ste
 
 ### Enable managed identity on an Azure VM
 
-The managed identity can be either [system assigned or user assigned](/entra/identity/managed-identities-azure-resources/overview#differences-between-system-assigned-and-user-assigned-managed-identities). If the VM has both system assigned and user assigned identities, Azure defaults to system assigned. Assign only one for best results.
+The managed identity can be either [system assigned or user assigned](/entra/identity/managed-identities-azure-resources/overview#differences-between-system-assigned-and-user-assigned-managed-identities). If the VM has both system assigned and user assigned managed identities, Azure defaults to system assigned. Assign only one for best results.
 
 #### Enable a system assigned managed identity
 
 1. Sign in to the Azure portal.
 
 1. You can enable a system assigned managed identity during VM creation on the **Management** tab. See [Create a Linux virtual machine in the Azure portal](/azure/virtual-machines/linux/quick-create-portal).
+
+    :::image type="content" source="media/managed-identities/enable-system-assigned-managed-identity.png" alt-text="Screenshot showing how to enable system assigned managed identity when creating a new VM using the Azure portal." border="true":::
 
 #### Enable a user assigned managed identity
 
