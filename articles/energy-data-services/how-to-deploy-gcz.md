@@ -509,7 +509,7 @@ Through APIM we can add policies to secure, monitor, and manage the APIs.
 - The GCZ APIs are deployed and running.
 
 > [!IMPORTANT]
-> The Azure API Management instance will need to be injected into a virtual network that is routable to the AKS cluster to be able to communicate with the GCZ API's.
+> The Azure API Management instance will need to be injected into a virtual network that is routable to the AKS cluster to be able to communicate with the GCZ APIs.
 
 ### Add the GCZ APIs to Azure API Management
 
