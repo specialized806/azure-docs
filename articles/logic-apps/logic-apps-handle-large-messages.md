@@ -4,7 +4,7 @@ description: Learn how to handle large messages in workflows with chunking and w
 services: logic-apps
 ms.suite: integration
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 03/15/2026
 #Customer intent: As an integration developer who works with Azure Logic Apps, I need to understand when and how to use chunking to support large messages.
 ---
 
@@ -100,6 +100,7 @@ To reference the data, in the chunking action, use the expression `body('Compose
     "type": "ApiConnection"
 },
 ```
+If a managed connector action sends/receives a file large enough to trigger chunked content transfer, tracked properties that reference action()['outputs']['statusCode'] or action()['outputs']['headers'] fail with error code TrackedPropertiesEvaluationFailed. This causes the action to be marked as Failed even though the file download completed successfully. In chunking scenario, 'statusCode' and 'headers' of 'outputs' are not supported and only 'body' is available. 
 
 <a name="set-up-chunking"></a>
 
