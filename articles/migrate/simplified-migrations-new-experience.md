@@ -63,7 +63,7 @@ To start a streamlined, end‑to‑end server migration to Azure using the new A
 
 #### Discovery method
 
-Select the appliance that matches your source environment (VMware, Hyper-V, or Physical). Only appliances that are already configured appear.
+Select the appliance that matches your source environment (VMware, Hyper-V, or Physical). Only appliances that are already configured are available for selection.
 
 1. **VMware**: Select **Agentless** (recommended) or **Agent-based**, and then select **Next**
 1. **Hyper-V**: Install the replication provider on the Hyper-V hosts by using the link shown in the pane. After configuration, continue to the next step.
@@ -71,19 +71,24 @@ Select the appliance that matches your source environment (VMware, Hyper-V, or P
 
 #### Workloads and security settings
 
-Use the Workloads section to select servers for replication and specify whether to use standard or trusted launch virtual machines.
+Use the Workloads section to select servers you want to replicate and selelct the virtual machine security type.
 
-  1. In **Workloads**, select the servers to replicate. You can replicate up to 10 servers in parallel.
-  1. Select the security type - **Standard or Trusted launch virtual machines**.
+  1. In **Workloads**, select the servers to replicate. You can replicate up to ten servers in parallel.
+  1. Select the security type:
+      - Standard
+      - Trusted launch virtual machines.
   
 #### Configure target settings
 
-Set up the target, compute, disk, and tagging settings before starting the migration execution.
+Configure the target, compute, disk, and tagging settings before you start migration execution.
 
-1. **VMware agent-based and physical servers**: Select the replication appliance if it’s already configured. If this is your first time running agent-based migrations in the project, set up and register the replication appliance by following the steps in the [migration tutorial](tutorial-migrate-physical-virtual-machines.md#simplified-experience-recommended). For VMware agent-based migrations, select the vCenter Server that manages the VMs and choose credentials for Mobility service installation or select credential-less to install the agent manually.
+For **VMware agent-based and physical servers**: 
 
-1. Configure **Target, Compute, Disks**, and **Tags**, review your settings, and then start execution. 
-1. Complete the Target, Compute, Disk, Tags settings (No changes from classic portal experience) and review and start execution. 
+1. If the replication appliance is already configured, select it.
+1. If this is your first agent‑based migration in the project, set up and register the replication appliance by following the steps in the [migration tutorial](tutorial-migrate-physical-virtual-machines.md#simplified-experience-recommended). For VMware agent-based migrations, select the vCenter Server that manages the VMs and choose credentials for Mobility service installation or select credential-less to install the agent manually.
+1. For VMware agent‑based migrations, select the vCenter Server that manages the VMs, and choose credentials for Mobility service installation, or select Credential‑less to install the agent manually.
+
+Complete the **Target, Compute, Disks**, and **Tags** settings, review your configuration, and then start execution. These settings are unchanged from the classic portal experience.
 
 ## Track migrations
 
