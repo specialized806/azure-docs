@@ -28,16 +28,6 @@ Together, Traffic Analytics and Microsoft Sentinel enable both proactive monitor
 
 - [Microsoft Sentinel Contributor](/azure/role-based-access-control/built-in-roles/security#microsoft-sentinel-contributor) role on the resource group that the workspace belongs to.
 
-## Key Capabilities
-
-- **Monitor and visualize network traffic:** provides insights into flow patterns, protocol usage, top talkers, and communication paths using aggregated virtual network flow logs.
-
-- **Detect anomalies and assess potential risks:** identifies unusual traffic behaviour by enriching flow data with threat intelligence, geolocation, and topology information.
-
-- **Correlate flow data across security tools:** supports integration with Microsoft Sentinel through ASIM-based parsers, enabling normalized flow data for advanced detection and investigation.
-
-- **Simplify operational visibility:** helps you evaluate baseline traffic, highlight deviations, and understand network exposure with minimal configuration effort.
-
 ## Integrate Microsoft Sentinel with Traffic Analytics using the Azure portal
 
 You can easily integrate Microsoft Sentinel with Traffic Analytics directly from the Azure portal.
