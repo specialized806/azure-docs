@@ -38,14 +38,14 @@ Before you begin, ensure that you've:
 >[!NOTE]
 > The Azure Copilot migration agent isn't supported when Bring your own storage (BYOS) is enabled for conversation history. For more information, see [Bring your own storage for conversation history in Azure Copilot](/azure/copilot/bring-your-own-storage).
 
-## Get started
+## Get started with Azure Copilot migration agent in Azure Migrate
 
-You can use the Azure Migration agent to move your servers and workloads to Azure. It helps you get ready, replicate workloads, and complete the migration.
+Use this section to open the **Azure Copilot migration agent** from your **Azure Migrate** project. You can ask planning and analysis questions based on your discovered inventory, assessments, and business case artifacts.
 
-To get started on Azure Migration agent, follow the steps:
+To open the agent experience in Azure Migrate, follow these steps:
 
 1. Sign in to the **Azure portal**.
-2. In the **Azure portal**, open the **Azure Migrate** service.
+2. In the **Azure portal**, search for **Azure Migrate**.
 
     :::image type="content" source="./media/azure-copilot-migration-agent/migrate-agent.png" alt-text="Screenshot shows how to access the Azure Migration agent." lightbox="./media/azure-copilot-migration-agent/migrate-agent.png" :::
 
@@ -57,10 +57,7 @@ To get started on Azure Migration agent, follow the steps:
 
 :::image type="content" source="./media/azure-copilot-migration-agent/accelerate-migration.png" alt-text="Screenshot shows how to accelarate migration agent." lightbox="./media/azure-copilot-migration-agent/accelerate-migration.png" :::
 
-4. In the **Azure Migrate Project**, select either **Existing project** or **New project**, and then select:
-    -  Subscription
-    - Resource group
-    - Geography
+4. In the **Azure Migrate Project**, select either **Existing project** or **New project**, and then select subscription, resource group, and geography.
 
     :::image type="content" source="./media/azure-copilot-migration-agent/azure-migrate-project.png" alt-text="Screenshot shows how to select the project and other related fields." lightbox="./media/azure-copilot-migration-agent/azure-migrate-project.png" :::
 
