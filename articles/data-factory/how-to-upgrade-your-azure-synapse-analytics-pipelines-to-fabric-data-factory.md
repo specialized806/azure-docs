@@ -9,18 +9,18 @@ ms.custom: pipelines
 ai-usage: ai-assisted
 ---
 
-# Upgrade your Azure Synapse Analytics pipelines to Fabric
+# Upgrade your Azure Synapse Analytics pipelines to Fabric (preview)
 
-Modernizing your workflows in Microsoft Fabric often starts with bringing your existing Azure Synapse Analytics pipelines forward. The built-in UX based migration experience (Preview) helps you assess pipeline readiness, understand compatibility gaps, and migrate supported pipelines into a Fabric workspace—so you can move in a controlled, low-risk way.
+Modernizing your workflows in Microsoft Fabric often starts with bringing your existing Azure Synapse Analytics pipelines forward. The preview migration experience helps you assess pipeline readiness, understand compatibility gaps, and migrate supported pipelines into a Fabric workspace—so you can move in a controlled, low-risk way.
 
 
 ## What you can do with the migration experience
 
-With the Synapse pipelines migration experience (Preview), you can:
+With the Synapse pipelines migration experience, you can:
 - Assess pipeline readiness directly in your Synapse workspace.
 - See compatibility gaps at the pipeline and activity level.
 - Migrate supported pipelines to a Fabric workspace.
-- Export assessment and migration results to CSV to plan upgrade, remediation and phased validation.
+- Export assessment and migration results to CSV to plan upgrade, remediation, and phased validation.
 
 ## Prerequisites
 
@@ -29,19 +29,19 @@ Before you start:
 - You have access to a **Microsoft Fabric tenant** and a **Fabric workspace**.
 - To preserve your folder structure, **create the same folders in your Fabric workspace first**, then migrate pipelines one folder at a time.
 
-## Migrate Spark artifacts (Notebooks + SJDs) to Fabric using the Spark migration assistant before migrating Synapse pipelines
+## Migrate Spark items to Fabric first
 If your Synapse pipelines include Notebook and/or Spark job definition (SJD) activities, migrate those Spark artifacts to Fabric first. This ensures the pipeline migration experience can map those activities to the correct Fabric items instead of leaving them unmapped.
 
 Use the  [Synapse-to-Fabric Spark Migration Assistant](/fabric/data-engineering/synapse-to-fabric-spark-migration-assistant) to migrate Spark-related items from your Synapse workspace into a Fabric workspace. 
 The assistant supports migrating Spark pools (to Fabric environments), notebooks, Spark job definitions, and lake databases (to Fabric lakehouses/shortcuts). 
 
 
-## Migrate Synapse pipelines using the built-in Synapse pipelines migration experience
-After creating your Spark artifacts in Fabric, migrate pipelines using the Synapse pipelines migration UX (Preview). This built-in experience helps you assess readiness, understand compatibility gaps, and migrate supported pipelines to Fabric Data Factory. 
+## Migrate Synapse pipelines
+After creating your Spark artifacts in Fabric, migrate pipelines using the Synapse pipelines migration experience.
 When the pipelines migration runs:
 
-If matching Fabric notebooks/SJDs already exist, the migration can map the corresponding activities to those Fabric items. 
-If the target Fabric notebooks/SJDs don’t exist yet, those activities may be left unmapped/deactivated until you create the required Fabric items and update the refer.
+- If matching Fabric notebooks/SJDs already exist, the migration can map the corresponding activities to those Fabric items. 
+- If the target Fabric notebooks/SJDs don’t exist yet, those activities may be left unmapped/deactivated until you create the required Fabric items and update the reference.
 
 ### Step 1. Run an assessment in Azure Synapse Analytics
 
