@@ -82,7 +82,7 @@ In the migration flow, select a destination **Fabric workspace**, then map **Syn
 - Otherwise, create new Fabric connections from workspace settings.
 
 For guidance on creating and managing connections in Fabric, see
-[Data source management - Microsoft Fabric | Microsoft Learn](https://learn.microsoft.com/fabric/data-factory/data-source-management).
+[Data source management - Microsoft Fabric | Microsoft Learn](/fabric/data-factory/data-source-management).
 
 :::image type="content" source="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/synapse-linked-service-to-connection-mapping.png" alt-text="Screenshot showing Fabric migration workspace selection followed by Synapse linked services to Fabric connection mapping." lightbox="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/synapse-linked-service-to-connection-mapping.png":::
 
@@ -116,7 +116,7 @@ Use these resources to round out your end-to-end Synapse-to-Fabric migration pla
 
 - [Assess your Azure Data Factory and Synapse pipelines for migration to Fabric](/fabric/data-factory/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration)
 - [Upgrade your Azure Data Factory pipelines to Fabric](/fabric/data-factory/how-to-upgrade-your-azure-data-factory-pipelines-to-fabric-data-factory)
-- [Migration Assistant for Fabric Data Warehouse - Microsoft Fabric | Microsoft Learn]/fabric/data-warehouse/migration-assistant)
+- [Migration Assistant for Fabric Data Warehouse - Microsoft Fabric | Microsoft Learn](/fabric/data-warehouse/migration-assistant)
 - [Spark Synapse to Fabric Spark Migration Assistant (Preview)](/fabric/data-engineering/synapse-to-fabric-spark-migration-assistant)
 - [Synapse-to-Fabric Spark Migration Assistant](/fabric/data-engineering/synapse-to-fabric-spark-migration-assistant)
 
