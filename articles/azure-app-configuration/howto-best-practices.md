@@ -75,7 +75,7 @@ configBuilder.AddAzureAppConfiguration(options =>
 });
 ```
 
-#### [spring](#tab/spring)
+#### [Spring](#tab/spring)
 
 ```yaml
 spring:
@@ -102,6 +102,10 @@ const appConfig = await load(endpoint, credential, {
     }
 });
 ```
+
+#### [Python](#tab/python)
+
+The Azure App Configuration provider for Python doesn't support monitoring all selected keys for changes. You can only monitor individual keys. For more information, see [Monitoring a sentinel key](#monitoring-a-sentinel-key).
 
 #### [Go](#tab/go)
 
@@ -164,7 +168,7 @@ configBuilder.AddAzureAppConfiguration(options =>
 });
 ```
 
-#### [spring](#tab/spring)
+#### [Spring](#tab/spring)
 
 ```yaml
 spring:
