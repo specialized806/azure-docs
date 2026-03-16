@@ -19,7 +19,7 @@ For native client connections using Azure CLI, see [Connect to a VM using a Linu
 
 The following diagram shows the dedicated deployment architecture using an SSH connection.
 
-:::image type="content" source="./media/create-host/host-architecture.png" alt-text="Diagram that shows the Azure Bastion architecture." lightbox="./media/create-host/host-architecture.png":::
+:::image type="content" source="./media/connect-vm-ssh-linux/host-architecture-ssh-linux.png" alt-text="Diagram that shows the Azure Bastion architecture." lightbox="./media/connect-vm-ssh-linux/host-architecture-ssh-linux.png":::
 
 ## Prerequisites
 
@@ -63,9 +63,99 @@ The following table shows which authentication methods are available for each co
 | SSH private key from local file | Azure portal, IP address (portal), native client | Basic (portal), Standard (IP address, native client) |
 | SSH private key from Azure Key Vault | Azure portal | Basic |
 
+## Authentication details
+
+Configure the authentication settings for your connection. Not all authentication methods are available for every connection method. See the [authentication methods](#authentication-methods) table for availability.
+
+# [Microsoft Entra ID](#tab/entra-id)
+
+**Available for:** Azure portal, native client. Not supported for IP-based connections.
+
+For prerequisites, setup steps, and connection instructions, see [Configure Microsoft Entra ID authentication for Azure Bastion](bastion-entra-id-authentication.md).
+
+# [Username and password](#tab/password)
+
+**Available for:** Azure portal, IP address (portal), native client.
+
+To authenticate using a username and password, configure the following settings.
+
+| Setting                | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| **Authentication type**| Select **Password** from the dropdown.                                      |
+| **Username**           | Enter the username.                                                         |
+| **Password**           | Enter the **Password**.                                                     |
+
+When connecting via the portal, select **Open in new browser tab** if desired, then select **Connect**.
+
+# [Password from Azure Key Vault](#tab/keyvault-password)
+
+**Available for:** Azure portal only.
+
+To authenticate using a password from Azure Key Vault, configure the following settings.
+
+| Setting                    | Description                                                                 |
+|----------------------------|-----------------------------------------------------------------------------|
+| **Authentication type**    | Select **Password from Azure Key Vault** from the dropdown.                 |
+| **Username**               | Enter the username.                                                         |
+| **Subscription**           | Select the subscription.                                                    |
+| **Azure Key Vault**        | Select the Key Vault.                                                       |
+| **Azure Key Vault Secret** | Select the Key Vault secret containing the value of your SSH private key.   |
+
+For Key Vault setup requirements, see [Key Vault configuration](#key-vault-configuration).
+
+Select **Open in new browser tab** if desired, then select **Connect**.
+
+# [SSH private key from local file](#tab/ssh-key-local)
+
+**Available for:** Azure portal, IP address (portal), native client.
+
+> [!NOTE]
+> The SSH private key must be in a format that begins with `"-----BEGIN RSA PRIVATE KEY-----"` and ends with `"-----END RSA PRIVATE KEY-----"`.
+
+To authenticate using a private key from a local file, configure the following settings.
+
+| Setting                | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| **Authentication type**| Select **SSH Private Key from Local File** from the dropdown.               |
+| **Username**           | Enter the username.                                                         |
+| **Local File**         | Select the local file.                                                      |
+| **SSH Passphrase**     | Enter the SSH passphrase if necessary.                                      |
+
+When connecting via the portal, select **Open in new browser tab** if desired, then select **Connect**.
+
+# [SSH private key from Azure Key Vault](#tab/ssh-key-keyvault)
+
+**Available for:** Azure portal only. Not supported for native client or IP-based connections.
+
+The SSH private key must use the same format described in [SSH private key from local file](#ssh-private-key-from-local-file).
+
+To authenticate using a private key stored in Azure Key Vault, configure the following settings.
+
+| Setting                    | Description                                                                 |
+|----------------------------|-----------------------------------------------------------------------------|
+| **Authentication type**    | Select **SSH Private Key from Azure Key Vault** from the dropdown.          |
+| **Username**               | Enter the username.                                                         |
+| **Subscription**           | Select the subscription.                                                    |
+| **Azure Key Vault**        | Select the Key Vault.                                                       |
+| **Azure Key Vault Secret** | Select the Key Vault secret containing the value of your SSH private key.   |
+
+For Key Vault setup requirements, see [Key Vault configuration](#key-vault-configuration).
+
+Select **Open in new browser tab** if desired, then select **Connect**.
+
+---
+
+### Key Vault configuration
+
+If you're using Azure Key Vault to store a password or SSH private key, configure your Key Vault using the following requirements:
+
+* If you didn't set up an Azure Key Vault resource, see [Create a key vault](/azure/key-vault/secrets/quick-create-powershell) and store your secret (password or SSH private key) as the value of a new Key Vault secret.
+* Make sure you have **List** and **Get** access to the secrets stored in the Key Vault resource. To assign and modify access policies for your Key Vault resource, see [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy-portal).
+* Store your secret in Azure Key Vault using the **PowerShell** or **Azure CLI** experience. Storing your secret via the Azure Key Vault portal experience interferes with the formatting and results in unsuccessful login. If you stored your private key as a secret using the portal experience and no longer have access to the original private key file, see [Update SSH key](/azure/virtual-machines/extensions/vmaccess-linux#update-ssh-key) to update access to your target VM with a new SSH key pair.
+
 ## Connect to a virtual machine using SSH
 
-Choose your connection method tab below to see the navigation steps for connecting to your VM. Then, configure your authentication settings using the details in the [Authentication details](#authentication-details) section. For available authentication methods per connection method, see the [authentication methods](#authentication-methods) table.
+Choose your connection method tab below to see the navigation steps for connecting to your VM. For available authentication methods per connection method, see the [authentication methods](#authentication-methods) table.
 
 # [Azure portal](#tab/portal)
 
@@ -79,7 +169,7 @@ Use the Azure portal to create a browser-based SSH connection to your Linux virt
    * If you're using the Basic SKU or Developer SKU, you can't configure **Connection Settings** values. Instead, your connection uses the following default settings: SSH and port 22.
    * To view and select an available **Authentication Type**, use the dropdown.
 
-1. Configure your authentication settings. For configuration details, see [Authentication details](#authentication-details). Select **Connect**.
+1. Configure your authentication settings. For details, see [Authentication details](#authentication-details). Select **Connect**.
 
 # [IP address (portal)](#tab/ip-address)
 
@@ -107,7 +197,7 @@ After IP-based connection is enabled, you specify the IP address of the target v
 
 1. Adjust your connection settings to the desired **Protocol** (SSH) and **Port**.
 
-1. Available authentication types for IP-based SSH connections from the portal are **Password** and **SSH Private Key from Local File**. Configure your authentication settings. For configuration details, see [Authentication details](#authentication-details). Select **Connect**.
+1. Available authentication types for IP-based SSH connections from the portal are **Password** and **SSH Private Key from Local File**. Configure your authentication settings. For details, see [Authentication details](#authentication-details). Select **Connect**.
 
 > [!NOTE]
 > Microsoft Entra ID authentication isn't supported for IP-based SSH connections. For more information, see [IP-based connections](connect-ip-address.md).
@@ -130,94 +220,6 @@ For supported authentication types, see [Authentication details](#authentication
 > Signing in using an SSH private key stored in Azure Key Vault isn't supported with native client connections. Before signing in to your Linux VM using an SSH key pair, download your private key to a file on your local machine.
 
 ---
-
-## Authentication details
-
-Configure the authentication settings for your connection. Not all authentication methods are available for every connection method. See the [authentication methods](#authentication-methods) table for availability.
-
-### Microsoft Entra ID
-
-**Available for:** Azure portal, native client. Not supported for IP-based connections.
-
-For prerequisites, setup steps, and connection instructions, see [Configure Microsoft Entra ID authentication for Azure Bastion](bastion-entra-id-authentication.md).
-
-### Username and password
-
-**Available for:** Azure portal, IP address (portal), native client.
-
-To authenticate using a username and password, configure the following settings.
-
-| Setting                | Description                                                                 |
-|------------------------|-----------------------------------------------------------------------------|
-| **Authentication type**| Select **Password** from the dropdown.                                      |
-| **Username**           | Enter the username.                                                         |
-| **Password**           | Enter the **Password**.                                                     |
-
-When connecting via the portal, select **Open in new browser tab** if desired, then select **Connect**.
-
-### Password from Azure Key Vault
-
-**Available for:** Azure portal only.
-
-To authenticate using a password from Azure Key Vault, configure the following settings.
-
-| Setting                    | Description                                                                 |
-|----------------------------|-----------------------------------------------------------------------------|
-| **Authentication type**    | Select **Password from Azure Key Vault** from the dropdown.                 |
-| **Username**               | Enter the username.                                                         |
-| **Subscription**           | Select the subscription.                                                    |
-| **Azure Key Vault**        | Select the Key Vault.                                                       |
-| **Azure Key Vault Secret** | Select the Key Vault secret containing the value of your SSH private key.   |
-
-For Key Vault setup requirements, see [Key Vault configuration](#key-vault-configuration).
-
-Select **Open in new browser tab** if desired, then select **Connect**.
-
-### SSH private key from local file
-
-**Available for:** Azure portal, IP address (portal), native client.
-
-> [!NOTE]
-> The SSH private key must be in a format that begins with `"-----BEGIN RSA PRIVATE KEY-----"` and ends with `"-----END RSA PRIVATE KEY-----"`.
-
-To authenticate using a private key from a local file, configure the following settings.
-
-| Setting                | Description                                                                 |
-|------------------------|-----------------------------------------------------------------------------|
-| **Authentication type**| Select **SSH Private Key from Local File** from the dropdown.               |
-| **Username**           | Enter the username.                                                         |
-| **Local File**         | Select the local file.                                                      |
-| **SSH Passphrase**     | Enter the SSH passphrase if necessary.                                      |
-
-When connecting via the portal, select **Open in new browser tab** if desired, then select **Connect**.
-
-### SSH private key from Azure Key Vault
-
-**Available for:** Azure portal only. Not supported for native client or IP-based connections.
-
-The SSH private key must use the same format described in [SSH private key from local file](#ssh-private-key-from-local-file).
-
-To authenticate using a private key stored in Azure Key Vault, configure the following settings.
-
-| Setting                    | Description                                                                 |
-|----------------------------|-----------------------------------------------------------------------------|
-| **Authentication type**    | Select **SSH Private Key from Azure Key Vault** from the dropdown.          |
-| **Username**               | Enter the username.                                                         |
-| **Subscription**           | Select the subscription.                                                    |
-| **Azure Key Vault**        | Select the Key Vault.                                                       |
-| **Azure Key Vault Secret** | Select the Key Vault secret containing the value of your SSH private key.   |
-
-For Key Vault setup requirements, see [Key Vault configuration](#key-vault-configuration).
-
-Select **Open in new browser tab** if desired, then select **Connect**.
-
-## Key Vault configuration
-
-If you're using Azure Key Vault to store a password or SSH private key, configure your Key Vault using the following requirements:
-
-* If you didn't set up an Azure Key Vault resource, see [Create a key vault](/azure/key-vault/secrets/quick-create-powershell) and store your secret (password or SSH private key) as the value of a new Key Vault secret.
-* Make sure you have **List** and **Get** access to the secrets stored in the Key Vault resource. To assign and modify access policies for your Key Vault resource, see [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy-portal).
-* Store your secret in Azure Key Vault using the **PowerShell** or **Azure CLI** experience. Storing your secret via the Azure Key Vault portal experience interferes with the formatting and results in unsuccessful login. If you stored your private key as a secret using the portal experience and no longer have access to the original private key file, see [Update SSH key](/azure/virtual-machines/extensions/vmaccess-linux#update-ssh-key) to update access to your target VM with a new SSH key pair.
 
 ## Limitations
 
