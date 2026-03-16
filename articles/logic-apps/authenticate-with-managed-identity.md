@@ -230,8 +230,8 @@ When Azure creates your logic app resource definition, the `identity` object get
 
 | Property (JSON) | Value | Description |
 |-----------------|-------|-------------|
-| **principalId** | <*principal-ID*> | The Globally Unique Identifier (GUID) that Microsoft Entra uses to admiminister the service principal object for your managed identity in the Microsoft Entra tenant. This GUID sometimes appears as an "object ID" or **objectID**. |
-| **tenantId** | <*Microsoft-Entra-tenant-ID*> | The Globally Unique Identifier (GUID) that represents the Microsoft Entra tenant where the logic app is now a member. Inside the Microsoft Entra tenant, the service principal has the same name as the logic app instance. |
+| `principalId` | <*principal-ID*> | The Globally Unique Identifier (GUID) that Microsoft Entra uses to admiminister the service principal object for your managed identity in the Microsoft Entra tenant. This GUID sometimes appears as an "object ID" or `objectID`. |
+| `tenantId` | <*Microsoft-Entra-tenant-ID*> | The Globally Unique Identifier (GUID) that represents the Microsoft Entra tenant where the logic app is now a member. Inside the Microsoft Entra tenant, the service principal has the same name as the logic app instance. |
 
 <a name="azure-portal-user-identity"></a>
 <a name="user-assigned-azure-portal"></a>
@@ -520,8 +520,8 @@ When the template creates your logic app resource definition, the `identity` obj
 
 | Property (JSON) | Value | Description |
 |-----------------|-------|-------------|
-| **principalId** | <*principal-ID*> | The Globally Unique Identifier (GUID) that Microsoft Entra uses to admiminister the service principal object for your managed identity in the Microsoft Entra tenant. This GUID sometimes appears as an "object ID" or **objectID**. In the Microsoft Entra tenant, the service principal has the same name as the logic app instance. |
-| **clientId** | <*client-ID*> | The Globally Unique Identifier (GUID) that represents the logic app's identity and specifies the identity to use during runtime calls. |
+| `principalId` | <*principal-ID*> | The Globally Unique Identifier (GUID) that Microsoft Entra uses to admiminister the service principal object for your managed identity in the Microsoft Entra tenant. This GUID sometimes appears as an "object ID" or `objectID`. In the Microsoft Entra tenant, the service principal has the same name as the logic app instance. |
+| `clientId` | <*client-ID*> | The Globally Unique Identifier (GUID) that represents the logic app's identity and specifies the identity to use during runtime calls. |
 
 For more information about Azure Resource Manager templates and managed identities for Azure Functions, see  [ARM template - Azure Functions](../azure-functions/functions-create-first-function-resource-manager.md#review-the-template).
 
@@ -603,11 +603,15 @@ For Azure resources that require you to assign a role for your managed identity,
 
       1. For **Add members**, select **+ Select members**.
       
-      1. On the **Select managed identities** pane, select your Azure subscription. Based on your managed identity, select the **Managed identity** type, and then select your managed identity.
+      1. On the **Select managed identities** pane, select your Azure subscription.
+      
+      1. Based on your managed identity, select the **Managed identity** type, and then select your managed identity.
 
-         > [!NOTE]
-         >
-         > Although **Logic app** is an option
+         | Managed identity type | Description |
+         |-----------------------|-------------|
+         | **User-assigned managed identity** | View and select an enabled user-assigned managed identity on any Azure resource. |
+         | **All system-assigned managed identities** | View and select an enabled system-assigned managed identity on any Azure resource. |
+         | **Logic app** | View and select an enabled managed identity on logic app resources only. |
 
       1. When you finish, select **Select**.
 
@@ -617,7 +621,7 @@ For Azure resources that require you to assign a role for your managed identity,
    - [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal)
    - [Assign a managed identity access to an Azure resource or another resource](/entra/identity/managed-identities-azure-resources/how-to-assign-access-azure-resource)
 
-1. Now use the identity to [authenticate access for triggers and actions that support managed identities](#authenticate-access-with-identity).
+1. [Authenticate your trigger or action with the managed identity](#authenticate-access-with-identity).
 
 <a name="azure-portal-access-policy"></a>
 
@@ -629,75 +633,77 @@ For Azure resources where you want to create an access policy for your managed i
 
    This example uses a key vault as the target Azure resource.
 
-1. On the resource sidebar, select **Access policies** > **Create**, which opens the **Create an access policy** pane.
+1. On the resource sidebar, select **Access policies**.
 
    > [!NOTE]
    >
-   > If the resource doesn't have the **Access policies** option, [try assigning a role assignment instead](#azure-portal-assign-role).
+   > If the resource doesn't have the **Access policies** option, [assign a role instead](#azure-portal-assign-role).
 
-   :::image type="content" source="media/authenticate-with-managed-identity/create-access-policy.png" alt-text="Screenshot shows Azure portal and key vault example with open pane named Access policies." lightbox="media/authenticate-with-managed-identity/create-access-policy.png":::
+1. On the page toolbar, select **Create** to open the **Create an access policy** pane.
 
-1. On the **Permissions** tab, select the required permissions that the identity needs to access the target resource.
+   :::image type="content" source="media/authenticate-with-managed-identity/create-access-policy.png" alt-text="Screenshot shows the Azure portal and a key vault example with opened pane named Create an access policy." lightbox="media/authenticate-with-managed-identity/create-access-policy.png":::
 
-   For example, to use the identity with the Azure Key Vault managed connector's **List secrets** operation, the identity needs **List** permissions. So, in the **Secret permissions** column, select **List**.
+1. On the **Permissions** tab, select the permissions that the identity needs for access to the target resource.
 
-   :::image type="content" source="media/authenticate-with-managed-identity/select-access-policy-permissions.png" alt-text="Screenshot shows Permissions tab with selected List permissions." lightbox="media/authenticate-with-managed-identity/select-access-policy-permissions.png":::
+   For example, to use the identity with the Azure Key Vault managed connector's **List secrets** action, the identity needs **List** permissions. So, in this scenario, in the **Secret permissions** column, select **List**.
 
-1. When you're ready, select **Next**. On the **Principal** tab, find and select the managed identity, which is a user-assigned identity in this example.
+   :::image type="content" source="media/authenticate-with-managed-identity/select-access-policy-permissions.png" alt-text="Screenshot shows the Permissions tab with selected List permissions." lightbox="media/authenticate-with-managed-identity/select-access-policy-permissions.png":::
+
+1. When you finish, select **Next**.
+
+1. On the **Principal** tab, select the managed identity.
+
+   This example selects a user-assigned identity.
 
 1. Skip the optional **Application** step, select **Next**, and finish creating the access policy.
 
-The next section shows how to use a managed identity with a trigger or action to authenticate access. The example continues with the steps from an earlier section where you set up access for a managed identity using RBAC and an Azure storage account as the example. However, the general steps to use a managed identity for authentication are the same.
+1. [Authenticate your trigger or action with the managed identity](#authenticate-access-with-identity).
 
 <a name="authenticate-access-with-identity"></a>
 
 ## Authenticate access with the managed identity
 
-After you [enable the managed identity for your logic app resource](#azure-portal-system-logic-app) and [give that identity access to the Azure target resource or service](#access-other-resources), use that identity in [triggers and actions that support managed identities](logic-apps-securing-a-logic-app.md#authentication-types-supported-triggers-actions).
+This section shows how to use a managed identity to authenticate access for a workflow [trigger or action that supports managed identity authentication](#triggers-actions-managed-identity). The example continues from where you set up access for a managed identity by using RBAC and an Azure storage account. Though your target Azure resource might differ, the general steps are mostly similar.
 
 > [!IMPORTANT]
 >
 > If you have an Azure function where you want to use the system-assigned identity, 
 > first [enable authentication for Azure Functions](call-azure-functions-from-workflows.md#enable-authentication-functions).
 
-The following steps show how to use the managed identity with a trigger or action in the Azure portal. To specify the managed identity in a trigger or action's underlying JSON definition, see [Managed identity authentication](logic-apps-securing-a-logic-app.md#managed-identity-authentication).
+The following steps show how to use the managed identity by using the Azure portal. To use the managed identity in the underlying JSON definition by using the code editor, see [Managed identity authentication](logic-apps-securing-a-logic-app.md#managed-identity-authentication).
 
 ### [Consumption](#tab/consumption)
 
 1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource.
 
-1. If you haven't done so yet, add the [trigger or action that supports managed identities](logic-apps-securing-a-logic-app.md#authentication-types-supported-triggers-actions).
+1. Add the [trigger or action that supports managed identities](#triggers-actions-managed-identity), if you haven't completed this step already.
 
-   > [!NOTE]
-   >
-   > Not all connector operations support letting you add an authentication type. For more information, see 
-   > [Authentication types for triggers and actions that support authentication](logic-apps-securing-a-logic-app.md#authentication-types-supported-triggers-actions).
+1. On the trigger or action, follow these steps:
 
-1. On the trigger or action that you added, follow these steps:
-
-   - **Built-in connector operations that support managed identity authentication**
+   - **Built-in operations**
 
      These steps continue by using the **HTTP** action as an example.
 
-     1. From the **Advanced parameters** list, add the **Authentication** property, if the property doesn't already appear.
+     1. From the **Advanced parameters** list, add the **Authentication** property.
 
-        :::image type="content" source="media/authenticate-with-managed-identity/built-in-authentication-consumption.png" alt-text="Screenshot shows Consumption workflow with built-in action and opened list named Advanced parameters, with selected option for Authentication." lightbox="media/authenticate-with-managed-identity/built-in-authentication-consumption.png":::
+        :::image type="content" source="media/authenticate-with-managed-identity/built-in-authentication.png" alt-text="Screenshot shows a Consumption workflow with built-in HTTP action and opened list named Advanced parameters, with selected option for Authentication." lightbox="media/authenticate-with-managed-identity/built-in-authentication.png":::
 
-        Now, both the **Authentication** property and the **Authentication Type** list appear on the action.
+        Both the **Authentication** property and the **Authentication type** list appear, for example:
 
-        :::image type="content" source="media/authenticate-with-managed-identity/authentication-parameter.png" alt-text="Screenshot shows advanced parameters section with added Authentication property and Authentication Type list." lightbox="media/authenticate-with-managed-identity/authentication-parameter.png":::
+        :::image type="content" source="media/authenticate-with-managed-identity/authentication-parameter.png" alt-text="Screenshot shows the Advanced parameters section with Authentication property and Authentication type list." lightbox="media/authenticate-with-managed-identity/authentication-parameter.png":::
 
-     1. From the **Authentication Type** list, select **Managed Identity**.
+     1. From the **Authentication type** list, select **Managed identity**.
 
-        :::image type="content" source="media/authenticate-with-managed-identity/built-in-managed-identity-consumption.png" alt-text="Screenshot shows Consumption workflow with built-in action, opened Authentication Type list, and selected option for Managed Identity." lightbox="media/authenticate-with-managed-identity/built-in-managed-identity-consumption.png":::
+        :::image type="content" source="media/authenticate-with-managed-identity/built-in-managed-identity.png" alt-text="Screenshot shows a workflow with a built-in action, opened Authentication type list, and selected option for Managed identity." lightbox="media/authenticate-with-managed-identity/built-in-managed-identity.png":::
 
         The **Authentication** section now shows the following options:
 
-        - A **Managed Identity** list where you can select a specific managed identity.
+        | Parameter | Description |
+        |-----------|-------------|
+        | **Managed identity** | The managed identity to use. |
+        | **Audience** | Appears on specific triggers and actions so you can set the resource ID for the Azure target resource or service. <br><br>By default, the **Audience** parameter uses the `https://management.azure.com/` resource ID, which is the resource ID for Azure Resource Manager. |
 
-        - The **Audience** property appears on specific triggers and actions so that you can set the resource ID for the Azure target resource or service. Otherwise, by default, the **Audience** property uses the **`https://management.azure.com/`** resource ID, which is the resource ID for Azure Resource Manager.
-
-     1. From the **Managed Identity** list, select the identity that you want to use, for example:
+     1. From the **Managed identity** list, select the identity you want, for example:
 
         :::image type="content" source="media/authenticate-with-managed-identity/select-specific-managed-identity-consumption.png" alt-text="Screenshot shows Authentication section with Authentication Type list and Audience property." lightbox="media/authenticate-with-managed-identity/select-specific-managed-identity-consumption.png":::
 
