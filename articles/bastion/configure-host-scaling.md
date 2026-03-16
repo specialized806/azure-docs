@@ -13,7 +13,16 @@ ms.author: abell
 
 # Configure host scaling for Azure Bastion
 
-This article helps you add scale units (instances) to your Azure Bastion deployment so you can support more concurrent client connections. Each instance supports 20 concurrent RDP connections and 40 concurrent SSH connections for medium workloads. For more information about host scaling, see [Instances and host scaling](configuration-settings.md#instance).
+This article helps you configure host scaling for your Azure Bastion deployment. Host scaling lets you adjust the number of instances (scale units) to support more concurrent client connections. For more information about instances and host scaling, see [Instances and host scaling](configuration-settings.md#instance).
+
+> [!IMPORTANT]
+> Host scaling requires the Standard SKU tier or higher. Any changes to scale units disrupt active Bastion connections. Plan changes during maintenance windows.
+
+## Considerations
+
+Each instance can support 20 concurrent RDP connections and 40 concurrent SSH connections for medium workloads (see [Azure subscription limits and quotas](../azure-resource-manager/management/azure-subscription-service-limits.md) for more information). The number of connections per instance depends on what actions you're taking when connected to the client VM. For example, if you're transferring large files or streaming media, data-intensive tasks reduce the number of concurrent connections your instance can handle. When concurrent sessions exceed the instance limit, you need to add another scale unit to handle additional connections.
+
+Instances are created in the AzureBastionSubnet. To allow for host scaling, the AzureBastionSubnet should be /26 or larger. Using a smaller subnet limits the number of instances you can create. For more information about the AzureBastionSubnet, see the [Azure Bastion subnet](configuration-settings.md#subnet) section.
 
 > [!IMPORTANT]
 > Host scaling requires the Standard SKU tier or higher. Any changes to scale units will disrupt active Bastion connections.
@@ -49,4 +58,4 @@ This article helps you add scale units (instances) to your Azure Bastion deploym
 
 ## Next steps
 
-* Learn about [Azure Bastion configuration settings](configuration-settings.md).
+* Learn about the [available configuration settings for Azure Bastion](configuration-settings.md).
