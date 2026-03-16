@@ -61,7 +61,7 @@ Use the policy in scenarios such as the following:
 | -------------- | ----------------------------------------------------------------------------------------------------- | -------- | ------- |
 | backend-id	| Identifier (name) of the Azure AI Content Safety backend to route content-safety API calls to. Policy expressions are allowed.	|  Yes	| N/A |
 | shield-prompt	| If set to `true`, check content for user attacks. Otherwise, skip this check. Policy expressions are allowed.	| No	| `false` |
-| enforce-on-completions| If set to `true`, enforce content safety checks on chat completions for response validation. Otherwise, skip this check. When you set the policy in the outbound section, this attribute is ignored. Policy expressions are allowed.	| No	| `false` |
+| enforce-on-completions| If set to `true` when you set the policy in the inbound section for content safety checks on requests, enforce content safety checks also on chat completions for response validation. When you set the policy in the outbound section for content safety checks on responses, this attribute is ignored. Policy expressions are allowed.	| No	| `false` |
 | window-size | The size of text windows in characters that the policy sends to Azure AI Content Safety for evaluation. If you don't specify a value, the entire content is sent as one window. Policy expressions are allowed. | No | N/A |
 | window-overlap-size | The size of overlaps in characters between text windows when the content is split by using the `window-size` attribute. If you don't specify a value, windows don't overlap. Policy expressions are allowed. | No | N/A |
 
@@ -96,6 +96,7 @@ Use the policy in scenarios such as the following:
 
 ### Usage notes
 
+* Configure the policy in the inbound section to check requests and/or in the outbound section to check responses.
 * Unless you specify `window-size`, the policy runs on a concatenation of all text content in a completion or chat completion request or response. If you specify `window-size`, the policy runs on windows of text content with the specified size and overlaps. 
 * If the request or response exceeds the character limit of Azure AI Content Safety, the policy returns a `403` error.
 * You can use this policy multiple times per policy definition.
