@@ -425,6 +425,9 @@ $ip = @{
 $publicIPIPv4 = New-AzPublicIpAddress @ip
 ```
 
+> [!NOTE]
+> A Standard V2 Public IP address can only be associated with a Standard V2 NAT Gateway and not any other services.
+
 Use [New-AzNatGateway](/powershell/module/az.network/new-aznatgateway) to create the NAT gateway resource.
 
 ```azurepowershell
