@@ -79,16 +79,12 @@ Use the Azure portal to create a browser-based RDP connection to your Linux virt
 
 1. In the [Azure portal](https://portal.azure.com), go to the virtual machine that you want to connect to. On the **Overview** page, select **Connect**, then select **Bastion** from the dropdown to open the Bastion page.
 
-   :::image type="content" source="./media/bastion-connect-vm-rdp-linux/connect.png" alt-text="Screenshot of the Connect button on the virtual machine overview page." lightbox="./media/bastion-connect-vm-rdp-linux/connect.png":::
-
 1. On the **Bastion** page, expand the **Connection Settings** section and select **RDP**. If you plan to use an inbound port different from the standard RDP port (3389), enter the **Port**.
-
-   :::image type="content" source="./media/bastion-connect-vm-rdp-linux/connection-settings.png" alt-text="Screenshot showing the Connection Settings section with RDP selected and port configuration." lightbox="./media/bastion-connect-vm-rdp-linux/connection-settings.png":::
 
 1. Enter the **Username** and **Password**, and then select **Connect**. The RDP connection to this virtual machine via Bastion opens directly in the browser (over HTML5) using port 443 and the Bastion service.
 
 > [!NOTE]
-> For troubleshooting tips, see [Troubleshooting RDP connections](troubleshoot.md).
+> For troubleshooting tips, see [Troubleshooting](troubleshoot.md).
 
 # [IP address (portal)](#tab/ip-address)
 
