@@ -39,8 +39,7 @@ To opt out of the **3blob** architecture and disable the VMMD creation, follow t
 1. Sign in to the Azure portal.
 
 2. Search for `Subscriptions` in the top search bar and click on the link.
-
-:::image type="content" source="./confidential-computing/media/search-subscriptions.png" alt-text="Screenshot of the accessing the preview feature.":::
+![Step 2](media/search-subscriptions.png)
 
 3. On the `Subscriptions` page, select the name of the subscription you wish to configure.
 
