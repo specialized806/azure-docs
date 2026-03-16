@@ -6,7 +6,7 @@ ms.author: dhananjayanr
 ms.topic: how-to
 ms.service: azure-migrate
 ms.reviewer: v-uhabiba
-ms.date: 26/02/2026
+ms.date: 03/16/2026
 ms.custom: engagement-fy26
 # Customer intent: "As an IT administrator, I want to migrate servers to Azure Trusted Launch VMs so that I can ensure enhanced security for my VMs."
 ---
