@@ -196,18 +196,18 @@ Consider the following ARM template requirements to properly obscure secret valu
  
 ```json
 "parameters": {
-   "siteSpecificValues": {
-     "type": "object"
-   },
-   "secretValues": {
-     "type": "secureObject"
-    },
     "nfValues": {
      "type": "object"
     },
+    "siteSpecificValues": {
+     "type": "object"
+    },
+    "secretValues": {
+     "type": "secureObject"
+    },
     "config": {
       "type": "secureObject",
-      "defaultValue": "[union(parameters('nfValues'),parameters('siteSpecificValues'), parameters('secretValues'))]"
+      "defaultValue": "[union(parameters('nfValues'), parameters('siteSpecificValues'), parameters('secretValues'))]"
     }
 }
 ```
@@ -223,7 +223,7 @@ Consider the following ARM template requirements to properly obscure secret valu
   {
     "type": "Microsoft.HybridNetwork/networkFunctions",
       "configurationType": "Secret",
-      "secretDeploymentValues": "[string(variables('config'))]",
+      "secretDeploymentValues": "[string(parameters('config'))]",
   }
 ]
 ```
