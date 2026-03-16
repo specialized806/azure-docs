@@ -127,7 +127,7 @@ When connecting via the portal, select **Open in new browser tab** if desired, t
 
 **Available for:** Azure portal only. Not supported for native client or IP-based connections.
 
-The SSH private key must use the same format described in [SSH private key from local file](#ssh-private-key-from-local-file).
+The SSH private key must use the same format described in [SSH private key from local file](#tab/ssh-key-local).
 
 To authenticate using a private key stored in Azure Key Vault, configure the following settings.
 
