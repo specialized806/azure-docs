@@ -28,7 +28,7 @@ You have installed the Azure Migrate appliance that matches your source environm
 
 You have completed server discovery by using the installed Azure Migrate appliance.
 
-- For more information, see the following tutorials
+- For more information, see the following tutorials:
     - [Tutorial: Discover servers running in a VMware environment with Azure Migrate](tutorial-discover-vmware.md).
     - [Tutorial: Discover servers running on Hyper-V with Azure Migrate: Discovery and assessment](tutorial-discover-hyper-v.md).
     - [Discover physical servers and servers running in AWS and GCP](tutorial-discover-physical.md)
