@@ -60,14 +60,32 @@ Follow these steps to assign App Configuration Data roles to your credential.
 3. On the **Members** tab, follow the wizard to select the credential you're granting access to and then select **Next**.
 4. Finally, on the **Review + assign** tab, select **Review + assign** to assign the role.
 
-## Cloud-specific audience for Entra ID authentication
+## Audience for Entra ID authentication
 
-When using Entra ID and the following Azure App Configuration libraries in clouds other than Azure cloud, Azure Government, and Microsoft Azure operated by 21Vianet, an appropriate Entra ID audience must be configured to enable authentication.
+The audience for Microsoft Entra ID authentication defines who is permitted to access a specific resource. It identifies the intended recipient of the security token. App Configuration supports different audiences for different clouds.
+
+### App Configuration audience
+
+For Azure App Configuration in the global Azure cloud, use the following audience: 
+
+`https://appconfig.azure.com`
+
+For Azure App Configuration in the national clouds, use the applicable audience specified in the table below:
+
+| **National cloud**                   | **Audience**                        |
+| ------------------------------------ | ----------------------------------- |
+| Azure Government                     | `https://appconfig.azure.us`        |
+| Microsoft Azure operated by 21Vianet | `https://appconfig.azure.cn`        |
+| Bleu                                 | `https://appconfig.sovcloud-api.fr` |
+
+### Configure cloud-specific audience
+
+When using Entra ID to authenticate with Azure App Configuration in clouds other than Azure cloud, Azure Government, and Microsoft Azure operated by 21Vianet, an appropriate Entra ID audience must be configured.
 
 ### [.NET](#tab/dotnet)
 #### .NET configuration provider
 
-Audience can be configured by utilizing the [ConfigureClientOptions](/dotnet/api/microsoft.extensions.configuration.azureappconfiguration.azureappconfigurationoptions.configureclientoptions#microsoft-extensions-configuration-azureappconfiguration-azureappconfigurationoptions-configureclientoptions(system-action((azure-data-appconfiguration-configurationclientoptions)))) method. Use version **8.2.0** or later of any of the following packages to configure the audience.
+If your application uses any of the following packages, audience can be configured by utilizing the [ConfigureClientOptions](/dotnet/api/microsoft.extensions.configuration.azureappconfiguration.azureappconfigurationoptions.configureclientoptions#microsoft-extensions-configuration-azureappconfiguration-azureappconfigurationoptions-configureclientoptions(system-action((azure-data-appconfiguration-configurationclientoptions)))) method. Use version **8.2.0** or later of any of the following packages to configure the audience.
  - `Microsoft.Extensions.Configuration.AzureAppConfiguration`
  - `Microsoft.Azure.AppConfiguration.AspNetCore`
  - `Microsoft.Azure.AppConfiguration.Functions.Worker`
@@ -88,10 +106,8 @@ builder.AddAzureAppConfiguration(o =>
 
 #### Azure SDK for .NET
 
-Audience can be configured by utilizing the following API calls. Use version **1.6.0** or later of the package `Azure.Data.AppConfiguration` to configure the audience.
-
-* The ConfigurationClient constructor [accepts ConfigurationClientOptions](/dotnet/api/azure.data.appconfiguration.configurationclient.-ctor#azure-data-appconfiguration-configurationclient-ctor(system-uri-azure-core-tokencredential-azure-data-appconfiguration-configurationclientoptions))
-* ConfigurationClientOptions allows [Audience](/dotnet/api/azure.data.appconfiguration.configurationclientoptions.audience#azure-data-appconfiguration-configurationclientoptions-audience) to be set
+If your application uses the following package, audience can be configured in `ConfigurationClientOptions` when constructing the `ConfigurationClient` object. Use version **1.6.0** or later of the following package.
+ - `Azure.Data.AppConfiguration`
 
 The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
 
@@ -108,7 +124,7 @@ var configurationClient = new ConfigurationClient(
 ### [Java](#tab/java)
 #### Spring configuration provider
 
-Audience can be configured by customizing the `ConfigurationClientBuilder` through the `ConfigurationClientCustomizer` interface, then adding it to the bootstrap registry. Use version **5.22.0** or later of the following packages to configure the audience.
+If your application uses any of the following packages, audience can be configured by customizing the `ConfigurationClientBuilder` through the `ConfigurationClientCustomizer` interface, then adding it to the bootstrap registry. Use version **5.22.0** or later of the following packages to configure the audience.
  - `spring-cloud-azure-appconfiguration-config`
  - `spring-cloud-azure-appconfiguration-config-web`
 
@@ -157,7 +173,8 @@ public class Application {
 
 #### Azure SDK for Java
 
-Audience can be configured by passing the `audience` option to the `ConfigurationClientBuilder` when building a `ConfigurationClient`. Use version **1.8.0** or later of the package `azure-data-appconfiguration` to configure the audience.
+If your application uses the following package, audience can be configured by passing the `audience` option to the `ConfigurationClientBuilder` when building a `ConfigurationClient`. Use version **1.8.0** or later of the following package.
+ - `azure-data-appconfiguration`
 
 The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
 
@@ -172,7 +189,8 @@ ConfigurationClient configurationClient = new ConfigurationClientBuilder()
 ### [JavaScript](#tab/javascript)
 #### JavaScript configuration provider
 
-Audience can be configured by passing the `clientOptions` with the `audience` property to the `load` function. Use version **1.0.0** or later of the package `@azure/app-configuration-provider` to configure the audience.
+If your application uses the following package, audience can be configured by passing the `clientOptions` with the `audience` property to the `load` function. Use version **1.0.0** or later of the following package.
+ - `@azure/app-configuration-provider`
 
 The following code snippet demonstrates how to load Azure App Configuration in a JavaScript application with a cloud-specific audience.
 
@@ -186,9 +204,8 @@ const appConfig = await load(myStoreEndpoint, credential, {
 
 #### Azure SDK for JavaScript
 
-**Package**: @azure/app-configuration >= 1.9.0
-
-Audience can be configured by passing the `audience` option to the `AppConfigurationClient` constructor. Use version **1.9.0** or later of the package `@azure/app-configuration` to configure the audience.
+If your application uses the following package, audience can be configured by passing the `audience` option to the `AppConfigurationClient` constructor. Use version **1.9.0** or later of the following package.
+ - `@azure/app-configuration`
 
 The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
 
@@ -200,7 +217,7 @@ const client = new AppConfigurationClient(myStoreEndpoint, new DefaultAzureCrede
 
 ### [Go](#tab/go)
 
-To customize Entra ID audience, import the following packages in your Go application:
+To configure the Entra ID audience, import the following packages in your Go application first:
 
 ```golang
 import (
@@ -211,7 +228,8 @@ import (
 
 #### Go configuration provider
 
-Audience can be configured by passing the `ClientOptions` with the cloud configuration to the `Load` function. Use version **1.0.0** or later of the package `azureappconfiguration` to configure the audience.
+If your application uses the following package, audience can be configured by passing the `ClientOptions` with the cloud configuration to the `Load` function. Use version **1.0.0** or later of the following package.
+ - `azureappconfiguration`
 
 The following code snippet demonstrates how to load Azure App Configuration in a Go application with a cloud-specific audience.
 
@@ -244,7 +262,8 @@ appConfig, _ := azureappconfiguration.Load(context.Background(), authOptions, op
 
 #### Azure SDK for Go
 
-Audience can be configured by utilizing the cloud configuration. Use version **2.1.0** or later of the package `azappconfig` to configure the audience.
+If your application uses the following package, audience can be configured by utilizing the cloud configuration. Use version **2.1.0** or later of the following package.
+ - `azappconfig`
 
 The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
 
@@ -269,20 +288,6 @@ client, _ := azappconfig.NewClient(myStoreEndpoint, credential, clientOptions)
 ```
 
 ---
-
-### Audience
-
-For Azure App Configuration in the global Azure cloud, use the following audience: 
-
-`https://appconfig.azure.com`
-
-For Azure App Configuration in the national clouds, use the applicable audience specified in the table below:
-
-| **National cloud**                   | **Audience**                        |
-| ------------------------------------ | ----------------------------------- |
-| Azure Government                     | `https://appconfig.azure.us`        |
-| Microsoft Azure operated by 21Vianet | `https://appconfig.azure.cn`        |
-| Bleu                                 | `https://appconfig.sovcloud-api.fr` |
 
 ## Next steps
 Learn how to [use managed identities to access your App Configuration store](howto-integrate-azure-managed-service-identity.md).
