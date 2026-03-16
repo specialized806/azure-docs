@@ -16,8 +16,6 @@ ms.author: v-mallicka
 
 In this tutorial, you learn how to configure backup and restore for an Azure Kubernetes Service (AKS) cluster that uses Azure Files-based persistent volumes. Azure Backup for AKS now supports backing up applications with Azure File Share (SMB protocol) volumes along with Azure Disk-based volumes and Kubernetes resources.
 
-[!INCLUDE [backup-aks-public-preview.md](../../includes/backup-aks-public-preview.md)]
-
 Azure Files-based volumes are backed up as snapshots stored alongside the file share in the same storage account. This provides fast backup and restore operations for your stateful applications using file shares.
 
 In this tutorial, you learn how to:
@@ -35,7 +33,7 @@ In this tutorial, you learn how to:
 Before you configure backup for AKS clusters with Azure Files volumes, ensure the following prerequisites are met:
 
 - An [Azure Backup vault](create-manage-backup-vault.md) in the same region as your AKS cluster.
-- An AKS cluster with CSI Driver version 1.32 or higher. [Learn more about CSI drivers](../aks/csi-storage-drivers.md).
+- An AKS cluster with CSI Driver version 1.32 or higher.
 - Azure Files-based persistent volumes provisioned through the Azure Kubernetes CSI Driver (`file.csi.azure.com`) using the SMB protocol.
 - File shares with publicly accessible network endpoints (network endpoint type set to **All**).
 - Persistent volumes configured with the Reclaim Policy set to **Retain** to ensure snapshots remain available even if the PVC is deleted.
@@ -167,7 +165,7 @@ This section explains how you can modify an existing backup instance and start b
 
 1. On the right hand side pane, to include Files based volumes to backup, open the dropdown **Select Volume Types** and select the checkbox for **Azure SMB Fileshares**. Additionally select the checkbox **Include Secrets**. You can use this pane, to update any other existing backup configurations including labels. Then click on **Select**.
 
-    :::image type="content" source="./media/quick-backup-aks/select-backup-instance.png" alt-text="Screenshot showing how to select resources including Azure Files volumes." lightbox="./media/quick-backup-aks/select-backup-instance.png":::
+    :::image type="content" source="./media/quick-backup-aks/select-backup-instance.png" alt-text="Screenshot showing how to include Azure Files volumes for backup." lightbox="./media/quick-backup-aks/select-backup-instance.png":::
 
 1. After updating the backup configuration, click **Validate** to ensure all prerequisites for using Azure Files are met. If required roles are missing for the Backup vault identity, a role assignment error will appear. If you have the necessary permissions on the relevant resources, you can resolve this by clicking **Grant Permissions**.
 
