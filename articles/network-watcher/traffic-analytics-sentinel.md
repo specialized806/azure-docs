@@ -5,14 +5,16 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-network-watcher
 ms.topic: concept-article
-ms.date: 02/25/2026
+ms.date: 03/17/2026
 
 #customer intent: As a security analyst, I want to detect anomalies in network traffic so that I can assess potential risks and respond to unusual behavior.
 ---
 
+# Traffic Analytics with Microsoft Sentinel
+
 Traffic Analytics in Azure Network Watcher processes and aggregates Virtual Network Flow Logs to provide visibility into network flows, traffic patterns, and potential security risks. It enriches flow data with threat intelligence, geolocation attributes, and topology context to help identify anomalies and evaluate exposure across your environment.
 
-Traffic Analytics also supports integration with Microsoft Sentinel. Microsoft Sentinel is a scalable, cloud-native Security Information and Event Management (SIEM) solution that provides cost-efficient security monitoring across multicloud and multiplatform environments. Sentinel uses [ASIM-based parsers](https://learn.microsoft.com/en-us/azure/sentinel/normalization-about-schemas) to normalize incoming data, allowing Traffic Analytics flow data to be transformed into the required schema for correlation, investigation, and threat detection.
+Traffic Analytics also supports integration with Microsoft Sentinel. Microsoft Sentinel is a scalable, cloud-native Security Information and Event Management (SIEM) solution that provides cost-efficient security monitoring across multicloud and multiplatform environments. Sentinel uses [ASIM-based parsers](/azure/sentinel/normalization-about-schemas) to normalize incoming data, allowing Traffic Analytics flow data to be transformed into the required schema for correlation, investigation, and threat detection.
 
 Together, Traffic Analytics and Microsoft Sentinel enable both proactive monitoring and reactive investigation. Flow-level telemetry highlights unexpected communication paths, unusual traffic volumes, and indicators of compromise, allowing you to detect deviations from baseline behavior and investigate events with reliable and structured insights.
 
