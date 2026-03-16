@@ -64,7 +64,7 @@ If you have savings plan questions, contact your account team, or [create a supp
 
 ## Related content
 
-To learn more about Azure savings plans, see the following articles:
+To learn more about savings plans, see the following articles:
 
 - [What are savings plans?](savings-plan-overview.md)
 - [Manage a savings plan](manage-savings-plan.md)

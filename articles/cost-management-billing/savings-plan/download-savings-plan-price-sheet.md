@@ -52,9 +52,9 @@ If you have questions about savings plans, contact your account team or [create 
 
 ## Next steps
 
-- To learn more about Azure savings plans, see the following articles:
-  - [What are Azure Savings plans?](savings-plan-compute-overview.md)
-  - [Manage Azure savings plans](manage-savings-plan.md)
+- To learn more about savings plans, see the following articles:
+  - [What are Savings plans?](savings-plan-overview.md)
+  - [Manage savings plans](manage-savings-plan.md)
   - [How a savings plan discount is applied](discount-application.md)
   - [Understand savings plan costs and usage](utilization-cost-reports.md)
-  - [Software costs not included with Azure savings plans](software-costs-not-included.md)
+  - [Software costs not included with savings plans](software-costs-not-included.md)
