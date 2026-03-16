@@ -24,9 +24,9 @@ Together, Traffic Analytics and Microsoft Sentinel enable both proactive monitor
 
 - Traffic Analytics enabled for your flow logs. For more information, see [Enable or disable traffic analytics](/azure/network-watcher/vnet-flow-logs-manage?tabs=portal#enable-or-disable-traffic-analytics).
 
-- [Log Analytics Contributor](/azure/role-based-access-control/built-in-roles/monitor#log-analytics-contributor) or [Security Administrator](/entra/identity/role-based-access-control/permissions-reference#security-administrator) role.
+- **Contributor** or **Security Admin** access on the workspace.
 
-- [Microsoft Sentinel Contributor](/azure/role-based-access-control/built-in-roles/security#microsoft-sentinel-contributor) role to enable rules in Microsoft Sentinel.
+- [Microsoft Sentinel Contributor](/azure/role-based-access-control/built-in-roles/security#microsoft-sentinel-contributor) role on the resource group that the workspace belongs to.
 
 ## Key Capabilities
 
