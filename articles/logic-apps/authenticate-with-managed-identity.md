@@ -676,7 +676,7 @@ The following steps show how to use the managed identity by using the Azure port
 
 1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource.
 
-1. Add the [trigger or action that supports managed identities](#triggers-actions-managed-identity), if you haven't completed this step already.
+1. Add the [trigger or action that supports managed identities](#triggers-actions-managed-identity), if you haven't taken this step already.
 
 1. On the trigger or action, follow these steps:
 
@@ -684,11 +684,11 @@ The following steps show how to use the managed identity by using the Azure port
 
      These steps continue by using the **HTTP** action as an example.
 
-     1. From the **Advanced parameters** list, add the **Authentication** property.
+     1. From the **Advanced parameters** list, add the **Authentication** parameter.
 
         :::image type="content" source="media/authenticate-with-managed-identity/built-in-authentication.png" alt-text="Screenshot shows a Consumption workflow with built-in HTTP action and opened list named Advanced parameters, with selected option for Authentication." lightbox="media/authenticate-with-managed-identity/built-in-authentication.png":::
 
-        Both the **Authentication** property and the **Authentication type** list appear, for example:
+        Both the **Authentication** parameter and the **Authentication type** list appear, for example:
 
         :::image type="content" source="media/authenticate-with-managed-identity/authentication-parameter.png" alt-text="Screenshot shows the Advanced parameters section with Authentication property and Authentication type list." lightbox="media/authenticate-with-managed-identity/authentication-parameter.png":::
 
@@ -709,16 +709,11 @@ The following steps show how to use the managed identity by using the Azure port
 
         > [!NOTE]
         >
-        > The default selected option is the **System-assigned managed identity**, 
-        > even when you don't enable any managed identities.
-        > 
-        > To successfully use a managed identity, you must first enable that identity on your 
-        > logic app. On a Consumption logic app, you can have either the system-assigned or 
-        > user-assigned managed identity, but not both. 
+        > By default, **System-assigned managed identity** is the selected option, even when you don't enable any managed identities. However, to successfully use the managed identity, you must first enable that identity on your logic app. Consumption logic apps don't automatically enable the system identity unlike Standard logic apps.
 
      For more information, see [Example: Authenticate built-in trigger or action with a managed identity](#authenticate-built-in-managed-identity).
 
-   - **Managed connector operations that support managed identity authentication**
+   - **Managed connector operations**
 
      1. On the **Create Connection** pane, from the **Authentication** list, select **Managed Identity**, for example:
 
@@ -726,48 +721,45 @@ The following steps show how to use the managed identity by using the Azure port
 
      1. On the next pane, for **Connection Name**, enter a name to use for the connection.
 
-     1. For the authentication type, choose one of the following options based on your managed connector:
+     1. Based on your connector, choose one of the following options:
 
         - **Single-authentication**: These connectors support only one authentication type, which is the managed identity in this case.
 
+          The following steps continue by using an **Azure Resource** action as an example:
+
           1. From the **Managed Identity** list, select the currently enabled managed identity.
 
-          1. When you're ready, select **Create New**.
+          1. Select **Create new**.
 
         - **Multi-authentication**: These connectors support multiple authentication types, but you can select and use only one type at a time.
 
-          These steps continue by using an **Azure Blob Storage** action as an example.
+          The following steps continue by using an **Azure Blob Storage** action as an example:
 
-           1. From the **Authentication Type** list, select **Logic Apps Managed Identity**.
+          1. From the **Authentication Type** list, select **Logic Apps Managed Identity**.
 
-              :::image type="content" source="media/authenticate-with-managed-identity/multi-system-identity-consumption.png" alt-text="Screenshot shows Consumption workflow, connection creation box, and selected option for Logic Apps Managed Identity." lightbox="media/authenticate-with-managed-identity/multi-system-identity-consumption.png":::
+             :::image type="content" source="media/authenticate-with-managed-identity/multi-identity.png" alt-text="Screenshot shows Consumption workflow, connection creation box, and selected option for Logic Apps Managed Identity." lightbox="media/authenticate-with-managed-identity/multi-identity.png":::
 
-           1. When you're ready, select **Create New**.
+          1. Select **Create new**.
 
-        For more information, see [Example: Authenticate managed connector trigger or action with a managed identity](#authenticate-managed-connector-managed-identity).
+          For more information, see [Example: Authenticate managed connector trigger or action with a managed identity](#authenticate-managed-connector-managed-identity).
 
 ### [Standard](#tab/standard)
 
 1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource.
 
-1. If you haven't done so yet, add the [trigger or action that supports managed identities](logic-apps-securing-a-logic-app.md#authentication-types-supported-triggers-actions).
+1. Add the [trigger or action that supports managed identities](#triggers-actions-managed-identity), if you haven't taken this step already.
 
-   > [!NOTE]
-   >
-   > Not all triggers and actions support adding an authentication type. For more information, see 
-   > [Authentication types for triggers and actions that support authentication](logic-apps-securing-a-logic-app.md#authentication-types-supported-triggers-actions).
+1. On the trigger or action, follow these steps:
 
-1. On the trigger or action that you added, follow these steps:
-
-   - **Built-in operations that support managed identity authentication**
+   - **Built-in operations**
 
      These steps continue by using the **HTTP** action as an example.
 
-     1. From the **Advanced parameters** list, add the **Authentication** property, if the property doesn't already appear.
+     1. From the **Advanced parameters** list, add the **Authentication** parameter, if the property doesn't already appear.
 
         :::image type="content" source="media/authenticate-with-managed-identity/built-in-authentication-standard.png" alt-text="Screenshot shows Standard workflow, example built-in action, opened list named Add new parameter, and selected option for Authentication." lightbox="media/authenticate-with-managed-identity/built-in-authentication-standard.png":::
 
-        Now, both the **Authentication** property and the **Authentication Type** list appear on the action.
+        Now, both the **Authentication** parameter and the **Authentication Type** list appear on the action.
 
         :::image type="content" source="media/authenticate-with-managed-identity/authentication-parameter.png" alt-text="Screenshot shows advanced parameters section with added Authentication property and Authentication Type list." lightbox="media/authenticate-with-managed-identity/authentication-parameter.png":::
 
@@ -779,7 +771,7 @@ The following steps show how to use the managed identity by using the Azure port
 
         - A **Managed Identity** list where you can select a specific managed identity.
 
-        - The **Audience** property appears on specific triggers and actions so that you can set the resource ID for the Azure target resource or service. Otherwise, by default, the **Audience** property uses the **`https://management.azure.com/`** resource ID, which is the resource ID for Azure Resource Manager.
+        - The **Audience** parameter appears on specific triggers and actions so that you can set the resource ID for the Azure target resource or service. Otherwise, by default, the **Audience** parameter uses the `https://management.azure.com/` resource ID, which is the resource ID for Azure Resource Manager.
         
         :::image type="content" source="media/authenticate-with-managed-identity/select-specific-managed-identity-standard.png" alt-text="Screenshot shows Authentication section with Authentication Type list and Audience property." lightbox="media/authenticate-with-managed-identity/select-specific-managed-identity-standard.png":::
 
@@ -875,7 +867,7 @@ To run the [Snapshot Blob operation](/rest/api/storageservices/snapshot-blob), t
 
    :::image type="content" source="media/authenticate-with-managed-identity/http-action-example-consumption.png" alt-text="Screenshot shows Azure portal, Consumption workflow, and HTTP action setup to access resources." lightbox="media/authenticate-with-managed-identity/http-action-example-consumption.png":::
 
-1. In the **HTTP** action, add the **Authentication** property. From the **Advanced parameters** list, select **Authentication**.
+1. In the **HTTP** action, add the **Authentication** parameter. From the **Advanced parameters** list, select **Authentication**.
 
    :::image type="content" source="media/authenticate-with-managed-identity/add-authentication-property.png" alt-text="Screenshot shows Consumption workflow with HTTP action and opened Advanced parameters list with selected property named Authentication." lightbox="media/authenticate-with-managed-identity/add-authentication-property.png":::
 
@@ -902,16 +894,16 @@ To run the [Snapshot Blob operation](/rest/api/storageservices/snapshot-blob), t
 
    This example continues with the **System-assigned managed identity**.
 
-1. On some triggers and actions, the **Audience** property appears so that you can set the resource ID for the target Azure resource or service.
+1. On some triggers and actions, the **Audience** parameter appears so that you can set the resource ID for the target Azure resource or service.
 
-   For example, to authenticate access to a [Key Vault resource in the global Azure cloud](/azure/key-vault/general/authentication), you must set the **Audience** property to *exactly* the following resource ID: **`https://vault.azure.net`**
+   For example, to authenticate access to a [Key Vault resource in the global Azure cloud](/azure/key-vault/general/authentication), you must set the **Audience** parameter to *exactly* the following resource ID: `https://vault.azure.net`
 
-   If you don't set the **Audience** property, by default, the **Audience** property uses the **`https://management.azure.com/`** resource ID, which is the resource ID for Azure Resource Manager.
+   If you don't set the **Audience** parameter, by default, the **Audience** parameter uses the `https://management.azure.com/` resource ID, which is the resource ID for Azure Resource Manager.
 
    > [!IMPORTANT]
    >
    > Make sure that the target resource ID *exactly matches* the value that Microsoft Entra ID expects. 
-   > Otherwise, you might get either a **`400 Bad Request`** error or a **`401 Unauthorized`** error. So, if 
+   > Otherwise, you might get either a **400 Bad Request** error or a **401 Unauthorized** error. So, if 
    > the resource ID includes any trailing slashes, make sure to include them. Otherwise, don't include 
    > them.
    >
@@ -919,7 +911,7 @@ To run the [Snapshot Blob operation](/rest/api/storageservices/snapshot-blob), t
    > the resource ID for a specific storage account doesn't require a trailing slash. Check the 
    > resource IDs for the [Azure services that support Microsoft Entra ID](/entra/identity/managed-identities-azure-resources/services-id-authentication-support).
 
-   This example sets the **Audience** property to **`https://storage.azure.com/`** so that the access tokens used for authentication are valid for all storage accounts. However, you can also specify the root service URL, **`https://<your-storage-account>.blob.core.windows.net`**, for a specific storage account.
+   This example sets the **Audience** parameter to `https://storage.azure.com/` so that the access tokens used for authentication are valid for all storage accounts. However, you can also specify the root service URL, `https://<your-storage-account>.blob.core.windows.net`, for a specific storage account.
 
    :::image type="content" source="media/authenticate-with-managed-identity/set-audience-url-target-resource.png" alt-text="Screenshot shows Consumption workflow and HTTP action with Audience property set to target resource ID." lightbox="media/authenticate-with-managed-identity/set-audience-url-target-resource.png":::
 
@@ -939,7 +931,7 @@ To run the [Snapshot Blob operation](/rest/api/storageservices/snapshot-blob), t
 
    :::image type="content" source="media/authenticate-with-managed-identity/http-action-example-standard.png" alt-text="Screenshot shows Azure portal, Standard workflow, and HTTP action setup to access resources." lightbox="media/authenticate-with-managed-identity/http-action-example-standard.png":::
 
-1. In the **HTTP** action, add the **Authentication** property. From the **Advanced parameters** list, select **Authentication**.
+1. In the **HTTP** action, add the **Authentication** parameter. From the **Advanced parameters** list, select **Authentication**.
 
    :::image type="content" source="media/authenticate-with-managed-identity/add-authentication-property.png" alt-text="Screenshot shows Standard workflow and HTTP action with opened Advanced parameters list and selected property named Authentication." lightbox="media/authenticate-with-managed-identity/add-authentication-property.png":::
 
@@ -966,16 +958,16 @@ To run the [Snapshot Blob operation](/rest/api/storageservices/snapshot-blob), t
 
    This example continues with the **System-assigned managed identity**.
 
-1. On some triggers and actions, the **Audience** property appears so that you can set the resource ID for the target Azure resource or service.
+1. On some triggers and actions, the **Audience** parameter appears so that you can set the resource ID for the target Azure resource or service.
 
-   For example, to [authenticate access to a Key Vault resource in the global Azure cloud](/azure/key-vault/general/authentication), you must set the **Audience** property to *exactly* the following resource ID: **`https://vault.azure.net`**
+   For example, to [authenticate access to a Key Vault resource in the global Azure cloud](/azure/key-vault/general/authentication), you must set the **Audience** parameter to *exactly* the following resource ID: `https://vault.azure.net`
 
-   If you don't set the **Audience** property, by default, the **Audience** property uses the **`https://management.azure.com/`** resource ID, which is the resource ID for Azure Resource Manager.
+   If you don't set the **Audience** parameter, by default, the **Audience** parameter uses the `https://management.azure.com/` resource ID, which is the resource ID for Azure Resource Manager.
 
    > [!IMPORTANT]
    >
    > Make sure that the target resource ID *exactly matches* the value that Microsoft Entra ID expects. 
-   > Otherwise, you might get either a **`400 Bad Request`** error or a **`401 Unauthorized`** error. So, if 
+   > Otherwise, you might get either a **400 Bad Request** error or a **401 Unauthorized** error. So, if 
    > the resource ID includes any trailing slashes, make sure to include them. Otherwise, don't include 
    > them.
    >
@@ -983,7 +975,7 @@ To run the [Snapshot Blob operation](/rest/api/storageservices/snapshot-blob), t
    > the resource ID for a specific storage account doesn't require a trailing slash. Check the 
    > resource IDs for the [Azure services that support Microsoft Entra ID](/entra/identity/managed-identities-azure-resources/services-id-authentication-support).
 
-   This example sets the **Audience** property to **`https://storage.azure.com/`** so that the access tokens used for authentication are valid for all storage accounts. However, you can also specify the root service URL, **`https://<your-storage-account>.blob.core.windows.net`**, for a specific storage account.
+   This example sets the **Audience** parameter to `https://storage.azure.com/` so that the access tokens used for authentication are valid for all storage accounts. However, you can also specify the root service URL, `https://<your-storage-account>.blob.core.windows.net`, for a specific storage account.
 
    :::image type="content" source="media/authenticate-with-managed-identity/set-audience-url-target-resource.png" alt-text="Screenshot shows Standard workflow and HTTP action with Audience property set to target resource ID." lightbox="media/authenticate-with-managed-identity/set-audience-url-target-resource.png":::
 
@@ -1079,7 +1071,7 @@ A connection that you enable and use with a managed identity is a special connec
 
 In a Consumption logic app resource, you save the connection configuration in the resource definition's `parameters` object. This object contains the `$connections` object that includes pointers to the connection's resource ID along with the managed identity's resource ID when the user-assigned identity is enabled.
 
-This example shows the **`parameters`** object configuration when the logic app enables the *system-assigned* identity:
+This example shows the `parameters` object configuration when the logic app enables the *system-assigned* identity:
 
 ```json
 "parameters": {
@@ -1100,7 +1092,7 @@ This example shows the **`parameters`** object configuration when the logic app 
 }
 ```
 
-This example shows the **`parameters`** object configuration when the logic app enables the *user-assigned* managed identity:
+This example shows the `parameters` object configuration when the logic app enables the *user-assigned* managed identity:
 
 ```json
 "parameters": {
@@ -1124,9 +1116,9 @@ This example shows the **`parameters`** object configuration when the logic app 
 
 ### [Standard](#tab/standard)
 
-In a Standard logic app resource, you save the connection configuration in the logic app resource or project's `connections.json` file. This file contains a `managedApiConnections` object that includes connection configuration information for each managed connector used in a workflow. This connection information includes pointers to the connection's resource ID along with the managed identity properties, such as the resource ID when the user-assigned identity is enabled.
+In a Standard logic app resource, you save the connection configuration in the logic app resource or project's *connections.json* file. This file contains a `managedApiConnections` object that includes connection configuration information for each managed connector used in a workflow. This connection information includes pointers to the connection's resource ID along with the managed identity properties, such as the resource ID when the user-assigned identity is enabled.
 
-This example shows the **`managedApiConnections`** object configuration when the logic app enables the *system-assigned* identity:
+This example shows the `managedApiConnections` object configuration when the logic app enables the *system-assigned* identity:
 
 ```json
 {
@@ -1153,7 +1145,7 @@ This example shows the **`managedApiConnections`** object configuration when the
 }
 ```
 
-This example shows the **`managedApiConnections`** object configuration when the logic app enables the *user-assigned* identity:
+This example shows the `managedApiConnections` object configuration when the logic app enables the *user-assigned* identity:
 
 ```json
 {
@@ -1199,9 +1191,9 @@ The following examples apply to Consumption logic app resources. They show how t
 
 This example shows the underlying connection resource definition for a connector action that supports only one authentication type and uses a managed identity in a Consumption logic app workflow. The definition includes the following attributes:
 
-- The **`kind`** property is set to **`V1`** for a Consumption logic app.
+- The `kind` property is set to `V1` for a Consumption workflow.
 
-- The **`parameterValueType`** property is set to **`Alternative`**.
+- The `parameterValueType` property is set to `Alternative`.
 
 ```json
 {
@@ -1229,9 +1221,9 @@ This example shows the underlying connection resource definition for a connector
 
 This example shows the underlying connection resource definition for a connector action that supports multiple authentication types and uses a managed identity in a Consumption logic app workflow. The definition includes the following attributes:
 
-- The **`kind`** property is set to **`V1`** for a Consumption logic app.
+- The `kind` property is set to `V1` for a Consumption workflow.
 
-- The **`parameterValueSet`** object includes a **`name`** property that's set to **`managedIdentityAuth`** and a **`values`** property that's set to an empty object.
+- The `parameterValueSet` object includes a `name` property that's set to `managedIdentityAuth` and a `values` property that's set to an empty object.
 
 ```json
 {
@@ -1265,9 +1257,9 @@ The following examples apply to Standard logic app resources and show how the un
 
 This example shows the underlying connection resource definition for a connector action that supports only one authentication type and uses a managed identity in a Standard logic app workflow. The definition includes the following attributes:
 
-- The **`kind`** property is set to **`V2`** for a Standard logic app.
+- The `kind` property is set to `V2` for a Standard workflow.
 
-- The **`parameterValueType`** property is set to **`Alternative`**.
+- The `parameterValueType` property is set to `Alternative`.
 
 ```json
 {
@@ -1295,9 +1287,9 @@ This example shows the underlying connection resource definition for a connector
 
 This example shows the underlying connection resource definition for a connector action that supports multiple authentication types and uses a managed identity in a Standard logic app workflow. The definition includes the following attributes:
 
-- The **`kind`** property is set to **`V2`** for a Standard logic app.
+- The `kind` property is set to `V2` for a Standard logic app.
 
-- The **`parameterValueSet`** object includes a **`name`** property that's set to **`managedIdentityAuth`** and a **`values`** property that's set to an empty object.
+- The `parameterValueSet` object includes a `name` property that's set to `managedIdentityAuth` and a `values` property that's set to an empty object.
 
 ```json
 {
@@ -1372,7 +1364,7 @@ However, when a Consumption logic app workflow uses an API connection, you don't
 
 If your scenario requires finer control over authenticating API connections, you can change the authentication for connection #1 from the default system-assigned identity to any user-assigned identity that you add to your logic app. This authentication applies to each API connection, so you can mix system-assigned and user-assigned identities across different connections to the same target resource.
 
-In your Standard logic app's **connections.json** file, which stores information about each API connection, each connection definition has two **`authentication`** sections, for example:
+In your Standard logic app's *connections.json* file, which stores information about each API connection, each connection definition has two `authentication` objects, for example:
 
 ```json
 "keyvault": {
@@ -1395,11 +1387,11 @@ In your Standard logic app's **connections.json** file, which stores information
 }
 ```
 
-- The first **`authentication`** section maps to connection #1.
+- The first `authentication` object maps to connection #1.
 
-  This section describes the authentication used for communicating with the internal token store. In the past, this section was always set to **`ManagedServiceIdentity`** for an app that deploys to Azure and had no configurable options.
+  This section describes the authentication used for communicating with the internal token store. In the past, this section was always set to `ManagedServiceIdentity` for an app that deploys to Azure and had no configurable options.
 
-- The second **`authentication`** section maps to connection #2.
+- The second `authentication` section maps to connection #2.
 
   This section describes the authentication used for communicating with the target resource can vary, based on the authentication type that you select for that connection.
 
@@ -1448,9 +1440,9 @@ In other scenarios, you might not want to set up the system-assigned identity on
 
 1. In the connection definition, complete the following steps:
 
-   1. Find the first **`authentication`** section. If no **`identity`** property exists in this **`authentication`** section, the logic app implicitly uses the system-assigned identity.
+   1. Find the first `authentication` section. If no `identity` property exists in this `authentication` section, the logic app implicitly uses the system-assigned identity.
 
-   1. Add an **`identity`** property by using the example in this step.
+   1. Add an `identity` property by using the example in this step.
 
    1. Set the property value to the resource ID for the user-assigned identity.
 
@@ -1553,7 +1545,7 @@ The following steps remove access to the target resource from the managed identi
 
 ### Disable managed identity in an ARM template
 
-If you created the logic app's managed identity by using an ARM template, set the **`identity`** object's **`type`** child property to **`None`**.
+If you created the logic app's managed identity by using an ARM template, set the `identity` object's `type` child property to `None`.
 
 ```json
 "identity": {
