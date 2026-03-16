@@ -75,6 +75,21 @@ configBuilder.AddAzureAppConfiguration(options =>
 });
 ```
 
+#### [spring](#tab/spring)
+
+```yaml
+spring:
+  config:
+    import: azureAppConfiguration
+  cloud:
+    azure:
+      appconfiguration:
+        stores:
+          - endpoint: <your-app-configuration-store-endpoint>
+            monitoring:
+              enabled: true
+```
+
 #### [JavaScript](#tab/javascript)
 
 ```javascript
@@ -149,6 +164,23 @@ configBuilder.AddAzureAppConfiguration(options =>
 });
 ```
 
+#### [spring](#tab/spring)
+
+```yaml
+spring:
+  config:
+    import: azureAppConfiguration
+  cloud:
+    azure:
+      appconfiguration:
+        stores:
+          - endpoint: <your-app-configuration-store-endpoint>
+            monitoring:
+              enabled: true
+              triggers:
+                - key: SentinelKey
+```
+
 #### [JavaScript](#tab/javascript)
 
 ```javascript
@@ -161,6 +193,17 @@ const appConfig = await load(endpoint, credential, {
         watchedSettings: [{ key: "SentinelKey" }]
     }
 });
+```
+
+#### [Python](#tab/python)
+
+```python
+config = load(
+    endpoint,
+    credential,
+    # Trigger a refresh only if the `SentinelKey` changes
+    refresh_on=[WatchedKey(key="SentinelKey")]
+)
 ```
 
 #### [Go](#tab/go)
