@@ -58,7 +58,7 @@ Install the required network solution from the Microsoft Sentinel content hub. T
 
 ### Enable analytics rules
 
-Enable the relevant network analytics rules to start generating security alerts and incidents. These rules continuously evaluate Traffic Analytics data to detect suspicious or anomalous network behaviour.
+Enable the relevant network analytics rules to start generating security alerts and incidents. These rules continuously evaluate Traffic Analytics data to detect suspicious or anomalous network behavior.
 
 1. In the **Content hub**, filter by **Content type: Analytics rule**.
 
@@ -82,7 +82,7 @@ Enable the relevant network analytics rules to start generating security alerts 
 
 Microsoft Sentinel uses analytics rules and built-in intelligence to analyze Traffic Analytics data and detect suspicious or malicious network activity. Microsoft Sentinel evaluates normalized network flow data to identify common threat patterns such as reconnaissance, lateral movement, abnormal traffic spikes, and communication with unexpected or high-risk endpoints.
 
-Microsoft Sentinel correlates Traffic Analytics signals with other data sources and threat intelligence to provide high-fidelity detections. By combining network traffic context with MITRE ATT&CK techniques, geolocation, and behavioural analysis, Microsoft Sentinel reduces alert fatigue and surfaces actionable incidents for security teams.
+Microsoft Sentinel correlates Traffic Analytics signals with other data sources and threat intelligence to provide high-fidelity detections. By combining network traffic context with MITRE ATT&CK techniques, geolocation, and behavioral analysis, Microsoft Sentinel reduces alert fatigue and surfaces actionable incidents for security teams.
 
 When an incident is generated, Microsoft Sentinel provides AI-assisted investigation experience that helps analysts understand the scope and impact of the activity. Incidents are enriched with entities such as IP addresses, ports, protocols, and network locations derived from Traffic Analytics. Investigation graphs and timelines highlight relationships between network entities and related events.
 
