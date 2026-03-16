@@ -24,9 +24,9 @@ In this article, you'll learn  how to navigate the end-to-end portal to do the b
 
 Before you begin, ensure the following:
 
-You have installed the Azure Migrate appliance that matches your source environment **(VMware, Hyper‑V, or Physical)**. The Azure Migrate appliance is required to use the end‑to‑end portal experience, from discovery through migration.
+- You have installed the Azure Migrate appliance that matches your source environment **(VMware, Hyper‑V, or Physical)**. The Azure Migrate appliance is required to use the end‑to‑end portal experience, from discovery through migration.
 
-You have completed server discovery by using the installed Azure Migrate appliance.
+- You have completed server discovery by using the installed Azure Migrate appliance.
 
 - For more information, see the following tutorials:
     - [Tutorial: Discover servers running in a VMware environment with Azure Migrate](tutorial-discover-vmware.md).
@@ -40,7 +40,7 @@ You have completed server discovery by using the installed Azure Migrate applian
 
 This section explains how to start execution for your servers discovered using the Azure Migrate appliance. Follow the steps below to start migration execution from your Azure Migrate project. 
 
-Follow the steps below to start migration execution from your Azure Migrate project.
+To start migration execution from your Azure Migrate project, follow the steps:
 
 1. In Azure Migrate project, go to **Execute** > **Migrations**, and then select **Start execution**.
 1. On the **Specify intent** pane, select **Servers** or **Virtual machines (VMs)**, and choose Azure VM as the target. You can either select a existing assessment or manually select servers from the discovered inventory.
