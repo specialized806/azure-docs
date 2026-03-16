@@ -115,7 +115,7 @@ sections:
            - Operational Tier backup only (Vault Tier is not supported)
            - Retention up to 30 days
            
-           Other Azure storage options—such as Azure Blob, Azure Container Storage, Azure NetApp Files, Azure Managed Lustre, and third-party storage solutions—aren't supported at this time. [Learn more about Azure Files support and limitations](azure-kubernetes-service-cluster-backup-support-matrix.md#supported-scenarios-and-limitations-specific-to-azure-files-based-volumes).
+           Other Azure storage options—such as Azure Blob, Azure Container Storage, Azure NetApp Files, Azure Managed Lustre, and third-party storage solutions—aren't supported at this time. [Learn more about Azure Files support and limitations](azure-kubernetes-service-cluster-backup-support-matrix.md#azure-files-based-persistent-volumes---additional-considerations).
 
       - question: |
            If an AKS cluster has Persistent Volumes of unsupported types, what happens during the backup operation?

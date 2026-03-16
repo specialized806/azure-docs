@@ -74,7 +74,7 @@ To enable backup for an AKS cluster, see the following prerequisites: .
 
   >[!Note]
   >- Currently, AKS backup supports backup of Azure Disk and Azure SMB Files based persistent volumes (enabled by CSI driver). 
-  >- For Azure Files-based volumes, CSI Driver version 1.32 or higher is required. [Learn how to configure backup for Azure Files volumes](quick-backup-aks-azure-files.md).
+  >- For Azure Files-based volumes, CSI Driver version 1.32 or higher is required. [Learn how to configure backup for Azure Files volumes](tutorial-backup-aks-azure-files.md).
   >- In Tree, volumes aren't supported by AKS backup; only CSI driver based volumes can be backed up. You can [migrate from tree volumes to CSI driver based Persistent Volumes](/azure/aks/csi-migrate-in-tree-volumes).
 
 - Before installing Backup Extension in the AKS cluster, ensure that the CSI drivers and snapshots are enabled for your cluster. If disabled, see [these steps to enable them](/azure/aks/csi-storage-drivers#enable-csi-storage-drivers-on-an-existing-cluster).
