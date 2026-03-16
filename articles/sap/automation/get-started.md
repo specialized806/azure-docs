@@ -35,8 +35,8 @@ The SAP automation deployment framework can also use a user assigned identity (M
 
 1. Create the managed identity.
 
-   ```cloudshell-interactive
-   export    ARM_SUBSCRIPTION_ID="<subscriptionId>"
+   ```azurecli-interactive
+   export ARM_SUBSCRIPTION_ID="<subscriptionId>"
    export control_plane_env_code="LAB"
 
    az identity create --name ${control_plane_env_code}-Deployment-Identity --resource-group <ExistingResourceGroup>
@@ -69,25 +69,24 @@ The SAP automation deployment framework can also use a user assigned identity (M
    | `msi_id`                 | `armId`         |
    | `msi_objectid`           | `objectId`      |
 
-
 1. Assign the **Contributor** role to the identity.
 
-   ```cloudshell-interactive
+   ```azurecli-interactive
    export appId="<appId>"
 
    az role assignment create --assignee $msi_objectid  --role "Contributor"  --scope /subscriptions/$ARM_SUBSCRIPTION_ID
    ```
 
-1. Optionally, assign the User Access Administrator role to the identity.
+1. Optionally, assign the **User Access Administrator** role to the identity.
 
-   ```cloudshell-interactive
+   ```azurecli-interactive
    export appId="<appId>"
 
    az role assignment create --assignee $msi_objectid --role "User Access Administrator"  --scope /subscriptions/$ARM_SUBSCRIPTION_ID
    ```
 
-> [!IMPORTANT]
-> If you don't assign the **User Access Administrator** role to the managed identity, you can't assign permissions using the automation framework.
+   > [!IMPORTANT]
+   > If you don't assign the **User Access Administrator** role to the managed identity, you can't assign permissions using the automation framework.
 
 ### Create an application registration for the web application
 
@@ -137,11 +136,11 @@ When you choose a name for your service principal, make sure that the name is un
 
 1. Create the service principal with **Contributor** permissions.
 
-   ```cloudshell-interactive
-   export    ARM_SUBSCRIPTION_ID="<subscriptionId>"
+   ```azurecli-interactive
+   export ARM_SUBSCRIPTION_ID="<subscriptionId>"
    export control_plane_env_code="LAB"
 
-   az ad sp create-for-rbac --role="Contributor"  --scopes="/subscriptions/$ARM_SUBSCRIPTION_ID"   --name="$control_plane_env_code-Deployment-Account"
+   az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/$ARM_SUBSCRIPTION_ID" --name="$control_plane_env_code-Deployment-Account"
    ```
 
    Review the output. For example:
@@ -168,26 +167,18 @@ When you choose a name for your service principal, make sure that the name is un
 
 1. Optionally, assign the **User Access Administrator** role to the service principal.
 
-   ```cloudshell-interactive
+   ```azurecli-interactive
    export appId="<appId>"
 
-   az role assignment create --assignee $appId --role "User Access Administrator"  --scope /subscriptions/$ARM_SUBSCRIPTION_ID
+   az role assignment create --assignee $appId --role "User Access Administrator" --scope /subscriptions/$ARM_SUBSCRIPTION_ID
    ```
 
-> [!IMPORTANT]
-> If you don't assign the **User Access Administrator** role to the service principal, you can't assign permissions using the automation framework.
+   > [!IMPORTANT]
+   > If you don't assign the **User Access Administrator** role to the service principal, you can't assign permissions using the automation framework.
 
 ## Preflight checks
 
-You can use the following script to perform preflight checks. The script performs the following checks and tests:
-
-- Checks if the service principal has the correct permissions to create resources in the subscription.
-- Checks if the service principal has **User Access Administrator** permissions.
-- Create an Azure Virtual Network.
-- Create an Azure Virtual Key Vault with private end point.
-- Create an Azure Files Network File Share (NFS).
-- Create an Azure virtual machine (VM) with data disk using Premium Storage v2.
-- Check access to the required URLs using the deployed VM.
+You can use the following script to perform preflight checks:
 
 ```powershell
 $sdaf_path = Get-Location
@@ -218,6 +209,16 @@ else {
 .\Test-SDAFReadiness.ps1
 }
 ```
+
+The script performs the following checks and tests:
+
+- Checks if the service principal has the correct permissions to create resources in the subscription.
+- Checks if the service principal has **User Access Administrator** permissions.
+- Create an Azure Virtual Network.
+- Create an Azure Virtual Key Vault with private end point.
+- Create an Azure Files Network File Share (NFS).
+- Create an Azure virtual machine (VM) with data disk using Premium Storage v2.
+- Check access to the required URLs using the deployed VM.
 
 ## Use SAP Deployment Automation Framework from Azure DevOps Services
 
