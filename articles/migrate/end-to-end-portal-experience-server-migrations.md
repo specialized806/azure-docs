@@ -43,7 +43,7 @@ This section explains how to start execution for your servers discovered using t
 To start migration execution from your Azure Migrate project, follow the steps:
 
 1. In Azure Migrate project, go to **Execute** > **Migrations**, and then select **Start execution**.
-1. On the **Specify intent** pane, select **Servers** or **Virtual machines (VMs)**, and choose Azure VM as the target. You can either select a existing assessment or manually select servers from the discovered inventory.
+1. On the **Specify intent** pane, select **Servers** or **Virtual machines (VMs)**, and choose Azure VM as the target. You can either select an existing assessment or manually select servers from the discovered inventory.
 1. Under **Discovery method**, select the appliance that matches your source environment **(VMware, Hyper‑V, or Physical)**. Only appliances that are already configured appear in the list.
 
     - **VMware agentless**: Select the **VMware appliance**, select **Agentless migration**, and then select **Continue**.
