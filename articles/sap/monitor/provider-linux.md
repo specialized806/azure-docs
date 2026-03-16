@@ -24,7 +24,7 @@ In this how-to guide, you learn how to create a Linux operating system (OS) prov
 - Node exporter uses the default port **9100** to expose the metrics. If you want to use a custom port, make sure to open the port in the firewall and use the same port while creating the provider.
 - Default port **9100** or custom port that is configured for node exporter should be open and listening on the Linux host.
 
-## Install node exporter on Linux
+## Set up the node exporter using a script
 
 1. Right-click on the relevant node exporter version for linux from https://prometheus.io/download/#node_exporter and copy the link address to be used in the following command.
 For example, https://github.com/prometheus/node_exporter/releases/download/v1.6.1/node_exporter-1.6.1.linux-amd64.tar.gz
@@ -37,28 +37,12 @@ For example, https://github.com/prometheus/node_exporter/releases/download/v1.6.
    # Replace "xxx" with the version number
 
    wget https://github.com/prometheus/node_exporter/releases/download/v<xxx>/node_exporter-<xxx>.linux-amd64.tar.gz
-
-   tar xvfz node_exporter-<xxx>.linux-amd64.tar.gz
-
+   tar xzvf node_exporter-<xxx>.linux-amd64.tar.gz
    cd node_exporter-<xxx>.linux-amd64
-
-   ./node_exporter --web.listen-address=":9100" &
+   nohup ./node_exporter --web.listen-address=":9100" &
    ```
 
 The node exporter now starts collecting data. You can export the data at `http://<ip>:9100/metrics`.
-
-## Set up the node exporter using a script
-
-```bash
-# To get the latest node exporter version from: https://prometheus.io/download/#node_exporter
-# Right-click on the linux node exporter version and copy the link address which will be used in the below command. For example - https://github.com/prometheus/node_exporter/releases/download/v1.6.1/node_exporter-1.6.1.linux-amd64.tar.gz
-# Change to the directory where you want to install the node exporter.
-
-wget https://github.com/prometheus/node_exporter/releases/download/v<xxx>/node_exporter-<xxx>.linux-amd64.tar.gz
-tar xzvf node_exporter-<xxx>.linux-amd64.tar.gz
-cd node_exporter-<xxx>linux-amd64
-nohup ./node_exporter --web.listen-address=":9100" &
-```
 
 ### Set up a systemctl service to start node exporter on a VM restart
 
@@ -66,7 +50,7 @@ nohup ./node_exporter --web.listen-address=":9100" &
 1. Run the below commands to enable node exporter to run as a service.
 
    > [!NOTE]
-   > Replace this `xxxx` with the version of node exporter. For example, `1.6.1`.
+   > Replace `<xxx>` with the version of node exporter. For example, `1.6.1`.
 
    ```bash
    # Change to the directory where node exporter bits are downloaded and copy the node_exporter folder to path /usr/bin
