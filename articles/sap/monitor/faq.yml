@@ -25,7 +25,7 @@ sections:
       - question: |
           Do I need specific permission on Azure Subscription to deploy Azure Monitor for SAP solutions?
         answer: |
-           You need to have contributor or owner access to deploy Azure Monitor for SAP solutions.
+           You need to have __Contributor__ or __Owner__ access to deploy Azure Monitor for SAP solutions.
 
       - question: |
           In which regions is this service available?
