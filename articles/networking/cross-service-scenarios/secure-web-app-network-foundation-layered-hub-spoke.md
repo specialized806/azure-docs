@@ -170,12 +170,12 @@ Both the hub and spoke virtual networks use NSGs to enforce default-deny rules a
 > [!NOTE]
 > **Deployment step 6.** Enable DDoS Protection on both virtual networks before creating public IPs for Application Gateway or Bastion. See [Deployment steps](#deployment-steps).
 
-All Azure services with public IPv4 and IPv6 addresses receive [Azure DDoS infrastructure protection](/azure/ddos-protection/ddos-protection-overview) at no extra cost. This baseline protection covers most scenarios, but it doesn't provide adaptive tuning, attack diagnostics, rapid response support, or cost protection guarantees.
+All Azure services with public IPv4 and IPv6 addresses receive [Azure DDoS infrastructure protection](/azure/ddos-protection/ddos-protection-overview) at no extra cost. However, infrastructure protection defends the Azure platform as a whole—it doesn't adaptively tune to your specific traffic patterns or protect individual customer resources. For workloads that accept traffic from the public internet, enable a DDoS Protection plan (Network Protection or IP Protection) to get resource-level adaptive tuning, attack diagnostics, rapid response support, and cost protection guarantees.
 
 The decision is straightforward:
 
-- **Public IP facing the internet → Enable DDoS Protection.** Choose the tier based on how many public IPs you protect.
-- **Private only (no public IP), or behind Azure Front Door → Infrastructure protection is sufficient.** Front Door includes integrated DDoS protection.
+- **Public IP facing the internet → Enable DDoS Protection.** Choose the tier based on how many public IPs you protect. Don't rely on infrastructure protection alone for customer-facing workloads.
+- **Private only (no public IP), or behind Azure Front Door → A DDoS Protection plan is optional.** Front Door includes its own integrated DDoS protection. Private-only resources have no public endpoint to attack, but infrastructure protection alone doesn't provide resource-level guarantees.
 
 | Tier | Best for | Key extras over infrastructure protection | Pricing model |
 |---|---|---|---|
@@ -183,6 +183,9 @@ The decision is straightforward:
 | DDoS IP Protection | Fewer than 15 public IPs | Adaptive tuning, attack diagnostics | Per public IP |
 
 In a hub-spoke topology, link the DDoS Protection plan to both the hub and spoke VNets so that public IPs in either network are covered.
+
+> [!IMPORTANT]
+> Azure DDoS infrastructure protection and Azure DDoS Protection are separate services. Infrastructure protection defends the Azure platform and doesn't provide adaptive tuning, diagnostics, or response support for your individual resources. Don't treat it as a substitute for a DDoS Protection plan on internet-facing workloads.
 
 For more information, see [Azure DDoS Protection tier comparison](/azure/ddos-protection/ddos-protection-sku-comparison).
 
