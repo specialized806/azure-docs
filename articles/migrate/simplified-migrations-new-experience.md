@@ -27,102 +27,104 @@ In this article, you learn how to:
 
 ## Prerequisites  
 
-Before you start, install the Azure Migrate appliance and complete server discovery. The appliance is required for the end-to-end experience (discovery through execution tracking) for all supported source environments.
+Before you start, install the Azure Migrate appliance and complete server discovery. The appliance is required for the end-to-end experience (discovery through execution tracking) for all supported source environments. For more information, see;
 
-Add links
-add links
-add links
+- [Tutorial: Discover servers running in a VMware environment with Azure Migrate](tutorial-discover-vmware.md).
+- [Tutorial: Discover servers running on Hyper-V with Azure Migrate: Discovery and assessment](tutorial-discover-hyper-v.md).
+- [Discover physical servers and servers running in AWS and GCP](tutorial-discover-physical.md)
 
-**Redirect to classic Portal:** 
+### When to use the classic portal experience
 
-Some of the execution capabilities are currently only available via the classic portal experience such as 
+The following capabilities are currently available only in the classic portal experience:
+- ISV-linked projects.
+- Agent-based and Hyper-V migrations started by using the replication appliance directly (without completing discovery through Azure Migrate). These servers won’t appear in the new end-to-end tracking experience (not recommended).
+- Hyper-V infrastructure blades that monitor replication provider health and status - will be available in the new experience in a future release.
 
-- ISV-linked projects 
+Add IMAGE
 
-- Executing agent-based and Hyper-V migrations directly by discovering and migrating servers via the replication appliance without completing discovery via Azure Migrate experience (not recommended). These servers will not be available for tracking in the new end to end experience. Please complete discovery via the Azure migrate appliance first for an enhanced end to end experience. 
+- Initial replication Progress % for servers - will be available in new E2E in the upcoming release.
+- Properties blade to view Recovery services fault - will be available in the new E2E in upcoming release. 
 
-- To view Hyper-V Infrastructure blades for monitoring the replication provider health/status (This will be brought to new E2E in upcoming release)
+Add IMAGE
 
-Add image
+>[!NOTE]
+> - These capabilities are currently available only in the classic portal. To switch, go to Execute > Migrations and use the link on the page to open the classic experience.
+> - The classic experience is still available. Any future change will be announced in advance.
 
-- Initial replication Progress % for servers (This will be brought to new E2E in upcoming release) 
-- Properties blade to view Recovery services fault (This will be brought to new E2E in upcoming release) 
-
- You can choose to redirect to the classic portal experience by navigating to Execute > Migrations blade on the left TOC using the link available on the page to navigate to the classic experience. The above capabilities are available on the classic Portal. 
-Add image 
- 
-
-Note: The classic experience is not blocked/stopped. Customers can still use classic portal for their workflows, and any change will be announced well in advance. 
-
-**Executing Migrations in New Experience:** 
+### Start execution in the new experience
 
 In Execute Migrations, 
 
-1.  Select Start Execution 
+1. In your Azure Migrate project, select **Execute** > **Migrations**.
+1. Select **Start execution**. 
+1. On **Specify intent**, select **Servers (or Virtual machines (VMs))** and then select **Azure VM** as the target.
+1. Select an assessment to use (optional), or select servers from inventory.
+1.	Select **Start Execution**. 
 
-Add image
+Add IMAGE
 
-In Specify Intent blade, Select Servers or Virtual Machines (VM) and Azure VM as the Target. You can choose to select a pre created assessment (Now works for physical and Hyper-V as well in the new experience) or manually choose the inventory from the discovered servers.  
+1. **Discovery method**: Select the appliance that matches your source environment (VMware, Hyper-V, or Physical). Only appliances that are already configured appear.
+    - **VMware**: Select **Agentless** (recommended) or **Agent-based**, and then select **Next**
+    - **Hyper-V**: Install the replication provider on the Hyper-V hosts by using the link shown in the blade. After configuration, continue to the next step.
+    - **Physical servers (and VMware agent-based)**: Set up the replication appliance (covered in the next step), and then select Continue.
 
-**Under Discovery Method:** Select the appropriate appliance configured based on the source environment and method (VMWare, Physical, Hyper-V). Only the appliances already configured will be showed here.  
+Add IMAGE
 
-- For VMWare, you can select either Agentless (recommended) or Agent-based method and click next. 
-- For Hyper-V, you need to install the replication provider on the Hyper-V hosts to proceed with replication via the link shown in the blade. Proceed to next step after configuring the provider.  
-- For Physical/VMware agent-based, you need to set up the replication appliance (covered in next step), click continue 
+1. In **Workloads**, select the servers to replicate. You can replicate up to 10 servers in parallel.
+1. Select the security type - **Standard or Trusted launch virtual machines**.
 
+Add IMAGE
 
-Add image
+1. **VMware agent-based and physical servers**: Select the replication appliance if it’s already configured. If this is your first time running agent-based migrations in the project, set up and register the replication appliance by following the steps in the [migration tutorial](tutorial-migrate-physical-virtual-machines.md#simplified-experience-recommended). For VMware agent-based migrations, select the vCenter Server that manages the VMs and choose credentials for Mobility service installation or select credential-less to install the agent manually.
 
-Add image
+Add IMAGE
 
-2.  In the Workloads section, select the servers you want to replicate. You can select up to 10 servers for replication in parallel. Select the security type (Standard or Trusted Launch Virtual Machines).  
-
-Add image
-
- **2a. For VMware Agent-based/Physical servers,** select the replication appliance to migrate your servers if already configured. If you are executing migrations for the first time via agent-based migrations in the project, click set up the replication appliance and complete the registration as per steps provided in this [documentation](https://learn.microsoft.com/en-us/azure/migrate/tutorial-migrate-physical-virtual-machines?view=migrate#simplified-experience-recommended). For VMWare agent-based, you need to select the vCenter server that is managing the VMs to be migrated (Not required for physical) and select the appropriate credentials for mobility agent installation (choose credential less for manual agent installation). 
+1. Configure **Target, Compute, Disks**, and **Tags**, review your settings, and then start execution.
  
-Add image 
+Add IMAGE
 
 3.  Complete the Target, Compute, Disk, Tags settings (No changes from classic portal experience) and review and start execution. 
 
-Add image
-**Tracking Migrations** 
+Add IMAGE
 
-**Note:** For existing migrations, you had already initiated on the classic experience, these would be tracked in the new portal only after refresh or by performing any actions on the existing replications/migrations in the classic portal. 
+### Tracking Migrations
 
-You can track the existing migrations by navigating to Execute, clicking on Migrations. You can also track workloads that were executed as part of waves here along with other server migrations executed directly as discussed in the previous section. You can either track the same by choosing View by applications/View by workloads on the top right corner. 
+>[!NOTE]
+> Migrations that you started in the classic experience appear in the new experience after you refresh, or after you take an action on the replication or migration in the classic portal.
 
-Add image
+1. To track migrations, go to **Execute** > **Migrations**. Use **View by applications** or **View by workloads** to switch how items are grouped.
 
-The Execution progress is tracked under 3 stages **Preparation, Testing and Completion** and is tracked under the column “**Execution stage**”.  For any failures or action is pending in any stage it will be appropriately tracked under the “**Execution status”** column as “**In progress” “In error” “Action Pending” and “Completed”.**  
+Add IMAGE
 
-You can click on any of the servers to view the status and take appropriate actions from the specific blades using the drop down shown in the blades (See Image below). 
+1. Execution progress is shown in **Execution stage** and **Execution status**:
 
-Add image
+- **Execution stage**: Preparation, Testing, or Completion.
+- **Execution status**: In progress, In error, Action pending, or Completed.
+
+1. Select a server to open the details view. Use the stage drop-down menus to review status and take actions.
+
+Add IMAGE
+
+1. **Preparation**: Initial replication is running. Typical task - **Replication of data** (initial replication).
+1. **Testing**: Initial replication is complete and delta replication is in progress. Recommended tasks - **Test migration**, then **Clean up test migration**. You can also skip testing and start migration from the Completion stage.
+1. **Completion**: Start and finalize the migration. Typical tasks: **Migrate**, then **Complete migration**, shut down and clean up source resources to finish the migration.
 
 
-- **Preparation: **Workloads that are successfully enabled for replication and is in progress of Initial replication will be grouped under Preparation stage until the Initial replication or “replication of data “is completed. You can take actions for this stage by clicking on the Preparation drop down in the drill down blade shown below. 
+### Understand context blades
 
-Steps/Tasks under this stage: Replication of data (initial replication). 
+Use context blades to get a quick overview of migration status.
 
-- **Testing: **Workloads for which Initial replication is completed and delta replication in progress will be tracked here, and you can do test migrations (recommended) and clean up test operations by clicking on the Testing drop down in the drill down blade as shown below. you can skip and directly start migrations from the completion drop downs in the drill down blade.  
+Add IMAGE
 
-Steps/tasks under this stage: Test Migration, Clean up test migration 
+Context blades provide a quick overview of how many workloads are in each stage and how many need attention. You can’t take actions from these blades.
 
-- **Completion: **This can be done post preparation (replication of data) is completed and workloads are in Testing status or post-test, and clean-up operations are completed by starting migrations for them under completion drop down in the drop-down blade as shown below. 
+Add IMAGE
 
-Steps/Tasks under this stage: Migration, Complete Migration (This is to shut down, cleanup of the VMs to ensure that the end-to-end migration is complete) 
+### Related monitoring
 
-  **Context Blades:** 
+**Jobs** and **Events** are available under the **Manage** section of your Azure Migrate project.
 
-Add image
 
-The context blades are intended to quickly view the count of workloads in each phase along with how many workloads needs attention. You can’t take any actions from those blades and only for quick overview the migrations. 
-
-Add image
  
-**Others:** 
-
- **Jobs **and **Events** are placed under Manage section of the Project in the left side TOC Pane. 
 
  
