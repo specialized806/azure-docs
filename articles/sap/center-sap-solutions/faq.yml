@@ -6,18 +6,18 @@ metadata:
   ms.service: sap-on-azure
   ms.subservice: center-sap-solutions
   ms.custom: references_regions
-  ms.date: 03/13/2026
+  ms.date: 03/16/2026
   ms.author: sagarkeswani
   author: sagarkeswani
 
-title: Common questions about  Azure Center for SAP solutions
+title: Common questions about  Azure Center for SAP Solutions
 summary: |
-  This article answers commonly asked questions about Azure Center for SAP solutions.
+  This article answers commonly asked questions about Azure Center for SAP Solutions (ACSS).
 
 sections:
   - name: General
     questions:
-      - question:  What capabilities do you gain with Azure Center for SAP Solutions (ACSS)?
+      - question:  What capabilities do you gain with ACSS?
         answer: |
                 Before the availability of ACSS, customers relied on documentation and frameworks to help them set up system architecture. Then they had to figure out how to access the VMs to install SAP. With ACSS, customers can deploy SAP by using a guided experience that streamlines their ability to select and configure resources. When a customer deploys or registers an existing SAP system, ACSS creates a logical representation of the system, or a Virtual Instance for SAP solutions (VIS). The VIS unlocks management capabilities, such as the ability to run quality checks and to manage and monitor the system at the SAP layer as well as the virtual machine (VM) layer.
 
@@ -32,7 +32,7 @@ sections:
 
       - question:  Which scenarios does ACSS support?
         answer: |
-                ACSS supports the following capabilities at this time.
+                ACSS supports the following capabilities at this time:
 
                 - Deployment of infrastructure for SAP S4/HANA systems
                 - Automated Software installation of SAP S/4/HANA 1909 support package stack (SPS) 03, S/4HANA 2020 SPS 03, S/4HANA 2021 Intelligent Selling Services (ISS) 00
@@ -42,13 +42,13 @@ sections:
                 - Creating a new Azure Monitor for SAP solutions provider or integrating an existing one
                 - Start and Stop of an SAP system, individual SAP instances, and HANA database
                 - Quality checks and recommendations for an SAP system with Azure Advisor
-                - Analyze the cost of running the SAP System in Azure [unshared resources *only*]
+                - Analyze the cost of running the SAP System in Azure (unshared resources _only_)
 
                 ACSS also offers the ability to customize the names of the Azure resources deployed through it via API, CLI, and PowerShell. To deploy a system with custom resource naming conventions, consider referring to sample API payload templates.
 
-      - question:  What is Azure Virtual Instance for SAP solutions?
+      - question:  What is Azure VIS?
         answer: |
-                The Virtual Instance for SAP solutions (VIS) resource is an essential component of ACSS that forms the foundation for the new experience. The VIS is a logical representation of your SAP system in Azure that provides SAP awareness in Azure and unlocks new management capabilities. When you deploy a new SAP system or register an existing SAP system, ACSS automatically creates a VIS for you.
+                The VIS resource is an essential component of ACSS that forms the foundation for the new experience. The VIS is a logical representation of your SAP system in Azure that provides SAP awareness in Azure and unlocks new management capabilities. When you deploy a new SAP system or register an existing SAP system, ACSS automatically creates a VIS for you.
 
       - question:  Is ACSS a fully managed offering?
         answer: |
@@ -60,9 +60,9 @@ sections:
 
                 - *Architecture Visualization* - The feature helps customers visualize the architecture of the SAP S/4/HANA system being deployed and can be downloaded for documentation purposes.
 
-      - question:  Which regions support Azure Virtual Instance for SAP solutions as part of ACSS?
+      - question:  Which regions support Azure VIS as part of ACSS?
         answer: |
-                Azure Virtual Instance for SAP solutions is available in the following regions:
+                Azure VIS is available in the following regions:
 
                 - Australia Central
                 - Australia East
@@ -107,19 +107,19 @@ sections:
                 - SAP systems running on Windows, SUSE, and RHEL Linux Operating Systems
                 - SAP systems running on HANA, DB2, SQL Server, Oracle, Max DB, SAP ASE databases
 
-                Refer to the [product documentation](/azure/sap/center-sap-solutions/register-existing-system#prerequisites) to review the complete list of supported and unsupported scenarios.
+                Refer to [Register an existing SAP system prerequisites](/azure/sap/center-sap-solutions/register-existing-system#prerequisites) to review the complete list of supported and unsupported scenarios.
 
                 > [!NOTE]
                 > If you're registering a system based on Oracle Linux OS and/or Oracle Database, there's limited support for quality checks, health, and status and start-stop offerings.
 
-      - question:  What are the prerequisites to register an existing SAP system as an Azure Virtual Instance for SAP solutions?
+      - question:  What are the prerequisites to register an existing SAP system as an Azure VIS?
         answer: |
-                Here are the prerequisites for registering existing SAP systems as a Virtual Instance for SAP (VIS) resource. More details can be found in the [product documentation](/azure/sap/center-sap-solutions/register-existing-system#prerequisites).
+                Here are the [prerequisites](/azure/sap/center-sap-solutions/register-existing-system#prerequisites) for registering existing SAP systems as a VIS resource.
 
                 - Appropriate role access on the Azure subscription or resource groups where you have the SAP system resources.
-                    - *Azure Center for SAP solutions administrator* and *Managed Identity Operator* or equivalent role access.
-                    - A *User-assigned managed identity* that has *Azure Center for SAP solutions service role* access on the Compute and Storage resource groups and *Reader role* access on the Virtual Network resource group of the SAP system. ACSS service uses this identity to discover your SAP system resources and register the system as a VIS resource.
-                - Make sure ASCS, Application Server, and Database virtual machines of the SAP system are in Running state.
+                    - __Azure Center for SAP solutions administrator__ and __Managed Identity Operator__ or equivalent role access.
+                    - A __User-assigned managed identity__ that has __Azure Center for SAP solutions service__ role access on the Compute and Storage resource groups and __Reader__ role access on the Virtual Network resource group of the SAP system. ACSS service uses this identity to discover your SAP system resources and register the system as a VIS resource.
+                - Make sure ASCS, Application Server, and Database virtual machines of the SAP system are in _Running_ state.
                 - `Sapcontrol` and `saphostctrl` executable files on ASCS, App server, and Database.
                 - Confirm the `sapstartsrv` process is running on all SAP instances and for SAP hostctrl agent on all the VMs in the SAP system.
 
@@ -127,7 +127,7 @@ sections:
         answer: |
                 When you register an existing SAP system with ACSS, ACSS creates the following logical Azure resources:
 
-                - Virtual Instance for SAP solutions
+                - Azure VIS
                 - Central service instance for SAP solutions
                 - App server instance for SAP solutions
                 - Database for SAP solutions
@@ -136,24 +136,25 @@ sections:
 
       - question:  Does ACSS install any extension during installation and registration?
         answer: |
-                Yes, ACSS automatically installs two extensions on both Windows and Linux virtual machines to enable workload-specific capabilities and monitoring. To ensure successful registration with ACSS, make sure the following extensions are allowlisted
+                Yes, ACSS automatically installs two extensions on both Windows and Linux virtual machines to enable workload-specific capabilities and monitoring. To ensure successful registration with ACSS, make sure the following extensions are allowlisted.
 
                 Linux:
+
                 - Extension name: Microsoft.Azure.Workloads.WorkloadsExtensionLinux
-                  Extension publisher: Microsoft.Azure.Workloads
+                - Extension publisher: Microsoft.Azure.Workloads
 
                 - Extension name: Microsoft.Azure.Workloads.MonitoringExtensionLinux
-                  Extension publisher: Microsoft.Azure.Workloads
+                - Extension publisher: Microsoft.Azure.Workloads
 
                 Windows:
+
                 - Extension name: Microsoft.Azure.Workloads.WorkloadsExtensionWindows
-                  Extension publisher: Microsoft.Azure.Workloads
+                - Extension publisher: Microsoft.Azure.Workloads
 
                 - Extension name: Microsoft.Azure.Workloads.MonitoringExtensionWindows
-                  Extension publisher: Microsoft.Azure.Workloads
+                - Extension publisher: Microsoft.Azure.Workloads
 
-
-  - name: Deploying New SAP System Questions
+  - name: Deploying a new SAP system questions
     questions:
 
       - question:  What are the prerequisites to deploy a new SAP system with ACSS?
@@ -171,7 +172,7 @@ sections:
         answer: |
                 When you deploy and install an SAP S/4/HANA system with ACSS, ACSS creates the following logical Azure resources:
 
-                - Virtual Instance for SAP solutions
+                - Azure VIS
                 - Central service instance for SAP solutions
                 - App server instance for SAP solutions
                 - Database for SAP solutions
@@ -183,7 +184,7 @@ sections:
       - question:  How do I sign in to an SAP system after deploying it from ACSS?
         answer: |
                 Once you deploy and install an SAP S/4/HANA system through ACSS, you can use:
-                
+
                 - The [SAP master password](/azure/sap/center-sap-solutions/manage-virtual-instance#find-sap-and-hana-passwords)
                 - HANA database [username](/azure/sap/center-sap-solutions/manage-virtual-instance#connect-to-hana-database)
                 - The password available in the Managed resource group key vault to sign in to the SAP GUI and connect to the SAP HANA database.
@@ -192,16 +193,16 @@ sections:
         answer: |
                 Refer to [Default instance numbers](/azure/sap/center-sap-solutions/manage-virtual-instance#default-instance-numbers) to learn how the instance numbers are configured through ACSS. Instance numbers are currently not configurable.
 
-  - name: Management and Miscellaneous Questions
+  - name: Management and miscellaneous questions
     questions:
 
-      - question:  Do Start and Stop operations on Virtual Instance for SAP solutions resource also start or stop the underlying virtual machines?
+      - question:  Do Start and Stop operations on a VIS resource also start or stop the underlying VMs?
         answer: |
-                No. Start and Stop operations on the Virtual Instance for SAP solutions resource don't impact the virtual machine running state. The same is true for Start and Stop on the underlying child resources, such as the Central service instance and Application server instance. To start SAP, the underlying VMs for that SAP system must be running.
+                No. _Start_ and _Stop_ operations on the VIS resource don't impact the VM running state. The same is true for _Start_ and _Stop_ on the underlying child resources, such as the Central service instance and Application server instance. To start SAP, the underlying VMs for that SAP system must be running.
 
       - question:  What resources are available to learn more?
         answer: |
-                Customers and partners can find more information at Microsoft Learn: https://learn.microsoft.com and [SAP on Azure Resources page](/users/lannateh-3810/collections/7rysj5w2007dn?wt.mc_id=saponazurecta_collections_webpage_azuremktg_csainfra)
+                Customers and partners can find more information at [Microsoft Learn](https://learn.microsoft.com) and [SAP on Azure Resources page](/users/lannateh-3810/collections/7rysj5w2007dn?wt.mc_id=saponazurecta_collections_webpage_azuremktg_csainfra).
 
 
       - question:  What is the SLA for this service?
