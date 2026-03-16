@@ -20,7 +20,7 @@ This guide shows you how to deploy the Geospatial Consumption Zone (GCZ) service
 ## Prerequisites
 
 - Azure Subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- [Azure Key Vault](/azure/key-vault/general/overview/quick-create-cli).
+- [Azure Key Vault](/azure/key-vault/general/quick-create-portal).
 - Azure Kubernetes Cluster (AKS) with virtual network integration. See [Create an Azure Kubernetes Service (AKS) cluster](/azure/aks/tutorial-kubernetes-deploy-cluster) and [Azure Container Networking Interface (CNI) networking](/azure/aks/azure-cni-overview) for further instructions.
 - [Azure Cloud Shell](/azure/cloud-shell/overview) or [Azure CLI](/cli/azure/install-azure-cli), kubectl, and Git CLI.
 
@@ -496,3 +496,42 @@ To deploy the GCZ, you would need to create an App Registration in Microsoft Ent
 
 > [!IMPORTANT]
 > If you wish to update the configuration files (for example, `application.yml` or `koop-config.json`), you must update the AKS configuration (configmap) and then delete the existing pods for the `provider` and `transformer` services. The pods are recreated with the new configuration. If you change the configuration using the GCZ APIs, the changes **will not** persist after a pod restart.
+
+## Publish GCZ APIs publicly (optional)
+
+If you want to expose the GCZ APIs publicly, you can use Azure API Management (APIM).
+Azure API Management allows us to securely expose the GCZ service to the internet, as the GCZ service doesn't yet have authentication and authorization built in.
+Through APIM we can add policies to secure, monitor, and manage the APIs.
+
+### Prerequisites
+
+- An Azure API Management instance. If you don't have an Azure API Management instance, see [Create an Azure API Management instance](/azure/api-management/get-started-create-service-instance).
+- The GCZ APIs are deployed and running.
+
+> [!IMPORTANT]
+> The Azure API Management instance will need to be injected into a virtual network that is routable to the AKS cluster to be able to communicate with the GCZ API's.
+
+### Add the GCZ APIs to Azure API Management
+
+#### Download the GCZ OpenAPI specifications
+
+1. Download the two OpenAPI specification to your local computer.
+   - [GCZ Provider](https://github.com/microsoft/adme-samples/blob/main/services/gcz/gcz-openapi-provider.yaml)
+   - [GCZ Transformer](https://github.com/microsoft/adme-samples/blob/main/services/gcz/gcz-openapi-transformer.yaml)
+
+1. Open each OpenAPI specification file in a text editor and replace the `servers` section with the corresponding IPs of the AKS GCZ Services' Load Balancer.
+
+   ```yaml
+   servers:
+     - url: "http://<GCZ-Service-LoadBalancer-IP>/ignite-provider"
+   ```
+
+##### [Azure portal](#tab/portal)
+
+[!INCLUDE [Azure portal](includes/how-to/how-to-deploy-gcz/deploy-gcz-apim-portal.md)]
+
+##### [Azure CLI](#tab/cli)
+
+[!INCLUDE [Azure CLI](includes/how-to/how-to-deploy-gcz/deploy-gcz-apim-cli.md)]
+
+---
