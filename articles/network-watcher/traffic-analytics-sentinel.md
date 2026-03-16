@@ -18,7 +18,7 @@ Traffic Analytics also supports integration with Microsoft Sentinel. Microsoft S
 
 Together, Traffic Analytics and Microsoft Sentinel enable both proactive monitoring and reactive investigation. Flow-level telemetry highlights unexpected communication paths, unusual traffic volumes, and indicators of compromise, allowing you to detect deviations from baseline behavior and investigate events with reliable and structured insights.
 
-# Prerequisites
+## Prerequisites
 
 - An Azure account with an active subscription.
 
@@ -28,7 +28,7 @@ Together, Traffic Analytics and Microsoft Sentinel enable both proactive monitor
 
 - **Microsoft Sentinel Contributor** to enable rules in Sentinel
 
-# Key Capabilities
+## Key Capabilities
 
 - Monitor and visualize network traffic:  
   Provides insights into flow patterns, protocol usage, top talkers, and communication paths using aggregated Virtual Network Flow Logs.
@@ -42,7 +42,7 @@ Together, Traffic Analytics and Microsoft Sentinel enable both proactive monitor
 - Simplify operational visibility:  
   Helps you evaluate baseline traffic, highlight deviations, and understand network exposure with minimal configuration effort.
 
-# Integrating Microsoft Sentinel with Traffic Analytics
+## Integrating Microsoft Sentinel with Traffic Analytics
 
 You can easily integrate Microsoft Sentinel with Traffic Analytics directly from the Azure portal.
 
@@ -78,7 +78,6 @@ Finally, enable the relevant network analytics rules to start generating securit
 
 - Filter by **Content type: Analytics rule**, then search for **Network** to view all available network-related detection rules that can be enabled in your workspace.
 
-<!-- -->
 
 - To enable an analytics rule, select the rule from the list and then select **Create rule**. This creates the rule in your workspace and starts generating alerts based on matching network activity. This opens the **Analytics rule wizard**
 
@@ -94,7 +93,7 @@ Finally, enable the relevant network analytics rules to start generating securit
 
 Once enabled, the rule runs automatically on Traffic Analytics data and generates alerts and incidents when matching network activity is detected.
 
-# Detect threats and use AI-assisted investigation capabilities
+## Detect threats and use AI-assisted investigation capabilities
 
 Microsoft Sentinel uses analytics rules and built-in intelligence to analyze Traffic Analytics data and detect suspicious or malicious network activity. Sentinel evaluates normalized network flow data to identify common threat patterns such as reconnaissance, lateral movement, abnormal traffic spikes, and communication with unexpected or high-risk endpoints.
 
