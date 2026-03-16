@@ -1,6 +1,6 @@
 ---
 title: Register a client application in Microsoft Entra ID for the Azure Health Data Services
-description: How to register a client application in the Microsoft Entra ID and how to add a secret and API permissions to the Azure Health Data Services
+description: How to register a client application in the Microsoft Entra ID and add a secret and API permissions to the Azure Health Data Services
 author: chachachachami
 ms.service: azure-health-data-services
 ms.subservice: fhir
@@ -63,19 +63,18 @@ To create a new client secret, use the following steps.
     [ ![Screenshot of certificates and secrets.](media/register-application-new-client-secret.png) ](media/register-application-new-client-secret.png#lightbox)
 
 1. Copy the secret value by selecting the copy button next to the **Value**.
-    [ ![Screenshot of certificates and secrets.](media/register-application-copy-client-secret.png) ](media/register-application-copy-client-secret.png#lightbox)
+    [ ![Screenshot of copy client secret.](media/register-application-copy-client-secret.png) ](media/register-application-copy-client-secret.png#lightbox)
 
 
 >[!NOTE]
 >It's important that you save the secret value, not the secret ID.
 
-[ ![Screenshot of certificates and secrets.](media/register-application-new-client-secret.png) ](media/register-application-new-client-secret.png#lightbox)
 
-Optionally, you can upload a certificate (public key) and use the Certificate ID, a GUID value associated with the certificate. For testing purposes, you can create a self-signed certificate by using tools such as the PowerShell command `New-SelfSignedCertificate`, and then export the certificate from the certificate store.
+Optionally, you can upload a certificate (public key) and use the Certificate ID, a GUID value associated with the certificate. For testing purposes, you can create a self-signed certificate by using tools such as the PowerShell command `New-SelfSignedCertificate`, and then export the certificate from the certificate store. For more information, see [Create a self-signed public certificate to authenticate your application](/entra/identity-platform/howto-create-self-signed-certificate)  
 
 ## API permissions
 
-The following steps are required for the DICOM service, but optional for the FHIR service. In addition, you manage user access permissions or role assignments for Azure Health Data Services through RBAC. For more details, see [Configure Azure RBAC for Azure Health Data Services](configure-azure-rbac.md).
+The following steps are required for the DICOM service, but optional for the FHIR service. In addition, you manage user access permissions or role assignments for Azure Health Data Services through RBAC. For more information, see [Configure Azure RBAC for Azure Health Data Services](configure-azure-rbac.md).
 
 1. Select **API permissions**.
 
@@ -96,8 +95,8 @@ The following steps are required for the DICOM service, but optional for the FHI
    [ ![Screenshot of scopes (permissions) that the client application will ask for on behalf of a user.](dicom/media/dicom-select-scope.png) ](dicom/media/dicom-select-scope.png#lightbox)
 
 >[!NOTE]
->Use `grant_type` of `client_credentials` when getting an access token for the FHIR service using tools such as REST Client. For more details, see [Accessing Azure Health Data Services using the REST Client Extension in Visual Studio Code](./fhir/using-rest-client.md).
->>Use `grant_type` of `client_credentials` or `authentication_code` when getting an access token for the DICOM service. For more details, see [Using DICOM with cURL](dicom/dicomweb-standard-apis-curl.md).
+>Use `grant_type` of `client_credentials` when getting an access token for the FHIR service using tools such as REST Client. For more information, see [Accessing Azure Health Data Services using the REST Client Extension in Visual Studio Code](./fhir/using-rest-client.md).
+>>Use `grant_type` of `client_credentials` or `authentication_code` when getting an access token for the DICOM service. For more information, see [Using DICOM with cURL](dicom/dicomweb-standard-apis-curl.md).
 
 ## Related content
 
