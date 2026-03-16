@@ -326,7 +326,7 @@ sections:
       - question: |
           What happened to Azure AD External Identities P2 in B2C tenants?
         answer: |
-          Azure AD External Identities P2 has been retired in B2C tenants. P2-only features are no longer available. This change doesn't affect the broader Azure AD B2C platform, which continues to be supported.
+          Azure AD External Identities P2 has been retired in Azure AD B2C tenants. P2-only features are no longer available.
       - question: |
           Does the retirement affect workforce tenants?
         answer: |
