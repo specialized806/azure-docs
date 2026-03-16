@@ -38,6 +38,7 @@ Before you begin, install the Azure Migrate appliance and complete server discov
 ### When to use the classic portal experience
 
 The following capabilities are currently available only in the classic portal experience:
+
 - ISV-linked projects.
 - Agent-based and Hyper-V migrations started by using the replication appliance directly (without completing discovery through Azure Migrate). These servers won’t appear in the new end-to-end tracking experience (not recommended).
 - Hyper-V infrastructure blades that monitor replication provider health and status - will be available in the new experience in a future release.
@@ -52,7 +53,7 @@ The following capabilities are currently available only in the classic portal ex
 
 In the new Azure Migrate experience, you can start executing server migrations to Azure using a streamlined, end‑to‑end workflow.
 
-1. In your Azure Migrate project, select **Execute** > **Migrations**.
+1. In **Azure Migrate** project, select **Execute** > **Migrations**.
 1. Select **Start execution**. 
 1. On **Specify intent**, select **Servers (or Virtual machines (VMs))** and then select **Azure VM** as the target.
 1. Select an assessment to use (optional), or select servers from inventory.
@@ -76,9 +77,8 @@ This section explains how to monitor server migrations in the new Azure Migrate 
 
 1. To track migrations, go to **Execute** > **Migrations**. Use **View by applications** or **View by workloads** to switch how items are grouped.
 1. Execution progress is shown in **Execution stage** and **Execution status**:
-
-- **Execution stage**: Preparation, Testing, or Completion.
-- **Execution status**: In progress, In error, Action pending, or Completed.
+    - **Execution stage**: Preparation, Testing, or Completion.
+    - **Execution status**: In progress, In error, Action pending, or Completed.
 1. Select a server to open the details view. Use the stage drop-down menus to review status and take actions.
 1. **Preparation**: Initial replication is running. Typical task - **Replication of data** (initial replication).
 1. **Testing**: Initial replication is complete and delta replication is in progress. Recommended tasks - **Test migration**, then **Clean up test migration**. You can also skip testing and start migration from the Completion stage.
