@@ -88,16 +88,34 @@ sections:
       - question: |
            What are the types of Persistent Volumes that are supported by Azure Backup for AKS?
         answer: | 
-           Azure Backup for AKS relies on CSI driver-based snapshots for its backup and restore operations. Because of this dependency, only Azure Disk-based Persistent Volumes attached via the CSI driver are currently supported. Other Azure storage options—such as Azure File Share, Azure Blob, Azure Container Storage, Azure NetApp Files, Azure Managed Lustre, and third-party storage solutions—aren't supported at this time. Within Azure Disks, the following SKUs are supported:
+           Azure Backup for AKS relies on CSI driver-based snapshots for its backup and restore operations. The following persistent volume types are supported:
+           
+           **Azure Disk-based Persistent Volumes**: Attached via the CSI driver with the following SKUs:
             
            - Premium SSD
            - Standard SSD
            - Standard HDD
+           - Premium SSD v2
+           - Ultra Disks
            
-           However, Premium SSD v2 and Ultra Disks aren't supported. Additionally, when it comes to Azure Disks with network access settings:
+           > [!NOTE]
+           > While snapshot and restore operations are supported across all disk SKUs, operations for Premium SSD v2 and Ultra Disks may take longer because the process involves copying data from the volume to a snapshot and back. The snapshot may appear available and the volume may be mounted before the underlying data copy operation is fully completed, causing a delay before the restored data becomes visible.
+           
+           When it comes to Azure Disks with network access settings:
 
            - The Operational Tier supports both Public and Private access disks of any size.
            - The Vault Tier supports only Public access disks, with a maximum size of up to 1TB.
+           
+           **Azure Files-based Persistent Volumes**: Provisioned via the CSI driver (`file.csi.azure.com`) with the following characteristics:
+           
+           - SMB protocol only (NFS is not supported)
+           - Both Standard and Premium file shares
+           - Public network endpoints only (private endpoints are not supported)
+           - Maximum 25,000 files per file share
+           - Operational Tier backup only (Vault Tier is not supported)
+           - Retention up to 30 days
+           
+           Other Azure storage options—such as Azure Blob, Azure Container Storage, Azure NetApp Files, Azure Managed Lustre, and third-party storage solutions—aren't supported at this time. [Learn more about Azure Files support and limitations](azure-kubernetes-service-cluster-backup-support-matrix.md#supported-scenarios-and-limitations-specific-to-azure-files-based-volumes).
 
       - question: |
            If an AKS cluster has Persistent Volumes of unsupported types, what happens during the backup operation?
