@@ -1,0 +1,9 @@
+{
+  "$schema": "https://aka.ms/azure-quickstart-templates-metadata#",
+  "itemDisplayName": "Secure hub-spoke network for regional web applications",
+  "description": "Deploys a hub-spoke network foundation with Application Gateway WAF_v2, Azure Bastion, optional Azure Firewall Basic, NSGs with default-deny rules, VNet peering, optional DDoS Protection, and backend IIS VMs. Includes Log Analytics workspace with diagnostic settings for observability. Follows the layered deployment pattern from the secure network foundation for regional web applications architecture guide.",
+  "summary": "Hub-spoke network with App Gateway WAF, Bastion, optional Firewall, NSGs, and IIS backend VMs.",
+  "githubUsername": "mbender-ms",
+  "dateUpdated": "2026-03-16",
+  "type": "QuickStart"
+}

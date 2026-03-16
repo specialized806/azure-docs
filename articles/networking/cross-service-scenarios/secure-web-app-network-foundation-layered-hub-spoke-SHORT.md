@@ -73,7 +73,7 @@ This foundation is built in layers. Each layer depends on the one before it, so 
 
 | Step | Layer | What you deploy | Why this order |
 |---|---|---|---|
-| 1 | **Resource organization** | Resource group (or separate groups for hub and spoke) | Establishes the RBAC and cost boundary. Separate resource groups let you assign different owners to hub and workload resources. |
+| 1 | **Resource organization** | Resource group (or separate groups for hub and spoke) | Establishes the Role-based Access Control (RBAC) and cost boundary. Separate resource groups let you assign different owners to hub and workload resources. |
 | 2 | **Hub network** | Hub VNet with `AzureBastionSubnet` (/26) and optional `AzureFirewallSubnet` (/26) + `AzureFirewallManagementSubnet` (/26) | Creates the shared services foundation. Establishes the address space that all spokes must avoid overlapping. |
 | 3 | **Spoke network** | Spoke VNet with Application Gateway subnet (/24) and workload subnet | Hosts all workload-specific resources. Plan CIDR ranges that don't overlap with the hub. |
 | 4 | **VNet peering** | Bidirectional peering between hub and spoke | Connects the two VNets so Bastion in the hub can reach VMs in the spoke. Create peering before deploying resources that depend on cross-VNet connectivity. |
