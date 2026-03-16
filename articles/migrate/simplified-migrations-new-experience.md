@@ -11,7 +11,7 @@ monikerRange: migrate
 Customer intent: This article is intended to guide users on leveraging the Azure Copilot migration agent for planning and analyzing migrations. It covers how the agent utilizes Azure Migrate data, outlines supported migration scenarios, details available capabilities, and provides example interactions to help users understand and execute migration processes effectively.
 ---
 
-# Simplify server migrations using the Azure Migrate end‑to‑end experience
+# Simplify end-to-end server migrations with Azure Migrate
 
 This article explains how to use the new experience in Azure portal. It explains how to start migration workflows, complete the required tasks, and track migration progress for supported workloads during the execution phase.
 
@@ -37,6 +37,10 @@ Before you begin, ensure the following:
     > Use the link on the Migrations page to switch to the classic portal experience for discovering and executing agent‑based and Hyper‑V migrations that use the replication appliance without the Azure Migrate appliance. Servers migrated this way aren’t tracked in the new end‑to‑end experience. To take full advantage of the new experience, we recommend starting discovery by using the Azure Migrate appliance.
 
 ## Execute migrations
+
+You can start migrating your servers to Azure by using the streamlined execution experience in Azure Migrate. This workflow guides you through selecting the source environment, choosing the target Azure VM, and configuring the required migration settings. 
+
+Follow the steps below to start migration execution from your Azure Migrate project.
 
 1. In Azure Migrate project, go to **Execute** > **Migrations**, and then select **Start execution**.
 1. On the **Specify intent** pane, select **Servers** or **Virtual machines (VMs)**, and choose Azure VM as the target. You can either select a pre‑created assessment or manually select servers from the discovered inventory.
@@ -70,4 +74,4 @@ To track migration progress and manage actions for your servers, follow the step
 
 ## Related content
 
-[Learn more][Agentless and Agent-based migration methods](server-migrate-overview.md) about different migration methods in Azure Migrate. 
+[Learn more](server-migrate-overview.md) about different migration methods in Azure Migrate. 
