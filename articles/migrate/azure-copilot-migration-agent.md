@@ -27,7 +27,7 @@ The migration agent supports migration planning, analysis, and decision making, 
 
 ## Prerequisites
 
-Before you begin, ensure that you have:
+Before you begin, ensure that you've:
 
 - An Azure subscription with permissions to use Azure Migrate.
 - Access the Azure portal and Azure Migrate.
