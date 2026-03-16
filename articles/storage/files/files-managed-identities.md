@@ -4,7 +4,7 @@ description: This article explains how you can authenticate managed identities t
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 03/04/2026
+ms.date: 03/16/2026
 ms.author: kendownie
 ms.custom:
   - devx-track-azurepowershell
@@ -202,7 +202,7 @@ The managed identity can be either [system assigned or user assigned](/entra/ide
 
 #### Enable a user assigned managed identity
 
-1. Sign in to the Azure portal and follow the steps in [create a user assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal#create-a-user-assigned-managed-identity).
+1. Sign in to the Azure portal and follow the steps to [create a user assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal#create-a-user-assigned-managed-identity).
 
 1. Go to the user assigned managed identity you just created and copy the **Client ID**. You need this value later.
 
@@ -226,7 +226,7 @@ The managed identity can be either [system assigned or user assigned](/entra/ide
 
 ### Add user assigned managed identity to VM
 
-If you created a user assigned managed identity, follow these steps.
+If you created a user assigned managed identity, follow these steps to add it to your VM.
 
 1. Go to your VM. From the service menu, under **Security**, select **Identity**.
 
@@ -380,16 +380,16 @@ You have two options for configuring authentication on Linux:
 
 You can use a system assigned or user assigned managed identity to configure authentication.
 
-If your VM has a user assigned managed identity, run the following command to get a token from the Azure Instance Metadata Service (IMDS) and store it automatically. Replace `<client-id>` with the client ID of your managed identity. If you don't have the Client ID, go to the managed identity in the Azure portal and copy the Client ID.
+If your VM has a user assigned managed identity, run the following command to get a token from the Azure Instance Metadata Service (IMDS) and store it automatically. Replace `<storage-account-name>` with your storage account name. Replace `<client-id>` with the client ID of your managed identity. If you don't have the Client ID, go to the managed identity in the Azure portal and copy the Client ID.
 
 ```bash
-sudo azfilesauthmanager set https://<storage_account>.file.core.windows.net --imds-client-id <client-id>
+sudo azfilesauthmanager set https://<storage-account-name>.file.core.windows.net --imds-client-id <client-id>
 ```
 
 If your VM has a system assigned managed identity, use the `--system` flag:
 
 ```bash
-sudo azfilesauthmanager set https://<storage_account>.file.core.windows.net --imds-client-id <client-id> --system
+sudo azfilesauthmanager set https://<storage-account-name>.file.core.windows.net --imds-client-id <client-id> --system
 ```
 
 Verify the ticket was created properly:
@@ -519,7 +519,7 @@ extern "C" AZFILESSMBMI_API HRESULT SmbClearCredential(
 
 ### [Linux](#tab/linux)
 
-Linux developers can use the shared library that's automatically installed with the azfilesauth package. You can link against the library in your C/C++ applications for direct API access.
+Linux developers can use the shared library that's automatically installed with the `azfilesauth` package. You can link against the library in your C/C++ applications for direct API access.
 
 Be sure to include the [public header](https://github.com/Azure/AzFilesAuthenticator/blob/main/include/azfilesauth.h).
 
