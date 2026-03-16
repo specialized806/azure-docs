@@ -75,7 +75,10 @@ The following table shows the capacity and scaling characteristics of each SKU:
 
 Azure Bastion SKU availability varies by region:
 
-- **Developer SKU**: Available in select regions. For the current list of supported regions, see [Deploy Bastion from the Azure portal](quickstart-host-portal.md).
+- **Developer SKU**: 
+
+[!INCLUDE [regions](../../includes/bastion-developer-regions.md)]
+
 - **Basic, Standard, Premium SKUs**: Available in all Azure regions where Azure Bastion is supported.
 
 ## Decision framework
