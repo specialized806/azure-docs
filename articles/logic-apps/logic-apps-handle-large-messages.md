@@ -100,7 +100,12 @@ To reference the data, in the chunking action, use the expression `body('Compose
     "type": "ApiConnection"
 },
 ```
-If a managed connector action sends/receives a file large enough to trigger chunked content transfer, tracked properties that reference action()['outputs']['statusCode'] or action()['outputs']['headers'] fail with error code TrackedPropertiesEvaluationFailed. This causes the action to be marked as Failed even though the file download completed successfully. In chunking scenario, 'statusCode' and 'headers' of 'outputs' are not supported and only 'body' is available. 
+> [!NOTE]
+
+> When chunking is active on an action, the action's outputs contain only the body property. Other output properties such as statusCode and headers 
+are not available. If you use tracked properties that reference these unavailable properties — for example, @action()['outputs']['statusCode'] or
+@action()['outputs']['headers'] — the action fails with error code TrackedPropertiesEvaluationFailed, even though the underlying operation 
+(such as a file download) completed successfully. To avoid this error, remove references to statusCode or headers from tracked properties on  actions that process large messages with chunking enabled.
 
 <a name="set-up-chunking"></a>
 
