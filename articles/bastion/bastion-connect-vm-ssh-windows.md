@@ -16,6 +16,10 @@ This article describes how to create a secure SSH connection to your Windows vir
 
 For RDP connections to a Windows virtual machine, see [Create an RDP connection to a Windows VM](bastion-connect-vm-rdp-windows.md). For native client connections using Azure CLI (including SSH tunnels), see [Connect to a VM using a native client](connect-vm-native-client-windows.md).
 
+The following diagram shows the dedicated deployment architecture using an SSH connection.
+
+:::image type="content" source="./media/connect-vm-ssh-windows/host-architecture-ssh-windows.png" alt-text="Diagram that shows the Azure Bastion architecture." lightbox="./media/connect-vm-ssh-windows/host-architecture-ssh-windows.png":::
+
 ## Prerequisites
 
 Before you begin, verify that you meet the following criteria:
@@ -47,10 +51,10 @@ The following authentication methods are available for SSH connections to Window
 
 | Authentication method | Minimum SKU |
 |---|---|
-| [Username and password](#tab/password) | Standard |
-| [SSH Private Key from local file](#tab/local-key) | Standard |
-| [Password from Azure Key Vault](#tab/kv-password) | Standard |
-| [SSH Private Key from Azure Key Vault](#tab/kv-key) | Standard |
+| Username and password | Standard |
+| SSH private key from local file | Standard |
+| Password from Azure Key Vault | Standard |
+| SSH private key from Azure Key Vault | Standard |
 
 > [!NOTE]
 > [Microsoft Entra ID authentication](bastion-entra-id-authentication.md) and [Kerberos authentication](kerberos-authentication-portal.md) are not supported for SSH connections to Windows VMs. These authentication methods are available for [RDP connections](bastion-connect-vm-rdp-windows.md).
