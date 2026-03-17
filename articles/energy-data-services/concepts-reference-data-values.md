@@ -75,7 +75,8 @@ During automated RDV upgrades, Azure Data Manager for Energy validates the legal
 - **New RDVs are still added** — New reference data values introduced in the latest OSDU® milestone are added successfully, as they receive new legal tags and aren't affected by pre-existing expired tags.
 - **No data loss occurs** — Skipped records aren't deleted or modified. Once you renew or replace the expired legal tags, the records are eligible for upgrade in the next milestone cycle.
 
-To ensure all reference data values are upgraded during milestone updates, verify that no legal tags in your data partitions are expired. You can identify expired legal tag validation failures in the **storage service logs** for your Azure Data Manager for Energy instance.
+> [!NOTE]
+> To ensure all reference data values are upgraded during milestone updates, verify that no legal tags in your data partitions are expired. You can identify expired legal tag validation failures in the **storage service logs** for your Azure Data Manager for Energy instance.
 
 For information on the current milestone supported by and available OSDU® services in Azure Data Manager for Energy, refer [OSDU® services available in Azure Data Manager for Energy](osdu-services-on-adme.md).
 
