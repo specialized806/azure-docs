@@ -20,7 +20,7 @@ Automation built for the previous architecture involving export, import, and upl
 
 ## Prerequisites
 
-Before you begin, ensure you have the following:
+Before beginning, check to make sure that you have the following:
 
 * An Azure account with an active subscription. [Create an account for free.](https://azure.microsoft.com/free)
 * A confidential VM with managed disks.
