@@ -113,7 +113,7 @@ To create a file share by using PowerShell, run the following commands. Replace 
 Install-Module -Name Az.FileShare -Repository psgallery -RequiredVersion 0.1.0
 
 # To learn more about the parameters for New-AzFileShare, use command 
-Get-Help New-AzFileShare
+# Get-Help New-AzFileShare
 
 $shareName = "<your-file-share-name>"
 $resourceGroup = "<your-resource-group-name>"
