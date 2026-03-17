@@ -83,4 +83,5 @@ To access the centralized alerts experience:
 
 ## Next step
 
-> [!div class="nextstepaction"] [Monitor SAP on Azure](about-azure-monitor-sap-solutions.md)
+> [!div class="nextstepaction"]
+> [Monitor SAP on Azure](about-azure-monitor-sap-solutions.md)
