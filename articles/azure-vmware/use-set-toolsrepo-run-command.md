@@ -1,5 +1,5 @@
 ---
-title: Set-ToolsRepo Run Command
+title: Set-ToolsRepo Run Command in Azure VMware Solution
 description: Use Set-ToolsRepo Run Commands in Azure VMware Solution
 ms.topic: how-to
 ms.service: azure-vmware
@@ -36,7 +36,7 @@ Before making any changes, validation that the URL is usable and the ZIP file ca
 2. Customer hosts the ZIP file at a publicly accessible HTTP/HTTPS location.
     - The customer must host the ZIP at a publicly accessible HTTP/HTTPS URL (for example, any web server or object storage that can serve the file without interactive authentication). They then provide that direct-download URL for use with the Run Command.
 >[!IMPORTANT]
-> The URL must be a direct download link and reachable without interactive authentication so the Run Command can retrive the ZIP file. 
+> The URL must be a direct download link and reachable without interactive authentication so the Run Command can retrieve the ZIP file. 
 
 3. Customer runs the Set-ToolsRepo Run Command.
     - Run the AVS Run Command and provide the ZIP URL shared in step 2. When it completes, the command output will indicate success or provide an error message.
