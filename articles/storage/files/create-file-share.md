@@ -122,7 +122,7 @@ $region = "<intended-region-for-deployment>"
 # The provisioned storage size of the share in GiB. Valid range is 32 to 262,144.
 $provisionedStorageGib = 1024
 
-# If you don't specify on the ProvisionedBandwidthMibps and ProvisionedIops, the deployment will use the recommended provisioning.
+# If you don't specify ProvisionedBandwidthMibps and ProvisionedIops, the deployment will use the recommended provisioning.
 $provisionedIops = 3500
 $provisionedThroughput = 200
 
