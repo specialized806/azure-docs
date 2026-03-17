@@ -1082,7 +1082,7 @@ The following example shows the `parameters` object when the *user-assigned* man
 
 ### [Standard](#tab/standard)
 
-In a Standard logic app resource, you save the connection configuration in the logic app resource or project's *connections.json* file. This file contains a `managedApiConnections` object that includes connection configuration information for each managed connector used in a workflow. This connection information includes pointers to the connection's resource ID along with the managed identity properties, such as the resource ID when the user-assigned identity is enabled.
+In a Standard logic app resource, you save the connection configuration in the logic app resource or project's *connections.json* file. This file contains a `managedApiConnections` object that contains connection configuration information for each managed connector used in a workflow. This connection information has pointers to the connection's resource ID along with the managed identity properties, such as the resource ID when the logic app enables the user-assigned identity.
 
 This example shows the `managedApiConnections` object configuration when the logic app enables the *system-assigned* identity:
 
@@ -1145,7 +1145,7 @@ This example shows the `managedApiConnections` object configuration when the log
 
 ## ARM template for API connections and managed identities
 
-If you use an ARM template to automate deployment, and your workflow includes an API connection that's created by a [managed connector](../connectors/managed.md) that uses a managed identity, you need to take an extra step.
+If you use an ARM template to automate deployment, and your workflow includes an API connection, which is created by a [managed connector](../connectors/managed.md), that uses a managed identity, you need to take an extra step.
 
 In an ARM template, the underlying connector resource definition differs based on whether you have a Consumption or Standard logic app resource and whether the [connector shows single-authentication or multi-authentication options](#managed-connectors-managed-identity).
 
@@ -1281,11 +1281,11 @@ This example shows the underlying connection resource definition for a connector
 }
 ```
 
-In the subsequent **Microsoft.Web/connections** resource definition, make sure that you add an access policy that specifies a resource definition for each API connection and provide the following information:
+In the subsequent `Microsoft.Web/connections` resource definition, you need to add an access policy that specifies a resource definition for each API connection and provide the following information:
 
 | Parameter | Description |
 |-----------|-------------|
-| <*connection-name*> | The name for your API connection, such as **azureblob**. |
+| <*connection-name*> | The name for your API connection, such as `azureblob`. |
 | <*object-ID*> | The object ID for your Microsoft Entra identity, previously saved from your app registration. |
 | <*tenant-ID*> | The tenant ID for your Microsoft Entra identity, previously saved from your app registration. |
 
@@ -1316,7 +1316,7 @@ For more information, see [Microsoft.Web/connections/accesspolicies (ARM templat
 
 <a name="setup-identity-apihub-authentication"></a>
 
-## Set up advanced control over API connection authentication
+## Set up advanced control for API connection authentication
 
 When your Standard logic app workflow uses an API connection that a [managed connector](../connectors/managed.md) creates, Azure Logic Apps uses two connections to communicate with the target resource, such as your email account or key vault:
 
@@ -1326,9 +1326,9 @@ When your Standard logic app workflow uses an API connection that a [managed con
 
 - Connection #2 is set up with authentication for the target resource.
 
-However, when a Consumption logic app workflow uses an API connection, you don't see and can't configure connection #1. By using the Standard logic app resource, you get more control over your logic app and workflows. By default, connection #1 uses the system-assigned identity.
+However, when a Consumption logic app workflow uses an API connection, you can't view or set up connection #1. If you use a Standard logic app resource, you gain more control over your logic app and workflows. By default, connection #1 uses the system-assigned identity.
 
-If your scenario requires finer control over authenticating API connections, you can change the authentication for connection #1 from the default system-assigned identity to any user-assigned identity that you add to your logic app. This authentication applies to each API connection, so you can mix system-assigned and user-assigned identities across different connections to the same target resource.
+If your scenario requires finer control over authenticating API connections, change the authentication for connection #1 from the default system-assigned identity to any user-assigned identity that you add to your logic app. This authentication applies to each API connection, so you can mix system-assigned and user-assigned identities across different connections to the same target resource.
 
 In your Standard logic app's *connections.json* file, which stores information about each API connection, each connection definition has two `authentication` objects, for example:
 
@@ -1404,9 +1404,9 @@ In other scenarios, you might not want to set up the system-assigned identity on
    }
    ```
 
-1. In the connection definition, complete the following steps:
+1. In the connection definition, follow these steps:
 
-   1. Find the first `authentication` section. If no `identity` property exists in this `authentication` section, the logic app implicitly uses the system-assigned identity.
+   1. Find the first `authentication` object. If no `identity` property exists in this `authentication` object, the logic app implicitly uses the system-assigned identity.
 
    1. Add an `identity` property by using the example in this step.
 
@@ -1443,25 +1443,23 @@ In other scenarios, you might not want to set up the system-assigned identity on
 
 ## Disable managed identity
 
-To stop using the managed identity for authentication, first [remove the identity's access to the target resource](#disable-identity-target-resource). Next, on your logic app resource, [turn off the system-assigned identity or remove the user-assigned identity](#disable-identity-logic-app).
+To stop using the managed identity for authentication, follow these steps:
 
-When you disable the managed identity on your logic app resource, you remove the capability for that identity to request access to Azure resources where the identity had access.
+1. [Remove the identity's access to the target resource](#disable-identity-target-resource).
+
+1. On your logic app resource, [disable the system-assigned identity or remove the user-assigned identity](#disable-identity-logic-app).
+
+When you turn off the managed identity on your logic app resource, you remove the capability for that identity to request access to Azure resources where the identity had access.
 
 > [!NOTE]
 >
-> If you disable the system-assigned identity, all the connections that use the identity   
-> in the logic app's workflows stop working at runtime, even if you immediately enable the identity again.  
-> This behavior happens because disabling the identity deletes its object ID. Each time that you 
-> enable the identity, Azure generates the identity with a different and unique object ID. To resolve 
-> this problem, you need to recreate the connections so that they use the current object ID for the 
-> current system-assigned identity.
+> If you disable the system-assigned identity, all the connections that use the identity in the logic app's workflows stop working at runtime, even if you immediately enable the identity again.  
 >
-> Try to avoid disabling the system-assigned identity as much as possible. If you want to remove 
-> the identity's access to Azure resources, remove the identity's role assignment from the target 
-> resource. If you delete your logic app resource, Azure automatically removes the managed identity 
-> from Microsoft Entra ID.
+> This behavior happens because disabling the identity deletes its object ID. Each time that you enable the identity, Azure generates the identity with a different and unique object ID. To fix this problem, recreate the connections so they use the current object ID for the current system-assigned identity.
+>
+> Avoid disabling the system-assigned identity as much as possible. To remove the identity's access to Azure resources, remove the identity's role assignment from the target resource. If you delete your logic app resource, Azure automatically removes the managed identity from Microsoft Entra ID.
 
-The steps in this section cover using the [Azure portal](#azure-portal-disable) and [Azure Resource Manager template (ARM template)](#template-disable). For Azure PowerShell, Azure CLI, and Azure REST API, see the following documentation:
+The following sections show how to disable the managed identiy by using the [Azure portal](#azure-portal-disable) and [Azure Resource Manager template (ARM template)](#template-disable). For Azure PowerShell, Azure CLI, and Azure REST API, see:
 
 | Tool | Documentation |
 |------|---------------|
@@ -1489,11 +1487,9 @@ The following steps remove access to the target resource from the managed identi
 
 1. In the roles list, select the managed identities that you want to remove. On the toolbar, select **Remove**.
 
-   > [!TIP]
+   > [!NOTE]
    >
-   > If the **Remove** option is disabled, you most likely don't have permissions. 
-   > For more information about the permissions that let you manage roles for resources, see 
-   > [Administrator role permissions in Microsoft Entra ID](/entra/identity/role-based-access-control/permissions-reference).
+   > If the **Remove** option is disabled, you most likely don't have permissions. For more information about the permissions that let you manage roles for resources, see [Administrator role permissions in Microsoft Entra ID](/entra/identity/role-based-access-control/permissions-reference).
 
 <a name="disable-identity-logic-app"></a>
 
