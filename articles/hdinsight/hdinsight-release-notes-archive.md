@@ -2160,7 +2160,7 @@ Autoscale support for HBase and LLAP workload is also public preview. For more i
 
 #### HDInsight Accelerated Writes for Apache HBase 
 
-Accelerated Writes uses Azure premium SSD managed disks to improve performance of the Apache HBase Write Ahead Log (WAL). For more information, see [Azure HDInsight Accelerated Writes for Apache HBase](./hbase/apache-hbase-accelerated-writes.md).
+Accelerated Writes uses Azure Premium SSD managed disks to improve performance of the Apache HBase Write Ahead Log (WAL). For more information, see [Azure HDInsight Accelerated Writes for Apache HBase](./hbase/apache-hbase-accelerated-writes.md).
 
 #### Custom Ambari DB
 

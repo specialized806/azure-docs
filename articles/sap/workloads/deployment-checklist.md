@@ -134,8 +134,8 @@ In the pilot phase, validate the following technical aspects of your planned dep
 - **Storage**
   - Read the document [Azure storage types for SAP workload](./planning-guide-storage.md)
   - Use [Azure premium storage](/azure/virtual-machines/disks-types#premium-ssds), [premium storage v2](/azure/virtual-machines/disks-types#premium-ssd-v2) for all production grade SAP environments and when ensuring high SLA. For some DBMS, Azure NetApp Files can be used for [large parts of the overall storage requirements](planning-guide-storage.md#azure-netapp-files).
-  - At a minimum, use [Azure standard SSD](/azure/virtual-machines/disks-types#standard-ssds) storage for VMs that represent SAP application layers and for deployment of DBMSs that aren't performance sensitive. Keep in mind different Azure storage types influence the [single VM availability SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines).
-  - In general, we don't recommend the use of [Azure standard HDD](./planning-guide-storage.md#azure-standard-hdd-storage) disks for SAP.
+  - At a minimum, use [Azure Standard SSD](/azure/virtual-machines/disks-types#standard-ssds) storage for VMs that represent SAP application layers and for deployment of DBMSs that aren't performance sensitive. Keep in mind different Azure storage types influence the [single VM availability SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines).
+  - In general, we don't recommend the use of [Azure Standard HDD](./planning-guide-storage.md#azure-standard-hdd-storage) disks for SAP.
   - For the different DBMS types, check the [generic SAP-related DBMS documentation](./dbms-guide-general.md) and DBMS-specific documentation that the first document points to. Use disk striping over multiple disks with premium storage (v1 or v2) for database data and log area. Verify lvm disk striping is active and with correct stripe size with command 'lvs -a -o+lv_layout,lv_role,stripes,stripe_size,devices' on Linux, see storage spaces properties on Windows. 
   - For optimal storage configuration with SAP HANA, see [SAP HANA Azure virtual machine storage configurations](./hana-vm-operations-storage.md).
   - Use LVM for all disks on Linux VMs, as it allows easier management and online expansion. This includes volumes on single disks, for example /usr/sap.
@@ -305,7 +305,7 @@ After deploying infrastructure and applications and before each migration starts
    - Make sure that only disks holding DBMS online logs are cached with None+ Write Accelerator.  
    - Other disks with premium storage are using cache settings none or ReadOnly, depending on use  
    - Check the [configuration of LVM on Linux VMs in Azure](/azure/virtual-machines/linux/configure-lvm).  
-10. [Azure managed disks](https://azure.microsoft.com/services/managed-disks/) or [Azure NetApp Files](../../azure-netapp-files/azure-netapp-files-solution-architectures.md#sap-on-azure-solutions) NFS volumes are used exclusively for DBMS VMs.
+10. [Azure Managed Disks](https://azure.microsoft.com/services/managed-disks/) or [Azure NetApp Files](../../azure-netapp-files/azure-netapp-files-solution-architectures.md#sap-on-azure-solutions) NFS volumes are used exclusively for DBMS VMs.
 11. For Azure NetApp Files, [correct mount options are used](../../azure-netapp-files/performance-linux-mount-options.md) and volumes are sized appropriately on correct storage tier.
 12. Using Azure services – Azure Files or Azure NetApp Files – for any SMB or NFS volumes or shares. NFS volumes or SMB shares are reachable by the respective SAP environment or individual SAP system(s). Network routing to the NFS/SMB server goes through private network address space, using private endpoint if needed.
 13. [Azure accelerated networking](../../virtual-network/accelerated-networking-overview.md) is enabled on every network interface for all SAP VMs.
