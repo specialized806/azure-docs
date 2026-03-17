@@ -16,7 +16,7 @@ author: kalyaninamuduri
 
 Use the Azure CLI to create and manage Azure resources from the command line or in scripts.
 
-With [Azure Center for SAP solutions](overview.md), you can deploy and manage SAP systems on Azure. This article shows you how to register an existing SAP system that runs on Azure with Azure Center for SAP solutions. We use the Azure CLI in this article. Alternatively, you can register systems by using Azure PowerShell or in the Azure portal. After you register an SAP system, you can use its visualization, management, and monitoring capabilities through the Azure portal.
+With [Azure Center for SAP solutions](overview.md), you can deploy and manage SAP systems on Azure. This article shows you how to register an existing SAP system that runs on Azure with Azure Center for SAP solutions. We use the Azure CLI in this article. Alternatively, you can register systems by using Azure PowerShell or the Azure portal. After you register an SAP system, you can use its visualization, management, and monitoring capabilities through the Azure portal.
 
 ## Prerequisites
 
