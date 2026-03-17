@@ -41,12 +41,9 @@ When you exchange a reservation, you can change your term from one-year to three
 
 Not all reservations are eligible for exchange. For example, you can't exchange the following reservations:
 
-- Azure Databricks Pre-purchase plan
-- Synapse Analytics Pre-purchase plan
 - Red Hat plans
 - SUSE Linux plans
-- Microsoft Defender for Cloud Pre-Purchase Plan
-- Microsoft Sentinel Pre-Purchase Plan
+- All pre-purchase plans
 
 You can also refund reservations, but the sum total of all canceled reservation commitment in your billing scope (such as EA, Microsoft Customer Agreement - Billing Profile, and Microsoft Partner Agreement - Customer) can't exceed USD 50,000 in a 12 month rolling window.
 
@@ -54,12 +51,9 @@ You can also refund reservations, but the sum total of all canceled reservation 
 
 The following reservations aren't eligible for refunds:
 
-- Azure Databricks Pre-purchase plan
-- Synapse Analytics Pre-purchase plan
 - Red Hat plans
 - SUSE Linux plans
-- Microsoft Defender for Cloud Pre-Purchase Plan
-- Microsoft Sentinel Pre-Purchase Plan
+- All pre-purchase plans
 
 ## Prerequisites
 
