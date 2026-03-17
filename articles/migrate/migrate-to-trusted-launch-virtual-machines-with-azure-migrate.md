@@ -1,5 +1,5 @@
 ---
-title: Migrate Generation 2 Virtual Machines to Azure Trusted Launch Virtual Machines using Azure Migrate
+title: Migrate Generation 2 Virtual Machines to Azure Trusted Launch Virtual Machines with Azure Migrate
 description: Use Azure Migrate to migrate on premises Generation 2 Virtual Machines to Azure Trusted Launch Virtual Machines
 author: dhananjayanr
 ms.author: dhananjayanr
