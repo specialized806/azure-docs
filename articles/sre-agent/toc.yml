@@ -46,12 +46,26 @@ items:
         href: agent-reasoning.md
   - name: Capabilities
     items:
+      - name: Connect
+        items:
+          - name: Connect knowledge
+            href: connect-knowledge.md
+          - name: File attachments
+            href: file-attachments.md
+          - name: GitHub connector
+            href: github-connector.md
+          - name: Azure DevOps connector
+            href: ado-connector.md
       - name: Diagnose
         items:
           - name: Incident response
             href: incident-response.md
           - name: Incident response plans
             href: incident-response-plans.md
+          - name: PagerDuty incident indexing
+            href: pagerduty-incidents.md
+          - name: ServiceNow incident indexing
+            href: servicenow-incidents.md
           - name: Root cause analysis
             href: root-cause-analysis.md
           - name: Deep investigation
@@ -106,12 +120,22 @@ items:
             href: audit-agent-actions.md
   - name: Tutorials
     items:
+      - name: Connect
+        items:
+          - name: Share files and screenshots
+            href: file-attachments-tutorial.md
       - name: Diagnose
         items:
           - name: Run a deep investigation
             href: tutorial-deep-investigation.md
           - name: Set up an incident trigger
             href: response-plan.md
+          - name: Set up PagerDuty indexing
+            href: setup-pagerduty-indexing.md
+          - name: Set up ServiceNow indexing
+            href: setup-servicenow-indexing.md
+          - name: Manage permissions
+            href: manage-permissions.md
           - name: Set up incident response
             href: tutorial-incident-response.md
           - name: Connect to PagerDuty
