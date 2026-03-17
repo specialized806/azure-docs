@@ -5,7 +5,7 @@ description: Learn how to configure Application Gateway with a frontend public I
 services: application-gateway
 author: mbender-ms
 ms.topic: how-to
-ms.date: 04/04/2024
+ms.date: 03/17/2026
 ms.author: mbender
 ms.service: azure-application-gateway
 ms.custom:
