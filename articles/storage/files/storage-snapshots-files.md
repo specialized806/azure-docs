@@ -481,7 +481,7 @@ To create a snapshot of an existing file share, sign in to the Azure portal and 
 
 # [Azure PowerShell](#tab/powershell)
 
-To create a snapshot of an existing file share, run the following PowerShell command. Replace `<subscription-ID>`, `<resource-group-name>`, `<file-share-name>`, and `<snapshot-name>` with your own values.
+To create a snapshot of an existing file share, run the following PowerShell command. Be sure to replace variables with your own values.
 
 ```powershell
 # To learn more about the Az.FileShare module, see [Microsoft.FileShares PowerShell module](https://www.powershellgallery.com/packages/Az.FileShare/0.1.0).
@@ -526,7 +526,7 @@ To list all the snapshots for an existing file share, sign in to the Azure porta
 
 # [Azure PowerShell](#tab/powershell)
 
-To list all file share snapshots, run the following PowerShell command. Replace `<subscription-ID>`, `<resource-group-name>`, and `<file-share-name>` with your own values.
+To list all file share snapshots, run the following PowerShell command. Be sure to replace variables with your own values.
 
 ```powershell
 # To learn more about the Az.FileShare module, see [Microsoft.FileShares PowerShell module](https://www.powershellgallery.com/packages/Az.FileShare/0.1.0).
@@ -557,6 +557,7 @@ To mount an NFS file share snapshot to a Linux VM (NFS client) and restore files
 1. Sign in to the Azure portal and go to your file share.
 
 1. Select **JSON view** from the upper right. In the JSON view, under properties, copy the value for **hostName**. The format looks like `fs-xxxxxxxxxxxxxxxxx.xx.file.storage.azure.net`.
+To extract **hostName** from PowerShell, run `Get-AzFileShare -ResourceGroupName $resourceGroup -ResourceName $shareName` and look for the `HostName` property in the output. Be sure to replace `$resourceGroup` and `$shareName` with your own values.
 
 1. Run the following command in a console. Replace the placeholder values, including brackets, with your own values. The value for `<hostName>` should be the entire value you copied in step 2. The value for `<hostNamePrefix>` is the first segment of the hostName (up to but not including the first period), which includes everything before `.xx.file.storage.azure.net`.
  
