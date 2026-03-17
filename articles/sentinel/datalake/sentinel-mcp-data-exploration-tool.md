@@ -4,9 +4,10 @@ titleSuffix: Microsoft Security
 description: Learn about the different tools available in the Data exploration collection in Microsoft Sentinel 
 author: poliveria
 ms.topic: how-to
-ms.date: 12/12/2025
+ms.date: 02/16/2026
 ms.author: pauloliveria
 ms.service: microsoft-sentinel
+ms.subservice: sentinel-platform
 
 #customer intent: As a security analyst, I want to know the different tools available to explore security data in Microsoft Sentinel data lake
 ---
@@ -104,7 +105,7 @@ While this tool automatically polls for a few minutes until results are ready, i
 
     If you don't have any of these required tables, `analyze_user_entity` generates an error message that lists the tables you didn't onboard, along with links to their corresponding onboarding documentation.
 
-- `analyze_user_entity` works best when the following table is also present in the data lake, but continues to work and assess risk, even if the said table is unavailable:
+- `analyze_user_entity` works best when the following tables are also present in the data lake, but continues to work and assess risk, even if the said tables are unavailable:
     - [AADNonInteractiveUserSignInLogs](../connect-azure-active-directory.md)
     - [BehaviorAnalytics](../enable-entity-behavior-analytics.md)
     

@@ -4,7 +4,7 @@ description: This article describes Reference Values and how Reference Data Valu
 author: marielherz
 ms.author: marielherzog
 ms.service: azure-data-manager-energy
-ms.topic: article
+ms.topic: overview
 ms.date: 02/16/2026
 ms.custom: template-concept
 ---
