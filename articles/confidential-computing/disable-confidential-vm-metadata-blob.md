@@ -52,7 +52,7 @@ To opt out of the **3blob** architecture and disable the VMMD creation, follow t
 6. Select Register.
 ![Step 5](media/register-confidential-vm-feature.png)
 
-The status will change to `Registered` once the process completes.
+The status changes to `Registered` once the process completes.
 
 ## Features Disabled After Opting Out
 
