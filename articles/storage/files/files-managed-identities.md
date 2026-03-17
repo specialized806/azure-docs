@@ -171,7 +171,7 @@ Follow these steps to enable a system assigned managed identity on a Windows VM 
 
 1. Sign in to the Azure portal and follow the steps to [create a user assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal#create-a-user-assigned-managed-identity).
 
-1. Go to the user assigned managed identity you just created and copy the **Client ID**. You need this value later when you add the managed identity to your VM.
+1. Go to the user assigned managed identity you just created and copy the **Client ID**. You need this value later.
 
 ### Assign a built-in RBAC role to the managed identity or application identity
 
@@ -223,7 +223,7 @@ The managed identity can be either [system assigned or user assigned](/entra/ide
 
 1. Sign in to the Azure portal and follow the steps to [create a user assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal#create-a-user-assigned-managed-identity).
 
-1. Go to the user assigned managed identity you just created and copy the **Client ID**. You need this value later when you add the managed identity to your VM.
+1. Go to the user assigned managed identity you just created and copy the **Client ID**. You need this value later.
 
 ### Assign a built-in RBAC role to the managed identity
 
