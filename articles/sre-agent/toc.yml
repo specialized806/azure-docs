@@ -6,26 +6,26 @@ items:
   - name: Get started
     expanded: true
     items:
-      - name: "Step 1: Create agent"
-        href: create-agent.md
-      - name: "Step 2: Add knowledge"
-        href: first-value.md
-      - name: "Step 3: Connect source code"
-        href: connect-source-code.md
-      - name: "Step 4: Incident response"
-        href: incident-response.md
-      - name: "Step 5: Automate actions"
-        href: automate-actions.md
-      - name: Ask the agent for help
-        href: ask-agent.md
-      - name: Diagnose your first incident
-        href: usage.md
+      - name: Create and set up
+        href: create-and-setup.md
+      - name: Team onboarding
+        href: team-onboarding.md
+      - name: Complete setup
+        href: complete-setup.md
+      - name: Run your first investigation
+        href: first-investigation.md
+      - name: Automate incident response
+        href: automate-incidents.md
+      - name: Automate workflows
+        href: automate-workflows.md
   - name: Concepts
     items:
       - name: User roles and permissions
         href: user-roles.md
       - name: Agent permissions
         href: permissions.md
+      - name: Agent identity
+        href: agent-identity.md
       - name: Run modes
         href: run-modes.md
       - name: Connectors
@@ -42,6 +42,8 @@ items:
         href: threads.md
       - name: Tools
         href: tools.md
+      - name: Deep context
+        href: workspace-tools.md
       - name: Agent reasoning
         href: agent-reasoning.md
   - name: Capabilities
@@ -160,6 +162,8 @@ items:
         href: starter-prompts.md
       - name: Data privacy and residency
         href: data-privacy.md
+      - name: Pricing and billing
+        href: pricing-billing.md
       - name: Billing
         href: billing.md
       - name: Frequently asked questions
