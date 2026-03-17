@@ -134,6 +134,7 @@ Azure Bastion Developer provides secure, browser-based connectivity to a virtual
 When you select **Connect**, Bastion Developer automatically deploys to your virtual network. The connection opens directly in the Azure portal. When you disconnect, the Bastion Developer resource remains deployed for future connections.
 
 For more information about Bastion Developer, including the list of supported regions, see [Bastion SKU comparison regional availability](bastion-sku-comparison.md#regional-availability).
+
 ---
 
 ## <a name="remove"></a>Remove VM public IP address
