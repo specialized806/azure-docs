@@ -557,7 +557,7 @@ To mount an NFS file share snapshot to a Linux VM (NFS client) and restore files
 1. Sign in to the Azure portal and go to your file share.
 
 1. Select **JSON view** from the upper right. In the JSON view, under properties, copy the value for **hostName**. The format looks like `fs-xxxxxxxxxxxxxxxxx.xx.file.storage.azure.net`.
-To extract **hostName** from PowerShell, run `Get-AzFileShare -ResourceGroupName $resourceGroup -ResourceName $shareName` and look for the `HostName` property in the output. Be sure to replace `$resourceGroup` and `$shareName` with your own values.
+To extract **hostName** by using PowerShell, run `Get-AzFileShare -ResourceGroupName $resourceGroup -ResourceName $shareName` and look for the `hostName` property in the output. Be sure to replace `$resourceGroup` and `$shareName` with your own values.
 
 1. Run the following command in a console. Replace the placeholder values, including brackets, with your own values. The value for `<hostName>` should be the entire value you copied in step 2. The value for `<hostNamePrefix>` is the first segment of the hostName (up to but not including the first period), which includes everything before `.xx.file.storage.azure.net`.
  
