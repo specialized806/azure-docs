@@ -1,5 +1,5 @@
 ---
-title: Prepare network for infrastructure deployment
+title: Prepare a network for infrastructure deployment
 description: Learn how to prepare a virtual network for an S/4HANA infrastructure deployment with Azure Center for SAP solutions.
 ms.service: sap-on-azure
 ms.subservice: center-sap-solutions
@@ -10,7 +10,7 @@ ms.author: sagarkeswani
 # Customer intent: As a network administrator, I want to configure a virtual network and its components for S/4HANA deployment, so that I can ensure proper connectivity and security for the infrastructure on Azure.
 ---
 
-# Prepare network for infrastructure deployment
+# Prepare a network for infrastructure deployment
 
 [Azure Center for SAP solutions](overview.md) lets you deploy and manage SAP systems on Azure. When you deploy S/4HANA infrastructure through the service, you need a virtual network that provides outbound connectivity and allows communication between application and database subnets. Without a properly configured network, the infrastructure deployment and SAP software installation can fail.
 
