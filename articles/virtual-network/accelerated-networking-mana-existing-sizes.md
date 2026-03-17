@@ -33,7 +33,7 @@ Dsv5, Dv5, Ddsv5, Ddv5, Dlsv5, Dldsv5, Esv5, Ev5, Edsv5, Edv5, Ebsv5, Ebdsv5, Ds
 
 Note that some of these VM sizes will soon be retired. It's highly recommended that customers utilize the latest generations of Azure VMs for improved performance, functionality, and resiliency. 
 
-### Will existing VMs deployed on MANA hardware?
+### Will existing VMs be deployed on MANA hardware?
 VMs already deployed will be eligible to land on MANA capable hardware following a "stop-deallocate and start" command, or through a redeploy operation. All new VMs in the series listed above are eligible to be deployed on MANA capable hardware as well. 
 
 ### How will I know if my VM is deployed on MANA capable hardware? 

@@ -1,5 +1,6 @@
 ---
 title: MANA support for Network Virtual Appliances (NVAs)
+titleSuffix: Microsoft Azure Network Adapter
 description: Learn about MANA support for Network Virtual Appliances (NVAs) using existing VM sizes, including how to use Azure Policy to manage MANA deployments and ensure optimal performance.
 author: mattmcinnes
 ms.author: mattmcinnes
@@ -41,7 +42,7 @@ No action is required if the NVA or the underlying OS already supports MANA.
 
 ### What if additional time is needed to migrate to an NVA that fully supports MANA?
 
-You can apply a tag to Network Virtual Appliances (NVAs), VMs, and Virtual Machine Scale Sets (VMSS) for MANA support. This tag provides a temporary reprieve and allows time to migrate to an NVA or operating system that fully supports MANA.
+You can apply a tag to Network Virtual Appliances (NVAs), VMs, and Virtual Machine Scale Sets for MANA support. This tag provides a temporary reprieve and allows time to migrate to an NVA or operating system that fully supports MANA.
 
 ### What if the NVA is acquired directly from the NVA provider and not through the Azure Marketplace?
 
@@ -57,7 +58,7 @@ The tag will be usable until the end of September 2026. After this time, the sys
 
 ### What support is available to help apply this tag on my applicable resources?
 
-To apply this tag across applicable resources at scale, you can apply a built-in Azure Policy definition: **Adds a tag to Network Virtual Appliances (NVAs) VMs and VMSS for MANA support**.
+To apply this tag across applicable resources at scale, you can apply a built-in Azure Policy definition: **Adds a tag to Network Virtual Appliances (NVAs) VMs and Virtual Machine Scale Sets for MANA support**.
 
 Like any other Azure Policy assignment, it can be applied at the following scope levels to cover applicable resources underneath it:
 
@@ -69,7 +70,7 @@ Like any other Azure Policy assignment, it can be applied at the following scope
 | Resource Group | Resources in that resource group |
 | Resource | Single resource |
 
-The policy applies a specific tag, `LegacyVMNVA`, to NVA deployments. The policy covers individual workloads and VMSS scenarios as well.
+The policy applies a specific tag, `LegacyVMNVA`, to NVA deployments. The policy covers individual workloads and Virtual Machine Scale Sets scenarios as well.
 
 Logic in the policy definition scopes the tag application to specific NVA publishers and associated product IDs, which are available in the Azure Marketplace. The tag inhibits deployment of NVAs on MANA-enabled hardware.
 
@@ -113,7 +114,7 @@ VM sizes are specified in [Microsoft Azure Network Adapter (MANA) support for ex
 
 ### How can I verify that the tag has been applied to my resources?
 
-The tag `LegacyVMNVA` is visible in the Azure portal for IaaS VMs and for VM Scale Set (VMSS) scenarios.
+The tag `LegacyVMNVA` is visible in the Azure portal for IaaS VMs and for VM Scale Set scenarios.
 
 Azure Policy collects and aggregates compliance data, which can be used to see which resources are *compliant* against the definition (the tag is applied) versus which ones are *non-compliant* and must be remediated (the tag isn't applied). This compliance report can be viewed in the Azure portal under the **Policy** tab.
 
