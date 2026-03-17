@@ -1,20 +1,26 @@
 ---
-title: "Quickstart: Image processing with FFmpeg in an Azure Files OS mount in Azure Functions"
-description: Learn how to deploy a Python Azure Functions app that uses an ffmpeg binary hosted on an Azure Files OS mount to process images on a Flex Consumption plan.
+title: "Tutorial: Process images by using FFmpeg on a mounted Azure Files share in Azure Functions"
+description: Learn how to deploy a Python Azure Functions app that uses an ffmpeg binary hosted on a mounted Azure Files share to process images on a Flex Consumption plan.
 ms.service: azure-functions
-ms.topic: quickstart
+ms.topic: tutorial
 ms.date: 03/11/2026
 ms.custom:
   - devx-track-azurecli
   - devx-track-python
-#customer intent: As a developer, I want to host large third-party binaries like ffmpeg on an Azure Files OS mount so I can keep my function deployment small and cold starts fast.
+#customer intent: As a developer, I want to host large third-party binaries like ffmpeg on a mounted Azure Files share so I can keep my function deployment small and cold starts fast.
 ---
 
-# Quickstart: Image processing with FFmpeg in an Azure Files OS mount
+# Tutorial: Process images by using FFmpeg on a mounted Azure Files share
 
-In this quickstart, you deploy a Python Azure Functions app that uses an **ffmpeg binary on an OS-mounted Azure Files share** to process images. When you upload an image to Azure Blob Storage, the function triggers, downloads the image, converts it by using ffmpeg from the mount, and saves the result back to storage.
+In this tutorial, you deploy a Python app that uses an ffmpeg binary on a mounted Azure Files share to process images in Azure Functions. When you upload an image to the container, the function triggers, calls ffmpeg from the mount to convert the image, and saves the result back to storage. By hosting large binaries like ffmpeg on a mounted share instead of in your deployment package, you keep deployments small and cold starts fast.
 
-This quickstart demonstrates a key advantage of OS mounts: hosting large third-party binaries (like ffmpeg) outside your deployment package to keep cold starts fast and code size small.
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Deploy Azure infrastructure by using Bicep, including a Flex Consumption plan function app with a mounted Azure Files share
+> * Upload the ffmpeg binary to the mounted Azure Files share
+> * Deploy a Python function app that calls ffmpeg to process images
+> * Trigger and verify image processing by uploading a blob
 
 [!INCLUDE [functions-azure-files-samples-note](../../includes/functions-azure-files-samples-note.md)]
 
@@ -27,21 +33,6 @@ This quickstart demonstrates a key advantage of OS mounts: hosting large third-p
 - [Git](https://git-scm.com/).
 - [ffmpeg](https://ffmpeg.org/download.html) installed locally (for preparing the binary to upload).
 
-## What you'll build
-
-You deploy an application with the following components:
-
-- **Function app**: Listens for image uploads to Azure Blob Storage.
-- **Process function**: Triggered by blob uploads, reads the image, calls ffmpeg from the mounted share, and saves the converted image.
-- **Azure Files mount**: Contains the ffmpeg binary and temporary files.
-
-When you upload an image (JPG, PNG), the function:
-
-1. Triggers on the blob upload.
-1. Calls ffmpeg from the OS mount.
-1. Converts and resizes the image.
-1. Saves the result to an output storage container.
-
 ## Clone the repository
 
 ```bash
@@ -51,7 +42,7 @@ cd Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples/ffmpeg-ima
 
 ## Create Azure resources
 
-This quickstart uses Bicep to automate resource creation.
+This tutorial uses Bicep to automate resource creation.
 
 ### Sign in to Azure
 
@@ -118,7 +109,7 @@ chmod +x ffmpeg_share/ffmpeg
 
 Download the ffmpeg binary from [ffmpeg.org](https://ffmpeg.org/download.html), extract it, and copy `ffmpeg.exe` to a local folder.
 
-### Upload to Azure Files
+### Upload the binary to Azure Files
 
 ```bash
 STORAGE_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP --account-name $STORAGE_ACCOUNT --query "[0].value" -o tsv)
@@ -148,7 +139,7 @@ ffmpeg
 > [!TIP]
 > The Azure Files share is mounted at `/mnt/ffmpeg_binaries` inside the function container. Your function calls `/mnt/ffmpeg_binaries/ffmpeg` directly.
 
-## Verify the OS mount configuration
+## Verify the storage mount configuration
 
 The Bicep deployment configures the mount. Verify that it's set up correctly:
 
@@ -186,7 +177,7 @@ Edit `local.settings.json` to match your deployment:
 }
 ```
 
-### Publish to Azure
+### Publish the app to Azure
 
 ```bash
 func azure functionapp publish $FUNCTION_APP_NAME --build remote
@@ -286,19 +277,9 @@ az group delete --name $RESOURCE_GROUP --yes
 > [!WARNING]
 > This command deletes the resource group and all resources in it, including the function app, storage account, and Application Insights instance.
 
-## Troubleshooting
-
-| Issue | Resolution |
-| --- | --- |
-| **ffmpeg: command not found** | Verify the binary was uploaded to Azure Files. Check the mount path in your function app settings. Ensure the binary has execute permissions. |
-| **Permission denied** | Verify the storage account access key in the mount configuration is correct and hasn't been rotated. OS mounts use storage account keys, not managed identity RBAC. |
-| **Blob trigger not firing** | Ensure the function app's managed identity can read from the input blob container. Assign **Storage Blob Data Reader** if needed. |
-| **Conversion takes too long** | Flex Consumption cold starts add approximately 1-2 seconds. For large files, consider resizing the image first or using a Premium function plan. |
-| **ffmpeg binary too large** | Keep ffmpeg and temporary files on the Azure Files mount to avoid bloating your deployment package. |
-
 ## Related content
 
-- [Tutorial: Shared file access patterns with Azure Files OS mounts](./tutorial-shared-file-access-azure-files.md)
-- [Quickstart: Durable text analysis with Azure Files OS mount](./quickstart-durable-text-analysis-azure-files.md)
+- [Choose a file access strategy for Azure Functions](./concept-file-access-options.md)
+- [Quickstart: Durable text analysis with a mounted Azure Files share](./quickstart-durable-text-analysis-azure-files.md)
 - [Flex Consumption plan](./flex-consumption-plan.md)
 - [Storage considerations for Azure Functions](./storage-considerations.md)

@@ -1,20 +1,20 @@
 ---
-title: "Quickstart: Durable text analysis with Azure Files OS mount in Azure Functions"
-description: Learn how to deploy a Python Azure Functions app that uses Durable Functions to orchestrate parallel text file analysis by using an Azure Files OS mount on a Flex Consumption plan.
+title: "Quickstart: Durable text analysis with a mounted Azure Files share in Azure Functions"
+description: Learn how to deploy a Python Azure Functions app that uses Durable Functions to orchestrate parallel text file analysis by using a mounted Azure Files share on a Flex Consumption plan.
 ms.service: azure-functions
 ms.topic: quickstart
 ms.date: 03/11/2026
 ms.custom:
   - devx-track-azurecli
   - devx-track-python
-#customer intent: As a developer, I want to deploy a Durable Functions app on the Flex Consumption plan with Azure Files OS mounts so I can analyze multiple text files in parallel without managing infrastructure.
+#customer intent: As a developer, I want to deploy a Durable Functions app on the Flex Consumption plan with Azure Files storage mounts so I can analyze multiple text files in parallel without managing infrastructure.
 ---
 
-# Quickstart: Durable text analysis with Azure Files OS mount
+# Quickstart: Durable text analysis with a mounted Azure Files share
 
 In this quickstart, you deploy a Python Azure Functions app that uses [Durable Functions](./durable/durable-functions-overview.md) to orchestrate parallel text file analysis. Your function app mounts an Azure Files share, analyzes multiple text files in parallel (fan-out), aggregates the results (fan-in), and returns them to the caller.
 
-This quickstart demonstrates a key advantage of OS mounts: shared file access across multiple function instances without per-request network overhead.
+This quickstart demonstrates a key advantage of storage mounts: shared file access across multiple function instances without per-request network overhead.
 
 [!INCLUDE [functions-azure-files-samples-note](../../includes/functions-azure-files-samples-note.md)]
 
@@ -123,7 +123,7 @@ az functionapp config appsettings list --resource-group $RESOURCE_GROUP --name $
 ```
 
 > [!TIP]
-> The OS mount typically appears at `/mnt/filedata` inside the function container. Your app settings map this local path to the Azure Files share.
+> The storage mount typically appears at `/mnt/filedata` inside the function container. Your app settings map this local path to the Azure Files share.
 
 ## Upload sample text files
 
@@ -284,7 +284,7 @@ While the orchestration is running, the `runtimeStatus` is `Running`. When compl
 ```
 
 > [!TIP]
-> Your function app accessed all three files in parallel through the OS mount. No per-request network calls were needed. The function read them directly from the mounted share by using standard file I/O. This approach demonstrates the power of OS mounts combined with Durable Functions.
+> Your function app accessed all three files in parallel through the storage mount. No per-request network calls were needed. The function read them directly from the mounted share by using standard file I/O. This approach demonstrates the power of storage mounts combined with Durable Functions.
 
 ## Clean up resources
 
@@ -302,14 +302,14 @@ az group delete --name $RESOURCE_GROUP --yes
 | Issue | Resolution |
 | --- | --- |
 | **Mount path not found** | Verify the mount is configured in the Azure portal under **Settings** > **Configuration** > **Path Mappings**. |
-| **Permission denied when reading files** | Verify the storage account access key in the mount configuration is correct and hasn't been rotated. OS mounts use storage account keys, not managed identity RBAC. |
+| **Permission denied when reading files** | Verify the storage account access key in the mount configuration is correct and hasn't been rotated. Storage mounts use storage account keys, not managed identity RBAC. |
 | **Deployment failed** | Check the Bicep parameters file (`infra/main.bicepparam`). Ensure all required values are set and the storage account name is globally unique. |
 | **Orchestration timed out** | Increase `maxRetryInterval` in `function_app.py` if your files are large or your analysis is slow. |
 
 ## Related content
 
 - [Durable Functions overview](./durable/durable-functions-overview.md)
-- [Tutorial: Shared file access patterns with Azure Files OS mounts](./tutorial-shared-file-access-azure-files.md)
-- [Quickstart: FFmpeg image processing with Azure Files OS mount](./quickstart-ffmpeg-processing-azure-files.md)
+- [Choose a file access strategy for Azure Functions](./concept-file-access-options.md)
+- [Tutorial: Process images by using FFmpeg on a mounted Azure Files share](./tutorial-ffmpeg-processing-azure-files.md)
 - [Flex Consumption plan](./flex-consumption-plan.md)
 - [Storage considerations for Azure Functions](./storage-considerations.md)

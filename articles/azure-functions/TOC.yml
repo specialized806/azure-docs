@@ -33,9 +33,9 @@
       - name: Respond to blob storage events by using Azure Functions
         displayName: storage, blob, Event Grid
         href: scenario-blob-storage-events.md
-      - name: Image processing with FFmpeg in an Azure Files OS mount
-        displayName: Azure Files, OS mount, ffmpeg, Flex Consumption
-        href: quickstart-ffmpeg-processing-azure-files.md  
+      - name: Image processing with FFmpeg on a mounted Azure Files share
+        displayName: Azure Files, storage mount, ffmpeg, Flex Consumption
+        href: tutorial-ffmpeg-processing-azure-files.md
     - name: AI tools and MCP
       items:
       - name: Custom remote MCP server
@@ -61,7 +61,7 @@
         displayName: workflow, Durable Functions
         href: ./durable/scenario-build-serverless-workflow.md?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
       - name: Durable text analysis
-        displayName: Azure Files, OS mount, Durable Functions, Flex Consumption
+        displayName: Azure Files, storage mount, Durable Functions, Flex Consumption
         href: quickstart-durable-text-analysis-azure-files.md
     - name: Run scheduled tasks
       displayName: timer trigger, schedule
@@ -128,9 +128,6 @@
   - name: Host MCP servers for AI-enabled functions
     displayName: agent, agentic, Foundry
     href: functions-mcp-tutorial.md
-  - name: Shared file access with Azure Files OS mounts
-    displayName: Azure Files, OS mount, Flex Consumption, shared files
-    href: tutorial-shared-file-access-azure-files.md
   - name: Develop Python functions with VS Code
     href: ./create-first-function-vs-code-python.md
   - name: Create serverless APIs using Visual Studio
@@ -211,6 +208,9 @@
     - name: Storage considerations
       displayName: encryption, keys, mount, files
       href: storage-considerations.md
+    - name: Choose a file access strategy
+      displayName: Azure Files, storage mount, bindings, file access, Flex Consumption, shared files
+      href: concept-file-access-options.md
     - name: Error handling and function retries
       displayName: best practices, retry policies
       href: functions-bindings-error-pages.md
