@@ -50,11 +50,11 @@ At a minimum, the network must have outbound internet connectivity for successfu
 
 If internet connectivity isn't possible, allow list the IP addresses for the following areas:
 
-- [SUSE or Red Hat endpoints](#allowlist-suse-or-red-hat-endpoints)
-- [Azure Storage accounts](#allowlist-storage-accounts)
-- [Allow list Azure Key Vault](#allowlist-key-vault)
-- [Allow list Microsoft Entra ID](#allowlist-azure-ad)
-- [Allow list Azure Resource Manager](#allowlist-azure-resource-manager)
+- [SUSE or Red Hat endpoints](#allow-list-suse-or-red-hat-endpoints)
+- [Azure Storage accounts](#allow-list-storage-accounts)
+- [Allow list an Azure Key Vault](#allow-list-a-key-vault)
+- [Allow list a Microsoft Entra ID](#allow-list-a-microsoft-entra-id)
+- [Allow list an Azure Resource Manager](#allow-list-an-azure-resource-manager)
 
 Then, make sure all resources within the virtual network can connect to each other. For example, [configure a network security group](../../virtual-network/manage-network-security-group.md#work-with-network-security-groups) to allow resources within the virtual network to communicate by listening on all ports.
 
