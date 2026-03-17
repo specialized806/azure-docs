@@ -31,7 +31,7 @@ Here's a timeline for changes to the service tiers and actions that you need to 
 To switch between tiers:
 
 - From Azure Front Door (classic) to the Standard or Premium tier: use the [migration capability](migrate-tier.md).
-- From Azure CDN Standard from Microsoft (classic) to the Content Delivery Network Standard or Premium tier: use the [migration capability](../cdn/migrate-tier.md).
+- From Azure CDN Standard from Microsoft (classic) to the Azure Front Door Standard or Premium tier: use the [migration capability](../cdn/migrate-tier.md).
 - From Azure Front Door Standard to Premium: use the [upgrade capability](tier-upgrade.md).
 - From Azure Front Door Premium to Standard: No seamless downgrade tool exists. You can re-create the profile instead.
 
