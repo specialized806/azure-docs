@@ -388,6 +388,8 @@ items:
       href: how-to-upgrade-windows.md
     - name: Automate agent-based migrations using REST API
       href: how-to-automate-vmware-to-azure-migration-rest-api.md
+    - name: Migrate Generation 2 Virtual Machines to Azure Trusted Launch Virtual Machines using Azure Migrate
+      href: migrate-to-trusted-launch-virtual-machines-using-azure-migrate.md
     - name: Scale migration
       items:
       - name: How to migrate VMware VMs at scale using the agentless replication method
