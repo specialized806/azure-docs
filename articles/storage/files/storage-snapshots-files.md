@@ -484,7 +484,7 @@ To create a snapshot of an existing file share, sign in to the Azure portal and 
 To create a snapshot of an existing file share, run the following PowerShell command. Be sure to replace variables with your own values.
 
 ```powershell
-# To learn more about the Az.FileShare module, see [Microsoft.FileShares PowerShell module](https://www.powershellgallery.com/packages/Az.FileShare/0.1.0).
+# To learn more about the Az.FileShare module, see https://www.powershellgallery.com/packages/Az.FileShare/0.1.0
 Install-Module -Name Az.FileShare -Repository psgallery -RequiredVersion 0.1.0
 
 $resourceGroup = "<resource-group-name>"
