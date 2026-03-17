@@ -15,10 +15,10 @@ ms.custom: engagement-fy26
 
 Azure Migrate now supports migrating your Generation 2 VMs to Azure Virtual Machines with Trusted Launch. Trusted Launch uses UEFI-based Secure Boot and a virtual Trusted Platform Module (vTPM) to establish a trusted boot chain. This ensures that only approved and signed components load during startup, reducing the risk from bootkits, rootkits, and other low-level malware.
 
-Trusted Launch is the default security type for supported Generation 2 VMs and virtual machine scale sets in Azure, where available. [Learn more](articles/virtual-machines/trusted-launch.md) about Trusted Launch Virtual Machines.
+Trusted Launch is the default security type for supported Generation 2 VMs and virtual machine scale sets in Azure, where available. [Learn more](/azure/virtual-machines/trusted-launch) about Trusted Launch Virtual Machines.
 
 ## Supported operating systems
-Azure Migrate supports all Operating systems that are supported for Trusted Launch in Azure. See [Azure supported OS list and VM sizes](articles/virtual-machines/trusted-launch.md#virtual-machines-sizes) for more information.
+Azure Migrate supports all Operating systems that are supported for Trusted Launch in Azure. See [Azure supported OS list and VM sizes](/azure/virtual-machines/trusted-launch#operating-systems-supported) for more information.
 
 >[!Note]
 >Trusted Launch is a security feature for Generation 2 VMs. Generation 1 VMs use BIOS and MBR, and they do not support Secure Boot or vTPM by design. As a result, Generation 1 VMs cannot use Trusted Launch and Azure migrate does not support migrating Gen 1 VMs to Trusted Launch virtual Machines
