@@ -131,12 +131,8 @@ No action is required at the end of September 2026. However, we recommend removi
 
 No. Accelerated Networking enablement doesn't have any effect on the application of the policy.
 
-### Are Azure Kubernetes Service (AKS) instances impacted?
+## Related content
 
-No. AKS instances aren't impacted and will continue to perform as expected when deployed on MANA hardware.
-
-### Is VNet encryption impacted?
-
-No. VNet encryption will continue to perform as expected if VMs are deployed on MANA hardware.
-
-### Is the performance difference when running on MANA hardware affected by the VM size being migrated?
+- [Accelerated Networking Overview](https://aka.ms/accelnet)
+- [How Accelerated Networking works in Linux and FreeBSD VMs](/azure/virtual-network/accelerated-networking-how-it-works)
+- [Microsoft Azure Network Adapter (MANA) support for existing VM Sizes](./accelerated-networking-mana-existing-sizes.md)

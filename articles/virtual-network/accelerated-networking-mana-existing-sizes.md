@@ -63,6 +63,14 @@ To learn more about MANA, visit [Microsoft Azure Network Adapter](/azure/virtual
 ### What should I do if I have issues? 
 We’re here to help. Contact Microsoft Support, who can assist with troubleshooting, guidance, and next steps. You can open a support request through the Azure portal by selecting Help + support, or visit the Microsoft Support site to start a new case. A support engineer reviews your request, engage internal teams as needed, and keep you updated until the issue is resolved. 
 
+### Are Azure Kubernetes Service (AKS) instances impacted?
+
+No. AKS instances aren't impacted and will continue to perform as expected when deployed on MANA hardware.
+
+### Is VNet encryption impacted?
+
+No. VNet encryption will continue to perform as expected if VMs are deployed on MANA hardware.
+
 ## Related content
 
 - [Accelerated Networking Overview](https://aka.ms/accelnet)
