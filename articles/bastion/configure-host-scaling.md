@@ -13,7 +13,7 @@ ms.author: abell
 
 # Configure host scaling for Azure Bastion
 
-This article helps you configure host scaling for your Azure Bastion deployment. Host scaling lets you adjust the number of instances (scale units) to support more concurrent client connections. For more information about instances and host scaling, see [Instances and host scaling](configuration-settings.md#instance).
+This article helps you configure host scaling for your Azure Bastion deployment. Host scaling lets you adjust the number of instances (scale units) to support more concurrent client connections.
 
 > [!IMPORTANT]
 > Host scaling requires the Standard SKU tier or higher. Any changes to scale units disrupt active Bastion connections. Plan changes during maintenance windows.
