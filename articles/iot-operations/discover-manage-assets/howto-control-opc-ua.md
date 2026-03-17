@@ -197,12 +197,12 @@ resource asset 'Microsoft.DeviceRegistry/namespaces/assets@2025-10-01' = {
     managementGroups: [
       {
         name: 'managementGroup'
+        dataSource: 'nsu=http://microsoft.com/Opc/OpcPlc/Boiler;i=5019'
         actions: [
           {
             name: 'Switch'
             actionType: 'Call'
             targetUri: 'nsu=http://microsoft.com/Opc/OpcPlc/Boiler;i=7019'
-            typeRef: 'nsu=http://microsoft.com/Opc/OpcPlc/Boiler;i=5019'
           }
           {
             name: 'explicit-write'
@@ -275,9 +275,12 @@ The example asset called `management-actions-asset` has an action called `Switch
 An action always has the following properties:
 
 - `name`: Name of the action in a management group.
+- `dataSource`: Maps to the `objectId` in [OPC UA](https://reference.opcfoundation.org/Core/Part4/v104/docs/5.11.2.2). Distinguishes methods defined for multiple objects.
 - `targetUri`: Maps to the `methodId` in [OPC UA](https://reference.opcfoundation.org/Core/Part4/v104/docs/5.11.2.2). References the method to call.
 - `actionType`: The type of action. For methods, this property is always `Call`.
-- `typeRef`: Maps to the `objectId` in [OPC UA](https://reference.opcfoundation.org/Core/Part4/v104/docs/5.11.2.2). Distinguishes methods defined for multiple objects.
+
+> [!NOTE]
+> Versions of Azure IoT Operations prior to 2603 used `typeRef` instead of `dataSource` to map to the `objectId`. If you're using an older version, use `typeRef` in your asset definition instead of `dataSource`.
 
 When you publish a message to the topic `azure-iot-operations/asset-operations/<asset name>/<management group name>/<action name>` that includes a value for `Switch`, the commander service calls the method in the OPC UA server. For example, to switch on the boiler, publish a message with the following payload to the topic `azure-iot-operations/asset-operations/management-actions-asset/managementGroup/Switch`:
 
