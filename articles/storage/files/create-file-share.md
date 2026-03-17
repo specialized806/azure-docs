@@ -109,7 +109,7 @@ The final step to create the file share is to select the **Create** button on th
 To create a file share by using PowerShell, run the following commands. Replace the variables with your intended values. 
 
 ```powershell
-# To learn more about the Az.FileShare module, see [Microsoft.FileShares PowerShell module](https://www.powershellgallery.com/packages/Az.FileShare/0.1.0).
+# To learn more about the Az.FileShare module, see https://www.powershellgallery.com/packages/Az.FileShare/0.1.0
 Install-Module -Name Az.FileShare -Repository psgallery -RequiredVersion 0.1.0
 
 # To learn more about the parameters for New-AzFileShare, use command 
