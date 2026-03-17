@@ -7,6 +7,7 @@ ms.date: 07/24/2024
 author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
+ms.update-cycle: 1095-days
 ms.custom: cloud-services-extended-support
 # Customer intent: As a cloud architect, I want to understand the NetworkConfiguration schema for Azure Cloud Services, so that I can accurately configure virtual networks, DNS settings, access control rules, and reserved IPs for my deployments.
 ---

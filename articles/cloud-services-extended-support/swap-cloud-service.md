@@ -7,6 +7,7 @@ author: surbhijain
 ms.author: surbhijain
 ms.reviewer: gachandw
 ms.date: 11/21/2024
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-arm-template
   - sfi-image-nochange

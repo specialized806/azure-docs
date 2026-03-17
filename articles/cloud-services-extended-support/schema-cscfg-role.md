@@ -7,6 +7,7 @@ ms.date: 07/24/2024
 author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
+ms.update-cycle: 1095-days
 ms.custom: cloud-services-extended-support
 # Customer intent: As a cloud solutions architect, I want to understand the role schema for Azure Cloud Services (extended support), so that I can configure service roles, instances, settings, and certificates effectively in my deployments.
 ---

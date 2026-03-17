@@ -7,6 +7,7 @@ ms.date: 07/24/2024
 author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
+ms.update-cycle: 1095-days
 ms.custom: cloud-services-extended-support
 # Customer intent: As a cloud architect, I want to configure role instances, OS settings, and networking details in the service configuration file, so that I can properly deploy and manage Azure Cloud Services (extended support) applications.
 ---

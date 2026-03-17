@@ -7,6 +7,7 @@ author: surbhijain
 ms.author: surbhijain
 ms.reviewer: gachandw
 ms.date: 07/24/2024
+ms.update-cycle: 365-days
 ms.custom: devx-track-azurepowershell, cloud-services-extended-support
 # Customer intent: As a cloud service developer, I want to override role size and instance count settings programmatically, so that I can scale services without modifying and redeploying configuration and definition files.
 ---

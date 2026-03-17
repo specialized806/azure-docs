@@ -7,6 +7,7 @@ author: hirenshah1
 ms.author: hirshah
 ms.reviewer: mimckitt
 ms.date: 07/24/2024
+ms.update-cycle: 365-days
 ms.custom: cloud-services-extended-support, classic-to-arm-migration
 # Customer intent: As an IT admin, I want to understand common issues and errors during migration to Azure Cloud Services (extended support), so that I can troubleshoot effectively and ensure a smooth transition from Cloud Services (classic).
 ---

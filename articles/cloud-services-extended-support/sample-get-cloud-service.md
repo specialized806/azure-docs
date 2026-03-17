@@ -7,6 +7,7 @@ author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
 ms.date: 07/24/2024
+ms.update-cycle: 365-days
 ms.custom: devx-track-azurepowershell, cloud-services-extended-support
 # Customer intent: As a cloud administrator, I want to use PowerShell scripts to retrieve details about Azure Cloud Services deployments, so that I can monitor their configuration, status, and operational state efficiently.
 ---

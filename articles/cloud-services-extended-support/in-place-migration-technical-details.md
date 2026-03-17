@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 07/24/2024
 author: hirenshah1
 ms.author: hirshah
+ms.update-cycle: 365-days
 ms.custom: cloud-services-extended-support, classic-to-arm-migration
 
 # Customer intent: As an IT admin managing legacy Azure Cloud Services deployments, I want to understand the technical requirements and migration process, so that I can successfully transition to Azure Cloud Services (extended support) while ensuring compatibility and minimizing downtime.

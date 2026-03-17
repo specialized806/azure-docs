@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 07/24/2024
 author: hirenshah1
 ms.author: hirshah
+ms.update-cycle: 365-days
 ms.custom: devx-track-azurepowershell, cloud-services-extended-support, classic-to-arm-migration
 
 # Customer intent: As an IT administrator managing legacy Azure Cloud Services, I want to migrate from classic to extended support using PowerShell, so that I can leverage the improved reliability and features of the Azure Resource Manager deployment model.

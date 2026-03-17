@@ -7,6 +7,7 @@ author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
 ms.date: 07/24/2024
+ms.update-cycle: 365-days
 ms.custom: cloud-services-extended-support
 # Customer intent: As a cloud administrator, I want to enable monitoring rules for Cloud Services, so that I can track metrics and proactively respond to issues in my deployments.
 ---

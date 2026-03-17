@@ -7,6 +7,7 @@ author: surbhijain
 ms.author: surbhijain
 ms.reviewer: gachandw
 ms.date: 07/24/2024
+ms.update-cycle: 365-days
 ms.custom: devx-track-arm-template, cloud-services-extended-support
 # Customer intent: As an IT administrator, I want to generate and download ARM templates for Cloud Services (extended support) using the Azure portal, so that I can automate deployment and configuration through PowerShell.
 ---

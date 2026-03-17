@@ -7,6 +7,7 @@ author: surbhijain
 ms.author: surbhijain
 ms.reviewer: mimckitt
 ms.date: 07/24/2024
+ms.update-cycle: 1095-days
 ms.custom: cloud-services-extended-support
 # Customer intent: As a cloud solution architect, I want to compare the features of Cloud Services and Virtual Machine Scale Sets, so that I can select the best deployment model for my organization's scalability, availability, and management needs.
 ---

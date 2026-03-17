@@ -7,6 +7,7 @@ author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
 ms.date: 07/24/2024
+ms.update-cycle: 365-days
 ms.custom: cloud-services-extended-support
 # Customer intent: As a cloud developer, I want to deploy Cloud Services (extended support) using ARM templates, so that I can automate and customize the provisioning process for scalable and secure PaaS deployments in Azure.
 ---
