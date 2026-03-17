@@ -35,7 +35,6 @@ Before you start:
 If your Synapse pipelines include Notebook and/or Spark job definition (SJD) activities, migrate those Spark artifacts to Fabric first. This separation ensures the pipeline migration experience can map those activities to the correct Fabric items instead of leaving them unmapped.
 
 Use the  [Synapse-to-Fabric Spark Migration Assistant](/fabric/data-engineering/synapse-to-fabric-spark-migration-assistant) to migrate Spark-related items from your Synapse workspace into a Fabric workspace.
-The assistant supports migrating Spark pools (to Fabric environments), notebooks, Spark job definitions, and lake databases (to Fabric lakehouses/shortcuts).
 
 ## Migrate Synapse pipelines
 
@@ -104,7 +103,7 @@ After you map linked services to Fabric connections, select **Confirm** to compl
 
 :::image type="content" source="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/successful-migration-completion.png" alt-text="Screenshot showing successful migration." lightbox="media/how-to-assess-and-upgrade-your-azure-synapse-analytics-pipelines-to-fabric/successful-migration-completion.png":::
 
-When migration completes, open the destination folder in your Fabric workspace and review the migrated pipelines.
+After migration completes, go to your Fabric workspace to review the migrated pipelines. Each pipeline is created under the workspace and prefixed with its source factory name.
 
 > [!NOTE]
 > Pipelines migrate safely with **triggers disabled by default**, so you stay in control of execution.
