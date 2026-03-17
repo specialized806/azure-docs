@@ -7,7 +7,7 @@ ms.reviewer: nicholak
 ms.service: cost-management-billing
 ms.subservice: billing
 ms.topic: concept-article
-ms.date: 03/09/2026
+ms.date: 03/17/2026
 service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8
 ---
 
