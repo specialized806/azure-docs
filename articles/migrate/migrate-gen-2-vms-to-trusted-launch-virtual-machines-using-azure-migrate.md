@@ -30,5 +30,5 @@ At the root of Trusted Launch is Secure Boot. Secure Boot is implemented in plat
 >Secure Boot is configured as part of the Trusted Launch settings on the target Virtual Machine and isn’t inherited from the source Virtual Machine. Even if Secure Boot was enabled on the source Virtual Machine, it isn’t automatically enabled on the migrated Trusted Launch Virtual Machine. You must explicitly enable Secure Boot in the Trusted Launch configuration during migration.
 
 ## How to migrate to trusted launch Virtual Machines using azure migrate:
-This guide explains how to migrate your workloads to Trusted Launch Virtual Machines using Azure Migrate. For more information, See [how to migrate to Trusted Launch Virtual machines using Azure Migrate](articles/migrate/tutorial-migrate-Virtual Machineware.md#set-up-the-azure-migrate-appliance).
+This guide explains how to migrate your workloads to Trusted Launch Virtual Machines using Azure Migrate. For more information, See [How to migrate to trusted launch virtual machines using Azure Migrate](tutorial-migrate-vmware?view=migrate#set-up-the-azure-migrate-appliance).
 
