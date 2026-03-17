@@ -12,14 +12,10 @@ ms.date: 02/11/2025
 
 Managed identities for Azure resources provide Azure services with an automatically managed identity in Microsoft Entra ID. You can use this identity to authenticate to Azure Service Bus without storing credentials in your code.
 
-This article shows you how to:
+This article walks you through enabling a managed identity, assigning the appropriate Service Bus role, and connecting to Service Bus from your application code.
 
-> [!div class="checklist"]
-> - Enable a managed identity for your Azure compute resource
-> - Assign Service Bus roles to the managed identity
-> - Connect to Service Bus from your application using the managed identity
-
-If you're not familiar with managed identities, see [Managed identities for Azure resources](../active-directory/managed-identities-azure-resources/overview.md).
+> [!NOTE]
+> If you're not familiar with managed identities, see [Managed identities for Azure resources](../active-directory/managed-identities-azure-resources/overview.md).
 
 ## Prerequisites
 
@@ -33,7 +29,7 @@ To use managed identities with Azure Service Bus, you need:
 
 > [!IMPORTANT]
 > You can disable local or SAS key authentication for a Service Bus namespace and allow only Microsoft Entra authentication. For step-by-step instructions, see [Disable local authentication](disable-local-authentication.md).
-    
+
 ## Assign a Service Bus role to the managed identity
 
 Microsoft Entra authorizes access to secured resources through [Azure role-based access control (RBAC)](../role-based-access-control/overview.md). Azure Service Bus provides Azure built-in roles that encompass common sets of permissions used to access Service Bus entities. You can also define custom roles.
@@ -58,7 +54,7 @@ To assign a role to a managed identity in the Azure portal:
 1. Select the managed identity for your Azure resource.
 1. Select **Review + assign**.
 
-For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+For more information, see [Assign Azure roles using the Azure portal](../role-based-access-control/role-assignments-portal.md).
 
 ### Choose the resource scope
 
@@ -88,9 +84,9 @@ az role assignment create \
 For more information about how built-in roles are defined, see [Understand role definitions](../role-based-access-control/role-definitions.md#control-and-data-actions). For information about creating Azure custom roles, see [Azure custom roles](../role-based-access-control/custom-roles.md).
 
 > [!NOTE]
-> If the source service or app doesn't restart after the access to a Service Bus entity is disabled by removing the source's managed identity from the Service Bus RBAC role, the source app might continue to send/receive messages to/from the Service Bus entity until the token expires (default token validity is 24 hours). This behavior is by design. 
+> If the source service or app doesn't restart after you remove its managed identity from the Service Bus RBAC role, the source app might continue to send or receive messages to or from the Service Bus entity until the token expires (default token validity is 24 hours). This behavior is by design. 
 >
-> Therefore, after you remove the source's managed identity from the RBAC role, restart the source app or service to immediately expire the token and prevent it from sending messages to or receiving messages from the Service Bus entity. 
+> After you remove the source's managed identity from the RBAC role, restart the source app or service to immediately expire the token and prevent it from sending or receiving messages from the Service Bus entity. 
 
 ## Connect to Service Bus using managed identity in Azure SDKs
 
@@ -104,7 +100,7 @@ var client = new ServiceBusClient("contoso.servicebus.windows.net", new DefaultA
 
 You send and receive messages as usual using [ServiceBusSender](/dotnet/api/azure.messaging.servicebus.servicebussender) and [ServiceBusReceiver](/dotnet/api/azure.messaging.servicebus.servicebusreceiver) or [ServiceBusProcessor](/dotnet/api/azure.messaging.servicebus.servicebusprocessor). 
 
-For complete step-by-step instructions to send and receive messages using a managed identity, see the following quickstarts. These quickstarts have the code to use a service principal to send and receive messages, but the code is the same for using a managed identity.  
+For step-by-step instructions to send and receive messages using a managed identity, see the following quickstarts. These quickstarts have the code to use a service principal to send and receive messages, but the code is the same for using a managed identity.  
 
 - [.NET](service-bus-dotnet-get-started-with-queues.md)
 - [Java](service-bus-java-how-to-use-queues.md)
@@ -112,11 +108,11 @@ For complete step-by-step instructions to send and receive messages using a mana
 - [Python](service-bus-python-how-to-use-queues.md)
 
 > [!NOTE]
-> The managed identity works only inside the Azure environment, on App services, Azure VMs, and scale sets. For .NET applications, the Microsoft.Azure.Services.AppAuthentication library, which is used by the Service Bus NuGet package, provides an abstraction over this protocol and supports a local development experience. This library also allows you to test your code locally on your development machine, using your user account from Visual Studio, Azure CLI 2.0, or Active Directory Integrated Authentication. For more on local development options with this library, see [Service-to-service authentication to Azure Key Vault using .NET](/dotnet/api/overview/azure/service-to-service-authentication).  
+> Managed identities work only inside the Azure environment, on App Service, Azure VMs, and scale sets. For .NET applications, the Microsoft.Azure.Services.AppAuthentication library, which the Service Bus NuGet package uses, provides an abstraction over this protocol and supports a local development experience. This library also lets you test your code locally on your development machine, using your user account from Visual Studio, Azure CLI, or Microsoft Entra Integrated Authentication. For more on local development options with this library, see [Service-to-service authentication to Azure Key Vault using .NET](/dotnet/api/overview/azure/service-to-service-authentication).  
 
 
 ## Next steps
 
 - [Sample: .NET web application using managed identity with Service Bus](https://github.com/Azure-Samples/app-service-msi-servicebus-dotnet/tree/master)
 - [What are managed identities for Azure resources?](../active-directory/managed-identities-azure-resources/overview.md)
-- [Disable local authentication for Service Bus](disable-local-authentication.md) 
+- [Disable local authentication for Service Bus](disable-local-authentication.md)
