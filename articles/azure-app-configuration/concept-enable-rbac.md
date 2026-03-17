@@ -224,6 +224,43 @@ const client = new AppConfigurationClient(myStoreEndpoint, new DefaultAzureCrede
 });
 ```
 
+### [Python](#tab/python)
+#### Python configuration provider
+
+If your application uses the following package, audience can be configured by passing the keyword `audience` to the `load` method. Use version **2.4.0** or later of the following package.
+ - `azure-appconfiguration-provider`
+
+The following code snippet demonstrates how to load Azure App Configuration in a Python application with a cloud-specific audience.
+
+```python
+from azure.appconfiguration.provider import load
+from azure.identity import DefaultAzureCredential
+
+config = load(
+    endpoint=myStoreEndpoint,
+    credential=DefaultAzureCredential(),
+    audience="{Cloud specific audience here}",
+)
+```
+
+#### Azure SDK for Python
+
+If your application uses the following package, audience can be configured by passing the `audience` keyword to the `AzureAppConfigurationClient` constructor. Use version **1.8.0** or later of the following package.
+ - `azure-appconfiguration`
+
+The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
+
+```python
+from azure.appconfiguration import AzureAppConfigurationClient
+from azure.identity import DefaultAzureCredential
+
+client = AzureAppConfigurationClient(
+    myStoreEndpoint,
+    DefaultAzureCredential(),
+    audience="{Cloud specific audience here}",
+)
+```
+
 ### [Go](#tab/go)
 
 To configure the Entra ID audience, import the following packages in your Go application first:
