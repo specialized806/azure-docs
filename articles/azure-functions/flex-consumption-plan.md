@@ -27,17 +27,19 @@ The Flex Consumption plan builds on the strengths of the serverless Consumption 
 + **Per-Function Scaling**: Each function in your app [scales independently based on its workload](#per-function-scaling), potentially resulting in more efficient resource allocation.
 + **Improved Concurrency Handling**: Better handling of concurrent executions with configurable concurrency settings per function.
 + **Flexible Memory Configuration**: Flex Consumption offers multiple [instance sizes](#instance-sizes) size options, allowing you to optimize for your specific workload requirements.
++ **Azure Files storage mounts**: [Mount Azure Files shares](#mount-file-shares) directly to your function app so your code can access large binaries, ML models, and shared data without packaging them in your deployment.
 
 This table helps you directly compare the features of Flex Consumption with the Consumption hosting plan:
 
-| Feature | Consumption | Flex Consumption |
+| Feature | Flex Consumption | Consumption |
 | ----- | ---- | ---- |
 | Scale to zero| ✅ Yes | ✅ Yes   |
-| Scale behavior | [Event driven](event-driven-scaling.md) | [Event driven](event-driven-scaling.md) (fast) |
-| Virtual networks |❌ Not supported | ✅ Supported | 
-| Dedicated compute (mitigate cold starts) | ❌ None | ✅ Always ready instances (optional) | 
-| Billing | Execution-time only | Execution-time + always-ready instances |
-| Scale-out instances (max) | 200 | 1000 |
+| Scale behavior | [Event driven](event-driven-scaling.md) (fast) | [Event driven](event-driven-scaling.md) |
+| Virtual networks | ✅ Supported | ❌ Not supported | 
+| Dedicated compute (mitigate cold starts) | ✅ Always ready instances (optional) | ❌ None | 
+| Billing | Execution-time + always-ready instances | Execution-time only |
+| Scale-out instances (max) | 1000 | 200 |
+| Azure Files storage mounts | ✅ Supported | ❌ Not supported |
 
 For a complete comparison of the Flex Consumption plan against the Consumption plan and all other plan and hosting types, see [function scale and hosting options](functions-scale.md).
 
@@ -103,6 +105,18 @@ To learn how to configure always ready instances, see [Set always ready instance
 Concurrency refers to the number of parallel executions of a function on an instance of your app. You can set a maximum number of concurrent executions that each instance should handle at any given time. Concurrency has a direct effect on how your app scales because at lower concurrency levels, you need more instances to handle the event-driven demand for a function. While you can control and fine tune the concurrency, we provide defaults that work for most cases. 
 
 To learn how to set concurrency limits for HTTP trigger functions, see [Set HTTP concurrency limits](flex-consumption-how-to.md#set-http-concurrency-limits). To learn how to set concurrency limits for non-HTTP trigger functions, see [Target Base Scaling](./functions-target-based-scaling.md).
+
+## Mount file shares
+
+Flex Consumption lets you mount Azure Files shares as local directories in your function app. Mounting is useful when you need to:
+
++ **Keep large binaries out of your deployment**: Mount executables like ffmpeg instead of packaging them, keeping deployments small and cold starts fast.
++ **Share reference data across instances**: All instances read ML models, lookup tables, or corpus data from the same share without per-request downloads.
++ **Share files between apps**: A producer app writes and a consumer app reads from the same mount.
+
+Only Server Message Block (SMB) shares are supported (NFS isn't available). Mounts authenticate with a storage account access key. For more information, see [Choose a file access strategy](./concept-file-access-options.md).
+
+To learn how to configure storage mounts, see [Mount file shares](./storage-considerations.md#mount-file-shares).
 
 ## Deployment
 
@@ -192,7 +206,7 @@ Keep these other considerations in mind when using Flex Consumption plan:
 + **Triggers**: While all triggers are fully supported in a Flex Consumption plan, the Blob storage trigger only supports the [Event Grid source](./functions-event-grid-blob-trigger.md). Non-C# function apps must use version `[4.0.0, 5.0.0)` of the [extension bundle](./extension-bundles.md), or a later version.
 + **Regions**: While the Flex Consumption plan is available in many Azure regions, not all regions are currently supported. To learn more, see [View currently supported regions](flex-consumption-how-to.md#view-currently-supported-regions).
 + **Deployments**: Deployment slots aren't currently supported. For zero downtime deployments with Flex Consumption, see [Site update strategies in Flex Consumption](flex-consumption-site-updates.md).
-+ **Azure Storage as a local share**: Network File System (NFS) file shares aren't available for Flex Consumption. Only Server Message Block (SMB) and Azure Blobs (read-only) are supported.
++ **Azure Storage as a local share**: Network File System (NFS) file shares aren't available for Flex Consumption. Only Server Message Block (SMB) and Azure Blobs (read-only) are supported. For more information, see [Mount file shares](#mount-file-shares).
 + **Scale**: The lowest maximum scale is currently `1`. The highest currently supported value is `1000`.
 + **PowerShell Managed dependencies**: Flex Consumption doesn't support [managed dependencies in PowerShell](functions-reference-powershell.md#managed-dependencies-feature). You must instead [upload modules with app content](functions-reference-powershell.md#including-modules-in-app-content).
 + **Certificates**: Loading certificates with the WEBSITE_LOAD_CERTIFICATES app setting, managed certificates, app service certificates, and other platform certificate-based features like endToEndEncryptionEnabled are currently not supported.

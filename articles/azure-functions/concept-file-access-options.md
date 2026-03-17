@@ -31,10 +31,10 @@ Not every option is available on every hosting plan:
 
 | Hosting plan | Storage bindings | External database | Storage mount (Azure Files) |
 | --- | :---: | :---: | :---: |
-| **Flex Consumption** | Yes | Yes | Yes |
-| **Dedicated (App Service)** | Yes | Yes | Yes |
-| **Premium** | Yes | Yes | No |
-| **Consumption** (Windows only) | Yes | Yes | No |
+| [Flex Consumption](./flex-consumption-plan.md) | ✅ | ✅ | ✅ |
+| [Elastic Premium](./functions-premium-plan.md) | ✅ | ✅ | ❌ |
+| [Dedicated (App Service)](./dedicated-plan.md) | ✅ | ✅ | ✅ |
+| [Consumption](./consumption-plan.md) (Windows only) | ✅ | ✅ | ❌ |
 
 The rest of this article focuses on mounts: when they're the right choice, and how to use them safely.
 
