@@ -59,7 +59,7 @@ The status changes to `Registered` once the process completes.
 Using the legacy **2blob** architecture prevents access to the following services and capabilities designed for the new **3blob** format used in the latest Confidential VMs.
 
 * **Backup and Restore**<br>
-The Azure Backup service does not support 2 blob confidential VMs configured with the opt-out feature. 
+The Azure Backup service doesn't support 2 blob confidential VMs configured with the opt-out feature. 
 
 * **Key Rotation**<br>
 Online key rotation depends on the VMMD blob and therefore is only available for **3blob** resources. Confidential VMs using the **2blob** format cannot rotate keys while online. Automated key rotation may also fail if the resource is online.
