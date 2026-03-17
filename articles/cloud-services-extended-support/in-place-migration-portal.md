@@ -3,12 +3,11 @@ title: How to migrate - portal
 description: How to migrate to Cloud Services (extended support) using the Azure portal
 ms.topic: how-to
 ms.service: azure-cloud-services-classic
-ms.subservice: classic-to-arm-migration
 author: hirenshah1
 ms.author: hirshah
 ms.reviewer: mimckitt
 ms.date: 07/24/2024
-ms.custom: cloud-services-extended-support
+ms.custom: cloud-services-extended-support, classic-to-arm-migration
 # Customer intent: As an IT administrator, I want to migrate classic Cloud Services to extended support using the Azure portal, so that I can modernize deployments while retaining operational continuity.
 ---
 
