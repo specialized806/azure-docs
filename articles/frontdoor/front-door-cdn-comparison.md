@@ -20,7 +20,7 @@ Both services can help you optimize and accelerate your applications by providin
 
 Here's a timeline for changes to the service tiers and actions that you need to take:
 
-- As of August 15, 2025, Azure Front Door (classic) and the Azure Content Delivery Network tier called *Azure CDN from Microsoft (classic)* no longer support new domain onboarding or profile creation. To create new domains or profiles, migrate to [Azure Front Door Standard or Premium](/azure/frontdoor/tier-migration). [Learn more](https://azure.microsoft.com/updates?id=498522).
+- As of August 15, 2025, Azure Front Door (classic) and Azure CDN from Microsoft (classic) no longer support new domain onboarding or profile creation. To create new domains or profiles, migrate to [Azure Front Door Standard or Premium](/azure/frontdoor/tier-migration). [Learn more](https://azure.microsoft.com/updates?id=498522).
 
 - As of August 15, 2025, Azure Front Door (classic) and Azure CDN from Microsoft (classic) [no longer support managed certificates](/azure/security/fundamentals/managed-tls-changes). To avoid service disruption, you needed to either switch to bring your own certificate (BYOC) or migrate to [Azure Front Door Standard or Premium](/azure/frontdoor/tier-migration) by August 15, 2025. Existing managed certificates that were automatically renewed before August 15, 2025, remain valid until April 14, 2026. [Learn more](https://azure.microsoft.com/updates?id=498522).
 
