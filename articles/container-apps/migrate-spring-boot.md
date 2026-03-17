@@ -193,5 +193,5 @@ The following recommendations help you strengthen reliability, observability, an
 
 - [Java on Azure Container Apps overview](java-overview.md)
 - [Quickstart: Deploy your first container app using the Azure portal](quickstart-portal.md)
-- [Migrate Spring Cloud applications to Azure Container Apps](migrate-spring-cloud-to-azure-container-apps.md)
-- [Migrate Tomcat applications to Azure Container Apps](migrate-tomcat-to-azure-container-apps.md)
+- [Migrate Spring Cloud applications to Azure Container Apps](migrate-spring-cloud.md)
+- [Migrate Tomcat applications to Azure Container Apps](migrate-tomcat.md)
