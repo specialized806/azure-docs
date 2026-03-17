@@ -2,11 +2,12 @@
 title: Available sizes for Azure Cloud Services (extended support)
 description: Available sizes for Azure Cloud Services (extended support) deployments
 ms.topic: concept-article
-ms.service: azure-virtual-machines
+ms.service: azure-cloud-services-classic
 author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
 ms.date: 07/24/2024
+ms.custom: cloud-services-extended-support
 # Customer intent: "As a cloud architect, I want to select and configure VM sizes for Cloud Services (extended support) so that I can optimize performance, cost, and scalability for my workloads."
 ---
 

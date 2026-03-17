@@ -2,7 +2,7 @@
 title: Swap or switch deployments in Azure Cloud Services (extended support)
 description: Learn how to swap or switch between deployments in Azure Cloud Services (extended support).
 ms.topic: how-to
-ms.service: azure-virtual-machines
+ms.service: azure-cloud-services-classic
 author: surbhijain
 ms.author: surbhijain
 ms.reviewer: gachandw
@@ -10,6 +10,7 @@ ms.date: 11/21/2024
 ms.custom:
   - devx-track-arm-template
   - sfi-image-nochange
+  - cloud-services-extended-support
 # Customer intent: "As a cloud services administrator, I want to swap deployments in Azure Cloud Services (extended support) so that I can stage, test, and promote updates to production efficiently while minimizing downtime."
 ---
 
