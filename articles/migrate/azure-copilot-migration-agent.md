@@ -40,7 +40,7 @@ Before you begin, ensure that you've:
 
 ## Get started with Azure Copilot migration agent in Azure Migrate
 
-Use this section to open the **Azure Copilot migration agent** from your **Azure Migrate** project. You can ask planning and analysis questions based on your discovered inventory, assessments, and business case artifacts.
+This section explains how to open the **Azure Copilot migration agent** from your **Azure Migrate** project. You can ask planning and analysis questions based on your discovered inventory, assessments, and business case artifacts.
 
 To open the agent experience in Azure Migrate, follow these steps:
 
