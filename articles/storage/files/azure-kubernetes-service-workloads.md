@@ -12,7 +12,7 @@ ai-usage: ai-generated
 
 # Azure Files guidance for Azure Kubernetes Service (AKS) workloads
 
-Azure Files provides file shares (Azure Files SMB/NFS endpoints) accessible via SMB 3.x or NFS 4.1 protocols. When integrated with Azure Kubernetes Service (AKS), Azure Files enables persistent, shared storage for containerized applications with `ReadWriteMany` access mode, allowing multiple pods (Kubernetes container groups) to mount the same share concurrently.
+Azure Files provides file shares (Azure Files SMB/NFS endpoints) accessible via SMB 3.x or NFS 4.1 protocols. When integrated with Azure Kubernetes Service (AKS), Azure Files enables persistent, shared storage for containerized applications with `ReadWriteMany` (RWX) access mode, allowing multiple pods (Kubernetes container groups) to mount the same share concurrently.
 
 ## AKS overview: managed Kubernetes on Azure
 
@@ -20,17 +20,22 @@ Azure Kubernetes Service is a managed Kubernetes service for deploying and scali
 
 ## Azure Files benefits for AKS storage
 
-Azure Files supports `ReadWriteMany` (RWX) access mode required for multi-pod shared storage. Use the following SKU guidance:
+Azure Files supports `ReadWriteMany` access mode required for multi-pod shared storage. Azure Files has two media tiers: solid state drives (SSD) and hard disk drives (HDD). It also offers three different [billing models](understanding-billing.md): provisioned v2, pay-as-you-go, and the legacy provisioned v1 billing model.
+
+> [!IMPORTANT]
+> To use the provisioned v2 billing model for Azure Files, you must use the Azure Files CSI driver [version 1.35.0](https://github.com/kubernetes-sigs/azurefile-csi-driver/releases/tag/v1.35.0) or later.
+
+Use the following SKU guidance:
 
 | Workload type | File share type | Storage account kind | Storage account SKU |
 |-|-|-|-|
-| Logging, moderate I/O | SSD provisioned v2 with Local redundancy | `FileStorage` | `PremiumV2_LRS` |
-| Media/content, high throughput | SSD provisioned v2 with Zone redundancy | `FileStorage` | `PremiumV2_ZRS` |
-| Config files, low I/O | SSD provisioned v2, HDD provisioned v2, or HDD pay-as-you-go with Local redundancy | `FileStorage` (provisioned v2) or `StorageV2` (pay-as-you-go) | `PremiumV2_LRS`, `StandardV2_LRS`, `Standard_LRS` |
+| Logging, moderate I/O | SSD provisioned v2 with locally redundant storage (LRS) | `FileStorage` | `PremiumV2_LRS` |
+| Media/content, high throughput | SSD provisioned v2 with zone-redundant storage (ZRS) | `FileStorage` | `PremiumV2_ZRS` |
+| Config files, low I/O | SSD provisioned v2, HDD provisioned v2, or HDD pay-as-you-go with LRS | `FileStorage` (provisioned v2) or `StorageV2` (pay-as-you-go) | `PremiumV2_LRS`, `StandardV2_LRS`, `Standard_LRS` |
 
-For complete scalability and performance information, see [Scalability and performance targets for Azure Files](storage-files-scale-targets.md).
+There's a [per-file performance cap](storage-files-scale-targets.md#classic-file-share-scale-targets-for-individual-files) on Azure file shares. For complete scalability and performance information, see [Scalability and performance targets for Azure Files](storage-files-scale-targets.md).
 
-Deploy the storage account in the same Azure region as your AKS cluster to minimize network latency.
+Deploy the storage account in the same Azure region as your AKS cluster to minimize network latency. Cross-region mounts add 50–100+ ms latency.
 
 ### Persistent shared storage
 
@@ -38,18 +43,14 @@ Unlike local storage that's tied to individual nodes (Kubernetes worker VMs), Az
 
 ### Kubernetes native integration
 
-Azure Files integrates with Kubernetes through the Container Storage Interface (CSI) driver. You provision and manage file shares using persistent volumes (PV) and persistent volume claims (PVC). The CSI driver handles Azure API calls, authentication via managed identity or storage account key, and mount operations.
+Azure Files integrates with Kubernetes through the Azure Files Container Storage Interface (CSI) driver. You provision and manage file shares using persistent volumes (PV) and persistent volume claims (PVC). The CSI driver handles Azure API calls, authentication via managed identity or storage account key, and mount operations.
 
 ### SSD file shares for optimal performance
 
-Azure Files has two media tiers. For new deployments, SSD provisioned v2 is recommended for most workloads:
+For new deployments, we recommend the SSD media tier combined with the provisioned v2 billing model for most workloads:
 
 - **SSD** (recommended): Suitable for logging, media serving, databases, and latency-sensitive workloads. Available with the provisioned v2 billing model (recommended, `PremiumV2_LRS` / `PremiumV2_ZRS`) or the legacy provisioned v1 billing model (`Premium_LRS` / `Premium_ZRS`). Up to 102,400 IOPS and 10,340 MiB/sec throughput per share.
-- **HDD**: Suitable for config files and infrequent access. Available with the provisioned v2 billing model (`StandardV2_LRS` / `StandardV2_ZRS`) or the pay-as-you-go billing model (`Standard_LRS` / `Standard_ZRS`). Up to 50,000 IOPS and 5,120 MiB/sec throughput per share with provisioned v2. For very small shares, HDD pay-as-you-go (`Standard_LRS` / `Standard_ZRS`) may be more cost-effective because HDD provisioned v2 requires a minimum amount of provisioned IOPS and throughput with no free baseline. For most other HDD workloads, SSD provisioned v2 is actually more cost-effective at small share sizes due to its included baseline IOPS and throughput.
-
-For complete scalability and performance information, see [Scalability and performance targets for Azure Files](storage-files-scale-targets.md).
-
-Deploy file shares in the same region as your AKS cluster. Cross-region mounts add 50–100+ ms latency.
+- **HDD**: Suitable for config files and infrequent access. Available with the provisioned v2 billing model (`StandardV2_LRS` / `StandardV2_ZRS`) or the pay-as-you-go billing model (`Standard_LRS` / `Standard_ZRS`). Up to 50,000 IOPS and 5,120 MiB/sec throughput per share with provisioned v2. For very small shares, HDD pay-as-you-go (`Standard_LRS` / `Standard_ZRS`) might be more cost-effective because HDD provisioned v2 requires a minimum amount of provisioned IOPS and throughput with no free baseline. For most other HDD workloads, SSD provisioned v2 is more cost-effective at small share sizes due to its included baseline IOPS and throughput.
 
 ### Protocol support
 
@@ -62,7 +63,7 @@ Azure Files security features: AES-256 encryption at rest, TLS 1.2+ encryption i
 
 ## Azure Files CSI driver: Kubernetes integration
 
-The Azure Files Container Storage Interface (CSI) driver connects Azure Files to Kubernetes clusters. The CSI specification defines a standard interface for storage systems to expose capabilities to containerized workloads. For configuration details, see [Use Azure Files CSI driver in AKS](/azure/aks/azure-files-csi).
+The Azure Files CSI driver connects Azure Files to Kubernetes clusters. The CSI specification defines a standard interface for storage systems to expose capabilities to containerized workloads. For configuration details, see [Use Azure Files CSI driver in AKS](/azure/aks/azure-files-csi).
 
 ### How the CSI driver works
 
@@ -123,9 +124,9 @@ Ensure the following are in place before creating a StorageClass for dynamic pro
 ### Steps to configure dynamic provisioning
 
 1. **Create the StorageClass** – Define the provisioning parameters (SKU, protocol, mount options).
-2. **Create a PersistentVolumeClaim (PVC)** – Reference the StorageClass; the CSI driver auto-creates the Azure file share.
-3. **Deploy your workload** – Mount the PVC in your pod spec.
-4. **Verify** – Confirm PVC is `Bound` and the mount path is accessible.
+1. **Create a PersistentVolumeClaim (PVC)** – Reference the StorageClass; the CSI driver auto-creates the Azure file share.
+1. **Deploy your workload** – Mount the PVC in your pod spec.
+1. **Verify** – Confirm PVC is `Bound` and the mount path is accessible.
 
 ### StorageClass parameters for dynamic provisioning
 
@@ -475,7 +476,7 @@ Ensure the following are in place before configuring private endpoints for Azure
 5. **Deploy your workload** – Mount the PVC in your pod spec.
 6. **Verify** – Confirm the PVC binds and that DNS resolves to a private IP (`nslookup <storageaccount>.file.core.windows.net`).
 
-This YAML example demonstrates how to create Azure file storage with private endpoint configuration for enhanced security. The CSI driver automatically discovers the virtual network from the AKS cluster configuration, so `vnetResourceGroup`, `vnetName`, and `subnetName` are optional if the virtual network is in the same resource group as the AKS cluster. Specify them explicitly for cross-resource-group or multi-VNet scenarios. For Linux mount options, see [SMB mount options reference](#smb-mount-options-reference-linux).
+This YAML example demonstrates how to create Azure file storage with private endpoint configuration for enhanced security. The CSI driver automatically discovers the virtual network from the AKS cluster configuration, so `vnetResourceGroup`, `vnetName`, and `subnetName` are optional if the virtual network is in the same resource group as the AKS cluster. Specify them explicitly for cross-resource group or scenarios with multiple virtual networks. For Linux mount options, see [SMB mount options reference](#smb-mount-options-reference-linux).
 
 ```yaml
 apiVersion: storage.k8s.io/v1
