@@ -19,7 +19,7 @@ In this guide, you learn to start and stop your SAP systems through the Virtual 
 
 Through the Azure PowerShell module, you can start and stop:
 
-- The entire SAP application tier, which includes ABAP SAP Central Services (ASCS) and application server instances.
+- The entire SAP application tier, which includes Advanced Business Application Programming SAP Central Services (ASCS) and application server instances.
 - Individual SAP instances, which include Central Services and application server instances.
 - HANA database.
 - Instances in the following types of deployments:
@@ -28,7 +28,7 @@ Through the Azure PowerShell module, you can start and stop:
   - Distributed non-HA.
 - SAP systems that run on Windows.
 - SAP systems that run on RHEL and SUSE Linux operating systems.
-- SAP HA systems that use RHEL and SUSE Pacemaker clustering software and Windows Server Failover Clustering (WSFC). Other certified cluster software isn't currently supported.
+- SAP HA systems that use RHEL and SUSE Pacemaker clustering software and Windows Server Failover Clustering. Other certified cluster software isn't currently supported.
 
 ## Prerequisites
 

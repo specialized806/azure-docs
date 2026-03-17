@@ -24,11 +24,11 @@ With [Azure Center for SAP solutions](overview.md), you can deploy and manage SA
 
 - Grant access to Azure Storage accounts from the virtual network where the SAP system exists. Use one of these options:
   
-  - Allow outbound internet connectivity for the VMs.
+  - Allow outbound internet connectivity for the virtual machines (VMs).
   
-  - Use a **Storage** [service tag](../../virtual-network/service-tags-overview.md) to allow connectivity to any Azure storage account from the virtual machines (VMs).
+  - Use a **Storage** [service tag](../../virtual-network/service-tags-overview.md) to allow connectivity to any Azure Storage account from the VMs.
   
-  - Use a **Storage** [service tag with regional scope](../../virtual-network/service-tags-overview.md) to allow storage account connectivity to the Azure storage accounts in the same region as the VMs.
+  - Use a **Storage** [service tag with regional scope](../../virtual-network/service-tags-overview.md) to allow storage account connectivity to the Azure Storage accounts in the same region as the VMs.
   
   - Add the region-specific IP addresses for Azure Storage to your *allow* list.
 
@@ -40,9 +40,9 @@ With [Azure Center for SAP solutions](overview.md), you can deploy and manage SA
 
 - On the subscription or resource groups where you have the SAP system resources, confirm that your Azure account has **Azure Center for SAP solutions administrator** and **Managed Identity Operator** or equivalent role access.
 
-- Confirm that **User-assigned managed identity** has the following access roles: **Azure Center for SAP solutions service role** access on the compute resource group, and **Reader** role access on the virtual network resource group of the SAP system. Azure Center for SAP solutions uses this identity to discover your SAP system resources and register the system as a Virtual Instance for SAP solutions (VIS) resource.
+- Confirm that **User-assigned managed identity** has the following access roles: **Azure Center for SAP solutions service** role access on the compute resource group, and **Reader** role access on the virtual network resource group of the SAP system. Azure Center for SAP solutions uses this identity to discover your SAP system resources and register the system as a Virtual Instance for SAP solutions (VIS) resource.
 
-- Make sure that ABAP SAP Central Services (ASCS), the application server, and database VMs of the SAP system are in the **Running** state.
+- Make sure that Advanced Business Application Programming SAP Central Services (ASCS), the application server, and database VMs of the SAP system are in the **Running** state.
 
 - `sapcontrol` and `saphostctrl` executable files must exist on ASCS, the application server, and the database.
   
@@ -99,5 +99,5 @@ To register an existing SAP system in Azure Center for SAP solutions:
 
 ## Related content
 
-- [Monitor SAP system from Azure portal](monitor-portal.md)
+- [Monitor SAP system from the Azure portal](monitor-portal.md)
 - [Manage a VIS](manage-virtual-instance.md)
