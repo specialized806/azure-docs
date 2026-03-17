@@ -45,7 +45,7 @@ This section explains how to open the **Azure Copilot migration agent** from you
 To open the agent experience in Azure Migrate, follow these steps:
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
-2. In the **Azure portal**, search for **Azure Migrate**.
+2. In the **Azure portal**, search for **Azure Migrate**, and then go to **Migrate** dashboard.
 
     :::image type="content" source="./media/azure-copilot-migration-agent/migrate-agent.png" alt-text="Screenshot shows how to access the Azure Migration agent." lightbox="./media/azure-copilot-migration-agent/migrate-agent.png" :::
 
