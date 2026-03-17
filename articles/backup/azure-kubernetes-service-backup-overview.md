@@ -444,7 +444,7 @@ You can also enable **Geo-redundancy** and **Cross-Region Restore** in the Backu
 Vault-standard datastore support is available only for **Azure Disk–based volumes**. It isn’t supported when Azure Files volumes are included in the backup configuration.
 
   > [!NOTE]
-  > You can store backup data in the Vault Tier by configuring retention rules in the backup policy. For scheduled backups, only one recovery point per day is elligible to be transferred to the Vault Tier. However, you can move any number of on-demand backups to the Vault Tier by associating them with a retention rule in the policy that has Vault Tier storage enabled.
+  > You can store backup data in the Vault Tier by configuring retention rules in the backup policy. For scheduled backups, only one recovery point per day is eligible to be transferred to the Vault Tier. However, you can move any number of on-demand backups to the Vault Tier by associating them with a retention rule in the policy that has Vault Tier storage enabled.
 
 ## Understand pricing
 
@@ -454,7 +454,7 @@ You incur charges for:
 
 * **Snapshot fee**: Azure Backup for AKS protects disk- and file-based Persistent Volumes by creating snapshots. For Azure Disks, snapshots are stored in a resource group in your subscription; for Azure Files, they’re stored alongside the file share in your subscription. These snapshots incur standard snapshot storage charges. Because the snapshots aren’t copied to the Backup vault, vault storage charges don’t apply. Although if vault tier is enabled, snapshot charges will still remain applicable. For more information on snapshot pricing, see [Managed Disks pricing](https://azure.microsoft.com/pricing/details/managed-disks/) and [Azure Files pricing](https://azure.microsoft.com/pricing/details/storage/files/).
 
-* **Backup storage fee**: Azure Backup for AKS also supports storing backups in the Vault Tier. You can store backups in the Vault Tier by defining retention rules for vault standard in the backup policy, with one restore point per day elligible to be moved into the vault. Restore points stored in the Vault Tier are charged a separate fee (called a Backup storage fee) according to the total data stored (in gigabytes) and redundancy type enable on the Backup vault.
+* **Backup storage fee**: Azure Backup for AKS also supports storing backups in the Vault Tier. You can store backups in the Vault Tier by defining retention rules for vault standard in the backup policy, with one restore point per day eligible to be moved into the vault. Restore points stored in the Vault Tier are charged a separate fee (called a Backup storage fee) according to the total data stored (in gigabytes) and redundancy type enable on the Backup vault.
 
 ## Related content
 
