@@ -133,7 +133,7 @@ To ensure successful backup and restore operations, manually update the resource
 
     ![Screenshot shows how to select Extensions + Applications.](./media/azure-kubernetes-service-cluster-manage-backups/aks-cluster-extension-applications.png)
 
-1. Click on the extension titled "azure-aks-backup".
+1. Select on the extension titled "azure-aks-backup".
 
     ![Screenshot shows how to open Backup extension settings.](./media/azure-kubernetes-service-cluster-manage-backups/aks-cluster-extension-azure-aks-backup.png)
 
@@ -150,7 +150,7 @@ To ensure successful backup and restore operations, manually update the resource
  
 #### Verifying the Changes
 
-After applying the changes, either wait for a scheduled backup to run or initiate an on-demand backup. If you still experience an OOMKilled failure, repeat the steps above and gradually increase memory limits and if it still persists increase `resources.limits.cpu` parameter also.
+Once changes are applied, either wait for a scheduled backup to run or initiate an on-demand backup. If you still experience an OOMKilled failure, repeat the steps above and gradually increase memory limits and if it still persists increase `resources.limits.cpu` parameter also.
 
 ### Monitor a backup operation
 
@@ -253,19 +253,19 @@ AKS Backup now allows you to modify the configuration of an existing backup inst
 
 1. Find your AKS cluster backup instance, open it and click on **Edit backup instance** on top.
 
-    :::image type="content" source="./media/quick-backup-aks/start-edit-backup-instance.png" alt-text="Screenshot showing how to open edit backup instance experience" lightbox="./media/quick-backup-aks/start-edit-backup-instance.png":::
+    :::image type="content" source="./media/quick-backup-aks/start-edit-backup-instance.png" alt-text="Screenshot showing how to open the edit backup instance experience." lightbox="./media/quick-backup-aks/start-edit-backup-instance.png":::
 
-1. On the new screen, options are available to modify the backup policy, managed identity being used by backup vault and the backup instance configuration. Click on **Select** in the **Modify backup instace** section
+1. On the new screen, options are available to modify the backup policy, managed identity being used by backup vault and the backup instance configuration. Select on **Select** in the **Modify backup instance** section.
 
     :::image type="content" source="./media/quick-backup-aks/modify-backup-instance.png" alt-text="Screenshot showing how to initiate editing backup configuration." lightbox="./media/quick-backup-aks/modify-backup-instance.png":::
 
-1. On the right hand side pane, to include Files based volumes to backup, open the dropdown **Select Volume Types** and select the checkbox for **Azure SMB Fileshares**. Additionally select the checkbox **Include Secrets**. You can use this pane, to update any other exisiting backup configurations including labels. Then click on **Select**.
+1. On the right hand side pane, to include Files based volumes to backup, open the dropdown **Select Volume Types** and select the checkbox for **Azure SMB Fileshares**. Additionally select the checkbox **Include Secrets**. You can use this pane, to update any other existing backup configurations including labels. Then click on **Select**.
 
     :::image type="content" source="./media/quick-backup-aks/select-backup-instance.png" alt-text="Screenshot showing how to select resources including Azure Files volumes." lightbox="./media/quick-backup-aks/select-backup-instance.png":::
 
 1. After updating the backup configuration, click **Validate** to ensure all prerequisites for using Azure Files are met. If required roles are missing for the Backup vault identity, a role assignment error will appear. If you have the necessary permissions on the relevant resources, you can resolve this by clicking **Grant Permissions**.
 
-1. Click on **Apply** to finish off the modification of backup instance configuration. 
+1. Select on **Apply** to finish off the modification of backup instance configuration. 
 
 
 #### Stop Protection and Retain Data

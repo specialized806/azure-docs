@@ -37,7 +37,7 @@ China East 2, China East 3, China North 2, China North 3, US GOV Arizona, US GOV
 - Azure Backup for AKS supports only CSI driver-based persistent volumes. In-tree volume plugins aren't supported. Ensure that the CSI driver and snapshot are enabled for your cluster. If they're disabled, [enable these settings](/azure/aks/csi-storage-drivers#enable-csi-storage-drivers-on-an-existing-cluster). Also, if your workloads use in-tree volumes, [migrate them to CSI-based volumes to enable backup support](/azure/aks/csi-migrate-in-tree-volumes).
 
 - Azure Backup for AKS supports the following persistent volume types provisioned using the CSI driver:
-  - **Azure Disk-based persistent volumes**: Supported disk SKUs include Standard HDD, Standard SSD, Premium SSD, Premium SSD v2, and Ultra Disks. While snapshot and restore operations are supported across all these SKUs, both operations for Premium SSD v2 and Ultra Disks may take longer. This is because the both processes involves copying data from the volume to a snapshot and back. As a result, the snapshot may appear available and the volume may be mounted before the underlying data copy operation is fully completed, causing a delay before the restored data becomes visible.
+  - **Azure Disk-based persistent volumes**: Supported disk SKUs include Standard HDD, Standard SSD, Premium SSD, Premium SSD v2, and Ultra Disks. While snapshot and restore operations are supported across all these SKUs, both operations for Premium SSD v2 and Ultra Disks may take longer. This is because both processes involves copying data from the volume to a snapshot and back. As a result, the snapshot may appear available and the volume may be mounted before the underlying data copy operation is fully completed, causing a delay before the restored data becomes visible.
   - **Azure Files-based persistent volumes (SMB protocol only)**: Both Standard and Premium file shares are supported. The CSI driver version must be 1.32 or higher. Azure Files using NFS protocol isn't supported. 
 
 - Both dynamically and statically provisioned volumes are supported; however, for static volumes, the *storage class* must be explicitly defined in the **YAML** specification—otherwise, the volume is skipped during backup. 
@@ -60,7 +60,7 @@ China East 2, China East 3, China North 2, China North 3, US GOV Arizona, US GOV
 
 - To enable Azure Backup for AKS using Terraform, use version 3.99.0 or later.
 
-- Azure Backup for AKS requires a backup extension to be installed. This extension requires a storage account and preferably an empty blob container inside it as input while installing. Don't use a blob container with non backup related files.
+- Azure Backup for AKS requires a backup extension to be installed. This extension requires a storage account and preferably an empty blob container inside it as input while installing. Do not use a blob container with non backup related files.
 
 - The storage account specified during the installation of the backup extension must be in the same region as the AKS cluster. Only General-purpose v2 storage accounts are supported; Premium storage accounts aren't supported.
 
@@ -76,7 +76,7 @@ China East 2, China East 3, China North 2, China North 3, US GOV Arizona, US GOV
 
 - Azure Backup for AKS supports [Enhanced Soft Delete](backup-azure-enhanced-soft-delete-about.md) for backups stored in the Vault Tier, providing protection against accidental or malicious deletion. For backups stored in the Operational Tier, the underlying snapshots aren't protected by soft delete and can be permanently deleted.
 
-- Azure Backup for AKS supports [Multi-user authorization (MUA)](multi-user-authorization-concept.md) allowing you to add an another layer of protection to critical operations on your Backup vaults where backups are configured.
+- Azure Backup for AKS supports [Multi-user authorization (MUA)](multi-user-authorization-concept.md) allowing you to add another layer of protection to critical operations on your Backup vaults where backups are configured.
 
 - Azure Backup for AKS supports the [Immutable vault](backup-azure-immutable-vault-concept.md), which helps protect your backup data by preventing operations that could result in the loss of recovery points. However, WORM (Write Once, Read Many) storage for backups isn't currently supported.
 
@@ -130,13 +130,13 @@ China East 2, China East 3, China North 2, China North 3, US GOV Arizona, US GOV
 
 - **Mixed Workloads**: You can back up both Azure Disk and Azure Files volumes in the same backup instance. However, if you need different backup targets (Vault Tier for Disks and Operational Tier for Files), you must create separate backup instances—one for each resource type.
 
-- **CLI Support**: Currently, ability to backup AFS based Persistent Volumes is only available by Azure Portal. Powershell, Azure CLI, Terraform  and other programmatic tools are currently not supported. 
+- **CLI Support**: Currently, ability to backup AFS based Persistent Volumes is only available by Azure portal. Powershell, Azure CLI, Terraform  and other programmatic tools are currently not supported. 
 
 - **File Size limits**: Only Fileshares with ≤ 25,000 files are supported. Larger fileshares may result in failures during restoration.
 
 - **NFS File Support**: Fileshares using SMB protocol are only supported with NFS protocol based Files are skipped while creating a backup.
 
-- **Retention Duration**: Backup policies used for File-based Persistent Volumes support a maximum retention of 30 days. This limit is imposed due the maximum of 200 snapshots that can exist concurrently for an Azure File Share.
+- **Retention Duration**: Backup policies used for File-based Persistent Volumes support a maximum retention of 30 days. This limit is imposed due to the maximum of 200 snapshots that can exist concurrently for an Azure File Share.
 
 
 ### Supported Scenarios and limitations specific for Vaulted backup and Cross Region Restore

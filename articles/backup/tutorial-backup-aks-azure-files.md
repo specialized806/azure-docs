@@ -78,7 +78,7 @@ If you haven't already installed the Backup extension, follow these steps:
 1. Select **Create** and wait for the extension installation to complete.
 
 > [!NOTE]
-> If you already have the Backup extension installed, verify it's version v0.0.03004.544 or later. If needed, enable auto-upgrade to update to the latest version.
+> If you already have the Backup extension installed, verify its version v0.0.03004.544 or later. If needed, enable auto-upgrade to update to the latest version.
 
 ### Configure backup for AKS cluster with Azure Files
 
@@ -108,7 +108,7 @@ If you haven't already installed the Backup extension, follow these steps:
     - **Persistent Volumes**: Select **Azure Files** to back up Azure Files-based volumes.
     - **Secrets**: Enable **Backup Secrets** if you're using Kubernetes secrets to store storage account keys (required for restore operations).
 
-    :::image type="content" source="./media/quick-backup-aks/resources-to-backup.png" alt-text="Screenshot showing how to select resources including Azure Files volumes." lightbox="./media/quick-backup-aks/resources-to-backup-afs.png":::
+    :::image type="content" source="./media/quick-backup-aks/resources-to-backup.png" alt-text="Screenshot showing how to select resources including Azure Files volumes." lightbox="./media/quick-backup-aks/resources-to-backup-azure-files.png":::
 
 1. For **Snapshot resource group**, select the resource group to store Azure Disk snapshots (required even if you're only backing up Azure Files volumes). Then select **Validate**.
 
@@ -129,9 +129,9 @@ To create an immediate backup:
 1. Track the backup progress in **Backup Jobs**.
 
 1. Once the backup completes, verify the Azure Files snapshot:
-    - Go to the storage account containing your file share.
-    - Navigate to the file share used by your persistent volume.
-    - Select **Snapshots** to view the backup snapshot created by Azure Backup.
+    1. Go to the storage account containing your file share.
+    1. Navigate to the file share used by your persistent volume.
+    1. Select **Snapshots** to view the backup snapshot created by Azure Backup.
 
 ### Verify backup configuration
 
@@ -157,7 +157,7 @@ This section explains how you can modify an existing backup instance and start b
 
 1. Find your AKS cluster backup instance, open it and click on **Edit backup instance** on top.
 
-    :::image type="content" source="./media/quick-backup-aks/start-edit-backup-instance.png" alt-text="Screenshot showing how to open edit backup instance experience" lightbox="./media/quick-backup-aks/start-edit-backup-instance.png":::
+    :::image type="content" source="./media/quick-backup-aks/start-edit-backup-instance.png" alt-text="Screenshot showing how to open edit backup instance experience." lightbox="./media/quick-backup-aks/start-edit-backup-instance.png":::
 
 1. On the new screen, options are available to modify the backup policy, managed identity being used by backup vault and the backup instance configuration. Click on **Select** in the **Modify backup instance** section
 
