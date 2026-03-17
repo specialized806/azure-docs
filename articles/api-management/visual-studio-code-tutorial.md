@@ -15,11 +15,11 @@ ms.custom:
 
 [!INCLUDE [api-management-availability-premium-dev-standard-basic-consumption](../../includes/api-management-availability-premium-dev-standard-basic-consumption.md)]
 
-In this tutorial, you learn how to use the API Management extension for Visual Studio Code for common operations in API Management. Use the familiar Visual Studio Code environment to import, update, test, and manage APIs.
+In this tutorial, you learn how to use the Azure API Management extension for Visual Studio Code for common operations in API Management. You can use the familiar Visual Studio Code environment to import, update, test, and manage APIs.
 
 [!INCLUDE [api-management-workspace-availability](../../includes/api-management-workspace-availability.md)]
 
-You learn how to:
+In this article, you learn how to: 
 
 > [!div class="checklist"]
 > * Import an API into API Management
@@ -27,7 +27,7 @@ You learn how to:
 > * Apply API Management policies
 > * Test the API
 
-:::image type="content" source="media/visual-studio-code-tutorial/tutorial-api-result.png" alt-text="Screenshot of API in API Management extension.":::
+:::image type="content" source="media/visual-studio-code-tutorial/tutorial-api-result.png" alt-text="Screenshot of API in API Management extension." lightbox="media/visual-studio-code-tutorial/tutorial-api-result.png":::
 
 For an introduction to more API Management features, see [Import and publish your first API](import-and-publish.md).
 
@@ -126,7 +126,7 @@ You need a subscription key for your API Management instance to test the importe
 
 1. Select **Send request**.
 
-:::image type="content" source="media/visual-studio-code-tutorial/test-api.png" alt-text="Screenshot of sending API request from Visual Studio Code.":::
+    :::image type="content" source="media/visual-studio-code-tutorial/test-api.png" alt-text="Screenshot of sending API request from Visual Studio Code.":::
 
 When the request succeeds, the backend responds with **200 OK** and some data.
 

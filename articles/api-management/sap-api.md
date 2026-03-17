@@ -17,9 +17,9 @@ ms.date: 03/16/2026
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-This article describes how to import an OData (Open Data Protocol) service by using its metadata description. The following example uses [SAP Gateway Foundation](https://help.sap.com/docs/SAP_GATEWAY).
+This article describes how to import an OData (Open Data Protocol) service into Azure API Management by using OData metadata. The following example uses [SAP Gateway Foundation](https://help.sap.com/docs/SAP_GATEWAY).
 
-In this article, you: 
+In this article, you learn how to: 
 > [!div class="checklist"]
 > * Retrieve OData metadata from your SAP service
 > * Import OData metadata to Azure API Management, either directly or after converting it to an OpenAPI specification

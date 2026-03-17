@@ -15,11 +15,11 @@ ms.custom:
 
 [!INCLUDE [api-management-availability-premium-dev-standard-basic-premiumv2-standardv2-basicv2](../../includes/api-management-availability-premium-dev-standard-basic-premiumv2-standardv2-basicv2.md)]
 
-With API Management's WebSocket API solution, API publishers can quickly add a WebSocket API in API Management via the Azure portal, Azure CLI, Azure PowerShell, and other Azure tools. 
+With Azure API Management's WebSocket API solution, API publishers can quickly add a WebSocket API in API Management by using the Azure portal, Azure CLI, Azure PowerShell, and other Azure tools. 
 
-WebSocket APIs can be secured by applying API Management's [access control policies](api-management-policies.md#authentication-and-authorization) to the initial handshake operation. You can also test WebSocket APIs using the API test consoles in both Azure portal and developer portal. Building on existing observability capabilities, API Management provides metrics and logs for monitoring and troubleshooting WebSocket APIs. 
+WebSocket APIs can be secured by applying API Management's [access control policies](api-management-policies.md#authentication-and-authorization) to the initial handshake operation. You can also test WebSocket APIs by using the API test consoles in both Azure portal and developer portal. Building on existing observability capabilities, API Management provides metrics and logs for monitoring and troubleshooting WebSocket APIs. 
 
-In this article, you:
+In this article, you learn how to:
 > [!div class="checklist"]
 > * Understand WebSocket passthrough flow.
 > * Add a WebSocket API to your API Management instance.
@@ -61,7 +61,7 @@ Per the [WebSocket protocol](https://tools.ietf.org/html/rfc6455), when a client
 
 Each WebSocket API in API Management has an *onHandshake* operation. onHandshake is an immutable, unremovable, automatically created system operation. The onHandshake operation enables API publishers to intercept these handshake requests and apply API Management policies to them.
 
-:::image type="content" source="./media/websocket-api/onhandshake-screen.png" alt-text="Screenshot showing onHandshake screen example.":::
+:::image type="content" source="./media/websocket-api/onhandshake-screen.png" alt-text="Screenshot showing onHandshake screen example." lightbox="./media/websocket-api/onhandshake-screen.png":::
 
 ## Add a WebSocket API
 
@@ -116,7 +116,7 @@ Each WebSocket API in API Management has an *onHandshake* operation. onHandshake
 Use standard API Management and Azure Monitor features to [monitor](api-management-howto-use-azure-monitor.md) WebSocket APIs:
 
 * View API metrics in Azure Monitor
-* Optionally enable diagnostic settings to collect and view API Management gateway logs, which include WebSocket API operations, or WebSocket connection logs
+* Optionally, enable diagnostic settings to collect and view API Management gateway logs, which include WebSocket API operations, or WebSocket connection logs
 
 For example, the following screenshot shows recent WebSocket API responses with code `101` from the **ApiManagementGatewayLogs** table. These results indicate the successful switch of the requests from TCP to the WebSocket protocol.
 
