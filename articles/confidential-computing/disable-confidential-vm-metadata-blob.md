@@ -14,7 +14,7 @@ ms.custom: include file
 
 This article outlines the background and the steps required to opt out of the newly introduced Virtual Machine Metadata (VMMD) blob feature in the Microsoft Azure Confidential VMs.
 
-Microsoft Azure Confidential VMs (CVMs) recently adopted a **3blob** architecture comprising disk, VM Guest State (VMGS) and Virtual Machine Metadata (VMMD) blobs. This architecture update moves key information from the VMGS blob to a new VMMD blob to provide seamless support for various online key rotation scenarios.
+Microsoft Azure Confidential VMs (CVMs) recently adopted a **3blob** architecture comprising disk, VM Guest State (VMGS), and Virtual Machine Metadata (VMMD) blobs. This architecture update moves key information from the VMGS blob to a new VMMD blob to provide seamless support for various online key rotation scenarios.
 
 Automation built for the previous architecture involving export, import, and upload scenarios may fail for certain workflows. If your workflows include a breaking scenario, you can deploy confidential VMs with legacy format by registering the `DisableConfidentialVMMetadataBlob` preview feature.
 
