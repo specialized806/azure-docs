@@ -4,7 +4,7 @@ metadata:
   description: Answers to common questions about using Apache Kafka & Apache Flink on Confluent Cloud, an Azure Native Integrations service.
   ms.topic: faq 
   ai-usage: ai-generated
-  ms.date: 12/18/2025
+  ms.date: 03/17/2026
 
 title: Apache Kafka & Apache Flink on Confluent Cloud FAQ
 summary: |
@@ -29,7 +29,7 @@ sections:
         answer: |
           To create a Confluent resource, you need an Azure account with an active subscription, and you must have the Owner or Contributor role for your Azure subscription. You also need to subscribe to Confluent Cloud. Before getting started, verify that you have the required access. For more information, see [Prerequisites](create.md#prerequisites).
 
-  - name: Billing and Plans
+  - name: Billing and plans
     questions:
       - question: What billing options are available?
         answer: |
@@ -43,7 +43,7 @@ sections:
         answer: |
           Confluent Cloud consumption is included in your Azure subscription invoicing. Each Confluent Cloud offer you buy in Azure Marketplace maps to a unique Confluent organization for billing purposes. Your Confluent Cloud usage charges appear as line items on your Azure monthly bill, providing a consolidated view of your cloud spending.
 
-  - name: Resources and Management
+  - name: Resources and management
     questions:
       - question: What is a Confluent organization?
         answer: |
@@ -57,7 +57,7 @@ sections:
         answer: |
           You can delete a Confluent resource from the Azure portal by selecting **Delete** from the resource's overview page. Deleting the Azure resource removes the Confluent organization from Azure but doesn't delete the corresponding organization from Confluent Cloud. To delete the resource on Confluent Cloud, see the documentation for [Confluent Cloud Environments](https://docs.confluent.io/current/cloud/using/environments.html) and [Confluent Cloud Basics](https://docs.confluent.io/current/cloud/using/cloud-basics.html). The cluster and all data are permanently deleted, and you're billed for prorated usage up to the time the cluster is deleted.
 
-  - name: Connectors and Integration
+  - name: Connectors and integration
     questions:
       - question: What are Confluent Connectors?
         answer: |
@@ -77,7 +77,7 @@ sections:
         answer: |
           You can manage Confluent Connectors directly from the Azure portal. Navigate to your Confluent organization, select **Confluent Connectors**, and choose your environment and cluster. You can filter connectors by type (Source or Sink) and status (Running, Failed, Provisioning, or Paused), and search for connectors by name. For more details about a connector, you can select the connector tile to open the Confluent UI. For more information, see [Manage Azure Confluent Connectors](manage-confluent-connectors.md).
 
-  - name: Support and Troubleshooting
+  - name: Support and troubleshooting
     questions:
       - question: How do I get support for Confluent Cloud resources?
         answer: |
@@ -87,7 +87,7 @@ sections:
         answer: |
           For troubleshooting assistance, see [Troubleshoot Apache Kafka & Apache Flink on Confluent Cloud solutions](troubleshoot.md). You can also contact Confluent support or create a support request through the Azure portal.
 
-  - name: Developer Tools
+  - name: Developer tools
     questions:
       - question: Can I create and manage Confluent resources using Azure CLI?
         answer: |
