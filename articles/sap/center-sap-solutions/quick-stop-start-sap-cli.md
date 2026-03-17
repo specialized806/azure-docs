@@ -36,7 +36,7 @@ To start and stop on the VIS solutions resource, you must:
 
 - Use an SAP system that you've [created in Azure Center for SAP solutions](prepare-network.md) or [registered with Azure Center for SAP solutions](register-existing-system.md) as a VIS resource.
 
-- Confirm that your Azure account has the following role, or equivalent role accees on the VIS resource: Azure Center for SAP solutions administrator. For more information about the granular permissions that govern start and stop actions on the VIS, individual SAP instances, and HANA database, see [Start SAP system](manage-with-azure-rbac.md#start-sap-system).
+- Confirm that your Azure account has the following role, or equivalent role access on the VIS resource: Azure Center for SAP solutions administrator. For more information about the granular permissions that govern start and stop actions on the VIS, individual SAP instances, and HANA database, see [Start SAP system](manage-with-azure-rbac.md#start-sap-system).
 
 - Confirm that the underlying virtual machines (VMs) of the SAP instances are running. This capability starts or stops the SAP application instances, not the VMs that make up the SAP system resources.
 

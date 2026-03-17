@@ -17,7 +17,7 @@ Use the [Az PowerShell module](/powershell/azure/new-azureps-module-az) to creat
 
 With [Azure Center for SAP solutions](overview.md), you can deploy and manage SAP systems on Azure. This article shows you how to register an existing SAP system that runs on Azure with Azure Center for SAP solutions. We use Azure PowerShell in this article. Alternatively, you can register systems by using the Azure CLI or the Azure portal. After you register an SAP system, you can use its visualization, management, and monitoring capabilities through the Azure portal.
 
-The steps in this article require the Az PowerShell module version 1.0.0 or later. Run `Get-Module -ListAvailable Az` to find the version. If you need to install or upgrade, see [Install Azure PowerShell module](/powershell/azure/install-az-ps).
+The steps in this article require the Az PowerShell module version 1.0.0 or later. To find the version, run `Get-Module -ListAvailable Az`. If you need to install or upgrade, see [Install Azure PowerShell module](/powershell/azure/install-az-ps).
 
 ## Prerequisites
 
@@ -127,7 +127,7 @@ To register an existing SAP system in Azure Center for SAP solutions:
   
    - `ManagedResourceGroupName` specifies the name of the managed resource group deployed by the Azure Cloud Solution for SAP service (ACSS) in your subscription. This resource group is unique for each SAP SID that you register. If you don't specify the name, the ACSS service sets a name with the following naming convention: `mrg-{SID}-{random string}`.
   
-   - `*ManagedRgStorageAccountName` specifies the name of the storage account that's deployed into the managed resource group. This storage account is unique for each SAP SID that you register. The ACSS service sets a default name with the following naming convention: `{SID}{random string}`.
+   - `*ManagedRgStorageAccountName` specifies the name of the storage account deployed into the managed resource group. This storage account is unique for each SAP SID that you register. The ACSS service sets a default name with the following naming convention: `{SID}{random string}`.
   
    - `ManagedResourcesNetworkAccessType` specifies the network access configuration for the resources deployed in the managed resource group. The options are `public` and `private`. If you choose private, enable the storage account service tag on the subnets in which the SAP VMs exist. This step is required for establishing connectivity between VM extensions and the managed resource group storage account. This setting is currently applicable only to the storage account.
 
