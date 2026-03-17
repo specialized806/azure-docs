@@ -33,7 +33,7 @@ Cost Analysis is your tool for interactive analytics and insights. It should be 
 - Amortized reservation and savings plan usage.
 - Cost trends over time.
 
-Note that one time purchase amount for Azure Prepayment (previously called monetary commitment) is not shown in Cost Analysis, these can be tracked through [credits & commitments view in EA](reporting-get-started.md#invoices-and-credits) and [credit balances view in Microsoft Customer Agreement.](../benefits/credits/mca-check-azure-credits-balance.md). 
+Note that one time purchase amount for Azure Prepayment (previously called monetary commitment) is not shown in Cost Analysis, these can be tracked through [credits & commitments view in EA](reporting-get-started.md#invoices-and-credits) and [credit balances view in Microsoft Customer Agreement](../benefits/credits/mca-check-azure-credits-balance.md).
 
 The first time you open Cost Analysis, you start with either a list of available cost views or a customizable area chart. This section walks through the list of views. If Cost Analysis shows an area chart by default, see [Analyze costs with customizable views](#analyze-costs-with-customizable-views).
 
