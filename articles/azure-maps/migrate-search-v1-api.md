@@ -1,7 +1,7 @@
 ---
-title: Migrate from Azure Maps Search v1 
+title: Migrate Azure Maps Search 1.0 APIs
 titleSuffix: Microsoft Azure Maps
-description: Learn how to Migrate from Azure Maps Search service version 1 to the latest version.
+description: Learn how to migrate from Azure Maps Search service version 1 to the latest version.
 author: farazgis
 ms.author: fsiddiqui
 ms.date: 03/28/2026
@@ -10,7 +10,7 @@ ms.service: azure-maps
 ms.subservice: search
 ---
 
-# Migrate from Azure Maps Search v1 to Search 2026‑01‑01
+# Migrate Azure Maps Search 1.0 APIs
 
 [Search][Search v1] API version 1.0 is superseded by the [Search][Search v2026-01-01] 2026‑01‑01 API. The newer version introduces task‑specific endpoints, clearer intent, and improved scalability. This article explains how to migrate existing Search v1 integrations.
 
@@ -86,7 +86,7 @@ GET https://atlas.microsoft.com/search/fuzzy/json
   &typeahead=true
 ```
 
-For a fully functional sample of Fuzzy Search, see [Fuzzy Search with Services Module](https://samples.azuremaps.com/services-module/fuzzy-search-using-services-module).
+<!--For a fully functional sample of Fuzzy Search, see [Fuzzy Search with Services Module](https://samples.azuremaps.com/services-module/fuzzy-search-using-services-module).-->
 
 #### Search 2026‑01‑01 – Get Geocode Autocomplete
 
@@ -97,9 +97,9 @@ GET https://atlas.microsoft.com/geocode:autocomplete
   &coordinates=-122.129,47.639
 ```
 
-FOr more information, see [Introducing the Azure Maps Geocode Autocomplete API](https://techcommunity.microsoft.com/blog/azuremapsblog/introducing-the-azure-maps-geocode-autocomplete-api/4455784).
+For more information, see [Introducing the Azure Maps Geocode Autocomplete API](https://techcommunity.microsoft.com/blog/azuremapsblog/introducing-the-azure-maps-geocode-autocomplete-api/4455784).
 
-For fully functional samples of autocomplete, see [Autocomplete] (https://samples.azuremaps.com/rest-services/autocomplete) and [Fill Address Form with Autocomplete](https://samples.azuremaps.com/rest-services/fill-address-form-with-autocomplete)
+<!--For fully functional samples of autocomplete, see [Autocomplete] (https://samples.azuremaps.com/rest-services/autocomplete) and [Fill Address Form with Autocomplete](https://samples.azuremaps.com/rest-services/fill-address-form-with-autocomplete)-->
 
 ### Batch forward geocoding
 
@@ -159,7 +159,7 @@ POST https://atlas.microsoft.com/reverseGeocode:batch
 
 ### Administrative boundary retrieval
 
-In [Search API v1][Search v1], administrative boundary geometry was retrieved using [Get Search Polygon]. In [Search API 2026‑01‑01][Search v2026-01-01], this functionality is provided by the [Get Polygon] API, which returns boundary geometry for supported administrative entities such as countries, regions, and cities.
+In [Search API v1][Search v1], administrative boundary geometry was retrieved using [Get Search Polygon]. In [Search API 2026‑01‑01][Search v2026-01-01], this functionality is provided by the [Get Polygon] API, which returns boundary geometry for supported administrative entities such as countries/regions, and cities.
 
 #### Search v1 – Get Search Polygon
 

@@ -1127,6 +1127,8 @@ GET https://atlas.microsoft.com/polygon
 > [!div class="nextstepaction"]
 > [Search service API documentation](/rest/api/maps/search)
 
+> [!div class="nextstepaction"]
+> [Search service API documentation](migrate-search-v1-api.md)
 :::zone-end
 
 [Azure Maps account]: quick-demo-map-app.md#create-an-azure-maps-account
