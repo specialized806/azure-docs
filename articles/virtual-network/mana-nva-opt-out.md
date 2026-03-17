@@ -81,7 +81,7 @@ No. There are no cost implications of applying the policy.
 
 Microsoft recommends that policy enforcement is applied gradually to your environment following your organization's strategies for safe rollout. Azure Policy supports safe rollout primitives that enable customers to gradually roll out enforcement by region and resource type.
 
-For a more detailed breakdown of the mechanisms available to gradually roll out this policy assignment, see [Safe deployment of Azure Policy assignments](/azure/governance/policy/how-to/safe-deployment-of-policy-assignments).
+For a more detailed breakdown of the mechanisms available to gradually roll out this policy assignment, see [Safe deployment of Azure Policy assignments](/azure/governance/policy/how-to/policy-safe-deployment-practices).
 
 ### Can the policy be edited?
 
@@ -91,7 +91,7 @@ However, if the definition needs further customization, the policy can be duplic
 
 ### Will there be new versions of the policy definition?
 
-There may be minor revisions to the policy. As such, we recommend applying the built-in policy. For more information on policy versioning, see [Policy Definition Versions - REST API (Azure Policy)](/rest/api/policy/policy-definition-versions).
+There may be minor revisions to the policy. As such, we recommend applying the built-in policy. For more information on policy versioning, see [Policy Definition Versions - REST API (Azure Policy)](/rest/api/policy-authorization/policy-definition-versions).
 
 ### Is there a way to selectively apply the policy to VMs within my environment?
 
@@ -101,7 +101,7 @@ Azure Policy exemption capabilities can be used to exclude resources or scopes f
 
 At the time of assigning the policy, enable **Automatically enroll in minor version changes** to ensure that minor versions are automatically applied. You may also assign the policy with `1.*.*`.
 
-To control the rollout of updated policy definition versions to your environment, see [Safe deployment of Azure Policy assignments](/azure/governance/policy/how-to/safe-deployment-of-policy-assignments).
+To control the rollout of updated policy definition versions to your environment, see [Safe deployment of Azure Policy assignments](/azure/governance/policy/how-to/policy-safe-deployment-practices).
 
 ### Are there any additional steps after applying the tag or using policy to deploy the tag?
 
