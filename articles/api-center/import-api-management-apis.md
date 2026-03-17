@@ -1,11 +1,11 @@
 ---
 title: Import APIs from Azure API Management - Azure API Center
 description: Add APIs to your Azure API center inventory from your API Management instance.
-author: dlepow
+
 ms.service: azure-api-center
 ms.topic: how-to
 ms.date: 09/29/2025
-ms.author: danlep 
+ 
 ms.custom: devx-track-azurecli
 # Customer intent: As an API program manager, I want to add APIs that are managed in my Azure API Management instance to my API center.
 ---
@@ -199,5 +199,5 @@ After importing APIs from API Management, you can view and manage the imported A
 * [Azure CLI reference for Azure API Center](/cli/azure/apic)
 * [Azure CLI reference for API Management](/cli/azure/apim)
 * [Use the Azure CLI to manage your API inventory](manage-apis-azure-cli.md)
-* [Assign Azure roles to a managed identity](../role-based-access-control/role-assignments-portal-managed-identity.yml)
+* [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity)
 * [Azure API Management documentation](../api-management/index.yml)

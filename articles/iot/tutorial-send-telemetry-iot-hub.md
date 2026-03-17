@@ -5,7 +5,7 @@ author: dominicbetts
 ms.author: dobett
 ms.service: azure-iot
 ms.topic: tutorial
-ms.date: 1/10/2025
+ms.date: 10/27/2025
 ms.update-cycle: 1095-days
 ms.collection: embedded-developer, application-developer
 zone_pivot_groups: iot-develop-set1
@@ -25,12 +25,6 @@ ms.devlang: azurecli
 :::zone pivot="programming-language-csharp"
 
 [!INCLUDE [iot-develop-send-telemetry-iot-hub-csharp](../../includes/iot-develop-send-telemetry-iot-hub-csharp.md)]
-
-:::zone-end
-
-:::zone pivot="programming-language-java"
-
-[!INCLUDE [iot-develop-send-telemetry-iot-hub-java](../../includes/iot-develop-send-telemetry-iot-hub-java.md)]
 
 :::zone-end
 

@@ -6,7 +6,7 @@ author: craigshoemaker
 ms.service: azure-container-apps
 ms.custom: devx-track-azurecli, devx-track-bicep
 ms.topic: tutorial
-ms.date: 10/13/2025
+ms.date: 04/16/2025
 ms.author: cshoe
 zone_pivot_groups: azure-cli-bicep
 ---
@@ -45,21 +45,6 @@ In this article, you learn how to use rule-based routing with Azure Container Ap
     ```
 
     Ignore any warnings about modules currently in use.
-
-    Install or update the Azure Container Apps extension for the CLI.
-
-    If you receive errors about missing parameters when you run `az containerapp` commands in Azure CLI or cmdlets from the `Az.App` module in PowerShell, be sure you have the latest version of the Azure Container Apps extension installed.
-
-    ```azurecli
-    az extension add --name containerapp --upgrade
-    ```
-
-    > [!NOTE]
-    > Starting in May 2024, Azure CLI extensions no longer enable preview features by default. To access Container Apps [preview features](whats-new.md), install the Container Apps extension with `--allow-preview true`.
-    >
-    > ```azurecli
-    > az extension add --name containerapp --upgrade --allow-preview true
-    > ```
 
 1. Now that the current extension or module is installed, register the `Microsoft.App` and `Microsoft.OperationalInsights` namespaces.
 
@@ -145,6 +130,13 @@ ROUTE_CONFIG_NAME="my-route-config"
     ```
 
     This configuration defines two routing rules for HTTP traffic.
+
+   > [!NOTE]
+   > The order of the routing rules matters.
+   > 
+   > More specific prefixes need to be before less specific prefixes.
+   > 
+   > For example, if the first rule matches the prefix /api, that will be used even if the second rule uses the prefix /api/v1.
 
     | Property | Description |
     |---|---|
