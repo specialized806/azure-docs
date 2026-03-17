@@ -1,5 +1,5 @@
 ---
-title: Automate Incident Response in Azure SRE Agent
+title: "Tutorial: Automate Incident Response in Azure SRE Agent"
 description: Connect Azure Monitor, create response plans, and let your agent investigate and resolve incidents autonomously from detection to fix.
 ms.topic: tutorial
 ms.date: 03/16/2026
@@ -7,11 +7,10 @@ author: craigshoemaker
 ms.author: cshoe
 ms.service: azure-sre-agent
 ms.ai-usage: ai-assisted
-ms.custom: incident response, azure monitor, response plan, automation, getting started
 #customer intent: As a site reliability engineer, I want to connect my incident platform and create response plans so that my agent automatically investigates and resolves incidents end-to-end.
 ---
 
-# Automate incident response in Azure SRE Agent
+# Tutorial: Automate incident response in Azure SRE Agent
 
 **Estimated time**: 10 minutes
 
