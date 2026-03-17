@@ -170,6 +170,9 @@ You can assign permissions to all authenticated Entra users and to specific Entr
 
 ## Understanding group-based access for non-synced users
 
+> [!IMPORTANT]
+> This section applies only to Storage Accounts using Active Directory Domain Services (AD DS) authentication.
+
 Users who aren't synced to Entra ID can still access Azure file shares through group membership. If a user belongs to an on-premises AD DS group that's synced to Entra ID and has an Azure RBAC role assignment, the user gets the group's permissions, even though they don't appear as a group member in the Microsoft Entra admin center.
 
 Here's how it works:
