@@ -51,7 +51,7 @@ You can gather the information needed to access the cache using these methods:
 
 In this section, you retrieve the information from the Azure portal.
 
-To connect your Azure Cache for Redis server, the cache client needs the cache endpoint, port, and a key for the cache. Some clients might refer to these items by slightly different names. You can get this information from the [Azure portal](https://portal.azure.com).
+To connect your Azure Managed Redis server, the cache client needs the cache endpoint, port, and a key for the cache. Some clients might refer to these items by slightly different names. You can get this information from the [Azure portal](https://portal.azure.com).
 
 - To get the endpoint and port for your cache, select **Overview** from the **Resource** menu. The endpoint is of the form `{yourcachename}.{region}.redis.azure.net`. The port is `10000` for all Azure Managed Redis instances.
 
