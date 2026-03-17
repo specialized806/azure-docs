@@ -97,7 +97,8 @@ Use the policy in scenarios such as the following:
 ### Usage notes
 
 * Configure the policy in the inbound section to check requests and in the outbound section to check responses.
-* Unless you specify `window-size`, the policy runs on a concatenation of all text content in a completion or chat completion request or response. If you specify `window-size`, the policy runs on windows of text content with the specified size and overlaps. 
+* Unless you specify `window-size` for a completion or chat completion request or response, the policy runs on a concatenation of all text content. If you specify `window-size`, the policy runs on windows of text content with the specified size and overlaps. 
+* For streaming responses, the stream handler buffers events in a sliding window and, if a content safety violation is detected, stops forwarding further events to the client. A `403` error isn't returned in this case. 
 * If the request or response exceeds the character limit of Azure AI Content Safety, the policy returns a `403` error.
 * You can use this policy multiple times per policy definition.
 
