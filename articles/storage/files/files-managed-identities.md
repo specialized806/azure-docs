@@ -286,13 +286,13 @@ To prepare your client VM or Windows device to authenticate by using a managed i
 
 Before you can mount the file share by using the managed identity, refresh the authentication credentials and specify your storage account endpoint. To copy your storage account URI, go to the storage account in the Azure portal and then select **Settings** > **Endpoints** from the service menu. Be sure to copy the entire URI including the trailing slash: `https://<storage-account-name>.file.core.windows.net/`
 
+For a system assigned managed identity, run the following command to get an OAuth token, insert it in the Kerberos cache, and auto-refresh when the token is close to expiration. You can optionally omit the `refresh`.
+
 ```powershell
 AzFilesSmbMIClient.exe refresh --uri https://<storage-account-name>.file.core.windows.net/
 ```
 
-This command gets an OAuth token and inserts it in the Kerberos cache. It auto-refreshes when the token is close to expiration. You can optionally omit the `refresh`.
-
-If your Windows VM has both user assigned and system assigned managed identities configured, use the following command to specify the user assigned managed identity. Replace `<client-id>` with the Client ID of the managed identity.
+For a user assigned managed identity, you need to specify the Client ID. Replace `<client-id>` with the Client ID of the managed identity.
 
 ```powershell
 AzFilesSmbMIClient.exe refresh --uri https://<storage-account-name>.file.core.windows.net/ --clientId <client-id> 
