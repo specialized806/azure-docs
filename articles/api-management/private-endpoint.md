@@ -5,7 +5,7 @@ ms.service: azure-api-management
 author: dlepow
 ms.author: danlep
 ms.topic: how-to
-ms.date: 03/13/2026
+ms.date: 03/17/2026
 ms.custom:
   - build-2025
   - sfi-image-nochange
@@ -33,7 +33,8 @@ You can configure an inbound [private endpoint](../private-link/private-endpoint
 * Each API Management instance supports at most 100 Private Link connections.
 * Connections aren't supported on the [self-hosted gateway](self-hosted-gateway-overview.md) or on a [workspace gateway](workspaces-overview.md#workspace-gateway). 
 * In the classic API Management tiers, private endpoints aren't supported in instances injected in an internal or external virtual network. 
-    In the Premium v2 tier, private endpoints are supported in instances with any virtual network configuration when fronted with [Azure Front Door Premium](../frontdoor/standard-premium/how-to-enable-private-link-apim.md).
+    > [!NOTE]
+    > In the Standard v2 and Premium v2 tiers, private endpoints are supported in instances with any supported virtual network configuration when fronted with [Azure Front Door Premium](../frontdoor/standard-premium/how-to-enable-private-link-apim.md).
 
 ## Typical scenarios
 
