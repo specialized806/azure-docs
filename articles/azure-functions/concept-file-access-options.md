@@ -123,6 +123,8 @@ These example scenarios also benefit from using mounted storage shares:
 | **Shared executables** | Keep large binaries out of the deployment package | ffmpeg, ImageMagick, or other 500+ MB tools |
 | **Cross-app data sharing** | Share files between producer and consumer apps without message passing | App A writes results, App B reads them from the same mount |
 
+Select tabs to view details about each scenario: 
+
 ### [Parallel file analysis](#tab/parallel-anaylsis)
 
 > **Use case:** You have 1,000 analysis tasks that all need to read from the same set of reference data files (for example, ML models, lookup tables, or corpus data).
