@@ -30,7 +30,7 @@ Before beginning, check to make sure that you have the following:
 To list, register, or unregister preview features in your Azure subscription, you need access to the `Microsoft.Features/*` actions. This permission is granted through the [Contributor](../role-based-access-control/built-in-roles/privileged.md#contributor) and [Owner](../role-based-access-control/built-in-roles/privileged.md#owner) built-in roles. You can also specify the required access through a [custom role](../role-based-access-control/custom-roles.md).
 
 > [!NOTE]
-> The portal only shows a preview feature when the service that owns the feature explicitly opts in. The opt-out enablement would have to set on customer subscriptions and then the customers can continue to use **2blob** CVMs. <br><br> AFEC Name : Microsoft.Compute/DisableConfidentialVMMetadataBlob <br> Preview feature name: DisableConfidentialVMMetadataBlob <br><br> [Learn More…](../azure-resource-manager/management/preview-features.md#tab=azure-portal)
+> The portal only shows a preview feature when the service that owns the feature explicitly opts in. The opt-out enablement would have to set on customer subscriptions and then the customers can continue to use **2blob** CVMs. <br><br> AFEC Name : Microsoft.Compute/DisableConfidentialVMMetadataBlob <br> Preview feature name: DisableConfidentialVMMetadataBlob <br><br> [Learn More…](../azure-resource-manager/management/preview-features.md)
 
 ## How to Opt Out of VMMD Blob creation
 
