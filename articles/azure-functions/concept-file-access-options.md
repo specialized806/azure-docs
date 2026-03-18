@@ -40,7 +40,7 @@ The rest of this article focuses on mounts: when they're the right choice, and h
 
 ## What is a storage mount?
 
-A storage mount is a network file share mounted as if it were a local directory. When you mount an Azure Files share on your function app, the path appears in the function container's file system:
+A storage mount is a network file share that you mount as if it were a local directory. When you mount an Azure Files share on your function app, the path appears in the function container's file system:
 
 ```
 ┌─────────────────────────────────────┐
@@ -57,11 +57,11 @@ A storage mount is a network file share mounted as if it were a local directory.
 └─────────────────────────────────────┘
 ```
 
-Your code uses standard file system APIs (for example, `open()`, `os.listdir()` in Python, or equivalent calls in other languages) without knowing it's communicating over the network. This provides POSIX semantics, which means your code looks like local file I/O.
+Your code uses standard file system APIs (for example, `open()`, `os.listdir()` in Python, or equivalent calls in other languages) without knowing it's communicating over the network. This setup provides POSIX semantics, which means your code looks like local file I/O.
 
 ## When not to use mounts
 
-Mounts aren't the right choice for every scenario:
+Mounts aren't the right choice for every scenario. Consider these alternatives:
 
 | Scenario | Recommended alternative |
 | --- | --- |
@@ -73,20 +73,9 @@ Mounts aren't the right choice for every scenario:
 > [!IMPORTANT]  
 > Only Flex Consumption and Dedicated (App Service) plans support storage mounts.
 
-## Mount limits
-
-| Limit | Value |
-| --- | --- |
-| Share size | Up to 100 TiB |
-| File size | Up to 4 TiB |
-| Throughput | ~60 MB/s (standard), ~100+ MB/s (premium) |
-| Concurrency | Many (SMB handles it), but writes serialize |
-
-For more information, see [Azure Files scale targets](../storage/files/storage-files-scale-targets.md).
-
 ## Compare storage options
 
-Consider our three main file access options when processing 1,000 images (1 MB each) stored in a reference folder:
+Consider the three main file access options when processing 1,000 images (1 MB each) stored in a reference folder:
 
 | Approach | Mechanism | Network calls | Relative cost | Best for |
 | ---- | ---- | ---- | ---- | ---- |
@@ -122,7 +111,7 @@ reference_data = container.query_items(
 
 ---
 
-For large shared files with repeated access, it's best to use share mounts. Let's investigate more detailed scenarios that  
+For large shared files with repeated access, use share mounts. Let's investigate more detailed scenarios that use share mounts.  
 
 ## Share mount scenarios
 
@@ -140,8 +129,8 @@ These example scenarios also benefit from using mounted storage shares:
 
 **The problem:** Without mounts, you have two suboptimal options:
 
-- **Package the reference files with your function**: This leads to a huge deployment artifact, slow cold starts, and storage redundancy.
-- **Download from Blob Storage each time**: This introduces network latency on every function invocation and wastes bandwidth.
+- **Package the reference files with your function**: This approach results in a huge deployment artifact, slow cold starts, and storage redundancy.
+- **Download from Blob Storage each time**: This approach introduces network latency on every function invocation and wastes bandwidth.
 
 **The mount-based solution:** All instances read from the mounted share directly. After mount initialization, there's no per-request network overhead and no redundant storage.
 
@@ -247,7 +236,7 @@ def process_video(video_file: str) -> str:
 
 **Performance implications:**
 
-- **First execution**: SMB mount initialization adds approximately 200-500 ms.
+- **First execution**: SMB mount initialization adds approximately 200-500 milliseconds.
 - **Subsequent executions**: Direct file access with minimal overhead.
 - **Binary caching**: The OS caches the binary in memory, reducing repeated disk reads.
 
@@ -322,17 +311,46 @@ def read_results() -> dict:
 
 ---
 
-## Best practices
+## Mount limits
 
-### Understand the two auth models
+These Azure Files storage limits apply to all hosting plans that support mounts:
+
+| Limit | Value |
+| --- | --- |
+| Share size | Up to 100 TiB |
+| File size | Up to 4 TiB |
+| Throughput | ~60 MB/s (standard), ~100+ MB/s (premium) |
+| Concurrency | Many (SMB handles it), but writes serialize |
+
+For more information, see [Azure Files scale targets](../storage/files/storage-files-scale-targets.md).
+
+These limits vary by supported hosting plan:
+
+| Limit | Flex Consumption | Dedicated (App Service) |
+| --- | --- | --- |
+| Mount points per app | 5 | 5 |
+| Protocols | SMB only | SMB, NFS, Azure Blobs (read-only) |
+
+To prevent runaway storage costs, set a quota on your Azure Files share:
+
+```bash
+az storage share-rm update \
+  --resource-group $RESOURCE_GROUP \
+  --storage-account $STORAGE_ACCOUNT \
+  --name myshare \
+  --quota 100  # 100 GB limit
+```
+
+## Mount authentication
 
 Azure Files storage mounts and the Azure SDK use different authentication mechanisms:
 
-- **Storage mounts (SMB)**: Authenticated with a storage account access key at mount time. The key is stored in the function app's site configuration (`azureStorageAccounts`). Managed identity isn't supported for SMB mounts on Azure Functions.
-- **Azure SDK (REST API)**: For programmatic access via the Azure Storage SDK, use managed identity when possible.
+- **Storage mounts (SMB)**: Authenticate by using a storage account access key at mount time. The key is stored in the function app's site configuration (`azureStorageAccounts`). Managed identity isn't currently supported for SMB mounts on Azure Functions.
+- **Azure SDK (REST API)**: For programmatic access by using the Azure Storage SDK, use managed identity when possible.
+
+This Bicep example configures the storage mount by using the storage account shared secret key:
 
 ```bicep
-// Mount config in Bicep — requires storage account key
 resource mountConfig 'Microsoft.Web/sites/config@2023-12-01' = {
   parent: functionApp
   name: 'azurestorageaccounts'
@@ -351,50 +369,33 @@ resource mountConfig 'Microsoft.Web/sites/config@2023-12-01' = {
 > [!IMPORTANT]
 > Rotate storage account keys periodically. When you rotate keys, update the mount configuration on every function app that references the account.
 
-### Set mount quotas
+## Best practices
 
-Prevent runaway storage costs by setting a quota on your Azure Files share:
+- **Use read-only mounts when possible.** If your function only reads from the mount, configure it as read-only to prevent accidental writes.
 
-```bash
-az storage share-rm update \
-  --resource-group $RESOURCE_GROUP \
-  --storage-account $STORAGE_ACCOUNT \
-  --name myshare \
-  --quota 100  # 100 GB limit
-```
+- **Monitor file access.** Enable diagnostics on your storage account to track mount access patterns:
 
-### Monitor file access
+    ```bash
+    az monitor metrics list \
+      --resource /subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.Storage/storageAccounts/$STORAGE_ACCOUNT/fileServices/default \
+      --metric Transactions
+    ```
 
-Enable diagnostics on your storage account to see mount access patterns:
+- **Clean up temporary files.** If your functions write to the mount, implement cleanup to avoid unbounded growth:
 
-```bash
-az monitor metrics list \
-  --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/$STORAGE_ACCOUNT/fileServices/default \
-  --metric Transactions
-```
+    ```python
+    from pathlib import Path
+    import time
 
-### Use read-only mounts when possible
+    MOUNT_PATH = "/mnt/temp"
+    MAX_AGE = 24 * 60 * 60  # 24 hours
 
-If your function only reads from the mount, configure it as read-only to prevent accidental writes.
-
-### Clean up temporary files
-
-If your functions write to the mount, implement cleanup:
-
-```python
-from pathlib import Path
-import time
-
-MOUNT_PATH = "/mnt/temp"
-TEMP_THRESHOLD = 24 * 60 * 60  # 24 hours
-
-def cleanup_old_files():
-    """Remove temp files older than 24 hours."""
-    cutoff_time = time.time() - TEMP_THRESHOLD
-    for file_path in Path(MOUNT_PATH).iterdir():
-        if file_path.stat().st_mtime < cutoff_time:
-            file_path.unlink()
-```
+    def cleanup_old_files():
+        cutoff = time.time() - MAX_AGE
+        for f in Path(MOUNT_PATH).iterdir():
+            if f.stat().st_mtime < cutoff:
+                f.unlink()
+    ```
 
 ## Troubleshoot storage mounts
 
@@ -402,8 +403,8 @@ The following table lists common issues with Azure Files storage mounts on funct
 
 | Issue | Resolution |
 | --- | --- |
-| **Binary or file not found on mount path** | Verify the file was uploaded to the correct Azure Files share. Check that the mount path configured on the function app matches the path your code references. In the Azure portal, check **Settings** > **Configuration** > **Path Mappings**. |
-| **Permission denied when accessing mounted files** | Storage mounts authenticate by using a storage account access key. Verify the key in the mount configuration is correct and hasn't been rotated. When you rotate keys, update the mount configuration on every function app that references the account. |
+| **Binary or file not found on mount path** | Verify the file is in the correct Azure Files share. Check that the mount path configured on the function app matches the path your code references. In the Azure portal, check **Settings** > **Configuration** > **Path Mappings**. |
+| **Permission denied when accessing mounted files** | Storage mounts authenticate by using a storage account access key. Verify the key in the mount configuration is correct and wasn't rotated. When you rotate keys, update the mount configuration on every function app that references the account. |
 | **Binary lacks execute permissions** | Azure Files preserves POSIX permissions set at upload time. Re-upload the binary after running `chmod +x` locally, or set permissions after upload. |
 | **Mount adds latency to cold starts** | SMB mount initialization adds approximately 200-500 ms on first execution. Subsequent invocations reuse the mount. For latency-sensitive apps, consider the [always-ready instances](./flex-consumption-plan.md) feature. |
 
