@@ -28,14 +28,9 @@
     - name: Scalable web API
       displayName: Flex Consumption plan
       href: create-first-function-azure-developer-cli.md
-    - name: Process file uploads
-      items:
-      - name: Respond to blob storage events by using Azure Functions
-        displayName: storage, blob, Event Grid
-        href: scenario-blob-storage-events.md
-      - name: Image processing with FFmpeg on a mounted Azure Files share
-        displayName: Azure Files, storage mount, ffmpeg, Flex Consumption
-        href: tutorial-ffmpeg-processing-azure-files.md
+    - name: Respond to blob storage events
+      displayName: storage, blob, Event Grid, file uploads
+      href: scenario-blob-storage-events.md
     - name: AI tools and MCP
       items:
       - name: Custom remote MCP server
@@ -56,13 +51,8 @@
         displayName: data validation, database
         href: scenario-database-changes-azure-sqldb.md
     - name: Build a serverless workflow
-      items:
-      - name: Serverless workflow with Durable Functions
-        displayName: workflow, Durable Functions
-        href: ./durable/scenario-build-serverless-workflow.md?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
-      - name: Durable text analysis
-        displayName: Azure Files, storage mount, Durable Functions, Flex Consumption
-        href: durable/tutorial-durable-text-analysis-azure-files.md
+      displayName: workflow, Durable Functions
+      href: ./durable/scenario-build-serverless-workflow.md?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
     - name: Run scheduled tasks
       displayName: timer trigger, schedule
       href: scenario-scheduled-tasks.md
@@ -128,8 +118,6 @@
   - name: Host MCP servers for AI-enabled functions
     displayName: agent, agentic, Foundry
     href: functions-mcp-tutorial.md
-  - name: Develop Python functions with VS Code
-    href: ./create-first-function-vs-code-python.md
   - name: Create serverless APIs using Visual Studio
     displayName: OpenAPI, Swagger
     href: openapi-apim-integrate-visual-studio.md
@@ -157,8 +145,8 @@
     href: functions-event-grid-blob-trigger.md
   - name: Image resize with Event Grid
     href: ../event-grid/resize-images-on-storage-blob-upload-event.md?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
-  - name: Create a serverless web app
-    href: /training/modules/automatic-update-of-a-webapp-using-azure-functions-and-signalr/
+  - name: Real-time serverless app with SignalR
+    href: /azure/azure-signalr/signalr-tutorial-authenticate-azure-functions?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
   - name: Data + AI
     items:
     - name: Azure OpenAI for text completion
@@ -169,6 +157,14 @@
       href: machine-learning-pytorch.md
   - name: Functions on IoT Edge device
     href: ../iot-edge/tutorial-deploy-function.md?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
+  - name: Azure Files storage mounts
+    items:
+    - name: Process images with FFmpeg on a mounted share
+      displayName: Azure Files, storage mount, ffmpeg, Flex Consumption
+      href: tutorial-ffmpeg-processing-azure-files.md
+    - name: Durable text analysis on a mounted share
+      displayName: Azure Files, storage mount, Durable Functions, Flex Consumption
+      href: durable/tutorial-durable-text-analysis-azure-files.md
   - name: Java with Azure Cosmos DB and Event Hubs
     href: functions-event-hub-cosmos-db.md
 - name: Samples
@@ -209,7 +205,7 @@
       displayName: encryption, keys, mount, files
       href: storage-considerations.md
     - name: Choose a file access strategy
-      displayName: Azure Files, storage mount, bindings, file access, Flex Consumption, shared files
+      displayName: Azure Files, storage mount, bindings, file mounts, file access, shared files
       href: concept-file-access-options.md
     - name: Error handling and function retries
       displayName: best practices, retry policies
