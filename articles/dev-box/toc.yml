@@ -70,6 +70,8 @@ items:
     items:
       - name: Configure an Azure compute gallery
         href: how-to-configure-azure-compute-gallery.md
+      - name: Prepare a custom image
+        href: how-to-prepare-custom-image-dev-box.md
       - name: Provision a Custom Image with Azure Image Builder
         href: how-to-customize-devbox-azure-image-builder.md
   - name: Customize dev boxes
@@ -173,6 +175,8 @@ items:
       - name: Automatically repair connectivity issues
         href: how-to-troubleshoot-repair-dev-box.md
         displayName: Troubleshoot & repair, troubleshooter, fix, wizard
+      - name: Troubleshoot custom image validation
+        href: how-to-troubleshoot-custom-image-validation.md
       - name: Troubleshoot dev box connectivity issues
         href: how-to-troubleshoot-remote-desktop-connectivity.md
         displayName: Troubleshoot & repair, troubleshooter, fix
