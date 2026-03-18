@@ -39,8 +39,8 @@ This table describes the release date and the end of support date for each relea
 | Storage Explorer version | Release date       | End of support date |
 |:------------------------:|:------------------:|:-------------------:|
 | 1.42.0                   | March 17, 2026     | March 17, 2027      |
-| 1.41.1                   | February 17, 2026  | January 29, 2027    |
-| 1.41.0                   | January 29, 2026   | January 29, 2027    |
+| 1.41.1                   | February 17, 2026  | February 2, 2027    |
+| 1.41.0                   | February 2, 2026   | February 2, 2027    |
 | 1.40.2                   | November 3, 2025   | November 3, 2026    |
 | 1.40.0                   | September 25, 2025 | September 25, 2026  |
 | 1.39.1                   | July 15, 2025      | July 15, 2026       |
