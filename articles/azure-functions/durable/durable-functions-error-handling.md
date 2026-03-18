@@ -447,7 +447,7 @@ If the **CreditAccount** activity fails, the orchestrator catches the exception 
 
 When you use `Task.WhenAll` to run multiple activity calls in parallel (fan-out/fan-in pattern) and one or more activities fail, `await` throws only the first exception. To access all failures, inspect the `Exception` property on the `Task` returned by `Task.WhenAll`.
 
-<details open>
+<details>
 <summary><b>Isolated worker model</b></summary>
 
 ```csharp
