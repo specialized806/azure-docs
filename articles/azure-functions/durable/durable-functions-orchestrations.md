@@ -96,7 +96,7 @@ The event-sourcing behavior of the Durable Task Framework is closely coupled wit
 
 # [C#](#tab/csharp)
 
-<details open>
+<details>
 <summary><b>Isolated worker model</b></summary>
 
 ```csharp
