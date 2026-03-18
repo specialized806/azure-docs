@@ -1,11 +1,11 @@
 ---
-title: Connect to Azure Service Bus from workflows
-description: Learn how to access Azure Service Bus from a workflow in Azure Logic Apps by using the Service Bus connector.
-services: logic-apps
+title: Connect to Azure Service Bus from Workflows
+description: Learn how to access Azure Service Bus from workflows in Azure Logic Apps by using the Service Bus connector.
+services: azure-logic-apps
 ms.suite: integration
-ms.reviewer: estfan, azla
+ms.reviewers: estfan, azla
 ms.topic: how-to
-ms.date: 03/04/2026
+ms.date: 03/18/2026
 ms.custom:
   - engagement-fy23
   - sfi-image-nochange
@@ -16,16 +16,16 @@ ms.custom:
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
-This guide shows how to access Azure Service Bus from a workflow in Azure Logic Apps by using the Service Bus connector. You can then create automated workflows that run when triggered by events in a service bus or run actions to manage service bus items, for example:
+This guide shows how to access service bus resources in Azure Service Bus from automation and integration workflows in Azure Logic Apps by using the Service Bus connector. Your can have service bus events trigger your workflow or run actions that interact with service bus items, for example:
 
-* Monitor when messages arrive (auto-complete) or are received (peek-lock) in queues, topics, and topic subscriptions.
-* Send messages.
-* Create and delete topic subscriptions.
-* Manage messages in queues and topic subscriptions, for example, get, get deferred, complete, defer, abandon, and dead-letter.
-* Renew locks on messages and sessions in queues and topic subscriptions.
-* Close sessions in queues and topics.
+- Monitor when messages arrive (auto-complete) or are received (peek-lock) in queues, topics, and topic subscriptions.
+- Send messages.
+- Create and delete topic subscriptions.
+- Manage messages in queues and topic subscriptions, for example, get, get deferred, complete, defer, abandon, and dead-letter.
+- Renew locks on messages and sessions in queues and topic subscriptions.
+- Close sessions in queues and topics.
 
-You can use triggers that get responses from Azure Service Bus and make the output available to other actions in your workflows. You can also have other actions use the output from Service Bus actions.
+You can use triggers and actions that get responses from Azure Service Bus and then make the output available to other actions in your workflows.
 
 <a name="connector-reference"></a>
 
@@ -35,8 +35,8 @@ The Service Bus connector has different versions, based on [logic app workflow t
 
 | Logic app | Environment | Connector version |
 |-----------|-------------|-------------------|
-| **Consumption** | Multi-tenant Azure Logic Apps | Managed connector, which appears in the connector gallery under **Runtime** > **Shared**. <br><br>**Note**: Service Bus managed connector triggers follow the [*long-polling trigger* pattern](#service-bus-managed-triggers), which means that the trigger periodically checks for messages in the queue or topic subscription. For more information, see: <br>- [Service Bus managed connector reference](/connectors/servicebus/) <br>- [Managed connectors in Azure Logic Apps](managed.md) |
-| **Standard** | Single-tenant Azure Logic Apps and App Service Environment v3 (Windows plans only) | Managed connector (Azure-hosted), which appears in the connector gallery under **Runtime** > **Shared**, and built-in connector, which appears in the connector gallery under **Runtime** > **In App** and is [service provider based](../logic-apps/custom-connector-overview.md#service-provider-interface-implementation). <br><br>The Service Bus managed connector triggers follow the [*long-polling trigger* pattern](#service-bus-managed-triggers), which means that the trigger periodically checks for messages in the queue or topic subscription. <br><br>The Service Bus built-in connector non-session triggers follow a *continuous-polling trigger pattern* that the connector fully manages. In this pattern, the trigger constantly checks for messages in the queue or topic subscription. Session triggers follow the *long-polling trigger pattern*, but its configuration is governed by the Azure Functions setting named [**clientRetryOptions:tryTimeout**](../azure-functions/functions-bindings-service-bus.md#hostjson-settings). The built-in version usually provides better performance, capabilities, pricing, and so on. <br><br>For more information, see: <br><br>- [Service Bus managed connector reference](/connectors/servicebus/) <br>- [Service Bus built-in connector operations](/azure/logic-apps/connectors/built-in/reference/servicebus) <br>- [Built-in connectors in Azure Logic Apps](built-in.md) |
+| **Consumption** | Multitenant Azure Logic Apps | Managed connector, which appears in the connector gallery under **Runtime** > **Shared**. <br><br>**Note**: Service Bus managed connector triggers follow the [*long-polling trigger* pattern](#service-bus-managed-triggers), which means that the trigger periodically checks for messages in the queue or topic subscription. For more information, see: <br>- [Service Bus managed connector reference](/connectors/servicebus/) <br>- [Managed connectors in Azure Logic Apps](managed.md) |
+| **Standard** | Single-tenant Azure Logic Apps, App Service Environment v3 (Windows plans only), and hybrid deployment | Managed connector, which appears in the connector gallery under **Runtime** > **Shared**, and built-in connector, which appears in the connector gallery under **Runtime** > **Built-in** and is [service provider based](../logic-apps/custom-connector-overview.md#service-provider-interface-implementation). <br><br>**Note**: Service Bus managed connector triggers follow the [*long-polling trigger* pattern](#service-bus-managed-triggers), which means that the trigger periodically checks for messages in the queue or topic subscription. <br><br>Service Bus built-in connector non-session triggers follow a *continuous-polling trigger pattern* that the connector fully manages. In this pattern, the trigger constantly checks for messages in the queue or topic subscription. Session triggers follow the *long-polling trigger pattern*, but the Azure Functions setting named [**clientRetryOptions:tryTimeout**](../azure-functions/functions-bindings-service-bus.md#hostjson-settings) governs their configuration. The built-in connector generally provides better performance, capabilities, pricing, and so on. <br><br>For more information, see: <br><br>- [Service Bus managed connector reference](/connectors/servicebus/) <br>- [Service Bus built-in connector operations](/azure/logic-apps/connectors/built-in/reference/servicebus) <br>- [Built-in connectors in Azure Logic Apps](built-in.md) |
 
 ## Prerequisites
 
