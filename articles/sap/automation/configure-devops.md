@@ -4,7 +4,7 @@ description: Configure Azure DevOps Services for SAP Deployment Automation Frame
 author: kimforss
 ms.author: kimforss
 ms.reviewer: kimforss
-ms.date: 03/17/2026
+ms.date: 03/18/2026
 ms.topic: how-to
 ms.service: sap-on-azure
 ms.subservice: sap-automation
@@ -47,7 +47,7 @@ To use Azure DevOps Services, you need an Azure DevOps organization. An organiza
 Use this procedure when you want the framework scripts to create the Azure DevOps project, service connections, and baseline artifacts for the control plane.
 
 1. Open PowerShell and copy the following script.
-1. Update all parameter values so match your environment.
+1. Update all parameter values so it matches your environment.
 1. Run the script. The script opens browser windows for authentication and for tasks in Azure DevOps.
 
 ```powershell
@@ -118,7 +118,12 @@ Write-Output "Managed Identity Id: $($ManagedServiceIdentity.Id)"
 Write-Output "Agent Pool Name: $AgentPoolName"
 ```
 
-1. In Azure DevOps, validate that the project was created, the repository was populated, and pipelines were created.
+1. In Azure DevOps, validate that:
+
+   - The project was created
+   - The repository was populated
+   - The pipelines were created
+
 1. Decide where Terraform and Ansible code runs from:
 
    - Run code directly from GitHub.
@@ -132,7 +137,7 @@ Write-Output "Agent Pool Name: $AgentPoolName"
 Run this procedure after the control plane project is available.
 
 1. Open PowerShell and copy the following script.
-1. Update all parameter values to match your environment.
+1. Update all parameter values so it matches your environment.
 1. Run the script.
 
 Use the following script to deploy the artifacts that are needed to support a new workload zone. This process creates the variable group and the service connection in Azure DevOps and, optionally, the deployment service principal.
@@ -249,7 +254,7 @@ Only do this step if direct import is unavailable.
 
 For more information, see [Clone a repository](/azure/devops/repos/git/clone?view=azure-devops#clone-an-azure-repos-git-repo&preserve-view=true).
 
-:::image type="content" source="./media/devops/automation-repo-clone.png" alt-text="Screenshot that shows how to clone the repository.":::
+:::image type="content" source="./media/devops/automation-repo-clone.png" alt-text="Screenshot of Azure DevOps with a repository ready for cloning.":::
 
 ### Manually import the repository content by using a local clone
 
@@ -284,7 +289,7 @@ To pull the code from GitHub, you need a GitHub service connection. For more inf
 
 1. In Azure DevOps, go to **Project Settings** > **Pipelines** > **Service connections**.
 
-:::image type="content" source="./media/devops/automation-create-service-connection.png" alt-text="Screenshot that shows how to create a service connection for GitHub.":::
+:::image type="content" source="./media/devops/automation-create-service-connection.png" alt-text="Screenshot that shows how to create a service connection for GitHub in Azure DevOps.":::
 
 1. Select **GitHub** as the service connection type.
 1. In **OAuth Configuration**, select **Azure Pipelines**.
@@ -467,7 +472,7 @@ To remove the Azure resources, you need an Azure Resource Manager service connec
 
 1. In Azure DevOps, go to **Project Settings** > **Pipelines** > **Service connections**.
 
-   :::image type="content" source="./media/devops/automation-create-service-connection.png" alt-text="Screenshot that shows how to create a service connection.":::
+   :::image type="content" source="./media/devops/automation-create-service-connection.png" alt-text="Screenshot showing how to create a service connection in Azure DevOps.":::
 
 1. Select **Azure Resource Manager** and then select **Service principal (manual)**.
 1. Enter the target subscription (typically the control plane subscription) and service principal values.
