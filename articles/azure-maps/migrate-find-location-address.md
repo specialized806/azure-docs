@@ -46,7 +46,7 @@ The following table lists the Bing Maps _Find a Location by Address_ request par
 | locality      | | locality  | False  | string  | |
 | postalCode    | | postalCode     | False  | string  | |
 | culture  | c  | Request Header:  Accept-Language   | False  | string  | As specified in the Azure Maps [request header], `culture` defines the language used in search results when using the Azure Maps Get Geocoding API. For more information, see [Supported Languages]. |
-| include  | incl  | Not needed  | Not needed  | Not needed  | In Bing Maps Find a Location by Address API, the 'include' input parameter is required in order to get a two-letter ISO country code for the location result in the response (_include=ciso2_). In Azure Maps Get Geocoding API, the two-letter ISO country code is returned by default.  |
+| include  | incl  | Not needed  | Not needed  | Not needed  | In Bing Maps Find a Location by Address API, the `include` input parameter is required in order to get a two-letter ISO country code for the location result in the response (_include=ciso2_). In Azure Maps Get Geocoding API, the two-letter ISO country code is returned by default.  |
 | includeNeighborhood  | inclnb  | Not needed  | Not needed  | Not needed  | In Azure Maps Get Geocoding API, neighborhood info is returned in the response by default, when available.    |
 | maxResults  | maxRes  | top  | False  | Integer (int32)  | In Azure Maps Get Geocoding API, the default number of responses returned is 5. The minimum is 1 and the maximum is 20.  |
 | strictMatch  | sm  | Not supported  | Not supported  | Not supported  | |

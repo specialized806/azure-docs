@@ -97,7 +97,7 @@ GET https://atlas.microsoft.com/geocode:autocomplete
   &coordinates=-122.129,47.639
 ```
 
-For more information, see [Introducing the Azure Maps Geocode Autocomplete API](https://techcommunity.microsoft.com/blog/azuremapsblog/introducing-the-azure-maps-geocode-autocomplete-api/4455784).
+For more information, see [Introducing the Azure Maps Geocode Autocomplete API](https://techcommunity.microsoft.com/blog/azuremapsblog/announcing-the-general-availability-of-the-azure-maps-geocode-autocomplete-api/4499242).
 
 <!--For fully functional samples of autocomplete, see [Autocomplete] (https://samples.azuremaps.com/rest-services/autocomplete) and [Fill Address Form with Autocomplete](https://samples.azuremaps.com/rest-services/fill-address-form-with-autocomplete)-->
 

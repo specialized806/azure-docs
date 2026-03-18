@@ -30,7 +30,7 @@ This article explains how to apply sound practices when you call data from Azure
 * An [Azure Maps account]
 * A [subscription key]
 
-You can use any API development environment such as [bruno] to run the HTTP request samples shown in this article or to build REST calls.
+You can use any API development environment such as [Bruno] to run the HTTP request samples shown in this article or to build REST calls.
 
 ## Best practices to geocode addresses
 
@@ -984,13 +984,13 @@ The Azure Maps [Search service] provides REST APIs for forward geocoding, revers
 * An [Azure Maps account]
 * A [subscription key]
 
-You can use any API development environment such as [bruno] to run the HTTP request samples shown in this article or to build REST calls.
+You can use any API development environment such as [Bruno] to run the HTTP request samples shown in this article or to build REST calls.
 
 ## Core Search concepts
 
 ### Task‑specific operations
 
-Each Search capability is exposed through a dedicated API, such as Get Geocoding, Get Geocode Autocomplete, or Get Reverse Geocoding. This separation improves clarity, performance, and intent alignment.
+Each Search capability is exposed through a dedicated API, such as [Get Geocoding], [Get Geocode Autocomplete], or [Get Reverse Geocoding]. This separation improves clarity, performance, and intent alignment.
 
 ### Geographic relevance signals
 
@@ -998,7 +998,7 @@ Most Search APIs accept geographic biasing inputs such as coordinates, bounding 
 
 ### Batch processing
 
-Batch APIs allow multiple queries in a single request for large‑scale or background workloads.
+Batch APIs allow multiple queries in a single request for large‑scale workloads.
 
 ## Best practices for forward geocoding
 
@@ -1007,9 +1007,8 @@ Use [Get Geocoding] when converting an address or place name into geographic coo
 Recommendations:
 
 * Provide the most complete address string available.
-* Use countryRegion to reduce ambiguity.
+* Use `countryRegion` to reduce ambiguity.
 * Limit results with top when only the best match is needed.
-* Cache stable results to reduce repeated requests.
 
 ### Forward geocoding example request
 
@@ -1019,6 +1018,7 @@ GET https://atlas.microsoft.com/geocode
   &query=1%20Microsoft%20Way%2C%20Redmond%20WA
   &countryRegion=US
   &top=1
+  &subscription-key={Your-Azure-Maps-Key}
 ```
 
 ## Best practices for autocomplete
@@ -1026,7 +1026,7 @@ GET https://atlas.microsoft.com/geocode
 Use [Get Geocode Autocomplete] for interactive user input scenarios.
 Recommendations:
 
-* Trigger requests only after several characters of input.
+* Trigger autocomplete requests after three or more characters have been entered.
 * Always supply either `coordinates` or `bbox`.
 * Restrict results using `resultTypeGroups` or `resultTypes`.
 
@@ -1037,6 +1037,7 @@ GET https://atlas.microsoft.com/geocode:autocomplete
   ?api-version=2026-01-01
   &query=1%20Micro
   &coordinates=-122.129,47.639
+  &subscription-key={Your-Azure-Maps-Key}
 ```
 
 ## Best practices for reverse geocoding
@@ -1045,8 +1046,10 @@ Use [Get Reverse Geocoding] to translate coordinates into a human‑readable add
 
 Recommendations:
 
-* Prefer batch reverse geocoding for telemetry or asset tracking.
-* Avoid repeated calls for static coordinates.
+* Prefer batch reverse geocoding for telemetry, tracking, or other high‑volume workloads.
+* Cache results and avoid repeated calls for coordinates that do not change.
+* Validate coordinate order and precision to ensure accurate and consistent results.
+* Expect approximate or partial addresses in some locations and handle these cases gracefully.
 
 ### Reverse geocoding example request
 
@@ -1054,6 +1057,7 @@ Recommendations:
 GET https://atlas.microsoft.com/reverseGeocode
   ?api-version=2026-01-01
   &coordinates=-122.129,47.639
+  &subscription-key={Your-Azure-Maps-Key}
 ```
 
 ## Best practices for batch operations
@@ -1064,12 +1068,14 @@ When to use:
 
 * Importing address lists
 * Background enrichment jobs
-* Large‑scale reverse geocoding
+* Large‑scale data processing
 
 ### Get Geocoding Batch example request
 
 ```rest
-POST https://atlas.microsoft.com/geocode:batch?api-version=2026-01-01&subscription-key={Your-Azure-Maps-Key}
+POST https://atlas.microsoft.com/geocode:batch
+  ?api-version=2026-01-01
+  &subscription-key={Your-Azure-Maps-Key}
 ```
 
 Include the following in the body of the request:
@@ -1088,7 +1094,9 @@ For more information, see [Get Geocoding Batch].
 ### Get Reverse Geocoding Batch example request
 
 ```rest
-POST https://atlas.microsoft.com/reverseGeocode:batch?api-version=2026-01-01&subscription-key={Your-Azure-Maps-Key}
+POST https://atlas.microsoft.com/reverseGeocode:batch
+  ?api-version=2026-01-01
+  &subscription-key={Your-Azure-Maps-Key}
 ```
 
 Include the following in the body of the request:
@@ -1112,7 +1120,7 @@ Use [Get Polygon] to retrieve administrative boundary geometry.
 Recommendations:
 
 * Use only when boundary geometry is required.
-* Cache responses aggressively.
+* Choose a geometry resolution that matches your application's needs. Use `resolution=small` to return a more manageable polygon size, and avoid `resolution=huge` unless you explicitly require highly detailed geometry, as it can produce very large responses.
 
 ### Administrative boundaries example request
 
@@ -1120,6 +1128,8 @@ Recommendations:
 GET https://atlas.microsoft.com/polygon
   ?api-version=2026-01-01
   &entityId=US-WA
+  &resolution=small
+  &subscription-key={Your-Azure-Maps-Key}
 ```
 
 ## Next steps
@@ -1128,12 +1138,12 @@ GET https://atlas.microsoft.com/polygon
 > [Search service API documentation](/rest/api/maps/search)
 
 > [!div class="nextstepaction"]
-> [Search service API documentation](migrate-search-v1-api.md)
+> [Migrate Azure Maps Search 1.0 APIs](migrate-search-v1-api.md)
 :::zone-end
 
 [Azure Maps account]: quick-demo-map-app.md#create-an-azure-maps-account
 [Azure Maps supported languages]: supported-languages.md
-[bruno]: https://www.usebruno.com/
+[Bruno]: https://www.usebruno.com/
 <!--------------------------------------------------------------------------------------------------->
 [Geocoding coverage]: geocoding-coverage.md
 [Get Search Address]: /rest/api/maps/search/getsearchaddress?view=rest-maps-1.0&preserve-view=true
