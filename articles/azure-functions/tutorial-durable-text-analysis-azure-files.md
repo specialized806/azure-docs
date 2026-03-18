@@ -26,7 +26,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.60.0 or later
 - [Azure Functions Core Tools](./functions-run-local.md) version 4.x or later
 - [Python 3.9 or later](https://www.python.org/downloads/)
@@ -193,7 +193,7 @@ This tutorial uses Bicep to automate resource creation.
 
 ## Prepare and deploy the function app
 
-1. Make sure the required app settings exist on the remote function app. This command can be run even if these settings already exist:
+1. Make sure the remote function app has the required app settings. Run this command even if these settings already exist:
 
     ```azurecli
     az functionapp config appsettings set \
@@ -289,7 +289,7 @@ This tutorial uses Bicep to automate resource creation.
     ```
 
 > [!TIP]
-> Your function app accessed all three files in parallel through the storage mount. No per-request network calls were needed. The function read them directly from the mounted share by using standard file I/O. This approach demonstrates the power of storage mounts combined with Durable Functions.
+> Your function app accessed all three files in parallel through the storage mount. The app didn't need any per-request network calls. The function read them directly from the mounted share by using standard file I/O. This approach demonstrates the power of storage mounts combined with Durable Functions.
 
 ## Clean up resources
 
