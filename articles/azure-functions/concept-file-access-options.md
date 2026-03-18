@@ -15,6 +15,8 @@ This article compares three ways to access files from Azure Functions: storage b
 
 Storage bindings and external databases work on all hosting plans. Storage mounts are supported only on [Flex Consumption](./flex-consumption-plan.md) and [Dedicated (App Service)](./dedicated-plan.md) plans.
 
+If you want to jump straight to working code, see the [Tutorial: Durable text analysis with a mounted Azure Files share](./durable/tutorial-durable-text-analysis-azure-files.md) for parallel file processing or [Tutorial: Process images by using FFmpeg on a mounted Azure Files share](./tutorial-ffmpeg-processing-azure-files.md) for hosting large binaries on a mount.
+
 [!INCLUDE [functions-azure-files-samples-note](../../includes/functions-azure-files-samples-note.md)]
 
 ## File access options at a glance
@@ -129,6 +131,9 @@ Select each tab to view details about the specific scenario:
 
 > **Use case:** You have 1,000 analysis tasks that all need to read from the same set of reference data files (for example, ML models, lookup tables, or corpus data).
 
+> [!NOTE]
+> For a complete walkthrough of this pattern, see [Tutorial: Durable text analysis with a mounted Azure Files share](./durable/tutorial-durable-text-analysis-azure-files.md).
+
 **The problem:** Without mounts, you have two suboptimal options:
 
 - **Package the reference files with your function**: This approach results in a huge deployment artifact, slow cold starts, and storage redundancy.
@@ -180,6 +185,9 @@ def analyze_data(item: str) -> dict:
 ### [Shared executables](#tab/shared-executables)
 
 > **Use case:** You need to run a large third-party binary (500+ MB) on every instance, but you don't want to package it with your function code. Such binaries could include ffmpeg, ImageMagick, and others.
+
+> [!NOTE]
+> For a complete walkthrough of this pattern, see [Tutorial: Process images by using FFmpeg on a mounted Azure Files share](./tutorial-ffmpeg-processing-azure-files.md).
 
 **The problem:**
 
