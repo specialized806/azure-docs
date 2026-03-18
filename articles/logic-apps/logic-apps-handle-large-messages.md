@@ -101,7 +101,7 @@ To reference the data, in the chunking action, use the expression `body('Compose
 },
 ```
 > [!NOTE]
-
+>
 > When chunking is active on an action, the action's outputs contain only the body property. Other output properties such as statusCode and headers 
 are not available. If you use tracked properties that reference these unavailable properties — for example, @action()['outputs']['statusCode'] or
 @action()['outputs']['headers'] — the action fails with error code TrackedPropertiesEvaluationFailed, even though the underlying operation 
