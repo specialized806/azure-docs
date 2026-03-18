@@ -48,7 +48,7 @@ To start and stop on the VIS solutions resource, you must:
 
 - For stop operations, ensure that the cluster maintenance mode is in the **Disabled** status. The stop operation function for the HANA database can only be initiated when the cluster maintenance mode is disabled.
 
-## Start SAP system
+## Start an SAP system
 
 To start an SAP system represented as a Virtual Instance for SAP solutions resource, use the [Start-AzWorkloadsSapVirtualInstance](/powershell/module/az.workloads/Start-AzWorkloadsSapVirtualInstance) command. Choose one of the following options:
 
@@ -64,7 +64,7 @@ To start an SAP system represented as a Virtual Instance for SAP solutions resou
      Start-AzWorkloadsSapVirtualInstance -InputObject /subscriptions/sub1/resourceGroups/rg1/providers/Microsoft.Workloads/sapVirtualInstances/DB0 `
    ```
 
-## Stop SAP system
+## Stop an SAP system
 
 To stop an SAP system represented as a Virtual Instance for SAP solutions resource, use the [Stop-AzWorkloadsSapVirtualInstance](/powershell/module/az.workloads/Stop-AzWorkloadsSapVirtualInstance) command. Choose one of the following options:
 

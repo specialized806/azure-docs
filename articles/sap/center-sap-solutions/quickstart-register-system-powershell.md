@@ -91,41 +91,41 @@ To register an existing SAP system in Azure Center for SAP solutions:
   
    - `Location` specifies the Azure Center for SAP solutions service location. To choose the right service location based on where your SAP system infrastructure is located on Azure, refer to the following table.
 
-   | SAP application location | Azure Center for SAP solutions service location |
-   | ------------------------- | --------------------------------------------------- |
-   | East US | East US |
-   | East US 2 | East US 2 |
-   | North Central US | South Central US |
-   | South Central US | South Central US |
-   | Central US | South Central US |
-   | West US | West US 3 |
-   | West US 2 | West US 2 |
-   | West US 3 | West US 3 |
-   | West Europe | West Europe |
-   | North Europe | North Europe |
-   | Australia East | Australia East |
-   | Australia Central | Australia East |
-   | East Asia | East Asia |
-   | Southeast Asia | East Asia |
-   | Korea Central | Korea Central |
-   | Japan East | Japan East |
-   | Central India | Central India |
-   | Canada Central | Canada Central |
-   | Brazil South | Brazil South |
-   | UK South | UK South |
-   | Germany West Central | Germany West Central |
-   | Sweden Central | Sweden Central |
-   | France Central | France Central |
-   | Switzerland North | Switzerland North |
-   | Norway East | Norway East |
-   | South Africa North | South Africa North |
-   | UAE North | UAE North |
+       | SAP application location | Azure Center for SAP solutions service location |
+       | ------------------------- | --------------------------------------------------- |
+       | East US | East US |
+       | East US 2 | East US 2 |
+       | North Central US | South Central US |
+       | South Central US | South Central US |
+       | Central US | South Central US |
+       | West US | West US 3 |
+       | West US 2 | West US 2 |
+       | West US 3 | West US 3 |
+       | West Europe | West Europe |
+       | North Europe | North Europe |
+       | Australia East | Australia East |
+       | Australia Central | Australia East |
+       | East Asia | East Asia |
+       | Southeast Asia | East Asia |
+       | Korea Central | Korea Central |
+       | Japan East | Japan East |
+       | Central India | Central India |
+       | Canada Central | Canada Central |
+       | Brazil South | Brazil South |
+       | UK South | UK South |
+       | Germany West Central | Germany West Central |
+       | Sweden Central | Sweden Central |
+       | France Central | France Central |
+       | Switzerland North | Switzerland North |
+       | Norway East | Norway East |
+       | South Africa North | South Africa North |
+       | UAE North | UAE North |
   
    - `Environment` specifies the type of SAP environment that you're registering. Valid values are `NonProd` and `Prod`.
   
    - `SapProduct` specifies the type of SAP product that you're registering. Valid values are `S4HANA`, `ECC`, and `Other`.
   
-   - `ManagedResourceGroupName` specifies the name of the managed resource group deployed by the Azure Cloud Solution for SAP service (ACSS) in your subscription. This resource group is unique for each SAP SID that you register. If you don't specify the name, the ACSS service sets a name with the following naming convention: `mrg-{SID}-{random string}`.
+   - `ManagedResourceGroupName` specifies the name of the managed resource group deployed by the Azure Cloud Solution for SAP (ACSS) service in your subscription. This resource group is unique for each SAP SID that you register. If you don't specify the name, the ACSS service sets a name with the following naming convention: `mrg-{SID}-{random string}`.
   
    - `ManagedRgStorageAccountName` specifies the name of the storage account deployed into the managed resource group. This storage account is unique for each SAP SID that you register. The ACSS service sets a default name with the following naming convention: `{SID}{random string}`.
   

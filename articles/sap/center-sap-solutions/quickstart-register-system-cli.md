@@ -87,7 +87,7 @@ To register an existing SAP system in Azure Center for SAP solutions:
 
    - `sap-product` specifies the type of SAP product that you're registering. Valid values are `S4HANA`, `ECC`, and `Other`.
 
-   - `managed-rg-name` specifies the name of the managed resource group deployed by the Azure Cloud Solution for SAP service (ACSS) in your subscription. This resource group is unique for each SAP SID that you register. If you don't specify the name, the ACSS service sets a name with the following naming convention: `mrg-{SID}-{random string}`.
+   - `managed-rg-name` specifies the name of the managed resource group deployed by the Azure Cloud Solution for SAP (ACSS) service in your subscription. This resource group is unique for each SAP SID that you register. If you don't specify the name, the ACSS service sets a name with the following naming convention: `mrg-{SID}-{random string}`.
 
    - `managed-resources-network-access-type` specifies the network access configuration for the resources deployed in the managed resource group. The options are `public` and `private`. If you choose private, enable the storage account service tag on the subnets in which the SAP VMs exist. This step is required for establishing connectivity between VM extensions and the managed resource group storage account. This setting is currently applicable only to the storage account.
 
