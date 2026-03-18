@@ -396,7 +396,7 @@ Functions often serve as the compute component in a serverless workflow topology
 
 ::: zone pivot="programming-language-python" 
 + [Quickstart: Create your first durable function in Azure using Python](./durable/quickstart-python-vscode.md)
-+ [Quickstart: Durable text analysis with a mounted Azure Files share](quickstart-durable-text-analysis-azure-files.md)
++ [Tutorial: Durable text analysis with a mounted Azure Files share](tutorial-durable-text-analysis-azure-files.md)
 + [Sample: Durable text analysis with Azure Files storage mount](https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples)
 + [Training: Deploy serverless APIs with Azure Functions, Logic Apps, and Azure SQL Database](/training/modules/deploy-backend-apis/)
 ::: zone-end

@@ -123,7 +123,7 @@ These example scenarios also benefit from using mounted storage shares:
 | **Shared executables** | Keep large binaries out of the deployment package | ffmpeg, ImageMagick, or other 500+ MB tools |
 | **Cross-app data sharing** | Share files between producer and consumer apps without message passing | App A writes results, App B reads them from the same mount |
 
-Select tabs to view details about each scenario: 
+Select each tab to view details about the specific scenario: 
 
 ### [Parallel file analysis](#tab/parallel-anaylsis)
 
@@ -413,7 +413,7 @@ The following table lists common issues with Azure Files storage mounts on funct
 ## Related content
 
 - [Tutorial: Process images by using FFmpeg on a mounted Azure Files share](./tutorial-ffmpeg-processing-azure-files.md)
-- [Quickstart: Durable text analysis with a mounted Azure Files share](./quickstart-durable-text-analysis-azure-files.md)
+- [Tutorial: Durable text analysis with a mounted Azure Files share](./tutorial-durable-text-analysis-azure-files.md)
 - [Mount file shares](./storage-considerations.md#mount-file-shares)
 - [Flex Consumption plan](./flex-consumption-plan.md)
 - [Durable Functions overview](./durable/durable-functions-overview.md)

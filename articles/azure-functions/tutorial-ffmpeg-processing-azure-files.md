@@ -76,8 +76,7 @@ This tutorial uses Bicep to automate resource creation.
     This deployment creates the following resources:
 
     - Storage account with a blob container and Azure Files share
-    - Flex Consumption function app plan
-    - Azure Functions app
+    - Function app in a Flex Consumption function plan
     - Application Insights for monitoring
     - Managed identity with permissions to storage
 
@@ -279,6 +278,6 @@ az group delete --name $RESOURCE_GROUP --yes
 ## Related content
 
 - [Choose a file access strategy for Azure Functions](./concept-file-access-options.md)
-- [Quickstart: Durable text analysis with a mounted Azure Files share](./quickstart-durable-text-analysis-azure-files.md)
+- [Tutorial: Durable text analysis with a mounted Azure Files share](./tutorial-durable-text-analysis-azure-files.md)
 - [Flex Consumption plan](./flex-consumption-plan.md)
 - [Storage considerations for Azure Functions](./storage-considerations.md)
