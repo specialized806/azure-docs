@@ -12,23 +12,23 @@ ms.custom:
 
 # Tutorial: Durable text analysis with a mounted Azure Files share
 
-In this tutorial, you deploy a Python Azure Functions app that uses [Durable Functions](./durable/durable-functions-overview.md) to orchestrate parallel text file analysis. Your function app mounts an Azure Files share, analyzes multiple text files in parallel (fan-out), aggregates the results (fan-in), and returns them to the caller. This approach demonstrates a key advantage of storage mounts: shared file access across multiple function instances without per-request network overhead.
+In this tutorial, you deploy a Python Azure Functions app that uses [Durable Functions](./durable-functions-overview.md) to orchestrate parallel text file analysis. Your function app mounts an Azure Files share, analyzes multiple text files in parallel (fan-out), aggregates the results (fan-in), and returns them to the caller. This approach demonstrates a key advantage of storage mounts: shared file access across multiple function instances without per-request network overhead.
 
 In this tutorial, you:
 
 > [!div class="checklist"]
 > * Deploy a Durable Functions app in a Flex Consumption plan with a mounted Azure Files share using Bicep
 > * Upload sample text files to the mounted Azure Files share
-> * Deploy a Python function app that uses a [fan-out/fan-in pattern](./durable/durable-functions-fan-in-fan-out.md?pivots=durable-functions) to analyze text files in parallel
+> * Deploy a Python function app that uses a [fan-out/fan-in pattern](./durable-functions-fan-in-fan-out.md?pivots=durable-functions) to analyze text files in parallel
 > * Trigger an orchestration to process the files and verify results
 
-[!INCLUDE [functions-azure-files-samples-note](../../includes/functions-azure-files-samples-note.md)]
+[!INCLUDE [functions-azure-files-samples-note](../../../includes/functions-azure-files-samples-note.md)]
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.60.0 or later
-- [Azure Functions Core Tools](./functions-run-local.md) version 4.x or later
+- [Azure Functions Core Tools](../functions-run-local.md) version 4.x or later
 - [Python 3.9 or later](https://www.python.org/downloads/)
 - [Git](https://git-scm.com/)
 
@@ -304,8 +304,8 @@ az group delete --name $RESOURCE_GROUP --yes
 
 ## Related content
 
-- [Durable Functions overview](./durable/durable-functions-overview.md)
-- [Choose a file access strategy for Azure Functions](./concept-file-access-options.md)
-- [Tutorial: Process images by using FFmpeg on a mounted Azure Files share](./tutorial-ffmpeg-processing-azure-files.md)
-- [Flex Consumption plan](./flex-consumption-plan.md)
-- [Storage considerations for Azure Functions](./storage-considerations.md)
+- [Durable Functions overview](./durable-functions-overview.md)
+- [Choose a file access strategy for Azure Functions](../concept-file-access-options.md)
+- [Tutorial: Process images by using FFmpeg on a mounted Azure Files share](../tutorial-ffmpeg-processing-azure-files.md)
+- [Flex Consumption plan](../flex-consumption-plan.md)
+- [Storage considerations for Azure Functions](../storage-considerations.md)

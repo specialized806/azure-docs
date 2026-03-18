@@ -413,7 +413,7 @@ The following table lists common issues with Azure Files storage mounts on funct
 ## Related content
 
 - [Tutorial: Process images by using FFmpeg on a mounted Azure Files share](./tutorial-ffmpeg-processing-azure-files.md)
-- [Tutorial: Durable text analysis with a mounted Azure Files share](./tutorial-durable-text-analysis-azure-files.md)
+- [Tutorial: Durable text analysis with a mounted Azure Files share](./durable/tutorial-durable-text-analysis-azure-files.md)
 - [Mount file shares](./storage-considerations.md#mount-file-shares)
 - [Flex Consumption plan](./flex-consumption-plan.md)
 - [Durable Functions overview](./durable/durable-functions-overview.md)

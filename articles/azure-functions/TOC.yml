@@ -62,7 +62,7 @@
         href: ./durable/scenario-build-serverless-workflow.md?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
       - name: Durable text analysis
         displayName: Azure Files, storage mount, Durable Functions, Flex Consumption
-        href: tutorial-durable-text-analysis-azure-files.md
+        href: durable/tutorial-durable-text-analysis-azure-files.md
     - name: Run scheduled tasks
       displayName: timer trigger, schedule
       href: scenario-scheduled-tasks.md

@@ -278,6 +278,6 @@ az group delete --name $RESOURCE_GROUP --yes
 ## Related content
 
 - [Choose a file access strategy for Azure Functions](./concept-file-access-options.md)
-- [Tutorial: Durable text analysis with a mounted Azure Files share](./tutorial-durable-text-analysis-azure-files.md)
+- [Tutorial: Durable text analysis with a mounted Azure Files share](./durable/tutorial-durable-text-analysis-azure-files.md)
 - [Flex Consumption plan](./flex-consumption-plan.md)
 - [Storage considerations for Azure Functions](./storage-considerations.md)
