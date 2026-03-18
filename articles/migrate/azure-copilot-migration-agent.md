@@ -55,7 +55,7 @@ To open the agent experience in Azure Migrate, follow these steps:
 > To use the Azure Copilot migration agent, you must enable the agent preview in Azure Copilot.
 
 
-:::image type="content" source="./media/azure-copilot-migration-agent/accelerate-migration.png" alt-text="Screenshot shows how to accelarate migration agent." lightbox="./media/azure-copilot-migration-agent/accelerate-migration.png" :::
+:::image type="content" source="./media/azure-copilot-migration-agent/accelerate-migration.png" alt-text="Screenshot shows how to accelerate migration agent." lightbox="./media/azure-copilot-migration-agent/accelerate-migration.png" :::
 
 4. In the **Azure Migrate Project**, select either **Existing project** or **New project**, and then select subscription, resource group, and geography.
 
