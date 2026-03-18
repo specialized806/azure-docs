@@ -107,7 +107,6 @@ To reference the data, in the chunking action, use the expression `body('Compose
 > If you use tracked properties that reference unavailable properties, for example, `@action()['outputs']['statusCode']` or `@action()['outputs']['headers']`, the action fails with the error message, `TrackedPropertiesEvaluationFailed`. This error happens even when the underlying operation, such as a file download, successfully completes. 
 >
 > To avoid this error, remove any references to unavailable properties from tracked properties in actions that use chunking to process large messages.
-are not available. If you use tracked properties that reference these unavailable properties — for example, @action()['outputs']['statusCode'] or
 @action()['outputs']['headers'] — the action fails with error code TrackedPropertiesEvaluationFailed, even though the underlying operation 
 (such as a file download) completed successfully. To avoid this error, remove references to statusCode or headers from tracked properties on  actions that process large messages with chunking enabled.
 
