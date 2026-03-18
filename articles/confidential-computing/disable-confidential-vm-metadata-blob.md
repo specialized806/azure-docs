@@ -64,8 +64,6 @@ The Azure Backup service doesn't support 2 blob confidential VMs configured with
 * **Key Rotation**<br>
 Online key rotation depends on the VMMD blob and therefore is only available for **3blob** resources. Confidential VMs using the **2blob** format can't rotate keys while online. Automated key rotation may also fail if the resource is online.
 
-* **PPS reuse**<br>
-Introduction of the opt-out AFEC breaks PPS reuse of **2blob** resources as the platform is redesigned to create **3blob** resources by default.
 
 ## Next Steps
 
