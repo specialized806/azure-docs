@@ -41,7 +41,7 @@ To configure your VIS in the Azure portal:
 
 To see infrastructure-based metrics for the VIS:
 
-1. [Open the VIS in the Azure portal](#open-vis-in-portal).
+1. [Open the VIS in the Azure portal](#open-a-vis-in-azue-portal).
 1. On the **Overview** pane, select the **Monitoring** tab.
 
 You can see the following metrics:
@@ -54,7 +54,7 @@ You can see the following metrics:
 
 To view properties for the instances within your VIS:
 
-1. [Open the VIS in the Azure portal](#open-vis-in-portal).
+1. [Open the VIS in the Azure portal](#open-a-vis-in-azue-portal).
 1. In the sidebar menu, under **SAP resources**, select the instance type:
 
    - To see properties of ASCS instances, select **Central service instances**.
@@ -67,7 +67,7 @@ To view properties for the instances within your VIS:
 
 To view the managed identity for the VIS:
 
-1. [Open the VIS in the Azure portal](#open-vis-in-portal).
+1. [Open the VIS in the Azure portal](#open-a-vis-in-azue-portal).
 1. In the sidebar menu, select **Identity**.
 
    :::image type="content" source="media/configure-virtual-instance/manage-identity-under-vis.png" lightbox="media/configure-virtual-instance/manage-identity-under-vis.png" alt-text="Screenshot of the managed identity view for a VIS resource in the Azure portal.":::
@@ -92,7 +92,7 @@ When you delete a VIS, you also delete the managed resource group and all instan
 
 To delete a VIS:
 
-1. [Open the VIS in the Azure portal](#open-vis-in-portal).
+1. [Open the VIS in the Azure portal](#open-a-vis-in-azue-portal).
 1. On the overview page's menu, select **Delete**.
 
    :::image type="content" source="media/configure-virtual-instance/delete-vis-button.png" lightbox="media/configure-virtual-instance/delete-vis-button.png" alt-text="Screenshot of VIS resource in the Azure portal, showing delete button in the overview page's menu.":::
@@ -133,7 +133,7 @@ The HANA database username is either `system` or `SYSTEM` for:
 
 To retrieve the password:
 
-1. [Open the VIS in the Azure portal](#open-vis-in-portal).
+1. [Open the VIS in the Azure portal](#open-a-vis-in-azue-portal).
 1. On the overview page, select the **Managed resource group**.
 
    :::image type="content" source="media/configure-virtual-instance/select-managed-resource-group.png" lightbox="media/configure-virtual-instance/select-managed-resource-group.png" alt-text="Screenshot of VIS resource in the Azure portal, showing selection of managed resource group on the overview page.":::
