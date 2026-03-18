@@ -5,7 +5,7 @@ items:
   items:
   - name: What is Azure Migrate?
     href: migrate-services-overview.md
-  - name: What is Azure Copilot Migration Agent
+  - name: What is Azure Copilot Migration Agent?
     href: azure-copilot-migration-agent.md
   - name: What's new
     href: whats-new.md
