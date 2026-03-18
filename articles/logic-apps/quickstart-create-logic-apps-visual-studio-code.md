@@ -6,7 +6,7 @@ ms.suite: integration
 ms.reviewers: estfan, azla
 ms.topic: quickstart
 ms.update-cycle: 365-days
-ms.date: 03/16/2026
+ms.date: 03/17/2026
 ms.custom:
   - mvc
   - mode-ui
@@ -209,7 +209,7 @@ Before you start, make sure that you have these items:
 
    This step publishes your logic app workflow definition to the [Azure portal](https://portal.azure.com), which makes the workflow live and running in Azure.
 
-   ![Screenshot that shows a dialog box in Visual Studio Code with the Upload button highlighted.](./media/quickstart-create-logic-apps-visual-studio-code/upload-new-logic-app.png)
+   ![Screenshot that shows a dialog box with the Upload button highlighted in Visual Studio Code for uploading a logic app to the Azure portal.](./media/quickstart-create-logic-apps-visual-studio-code/upload-new-logic-app.png)
 
 ## View logic app workflow definition in designer
 
@@ -261,7 +261,7 @@ In Visual Studio Code, you can open and edit the workflow definition for an alre
 
    This step publishes your updates to your logic app resource in the [Azure portal](https://portal.azure.com).
 
-   ![Screenshot that shows a dialog box in Visual Studio Code with the Upload button highlighted.](./media/quickstart-create-logic-apps-visual-studio-code/upload-logic-app-changes.png)
+   ![Screenshot that shows a dialog box with the Upload button highlighted in Visual Studio Code for uploading logic app changes to the Azure portal.](./media/quickstart-create-logic-apps-visual-studio-code/upload-logic-app-changes.png)
 
 ## View or promote other versions
 
