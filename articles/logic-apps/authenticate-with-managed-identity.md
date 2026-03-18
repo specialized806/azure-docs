@@ -36,9 +36,9 @@ This guide provides steps for the Azure portal and Azure Resource Manager templa
 
 | Tool | Documentation |
 |------|---------------|
-| Azure PowerShell | - [System-assigned](/powershell/azure/authenticate-noninteractive?view=azps-15.4.0#system-assigned-managed-identity) <br>- [User-assigned](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-powershell) |
-| Azure CLI | - [System-assigned](/cli/azure/identity?view=azure-cli-latest) <br>- [User-assigned](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azcli) |
-| Azure REST API | - [System-assigned](/rest/api/managedidentity/system-assigned-identities?view=rest-managedidentity-2024-11-30) <br>- [User-assigned](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-rest) |
+| Azure PowerShell | - [System-assigned](/powershell/azure/authenticate-noninteractive#system-assigned-managed-identity) <br>- [User-assigned](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-powershell) |
+| Azure CLI | - [System-assigned](/cli/azure/identity) <br>- [User-assigned](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azcli) |
+| Azure REST API | - [System-assigned](/rest/api/managedidentity/system-assigned-identities) <br>- [User-assigned](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-rest) |
 
 For more information, see:
 
@@ -261,6 +261,8 @@ You need to create the identity as a separate Azure resource before you can enab
 1. When you finish, select **Review + create**.
 
    After Azure validates the information, Azure creates your managed identity. Now you can add the user-assigned identity to your logic app resource.
+
+<a id="add-user-identity-portal"></a>
 
 ## Add user-assigned identity to logic app (portal)
 
@@ -765,7 +767,7 @@ The following steps show how to use the managed identity by using the Azure port
 
      1. From the **Authentication type** list, select **Managed identity**.
 
-        :::image type="content" source="media/authenticate-with-managed-identity/built-in-managed-identity.png" alt-text="Screenshot shows Standard workflow, example built-in action, opened Authentication type list, and selected option for Managed identity." lightbox="media/authenticate-with-managed-identity/built-in-managed-identity-standard.png":::
+        :::image type="content" source="media/authenticate-with-managed-identity/built-in-managed-identity.png" alt-text="Screenshot shows Standard workflow, example built-in action, opened Authentication type list, and selected option for Managed identity." lightbox="media/authenticate-with-managed-identity/built-in-managed-identity.png":::
 
         The **Authentication** section now shows the following options:
 
@@ -784,7 +786,7 @@ The following steps show how to use the managed identity by using the Azure port
         >
         > By default, **System-assigned managed identity** is the selected option, even when you don't enable any managed identities. By default, Standard logic apps automatically enable the system identity. Although these logic apps can have multiple identities enabled, they can use only one identity at a time.
         >
-        > For example, a workflow that accesses different Azure Service Bus messaging entities should use only one managed identity. See [Connect to Azure Service Bus from workflows](../connectors/connectors-create-api-servicebus.md#prerequisites).
+        > For example, a workflow that accesses different Azure Service Bus messaging entities should use only one managed identity. For more information, see [Connect to Azure Service Bus from workflows](../connectors/connectors-create-api-servicebus.md#prerequisites).
 
      For more information, see [Example: Authenticate built-in trigger or action with a managed identity](#authenticate-built-in-managed-identity).
 
