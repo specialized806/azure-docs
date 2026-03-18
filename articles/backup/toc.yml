@@ -477,6 +477,8 @@
     items: 
     - name: Configure item level backup of an AKS cluster
       href: tutorial-configure-backup-aks.md
+    - name: Back up Azure Files volumes in AKS clusters
+      href: tutorial-backup-aks-azure-files.md  
     - name: Restore vaulted backups for AKS clusters in a secondary region
       href: tutorial-restore-aks-backups-across-regions.md
   - name: Backup scenarios
