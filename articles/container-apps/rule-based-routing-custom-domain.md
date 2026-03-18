@@ -6,7 +6,7 @@ author: craigshoemaker
 ms.service: azure-container-apps
 ms.custom: devx-track-azurecli, devx-track-bicep
 ms.topic: how-to
-ms.date: 10/13/2025
+ms.date: 04/16/2025
 ms.author: cshoe
 ---
 
