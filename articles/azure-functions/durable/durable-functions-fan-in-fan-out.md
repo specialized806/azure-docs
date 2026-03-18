@@ -90,7 +90,7 @@ This orchestrator function does the following:
 
 Here is the code that implements the orchestrator function:
 
-<details open>
+<details>
 <summary><b>Isolated model</b></summary>
 
 ```csharp
@@ -369,7 +369,7 @@ The helper activity functions are regular functions that use the `activityTrigge
 
 # [C#](#tab/csharp)
 
-<details open>
+<details>
 <summary><b>Isolated model</b></summary>
 
 ```csharp
@@ -467,7 +467,7 @@ Java sample coming soon.
 
 # [C#](#tab/csharp)
 
-<details open>
+<details>
 <summary><b>Isolated model</b></summary>
 
 > [!NOTE]
