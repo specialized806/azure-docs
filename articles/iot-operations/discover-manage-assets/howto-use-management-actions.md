@@ -30,7 +30,7 @@ This article explains how to enable management actions, execute actions on asset
 
 ## Enable management actions
 
-For a complete end-to-end setup script that creates the Event Grid namespace, device, asset, and enables management actions in one step, see the [management actions quickstart](https://github.com/Azure/azure-iot-ops-cli-extension/blob/mgmt_actions_quickstart/scripts/mgmt-actions/README.md) in the CLI extension repository.
+For a complete end-to-end setup script that creates the Event Grid namespace, device, asset, and enables management actions in one step, see the [management actions quickstart](https://github.com/Azure/azure-iot-ops-cli-extension/blob/v2.4.0/scripts/mgmt-actions/README.md) in the CLI extension repository.
 
 The `az iot ops mgmt-actions enable` command in the quickstart script provisions the management actions infrastructure on your Azure IoT Operations instance. The command creates the following resources:
 
@@ -110,7 +110,7 @@ For more information about how to define action types in an asset's management g
 
 Management actions use two data flows and Azure Event Grid to connect a cloud client to a connector running in the Azure IoT Operations cluster. The following sections describe the request and response message flows in detail.
 
-:::image type="content" source="media/howto-use-management-actions/architecture.svg" alt-text="Diagram that shows the architecture of management actions request and response flows through Event Grid, data flows, MQTT broker, and connector to a southbound asset." lightbox="media/howto-use-management-actions/architecture.png":::
+:::image type="content" source="media/howto-use-management-actions/architecture.svg" alt-text="Diagram that shows the architecture of management actions request and response flows through Event Grid, data flows, MQTT broker, and connector to a southbound asset." lightbox="media/howto-use-management-actions/architecture.png" border="false":::
 
 ### Request flow
 

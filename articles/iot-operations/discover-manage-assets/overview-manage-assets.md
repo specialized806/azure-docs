@@ -154,6 +154,9 @@ The following table summarizes which data types each connector supports.
 | SSE             | Yes      | Yes          |                   |         |
 | MQTT            | Yes      |              | Yes               |         |
 
+> [!TIP]
+> To learn more about how management groups and actions work across connectors, see [Enable and run management actions](howto-use-management-actions.md).
+
 #### Discovery
 
 You can use Akri services to automatically discover physical devices and assets. Akri services also help operational technology (OT) users set up devices and assets in the operations experience web UI. The connectors described earlier all use the framework that Akri services provide to implement their core capabilities.

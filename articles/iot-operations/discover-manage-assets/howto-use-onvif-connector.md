@@ -308,4 +308,8 @@ The [Azure IoT Operations connector for ONVIF PTZ Demo](https://github.com/Azure
 - Use the media asset definition to retrieve a profile token from the camera's media service.
 - Use the profile token when you use the camera's PTZ capabilities control its position and orientation.
 
-The sample application uses the Azure IoT Operations MQTT broker to send commands to interact with the connector for ONVIF. To learn more, see [Publish and subscribe MQTT messages using MQTT broker](../manage-mqtt-broker/overview-broker.md).
+The sample application uses the Azure IoT Operations MQTT broker to send commands to interact with the connector for ONVIF. 
+
+To learn more, see:
+- [Enable and run management actions](howto-use-management-actions.md)
+- [Publish and subscribe MQTT messages using MQTT broker](../manage-mqtt-broker/overview-broker.md).

@@ -215,6 +215,7 @@ To add a management group and define actions for it:
 When you invoke the action, the connector publishes the action payload to the **Target URI** topic on the device's inbound endpoint. A downstream subscriber on that topic receives the message and can act on it.
 
 For background on how management groups and actions work across connectors, see:
+- [Enable and run management actions](howto-use-management-actions.md)
 - [Control OPC UA servers](howto-control-opc-ua.md) — explains the action invocation pattern and the MQTT RPC protocol used to trigger actions.
 - [Manage and control the camera](howto-use-onvif-connector.md#manage-and-control-the-camera) — shows how a similar pattern is used for the connector for ONVIF.
 
