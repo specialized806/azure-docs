@@ -5,13 +5,12 @@ ms.service: sap-on-azure
 ms.subservice: center-sap-solutions
 ms.custom: references_regions, devx-track-azurepowershell
 ms.topic: how-to
-ms.date: 05/04/2023
+ms.date: 03/18/2026
 ms.author: kanamudu
 author: kalyaninamuduri
-#Customer intent: As a developer, I want to register my existing SAP system so that I can use the system with Azure Center for SAP solutions.
 #Customer intent: As an SAP administrator, I want to register my existing SAP system with Azure Center for SAP solutions by using Azure PowerShell, so that I can use Azure management and monitoring capabilities for my SAP infrastructure.
 ---
-# Register an existing SAP system with Azure Center for SAP solutions with Azure PowerShell
+# Register an existing SAP system with Azure Center for SAP solutions by using Azure PowerShell
 
 Use the [Az PowerShell module](/powershell/azure/new-azureps-module-az) to create and manage Azure resources from the command line or in scripts.
 
