@@ -39,18 +39,18 @@ To opt out of the **3blob** architecture and disable the VMMD creation, follow t
 1. Sign in to the Azure portal.
 
 2. Search for `Subscriptions` in the top search bar and click on the link.
-![Step 2](media/search-subscriptions.png)
+![Screenshot of Subscriptions in the search bar](media/search-subscriptions.png)
 
 3. On the `Subscriptions` page, select the name of the subscription you wish to configure.
 
 4. In the left menu, under `Settings`, select `Preview features`.
-![Step 3](media/access-preview-features.png)
+![Screenshot of Preview features under settings](media/access-preview-features.png)
 
 5. In the filter box of the `Preview features` screen, enter `DisableConfidentialVMMetadataBlob` and select the feature from the list.
-![Step 4](media/disable-confidential-vm-feature.png)
+![Screenshot of DisableConfidentialVMMetadataBlob preview feature](media/disable-confidential-vm-feature.png)
 
 6. Select Register.
-![Step 5](media/register-confidential-vm-feature.png)
+![Screenshot of registering preview feature](media/register-confidential-vm-feature.png)
 
 The status changes to `Registered` once the process completes.
 
