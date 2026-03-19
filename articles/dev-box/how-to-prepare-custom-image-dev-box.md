@@ -138,9 +138,9 @@ C:\Windows\System32\Sysprep\sysprep.exe /generalize /oobe /mode:vm /quiet /quit
 
 For more information about Sysprep options, see [Sysprep Command-Line Options](https://learn.microsoft.com/windows-hardware/manufacture/desktop/sysprep-command-line-options?view=windows-11#modevm&preserve-view=true).
 
-## Apply performance optimizations (recommended)
+## Apply performance optimizations
 
-The following optimizations can reduce provisioning time and improve startup performance.
+The following optimizations are optional, but we recommend them to reduce provisioning time and improve startup performance.
 
 ### Enable Virtual Machine Platform
 
@@ -193,26 +193,46 @@ For detailed gallery configuration steps, see [Configure Azure Compute Gallery f
 
 If you use HashiCorp Packer with the `azure-arm` builder, make sure your `source` configuration creates a Trusted Launch VM.
 
+Ensure your `source "azure-arm"` block includes:
+
+- `secure_boot_enabled = true`
+- `vtpm_enabled = true`
+- `security_type = "TrustedLaunch"`
+- Base image is Windows 10/11 Enterprise from Marketplace
+- Target image definition has Trusted Launch security type
+
 The following example shows the required settings:
 
 ```hcl
 source "azure-arm" "devbox" {
+ # Trusted Launch (REQUIRED)
   secure_boot_enabled = true
   vtpm_enabled        = true
   security_type       = "TrustedLaunch"
-
-  os_type       = "Windows"
-  license_type  = "Windows_Client"
-  vm_size       = "Standard_D8s_v5"
-
+  
+  # VM settings
+  vm_size      = "Standard_D8s_v5"
+  license_type = "Windows_Client"
+  os_type      = "Windows"
+  
+  # Base image
   image_publisher = "MicrosoftWindowsDesktop"
   image_offer     = "windows-11"
   image_sku       = "win11-23h2-ent"
   image_version   = "latest"
+  
+  # Gallery destination
+  shared_image_gallery_destination {
+    gallery_name         = "your_gallery_name"
+    image_name           = "your_image_definition"
+    image_version        = "1.0.0"
+    replication_regions  = ["eastus", "westus2"]
+    storage_account_type = "Premium_LRS"
+  }
 }
 ```
 
-A production-ready reference implementation is available in the [carmada-dev/demo-images](https://github.com/carmada-dev/demo-images) repository.
+A reference implementation is available in the [carmada-dev/demo-images](https://github.com/carmada-dev/demo-images) repository.
 
 ## Quick reference
 

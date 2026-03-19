@@ -37,44 +37,41 @@ The following example deploys a test VM using `Standard_D4s_v5`. You can also te
 These examples use Bash-style variables (for example, Azure Cloud Shell).
 
 ```azurecli
-az login
-
+# Set variables
 RESOURCE_GROUP="test-image-rg"
-LOCATION="eastus"
+LOCATION="eastus"  # Use the same region as your Dev Center
 VM_NAME="test-devbox-image"
-SUBSCRIPTION_ID="<subscription-id>"
 GALLERY_RG="your-gallery-rg"
 GALLERY_NAME="your-gallery"
 IMAGE_DEF="your-image-definition"
-IMAGE_VERSION="1.0.0"
+IMAGE_VERSION="1.0.0"  # Or "latest"
 
-az account set --subscription "$SUBSCRIPTION_ID"
+# Create resource group for testing
+az group create --name $RESOURCE_GROUP --location $LOCATION
 
-az group create --name "$RESOURCE_GROUP" --location "$LOCATION"
-
-IMAGE_ID="/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$GALLERY_RG/providers/Microsoft.Compute/galleries/$GALLERY_NAME/images/$IMAGE_DEF/versions/$IMAGE_VERSION"
-
+# Create VM using Standard_D4s_v5 (same family as Dev Box)
 az vm create \
-  --resource-group "$RESOURCE_GROUP" \
-  --name "$VM_NAME" \
-  --image "$IMAGE_ID" \
+  --resource-group $RESOURCE_GROUP \
+  --name $VM_NAME \
+  --image "/subscriptions/<subscription-id>/resourceGroups/$GALLERY_RG/providers/Microsoft.Compute/galleries/$GALLERY_NAME/images/$IMAGE_DEF/versions/$IMAGE_VERSION" \
   --size "Standard_D4s_v5" \
   --security-type "TrustedLaunch" \
   --enable-secure-boot true \
   --enable-vtpm true \
   --admin-username "azureuser" \
   --admin-password "<secure-password>" \
-  --public-ip-sku Standard \
-  --boot-diagnostics-storage ""
+  --boot-diagnostics-storage "" \
+  --public-ip-sku Standard
 ```
 
-If you want to test with an AMD-based SKU, create a second VM:
+Alternatively, test with an AMD-based SKU, create a second VM:
 
 ```azurecli
+# Use Standard_D4as_v5 for AMD-based testing
 az vm create \
-  --resource-group "$RESOURCE_GROUP" \
+  --resource-group $RESOURCE_GROUP \
   --name "${VM_NAME}-amd" \
-  --image "$IMAGE_ID" \
+  --image "/subscriptions/<subscription-id>/resourceGroups/$GALLERY_RG/providers/Microsoft.Compute/galleries/$GALLERY_NAME/images/$IMAGE_DEF/versions/$IMAGE_VERSION" \
   --size "Standard_D4as_v5" \
   --security-type "TrustedLaunch" \
   --enable-secure-boot true \
@@ -89,9 +86,13 @@ az vm create \
 If the VM fails to start, review boot diagnostics.
 
 ```azurecli
+# Get boot diagnostics screenshot URL
 az vm boot-diagnostics get-boot-log \
-  --resource-group "$RESOURCE_GROUP" \
-  --name "$VM_NAME"
+  --resource-group $RESOURCE_GROUP \
+  --name $VM_NAME
+
+# Or view in the Azure portal:
+# VM → Help → Boot diagnostics
 ```
 
 For more information, see [Azure boot diagnostics](https://learn.microsoft.com/azure/virtual-machines/boot-diagnostics).
@@ -99,7 +100,7 @@ For more information, see [Azure boot diagnostics](https://learn.microsoft.com/a
 ### Clean up test resources
 
 ```azurecli
-az group delete --name "$RESOURCE_GROUP" --yes --no-wait
+az group delete --name $RESOURCE_GROUP --yes --no-wait
 ```
 
 ## Understand Dev Box architectural differences
@@ -146,7 +147,53 @@ Common network-related causes of provisioning failures include:
 | Image definition is specialized | You can deploy a specialized image as a VM | Dev Box requires a generalized image |
 | Hyper-V generation mismatch | Some deployments might succeed depending on VM size and boot mode | Dev Box requires Generation 2 images |
 
-## Known issues and solutions
+## When using Packer, compare with a known good reference example
+The [carmada-dev/demo-images](https://github.com/carmada-dev/demo-images) repository provides a production-ready reference implementation for building Dev Box images with Packer. Compare your configuration against this example. For example:
+
+**Trusted Launch configuration** — [_packer/source.pkr.hcl](https://github.com/carmada-dev/demo-images/blob/main/_packer/source.pkr.hcl):
+
+```
+source "azure-arm" "vm" {
+  secure_boot_enabled = true
+  vtpm_enabled        = true
+  security_type       = "TrustedLaunch"
+  vm_size             = "Standard_D8s_v5"
+  license_type        = "Windows_Client"
+  # ...
+}
+```
+
+**Image definition creation with Trusted Launch** — [build.sh](https://github.com/carmada-dev/demo-images/blob/main/build.sh#L55-L60):
+
+```
+az sig image-definition create \
+  --hyper-v-generation V2 \
+  --os-state Generalized \
+  --features 'IsHibernateSupported=true SecurityType=TrustedLaunch'
+```
+
+**Sysprep execution** — [_scripts/core/Generalize-VM.ps1](https://github.com/carmada-dev/demo-images/blob/main/_scripts/core/Generalize-VM.ps1#L128-L129):
+```
+& $env:SystemRoot\System32\Sysprep\Sysprep.exe /generalize /oobe /mode:vm /quiet /quit
+```
+
+**Performance optimizations** — [_scripts/core/Generalize-VM.ps1](https://github.com/carmada-dev/demo-images/blob/main/_scripts/core/Generalize-VM.ps1#L43-L65):
+
+- Disables reserved storage (DISM /Set-ReservedStorageState /State:Disabled)
+- Runs component store cleanup (DISM /Cleanup-Image /CheckHealth)
+- Runs disk defragmentation (defrag c: /FreespaceConsolidate)
+- Runs boot optimization (defrag c: /BootOptimize)
+
+**Hibernate/Virtual Machine Platform support** — [_scripts/core/Initialize-VM.ps1](https://github.com/carmada-dev/demo-images/blob/main/_scripts/core/Initialize-VM.ps1#L152-L161):
+```
+Get-WindowsOptionalFeature -Online `
+  | Where-Object { $_.FeatureName -like "*VirtualMachinePlatform*" -and $_.State -ne "Enabled" } `
+  | Enable-WindowsOptionalFeature -Online -All -NoRestart
+```
+
+**Build orchestration** — [_packer/build.pkr.hcl](https://github.com/carmada-dev/demo-images/blob/main/_packer/build.pkr.hcl) shows the complete provisioner sequence including Windows Updates, feature installation, package installation, and finalization.
+
+## Troubleshooting: Known issues and solutions
 
 ### Issue: Image validation fails when using a disk encryption set (customer-managed keys)
 
@@ -154,60 +201,74 @@ Common network-related causes of provisioning failures include:
 
 - Dev Box definition validation fails with a `SourceImageInvalid` error.
 - The same image deploys successfully as an Azure VM.
+- Packer build completes successfully and image appears in the gallery.
 
 **Root cause:**
 
 Dev Box supports platform-managed keys (PMK) for disk encryption. Customer-managed keys (CMK) via disk encryption sets aren't supported for Dev Box images.
 
-If your build process associates the image to a disk encryption set, validation fails.
+When Packer builds an image with disk_encryption_set_id configured, the resulting image is associated with that encryption set. Dev Box validation detects this and rejects the image because it cannot provision dev boxes using customer-managed encryption keys.
 
 The following example shows a Packer `azure-arm` source configuration that can cause this problem:
 
 ```hcl
 source "azure-arm" "devbox" {
+    # ...other settings...
+  
+  # THIS CAUSES VALIDATION FAILURE
   disk_encryption_set_id = local.image.diskEncryptionId
 }
 ```
 
 **Solution:**
 
+- Remove the disk_encryption_set_id parameter from your Packer source block.
 - Rebuild the image without associating a disk encryption set.
-- If you're using Packer, remove any disk encryption set configuration from the image build and produce a new image version.
+- Create a new image version in your gallery.
 
 The following example shows a corrected Packer `azure-arm` source configuration (with no disk encryption set association):
 
 ```hcl
 source "azure-arm" "devbox" {
+  # Trusted Launch (REQUIRED)
   secure_boot_enabled = true
   vtpm_enabled        = true
   security_type       = "TrustedLaunch"
-
-  os_type      = "Windows"
-  license_type = "Windows_Client"
+  
+  # VM settings - NO disk_encryption_set_id
   vm_size      = "Standard_D8s_v5"
+  license_type = "Windows_Client"
+  os_type      = "Windows"
+  
+  # ...rest of configuration...
 }
 ```
 
 **Prevention:**
 
-- Avoid using disk encryption sets for Dev Box images until CMK support is available.
-- Standardize your image pipeline so disk encryption set settings aren't reintroduced.
+- Do not use disk_encryption_set_id in Packer configurations for Dev Box images
+- Rely on Dev Box's built-in platform-managed encryption (enabled by default)
+- If your organization requires CMK, monitor the Dev Box roadmap for future CMK support
+- Document this requirement in your image build pipeline to prevent accidental reintroduction
 
 ### Issue: The image exists in the gallery but doesn't appear in the Dev Box definition image list
 
 **Symptoms:**
 
-- The image and image version are visible in Azure Compute Gallery.
-- When you create or edit a dev box definition, the image isn't shown.
-- No error is displayed.
+- Image and image version are visible in the Azure Compute Gallery
+- When creating or editing a Dev Box definition, the image does not appear in the image dropdown
+- No error messages are displayed—the image is simply not listed
+- The gallery is attached to the Dev Center successfully
 
 **Root cause:**
 
-One or more of the following conditions can prevent the image from being listed:
+The image is not visible to Dev Box for one or more of the following reasons:
 
-- The dev center managed identity doesn't have **Contributor** on the gallery.
-- The image isn't replicated to the dev center region or required network connection regions.
-- The image definition doesn't meet required metadata settings and is filtered out.
+- **Cross-subscription gallery without proper permissions:** The gallery is in a different subscription than the Dev Center, and the Dev Center's managed identity lacks access to the gallery in the other subscription.
+
+- **Image not replicated to the Dev Center's region:** The image was built and published to a region different from where the Dev Center is located. Dev Box requires the image to be available in the same region as the Dev Center (or the network connection's region for dev box pools).
+
+- **Image definition doesn't meet requirements:** The image definition is missing required metadata (Trusted Launch security type, Gen2, Generalized) and is filtered out silently rather than showing an error.
 
 **Solution:**
 
@@ -218,55 +279,68 @@ If you use the Azure CLI commands in this section, install or upgrade the `devce
 ```azurecli
 az extension add --name devcenter --upgrade
 ```
+1. Verify cross-subscription permissions:
 
 ```azurecli
+# Get the Dev Center's managed identity
 az devcenter admin devcenter show \
   --name "your-dev-center" \
-  --resource-group "your-resource-group" \
-  --query "identity.principalId" \
-  -o tsv
-```
+  --resource-group "your-rg" \
+  --query "identity.principalId" -o tsv
 
-```azurecli
+# Assign Contributor role on the gallery (in the gallery's subscription)
 az role assignment create \
   --assignee "<managed-identity-principal-id>" \
   --role "Contributor" \
   --scope "/subscriptions/<gallery-subscription>/resourceGroups/<gallery-rg>/providers/Microsoft.Compute/galleries/<gallery-name>"
+
 ```
+2. Replicate the image to the required region:
 
 ```azurecli
+# Check current replication regions
 az sig image-version show \
-  --resource-group "your-gallery-rg" \
+  --resource-group "gallery-rg" \
   --gallery-name "your-gallery" \
-  --gallery-image-definition "your-image-definition" \
+  --gallery-image-definition "your-image-def" \
   --gallery-image-version "1.0.0" \
-  --query "publishingProfile.targetRegions[].name" \
-  -o tsv
-```
+  --query "publishingProfile.targetRegions[].name" -o tsv
 
-```azurecli
+# Add the Dev Center's region to replication targets
 az sig image-version update \
-  --resource-group "your-gallery-rg" \
+  --resource-group "gallery-rg" \
   --gallery-name "your-gallery" \
-  --gallery-image-definition "your-image-definition" \
+  --gallery-image-definition "your-image-def" \
   --gallery-image-version "1.0.0" \
   --add publishingProfile.targetRegions name="<dev-center-region>"
 ```
+3. Verify image definition requirements:
 
 ```azurecli
+# Check image definition properties
 az sig image-definition show \
-  --resource-group "your-gallery-rg" \
+  --resource-group "gallery-rg" \
   --gallery-name "your-gallery" \
-  --gallery-image-definition "your-image-definition" \
-  --query "{securityType:features[?name=='SecurityType'].value|[0],hyperVGeneration:hyperVGeneration,osState:osState}" \
-  -o json
+  --gallery-image-definition "your-image-def" \
+  --query "{securityType:features[?name=='SecurityType'].value|[0], hvGeneration:hyperVGeneration, osState:osState}"
+```
+
+Expected output for a valid image definition:
+
+```
+{
+  "securityType": "TrustedLaunch",
+  "hvGeneration": "V2",
+  "osState": "Generalized"
+}
 ```
 
 **Prevention:**
 
-- Assign the dev center managed identity permissions before you attach the gallery.
-- Replicate images to all required regions.
-- Validate image definition configuration before you build new image versions.
+- When using cross-subscription galleries, configure the Dev Center managed identity permissions before attaching the gallery
+- Include the Dev Center's region (and all network connection regions) in your Packer replication_regions list
+- Verify image definition configuration meets Dev Box requirements before building images
+- Use a consistent region strategy: build images in the same region as your Dev Center, or explicitly configure replication
 
 ## Related content
 
