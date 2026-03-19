@@ -68,14 +68,6 @@ items:
         href: how-to-move-dev-box-pool-region.md
   - name: Customize dev boxes
     items:
-      - name: Prepare images
-        items:
-          - name: Configure an Azure compute gallery
-            href: how-to-configure-azure-compute-gallery.md
-          - name: Prepare a custom image
-            href: how-to-prepare-custom-image-dev-box.md
-          - name: Provision a Custom Image with Azure Image Builder
-            href: how-to-customize-devbox-azure-image-builder.md
       - name: What are Dev Box customizations
         href: concept-what-are-dev-box-customizations.md
         displayName: customizations, image definition, team customization
@@ -84,6 +76,15 @@ items:
         displayName: customizations, image definition, team customization
       - name: Configure dev center imaging
         href: how-to-configure-dev-center-imaging.md
+        displayName: customizations, image definition, dev center imaging
+      - name: Prepare images
+        items:
+          - name: Configure an Azure compute gallery
+            href: how-to-configure-azure-compute-gallery.md
+          - name: Prepare a custom image
+            href: how-to-prepare-custom-image-dev-box.md
+          - name: Provision a Custom Image with Azure Image Builder
+            href: how-to-customize-devbox-azure-image-builder.md
       - name: Configure user customizations
         href: how-to-configure-user-customizations.md
         displayName: customizations, image definition, personal customization, individual
