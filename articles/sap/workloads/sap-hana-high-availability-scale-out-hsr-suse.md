@@ -528,36 +528,35 @@ When configuring the base Pacemaker cluster for HANA scale-out, keep the followi
 
 * Don't set `quorum expected-votes` to 2, as this isn't a two node cluster.
 * Ensure the cluster property `concurrent-fencing=true` is configured to enable deserialized node fencing.
-* Verify that the STONITH resource is correctly configured with `pcmk_action_limit=-1` (unlimited) to allow deserialized STONITH actions.
 
 After the base Pacemaker cluster is configured, perform the following additional steps.
 
 1. Configure a delayed start for pacemaker.service at boot by creating the file /etc/systemd/system/pacemaker.timer with the following content:
-  
-  ```bash
-  [Unit]
-  Description=Delay start of pacemaker.service after boot
-    
-  [Timer]
-  OnBootSec=216
-  Unit=pacemaker.service
-    
-  [Install]
-  WantedBy=timers.target
-  ```
+
+    ```bash
+    [Unit]
+    Description=Delay start of pacemaker.service after boot
+       
+    [Timer]
+    OnBootSec=216
+    Unit=pacemaker.service
+        
+    [Install]
+    WantedBy=timers.target
+    ```
 
 1. Disable the Pacemaker service and enable the timer. This ensures Pacemaker is started by the timer instead of immediately at boot.
 
-  ```bash
-   systemctl disable pacemaker.service
-   systemctl enable pacemaker.timer
-  ```
+    ```bash
+    systemctl disable pacemaker.service
+    systemctl enable pacemaker.timer
+    ```
   
 1. Edit `SBD_DELAY_START` value in `/etc/sysconfig/sbd`. This step applies only if SBD is configured as the STONITH mechanism.
 
-  ```bash
-  SBD_DELAY_START=no
-  ```
+    ```bash
+    SBD_DELAY_START=no
+    ```
   
 ## Installation  
 
@@ -900,12 +899,12 @@ With susChkSrv implemented, an immediate and configurable action is executed. Th
    ### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
 
    SUSE SLES 15 SP1 or higher is required for operation of both HANA HA hooks. Following table shows other dependencies.  
-   
+
    |SAP  HANA HA hook     | HANA version required   | SAPHanaSR-ScaleOut required |
    |----------------------| ----------------------- | --------------------------- |
    | SAPHanaSrMultiTarget | HANA 2.0 SPS4 or higher | 0.180 or higher             |
    | susChkSrv            | HANA 2.0 SPS5 or higher | 0.184.1 or higher           |
-   
+
    Steps to implement both hooks:
 
    1. **[1,2]** Adjust `global.ini` on each cluster site. If the prerequisites for susChkSrv hook aren't met, entire block `[ha_dr_provider_suschksrv]` shouldn't be configured.  
@@ -947,350 +946,349 @@ With susChkSrv implemented, an immediate and configurable action is executed. Th
 
 1. **[1,2]** Start SAP HANA on both replication sites. Execute as <sid\>adm.  
 
-```bash
-sapcontrol -nr 03 -function StartSystem 
-```
+    ```bash
+    sapcontrol -nr 03 -function StartSystem 
+    ```
 
 1. **[1]** Verify the hook installation.
 
-Run the following command as \<sap-sid\>adm on the active HANA system replication site:
+    Run the following command as \<sap-sid\>adm on the active HANA system replication site:
 
-### [SAPHanaSR-angi](#tab/saphanasr-angi)
+    ### [SAPHanaSR-angi](#tab/saphanasr-angi)
 
-```bash
-cdtrace    
-grep HADR.*load.*susHanaSR nameserver_*.trc | tail -3
-# Example output
-# nameserver_hana-s1-db1.30301.453.trc:[140145]{-1}[-1/-1] 2025-05-26 07:51:34.677221 i ha_dr_provider   HADRProviderManager.cpp(00083) : loading HA/DR Provider 'susHanaSR' from /usr/share/SAPHanaSR-angi
-grep susHanaSR.*init nameserver_*.trc | tail -3
-# Example output
-# nameserver_hana-s1-db1.30301.453.trc:[140157]{-1}[-1/-1] 2025-05-26 07:51:34.724422 i ha_dr_susHanaSR  susHanaSR.py(00042) : susHanaSR.init() version 1.001.1
-```
+    ```bash
+    cdtrace    
+    grep HADR.*load.*susHanaSR nameserver_*.trc | tail -3
+    # Example output
+    # nameserver_hana-s1-db1.30301.453.trc:[140145]{-1}[-1/-1] 2025-05-26 07:51:34.677221 i ha_dr_provider   HADRProviderManager.cpp(00083) : loading HA/DR Provider 'susHanaSR' from /usr/share/SAPHanaSR-angi
+    grep susHanaSR.*init nameserver_*.trc | tail -3
+    # Example output
+    # nameserver_hana-s1-db1.30301.453.trc:[140157]{-1}[-1/-1] 2025-05-26 07:51:34.724422 i ha_dr_susHanaSR  susHanaSR.py(00042) : susHanaSR.init() version 1.001.1
+    ```
+  
+    ### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
 
-### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
+    ```bash
+    cdtrace
+    grep HADR.*load.*SAPHanaSrMultiTarget nameserver_*.trc | tail -3
+    # Example output
+    # nameserver_hana-s1-db1.31001.000.trc:[14162]{-1}[-1/-1] 2023-01-26 12:53:55.728027 i ha_dr_provider   HADRProviderManager.cpp(00083) : loading HA/DR Provider 'SAPHanaSrMultiTarget' from /usr/share/SAPHanaSR-ScaleOut/
+    grep SAPHanaSr.*init nameserver_*.trc | tail -3
+    # Example output
+    # nameserver_hana-s1-db1.31001.000.trc:[17636]{-1}[-1/-1] 2023-01-26 16:30:19.256705 i ha_dr_SAPHanaSrM SAPHanaSrMultiTarget.py(00080) : SAPHanaSrMultiTarget.init() CALLING CRM: <sudo /usr/sbin/crm_attribute -n hana_hn1_gsh -v 2.2  -l reboot> rc=0
+    # nameserver_hana-s1-db1.31001.000.trc:[17636]{-1}[-1/-1] 2023-01-26 16:30:19.256739 i ha_dr_SAPHanaSrM SAPHanaSrMultiTarget.py(00081) : SAPHanaSrMultiTarget.init() Running srHookGeneration 2.2, see attribute hana_hn1_gsh too
+    ```
 
-```bash
-cdtrace
-grep HADR.*load.*SAPHanaSrMultiTarget nameserver_*.trc | tail -3
-# Example output
-# nameserver_hana-s1-db1.31001.000.trc:[14162]{-1}[-1/-1] 2023-01-26 12:53:55.728027 i ha_dr_provider   HADRProviderManager.cpp(00083) : loading HA/DR Provider 'SAPHanaSrMultiTarget' from /usr/share/SAPHanaSR-ScaleOut/
-grep SAPHanaSr.*init nameserver_*.trc | tail -3
-# Example output
-# nameserver_hana-s1-db1.31001.000.trc:[17636]{-1}[-1/-1] 2023-01-26 16:30:19.256705 i ha_dr_SAPHanaSrM SAPHanaSrMultiTarget.py(00080) : SAPHanaSrMultiTarget.init() CALLING CRM: <sudo /usr/sbin/crm_attribute -n hana_hn1_gsh -v 2.2  -l reboot> rc=0
-# nameserver_hana-s1-db1.31001.000.trc:[17636]{-1}[-1/-1] 2023-01-26 16:30:19.256739 i ha_dr_SAPHanaSrM SAPHanaSrMultiTarget.py(00081) : SAPHanaSrMultiTarget.init() Running srHookGeneration 2.2, see attribute hana_hn1_gsh too
-```
+     ---
 
----
+1. **[AH]** Verify the susChkSrv hook installation. Run the following command as \<sap-sid\>adm on any HANA node:
 
-1. **[AH]** Verify the susChkSrv hook installation.
-Run the following command as \<sap-sid\>adm on any HANA node:
-
-```bash
-cdtrace
-egrep '(LOST:|STOP:|START:|DOWN:|init|load|fail)' nameserver_suschksrv.trc
-# Example output
-# 2023-01-19 08:23:10.581529  [1674116590-10005] susChkSrv.init() version 0.7.7, parameter info: action_on_lost=fence stop_timeout=20 kill_signal=9
-# 2023-01-19 08:23:31.553566  [1674116611-14022] START: indexserver event looks like graceful tenant start
-# 2023-01-19 08:23:52.834813  [1674116632-15235] START: indexserver event looks like graceful tenant start (indexserver started)
-```
+    ```bash
+    cdtrace
+    egrep '(LOST:|STOP:|START:|DOWN:|init|load|fail)' nameserver_suschksrv.trc
+    # Example output
+    # 2023-01-19 08:23:10.581529  [1674116590-10005] susChkSrv.init() version 0.7.7, parameter info: action_on_lost=fence stop_timeout=20 kill_signal=9
+    # 2023-01-19 08:23:31.553566  [1674116611-14022] START: indexserver event looks like graceful tenant start
+    # 2023-01-19 08:23:52.834813  [1674116632-15235] START: indexserver event looks like graceful tenant start (indexserver started)
+    ```
 
 ## Create SAP HANA cluster resources
 
 1. **[1]** Create the HANA Topology resource. Make sure the cluster is in maintenance mode.  
 
-### [SAPHanaSR-angi](#tab/saphanasr-angi)
+    ### [SAPHanaSR-angi](#tab/saphanasr-angi)
 
-```bash
-sudo crm configure property maintenance-mode=true
+    ```bash
+    sudo crm configure property maintenance-mode=true
+    
+    # Replace <placeholders> with your instance number and HANA system ID
+    
+    sudo crm configure primitive rsc_SAPHanaTopology_<SID>_HDB<InstNum> ocf:suse:SAPHanaTopology \
+      op monitor interval="50" timeout="600" \
+      op start interval="0" timeout="600" \
+      op stop interval="0" timeout="300" \
+      params SID="<SID>" InstanceNumber="<InstNum>"
+    
+    sudo crm configure clone cln_SAPHanaTopology_<SID>_HDB<InstNum> rsc_SAPHanaTopology_<SID>_HDB<InstNum> \
+      meta clone-node-max="1" interleave="true"
+    ```
 
-# Replace <placeholders> with your instance number and HANA system ID
+    ### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
 
-sudo crm configure primitive rsc_SAPHanaTopology_<SID>_HDB<InstNum> ocf:suse:SAPHanaTopology \
-  op monitor interval="50" timeout="600" \
-  op start interval="0" timeout="600" \
-  op stop interval="0" timeout="300" \
-  params SID="<SID>" InstanceNumber="<InstNum>"
+    ```bash
+    sudo crm configure property maintenance-mode=true
+    
+    # Replace <placeholders> with your instance number and HANA system ID
+    
+    sudo crm configure primitive rsc_SAPHanaTopology_<SID>_HDB<InstNum> ocf:suse:SAPHanaTopology \
+      op monitor interval="10" timeout="600" \
+      op start interval="0" timeout="600" \
+      op stop interval="0" timeout="300" \
+      params SID="<SID>" InstanceNumber="<InstNum>"
+      
+    sudo crm configure clone cln_SAPHanaTopology_<SID>_HDB<InstNum> rsc_SAPHanaTopology_<SID>_HDB<InstNum> \
+      meta clone-node-max="1" target-role="Started" interleave="true"
+    ```
 
-sudo crm configure clone cln_SAPHanaTopology_<SID>_HDB<InstNum> rsc_SAPHanaTopology_<SID>_HDB<InstNum> \
-  meta clone-node-max="1" interleave="true"
-```
-
-### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
-
-```bash
-sudo crm configure property maintenance-mode=true
-
-# Replace <placeholders> with your instance number and HANA system ID
-
-sudo crm configure primitive rsc_SAPHanaTopology_<SID>_HDB<InstNum> ocf:suse:SAPHanaTopology \
-  op monitor interval="10" timeout="600" \
-  op start interval="0" timeout="600" \
-  op stop interval="0" timeout="300" \
-  params SID="<SID>" InstanceNumber="<InstNum>"
-  
-sudo crm configure clone cln_SAPHanaTopology_<SID>_HDB<InstNum> rsc_SAPHanaTopology_<SID>_HDB<InstNum> \
-  meta clone-node-max="1" target-role="Started" interleave="true"
-```
-
----
+     ---
 
 1. **[1]** Next, create the HANA instance resource.
 
-### [SAPHanaSR-angi](#tab/saphanasr-angi)
+    ### [SAPHanaSR-angi](#tab/saphanasr-angi)
 
-```bash
-# Replace <placeholders> with your instance number and HANA system ID
+    ```bash
+    # Replace <placeholders> with your instance number and HANA system ID
+    
+    sudo crm configure primitive rsc_SAPHanaController_<SID>_HDB<InstNum> ocf:suse:SAPHanaController \
+      op start interval="0" timeout="3600" \
+      op stop interval="0" timeout="3600" \
+      op promote interval="0" timeout="900" \
+      op demote interval="0" timeout="320" \
+      op monitor interval="60" role="Promoted" timeout="700" \
+      op monitor interval="61" role="Unpromoted" timeout="700" \
+      params SID="<SID>" InstanceNumber="<InstNum>" PREFER_SITE_TAKEOVER="true" \
+      DUPLICATE_PRIMARY_TIMEOUT="7200" AUTOMATED_REGISTER="false" \
+      HANA_CALL_TIMEOUT="120"
+    
+    sudo crm configure clone mst_SAPHanaController_<SID>_HDB<InstNum> rsc_SAPHanaController_<SID>_HDB<InstNum> \
+      meta clone-node-max="1" interleave="true" promotable="true"
+    ```
 
-sudo crm configure primitive rsc_SAPHanaController_<SID>_HDB<InstNum> ocf:suse:SAPHanaController \
-  op start interval="0" timeout="3600" \
-  op stop interval="0" timeout="3600" \
-  op promote interval="0" timeout="900" \
-  op demote interval="0" timeout="320" \
-  op monitor interval="60" role="Promoted" timeout="700" \
-  op monitor interval="61" role="Unpromoted" timeout="700" \
-  params SID="<SID>" InstanceNumber="<InstNum>" PREFER_SITE_TAKEOVER="true" \
-  DUPLICATE_PRIMARY_TIMEOUT="7200" AUTOMATED_REGISTER="false" \
-  HANA_CALL_TIMEOUT="120"
+    ### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
 
-sudo crm configure clone mst_SAPHanaController_<SID>_HDB<InstNum> rsc_SAPHanaController_<SID>_HDB<InstNum> \
-  meta clone-node-max="1" interleave="true" promotable="true"
-```
+    > [!NOTE]
+    > This article contains references to terms that Microsoft no longer uses. When these terms are removed from the software, we'll remove them from this article.
 
-### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
+    ```bash
+    # Replace <placeholders> with your instance number and HANA system ID
+    
+    sudo crm configure primitive rsc_SAPHana_<SID>_HDB<InstNum> ocf:suse:SAPHanaController \
+      op start interval="0" timeout="3600" \
+      op stop interval="0" timeout="3600" \
+      op promote interval="0" timeout="3600" \
+      op monitor interval="60" role="Master" timeout="700" \
+      op monitor interval="61" role="Slave" timeout="700" \
+      params SID="<SID>" InstanceNumber="<InstNum>" PREFER_SITE_TAKEOVER="true" \
+      DUPLICATE_PRIMARY_TIMEOUT="7200" AUTOMATED_REGISTER="false"
+    
+    sudo crm configure ms msl_SAPHana_<SID>_HDB<InstNum> rsc_SAPHana_<SID>_HDB<InstNum> \
+      meta clone-node-max="1" master-max="1" interleave="true"
+    ```
 
-> [!NOTE]
-> This article contains references to terms that Microsoft no longer uses. When these terms are removed from the software, we'll remove them from this article.
+     ---
 
-```bash
-# Replace <placeholders> with your instance number and HANA system ID
-
-sudo crm configure primitive rsc_SAPHana_<SID>_HDB<InstNum> ocf:suse:SAPHanaController \
-  op start interval="0" timeout="3600" \
-  op stop interval="0" timeout="3600" \
-  op promote interval="0" timeout="3600" \
-  op monitor interval="60" role="Master" timeout="700" \
-  op monitor interval="61" role="Slave" timeout="700" \
-  params SID="<SID>" InstanceNumber="<InstNum>" PREFER_SITE_TAKEOVER="true" \
-  DUPLICATE_PRIMARY_TIMEOUT="7200" AUTOMATED_REGISTER="false"
-
-sudo crm configure ms msl_SAPHana_<SID>_HDB<InstNum> rsc_SAPHana_<SID>_HDB<InstNum> \
-  meta clone-node-max="1" master-max="1" interleave="true"
-```
-
----
-
-> [!IMPORTANT]
-> We recommend as a best practice that you only set AUTOMATED_REGISTER to **no**, while performing thorough fail-over tests, to prevent failed primary instance to automatically register as secondary. Once the fail-over tests completed successfully, set AUTOMATED_REGISTER to **yes**, so that after takeover system replication can resume automatically.
+    > [!IMPORTANT]
+    > We recommend as a best practice that you only set AUTOMATED_REGISTER to **no**, while performing thorough fail-over tests, to prevent failed primary instance to automatically register as secondary. Once the fail-over tests completed successfully, set AUTOMATED_REGISTER to **yes**, so that after takeover system replication can resume automatically.
 
 1. **[1]** Create file system resource agents for /hana/shared
 
-### [SAPHanaSR-angi](#tab/saphanasr-angi)
+    ### [SAPHanaSR-angi](#tab/saphanasr-angi)
 
-SAPHanaSR-angi adds a new resource agent SAPHanaFilesystem to monitor read/write access to /hana/shared/SID. OS static mounts the /hana/shared/SID filesystem with each host having entries in /etc/fstab. SAPHanaFilesystem and Pacemaker doesn't mount the filesystem for HANA.
-
-```bash
-# Replace <placeholders> with your instance number and HANA system ID
-
-sudo crm configure primitive rsc_SAPHanaFilesystem_<SID>_HDB<InstNum> ocf:suse:SAPHanaFilesystem \
-  op start interval="0" timeout="10" \
-  op stop interval="0" timeout="20" \
-  op monitor interval="120" timeout="120" \
-  params SID="<SID>" InstanceNumber="<InstNum>" ON_FAIL_ACTION="fence"
-
-sudo crm configure clone cln_SAPHanaFilesystem_<SID>_HDB<InstNum> rsc_SAPHanaFilesystem_<SID>_HDB<InstNum> \
-  meta clone-node-max="1" interleave="true"
-
-# Add a location constraint to not run filesystem check on majority maker VM
-sudo crm configure location loc_SAPHanaFilesystem_not_on_majority_maker cln_SAPHanaFilesystem_<SID>_HDB<InstNum> -inf: hana-s-mm
-```
-
-### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
-
-Create a dummy file system cluster resource, which will monitor and report failures, in case there's a problem accessing the NFS-mounted file system `/hana/shared`. That allows the cluster to trigger failover, in case there's a problem accessing `/hana/shared`. For more information, see [Handling failed NFS share in SUSE HA cluster for HANA system replication](https://www.suse.com/support/kb/doc/?id=000019904)
-
-* **[1,2]** Create the directory on the NFS mounted file system /hana/shared, which will be used in the special file system monitoring resource. The directories need to be created on both sites.
+    SAPHanaSR-angi adds a new resource agent SAPHanaFilesystem to monitor read/write access to /hana/shared/SID. OS static mounts the /hana/shared/SID filesystem with each host having entries in /etc/fstab. SAPHanaFilesystem and Pacemaker doesn't mount the filesystem for HANA.
 
     ```bash
-    mkdir -p /hana/shared/HN1/check
+    # Replace <placeholders> with your instance number and HANA system ID
+    
+    sudo crm configure primitive rsc_SAPHanaFilesystem_<SID>_HDB<InstNum> ocf:suse:SAPHanaFilesystem \
+      op start interval="0" timeout="10" \
+      op stop interval="0" timeout="20" \
+      op monitor interval="120" timeout="120" \
+      params SID="<SID>" InstanceNumber="<InstNum>" ON_FAIL_ACTION="fence"
+    
+    sudo crm configure clone cln_SAPHanaFilesystem_<SID>_HDB<InstNum> rsc_SAPHanaFilesystem_<SID>_HDB<InstNum> \
+      meta clone-node-max="1" interleave="true"
+    
+    # Add a location constraint to not run filesystem check on majority maker VM
+    sudo crm configure location loc_SAPHanaFilesystem_not_on_majority_maker cln_SAPHanaFilesystem_<SID>_HDB<InstNum> -inf: hana-s-mm
     ```
 
-* **[AH]** Create the directory, which will be used to mount the special file system monitoring resource. The directory needs to be created on all HANA cluster nodes.
+    ### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
 
-     ```bash
-     mkdir -p /hana/check
-     ```
+    Create a dummy file system cluster resource, which will monitor and report failures, in case there's a problem accessing the NFS-mounted file system `/hana/shared`. That allows the cluster to trigger failover, in case there's a problem accessing `/hana/shared`. For more information, see [Handling failed NFS share in SUSE HA cluster for HANA system replication](https://www.suse.com/support/kb/doc/?id=000019904)
 
-* **[1]** Create the file system cluster resources.
+    * **[1,2]** Create the directory on the NFS mounted file system /hana/shared, which will be used in the special file system monitoring resource. The directories need to be created on both sites.
 
-     ```bash
-     # Replace <placeholders> with your instance number and HANA system ID
+        ```bash
+        mkdir -p /hana/shared/HN1/check
+        ```
 
-     crm configure primitive fs_<SID>_HDB<InstNum>_fscheck Filesystem \
-       params device="/hana/shared/<SID>/check" \
-       directory="/hana/check" fstype=nfs4 \
-       options="bind,defaults,rw,hard,timeo=600,proto=tcp,noatime,nfsvers=4.1,lock" \
-       op monitor interval=120 timeout=120 on-fail=fence \
-       op_params OCF_CHECK_LEVEL=20 \
-       op start interval=0 timeout=120 op stop interval=0 timeout=120
+    * **[AH]** Create the directory, which will be used to mount the special file system monitoring resource. The directory needs to be created on all HANA cluster nodes.
 
-     crm configure clone cln_fs_<SID>_HDB<InstNum>_fscheck fs_<SID>_HDB<InstNum>_fscheck \
-       meta clone-node-max=1 interleave=true
-     # Add a location constraint to not run filesystem check on majority maker VM
-     crm configure location loc_cln_fs_<SID>_HDB<InstNum>_fscheck_not_on_mm \
-       cln_fs_<SID>_HDB<InstNum>_fscheck -inf: hana-s-mm    
-     ```
+         ```bash
+         mkdir -p /hana/check
+         ```
 
-     `OCF_CHECK_LEVEL=20` attribute is added to the monitor operation, so that monitor operations perform a read/write test on the file system. Without this attribute, the monitor operation only verifies that the file system is mounted. This can be a problem because when connectivity is lost, the file system may remain mounted, despite being inaccessible.  
+    * **[1]** Create the file system cluster resources.
 
-     `on-fail=fence` attribute is also added to the monitor operation. With this option, if the monitor operation fails on a node, that node is immediately fenced.
+         ```bash
+         # Replace <placeholders> with your instance number and HANA system ID
+    
+         crm configure primitive fs_<SID>_HDB<InstNum>_fscheck Filesystem \
+           params device="/hana/shared/<SID>/check" \
+           directory="/hana/check" fstype=nfs4 \
+           options="bind,defaults,rw,hard,timeo=600,proto=tcp,noatime,nfsvers=4.1,lock" \
+           op monitor interval=120 timeout=120 on-fail=fence \
+           op_params OCF_CHECK_LEVEL=20 \
+           op start interval=0 timeout=120 op stop interval=0 timeout=120
+    
+         crm configure clone cln_fs_<SID>_HDB<InstNum>_fscheck fs_<SID>_HDB<InstNum>_fscheck \
+           meta clone-node-max=1 interleave=true
+         # Add a location constraint to not run filesystem check on majority maker VM
+         crm configure location loc_cln_fs_<SID>_HDB<InstNum>_fscheck_not_on_mm \
+           cln_fs_<SID>_HDB<InstNum>_fscheck -inf: hana-s-mm    
+         ```
 
----
+         `OCF_CHECK_LEVEL=20` attribute is added to the monitor operation, so that monitor operations perform a read/write test on the file system. Without this attribute, the monitor operation only verifies that the file system is mounted. This can be a problem because when connectivity is lost, the file system may remain mounted, despite being inaccessible.  
+
+         `on-fail=fence` attribute is also added to the monitor operation. With this option, if the monitor operation fails on a node, that node is immediately fenced.
+
+     ---
 
 1. **[1]** Continue with cluster resources for virtual IPs and constraints.
 
-### [SAPHanaSR-angi](#tab/saphanasr-angi)
+    ### [SAPHanaSR-angi](#tab/saphanasr-angi)
 
-```bash
-# Replace <placeholders> with your instance number and HANA system ID, and respective IP address and load balancer port  
+    ```bash
+    # Replace <placeholders> with your instance number and HANA system ID, and respective IP address and load balancer port  
+    
+    sudo crm configure primitive rsc_ip_<SID>_HDB<InstNum> ocf:heartbeat:IPaddr2 \
+      op start timeout=60s on-fail=fence \
+      op monitor interval="10s" timeout="20s" \
+      params ip="10.23.0.27"
+      
+    sudo crm configure primitive rsc_nc_<SID>_HDB<InstNum> azure-lb port=62503 \
+      op monitor timeout=20s interval=10 \
+      meta resource-stickiness=0
+      
+    sudo crm configure group g_ip_<SID>_HDB<InstNum> rsc_ip_<SID>_HDB<InstNum> rsc_nc_<SID>_HDB<InstNum>
+    ```
 
-sudo crm configure primitive rsc_ip_<SID>_HDB<InstNum> ocf:heartbeat:IPaddr2 \
-  op start timeout=60s on-fail=fence \
-  op monitor interval="10s" timeout="20s" \
-  params ip="10.23.0.27"
-  
-sudo crm configure primitive rsc_nc_<SID>_HDB<InstNum> azure-lb port=62503 \
-  op monitor timeout=20s interval=10 \
-  meta resource-stickiness=0
-  
-sudo crm configure group g_ip_<SID>_HDB<InstNum> rsc_ip_<SID>_HDB<InstNum> rsc_nc_<SID>_HDB<InstNum>
-```
+    Create the cluster constraints
 
-Create the cluster constraints
+    ```bash
+    # Colocate the IP with primary HANA node
+    sudo crm configure colocation col_saphana_ip_<SID>_HDB<InstNum> 4000: g_ip_<SID>_HDB<InstNum>:Started \
+      mst_SAPHanaController_<SID>_HDB<InstNum>:Promoted  
+      
+    # Start HANA Topology before HANA  instance
+    sudo crm configure order ord_SAPHana_<SID>_HDB<InstNum> Optional: cln_SAPHanaTopology_<SID>_HDB<InstNum> \
+      mst_SAPHanaController_<SID>_HDB<InstNum>
+      
+    # HANA resources don't run on the majority maker node
+    sudo crm configure location loc_SAPHanaController_not_on_majority_maker mst_SAPHanaController_<SID>_HDB<InstNum> -inf: hana-s-mm
+    sudo crm configure location loc_SAPHanaTopology_not_on_majority_maker cln_SAPHanaTopology_<SID>_HDB<InstNum> -inf: hana-s-mm
+    ```
+  
+    ### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
 
-```bash
-# Colocate the IP with primary HANA node
-sudo crm configure colocation col_saphana_ip_<SID>_HDB<InstNum> 4000: g_ip_<SID>_HDB<InstNum>:Started \
-  mst_SAPHanaController_<SID>_HDB<InstNum>:Promoted  
-  
-# Start HANA Topology before HANA  instance
-sudo crm configure order ord_SAPHana_<SID>_HDB<InstNum> Optional: cln_SAPHanaTopology_<SID>_HDB<InstNum> \
-  mst_SAPHanaController_<SID>_HDB<InstNum>
-  
-# HANA resources don't run on the majority maker node
-sudo crm configure location loc_SAPHanaController_not_on_majority_maker mst_SAPHanaController_<SID>_HDB<InstNum> -inf: hana-s-mm
-sudo crm configure location loc_SAPHanaTopology_not_on_majority_maker cln_SAPHanaTopology_<SID>_HDB<InstNum> -inf: hana-s-mm
-```
+    ```bash
+    # Replace <placeholders> with your instance number and HANA system ID, and respective IP address and load balancer port  
+    
+    sudo crm configure primitive rsc_ip_<SID>_HDB<InstNum> ocf:heartbeat:IPaddr2 \
+      op start timeout=60s on-fail=fence \
+      op monitor interval="10s" timeout="20s" \
+      params ip="10.23.0.27"
+      
+    sudo crm configure primitive rsc_nc_<SID>_HDB<InstNum> azure-lb port=62503 \
+      op monitor timeout=20s interval=10 \
+      meta resource-stickiness=0
+      
+    sudo crm configure group g_ip_<SID>_HDB<InstNum> rsc_ip_<SID>_HDB<InstNum> rsc_nc_<SID>_HDB<InstNum>
+    ```
 
-### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
-  
-```bash
-# Replace <placeholders> with your instance number and HANA system ID, and respective IP address and load balancer port  
+    Create the cluster constraints
 
-sudo crm configure primitive rsc_ip_<SID>_HDB<InstNum> ocf:heartbeat:IPaddr2 \
-  op start timeout=60s on-fail=fence \
-  op monitor interval="10s" timeout="20s" \
-  params ip="10.23.0.27"
-  
-sudo crm configure primitive rsc_nc_<SID>_HDB<InstNum> azure-lb port=62503 \
-  op monitor timeout=20s interval=10 \
-  meta resource-stickiness=0
-  
-sudo crm configure group g_ip_<SID>_HDB<InstNum> rsc_ip_<SID>_HDB<InstNum> rsc_nc_<SID>_HDB<InstNum>
-```
+    ```bash
+    # Colocate the IP with primary HANA node
+    sudo crm configure colocation col_saphana_ip_<SID>_HDB<InstNum> 4000: g_ip_<SID>_HDB<InstNum>:Started \
+      msl_SAPHana_<SID>_HDB<InstNum>:Master  
+      
+    # Start HANA Topology before HANA  instance
+    sudo crm configure order ord_SAPHana_<SID>_HDB<InstNum> Optional: cln_SAPHanaTopology_<SID>_HDB<InstNum> \
+      msl_SAPHana_<SID>_HDB<InstNum>
+      
+    # HANA resources don't run on the majority maker node
+    sudo crm configure location loc_SAPHanaCon_not_on_majority_maker msl_SAPHana_<SID>_HDB<InstNum> -inf: hana-s-mm
+    sudo crm configure location loc_SAPHanaTop_not_on_majority_maker cln_SAPHanaTopology_<SID>_HDB<InstNum> -inf: hana-s-mm
+    ```
 
-Create the cluster constraints
-
-```bash
-# Colocate the IP with primary HANA node
-sudo crm configure colocation col_saphana_ip_<SID>_HDB<InstNum> 4000: g_ip_<SID>_HDB<InstNum>:Started \
-  msl_SAPHana_<SID>_HDB<InstNum>:Master  
-  
-# Start HANA Topology before HANA  instance
-sudo crm configure order ord_SAPHana_<SID>_HDB<InstNum> Optional: cln_SAPHanaTopology_<SID>_HDB<InstNum> \
-  msl_SAPHana_<SID>_HDB<InstNum>
-  
-# HANA resources don't run on the majority maker node
-sudo crm configure location loc_SAPHanaCon_not_on_majority_maker msl_SAPHana_<SID>_HDB<InstNum> -inf: hana-s-mm
-sudo crm configure location loc_SAPHanaTop_not_on_majority_maker cln_SAPHanaTopology_<SID>_HDB<InstNum> -inf: hana-s-mm
-```
-
----
+     ---
 
 1. **[1]** Configure additional cluster properties
 
-```bash
-sudo crm configure rsc_defaults resource-stickiness=1000
-sudo crm configure rsc_defaults migration-threshold=50
-```
+    ```bash
+    sudo crm configure rsc_defaults resource-stickiness=1000
+    sudo crm configure rsc_defaults migration-threshold=50
+    ```
 
 1. **[1]** Place the cluster out of maintenance mode. Make sure that the cluster status is ok and that all of the resources are started.
 
-```bash
-# Cleanup any failed resources - the following command is example 
-sudo crm resource cleanup rsc_SAPHana_HN1_HDB03
-
-# Place the cluster out of maintenance mode
-sudo crm configure property maintenance-mode=false
-```
+    ```bash
+    # Cleanup any failed resources - the following command is example 
+    sudo crm resource cleanup rsc_SAPHana_HN1_HDB03
+    
+    # Place the cluster out of maintenance mode
+    sudo crm configure property maintenance-mode=false
+    ```
 
 1. **[1]** Verify the communication between the HANA HA hook and the cluster, showing status SOK for SID and both replication sites with status P(rimary) or S(econdary).
 
-### [SAPHanaSR-angi](#tab/saphanasr-angi)
+    ### [SAPHanaSR-angi](#tab/saphanasr-angi)
 
-```bash
-sudo SAPHanaSR-showAttr
+    ```bash
+    sudo SAPHanaSR-showAttr
+    
+    # Global cib-update dcid prim       sec        sid topology
+    # ----------------------------------------------------------
+    # global 0.707898.0 8    HANA_S2    HANA_S1    HN1 ScaleOut
+    
+    # Resource                        promotable
+    # -------------------------------------------
+    # msl_SAPHanaController_HN1_HDB03 true
+    # cln_SAPHanaTopology_HN1_HDB03
+    
+    # Site        lpt        lss mns         opMode    srHook srMode srPoll srr
+    # --------------------------------------------------------------------------
+    # HANA_S2     1748611494 4   hana-s2-db1 logreplay PRIM   sync   PRIM   P
+    # HANA_S1     10         4   hana-s1-db1 logreplay SOK    sync   SOK    S
+    
+    # Host         clone_state roles                        score  site    srah version     vhost
+    # -------------------------------------------------------------------------------------------------
+    # hana-s1-db1  DEMOTED     master1:master:worker:master 100    HANA_S1 -    2.00.089.01 hana-s1-db1
+    # hana-s2-db1  PROMOTED    master1:master:worker:master 150    HANA_S2 -    2.00.089.01 hana-s2-db1
+    # hana-s1-db2  DEMOTED     slave:slave:worker:slave     -12200 HANA_S1 -    2.00.089.01 hana-s1-db2
+    # hana-s2-db2  DEMOTED     slave:slave:worker:slave     101    HANA_S2 -    2.00.089.01 hana-s2-db2
+    # hana-s1-db3  DEMOTED     slave:slave:worker:slave     -12200 HANA_S1 -    2.00.089.01 hana-s1-db3
+    # hana-s2-db3  DEMOTED     slave:slave:worker:slave     101    HANA_S2 -    2.00.089.01 hana-s2-db3
+    # hana-mm                                                                               hana-mm
+    ```
 
-# Global cib-update dcid prim       sec        sid topology
-# ----------------------------------------------------------
-# global 0.707898.0 8    HANA_S2    HANA_S1    HN1 ScaleOut
+    ### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
 
-# Resource                        promotable
-# -------------------------------------------
-# msl_SAPHanaController_HN1_HDB03 true
-# cln_SAPHanaTopology_HN1_HDB03
+    ```bash
+    sudo SAPHanaSR-showAttr
+    
+    # Global cib-time                 maintenance prim  sec   srHook srmode sync_state upd 
+    # -------------------------------------------------------------------------------------
+    # HN1    Thu Mar 19 20:47:03 2026 false       SITEA SITEB SWAIT  sync   SOK        ok  
+    
+    # Sites   lpt        lss mns           srHook srr 
+    # ----------------------------------------------
+    # HANA_S1 1773953190 4   r11dr1100l04f PRIM   P   
+    # HANA_S2 30         4   r11dr1100l14f SOK    S   
+    
+    # Hosts             clone_state gra gsh node_state roles                        score  site  sra 
+    # -----------------------------------------------------------------------------------------------
+    # hana-s1-db1       PROMOTED    2.0 2.2 1773809948 master1:master:worker:master 150    SITEA -   
+    # hana-s2-db1       DEMOTED     2.0 2.2 1773810839 master1:master:worker:master 100    SITEB -   
+    # hana-s1-db2       DEMOTED     2.0 2.2 1773809948 slave:slave:worker:slave     -10000 SITEA     
+    # hana-s2-db2       DEMOTED     2.0 2.2 1773809948 slave:slave:worker:slave     -12200 SITEB     
+    # hana-s1-db3       DEMOTED     2.0 2.2 1773809948 slave:slave:worker:slave     -10000 SITEA     
+    # hana-s2-db3       DEMOTED     2.0 2.2 1773809948 slave:slave:worker:slave     -12200 SITEB     
+    # hana-mm                               1773809948                                               
+    ```
 
-# Site        lpt        lss mns         opMode    srHook srMode srPoll srr
-# --------------------------------------------------------------------------
-# HANA_S2     1748611494 4   hana-s2-db1 logreplay PRIM   sync   PRIM   P
-# HANA_S1     10         4   hana-s1-db1 logreplay SOK    sync   SOK    S
-
-# Host         clone_state roles                        score  site    srah version     vhost
-# -------------------------------------------------------------------------------------------------
-# hana-s1-db1  DEMOTED     master1:master:worker:master 100    HANA_S1 -    2.00.089.01 hana-s1-db1
-# hana-s2-db1  PROMOTED    master1:master:worker:master 150    HANA_S2 -    2.00.089.01 hana-s2-db1
-# hana-s1-db2  DEMOTED     slave:slave:worker:slave     -12200 HANA_S1 -    2.00.089.01 hana-s1-db2
-# hana-s2-db2  DEMOTED     slave:slave:worker:slave     101    HANA_S2 -    2.00.089.01 hana-s2-db2
-# hana-s1-db3  DEMOTED     slave:slave:worker:slave     -12200 HANA_S1 -    2.00.089.01 hana-s1-db3
-# hana-s2-db3  DEMOTED     slave:slave:worker:slave     101    HANA_S2 -    2.00.089.01 hana-s2-db3
-# hana-mm                                                                               hana-mm
-```
-
-### [SAPHanaSR-ScaleOut](#tab/saphanasr-scaleout)
-
-```bash
-sudo SAPHanaSR-showAttr
-
-# Global cib-time                 maintenance prim  sec   srHook srmode sync_state upd 
-# -------------------------------------------------------------------------------------
-# HN1    Thu Mar 19 20:47:03 2026 false       SITEA SITEB SWAIT  sync   SOK        ok  
-
-# Sites   lpt        lss mns           srHook srr 
-# ----------------------------------------------
-# HANA_S1 1773953190 4   r11dr1100l04f PRIM   P   
-# HANA_S2 30         4   r11dr1100l14f SOK    S   
-
-# Hosts             clone_state gra gsh node_state roles                        score  site  sra 
-# -----------------------------------------------------------------------------------------------
-# hana-s1-db1       PROMOTED    2.0 2.2 1773809948 master1:master:worker:master 150    SITEA -   
-# hana-s2-db1       DEMOTED     2.0 2.2 1773810839 master1:master:worker:master 100    SITEB -   
-# hana-s1-db2       DEMOTED     2.0 2.2 1773809948 slave:slave:worker:slave     -10000 SITEA     
-# hana-s2-db2       DEMOTED     2.0 2.2 1773809948 slave:slave:worker:slave     -12200 SITEB     
-# hana-s1-db3       DEMOTED     2.0 2.2 1773809948 slave:slave:worker:slave     -10000 SITEA     
-# hana-s2-db3       DEMOTED     2.0 2.2 1773809948 slave:slave:worker:slave     -12200 SITEB     
-# hana-mm                               1773809948                                               
-```
-
----
+     ---
 
 > [!NOTE]
 > The timeouts in the above configuration are just examples and may need to be adapted to the specific HANA setup. For instance, you may need to increase the start timeout, if it takes longer to start the SAP HANA database. 
