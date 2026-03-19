@@ -12,17 +12,17 @@ author: kalyaninamuduri
 ---
 # Register an existing SAP system with Azure Center for SAP solutions by using Azure PowerShell
 
-Use the [Az PowerShell module](/powershell/azure/new-azureps-module-az) to create and manage Azure resources from the command line or in scripts.
-
-With [Azure Center for SAP solutions](overview.md), you can deploy and manage SAP systems on Azure. This article shows you how to register an existing SAP system that runs on Azure with Azure Center for SAP solutions. We use Azure PowerShell in this article. Alternatively, you can register systems by using the Azure CLI or the Azure portal. After you register an SAP system, you can use its visualization, management, and monitoring capabilities through the Azure portal.
-
-The steps in this article require the Az PowerShell module version 1.0.0 or later. To find the version, run `Get-Module -ListAvailable Az`. If you need to install or upgrade, see [Install Azure PowerShell module](/powershell/azure/install-az-ps).
+Use the Azure PowerShell module to register an existing SAP system with Azure Center for SAP solutions. After you register the system, Azure Center for SAP solutions creates a Virtual Instance for SAP solutions (VIS) resource that provides visualization, management, and monitoring capabilities through the Azure portal. You can also register systems by using the [Azure CLI](quickstart-register-system-cli.md) or the [Azure portal](register-existing-system.md).
 
 ## Prerequisites
 
-- Confirm that you're trying to register a [supported SAP system configuration](/azure/sap/center-sap-solutions/register-existing-system#supported-systems).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- Grant access to Azure Storage accounts from the virtual network where the SAP system exists. Use one of these options:
+- The Az PowerShell module version 1.0.0 or later. To find the version, run `Get-Module -ListAvailable Az`. If you need to install or upgrade, see [Install Azure PowerShell module](/powershell/azure/install-az-ps).
+
+- A [supported SAP system configuration](/azure/sap/center-sap-solutions/register-existing-system#supported-systems).
+
+- Network access to Azure Storage accounts from the virtual network where the SAP system exists. Use one of these options:
   
   - Allow outbound internet connectivity for the virtual machines (VMs).
   
@@ -30,7 +30,7 @@ The steps in this article require the Az PowerShell module version 1.0.0 or late
   
   - Use a **Storage** [service tag with regional scope](../../virtual-network/service-tags-overview.md) to allow storage account connectivity to the Azure Storage accounts in the same region as the VMs.
   
-  - Add the region-specific IP addresses for Azure Storage to your *allow* list.
+  - Add the region-specific IP addresses for Azure Storage to your allow list.
 
 - The first time you use Azure Center for SAP solutions, you must register the `Microsoft.Workloads` resource provider in the subscription where you have the SAP system with [Register-AzResourceProvider](/powershell/module/az.Resources/Register-azResourceProvider), as follows:
 
