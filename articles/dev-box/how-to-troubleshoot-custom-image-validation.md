@@ -9,6 +9,7 @@ ms.author: rosemalcolm
 ms.date: 03/18/2026
 ms.topic: troubleshooting
 ai-usage: ai-assisted
+ms.custom: awp-ai
 
 #customer intent: As a platform engineer, I want to troubleshoot custom image validation failures in Microsoft Dev Box so that I can identify and fix issues that prevent my image from being used in dev box definitions.
 ---

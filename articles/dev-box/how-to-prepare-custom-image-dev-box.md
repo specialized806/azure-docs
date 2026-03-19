@@ -9,6 +9,7 @@ ms.author: rosemalcolm
 ms.date: 03/18/2026
 ms.topic: how-to
 ai-usage: ai-assisted
+ms.custom: awp-ai
 
 #customer intent: As a platform engineer, I want to prepare a custom Windows image that meets all Microsoft Dev Box requirements so that I can use it to create consistent dev box definitions.
 ---
