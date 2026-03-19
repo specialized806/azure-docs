@@ -34,10 +34,21 @@ In this tutorial, you:
 
 ## Clone the repository
 
-```bash
-git clone https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples.git
-cd Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples/durable-text-analysis
-```
+The sample code for this tutorial is in the [Azure Functions Flex Consumption with Azure Files OS Mount Samples](https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples) GitHub repository. The `durable-text-analysis` folder contains the function app code and a Bicep template that provisions the required Azure resources.
+
+1. Open a terminal and navigate to the directory where you want to clone the repository.
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples.git
+    ```
+
+1. Navigate to the project folder:
+
+    ```bash
+    cd Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples/durable-text-analysis
+    ```
 
 ## Create Azure resources
 
