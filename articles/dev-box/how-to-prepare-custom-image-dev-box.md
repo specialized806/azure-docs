@@ -110,7 +110,7 @@ Before you run Sysprep, confirm that the source VM has never been joined or enro
 - Never enrolled in Microsoft Intune
 - Never enrolled for co-management
 
-For background and troubleshooting, see [Sysprep won't run correctly on MDM-enrolled devices](https://learn.microsoft.com/troubleshoot/mem/intune/device-enrollment/troubleshoot-sysprep-windows-10-device-enrolled-mdm).
+For background and troubleshooting, see [Sysprep won't run correctly on MDM-enrolled devices](/troubleshoot/mem/intune/device-enrollment/troubleshoot-sysprep-windows-10-device-enrolled-mdm).
 
 ## Run Sysprep
 
@@ -136,7 +136,7 @@ If you're using HashiCorp Packer to build the image, use the quiet options becau
 C:\Windows\System32\Sysprep\sysprep.exe /generalize /oobe /mode:vm /quiet /quit
 ```
 
-For more information about Sysprep options, see [Sysprep Command-Line Options](https://learn.microsoft.com/windows-hardware/manufacture/desktop/sysprep-command-line-options?view=windows-11#modevm&preserve-view=true).
+For more information about Sysprep options, see [Sysprep Command-Line Options](/windows-hardware/manufacture/desktop/sysprep-command-line-options?view=windows-11#modevm&preserve-view=true).
 
 ## Apply performance optimizations
 
@@ -257,6 +257,6 @@ Use the following table to quickly verify the most common Dev Box image validati
 - [Configure Azure Compute Gallery for Microsoft Dev Box](how-to-configure-azure-compute-gallery.md)
 - [Authenticate to Microsoft Dev Box](how-to-authenticate.md)
 - [Microsoft Dev Box architecture and key concepts](concept-dev-box-architecture.md)
-- [Trusted Launch for Azure virtual machines](https://learn.microsoft.com/azure/virtual-machines/trusted-launch)
-- [Sysprep Command-Line Options](https://learn.microsoft.com/windows-hardware/manufacture/desktop/sysprep-command-line-options)
+- [Trusted Launch for Azure virtual machines](/azure/virtual-machines/trusted-launch)
+- [Sysprep Command-Line Options](/windows-hardware/manufacture/desktop/sysprep-command-line-options)
 - [carmada-dev/demo-images](https://github.com/carmada-dev/demo-images)

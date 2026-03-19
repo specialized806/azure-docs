@@ -95,7 +95,7 @@ az vm boot-diagnostics get-boot-log \
 # VM → Help → Boot diagnostics
 ```
 
-For more information, see [Azure boot diagnostics](https://learn.microsoft.com/azure/virtual-machines/boot-diagnostics).
+For more information, see [Azure boot diagnostics](/azure/virtual-machines/boot-diagnostics).
 
 ### Clean up test resources
 
@@ -147,7 +147,7 @@ Common network-related causes of provisioning failures include:
 | Image definition is specialized | You can deploy a specialized image as a VM | Dev Box requires a generalized image |
 | Hyper-V generation mismatch | Some deployments might succeed depending on VM size and boot mode | Dev Box requires Generation 2 images |
 
-## When using Packer, compare with a known good reference example
+## Validate your Packer configuration against a known good reference example
 The [carmada-dev/demo-images](https://github.com/carmada-dev/demo-images) repository provides a production-ready reference implementation for building Dev Box images with Packer. Compare your configuration against this example. For example:
 
 **Trusted Launch configuration** — [_packer/source.pkr.hcl](https://github.com/carmada-dev/demo-images/blob/main/_packer/source.pkr.hcl):
@@ -347,5 +347,5 @@ Expected output for a valid image definition:
 - [Prepare a custom image for Microsoft Dev Box](how-to-prepare-custom-image-dev-box.md)
 - [Authenticate to Microsoft Dev Box](how-to-authenticate.md)
 - [Configure Azure Compute Gallery for Microsoft Dev Box](how-to-configure-azure-compute-gallery.md)
-- [Azure boot diagnostics](https://learn.microsoft.com/azure/virtual-machines/boot-diagnostics)
+- [Azure boot diagnostics](/azure/virtual-machines/boot-diagnostics)
 - [carmada-dev/demo-images](https://github.com/carmada-dev/demo-images)
