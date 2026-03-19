@@ -6,6 +6,7 @@ ms.topic: tutorial
 ms.date: 03/11/2026
 ms.custom:
   - devx-track-azurecli
+  - devx-track-azdevcli
   - devx-track-python
 #customer intent: As a developer, I want to deploy a Durable Functions app on the Flex Consumption plan with Azure Files storage mounts so I can analyze multiple text files in parallel without managing infrastructure.
 ---
@@ -17,24 +18,23 @@ In this tutorial, you deploy a Python Azure Functions app that uses [Durable Fun
 In this tutorial, you:
 
 > [!div class="checklist"]
-> * Deploy a Durable Functions app in a Flex Consumption plan with a mounted Azure Files share using Bicep
-> * Upload sample text files to the mounted Azure Files share
-> * Deploy a Python function app that uses a [fan-out/fan-in pattern](./durable-functions-fan-in-fan-out.md?pivots=durable-functions) to analyze text files in parallel
-> * Trigger an orchestration to process the files and verify results
+> * Deploy a Durable Functions app in a Flex Consumption plan with a mounted Azure Files share by using Azure Developer CLI
+> * Trigger an orchestration to process sample text files in parallel
+> * Verify the aggregated analysis results
 
 [!INCLUDE [functions-azure-files-samples-note](../../../includes/functions-azure-files-samples-note.md)]
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- [Azure CLI](/cli/azure/install-azure-cli) version 2.60.0 or later
-- [Azure Functions Core Tools](../functions-run-local.md) version 4.x or later
-- [Python 3.9 or later](https://www.python.org/downloads/)
+- [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/install-azd) version 1.9.0 or later
 - [Git](https://git-scm.com/)
 
-## Clone the repository
+The CLI examples in this tutorial use Bash syntax and have been tested in [Azure Cloud Shell](/azure/cloud-shell/overview) (Bash) and Linux/macOS terminals.
 
-The sample code for this tutorial is in the [Azure Functions Flex Consumption with Azure Files OS Mount Samples](https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples) GitHub repository. The `durable-text-analysis` folder contains the function app code and a Bicep template that provisions the required Azure resources.
+## Initialize the sample project
+
+The sample code for this tutorial is in the [Azure Functions Flex Consumption with Azure Files OS Mount Samples](https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples) GitHub repository. The `durable-text-analysis` folder contains the function app code, a Bicep template that provisions the required Azure resources, and a post-deployment script that uploads sample text files.
 
 1. Open a terminal and navigate to the directory where you want to clone the repository.
 
@@ -50,178 +50,48 @@ The sample code for this tutorial is in the [Azure Functions Flex Consumption wi
     cd Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples/durable-text-analysis
     ```
 
-## Create Azure resources
+1. Initialize the `azd` environment. When prompted, enter an environment name such as `durable-text`:
 
-This tutorial uses Bicep to automate resource creation.
+    ```bash
+    azd init
+    ```
+
+## Deploy with Azure Developer CLI
+
+This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/overview) template. A single `azd up` command provisions infrastructure, deploys the function code, and uploads sample text files to the Azure Files share.
 
 1. Sign in to Azure:
 
-    ```azurecli
-    az login
+    ```bash
+    azd auth login
     ```
 
-1. If you have multiple subscriptions, set the one you want to use:
-
-    ```azurecli
-    az account set --subscription <YOUR_SUBSCRIPTION_ID>
-    ```
-
-1. Create a resource group:
-
-    ```azurecli
-    RESOURCE_GROUP="rg-durable-text"
-    LOCATION="eastus"
-
-    az group create --name $RESOURCE_GROUP --location $LOCATION
-    ```
-
-1. Deploy infrastructure by using Bicep:
-
-    ```azurecli
-    az deployment group create \
-      --resource-group $RESOURCE_GROUP \
-      --template-file infra/main.bicep \
-      --parameters infra/main.bicepparam
-    ```
-
-    This deployment creates the following resources:
-
-    - Storage account with an Azure Files share
-    - Durable Functions app in a Flex Consumption plan
-    - Application Insights for monitoring
-    - Managed identity with permissions to the storage account
-
-1. After the deployment succeeds, save the resource names for later steps:
-
-    ```azurecli
-    STORAGE_ACCOUNT=$(az deployment group show \
-      --resource-group $RESOURCE_GROUP \
-      --name main \
-      --query properties.outputs.storageAccountName.value \
-      -o tsv)
-    FUNCTION_APP_NAME=$(az deployment group show \
-      --resource-group $RESOURCE_GROUP \
-      --name main \
-      --query properties.outputs.functionAppName.value \
-      -o tsv)
-    SHARE_NAME="text-data"
-
-    echo "Storage Account: $STORAGE_ACCOUNT"
-    echo "Function App: $FUNCTION_APP_NAME"
-    echo "Share Name: $SHARE_NAME"
-    ```
-
-> [!NOTE]
-> If you're using Azure Cloud Shell, shell variables don't persist between sessions. If your session times out, rerun the variable assignments in this section before continuing.
-
-## Verify the storage mount configuration
-
-1. The Bicep deployment creates the Azure Files share and configures the mount on your function app. Verify that it's set up correctly:
-
-    ```azurecli
-    az storage share list \
-      --account-name $STORAGE_ACCOUNT \
-      --query "[].name" \
-      -o table
-    ```
-    
-    Expected output:
-    
-    ```
-    Name
-    ------
-    text-data
-    ```
-
-1. Verify the mount configuration on the function app:
-
-    ```azurecli
-    az functionapp config appsettings list \
-      --resource-group $RESOURCE_GROUP \
-      --name $FUNCTION_APP_NAME \
-      | grep -i mount
-    ```
-    
-    > [!TIP]
-    > The storage mount typically appears at `/mnt/filedata` inside the function container. Your app settings map this local path to the Azure Files share.
-
-    If you don't see mount configuration settings, manually configure the mount in the Azure portal under **Settings** > **Configuration** > **Path Mappings**.
-
-## Upload sample text files
-
-1. Create local sample files:
+1. Provision and deploy everything:
 
     ```bash
-    mkdir -p sample_texts
-    cat > sample_texts/file1.txt << 'EOF'
-    Azure Functions is a serverless compute service that lets you run code on-demand without managing infrastructure.
-    EOF
-
-    cat > sample_texts/file2.txt << 'EOF'
-    Durable Functions extends Azure Functions with workflow capabilities like orchestration and state management.
-    EOF
-
-    cat > sample_texts/file3.txt << 'EOF'
-    Azure Files provides managed file shares in the cloud accessible via the SMB protocol.
-    EOF
+    azd up
     ```
 
-1. Upload files to the Azure Files share:
+    When prompted, select the Azure subscription and location to use. The command then:
 
-    ```azurecli
-    STORAGE_KEY=$(az storage account keys list \
-      --resource-group $RESOURCE_GROUP \
-      --account-name $STORAGE_ACCOUNT \
-      --query "[0].value" \
-      -o tsv)
+    - Creates a resource group, storage account, Flex Consumption function app with a Durable Functions configuration, Application Insights instance, and managed identity
+    - Deploys the Python function code
+    - Uploads sample text files to the Azure Files share
+    - Runs a health check
 
-    az storage file upload-batch \
-      --destination $SHARE_NAME \
-      --source sample_texts \
-      --account-name $STORAGE_ACCOUNT \
-      --account-key $STORAGE_KEY
-    ```
+    The deployment takes a few minutes. When it completes, you see a summary of the created resources.
 
-1. Verify the upload:
-
-    ```azurecli
-    az storage file list \
-      --share-name $SHARE_NAME \
-      --account-name $STORAGE_ACCOUNT \
-      --account-key $STORAGE_KEY \
-      -o table
-    ```
-
-    Expected output:
-
-    ```
-    Name
-    ------
-    file1.txt
-    file2.txt
-    file3.txt
-    ```
-
-## Prepare and deploy the function app
-
-1. Make sure the remote function app has the required app settings. Run this command even if these settings already exist:
-
-    ```azurecli
-    az functionapp config appsettings set \
-      --resource-group $RESOURCE_GROUP \
-      --name $FUNCTION_APP_NAME \
-      --settings MOUNT_PATH=/mnt/filedata
-    ```
-
-1. Publish the function app to Azure. The `--build remote` flag installs Python dependencies on the server, so you don't need to install them locally:
+1. Save resource names as shell variables for the remaining steps:
 
     ```bash
-    func azure functionapp publish $FUNCTION_APP_NAME --build remote
+    RESOURCE_GROUP=$(azd env get-value AZURE_RESOURCE_GROUP)
+    FUNCTION_APP_NAME=$(azd env get-value AZURE_FUNCTION_APP_NAME)
+    FUNCTION_APP_URL=$(azd env get-value AZURE_FUNCTION_APP_URL)
     ```
 
 ## Trigger the orchestration
 
-1. Get the function URL and host key:
+1. Get the function host key:
 
     ```azurecli
     HOST_KEY=$(az functionapp keys list \
@@ -229,17 +99,12 @@ This tutorial uses Bicep to automate resource creation.
       --name $FUNCTION_APP_NAME \
       --query "functionKeys.default" \
       -o tsv)
-
-    FUNCTION_URL="https://${FUNCTION_APP_NAME}.azurewebsites.net/api/orchestrators/TextAnalysisOrchestrator"
     ```
 
 1. Start the orchestration:
 
     ```bash
-    curl -X POST "$FUNCTION_URL" \
-      -H "x-functions-key: $HOST_KEY" \
-      -H "Content-Type: application/json" \
-      -d '{}'
+    curl -s -X POST "${FUNCTION_APP_URL}/api/start-analysis?code=${HOST_KEY}" | jq .
     ```
 
     The response includes an instance ID and status query URIs:
@@ -260,8 +125,7 @@ This tutorial uses Bicep to automate resource creation.
     ```bash
     INSTANCE_ID="<instance-id-from-trigger-response>"
 
-    curl "https://${FUNCTION_APP_NAME}.azurewebsites.net/api/orchestrators/TextAnalysisOrchestrator/${INSTANCE_ID}" \
-      -H "x-functions-key: $HOST_KEY"
+    curl -s "${FUNCTION_APP_URL}/api/orchestrators/TextAnalysisOrchestrator/${INSTANCE_ID}?code=${HOST_KEY}" | jq .
     ```
 
     While the orchestration is running, the `runtimeStatus` is `Running`. When complete, the response looks like:
@@ -274,19 +138,19 @@ This tutorial uses Bicep to automate resource creation.
       "output": {
         "results": [
           {
-            "file": "file1.txt",
+            "file": "sample1.txt",
             "word_count": 15,
             "char_count": 98,
             "sentiment": "positive"
           },
           {
-            "file": "file2.txt",
+            "file": "sample2.txt",
             "word_count": 18,
             "char_count": 120,
             "sentiment": "positive"
           },
           {
-            "file": "file3.txt",
+            "file": "sample3.txt",
             "word_count": 12,
             "char_count": 85,
             "sentiment": "neutral"
@@ -304,10 +168,10 @@ This tutorial uses Bicep to automate resource creation.
 
 ## Clean up resources
 
-To avoid ongoing charges, delete the resource group when you no longer need the resources:
+To avoid ongoing charges, delete all the resources created by this tutorial:
 
-```azurecli
-az group delete --name $RESOURCE_GROUP --yes
+```bash
+azd down --purge
 ```
 
 > [!WARNING]

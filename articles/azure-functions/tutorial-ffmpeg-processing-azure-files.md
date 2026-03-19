@@ -5,6 +5,7 @@ ms.topic: tutorial
 ms.date: 03/11/2026
 ms.custom:
   - devx-track-azurecli
+  - devx-track-azdevcli
   - devx-track-python
 #customer intent: As a developer, I want to host large third-party binaries like ffmpeg on a mounted Azure Files share so I can keep my function deployment small and cold starts fast.
 ---
@@ -16,25 +17,23 @@ In this tutorial, you deploy a Python app that uses an ffmpeg binary on a mounte
 In this tutorial, you:
 
 > [!div class="checklist"]
-> * Deploy Azure infrastructure by using Bicep, including a Flex Consumption plan function app with a mounted Azure Files share
-> * Upload the ffmpeg binary to the mounted Azure Files share
-> * Deploy a Python function app that calls ffmpeg to process images
-> * Trigger and verify image processing by uploading a blob
+> * Deploy a Flex Consumption function app with a mounted Azure Files share by using Azure Developer CLI
+> * Upload a sample image to trigger blob-based processing
+> * Verify that the function called ffmpeg from the mount and saved the converted image
 
 [!INCLUDE [functions-azure-files-samples-note](../../includes/functions-azure-files-samples-note.md)]
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-- [Azure CLI](/cli/azure/install-azure-cli) version 2.60.0 or later
-- [Azure Functions Core Tools](./functions-run-local.md) version 4.x or later
-- [Python 3.9 or later](https://www.python.org/downloads/)
+- [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/install-azd) version 1.9.0 or later
 - [Git](https://git-scm.com/)
-- [ffmpeg](https://ffmpeg.org/download.html) installed locally (for preparing the binary to upload)
 
-## Clone the repository
+The CLI examples in this tutorial use Bash syntax and have been tested in [Azure Cloud Shell](/azure/cloud-shell/overview) (Bash) and Linux/macOS terminals.
 
-The sample code for this tutorial is in the [Azure Functions Flex Consumption with Azure Files OS Mount Samples](https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples) GitHub repository. The `ffmpeg-image-processing` folder contains the function app code and a Bicep template that provisions the required Azure resources.
+## Initialize the sample project
+
+The sample code for this tutorial is in the [Azure Functions Flex Consumption with Azure Files OS Mount Samples](https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples) GitHub repository. The `ffmpeg-image-processing` folder contains the function app code, a Bicep template that provisions the required Azure resources, and a post-deployment script that uploads the ffmpeg binary.
 
 1. Open a terminal and navigate to the directory where you want to clone the repository.
 
@@ -50,193 +49,67 @@ The sample code for this tutorial is in the [Azure Functions Flex Consumption wi
     cd Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples/ffmpeg-image-processing
     ```
 
-## Create Azure resources
+1. Initialize the `azd` environment. When prompted, enter an environment name such as `ffmpeg-processing`:
 
-This tutorial uses Bicep to automate resource creation.
+    ```bash
+    azd init
+    ```
+
+## Deploy with Azure Developer CLI
+
+This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/overview) template. A single `azd up` command provisions infrastructure, deploys the function code, uploads the ffmpeg binary to Azure Files, and creates the EventGrid subscription for blob triggers.
 
 1. Sign in to Azure:
 
-    ```azurecli
-    az login
+    ```bash
+    azd auth login
     ```
 
-1. If you have multiple subscriptions, set the one you want to use:
-
-    ```azurecli
-    az account set --subscription <YOUR_SUBSCRIPTION_ID>
-    ```
-
-1. Create a resource group:
-
-    ```azurecli
-    RESOURCE_GROUP="rg-ffmpeg-processing" 
-    LOCATION="eastus"
-
-    az group create --name $RESOURCE_GROUP --location $LOCATION
-    ```
-
-1. Deploy infrastructure by using Bicep:
-
-    ```azurecli
-    az deployment group create \
-      --resource-group $RESOURCE_GROUP \
-      --template-file infra/main.bicep \
-      --parameters infra/main.bicepparam
-    ```
-
-    This deployment creates the following resources:
-
-    - Storage account with a blob container and Azure Files share
-    - Function app in a Flex Consumption function plan
-    - Application Insights for monitoring
-    - Managed identity with permissions to storage
-
-1. After the deployment succeeds, save the resource names for later steps:
-
-    ```azurecli
-    STORAGE_ACCOUNT=$(az deployment group show --resource-group $RESOURCE_GROUP --name main --query properties.outputs.storageAccountName.value -o tsv)
-    FUNCTION_APP_NAME=$(az deployment group show --resource-group $RESOURCE_GROUP --name main --query properties.outputs.functionAppName.value -o tsv)
-    SHARE_NAME="ffmpeg-binaries"
-    INPUT_CONTAINER="images-input"
-    OUTPUT_CONTAINER="images-output"
-
-    echo "Storage Account: $STORAGE_ACCOUNT"
-    echo "Function App: $FUNCTION_APP_NAME"
-    ```
-
-> [!NOTE]
-> If you're using Azure Cloud Shell, shell variables don't persist between sessions. If your session times out, rerun the variable assignments in this section before continuing.
-
-## Upload the ffmpeg binary to Azure Files
-
-1. Get the ffmpeg binary and prepare it for upload.
-
-    ### [Linux/macOS](#tab/linux)
+1. Provision and deploy everything:
 
     ```bash
-    mkdir -p ffmpeg_share
-    cp $(which ffmpeg) ffmpeg_share/ffmpeg
-    chmod +x ffmpeg_share/ffmpeg
-    ./ffmpeg_share/ffmpeg -version | head -1
+    azd up
     ```
 
-    ### [Windows](#tab/windows)
+    When prompted, select the Azure subscription and location to use. The command then:
 
-    Download the ffmpeg binary from [ffmpeg.org](https://ffmpeg.org/download.html), extract it, and copy `ffmpeg.exe` to a local folder named `ffmpeg_share`.
+    - Creates a resource group, storage account, Flex Consumption function app, Application Insights instance, and managed identity.
+    - Deploys the Python function code.
+    - Downloads and uploads the ffmpeg binary to the Azure Files share.
+    - Creates an EventGrid subscription so blob uploads trigger your function.
+    - Runs a health check.
 
-    ---
+    The deployment takes a few minutes. When it completes, you see a summary of the created resources.
 
-1. Upload the binary to the Azure Files share:
-
-    ```azurecli
-    STORAGE_KEY=$(az storage account keys list \
-      --resource-group $RESOURCE_GROUP \
-      --account-name $STORAGE_ACCOUNT \
-      --query "[0].value" \
-      -o tsv)
-
-    az storage file upload \
-      --share-name $SHARE_NAME \
-      --source ffmpeg_share/ffmpeg \
-      --path ffmpeg \
-      --account-name $STORAGE_ACCOUNT \
-      --account-key $STORAGE_KEY
-    ```
-
-1. Verify the upload:
-
-    ```azurecli
-    az storage file list \
-      --share-name $SHARE_NAME \
-      --account-name $STORAGE_ACCOUNT \
-      --account-key $STORAGE_KEY \
-      -o table
-    ```
-
-    Expected output:
-
-    ```
-    Name
-    ------
-    ffmpeg
-    ```
-
-> [!TIP]
-> The Azure Files share is mounted at `/mnt/ffmpeg_binaries` inside the function container. Your function calls `/mnt/ffmpeg_binaries/ffmpeg` directly.
-
-## Verify the storage mount configuration
-
-The Bicep deployment configures the mount. Verify that it's set up correctly:
-
-```azurecli
-az functionapp config appsettings list \
-  --resource-group $RESOURCE_GROUP \
-  --name $FUNCTION_APP_NAME \
-  | grep -i mount
-```
-
-If you don't see mount configuration settings, manually configure the mount in the Azure portal under **Settings** > **Configuration** > **Path Mappings**.
-
-## Prepare and deploy the function app
-
-1. Make sure the required app settings exist on the remote function app. This command can be run even if these settings already exist:
-
-    ```azurecli
-    az functionapp config appsettings set \
-      --resource-group $RESOURCE_GROUP \
-      --name $FUNCTION_APP_NAME \
-      --settings FFMPEG_PATH=/mnt/ffmpeg_binaries/ffmpeg TEMP_PATH=/mnt/ffmpeg_binaries/temp
-    ```
-
-1. Publish the function app to Azure. The `--build remote` flag installs Python dependencies on the server, so you don't need to install them locally:
+1. Save resource names as shell variables for the remaining steps:
 
     ```bash
-    func azure functionapp publish $FUNCTION_APP_NAME --build remote
+    RESOURCE_GROUP=$(azd env get-value AZURE_RESOURCE_GROUP)
+    STORAGE_ACCOUNT=$(azd env get-value AZURE_STORAGE_ACCOUNT_NAME)
+    FUNCTION_APP_NAME=$(azd env get-value AZURE_FUNCTION_APP_NAME)
+    INPUT_CONTAINER=$(azd env get-value AZURE_STORAGE_INPUT_CONTAINER)
+    OUTPUT_CONTAINER=$(azd env get-value AZURE_STORAGE_OUTPUT_CONTAINER)
     ```
 
-1. Create input and output blob containers
+## Process an image
 
-    ```azurecli
-    az storage container create \
-      --name $INPUT_CONTAINER \
-      --account-name $STORAGE_ACCOUNT \
-      --account-key $STORAGE_KEY
-    
-    az storage container create \
-      --name $OUTPUT_CONTAINER \
-      --account-name $STORAGE_ACCOUNT \
-      --account-key $STORAGE_KEY
-    ```
-
-Now, you can upload an image to trigger processing.
-
-## Upload a sample image to trigger processing
-
-1. Create a simple test image on your local computer by using ffmpeg:
-
-    ```bash
-    ffmpeg -f lavfi -i color=c=blue:s=400x300 -frames:v 1 sample_image.jpg -y
-    ```
-
-1. Upload the image to the input container:
+1. Upload a test image to the input container. The EventGrid subscription created during deployment automatically triggers your function when a blob is uploaded.
 
     ```azurecli
     az storage blob upload \
       --container-name $INPUT_CONTAINER \
       --name sample_image.jpg \
-      --file sample_image.jpg \
+      --file <path-to-a-local-image> \
       --account-name $STORAGE_ACCOUNT \
-      --account-key $STORAGE_KEY
+      --auth-mode login
     ```
 
-    The upload automatically triggers your function.
+    Replace `<path-to-a-local-image>` with the path to any `.jpg` or `.png` file on your computer.
 
-> [!TIP]
-> If the trigger doesn't fire immediately, wait 10-15 seconds, and then check the function's execution logs in the Azure portal.
+    > [!TIP]
+    > If the trigger doesn't fire immediately, wait 10-15 seconds, and then check the function's execution logs in the Azure portal.
 
-## Verify the converted image
-
-1. Check the function logs:
+1. Check the function logs to confirm the image was processed:
 
     ```azurecli
     az functionapp log tail \
@@ -253,13 +126,13 @@ Now, you can upload an image to trigger processing.
     Executed 'ProcessImageFunction' (Succeeded, Id=12345, Duration=2765ms)
     ```
 
-1. Download the converted image:
+1. List and download the converted image:
 
     ```azurecli
     az storage blob list \
       --container-name $OUTPUT_CONTAINER \
       --account-name $STORAGE_ACCOUNT \
-      --account-key $STORAGE_KEY \
+      --auth-mode login \
       -o table
 
     az storage blob download \
@@ -267,20 +140,18 @@ Now, you can upload an image to trigger processing.
       --name sample_image_converted.png \
       --file ./output_image.png \
       --account-name $STORAGE_ACCOUNT \
-      --account-key $STORAGE_KEY
+      --auth-mode login
     ```
-
-    You should see execution times in the 1-3 second range, including ffmpeg startup and conversion time.
 
 > [!NOTE]
 > The first execution might be slightly slower (cold start). Subsequent invocations are faster because the function container stays warm and ffmpeg is cached. To minimize cold starts, consider enabling [always-ready instances](./flex-consumption-plan.md#always-ready-instances).
 
 ## Clean up resources
 
-To avoid ongoing charges, delete the resource group when you no longer need the resources:
+To avoid ongoing charges, delete all the resources created by this tutorial:
 
-```azurecli
-az group delete --name $RESOURCE_GROUP --yes
+```bash
+azd down --purge
 ```
 
 > [!WARNING]
