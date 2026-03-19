@@ -13,7 +13,7 @@ ms.custom:
 
 This article compares three ways to access files from Azure Functions: storage bindings, external databases, and Azure Files storage mounts. You learn the trade-offs between each approach, see when mounts are the right choice, and find patterns for real-world scenarios.
 
-Storage bindings and external databases work on all hosting plans. Storage mounts are supported only on [Flex Consumption](./flex-consumption-plan.md) and [Dedicated (App Service)](./dedicated-plan.md) plans.
+Storage bindings and external databases work on all hosting plans. Storage mounts are Linux only and aren't supported on the [Consumption](./consumption-plan.md) plan.
 
 If you want to jump straight to working code, see the [Tutorial: Durable text analysis with a mounted Azure Files share](./durable/tutorial-durable-text-analysis-azure-files.md) for parallel file processing or [Tutorial: Process images by using FFmpeg on a mounted Azure Files share](./tutorial-ffmpeg-processing-azure-files.md) for hosting large binaries on a mount.
 
@@ -34,7 +34,7 @@ Not every option is available on every hosting plan:
 | Hosting plan | Storage bindings | External database | Storage mount (Azure Files) |
 | --- | :---: | :---: | :---: |
 | [Flex Consumption](./flex-consumption-plan.md) | ✅ | ✅ | ✅ |
-| [Elastic Premium](./functions-premium-plan.md) | ✅ | ✅ | ❌ |
+| [Elastic Premium](./functions-premium-plan.md) | ✅ | ✅ | ✅ |
 | [Dedicated (App Service)](./dedicated-plan.md) | ✅ | ✅ | ✅ |
 | [Consumption](./consumption-plan.md) (Windows only) | ✅ | ✅ | ❌ |
 
@@ -73,7 +73,7 @@ Mounts aren't the right choice for every scenario. Consider these alternatives:
 | Cross-region data sharing | [Blob Storage replication](./performance-reliability.md) |
 
 > [!IMPORTANT]  
-> Only Flex Consumption and Dedicated (App Service) plans support storage mounts.
+> Storage mounts are Linux only and aren't supported on the [Consumption](./consumption-plan.md) plan.
 
 ## Compare storage options
 
@@ -336,10 +336,10 @@ For more information, see [Azure Files scale targets](../storage/files/storage-f
 
 These limits vary by supported hosting plan:
 
-| Limit | Flex Consumption | Dedicated (App Service) |
-| --- | --- | --- |
-| Mount points per app | 5 | 5 |
-| Protocols | SMB only | SMB, NFS, Azure Blobs (read-only) |
+| Limit | Flex Consumption | Elastic Premium | Dedicated (App Service) |
+| --- | --- | --- | --- |
+| Mount points per app | 5 | 5 | 5 |
+| Protocols | SMB only | SMB, NFS, Azure Blobs (read-only) | SMB, NFS, Azure Blobs (read-only) |
 
 To prevent runaway storage costs, set a quota on your Azure Files share:
 

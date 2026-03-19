@@ -200,7 +200,7 @@ Azure Files is used to enable dynamic scale-out for Functions. Scaling could be 
 
 _This functionality is currently only available when running on Linux._
 
-You can mount Azure Files shares to your Linux function apps, which lets you access existing files, machine learning models, or large binaries in your functions. Storage mounts are supported on Flex Consumption and Dedicated (App Service) plans. For conceptual guidance on choosing between storage mounts, bindings, and external databases, see [Choose a file access strategy for Azure Functions](./concept-file-access-options.md).
+You can mount Azure Files shares to your Linux function apps, which lets you access existing files, machine learning models, or large binaries in your functions. Storage mounts aren't supported on the [Consumption](./consumption-plan.md) plan. For conceptual guidance on choosing between storage mounts, bindings, and external databases, see [Choose a file access strategy for Azure Functions](./concept-file-access-options.md).
 
 [!INCLUDE [functions-linux-consumption-retirement](../../includes/functions-linux-consumption-retirement.md)]
 
