@@ -11,53 +11,21 @@ ms.author: momakhij
 
 # Configure insights in Business Process Solutions
 
-Insights in Business Process Solutions are analytics templates, such as Power BI reports and semantic models, designed to help you quickly start analyzing your data. You can explore available templates on the Business Templates page.
+Insights in Business Process Solutions are [Business Templates](business-templates.md), such as Power BI reports and semantic models, designed to help you quickly start analyzing your data. You can explore available templates on the [Business Templates](business-templates.md) page.
 This article explains how to configure Insights and establish connections to refresh reports and models.
-
-## Import Lakehouse Views
-
-Some Insights require additional transformations delivered through SQL views on top of the lakehouse. To deploy these views, run the provided notebook from your workspace:
-
-1. Navigate to your workspace.
-2. Open the notebook **bps_gold_view_creation**.
-   :::image type="content" source="./media/configure-insights/gold-view-notebook.png" alt-text="Screenshot showing how to open the bps_gold_view_creation notebook." lightbox="./media/configure-insights/gold-view-notebook.png":::
-3. Click on the **Run All** button.
-   :::image type="content" source="./media/configure-insights/run-gold-view-notebook.png" alt-text="Screenshot showing how to run the bps_gold_view_creation notebook." lightbox="./media/configure-insights/run-gold-view-notebook.png":::
-4. Once the notebook run is finished, you should see the sql views in your gold lakehouse.
 
 ## Deploy Power BI Report
 
-To deploy a new Power BI report or Semantic model, use the onboarding wizard. On the overview page, select either the **Get Started** button or the **+ New Insight** button to open the wizard.
+To deploy a new Power BI report or Semantic model, use the onboarding wizard. On the overview page, select the **+ New Insight** button to open the wizard.
 :::image type="content" source="./media/configure-insights/overview-wizard-buttons.png" alt-text="Screenshot showing the Get Started and New Insight buttons on the overview page." lightbox="./media/configure-insights/overview-wizard-buttons.png":::
 
 The wizard guides you through four steps: **Set up insight**, **Set up connections**, **Set up dataset**, and **Review and deploy**.
 
 ### Step 1: Set up insight
 
-In this step, you configure the source system and select the insight to deploy. The wizard opens to the **Set up Business Process Solution insight** page.
+In this step, you select the source system and the insight to deploy. The wizard opens to the **Set up Business Process Solution insight** page.
 
-Under **Source system**, you can select an existing source system or create a new source system to see available insights.
-:::image type="content" source="./media/configure-insights/wizard-source-system-options.png" alt-text="Screenshot showing the source system options with Create new and Select existing." lightbox="./media/configure-insights/wizard-source-system-options.png":::
-
-#### Create new
-
-If you don't have an existing source system, or want to create a new one:
-
-1. Select **Create new** under **Source system**.
-   :::image type="content" source="./media/configure-insights/wizard-create-new-selected.png" alt-text="Screenshot showing the Create new option selected under source system." lightbox="./media/configure-insights/wizard-create-new-selected.png":::
-2. Under **Source system type**, select the card for your system: **SAP S/4HANA**, **SAP ECC**, or **Salesforce**.
-   :::image type="content" source="./media/configure-insights/wizard-source-system-type-cards.png" alt-text="Screenshot showing the source system type cards for SAP S/4HANA, SAP ECC, and Salesforce." lightbox="./media/configure-insights/wizard-source-system-type-cards.png":::
-3. Under **Source system name**, enter a name for the source system and select the **System version** from the dropdown.
-   :::image type="content" source="./media/configure-insights/wizard-create-new-name-version.png" alt-text="Screenshot showing the source system name field and system version dropdown." lightbox="./media/configure-insights/wizard-create-new-name-version.png":::
-4. Under **Select insight**, the available insights for the selected source system type are displayed as cards, grouped by **Area** (for example, Record to Report, Order to Cash, Procure to Pay). You can change the grouping using the **Group by** dropdown, or use the **Search insights** box to filter. Each card shows the insight name, type (Report or Semantic Model), and a preview. **Select** the insight you want to deploy.
-   :::image type="content" source="./media/configure-insights/wizard-create-new-insight-cards.png" alt-text="Screenshot showing the available insight cards grouped by area for a new source system." lightbox="./media/configure-insights/wizard-create-new-insight-cards.png":::
-5. Under **Define insight**, the **Insight name** is autopopulated. If an error message appears to indicate the name already exists, update the name to a unique value.
-   :::image type="content" source="./media/configure-insights/wizard-create-new-define-insight.png" alt-text="Screenshot showing the Define insight section with the autopopulated insight name." lightbox="./media/configure-insights/wizard-create-new-define-insight.png":::
-6. Select **Next** to proceed with the Set up connections page.
-
-#### Select existing
-
-If at least one source system already exists in the Business Process Solutions item:
+Under **Source system**, select an existing source system. If you don't have a source system yet, see [Create a new source system](#create-a-new-source-system).
 
 1. Select **Select existing** under **Source system**.
    :::image type="content" source="./media/configure-insights/wizard-select-existing-selected.png" alt-text="Screenshot showing the Select existing option selected under source system." lightbox="./media/configure-insights/wizard-select-existing-selected.png":::
@@ -71,52 +39,27 @@ If at least one source system already exists in the Business Process Solutions i
 
 ### Step 2: Set up connections
 
-The **Set up connections** page displays the connection configuration for the selected source system. The page shows the **Source system name** and a **Data extraction setting** section where you choose how to extract data from the system.
-:::image type="content" source="./media/configure-insights/wizard-connections-page.png" alt-text="Screenshot showing the Set-up connections page with source system name and data extraction settings." lightbox="./media/configure-insights/wizard-connections-page.png":::
+For an existing source system, this page shows a read-only summary of the connection configuration. No action is required. Select **Next** to proceed.
 
-For an existing succeeded source system, the connection details are shown as read-only. No action is required. Select **Next** to proceed.
 :::image type="content" source="./media/configure-insights/wizard-connections-readonly.png" alt-text="Screenshot showing the read-only connection details for a succeeded source system." lightbox="./media/configure-insights/wizard-connections-readonly.png":::
 
-For a new source system, the available connection types depend on the source system type:
+If you're configuring a new source system, you need to set up the connection on this page. For detailed prerequisites and field descriptions, see the following articles:
 
-- **SAP S/4HANA**: Choose between **Azure Data Factory** and **Open Mirroring**.
-- **SAP ECC**: **Open Mirroring** is the available connection type.
-- **Salesforce**: **Fabric** is the available connection type.
-
-Select a **Connection type** and fill in the required fields.
-
-##### Azure Data Factory
-
-If you select **Azure Data Factory** as the connection type, provide Azure resource details and SAP system connection information. For detailed prerequisites and field descriptions, see [Configure a source system with Azure Data Factory](configure-source-system-with-data-factory.md).
-
-:::image type="content" source="./media/configure-insights/wizard-connection.png" alt-text="Screenshot showing the Azure Data Factory connection setup with Azure resources and system connection fields." lightbox="./media/configure-insights/wizard-connection.png":::
-
-##### Open Mirroring
-
-If you select **Open Mirroring** as the connection type, provide the mirroring partner and Fabric SQL database connection details. For detailed prerequisites and field descriptions, see [Configure a source system with Open Mirroring](configure-source-system-with-open-mirroring.md).
-
-:::image type="content" source="./media/configure-insights/wizard-connection-om.png" alt-text="Screenshot showing the Open Mirroring connection setup with partner name and Fabric SQL database connection ID." lightbox="./media/configure-insights/wizard-connection-om.png":::
-
-##### Fabric
-
-If you select **Fabric** as the connection type (available for Salesforce), provide the Salesforce and Fabric SQL connection details. For detailed prerequisites and field descriptions, see [Configure a Salesforce source system](configure-salesforce-source-system.md).
-
-:::image type="content" source="./media/configure-insights/wizard-connection-sf.png" alt-text="Screenshot showing the Fabric connection setup for Salesforce." lightbox="./media/configure-insights/wizard-connection-sf.png":::
+- [Configure a source system with Azure Data Factory](configure-source-system-with-data-factory.md)
+- [Configure a source system with Open Mirroring](configure-source-system-with-open-mirroring.md)
+- [Configure a Salesforce source system](configure-salesforce-source-system.md)
 
 Select **Next** to proceed.
 
 ### Step 3: Set up dataset
 
-The **Set up dataset** page shows the **Dataset template** that is activated based on the insight you chose. The template details include:
+Datasets are collections of objects used to extract data from the business application. Business Process Solutions automatically selects and activates the relevant dataset based on the chosen insight. In this step, you can review the basic details, including the list of objects to be extracted and transformed.
 
-- **Template name** and **Version**
-- **Supported systems**
-- **Power BI** availability status
-- A **Show details** link for more information about the selected dataset, like description and tables.
+To learn more about editing a dataset, adding custom objects, and maintaining relationships, see [Manage Datasets](manage-datasets.md#modify-dataset-tables-and-relationships).
 
 :::image type="content" source="./media/configure-insights/wizard-dataset-template.png" alt-text="Screenshot showing the dataset template details including name, version, and supported systems." lightbox="./media/configure-insights/wizard-dataset-template.png":::
 
-Under **Name Dataset**, a **Dataset name** is autopopulated based on the insight and source system. If the name already exists for the source system, update it to a unique name before proceeding.
+In the Name Dataset step, the system suggests a dataset name derived from the selected insight and source system.
 :::image type="content" source="./media/configure-insights/wizard-dataset-name.png" alt-text="Screenshot showing the dataset name field autopopulated based on insight and source system." lightbox="./media/configure-insights/wizard-dataset-name.png":::
 
 Select **Next** to proceed.
@@ -139,6 +82,22 @@ Once the deployment completes, you can see the report in your workspace and in t
 > [!NOTE]
 > Power BI Report deployment automatically deploys the semantic model. You don't need to deploy the semantic model separately.
 
+## Create a new source system
+
+If you don't have an existing source system, or want to create a new one, you can do so during the insight setup wizard:
+
+1. Select **Create new** under **Source system**.
+   :::image type="content" source="./media/configure-insights/wizard-create-new-selected.png" alt-text="Screenshot showing the Create new option selected under source system." lightbox="./media/configure-insights/wizard-create-new-selected.png":::
+2. Under **Source system type**, select the card for your system: **SAP S/4HANA**, **SAP ECC**, or **Salesforce**.
+   :::image type="content" source="./media/configure-insights/wizard-source-system-type-cards.png" alt-text="Screenshot showing the source system type cards for SAP S/4HANA, SAP ECC, and Salesforce." lightbox="./media/configure-insights/wizard-source-system-type-cards.png":::
+3. Under **Source system name**, enter a name for the source system and select the **System version** from the dropdown.
+   :::image type="content" source="./media/configure-insights/wizard-create-new-name-version.png" alt-text="Screenshot showing the source system name field and system version dropdown." lightbox="./media/configure-insights/wizard-create-new-name-version.png":::
+4. Under **Select insight**, the available insights for the selected source system type are displayed as cards, grouped by **Area** (for example, Record to Report, Order to Cash, Procure to Pay). You can change the grouping using the **Group by** dropdown, or use the **Search insights** box to filter. Each card shows the insight name, type (Report or Semantic Model), and a preview. **Select** the insight you want to deploy.
+   :::image type="content" source="./media/configure-insights/wizard-create-new-insight-cards.png" alt-text="Screenshot showing the available insight cards grouped by area for a new source system." lightbox="./media/configure-insights/wizard-create-new-insight-cards.png":::
+5. Under **Define insight**, the **Insight name** is autopopulated. If an error message appears to indicate the name already exists, update the name to a unique value.
+   :::image type="content" source="./media/configure-insights/wizard-create-new-define-insight.png" alt-text="Screenshot showing the Define insight section with the autopopulated insight name." lightbox="./media/configure-insights/wizard-create-new-define-insight.png":::
+6. Select **Next** to proceed with the Set up connections page.
+
 ## Connection for Semantic Model Refreshes
 
 To refresh the semantic model, we need to set up a connection in fabric, else we won't be able to automatically refresh the reports via pipelines. To set up the connection, follow the steps:
@@ -152,6 +111,17 @@ To refresh the semantic model, we need to set up a connection in fabric, else we
 5. Once connection is created, navigate back to the semantic model and associate the connection.
    :::image type="content" source="./media/configure-insights/associate-connection.png" alt-text="Screenshot showing how to associate a connection to the semantic model." lightbox="./media/configure-insights/associate-connection.png":::
 6. Once done, try to refresh the semantic model and check if it completes successfully.
+
+## Import Lakehouse Views
+
+Some Insights require additional transformations delivered through SQL views on top of the lakehouse. To deploy these views, run the provided notebook from your workspace:
+
+1. Navigate to your workspace.
+2. Open the notebook **bps_gold_view_creation**.
+   :::image type="content" source="./media/configure-insights/gold-view-notebook.png" alt-text="Screenshot showing how to open the bps_gold_view_creation notebook." lightbox="./media/configure-insights/gold-view-notebook.png":::
+3. Click on the **Run All** button.
+   :::image type="content" source="./media/configure-insights/run-gold-view-notebook.png" alt-text="Screenshot showing how to run the bps_gold_view_creation notebook." lightbox="./media/configure-insights/run-gold-view-notebook.png":::
+4. Once the notebook run is finished, you should see the sql views in your gold lakehouse.
 
 ## Summary
 
