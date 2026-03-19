@@ -7,7 +7,7 @@ ms.custom:
   - devx-track-azurecli
   - ignite-2023
   - ignite-2024
-ms.date: 06/18/2025
+ms.date: 03/19/2026
 author: AbhishekMallick-MS
 ms.author: v-mallicka
 # Customer intent: "As a cloud administrator, I want to manage backups for Azure Kubernetes Service clusters using Azure Backup, so that I can ensure data protection and recovery for my applications and services."
@@ -156,7 +156,7 @@ Once changes are applied, either wait for a scheduled backup to run or initiate 
 
 The Azure Backup service creates a job for scheduled backups or if you trigger on-demand backup operation for tracking. To view the backup job status:
 
-1. Go to the **Azure Business Continuity Center** and select **Protected Items** under **Protection Inventory**.
+1. Go to the **Resiliency** and select **Protected Items** under **Protection Inventory**.
 
    The **Protected Items** blade shows all the backup instances created across the subscriptions. Use the filters to access the backup instance you would like to take a look at. Select on the protected item and open it.
 
@@ -176,7 +176,7 @@ The Azure Backup service creates a job for scheduled backups or if you trigger o
 
 After you trigger the restore operation, the backup service creates a job for tracking. Azure Backup displays notifications about the job in the portal. To view the restore job progress:
 
-1. Go to the **Azure Business Continuity Center** and select **Protected Items** under **Protection Inventory**.
+1. Go to the **Resiliency** and select **Protected Items** under **Protection Inventory**.
 
    The **Protected Items** blade shows all the backup instances created across the subscriptions. Use the filters to access the backup instance you would like to take a look at. Select on the protected item and open it.
 
@@ -270,7 +270,7 @@ AKS Backup now allows you to modify the configuration of an existing backup inst
 
 #### Stop Protection and Retain Data
 
-1. Go to the **Azure Business Continuity Center** and select **Protected Items** under **Protection Inventory**.
+1. Go to the **Resiliency** and select **Protected Items** under **Protection Inventory**.
 
    The **Protected Items** blade shows all the backup instances created across the subscriptions. Use the filters to access the backup instance you would like to take a look at. Select on the protected item and open it.
 
@@ -299,7 +299,7 @@ AKS Backup now allows you to modify the configuration of an existing backup inst
 
 #### Stop Protection and Delete Data
 
-1. Go to the **Azure Business Continuity Center** and select **Protected Items** under **Protection Inventory**.
+1. Go to the **Resiliency** and select **Protected Items** under **Protection Inventory**.
 
    The **Protected Items** blade shows all the backup instances created across the subscriptions. Use the filters to access the backup instance you would like to take a look at. Select on the protected item and open it.
 
@@ -330,7 +330,7 @@ If you have selected the **Stop Protection and Retain data** option, you can res
 
 Use the following steps:
 
-1. Go to the **Azure Business Continuity Center** and select **Protected Items** under **Protection Inventory**.
+1. Go to the **Resiliency** and select **Protected Items** under **Protection Inventory**.
 
    The **Protected Items** blade shows all the backup instances created across the subscriptions. Use the filters to access the backup instance you would like to take a look at. Select on the protected item and open it.
 
