@@ -6,7 +6,7 @@ ms.assetid: 4859d0d5-3e3c-40cc-96eb-f318b2c51a3d
 ms.topic: how-to
 ms.author: msangapu
 author: msangapu-msft
-ms.date: 03/03/2026
+ms.date: 03/19/2026
 ms.update-cycle: 1095-days
 ms.custom: "UpdateFrequency3"
 
@@ -101,6 +101,10 @@ For information about scaling out an app's instance count, see [Scale instance c
 When creating or manually scaling out an App Service Plan you may experience situations where you're advised to retry with lower instance counts than you originally requested, for example potentially you have asked to scale out to 15 instances but are told only 6 are available, so you must scale to 6 then wait and retry to get to your target 15 instances.
 
 The preview of App Service Plan Asynchronous enables you to request your target number of instances and the platform scales out to the target number, without you having to modify your original request and retrying. The platform scales to the number of available instances and then triggers the underlying platform to make more instances available. You can make use of this functionality during scale-out operations or at plan creation time.  This functionality is supported for all Basic, Standard, and Premium pricing plans.
+
+### Cancelling an asynchronous scaling operation
+
+An in-progress aysynchronous scale operation is cancelled only when you explicitly change the TargetWorkerCount property.  Changes to other App Service Plan properties do not cancel the operation, including changes to the SKU, or App Service Plan instance count.  App Service Plan instance count changes that cannot be completed synchronously are ignored unless the TargetWorkerCount is also changed.  To explicitly cancel the scale operation, set the TargetWorkerCount to 0.
 
 > [!NOTE]
 > This behaviour is NOT configurable for App Service Plans created in App Service Environments.  App Service Environments create and scale App Service Plans asynchronously by default.
