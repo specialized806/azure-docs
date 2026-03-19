@@ -16,7 +16,7 @@ ms.custom:
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
-This guide shows how to access service bus resources in Azure Service Bus from automation and integration workflows in Azure Logic Apps by using the Service Bus connector. Your can have service bus events trigger your workflow or run actions that interact with service bus items, for example:
+This guide shows how to access service bus resources in Azure Service Bus from automation and integration workflows in Azure Logic Apps by using the Service Bus connector. You can have service bus events trigger your workflow or run actions that interact with service bus items, for example:
 
 - Monitor when messages arrive (auto-complete) or are received (peek-lock) in queues, topics, and topic subscriptions.
 - Send messages.
