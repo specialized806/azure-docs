@@ -280,7 +280,7 @@ An action always has the following properties:
 - `actionType`: The type of action. For methods, this property is always `Call`.
 
 > [!NOTE]
-> Versions of Azure IoT Operations prior to 2603 used `typeRef` instead of `dataSource` to map to the `objectId`. If you're using an older version, use `typeRef` in your asset definition instead of `dataSource`.
+> Versions of Azure IoT Operations prior to 2603 used `typeRef` as a property of an action instead of `dataSource` as a property of the management group to map to the `objectId`. If you're using an older version, use `typeRef` in your asset's action definition instead of `dataSource` in the management group.
 
 When you publish a message to the topic `azure-iot-operations/asset-operations/<asset name>/<management group name>/<action name>` that includes a value for `Switch`, the commander service calls the method in the OPC UA server. For example, to switch on the boiler, publish a message with the following payload to the topic `azure-iot-operations/asset-operations/management-actions-asset/managementGroup/Switch`:
 
