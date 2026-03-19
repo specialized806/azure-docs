@@ -41,10 +41,6 @@ highlightedContent:
       itemType: video
       url: https://techcommunity.microsoft.com/t5/security-compliance-and-identity/recordings-security-community-webinars/ba-p/2865990
     # Card
-    - title: Zero Trust network security recommendations
-      itemType: concept
-      url: /azure/networking/security/zero-trust-network-security
-    # Card
     - title: Choose a secure network topology
       itemType: concept
       url: ../secure-network-topology.md
