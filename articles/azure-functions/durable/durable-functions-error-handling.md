@@ -1328,7 +1328,7 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
     activity_task = context.call_activity('FlakyFunction')
     timeout_task = context.create_timer(deadline)
 
-    winner = yield context.task_any(activity_task, timeout_task)
+    winner = yield context.task_any([activity_task, timeout_task])
     if winner == activity_task:
         timeout_task.cancel()
         return True
