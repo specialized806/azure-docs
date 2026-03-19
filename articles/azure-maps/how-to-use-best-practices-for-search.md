@@ -990,7 +990,7 @@ You can use any API development environment such as [Bruno] to run the HTTP requ
 
 ### Task‑specific operations
 
-Each Search capability is exposed through a dedicated API, such as [Get Geocoding], [Get Geocode Autocomplete], or [Get Reverse Geocoding]. This separation improves clarity, performance, and intent alignment.
+Each Search capability is exposed through a dedicated API, such as [Get Geocoding], [Get Geocode Autocomplete], [Get Reverse Geocoding] or [Get Polygon]. This separation improves clarity, performance, and intent alignment.
 
 ### Geographic relevance signals
 
@@ -1004,22 +1004,93 @@ Batch APIs allow multiple queries in a single request for large‑scale workload
 
 Use [Get Geocoding] when converting an address or place name into geographic coordinates.
 
-Recommendations:
-
-* Provide the most complete address string available.
-* Use `countryRegion` to reduce ambiguity.
-* Limit results with top when only the best match is needed.
-
-### Forward geocoding example request
+Forward geocoding example request using the `query` parameter:
 
 ```rest
 GET https://atlas.microsoft.com/geocode
   ?api-version=2026-01-01
-  &query=1%20Microsoft%20Way%2C%20Redmond%20WA
+  &query=140th%20Ave%20NE%2C%20Redmond
+  &top=1
+  &subscription-key={Your-Azure-Maps-Key}
+```
+
+### Improve result quality for query-based geocoding
+
+The [Get Geocoding] API is intentionally tolerant of partial and incomplete addresses and minor typos. This flexibility can produce technically valid matches that aren't appropriate for "submit to search" experiences where users expect a precise match or no results.
+
+This section describes practical techniques to reduce low‑quality matches for Search by combining signals returned by Get Geocoding:
+
+* Confidence (High, Medium, Low). For more information, see [ConfidenceEnum].
+* Match codes (Good, Ambiguous, UpHierarchy). For more information, see [MatchCodesEnum].
+* Result type (properties.type — for example: Address, PopulatedPlace, RoadBlock, AdminDivision1). For more information, see [properties.type].
+
+> [!NOTE]
+> `RoadBlock` is formally listed as a possible [properties.type] value and is also referenced in [match‑code][MatchCodesEnum] documentation as an example of an `UpHierarchy` fallback. Treat it as a signal that the service could not resolve the query to a more specific street‑level address.
+
+#### Prefer structured parameters when you know the address components
+
+If your application collects address parts (street, city, postal code, country/region), use structured `address` parameters instead of a single free‑form `query` parameter. This typically produces more accurate results than query‑only searches. 
+
+##### Structured request example (complete address known)
+
+```rest
+GET https://atlas.microsoft.com/geocode
+  ?api-version=2026-01-01
+  &addressLine=1%20Microsoft%20Way
+  &locality=Redmond
+  &postalCode=98052
   &countryRegion=US
   &top=1
   &subscription-key={Your-Azure-Maps-Key}
 ```
+
+> [!IMPORTANT]
+> When you use the `query` parameter, only a subset of parameters are valid (for example, bbox, location, view, top). Passing structured fields (such as locality) alongside `query` can cause a conflicting‑parameters error.
+
+#### Add location context to geo-bias query-based searches
+
+When you must use the `query` parameter, add geographic context to guide results toward the expected area. For example, specify a bounding box (bbox) using the [lon1,lat1,lon2,lat2] format.
+
+##### Query-based request example (customer scenario) with bounding box bias
+
+```rest
+GET https://atlas.microsoft.com/geocode
+  ?api-version=2026-01-01
+  &query=1%20Microsoft%20Way
+  &bbox=-122.35,47.45,-121.90,47.85
+  &top=5
+  &subscription-key={Your-Azure-Maps-Key}
+```
+
+This reduces the likelihood of low-confidence matches in unrelated regions when the input is loosely structured.
+
+#### Filter using confidence + match codes + result type (recommended)
+
+[Get Geocoding] returns multiple signals under features[].properties, including `confidence`, `matchCodes`, and `type`. Use these together rather than filtering by `confidence` alone.
+
+##### Why confidence alone is not sufficient
+
+* **Medium** confidence can indicate a valid result when the query is ambiguous and there isn't enough context to rank one candidate over another.
+
+* **Medium** confidence can also occur when the service returns a less precise match than requested, and sets the match code to UpHierarchy (for example, matching only a postal code when an address was requested).
+
+##### Reworded clarity: how "up-hierarchy" results happen
+
+When the service cannot find a match at the specificity implied by the query, it may "move up the geographic hierarchy" and return a broader location (for example, city, administrative division, or country/region). In those cases, matchCodes includes UpHierarchy, and properties.type indicates what level was actually returned.
+
+##### Practical filtering guidance (apply in this order)
+
+1. **Reject low-quality matches for exact-search UX**
+  If `confidence` is Low, treat the result as not acceptable for an exact-match workflow.
+1. **Detect up-hierarchy fallbacks**
+  If `matchCodes` includes `UpHierarchy`, the service could not match the requested granularity and returned a broader location. Use `type` to determine what level was returned (for example, `PopulatedPlace`, `AdminDivision1`, `CountryRegion`, or `RoadBlock`).
+1. **Validate the expected result type**
+  If your UX expects a street-level match, accept results only when type is sufficiently specific (for example, Address) and reject broader types (for example, `PopulatedPlace`). This prevents accepting a city/state fallback when the user intended a specific address.
+1. **Handle ambiguity explicitly**
+  If `matchCodes` includes `Ambiguous`, the candidates may still be valid. Consider returning multiple candidates or prompting for more detail (postal code, city, or a constrained search area).
+
+> [!TIP]
+> Use [properties.type] to understand what was returned and [matchCodes][MatchCodesEnum] to understand how it was derived (for example, `UpHierarchy` fallback).
 
 ## Best practices for autocomplete
 
@@ -1166,3 +1237,6 @@ GET https://atlas.microsoft.com/polygon
 [Get Geocoding Batch]: /rest/api/maps/search/get-geocoding-batch
 [Get Reverse Geocoding Batch]: /rest/api/maps/search/get-reverse-geocoding-batch
 [Get Polygon]: /rest/api/maps/search/get-polygon
+[ConfidenceEnum]: /rest/api/maps/search/get-geocoding#confidenceenum
+[MatchCodesEnum]: /rest/api/maps/search/get-geocoding#MatchCodesEnum
+[properties.type]: /rest/api/maps/search/get-geocoding#properties
