@@ -1,6 +1,6 @@
 ---
 title: Connect to Azure Service Bus from Workflows
-description: Learn how to connect workflows in Azure Logic Apps to Azure Service Bus by using the Service Bus connector.
+description: Connect workflows in Azure Logic Apps to Azure Service Bus by using the Service Bus connector to manage messages.
 services: azure-logic-apps
 ms.suite: integration
 ms.reviewers: estfan, azla
