@@ -170,6 +170,9 @@ One at a time, run each Azure CLI command on the **Automation** tab in a termina
    > [!TIP]
    > The `init` command only needs to be run once per cluster. If you're reusing a cluster that already had Azure IoT Operations version 0.8.0 deployed on it, you can skip this step.
 
+    > [!IMPORTANT]
+    > When you initialize your Azure IoT Operations instance on a vSphere Kubernetes Service (VKS) cluster you must include the following flag in your `az iot ops init` command: `--cm-config global.telemetry.logs.enabled=false`.
+
    This command might take several minutes to complete. You can watch the progress in the deployment progress display in the terminal.
 
 1. Deploy Azure IoT Operations. Copy and run the provided [az iot ops create](/cli/azure/iot/ops#az-iot-ops-create) command. This command might take several minutes to complete. You can watch the progress in the deployment progress display in the terminal.

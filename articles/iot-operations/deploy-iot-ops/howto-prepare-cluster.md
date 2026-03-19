@@ -12,19 +12,19 @@ ms.date: 10/23/2024
 
 # Prepare your Azure Arc-enabled Kubernetes cluster
 
-An Azure Arc-enabled Kubernetes cluster is a prerequisite for deploying Azure IoT Operations. This article describes how to prepare a cluster before you deploy Azure IoT Operations. This article includes guidance for Ubuntu, Windows, Azure Local, and Tanzu Kubernetes Grid (TKG).
+An Azure Arc-enabled Kubernetes cluster is a prerequisite for deploying Azure IoT Operations. This article describes how to prepare a cluster before you deploy Azure IoT Operations. This article includes guidance for Ubuntu, Windows, Azure Local, and vSphere Kubernetes Service (VKS), formerly Tanzu Kubernetes Grid Service.
 
 If you want to deploy Azure IoT Operations quickly and run a sample workload in a test environment, see the [Quickstart: Run Azure IoT Operations in GitHub Codespaces with K3s](../get-started-end-to-end-sample/quickstart-deploy.md).
 
 ## Prerequisites
 
-Microsoft supports Azure Kubernetes Service (AKS) Edge Essentials for deployments on Windows, K3s for deployments on Ubuntu, AKS deployments on Azure Local, and Tanzu Kubernetes release (TKr) on TKG. If you want to deploy Azure IoT Operations to a multi-node solution, use K3s on Ubuntu.
+Microsoft supports Azure Kubernetes Service (AKS) Edge Essentials for deployments on Windows, K3s for deployments on Ubuntu, AKS deployments on Azure Local, and VKS. If you want to deploy Azure IoT Operations to a multi-node solution, use K3s on Ubuntu.
 
 ### [Ubuntu](#tab/ubuntu)
 
 To prepare an Azure Arc-enabled Kubernetes cluster, you need:
 
-[!INCLUDE [Cluster prerequisites for Ubuntu and Tanzu](../includes/cluster-prerequisites.md)]
+[!INCLUDE [Cluster prerequisites for Ubuntu and VKS](../includes/cluster-prerequisites.md)]
 
 * Hardware that meets the system requirements:
 
@@ -60,20 +60,20 @@ To prepare an Azure Arc-enabled Kubernetes cluster, you need:
   * [Azure IoT Operations supported environments](./overview-deploy.md#supported-environments).
   * [Azure Arc-enabled Kubernetes system requirements](/azure/azure-arc/kubernetes/system-requirements).
     
-### [TKG with a management cluster](#tab/tkgm)
+### [VKS](#tab/vks)
 
-To prepare a TKG workload cluster, you need:
+To prepare a VKS cluster, you need:
 
-[!INCLUDE [Cluster prerequisites for Ubuntu and Tanzu](../includes/cluster-prerequisites.md)]
+[!INCLUDE [Cluster prerequisites for Ubuntu and VKS](../includes/cluster-prerequisites.md)]
 
-- [TKG with a standalone management cluster.](https://techdocs.broadcom.com/us/en/vmware-tanzu/standalone-components/tanzu-kubernetes-grid/2-5/tkg/mgmt-index.html)
+- [vSphere Kubernetes Service](https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/release-notes/vmware-tanzu-kubernetes-grid-service-release-notes.html)
 
 - Hardware that meets the system requirements:
 
   - [Azure IoT Operations supported environments](./overview-deploy.md#supported-environments).
   - [Azure Arc-enabled Kubernetes system requirements](/azure/azure-arc/kubernetes/system-requirements).
     
-  - [TKG standalone management cluster requirements.](https://techdocs.broadcom.com/us/en/vmware-tanzu/standalone-components/tanzu-kubernetes-grid/2-5/tkg/mgmt-reqs-index.html)
+  - [Requirements for running VKS clusters](https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/managing-vsphere-kubernetes-service/running-tkg-service-clusters.html)
     
 ---
 
@@ -239,21 +239,12 @@ By default, a Kubernetes cluster is created with a node pool that can run Linux 
 
 Then, once you have an Azure Arc-enabled Kubernetes cluster, you can [deploy Azure IoT Operations](howto-deploy-iot-operations.md).
 
-### [TKG with a management cluster](#tab/tkgm)
+### [VKS](#tab/vks)
 
-To prepare a TKG workload cluster, you need:
+You need a single-node or multi-node VKS cluster. For guidance, see [Deploying VKS Service Clusters](https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/managing-vsphere-kubernetes-service/running-tkg-service-clusters/deploying-tkg-service-clusters.html).
 
-- A single-node or multi-node TKG workload cluster. For guidance, see the [Tanzu documentation](https://techdocs.broadcom.com/us/en/vmware-tanzu/standalone-components/tanzu-kubernetes-grid/2-5/tkg/workload-clusters-index.html).
-
-### Update pod security admission settings
-
-Before deploying Azure IoT Operations, you will need to update the Pod Security Admission settings on your TKG cluster. Applying this file will pre-create namespace labels and set pod security to `privileged`.
-
-
-
-```azurecli
-kubectl apply -f https://raw.githubusercontent.com/Azure-Samples/explore-iot-operations/main/samples/tanzu-config/psa.yaml
-```
+> [!IMPORTANT]
+> When you initialize your Azure IoT Operations instance on a VKS cluster you must include the following flag: `az iot ops init --cm-config global.telemetry.logs.enabled=false`.
 
 ### Arc-enable your cluster
 
@@ -308,7 +299,7 @@ Connect your cluster to Azure Arc so that it can be managed remotely.
    
   Save the output of this command to use in the next steps.
 
-1. Connect to the TKG management cluster. Edit the custom resource for the workload cluster with the issuer URL from the previous step.
+1. Connect to the VKS cluster. Edit the custom resource for the workload cluster with the issuer URL from the previous step.
 
    ```azurecli
    kubectl edit cluster <CLUSTER_NAME> 
