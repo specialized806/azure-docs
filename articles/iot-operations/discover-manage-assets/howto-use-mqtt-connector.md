@@ -100,7 +100,7 @@ To connect to an external MQTT broker:
 
 To connect to the built-in MQTT broker:
 
-1. On the **Basic** page, add a name for the endpoint, a dummy server URL, and any value for the authentication credentials.
+1. On the **Basic** page, add a name for the endpoint, `mqtt://aio-broker:18883` as the server URL, and **Anonymous** for the authentication credentials.
 
     > [!TIP]
     > The built-in MQTT broker configuration doesn't require authentication values and has a known URL. The values you enter are ignored.
@@ -158,8 +158,10 @@ To use the `Username password` authentication mode, complete the following steps
 
 [!INCLUDE [connector-certificate-user](../includes/connector-certificate-user.md)]
 
-## Discover and create assets
+> [!NOTE]
+> Currently, the connector doesn't support intermediate certificates when it connects to external MQTT brokers. 
 
+## Discover and create assets
 
 When you send a message to a topic that matches the topic filter on the asset discovery configuration for a device, the connector for MQTT detects the new topic and creates a _detected asset_ custom resource. For example, if you specify the topic filter as `A/B/+`, and you send a message to the topic `A/B/asset1`, the connector for MQTT detects the new topic and creates a _discovered asset_ that you can view in the operations experience web UI:
 
