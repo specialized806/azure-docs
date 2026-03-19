@@ -1,5 +1,5 @@
 ---
-title: Zero Trust recommendations for Application Gateway WAF
+title: Zero Trust recommendations for Azure Application Gateway WAF
 description: Review Zero Trust security recommendations for Azure Web Application Firewall on Application Gateway to help protect your web applications.
 author: duongau
 ms.author: duau
