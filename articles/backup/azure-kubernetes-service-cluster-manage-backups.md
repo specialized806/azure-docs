@@ -180,7 +180,7 @@ After you trigger the restore operation, the backup service creates a job for tr
 
    The **Protected Items** blade shows all the backup instances created across the subscriptions. Use the filters to access the backup instance you would like to take a look at. Select on the protected item and open it.
 
-   :::image type="content" source="./media/backup-managed-disks/jobs-dashboard.png" alt-text="Screenshot shows the jobs dashboard." lightbox="./media/backup-managed-disks/jobs-dashboard.png":::
+   :::image type="content" source="./media/azure-kubernetes-service-cluster-manage-backups/protected-items-dashboard.png" alt-text="Screenshot that shows the Protected items dashboard." lightbox="./media/azure-kubernetes-service-cluster-manage-backups/protected-items-dashboard.png":::
 
 1. Now select on the **Associated Items** to open up the dashboard for the backup instance. Here you can see the backup jobs for the last seven days. 
 
