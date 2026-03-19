@@ -524,12 +524,14 @@ Set up the disk layout with  **Logical Volume Manager (LVM)**. The following exa
 
 Follow the steps in [Setting up Pacemaker on SUSE Linux Enterprise Server in Azure](high-availability-guide-suse-pacemaker.md) to create the base Pacemaker cluster for HANA scale-out. Ensure that all virtual machines, including the majority maker, are added to the cluster.
 
-When configuring the base Pacemaker cluster for HANA scale-out, keep the following in mind:
+### Cluster specific considerations for HANA scale-out
 
 * Don't set `quorum expected-votes` to 2, as this isn't a two node cluster.
-* Ensure the cluster property `concurrent-fencing=true` is configured to enable deserialized node fencing.
+* Set the cluster property `concurrent-fencing=true` to enable deserialized node fencing.
 
-After the base Pacemaker cluster is configured, perform the following additional steps.
+### Additional configuration steps
+
+After the base Pacemaker cluster is configured, complete the following additional steps.
 
 1. Configure a delayed start for pacemaker.service at boot by creating the file /etc/systemd/system/pacemaker.timer with the following content:
 
@@ -1078,7 +1080,7 @@ With susChkSrv implemented, an immediate and configurable action is executed. Th
      ---
 
     > [!IMPORTANT]
-    > We recommend as a best practice that you only set AUTOMATED_REGISTER to **no**, while performing thorough fail-over tests, to prevent failed primary instance to automatically register as secondary. Once the fail-over tests completed successfully, set AUTOMATED_REGISTER to **yes**, so that after takeover system replication can resume automatically.
+    > We recommend as a best practice that you only set AUTOMATED_REGISTER to **false**, while performing thorough fail-over tests, to prevent failed primary instance to automatically register as secondary. Once the fail-over tests completed successfully, set AUTOMATED_REGISTER to **true**, so that after takeover system replication can resume automatically.
 
 1. **[1]** Create file system resource agents for /hana/shared
 
@@ -1097,6 +1099,9 @@ With susChkSrv implemented, an immediate and configurable action is executed. Th
     
     sudo crm configure clone cln_SAPHanaFilesystem_<SID>_HDB<InstNum> rsc_SAPHanaFilesystem_<SID>_HDB<InstNum> \
       meta clone-node-max="1" interleave="true"
+
+    sudo crm configure alert fencing-1 "/usr/bin/SAPHanaSR-alert-fencing" select fencing \
+      attributes alert_uptime_threshold=480
     
     # Add a location constraint to not run filesystem check on majority maker VM
     sudo crm configure location loc_SAPHanaFilesystem_not_on_majority_maker cln_SAPHanaFilesystem_<SID>_HDB<InstNum> -inf: hana-s-mm
@@ -1290,9 +1295,10 @@ With susChkSrv implemented, an immediate and configurable action is executed. Th
 
      ---
 
-> [!NOTE]
-> The timeouts in the above configuration are just examples and may need to be adapted to the specific HANA setup. For instance, you may need to increase the start timeout, if it takes longer to start the SAP HANA database. 
-> SAPHanaSR-angi allows further options for quicker action during a cluster event. See SUSE documentation for details about SAPHanaController's ON_FAIL_ACTION parameter, optional agent SAPHanaSR-alert-fencing and other options. Implementation should be followed by additional extensive cluster testing in your environment.
+    > [!NOTE]
+    >
+    > The timeouts in the above configuration are just examples and may need to be adapted to the specific HANA setup. For instance, you may need to increase the start timeout, if it takes longer to start the SAP HANA database.
+    > With ON_FAIL_ACTION=fence on SAPHanaController or SAPHanaFilesystem, you must configure SAPHanaSR-alert-fencing. For more details, see the manual page "man SAPHanaSR-alert-fencing".
 
 ## Test SAP HANA failover
 
