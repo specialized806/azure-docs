@@ -4,7 +4,7 @@ description: Configure Azure DevOps Services for SAP Deployment Automation Frame
 author: kimforss
 ms.author: kimforss
 ms.reviewer: kimforss
-ms.date: 03/18/2026
+ms.date: 03/19/2026
 ms.topic: how-to
 ms.service: sap-on-azure
 ms.subservice: sap-automation
@@ -50,73 +50,77 @@ Use this procedure when you want the framework scripts to create the Azure DevOp
 1. Update all parameter values so it matches your environment.
 1. Run the script. The script opens browser windows for authentication and for tasks in Azure DevOps.
 
-```powershell
-# Azure DevOps Configuration
-$AzureDevOpsOrganizationUrl = "https://dev.azure.com/ORGANIZATIONNAME"
+   > [!IMPORTANT]
+   > Run the following steps on your local workstation. Also ensure that you have the latest Azure CLI installed by running the `az upgrade` command.
 
-# Azure Infrastructure Configuration
-$ControlPlaneCode = "MGMT"
-$ControlPlaneRegionCode = "SECE"
-$Location = "swedencentral"
+   ```powershell
+   # Azure DevOps Configuration
+   $AzureDevOpsOrganizationUrl = "https://dev.azure.com/ORGANIZATIONNAME"
 
-$ControlPlaneName = "$ControlPlaneCode-$ControlPlaneRegionCode-DEP01"
+   # Azure Infrastructure Configuration
+   $ControlPlaneCode = "MGMT"
+   $ControlPlaneRegionCode = "SECE"
+   $Location = "swedencentral"
 
-$AzureDevOpsProjectName = "SDAF-" + $ControlPlaneCode + "-" + $ControlPlaneRegionCode
+   $ControlPlaneName = "$ControlPlaneCode-$ControlPlaneRegionCode-DEP01"
 
-$ControlPlaneSubscriptionId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-$TenantId = "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
+   $AzureDevOpsProjectName = "SDAF-" + $ControlPlaneCode + "-" + $ControlPlaneRegionCode
 
-# SAP Support Credentials
-$Env:SUserName = "SXXXXXXXX"
-$Env:Password = Read-Host "Please enter your SUserName password" -AsSecureString
+   $ControlPlaneSubscriptionId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+   $TenantId = "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
 
-$MSIResourceGroupName = "SDAF-MSIs"
-# Azure DevOps Agent Configuration
-$AgentPoolName = "SDAF-$ControlPlaneCode-$ControlPlaneRegionCode-POOL"
+   # SAP Support Credentials
+   $Env:SUserName = "SXXXXXXXX"
+   $Env:Password = Read-Host "Please enter your SUserName password" -AsSecureString
 
-#Repository information
-$repo = "Azure/sap-automation"
-$branch = "main"
+   $MSIResourceGroupName = "SDAF-MSIs"
+   # Azure DevOps Agent Configuration
+   $AgentPoolName = "SDAF-$ControlPlaneCode-$ControlPlaneRegionCode-POOL"
 
-Remove-Module SDAFUtilities -ErrorAction SilentlyContinue
-# Import required modules
-$url="https://raw.githubusercontent.com/$repo/refs/heads/$branch/deploy/scripts/pwsh/Output/SDAFUtilities/SDAFUtilities.psm1"
+   #Repository information
+   $repo = "Azure/sap-automation"
+   $branch = "main"
 
-Write-Host "Downloading SDAFUtilities module from $url" -ForegroundColor Green
+   Remove-Module SDAFUtilities -ErrorAction SilentlyContinue
 
-Invoke-WebRequest -Uri $url -OutFile "SDAFUtilities.psm1"
-Unblock-File -Path ".\SDAFUtilities.psm1"
+   # Import required modules
+   $url="https://raw.githubusercontent.com/$repo/refs/heads/$branch/deploy/scripts/pwsh/Output/SDAFUtilities/SDAFUtilities.psm1"
 
-Import-Module ".\SDAFUtilities.psm1"
+   Write-Host "Downloading SDAFUtilities module from $url" -ForegroundColor Green
 
-# Create Managed Identity
-$ManagedServiceIdentity = New-SDAFUserAssignedIdentity `
-    -ManagedIdentityName "$ControlPlaneName" `
-    -ResourceGroupName $MSIResourceGroupName `
-    -SubscriptionId $ControlPlaneSubscriptionId `
-    -Location $Location `
-    -Verbose
+   Invoke-WebRequest -Uri $url -OutFile "SDAFUtilities.psm1"
+   Unblock-File -Path ".\SDAFUtilities.psm1"
 
-# Create Azure DevOps Project with Managed Identity
-New-SDAFADOProject `
-    -AdoOrganization $AzureDevOpsOrganizationUrl `
-    -AdoProject $AzureDevOpsProjectName `
-    -TenantId $TenantId `
-    -ControlPlaneCode $ControlPlaneCode `
-    -ControlPlaneSubscriptionId $ControlPlaneSubscriptionId `
-    -ControlPlaneName $ControlPlaneName `
-    -AuthenticationMethod 'Managed Identity' `
-    -AgentPoolName $AgentPoolName `
-    -ManagedIdentityObjectId $ManagedServiceIdentity.PrincipalId `
-    -CreateConnections `
-    -EnableWebApp `
-    -GitHubRepoName $repo `
-    -BranchName $branch -Verbose
+   Import-Module ".\SDAFUtilities.psm1"
 
-Write-Output "Azure DevOps Project '$AzureDevOpsProjectName' created successfully."
-Write-Output "Managed Identity Id: $($ManagedServiceIdentity.Id)"
-Write-Output "Agent Pool Name: $AgentPoolName"
-```
+   # Create Managed Identity
+   $ManagedServiceIdentity = New-SDAFUserAssignedIdentity `
+       -ManagedIdentityName "$ControlPlaneName" `
+       -ResourceGroupName $MSIResourceGroupName `
+       -SubscriptionId $ControlPlaneSubscriptionId `
+       -Location $Location `
+       -Verbose
+
+   # Create Azure DevOps Project with Managed Identity
+   New-SDAFADOProject `
+       -AdoOrganization $AzureDevOpsOrganizationUrl `
+       -AdoProject $AzureDevOpsProjectName `
+       -TenantId $TenantId `
+       -ControlPlaneCode $ControlPlaneCode `
+       -ControlPlaneSubscriptionId $ControlPlaneSubscriptionId `
+       -ControlPlaneName $ControlPlaneName `
+       -AuthenticationMethod 'Managed Identity' `
+       -AgentPoolName $AgentPoolName `
+       -ManagedIdentityObjectId $ManagedServiceIdentity.PrincipalId `
+       -CreateConnections `
+       -EnableWebApp `
+       -GitHubRepoName $repo `
+       -BranchName $branch -Verbose
+
+   Write-Output "Azure DevOps Project '$AzureDevOpsProjectName' created successfully."
+   Write-Output "Managed Identity Id: $($ManagedServiceIdentity.Id)"
+   Write-Output "Agent Pool Name: $AgentPoolName"
+   ```
 
 1. In Azure DevOps, validate that:
 
@@ -128,9 +132,6 @@ Write-Output "Agent Pool Name: $AgentPoolName"
 
    - Run code directly from GitHub.
    - Import and run code from repositories in your Azure DevOps project.
-
-> [!IMPORTANT]
-> Run the following steps on your local workstation. Also ensure that you have the latest Azure CLI installed by running the `az upgrade` command.
 
 ### Configure artifacts for a new workload zone
 
@@ -206,7 +207,7 @@ New-SDAFADOWorkloadZone `
     -Verbose
 ```
 
-1. In Azure DevOps, confirm that the workload zone variable group and service connection were created.
+In Azure DevOps, confirm that the workload zone variable group and service connection were created.
 
 ### Create a sample control plane configuration
 
@@ -252,9 +253,9 @@ Only do this step if direct import is unavailable.
 1. In **Repos** > **Files**, select **Clone**.
 1. Clone the repository to a local folder.
 
-For more information, see [Clone a repository](/azure/devops/repos/git/clone?view=azure-devops#clone-an-azure-repos-git-repo&preserve-view=true).
+   :::image type="content" source="./media/devops/automation-repo-clone.png" alt-text="Screenshot of Azure DevOps with a repository ready for cloning.":::
 
-:::image type="content" source="./media/devops/automation-repo-clone.png" alt-text="Screenshot of Azure DevOps with a repository ready for cloning.":::
+For more information, see [Clone a repository](/azure/devops/repos/git/clone?view=azure-devops#clone-an-azure-repos-git-repo&preserve-view=true).
 
 ### Manually import the repository content by using a local clone
 
@@ -262,7 +263,7 @@ For more information, see [Clone a repository](/azure/devops/repos/git/clone?vie
 1. Extract the archive and copy the content into the root of your local clone.
 1. Open the local folder in Visual Studio Code and verify that source control shows pending changes.
 
-:::image type="content" source="./media/devops/automation-vscode-changes.png" alt-text="Screenshot of Visual Studio Code showing pending source control changes after files are copied.":::
+   :::image type="content" source="./media/devops/automation-vscode-changes.png" alt-text="Screenshot of Visual Studio Code showing pending source control changes after files are copied.":::
 
 1. Commit the imported content, for example with message **Import from GitHub**.
 1. Select **Sync Changes** to push changes back to Azure Repos.
@@ -289,7 +290,7 @@ To pull the code from GitHub, you need a GitHub service connection. For more inf
 
 1. In Azure DevOps, go to **Project Settings** > **Pipelines** > **Service connections**.
 
-:::image type="content" source="./media/devops/automation-create-service-connection.png" alt-text="Screenshot that shows how to create a service connection for GitHub in Azure DevOps.":::
+   :::image type="content" source="./media/devops/automation-create-service-connection.png" alt-text="Screenshot that shows how to create a service connection for GitHub in Azure DevOps.":::
 
 1. Select **GitHub** as the service connection type.
 1. In **OAuth Configuration**, select **Azure Pipelines**.
@@ -302,8 +303,7 @@ To pull the code from GitHub, you need a GitHub service connection. For more inf
 
 The automation framework can provision a web app as part of the control plane. If you want to use the web app, create an app registration first.
 
-1. Open Azure Cloud Shell.
-1. Run the following commands for your shell environment.
+Open an Azure Cloud Shell, then run the following commands for your shell environment:
 
 # [Linux](#tab/linux)
 
@@ -343,7 +343,7 @@ del manifest.json
 
 ---
 
-1. Store the app registration ID and generated client secret in a secure location, such as Azure Key Vault or Azure DevOps secret variables. Don't store credentials in plain text files, screenshots, or source control.
+Store the app registration ID and generated client secret in a secure location, such as Azure Key Vault or Azure DevOps secret variables. Don't store credentials in plain text files, screenshots, or source control.
 
 ## Create Azure Pipelines
 
@@ -491,7 +491,7 @@ Most of the pipelines add files to the Azure Repos and therefore require pull pe
 1. Open the source repository **Security** tab.
 1. Grant **Contribute** permission to `Build Service`.
 
-:::image type="content" source="./media/devops/automation-repo-permissions.png" alt-text="Screenshot of Azure DevOps repository security settings with Build Service permissions.":::
+   :::image type="content" source="./media/devops/automation-repo-permissions.png" alt-text="Screenshot of Azure DevOps repository security settings with Build Service permissions.":::
 
 ## Deploy the control plane
 
@@ -509,9 +509,9 @@ To connect to the deployer:
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Go to the resource group that contains the deployer virtual machine.
+1. Go to the resource group that contains the deployer virtual machine (VM).
 
-1. Connect to the virtual machine by using Azure Bastion.
+1. Connect to the VM by using Azure Bastion.
 
 1. The default username is **azureadm**.
 
@@ -523,7 +523,7 @@ To connect to the deployer:
 
 1. From the list of secrets, select the secret that ends with **-sshkey**.
 
-1. Connect to the virtual machine.
+1. Connect to the VM.
 
 To configure the deployer, run the following script:
 
@@ -580,12 +580,12 @@ az ad app update --id $TF_VAR_app_registration_app_id --web-home-page-url https:
 
 ---
 
-1. Grant **Reader** at subscription scope to the app service system-assigned managed identity:
+Grant **Reader** at subscription scope to the app service system-assigned managed identity:
 
-   - Open the app service resource.
-   - Select **Identity**.
-   - On **System assigned**, select **Azure role assignments** > **Add role assignment**.
-   - Select scope **Subscription** and role **Reader**, then select **Save**.
+- Open the app service resource.
+- Select **Identity**.
+- On **System assigned**, select **Azure role assignments** > **Add role assignment**.
+- Select scope **Subscription** and role **Reader**, then select **Save**.
 
 You should now be able to visit the web app and use it to deploy SAP workload zones and SAP system infrastructure.
 
