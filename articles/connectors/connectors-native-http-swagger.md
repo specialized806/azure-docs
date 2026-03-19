@@ -1,24 +1,24 @@
 ---
-title: Call REST API Endpoints from Workflows
-description: Call the endpoint URL for a REST API from workflows in Azure Logic Apps.
+title: Call endpoints for REST APIs from workflows in Azure Logic Apps
+description: Learn how to call a REST API endpoint URL from an Azure Logic App workflow by using HTTP Swagger operations.
 services: logic-apps
 ms.suite: integration
 ms.reviewers: estfan, azla
 ms.topic: how-to
 ms.update-cycle: 365-days
-ms.date: 03/10/2026
-# Customer intent: As an integration developer who works with Azure Logic Apps, I want to call a REST endpoint from my workflow.
+ms.date: 03/19/2026
+# Customer intent: As an integration developer who works with Azure Logic Apps, I want to call a REST API endpoint from my workflow by using HTTP Swagger operations.
 ---
 
 # Call endpoints for REST APIs from workflows in Azure Logic Apps
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
-To call a REST API endpoint from a logic app workflow in Azure Logic Apps, you can use the built-in **HTTP + Swagger** operations to call any REST API endpoint through a [Swagger file](https://swagger.io). The **HTTP + Swagger** trigger and action work the same as the [HTTP trigger and action](/azure/connectors/connectors-native-http) but provide a better experience in the workflow designer by exposing the API structure and outputs described by the Swagger file. To implement a polling trigger, follow the polling pattern that's described in [Create custom APIs to call other APIs, services, and systems from logic app workflows](/azure/logic-apps/logic-apps-create-api-app#polling-triggers).
+To call a REST API endpoint from a logic app workflow in Azure Logic Apps, you can use the built-in **HTTP + Swagger** operations to call any REST API endpoint through a [Swagger file](https://swagger.io). The **HTTP + Swagger** trigger and action work the same as the [HTTP trigger and action](/azure/connectors/connectors-native-http) but provide a better experience in the workflow designer by exposing the API structure and outputs described by the Swagger file. To implement a polling trigger, follow the [polling trigger pattern](/azure/logic-apps/logic-apps-create-api-app#polling-triggers).
 
 ## Limitations
 
-The **HTTP + Swagger** built-in operations currently support only OpenAPI 2.0, not OpenAPI 3.0.
+The **HTTP + Swagger** built-in operations support only OpenAPI 2.0, not OpenAPI 3.0.
 
 ## Prerequisites
 
@@ -26,19 +26,17 @@ The **HTTP + Swagger** built-in operations currently support only OpenAPI 2.0, n
 
 * The URL for the Swagger file that describes the target REST API endpoint that you want to call
 
-  Typically, the REST endpoint has to meet the following criteria for the trigger or action to work:
+  Typically, the REST endpoint must meet the following criteria for the trigger or action to work:
 
   * The Swagger file must be hosted on an HTTPS URL that's publicly accessible.
   
-  * The Swagger file must contain an **operationID** property for each operation in the definition. If not, the connector only shows the last operation in the Swagger file. 
+  * The Swagger file must contain an **operationID** property for each operation in the definition. If not, the connector shows only the last operation in the Swagger file.
 
   * The Swagger file must have [Cross-Origin Resource Sharing (CORS)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services) enabled.
 
   > [!NOTE]
   >
-  > To reference a Swagger file that's unhosted or that doesn't meet the security and cross-origin requirements, 
-  > you can [upload the Swagger file to a blob container in an Azure storage account](#host-swagger), and enable 
-  > CORS on that storage account so that you can reference the file.
+  > To reference a Swagger file that's unhosted or doesn't meet security and cross-origin requirements, you can [upload the Swagger file to a blob container in an Azure storage account](#host-swagger) and enable CORS on that storage account.
 
 * The Consumption or Standard logic app workflow from where you want to call the target endpoint. To start with the **HTTP + Swagger** trigger, create a logic app resource with a blank workflow. To use the **HTTP + Swagger** action, start your workflow with any trigger that you want. This example uses the **HTTP + Swagger** trigger as the first operation.
 
@@ -54,7 +52,7 @@ This built-in trigger sends an HTTP request to a URL for a Swagger file that des
 
    The following example uses a non-functional Swagger URL. Your URL might use a different format.
 
-   :::image type="content" source="media/connectors-native-http-swagger/http-swagger-trigger-parameters.png" alt-text="Screenshot shows workflow designer with selected Add trigger shape and information pane for HTTP + Swagger trigger. The Swagger endpoint property is set to an example URL.":::
+   :::image type="content" source="media/connectors-native-http-swagger/http-swagger-trigger-parameters.png" alt-text="Screenshot shows workflow designer with an Add a trigger pane for an HTTP + Swagger trigger. The Swagger endpoint property is set to an example URL.":::
 
 1. After the designer shows the operations described by the Swagger file, select the operation that you want to use.
 
@@ -82,7 +80,7 @@ This built-in action sends an HTTP request to the URL for the Swagger file that 
 
    The following example uses a non-functional Swagger URL. Your URL might use a different format.
 
-   :::image type="content" source="media/connectors-native-http-swagger/http-swagger-action-parameters.png" alt-text="Screenshot shows workflow designer with trigger named Fabrikam API - Create order and open information pane for HTTP + Swagger action. The Swagger endpoint property is set to a URL.":::
+   :::image type="content" source="media/connectors-native-http-swagger/http-swagger-action-parameters.png" alt-text="Screenshot shows workflow designer with a trigger named Fabrikam API - Check customer and an Add an action pane for an HTTP + Swagger action. The Swagger endpoint property is set to a URL.":::
 
 1. After the designer shows the operations described by the Swagger file, select the operation that you want to use.
 
@@ -100,11 +98,11 @@ This built-in action sends an HTTP request to the URL for the Swagger file that 
 
 ## Host Swagger in Azure Storage
 
-You can still reference a Swagger file that's not hosted or that doesn't meet the security and cross-origin requirements. Upload the Swagger file to blob container in an Azure storage account and enable CORS on that storage account. To create, set up, and store Swagger files in Azure Storage, follow these steps:
+You can still reference a Swagger file that's not hosted or that doesn't meet the security and cross-origin requirements. Upload the Swagger file to a blob container in an Azure storage account and enable CORS on that storage account. To create, set up, and store Swagger files in Azure Storage, follow these steps:
 
 1. [Create an Azure storage account](/azure/storage/common/storage-account-create).
 
-1. Now enable CORS for the blob. On your storage account's menu, select **CORS**. On the **Blob service** tab, specify these values, and select **Save**.
+1. Enable CORS for the blob. On your storage account's **Settings** section, select **CORS**. On the **Blob service** tab, specify these values, and select **Save**.
 
    | Property | Value |
    |----------|-------|
@@ -114,7 +112,7 @@ You can still reference a Swagger file that's not hosted or that doesn't meet th
    | **Exposed headers** | `*` |
    | **Max age** (in seconds) | `200` |
 
-   Although this example uses the [Azure portal](https://portal.azure.com), you can use a tool such as [Azure Storage Explorer](https://storageexplorer.com/), or automatically configure this setting by using this sample [PowerShell script](https://github.com/logicappsio/EnableCORSAzureBlob/blob/master/EnableCORSAzureBlob.ps1).
+   Although this example uses the [Azure portal](https://portal.azure.com), you can also use a tool such as [Azure Storage Explorer](https://storageexplorer.com/), or automatically configure this setting by using this sample [PowerShell script](https://github.com/logicappsio/EnableCORSAzureBlob/blob/master/EnableCORSAzureBlob.ps1).
 
 1. [Create a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal). On the container's **Overview** pane, select **Change access level**. From the **Public access level** list, select **Blob (anonymous read access for blobs only)**, and select **OK**.
 
