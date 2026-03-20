@@ -198,7 +198,7 @@ Test custom agents in the **Test playground** before deploying. Go to **Builder*
 
 For VS Code users, the SRE Agent MCP server extension lets you edit custom agent YAML in your editor with changes syncing to your agent.
 
-:::image type="content" source="media/common/playground-agent-selected.png" alt-text="Screenshot of agent playground with split-screen editor and chat test panel.":::
+:::image type="content" source="media/common/playground-agent-selected.png" alt-text="Screenshot of agent playground with split-screen editor and chat test panel." lightbox="media/common/playground-agent-selected.png":::
 
 For full details, see [Agent playground](agent-playground.md).
 

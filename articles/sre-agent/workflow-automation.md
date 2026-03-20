@@ -24,7 +24,7 @@ Operational workflows span multiple tools and require someone to remember what c
 
 ## How workflow automation works
 
-:::image type="content" source="media/workflow-automation/subagent-builder-canvas-configured.png" alt-text="Agent Canvas showing configured workflow":::
+:::image type="content" source="media/workflow-automation/subagent-builder-canvas-configured.png" alt-text="Screenshot of the Agent Canvas showing a configured workflow." lightbox="media/workflow-automation/subagent-builder-canvas-configured.png":::
 
 By using workflow automation, you can achieve the following goals:
 

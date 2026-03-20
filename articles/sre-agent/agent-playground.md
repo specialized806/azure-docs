@@ -24,7 +24,7 @@ Without a dedicated testing environment, you deploy changes to see how they beha
 
 The playground is a dedicated view in the **Agent Canvas** alongside Canvas and Table views. Select **Test playground** from the view toggle to enter a split-screen environment where you edit and test.
 
-:::image type="content" source="media/common/playground-agent-selected.png" alt-text="Screenshot of agent playground showing split-screen layout with form editor on left and chat test panel on right.":::
+:::image type="content" source="media/common/playground-agent-selected.png" alt-text="Screenshot of agent playground showing split-screen layout with form editor on left and chat test panel on right." lightbox="media/common/playground-agent-selected.png":::
 
 ### Select what to test
 
@@ -37,7 +37,7 @@ Use the **Custom agent/Tool** dropdown at the top to choose what to test.
 | **System tool** | Execute built-in tools with custom parameters |
 | **Kusto tool** | Run queries against your connected clusters |
 
-:::image type="content" source="media/common/playground-entity-selector.png" alt-text="Screenshot of entity selector dropdown showing custom agents and tools available for testing.":::
+:::image type="content" source="media/common/playground-entity-selector.png" alt-text="Screenshot of entity selector dropdown showing custom agents and tools available for testing." lightbox="media/common/playground-entity-selector.png":::
 
 ### Edit and test side by side
 

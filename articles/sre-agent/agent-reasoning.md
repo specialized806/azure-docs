@@ -18,7 +18,7 @@ Your agent reasons through problems rather than following scripts. Because it bu
 
 Every message you send goes through the same loop.
 
-:::image type="content" source="media/agent-reasoning/agent-reasoning-flow.svg" alt-text="A screenshot of Agent reasoning flow: understand request, gather context, reason, then act or respond. Loops up to 10 times.":::
+:::image type="content" source="media/agent-reasoning/agent-reasoning-flow.svg" alt-text="A screenshot of Agent reasoning flow: understand request, gather context, reason, then act or respond. Loops up to 10 times." lightbox="media/agent-reasoning/agent-reasoning-flow.svg":::
 
 The agent first **understands** your request and identifies what data it needs. Then it **gathers context** by querying data sources in parallel (logs, metrics, resource status, deployment history, [memory](memory.md)). Next it **reasons** over the gathered data, identifying patterns and forming conclusions. Finally it **acts or responds** by executing safe actions, requesting approval for risky ones, or presenting findings.
 
@@ -28,7 +28,7 @@ If the problem requires more work, the loop iterates up to 10 times per turn. Af
 
 For complex problems, your agent shows its reasoning process in the chat. A collapsible **Thinking** section appears with descriptive titles for each step (like "Exploring Azure health issues" or "Analyzing active alerts") and elapsed time.
 
-:::image type="content" source="media/agent-reasoning/thinking-accordion-active.png" alt-text="Screenshot of adaptive thinking showing reasoning step.":::
+:::image type="content" source="media/agent-reasoning/thinking-accordion-active.png" alt-text="Screenshot of adaptive thinking showing reasoning step." lightbox="media/agent-reasoning/thinking-accordion-active.png":::
 
 Your agent automatically adjusts reasoning depth. A status check gets a quick response. A multistep outage gets multistep reasoning with evidence correlation.
 

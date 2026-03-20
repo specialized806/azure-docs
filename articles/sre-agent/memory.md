@@ -159,7 +159,7 @@ The agent responds based on the saved memory: "Database failover takes approxima
 
 Upload your documentation and connect external sources to give your agent a broader reference library.
 
-:::image type="content" source="media/memory/knowledge-sources.svg" alt-text="Diagram showing knowledge coming from uploaded documents and MCP connectors, all searchable together.":::
+:::image type="content" source="media/memory/knowledge-sources.svg" alt-text="Diagram showing knowledge coming from uploaded documents and MCP connectors, all searchable together." lightbox="media/memory/knowledge-sources.svg":::
 
 ### Upload documents
 

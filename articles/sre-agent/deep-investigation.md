@@ -39,11 +39,11 @@ Here’s an example:
 
 To enable deep investigation in your chat, select the deep investigation (:::image type="icon" source="media/deep-investigation/sre-agent-deep-investigation-icon.png" border="false":::) icon in your chat before submitting your query.
 
-:::image type="content" source="media/deep-investigation/sre-agent-chat-window-deep-investigation.png" alt-text="Screenshot of Azure SRE Agent highlighting the deep investigation button.":::
+:::image type="content" source="media/deep-investigation/sre-agent-chat-window-deep-investigation.png" alt-text="Screenshot of Azure SRE Agent highlighting the deep investigation button." lightbox="media/deep-investigation/sre-agent-chat-window-deep-investigation.png":::
 
 When you submit a query with deep investigation enabled, an authorization card appears in the chat. Select **Yes** to approve the investigation, or **No** to cancel.
 
-:::image type="content" source="media/common/deep-investigation-working.png" alt-text="Authorization prompt showing the investigation card, approval message, and Yes and No buttons." lightbox="media/common/deep-investigation-working.png":::
+:::image type="content" source="media/common/deep-investigation-working.png" alt-text="Screenshot of the authorization prompt showing the investigation card, approval message, and Yes and No buttons." lightbox="media/common/deep-investigation-working.png":::
 
 ## Get started
 

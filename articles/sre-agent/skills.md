@@ -18,7 +18,7 @@ Skills extend your agent with procedures and execution capabilities. You can add
 
 You can also upload knowledge documents such as runbooks, architecture guides, and reference material to build a knowledge base that your agent searches automatically. For more information, see [Memory and knowledge](memory.md).
 
-:::image type="content" source="media/skills/custom-skill-flow.svg" alt-text="Flow showing agent using custom skill with attached tools." border="false":::
+:::image type="content" source="media/skills/custom-skill-flow.svg" alt-text="Flow showing agent using custom skill with attached tools." border="false" lightbox="media/skills/custom-skill-flow.svg":::
 
 ## Skills, custom agents, and knowledge files
 
@@ -74,7 +74,7 @@ Skills turn your agent from a general assistant into a team member who knows how
 
 Create skills in **Builder > Skills**. A skill includes a `SKILL.md` file with procedural guidance and optional tool attachments for execution.
 
-:::image type="content" source="media/skills/portal-create-skill.png" alt-text="Screenshot of create skill dialog in the portal.":::
+:::image type="content" source="media/skills/portal-create-skill.png" alt-text="Screenshot of create skill dialog in the portal." lightbox="media/skills/portal-create-skill.png":::
 
 The following example shows a typical skill structure:
 

@@ -39,7 +39,7 @@ Go to the test playground in the Agent Canvas.
 1. Select **Builder** > **Agent Canvas**.
 1. Select **Test playground** in the view toggle (next to **Canvas view** and **Table view**).
 
-:::image type="content" source="media/test-tool-in-playground/playground-empty-state.png" alt-text="Screenshot of test playground view with empty state and Custom agent/Tool selector at the top.":::
+:::image type="content" source="media/test-tool-in-playground/playground-empty-state.png" alt-text="Screenshot of test playground view with empty state and Custom agent/Tool selector at the top." lightbox="media/test-tool-in-playground/playground-empty-state.png":::
 
 The playground shows an empty state with a **Custom agent/Tool** selector at the top and the message "Select an agent or tool to start a playground session."
 
@@ -52,7 +52,7 @@ Choose the tool you want to test from the entity selector.
 1. Select the tool you want to test.
 1. Select **Apply**.
 
-:::image type="content" source="media/common/playground-entity-selector.png" alt-text="Screenshot of entity selector dropdown showing agents and tools available for testing.":::
+:::image type="content" source="media/common/playground-entity-selector.png" alt-text="Screenshot of entity selector dropdown showing agents and tools available for testing." lightbox="media/common/playground-entity-selector.png":::
 
 The playground loads the selected tool's configuration and test interface.
 

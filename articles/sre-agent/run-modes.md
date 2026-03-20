@@ -21,7 +21,7 @@ Run modes control whether your agent **asks for approval** before taking actions
 
 ## Two modes
 
-:::image type="content" source="media/run-modes/run-modes-comparison.svg" alt-text="Screenshot of a comparison of review mode where the agent proposes and the user decides versus autonomous mode where the agent executes immediately.":::
+:::image type="content" source="media/run-modes/run-modes-comparison.svg" alt-text="Screenshot of a comparison of review mode where the agent proposes and the user decides versus autonomous mode where the agent executes immediately." lightbox="media/run-modes/run-modes-comparison.svg":::
 
 The following table summarizes the two available modes:
 
@@ -73,7 +73,7 @@ Set run modes **per [response plan](response-plan.md) and per [scheduled task](s
 
 Set the **Agent autonomy level** when you create or edit a response plan or task:
 
-:::image type="content" source="media/run-modes/portal-trigger-review-autonomous-modes.png" alt-text="Edit incident trigger dialog showing Agent autonomy level with Autonomous and Review options.":::
+:::image type="content" source="media/run-modes/portal-trigger-review-autonomous-modes.png" alt-text="Edit incident trigger dialog showing Agent autonomy level with Autonomous and Review options." lightbox="media/run-modes/portal-trigger-review-autonomous-modes.png":::
 
 ### Agent-level default
 
