@@ -41,7 +41,7 @@ When you connect ServiceNow as your incident platform, the agent provides the fo
 
 A quickstart response plan is created by default during setup. From there, the agent follows the same [investigation and response flow](incident-response.md) as any other incident platform.
 
-:::image type="content" source="media/servicenow-incidents/servicenow-form-basicauth.png" alt-text="Screenshot of the ServiceNow incident platform configuration form showing authentication type, endpoint, username, password, and quickstart response plan options." lightbox="media/servicenow-incidents/servicenow-form-basicauth.png":::
+:::image type="content" source="media/servicenow-incidents/servicenow-form-basic-authentication.png" alt-text="Screenshot of the ServiceNow incident platform configuration form showing authentication type, endpoint, username, password, and quickstart response plan options." lightbox="media/servicenow-incidents/servicenow-form-basic-authentication.png":::
 
 ## What makes this approach different
 

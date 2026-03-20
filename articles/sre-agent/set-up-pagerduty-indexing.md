@@ -56,7 +56,7 @@ The PagerDuty configuration form appears with the platform name, a description, 
 
 Provide your REST API access key so the agent can connect to PagerDuty.
 
-1. Enter your **REST API access key** in the API key field.
+- Enter your **REST API access key** in the API key field.
 
 The agent validates your key by calling the PagerDuty API. A validation spinner appears briefly, then either succeeds silently or shows an error.
 

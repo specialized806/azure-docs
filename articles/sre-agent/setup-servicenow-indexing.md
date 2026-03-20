@@ -65,7 +65,7 @@ Use basic authentication for quick setup in development or test environments.
 1. Enter your **Username**.
 1. Enter your **Password**.
 
-:::image type="content" source="media/setup-servicenow-indexing/servicenow-form-basicauth.png" alt-text="Screenshot of the ServiceNow form with Basic Authentication selected, showing endpoint, username, and password fields." lightbox="media/setup-servicenow-indexing/servicenow-form-basicauth.png":::
+:::image type="content" source="media/setup-servicenow-indexing/servicenow-form-basic-authentication.png" alt-text="Screenshot of the ServiceNow form with Basic Authentication selected, showing endpoint, username, and password fields." lightbox="media/setup-servicenow-indexing/servicenow-form-basic-authentication.png":::
 
 After you fill in all required fields, the **Save** button becomes active.
 
@@ -96,13 +96,13 @@ Complete the connection and verify that the agent can reach your ServiceNow inst
 
 **For basic authentication:**
 
-1. Select **Save**.
+- Select **Save**.
 
 The app saves the connection settings, and the agent starts checking connectivity to ServiceNow in the background.
 
 **For OAuth 2.0:**
 
-1. Select **Authorize**.
+- Select **Authorize**.
 
 A popup window opens for you to complete the OAuth flow in ServiceNow. After authorization, the connection is established.
 
