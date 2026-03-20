@@ -119,11 +119,8 @@ sudo ./StartSimulation.sh "<Your Event Hubs connection string>"
 
 `<Your Event Hubs connection string>` is your Event Hubs namespace connection string. To learn more, see [Get an Event Hubs connection string](/azure/event-hubs/event-hubs-get-connection-string). A connection string looks like: `Endpoint=sb://ontologies.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=abcdefgh=`
 
-> [!NOTE]
-> If the external IP address for a Kubernetes service shows as `<pending>`, use the following command to assign the external IP address of the `traefik` service: `sudo kubectl patch service <theService> -n <the service's namespace> -p '{"spec": {"type": "LoadBalancer", "externalIPs":["<the traefik external IP address>"]}}'`.
-
 > [!TIP]
-> To prevent WSL and K3s from automatically shutting down, keep your WSL command prompt open.
+> If the external IP address for some Kubernetes services shows as `<pending>`, use the following command to assign the external IP address of the `traefik` service: `sudo kubectl patch service <theService> -n <the service's namespace> -p '{"spec": {"type": "LoadBalancer", "externalIPs":["<the traefik external IP address>"]}}'`.
 
 ## UA Cloud Library
 
