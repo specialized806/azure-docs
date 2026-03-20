@@ -430,5 +430,6 @@ For example, the DTDL model for the `call` actions the sample uses looks like th
 
 ## Related content
 
+- [Enable and run management actions](howto-use-management-actions.md)
 - [Manage asset and device configurations](overview-manage-assets.md)
 - [Connector for OPC UA overview](overview-opc-ua-connector.md)

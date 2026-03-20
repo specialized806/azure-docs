@@ -120,6 +120,9 @@ items:
           - name: Connect to Kafka endpoints
             href: discover-manage-assets/howto-connect-kafka.md
             displayName: southbound, broker, hubs, MQTT, data flow
+          - name: Enable and run management actions
+            href: discover-manage-assets/howto-use-management-actions.md
+            displayName: management actions, commander, CLI, enable, execute, disable, Event Grid
           - name: Use asset endpoints to manage assets
             href: /previous-versions/azure/iot-operations/discover-manage-assets/overview-manage-assets
             displayName: connector, tags, southbound, asset endpoint profile

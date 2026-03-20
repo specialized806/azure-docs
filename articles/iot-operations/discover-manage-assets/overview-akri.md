@@ -91,4 +91,4 @@ Akri services build on the capabilities of the open-source Akri project and prov
 - [Configure the connector for OPC UA](howto-configure-opc-ua.md)
 - [Configure the connector for HTTP/REST](howto-use-http-connector.md)
 - [Configure the connector for SSE](howto-use-sse-connector.md)
-- [Configure the connector for MQTT (preview)](howto-use-mqtt-connector.md)
+- [Configure the connector for MQTT](howto-use-mqtt-connector.md)

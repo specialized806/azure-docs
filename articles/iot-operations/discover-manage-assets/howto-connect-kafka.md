@@ -22,7 +22,7 @@ To connect to a Kafka source, you combine:
 
 The following diagram illustrates this architecture:
 
-:::image type="content" source="media/howto-connect-kafka/kafka.svg" alt-text="Diagram that shows the architecture of the solution." lightbox="media/howto-connect-kafka/kafka.png":::
+:::image type="content" source="media/howto-connect-kafka/kafka.svg" alt-text="Diagram that shows the architecture of the solution." lightbox="media/howto-connect-kafka/kafka.png" border="false":::
 
 Messages enter from the Kafka source, such as an Azure Event Hubs namespace, and are ingested into Azure IoT Operations through a data flow with a Kafka source endpoint. The data flow routes messages to topics in the internal MQTT broker. The connector for MQTT detects the topics in the MQTT broker and lets you create assets based on the topic names. Each asset can be configured to route data to specific topics in the MQTT broker. You can then perform any routing and custom processing to the messages.
 
