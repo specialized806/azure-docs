@@ -65,7 +65,7 @@ An incident response plan tells the agent which incidents to pick up and how muc
 
 1. Select **Next**.
 
-:::image type="content" source="media/automate-incidents/response-plan-step1.png" alt-text="Screenshot of the response plan creation form with name and severity fields." lightbox="media/automate-incidents/response-plan-step1.png":::
+  :::image type="content" source="media/automate-incidents/response-plan-step-1.png" alt-text="Screenshot of the response plan creation form with name and severity fields." lightbox="media/automate-incidents/response-plan-step-1.png":::
 
 1. **Step 2: Preview filter results:** Review matching past incidents from your incident platform (empty if no incidents exist yet). Select **Next**.
 
@@ -75,7 +75,7 @@ An incident response plan tells the agent which incidents to pick up and how muc
      - **Review**: The agent diagnoses but waits for your approval before acting.
    - Select **Save**.
 
-:::image type="content" source="media/automate-incidents/response-plan-step3-save.png" alt-text="Screenshot of the response plan autonomy options showing Review and Autonomous modes." lightbox="media/automate-incidents/response-plan-step3-save.png":::
+:::image type="content" source="media/automate-incidents/response-plan-step-3-save.png" alt-text="Screenshot of the response plan autonomy options showing Review and Autonomous modes." lightbox="media/automate-incidents/response-plan-step-3-save.png":::
 
 **Checkpoint:** Your response plan appears in the list with status **On** and the autonomy level you selected.
 
@@ -91,7 +91,7 @@ In this example, the agent has a runbook for handling HTTP 500 errors, a connect
 
 **The agent builds a plan from your runbook.** Rather than following a generic troubleshooting sequence, the agent reads the HTTP 500 runbook you upload during onboarding and follows your team's procedures. The agent checks for upstream dependencies first, then connection pool, then recent deployments.
 
-:::image type="content" source="media/automate-incidents/incident-fullpage-top.png" alt-text="Screenshot of the agent showing investigation plan for HTTP 5xx alert with six numbered steps." lightbox="media/automate-incidents/incident-fullpage-top.png":::
+:::image type="content" source="media/automate-incidents/incident-full-page-top.png" alt-text="Screenshot of the agent showing investigation plan for HTTP 5xx alert with six numbered steps." lightbox="media/automate-incidents/incident-full-page-top.png":::
 
 **The agent recalls prior knowledge.** If the agent investigated a similar issue before, it recognizes the pattern and skips discovery. It does this operation to combine your runbook procedures with what it learned from previous investigations.
 
@@ -106,7 +106,7 @@ In this example, the agent has a runbook for handling HTTP 500 errors, a connect
 
 **The agent delivers a remediation summary.** The agent produces a structured report with everything the team needs to follow up:
 
-:::image type="content" source="media/automate-incidents/incident-fullpage-code-fix.png" alt-text="Screenshot of the remediation summary table showing alert, mitigation, permanent fix, root cause, status, and tracking." lightbox="media/automate-incidents/incident-fullpage-code-fix.png":::
+:::image type="content" source="media/automate-incidents/incident-full-page-code-fix.png" alt-text="Screenshot of the remediation summary table showing alert, mitigation, permanent fix, root cause, status, and tracking." lightbox="media/automate-incidents/incident-full-page-code-fix.png":::
 
 | Item | What the agent reports |
 |---|---|

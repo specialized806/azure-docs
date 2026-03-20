@@ -37,7 +37,7 @@ Your agent's UAMI is the primary identity for most operations.
 
 | Operation | Identity | Notes |
 |---|---|---|
-| **Azure resource operations** (ARM, CLI, diagnostics) | UAMI | The RBAC roles you assign determine what the agent can access |
+| **Azure resource operations** (Azure Resource Manager, CLI, diagnostics) | UAMI | The RBAC roles you assign determine what the agent can access |
 | **Communication connectors** (Outlook, Teams) | UAMI + your OAuth credentials | You sign in via OAuth; the UAMI brokers authentication to the connector resource |
 | **Data connectors** (Azure Data Explorer) | UAMI | Grant the UAMI permissions on the target Kusto cluster |
 | **Source code connectors** (GitHub, Azure DevOps) | UAMI (for Azure DevOps managed identity) | Azure DevOps connector uses UAMI; GitHub uses OAuth |

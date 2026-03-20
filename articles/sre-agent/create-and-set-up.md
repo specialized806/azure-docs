@@ -173,4 +173,4 @@ After you connect your data sources, select **Done and go to agent** to open the
 
 - [Connectors](connectors.md): How the agent connects to external data sources
 - [User roles](user-roles.md): Who can access your agent and what they can do
-- [Permissions and roles](permissions-and-roles.md): How permission levels and RBAC roles work
+- [Permissions and roles](permissions.md): How permission levels and RBAC roles work

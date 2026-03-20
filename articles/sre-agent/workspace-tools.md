@@ -20,7 +20,7 @@ Deep context is your agent's accumulated understanding of your environment, incl
 >
 > - Deep context means your agent understands *your* code, infrastructure, and operational history, not just generic Azure knowledge.
 > - Your agent builds this understanding through three pillars: **context analysis**, **persistent memory**, and **background intelligence**.
-> - Connected source code repos (GitHub, Azure DevOps) give the agent direct access to read, search, and navigate your codebase.
+> - Connected source code repos (GitHub, Azure DevOps repos) give the agent direct access to read, search, and navigate your codebase.
 > - Your agent gets smarter with every conversation. It remembers what worked, what failed, and what your systems look like.
 
 Deep context isn't a single feature you enable. It's the combination of three pillars that work together automatically.
@@ -105,7 +105,7 @@ The result: your agent gets smarter with every conversation, not just every soft
 
 ## Related content
 
-- [Connectors](connectors.md): Connect GitHub, Azure DevOps, and other data sources.
+- [Connectors](connectors.md): Connect GitHub, Azure DevOps repos, and other data sources.
 - [Agent reasoning](agent-reasoning.md): Learn how the agent reasons through problems.
 - [Deep investigation](deep-investigation.md): Use structured hypothesis testing powered by workspace tool access.
 - [Python code execution](python-code-execution.md): Analyze data and create visualizations by using the code interpreter.

@@ -9,9 +9,9 @@ items:
       - name: Create and set up
         href: create-and-setup.md
       - name: Team onboarding
-        href: team-onboarding.md
+        href: team-onboard.md
       - name: Complete setup
-        href: complete-setup.md
+        href: complete-set-up.md
       - name: Run your first investigation
         href: first-investigation.md
       - name: Automate incident response

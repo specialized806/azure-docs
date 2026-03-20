@@ -31,7 +31,7 @@ By the end of this tutorial, your agent can:
 | Requirement | Details |
 |---|---|
 | **Agent created** | Complete [Step 1: Create an agent](create-agent.md) first. |
-| **GitHub or Azure DevOps account** | Access to the repositories you want to connect. |
+| **GitHub or Azure DevOps organization** | Access to the repositories you want to connect. |
 
 ## Choose your authentication method
 
@@ -61,7 +61,7 @@ Use the following steps to select your platform and authenticate.
 
     | Method | When to use |
     |---|---|
-    | **Auth** (OAuth) | Sign in with your GitHub or Azure DevOps account. No token needed. |
+    | **Auth** (OAuth) | Sign in with your GitHub or Azure DevOps organization. No token needed. |
     | **PAT** | Provide a Personal Access Token with `repo` scope. |
 
 1. Complete authentication:
