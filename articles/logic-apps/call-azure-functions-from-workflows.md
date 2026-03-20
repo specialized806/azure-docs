@@ -41,7 +41,7 @@ For Azure Functions to operate correctly in your workflow, review the following 
 
 - Function app resources must use either the .NET or Node.js runtime stack.
 
-- Functions must use either C# or JavaScript code.
+- Functions must be written in either C# or JavaScript code.
 
 - Functions must use the **HTTP trigger** template.
 
@@ -65,7 +65,7 @@ For Azure Functions to operate correctly in your workflow, review the following 
 
 - An [Azure function app resource](../azure-functions/functions-get-started.md), which can contain one or more Azure functions.
 
-  Make sure to use the same Azure subscription for your function app resource and logic app resource.
+  Make sure that your function app resource and logic app resource exist in the same Azure subscription.
 
 - The Azure function to call from your workflow.
 
