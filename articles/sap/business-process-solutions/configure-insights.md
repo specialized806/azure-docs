@@ -82,21 +82,16 @@ Once the deployment completes, you can see the report in your workspace and in t
 > [!NOTE]
 > Power BI Report deployment automatically deploys the semantic model. You don't need to deploy the semantic model separately.
 
-## Create a new source system
+## Import Lakehouse Views
 
-If you don't have an existing source system, or want to create a new one, you can do so during the insight setup wizard:
+Some Insights require additional transformations delivered through SQL views on top of the lakehouse. To deploy these views, run the provided notebook from your workspace:
 
-1. Select **Create new** under **Source system**.
-   :::image type="content" source="./media/configure-insights/wizard-create-new-selected.png" alt-text="Screenshot showing the Create new option selected under source system." lightbox="./media/configure-insights/wizard-create-new-selected.png":::
-2. Under **Source system type**, select the card for your system: **SAP S/4HANA**, **SAP ECC**, or **Salesforce**.
-   :::image type="content" source="./media/configure-insights/wizard-source-system-type-cards.png" alt-text="Screenshot showing the source system type cards for SAP S/4HANA, SAP ECC, and Salesforce." lightbox="./media/configure-insights/wizard-source-system-type-cards.png":::
-3. Under **Source system name**, enter a name for the source system and select the **System version** from the dropdown.
-   :::image type="content" source="./media/configure-insights/wizard-create-new-name-version.png" alt-text="Screenshot showing the source system name field and system version dropdown." lightbox="./media/configure-insights/wizard-create-new-name-version.png":::
-4. Under **Select insight**, the available insights for the selected source system type are displayed as cards, grouped by **Area** (for example, Record to Report, Order to Cash, Procure to Pay). You can change the grouping using the **Group by** dropdown, or use the **Search insights** box to filter. Each card shows the insight name, type (Report or Semantic Model), and a preview. **Select** the insight you want to deploy.
-   :::image type="content" source="./media/configure-insights/wizard-create-new-insight-cards.png" alt-text="Screenshot showing the available insight cards grouped by area for a new source system." lightbox="./media/configure-insights/wizard-create-new-insight-cards.png":::
-5. Under **Define insight**, the **Insight name** is autopopulated. If an error message appears to indicate the name already exists, update the name to a unique value.
-   :::image type="content" source="./media/configure-insights/wizard-create-new-define-insight.png" alt-text="Screenshot showing the Define insight section with the autopopulated insight name." lightbox="./media/configure-insights/wizard-create-new-define-insight.png":::
-6. Select **Next** to proceed with the Set up connections page.
+1. Navigate to your workspace.
+2. Open the notebook **bps_gold_view_creation**.
+   :::image type="content" source="./media/configure-insights/gold-view-notebook.png" alt-text="Screenshot showing how to open the bps_gold_view_creation notebook." lightbox="./media/configure-insights/gold-view-notebook.png":::
+3. Click on the **Run All** button.
+   :::image type="content" source="./media/configure-insights/run-gold-view-notebook.png" alt-text="Screenshot showing how to run the bps_gold_view_creation notebook." lightbox="./media/configure-insights/run-gold-view-notebook.png":::
+4. Once the notebook run is finished, you should see the sql views in your gold lakehouse.
 
 ## Connection for Semantic Model Refreshes
 
@@ -112,16 +107,7 @@ To refresh the semantic model, we need to set up a connection in fabric, else we
    :::image type="content" source="./media/configure-insights/associate-connection.png" alt-text="Screenshot showing how to associate a connection to the semantic model." lightbox="./media/configure-insights/associate-connection.png":::
 6. Once done, try to refresh the semantic model and check if it completes successfully.
 
-## Import Lakehouse Views
-
-Some Insights require additional transformations delivered through SQL views on top of the lakehouse. To deploy these views, run the provided notebook from your workspace:
-
-1. Navigate to your workspace.
-2. Open the notebook **bps_gold_view_creation**.
-   :::image type="content" source="./media/configure-insights/gold-view-notebook.png" alt-text="Screenshot showing how to open the bps_gold_view_creation notebook." lightbox="./media/configure-insights/gold-view-notebook.png":::
-3. Click on the **Run All** button.
-   :::image type="content" source="./media/configure-insights/run-gold-view-notebook.png" alt-text="Screenshot showing how to run the bps_gold_view_creation notebook." lightbox="./media/configure-insights/run-gold-view-notebook.png":::
-4. Once the notebook run is finished, you should see the sql views in your gold lakehouse.
+If you encounter problems with model refresh, check our [troubleshooting page](troubleshooting.md).
 
 ## Summary
 
