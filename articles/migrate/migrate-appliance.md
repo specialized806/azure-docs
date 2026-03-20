@@ -209,7 +209,7 @@ You can configure Private Links for the following required URLs using the refere
 **URL** | **How to configure private link**  
 --- | --- |
 management.azure.com (Used for resource deployments and management operations) | [Create private link for managing resources](/azure/azure-resource-manager/management/create-private-link-access-portal).
-*.blob.core.windows.net (used to upload migration-related data to Azure Storage accounts) | [Connect to a storage account using an Azure Private Endpoint - Azure Private Link](/azure/private-link/tutorial-private-endpoint-storage-portal?tabs=dynamic-ip#create-storage-account-with-a-private-endpoint).
+*.blob.core.windows.net (used to upload migration-related data to Azure Storage accounts) | [Connect to a storage account using an Azure Private Endpoint - Azure Private Link](/azure/private-link/tutorial-private-endpoint-storage-portal.md#tutorial-connect-to-a-storage-account-using-an-azure-private-endpoint).
 
 The following URLs are optional. You can choose to skip allowlisting these based on your security requirements but be aware of the impact listed below.  
 
