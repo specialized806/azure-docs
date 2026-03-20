@@ -32,7 +32,7 @@ The connector can use `anonymous` or `username password` user authentication whe
 
 ## Prerequisites
 
-To configure devices and assets, you need an instance of Azure IoT Operations.
+To configure devices and assets, you need an instance of Azure IoT Operations with the connector for OPC UA enabled.
 
 [!INCLUDE [iot-operations-entra-id-setup](../includes/iot-operations-entra-id-setup.md)]
 
@@ -317,7 +317,7 @@ When you create an asset by using the Azure CLI, you can define:
   - Software version
   - Serial number
   - Documentation URI
-- Dataset values for sampling interval, publishing interval, key frame count,and queue size.
+- Dataset values for sampling interval, publishing interval, key frame count, and queue size.
 - Datapoint specific values for sampling interval, publishing interval, and queue size.
 - Event specific values for sampling publishing interval, and queue size.
 - The observability mode for each data point and event
