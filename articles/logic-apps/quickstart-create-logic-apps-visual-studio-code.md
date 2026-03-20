@@ -1,20 +1,20 @@
 ---
-title: Quickstart - Create integration workflows in a multitenant Azure Logic Apps by using Visual Studio Code
-description: Learn how to create integration workflows in multitenant Azure Logic Apps by using Visual Studio Code.
+title: Quickstart - Create Consumption Workflows by using Visual Studio Code
+description: Create Consumption automation and integration workflows in multitenant Azure Logic Apps by using Visual Studio Code.
 services: logic-apps
 ms.suite: integration
 ms.reviewers: estfan, azla
 ms.topic: quickstart
 ms.update-cycle: 365-days
-ms.date: 03/17/2026
+ms.date: 03/20/2026
 ms.custom:
   - mvc
   - mode-ui
   - sfi-image-nochange
-#Customer intent: As an integration developer who works with Azure Logic Apps, I want to create my first automated integration workflow in a multitenant Azure Logic App by using Visual Studio Code.
+#Customer intent: As an integration developer who works with multitenant Azure Logic Apps, I want to create my first automated integration Consumption workflow by using Visual Studio Code.
 ---
 
-# Quickstart: Create integration workflows in multitenant Azure Logic Apps by using Visual Studio Code
+# Quickstart: Create Consumption workflows in multitenant Azure Logic Apps by using Visual Studio Code
 
 [!INCLUDE [logic-apps-sku-consumption](~/reusable-content/ce-skilling/azure/includes/logic-apps-sku-consumption.md)]
 
