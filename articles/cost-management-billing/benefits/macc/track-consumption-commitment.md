@@ -45,7 +45,7 @@ MACC functionality in the Azure portal is available only to direct Microsoft Cus
 
     - For a Microsoft Customer Agreement, select **Benefits** on the left pane, and then select the **Microsoft Azure Consumption Commitment (MACC)** tile.  
 
-      :::image type="content" source="../../manage/media/track-consumption-commitment/select-macc-tab.png" alt-text="Screenshot that shows selecting the Microsoft Azure Consumption Commitment tab for a Microsoft Customer Agreement." lightbox="../../manage/media/track-consumption-commitment/select-macc-tab.png" :::
+      :::image type="content" source="../../manage/media/conditional-credit-offer/benefits-page.png" alt-text="Screenshot that shows billing benefits for a Microsoft Customer Agreement, including the Microsoft Azure Consumption Commitment tile." lightbox="../../manage/media/conditional-credit-offer/benefits-page.png" :::
 
     - For an Enterprise Agreement, select **Credits + Commitments** on the left pane, and then select **Microsoft Azure Consumption Commitment (MACC)**.  
 
