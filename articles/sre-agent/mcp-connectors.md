@@ -26,7 +26,7 @@ Your agent connects natively to Azure services such as Monitor, Application Insi
 
 During an incident, that gap forces you to manually bridge systems. You query each platform separately, copy data between browser tabs, and correlate findings by hand.
 
-:::image type="content" source="media/mcp-connectors/mcp-architecture.svg" alt-text="MCP architecture diagram showing two transport types (Streamable-HTTP for remote services, stdio for local processes), preconfigured partner connectors, authentication methods, and tool assignment to custom agents.":::
+:::image type="content" source="media/mcp-connectors/mcp-architecture.svg" alt-text="MCP architecture diagram showing two transport types (Streamable-HTTP for remote services, stdio for local processes), preconfigured partner connectors, authentication methods, and tool assignment to custom agents." lightbox="media/mcp-connectors/mcp-architecture.svg":::
 
 <!-- Gap: The following section (through the Azure MCP Center note) is reconstructed from
      context clues in the diff — the architecture-diagram alt-text, the TL;DR bullet points,
