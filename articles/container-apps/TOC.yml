@@ -254,7 +254,7 @@ items:
       items:
         - name: Heroku migration overview
           href: migrate-heroku-overview.md
-        - name: Migrate from Heroku 
+        - name: Migrate from Heroku
           href: migrate-heroku.md
         - name: Migrate Spring Boot applications 
           href: migrate-spring-boot.md
