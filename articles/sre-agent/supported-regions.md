@@ -50,7 +50,7 @@ Use the following recommendations when you choose a region for your agent.
 | Cross-region resources | Your agent can access resources in any region where you grant permissions. The agent region only determines where the agent compute runs. |
 
 > [!NOTE]
-Your agent deploys to a single region in a single subscription. However, with appropriate permissions on its managed identity, the agent can manage resources across any region or subscription in your Azure environment.
+>Your agent deploys to a single region in a single subscription. However, with appropriate permissions on its managed identity, the agent can manage resources across any region or subscription in your Azure environment.
 
 ## Frequently asked questions
 
