@@ -77,7 +77,7 @@ Type the following question:
 How do I connect PagerDuty to my agent?
 ```
 
-**Checkpoint:** The response includes specific setup steps. Navigate to **Settings** > **Incident platform**, enter an API key, enable the quickstart response plan which are sourced from the official PagerDuty tutorial documentation.
+**Checkpoint:** The response includes specific setup steps. Navigate to **Settings** > **Incident platform**, enter an API key, enable the quickstart response plan which is sourced from the official PagerDuty tutorial documentation.
 
 ## Ask a feature question
 

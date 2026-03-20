@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Create and manage hooks in the portal"
+title: "Tutorial: Create and manage hooks in Azure SRE Agent"
 description: Create governance hooks in the Azure SRE Agent portal to validate agent responses and audit tool usage with Stop and PostToolUse hooks.
 ms.topic: tutorial
 ms.service: azure-sre-agent

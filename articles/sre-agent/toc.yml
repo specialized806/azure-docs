@@ -115,7 +115,7 @@ items:
       - name: Connect
         items:
           - name: Set up Teams connector
-            href: setup-teams-connector.md
+            href: set-up-teams-connector.md
       - name: Diagnose
         items:
           - name: Run a deep investigation
