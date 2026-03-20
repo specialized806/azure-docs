@@ -25,19 +25,19 @@ If you can't meet any of these pre-migration requirements, see the following com
 
 #### Determine whether and how the file system is used
 
-[!INCLUDE [migrate-java-premigration-file-system](includes/migrate-java-premigration-file-system.md)]
+[!INCLUDE [migrate-java-pre-migration-file-system](includes/migrate-java-pre-migration-file-system.md)]
 
 #### Determine whether any of the services contain OS-specific code
 
-[!INCLUDE [migrate-java-premigration-os-code](includes/migrate-java-premigration-os-code.md)]
+[!INCLUDE [migrate-java-pre-migration-os-code](includes/migrate-java-pre-migration-os-code.md)]
 
 #### Switch to a supported platform
 
-[!INCLUDE [migrate-java-premigration-platform](includes/migrate-java-premigration-platform.md)]
+[!INCLUDE [migrate-java-pre-migration-platform](includes/migrate-java-pre-migration-platform.md)]
 
 #### Identify Spring Boot versions
 
-[!INCLUDE [migrate-java-premigration-spring-boot-version](includes/migrate-java-premigration-spring-boot-version.md)]
+[!INCLUDE [migrate-java-pre-migration-spring-boot-version](includes/migrate-java-pre-migration-spring-boot-version.md)]
 
 #### Identify Spring Cloud versions
 
@@ -82,15 +82,15 @@ Identify external resources, such as data sources, JMS message brokers, and URLs
 
 #### Databases
 
-[!INCLUDE [migrate-java-premigration-databases](includes/migrate-java-premigration-databases.md)]
+[!INCLUDE [migrate-java-pre-migration-databases](includes/migrate-java-pre-migration-databases.md)]
 
 #### JMS message brokers
 
-[!INCLUDE [migrate-java-premigration-jms](includes/migrate-java-premigration-jms.md)]
+[!INCLUDE [migrate-java-pre-migration-jms](includes/migrate-java-pre-migration-jms.md)]
 
 #### Identify external caches
 
-[!INCLUDE [migrate-java-premigration-caches](includes/migrate-java-premigration-caches.md)]
+[!INCLUDE [migrate-java-pre-migration-caches](includes/migrate-java-pre-migration-caches.md)]
 
 #### Identity providers
 
@@ -130,7 +130,7 @@ Check all properties, configuration files, and environment variables in the prod
 
 #### Inventory certificates
 
-[!INCLUDE [migrate-java-premigration-certificates](includes/migrate-java-premigration-certificates.md)]
+[!INCLUDE [migrate-java-pre-migration-certificates](includes/migrate-java-pre-migration-certificates.md)]
 
 #### Determine whether Spring Cloud Vault is used
 
@@ -242,13 +242,13 @@ After you complete the migration, verify that your application works as expected
 
 The following recommendations help you adopt Spring Cloud components and Azure Container Apps managed Java components to make your application more cloud-native.
 
-[!INCLUDE [migrate-java-postmigration-spring-components](includes/migrate-java-postmigration-spring-components.md)]
+[!INCLUDE [migrate-java-post-migration-spring-components](includes/migrate-java-post-migration-spring-components.md)]
 
 ### Improve operational readiness
 
 The following recommendations help you strengthen reliability, observability, and deployment practices for your migrated application.
 
-[!INCLUDE [migrate-java-postmigration-operations](includes/migrate-java-postmigration-operations.md)]
+[!INCLUDE [migrate-java-post-migration-operations](includes/migrate-java-post-migration-operations.md)]
 
 ### Replace legacy Spring Cloud Netflix components
 

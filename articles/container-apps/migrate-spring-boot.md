@@ -10,7 +10,7 @@ ms.date: 03/11/2026
 
 # Migrate Spring Boot applications to Azure Container Apps
 
-This guide walks you through the process of migrating an existing Spring Boot application to Azure Container Apps. It covers premigration assessment, the migration itself, and post-migration optimization.
+This guide walks you through the process of migrating an existing Spring Boot application to Azure Container Apps. It covers pre-migration assessment, the migration itself, and post-migration optimization.
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ This guide walks you through the process of migrating an existing Spring Boot ap
 - Familiarity with Spring Boot application development and Docker containers.
 - A supported JDK version (8, 11, 17, or 21). For more information, see [Java on Azure Container Apps overview](java-overview.md).
 
-## Premigration assessment
+## pre-migration assessment
 
 Before you start the migration, complete the assessment and inventory steps described in the following sections.
 
@@ -44,19 +44,19 @@ Before migrating to Azure Container Apps, ensure that your code doesn't contain 
 
 ### Review file system usage
 
-[!INCLUDE [migrate-java-premigration-file-system](includes/migrate-java-premigration-file-system.md)]
+[!INCLUDE [migrate-java-pre-migration-file-system](includes/migrate-java-pre-migration-file-system.md)]
 
 ### Check for OS-specific code
 
-[!INCLUDE [migrate-java-premigration-os-code](includes/migrate-java-premigration-os-code.md)]
+[!INCLUDE [migrate-java-pre-migration-os-code](includes/migrate-java-pre-migration-os-code.md)]
 
 ### Verify platform compatibility
 
-[!INCLUDE [migrate-java-premigration-platform](includes/migrate-java-premigration-platform.md)]
+[!INCLUDE [migrate-java-pre-migration-platform](includes/migrate-java-pre-migration-platform.md)]
 
 #### Identify your Spring Boot version
 
-[!INCLUDE [migrate-java-premigration-spring-boot-version](includes/migrate-java-premigration-spring-boot-version.md)]
+[!INCLUDE [migrate-java-pre-migration-spring-boot-version](includes/migrate-java-pre-migration-spring-boot-version.md)]
 
 ### Identify scheduled jobs
 
@@ -72,15 +72,15 @@ Identify external resources, such as data sources, JMS message brokers, and URLs
 
 #### Databases
 
-[!INCLUDE [migrate-java-premigration-databases](includes/migrate-java-premigration-databases.md)]
+[!INCLUDE [migrate-java-pre-migration-databases](includes/migrate-java-pre-migration-databases.md)]
 
 #### JMS message brokers
 
-[!INCLUDE [migrate-java-premigration-jms](includes/migrate-java-premigration-jms.md)]
+[!INCLUDE [migrate-java-pre-migration-jms](includes/migrate-java-pre-migration-jms.md)]
 
 #### External caches
 
-[!INCLUDE [migrate-java-premigration-caches](includes/migrate-java-premigration-caches.md)]
+[!INCLUDE [migrate-java-pre-migration-caches](includes/migrate-java-pre-migration-caches.md)]
 
 #### Identity providers
 
@@ -106,7 +106,7 @@ Check all properties, configuration files, and environment variables in the prod
 
 #### Certificates
 
-[!INCLUDE [migrate-java-premigration-certificates](includes/migrate-java-premigration-certificates.md)]
+[!INCLUDE [migrate-java-pre-migration-certificates](includes/migrate-java-pre-migration-certificates.md)]
 
 ### Assess logging and APM
 
@@ -181,13 +181,13 @@ After you complete the migration, verify that your application works as expected
 
 The following recommendations help you adopt Spring Cloud components and Azure Container Apps managed Java components to make your application more cloud-native.
 
-[!INCLUDE [migrate-java-postmigration-spring-components](includes/migrate-java-postmigration-spring-components.md)]
+[!INCLUDE [migrate-java-post-migration-spring-components](includes/migrate-java-post-migration-spring-components.md)]
 
 ### Improve operational readiness
 
 The following recommendations help you strengthen reliability, observability, and deployment practices for your migrated application.
 
-[!INCLUDE [migrate-java-postmigration-operations](includes/migrate-java-postmigration-operations.md)]
+[!INCLUDE [migrate-java-post-migration-operations](includes/migrate-java-post-migration-operations.md)]
 
 ## Related content
 

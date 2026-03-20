@@ -10,7 +10,7 @@ ms.date: 03/11/2026
 
 # Migrate Tomcat applications to Azure Container Apps
 
-This guide walks you through the process of migrating an existing Tomcat application to Azure Container Apps. It covers premigration assessment, the migration itself, and post-migration optimization.
+This guide walks you through the process of migrating an existing Tomcat application to Azure Container Apps. It covers pre-migration assessment, the migration itself, and post-migration optimization.
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ This guide walks you through the process of migrating an existing Tomcat applica
 - A supported JDK version (8, 11, 17, or 21). For more information, see [Java on Azure Container Apps overview](java-overview.md).
 - Docker (optional - only needed if you build images locally).
 
-## Premigration assessment
+## pre-migration assessment
 
 Before you start the migration, complete the assessment and inventory steps described in the following sections.
 
@@ -62,17 +62,17 @@ Check all properties and configuration files on the production servers for any s
 
 #### Certificates
 
-[!INCLUDE [migrate-java-premigration-certificates](includes/migrate-java-premigration-certificates.md)]
+[!INCLUDE [migrate-java-pre-migration-certificates](includes/migrate-java-pre-migration-certificates.md)]
 
 ### Review file system usage
 
-[!INCLUDE [migrate-java-premigration-file-system](includes/migrate-java-premigration-file-system.md)]
+[!INCLUDE [migrate-java-pre-migration-file-system](includes/migrate-java-pre-migration-file-system.md)]
 
 If your application currently serves static content from the Tomcat *webapps/* directory, plan to move that content to an external storage solution as part of the migration.
 
 ### Check for OS-specific code
 
-[!INCLUDE [migrate-java-premigration-os-code](includes/migrate-java-premigration-os-code.md)]
+[!INCLUDE [migrate-java-pre-migration-os-code](includes/migrate-java-pre-migration-os-code.md)]
 
 ### Verify platform compatibility
 
@@ -111,7 +111,7 @@ To determine whether `MemoryRealm` is currently used, inspect your *server.xml* 
 
 ### Parameterize the configuration
 
-During the premigration, you likely identified secrets and external dependencies, such as data sources, in *server.xml* and *context.xml* files. For each item, replace any username, password, connection string, or URL with an environment variable.
+During the pre-migration, you likely identified secrets and external dependencies, such as data sources, in *server.xml* and *context.xml* files. For each item, replace any username, password, connection string, or URL with an environment variable.
 
 > [!NOTE]
 > Use the most secure authentication flow available. The authentication flow described in this procedure, such as for databases, caches, messaging, or AI services, requires a very high degree of trust in the application and carries risks not present in other flows. Use this flow only when more secure options, like managed identities for passwordless or keyless connections, aren't viable. For local machine operations, prefer user identities for passwordless or keyless connections.
@@ -204,7 +204,7 @@ Clone the [Tomcat on Containers Quickstart](https://github.com/Azure/tomcat-cont
 
 #### Add JNDI resources
 
-Edit *server.xml* to add the resources you prepared in the premigration steps, such as data sources, as shown in the following example:
+Edit *server.xml* to add the resources you prepared in the pre-migration steps, such as data sources, as shown in the following example:
 
 > [!NOTE]
 > Use the most secure authentication flow available. The authentication flow described in this procedure, such as for databases, caches, messaging, or AI services, requires a high degree of trust in the application and carries risks not present in other flows. Use this flow only when more secure options, like managed identities for passwordless, or keyless connections, aren't viable. For local machine operations, prefer user identities for passwordless or keyless connections.
@@ -335,7 +335,7 @@ After you complete the migration, verify that your application works as expected
 
 The following recommendations help you strengthen reliability, observability, and deployment practices for your migrated application.
 
-[!INCLUDE [migrate-java-postmigration-operations](includes/migrate-java-postmigration-operations.md)]
+[!INCLUDE [migrate-java-post-migration-operations](includes/migrate-java-post-migration-operations.md)]
 
 ### Tomcat-specific recommendations
 
