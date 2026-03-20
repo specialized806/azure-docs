@@ -213,6 +213,7 @@ Keep these considerations in mind when using the Flex Consumption plan:
 + **Certificates**: Loading certificates by using the `WEBSITE_LOAD_CERTIFICATES` app setting, managed certificates, app service certificates, and other platform certificate-based features like `endToEndEncryptionEnabled` aren't currently supported.
 + **Time zones**: `WEBSITE_TIME_ZONE` and `TZ` app settings aren't currently supported when running on Flex Consumption plan.
 + **Azure Functions runtime version and proxies**: Flex Consumption only supports version 4.x and later of the Azure Functions runtime. Azure Functions proxies was a feature of versions 1.x through 3.x of the Azure Functions runtime and isn't available in Flex Consumption.
++ **Plan migration**: In-place migration of an existing function app from another hosting plan to the Flex Consumption plan isn't supported. You also can't migrate your app from Flex Consumption to another plan. To move to Flex Consumption, you must create a new function app in a Flex Consumption plan and redeploy your code.
 
 ## Related articles
 
