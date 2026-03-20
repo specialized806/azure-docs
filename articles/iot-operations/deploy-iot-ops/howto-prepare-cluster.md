@@ -18,7 +18,7 @@ If you want to deploy Azure IoT Operations quickly and run a sample workload in 
 
 ## Prerequisites
 
-Microsoft supports Azure Kubernetes Service (AKS) Edge Essentials for deployments on Windows, K3s for deployments on Ubuntu, AKS deployments on Azure Local, and VKS. If you want to deploy Azure IoT Operations to a multi-node solution, use K3s on Ubuntu.
+For multi-node deployments, K3s for deployments on Ubuntu, AKS deployments on Azure Local, and VKS. Azure Kubernetes Service (AKS) Edge Essentials for Windows only supports single-node deployments.
 
 ### [Ubuntu](#tab/ubuntu)
 
@@ -241,10 +241,10 @@ Then, once you have an Azure Arc-enabled Kubernetes cluster, you can [deploy Azu
 
 ### [VKS](#tab/vks)
 
-You need a single-node or multi-node VKS cluster. For guidance, see [Deploying VKS Service Clusters](https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/managing-vsphere-kubernetes-service/running-tkg-service-clusters/deploying-tkg-service-clusters.html).
+For guidance on setting up a VKS cluster, see [Deploying VKS Service Clusters](https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/managing-vsphere-kubernetes-service/running-tkg-service-clusters/deploying-tkg-service-clusters.html).
 
 > [!IMPORTANT]
-> When you initialize your Azure IoT Operations instance on a VKS cluster you must include the following flag: `az iot ops init --cm-config global.telemetry.logs.enabled=false`.
+> When you initialize your Azure IoT Operations instance on a VKS cluster with its [pod security admission controller running in restricted mode](https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/managing-vsphere-kuberenetes-service-clusters-and-workloads/managing-security-for-tkg-service-clusters/configure-psa-for-tkr-1-25-and-later.html) you must include the `--cm-config global.telemetry.logs.enabled=false` flag when you run `az iot ops init`.
 
 ### Arc-enable your cluster
 
