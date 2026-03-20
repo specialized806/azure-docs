@@ -5,7 +5,7 @@ author: mbender-ms
 ms.author: mbender
 ms.service: azure-networking
 ms.topic: concept-article
-ms.date: 03/16/2026
+ms.date: 03/20/2026
 
 #CustomerIntent: As a network engineer or architect at a small or midsize organization, I want to understand secure network design patterns for regional web applications using a hub-spoke topology so that I can build a secure-by-default network foundation in Azure that scales as my organization grows.
 ---
@@ -63,6 +63,7 @@ Each component in this pattern has a clear role:
 | NSGs | Both | Default-deny subnet-level traffic control | Always |
 | Azure DDoS Protection | Both | Layer 3/4 volumetric attack mitigation | When public IPs face the internet |
 | Azure Bastion | Hub | Secure RDP/SSH without public IPs on VMs | When backend is IaaS |
+| NAT Gateway | Spoke | Explicit outbound connectivity for private subnets | When workload subnets need internet egress without Azure Firewall |
 | Azure Firewall Basic | Hub | Centralized egress filtering and logging | Optional — add when you need FQDN-based outbound control |
 
 ### Why hub-spoke instead of a single VNet?
@@ -83,11 +84,12 @@ This foundation is built in layers. Each layer depends on the one before it, so 
 |---|---|---|---|
 | 1 | **Resource organization** | Resource group (or separate resource groups for hub and spoke) | Establishes the RBAC and cost boundary. Everything else deploys into it. Separate resource groups let you assign different owners to hub infrastructure and workload resources. |
 | 2 | **Hub network** | Hub virtual network with `AzureBastionSubnet` (/26) and optional `AzureFirewallSubnet` (/26) + `AzureFirewallManagementSubnet` (/26) | The hub is the shared services foundation. Creating it first establishes the address space that all spokes must avoid overlapping. |
-| 3 | **Spoke network** | Spoke virtual network with Application Gateway subnet (/24) and workload subnet | The spoke hosts all workload-specific resources. Plan CIDR ranges that don't overlap with the hub. |
+| 3 | **Spoke network** | Spoke virtual network with Application Gateway subnet (/24) and workload subnet (private subnet) | The spoke hosts all workload-specific resources. Plan CIDR ranges that don't overlap with the hub. Create workload subnets as private subnets (`defaultOutboundAccess = false`) to block implicit outbound IPs. |
 | 4 | **VNet peering** | Bidirectional peering between hub and spoke | Peering connects the two VNets so that Bastion in the hub can reach VMs in the spoke and traffic can flow between shared services and workloads. Create peering before deploying resources that depend on cross-VNet connectivity. |
 | 5 | **Access control** | NSGs with default-deny rules on every subnet in both VNets | NSGs are the first security boundary. Associating them immediately after peering ensures no resource ever operates in an uncontrolled subnet—even briefly during deployment. Add the Application Gateway, Bastion, and workload NSG rules at this step so subnets are ready to receive services. |
 | 6 | **DDoS protection** (conditional) | DDoS Protection plan linked to both VNets | DDoS Protection enables at the VNet level and covers every public IP in that VNet. Enabling the plan before you create public IPs for Application Gateway or Bastion means those IPs are protected from the moment they come online. Skip this step if the architecture has no public IPs. |
 | 7 | **Ingress security** | Application Gateway WAF_v2 with public IP, WAF policy, and Key Vault TLS certificates (in spoke) | With the network foundation, peering, NSG rules, and DDoS protection in place, the Application Gateway can deploy into a spoke subnet that's already locked down. The WAF policy inspects traffic before it reaches any backend. |
+| 7b | **Outbound connectivity** | NAT Gateway on workload subnet (or Azure Firewall UDR if step 10 is used) | Private subnets have no implicit outbound IP. Attach a NAT Gateway before deploying VMs so they have outbound connectivity (Windows Activation, updates, dependencies) from the start. Skip if Azure Firewall handles egress. |
 | 8 | **Backend compute** | App Service, VMs, or Virtual Machine Scale Sets in the spoke workload subnet | Backend resources inherit the NSG rules that allow traffic only from the Application Gateway subnet. Workloads start in a secure state from the first request. |
 | 9 | **Management access** (IaaS only) | Azure Bastion in the hub `AzureBastionSubnet` | Deploy Bastion in the hub after VMs exist in the spoke so operators have targets to manage. Bastion reaches spoke VMs through the peering connection. The Basic SKU or higher supports VNet peering. Skip this step for PaaS-only backends. |
 | 10 | **Observability** | Diagnostic logs on Application Gateway and WAF, VNet flow logs, Log Analytics workspace | Enable monitoring after all resources are deployed so that every component feeds data to the same workspace from the start. |
@@ -116,7 +118,7 @@ The spoke contains workload-specific resources. Each new workload gets its own s
 | Subnet | Purpose | Minimum size | Naming requirement |
 |---|---|---|---|
 | Application Gateway subnet | Hosts Application Gateway WAF_v2 instances | /24 (251 usable IPs) | No naming requirement, but must be dedicated to Application Gateway |
-| Workload subnet | Hosts App Service VNet integration or backend VMs | Size based on workload | None |
+| Workload subnet | Hosts App Service VNet integration or backend VMs | Size based on workload | None — create as a **private subnet** (`defaultOutboundAccess = false`) and attach NAT Gateway or another explicit egress method |
 
 ### CIDR planning for hub-spoke
 
@@ -170,7 +172,7 @@ Both the hub and spoke virtual networks use NSGs to enforce default-deny rules a
 > [!NOTE]
 > **Deployment step 6.** Enable DDoS Protection on both virtual networks before creating public IPs for Application Gateway or Bastion. See [Deployment steps](#deployment-steps).
 
-All Azure services with public IPv4 and IPv6 addresses receive [Azure DDoS infrastructure protection](/azure/ddos-protection/ddos-protection-overview) at no extra cost. However, infrastructure protection defends the Azure platform as a whole—it doesn't adaptively tune to your specific traffic patterns or protect individual customer resources. For workloads that accept traffic from the public internet, enable a DDoS Protection plan (Network Protection or IP Protection) to get resource-level adaptive tuning, attack diagnostics, rapid response support, and cost protection guarantees.
+Azure DDoS infrastructure protection and Azure DDoS Protection are separate services. All Azure services with public IPv4 and IPv6 addresses receive [Azure DDoS infrastructure protection](/azure/ddos-protection/ddos-protection-overview) at no extra cost. However, infrastructure protection defends the Azure platform as a whole—it operates at a higher threshold than most individual applications can handle and **doesn't protect customer resources at the resource level**. It provides no adaptive tuning to your specific traffic patterns, no diagnostics or alerting, and no response support. For workloads that accept traffic from the public internet, enable a DDoS Protection plan (Network Protection or IP Protection) to get resource-level adaptive tuning, attack diagnostics, rapid response support, and cost protection guarantees. Don't rely on infrastructure protection alone to protect your services.
 
 The decision is straightforward:
 
@@ -185,7 +187,7 @@ The decision is straightforward:
 In a hub-spoke topology, link the DDoS Protection plan to both the hub and spoke VNets so that public IPs in either network are covered.
 
 > [!IMPORTANT]
-> Azure DDoS infrastructure protection and Azure DDoS Protection are separate services. Infrastructure protection defends the Azure platform and doesn't provide adaptive tuning, diagnostics, or response support for your individual resources. Don't treat it as a substitute for a DDoS Protection plan on internet-facing workloads.
+> Don't treat Azure DDoS infrastructure protection as a substitute for a DDoS Protection plan. Infrastructure protection safeguards the Azure ecosystem but has a higher mitigation threshold than most applications can handle. It provides no telemetry, no alerting, and no resource-level tuning. Enable a paid DDoS Protection tier for any customer-facing workload with public IPs.
 
 For more information, see [Azure DDoS Protection tier comparison](/azure/ddos-protection/ddos-protection-sku-comparison).
 
@@ -229,14 +231,14 @@ Whether you need Azure Bastion depends entirely on your backend compute model:
 
 Placing Bastion in the hub virtual network means operators deploy it once and use it to manage VMs across all peered spokes. If Bastion were in each spoke, every new workload would need its own Bastion instance—adding cost and management overhead.
 
-The Basic SKU and higher support [virtual network peering](/azure/bastion/bastion-overview), so Bastion in the hub can connect to VMs in any peered spoke.
+The Basic SKU and higher support [virtual network peering](/azure/bastion/bastion-sku-comparison), so Bastion in the hub can connect to VMs in any peered spoke. For a full feature comparison across Developer, Basic, Standard, and Premium SKUs, see [Bastion SKU comparison](/azure/bastion/bastion-sku-comparison).
 
 ### Essentials when deploying
 
 1. **Deploy Bastion in a dedicated `AzureBastionSubnet` of /26 or larger.** Azure requires this exact subnet name and it can't be shared with other resources.
-1. **Use the Basic SKU at minimum for production.** The Basic SKU provides dedicated instances and supports virtual network peering. The Developer SKU uses shared infrastructure and [isn't suitable for production](/azure/bastion/bastion-overview).
+1. **Use Premium SKU for production workloads.** Premium supports private-only deployment (no public IP required), session recording for compliance, and host scaling (2–50 instances). The cost difference over Standard is marginal. For smaller deployments, Basic is an acceptable minimum—it provides dedicated instances and supports VNet peering. The Developer SKU uses shared infrastructure, doesn't support peering, and [isn't suitable for production](/azure/bastion/bastion-sku-comparison).
 1. **Follow the Bastion NSG requirements.** The Bastion subnet has [specific inbound and outbound rules](/azure/bastion/configuration-settings#nsg) that you must apply exactly. Missing rules cause connection failures. When Bastion is in the hub, ensure the spoke workload subnet NSG allows inbound RDP (3389) or SSH (22) from the hub VNet's address space.
-1. **Enable Microsoft Entra ID authentication for SSH/RDP** when using the Standard or Premium SKU with the native client. This approach eliminates distributing SSH keys or local passwords.
+1. **Enable Microsoft Entra ID authentication for SSH/RDP.** Entra ID authentication eliminates distributing SSH keys or local passwords and enables MFA and conditional access policies. SSH via Entra ID in the portal is generally available; RDP via Entra ID in the portal is in public preview. The Basic SKU supports Entra ID auth in the portal; the Standard SKU or higher is required for native client connections. For setup instructions, see [Entra ID authentication for Azure Bastion](/azure/bastion/bastion-entra-id-authentication).
 
 ## Centralized egress with Azure Firewall (optional)
 
@@ -259,6 +261,33 @@ For organizations that need FQDN-based outbound filtering, TLS inspection, or ce
 
 > [!TIP]
 > If you don't need Azure Firewall today, design your hub VNet with a reserved `AzureFirewallSubnet` anyway. Adding Firewall later is straightforward when the subnet already exists, but adding a subnet to a hub that's already peered requires no downtime—just add the subnet and deploy.
+
+## Outbound access and private subnets
+
+Starting after March 31, 2026, new virtual networks in Azure default to **private subnets** (`defaultOutboundAccess` set to `false`). VMs in a private subnet receive no implicit outbound public IP from Azure—an explicit outbound method is required to reach public endpoints. This change aligns with Zero Trust principles: the previous default assigned a Microsoft-owned IP that could change without notice, making outbound traffic unpredictable. For full details, see [Default outbound access for VMs in Azure](/azure/virtual-network/ip-services/default-outbound-access).
+
+### What this means for the architecture
+
+Workload subnets in this pattern need an explicit egress path. Choose the method that fits your requirements:
+
+| Egress method | Best for | Consideration |
+|---|---|---|
+| **NAT Gateway** | Simple, predictable outbound without FQDN filtering | Recommended default for most workloads. Attach to workload subnets in the spoke. |
+| **Azure Firewall with UDR** | FQDN-based filtering, TLS inspection, centralized logging | Higher cost, but provides full egress control. See [Centralized egress with Azure Firewall](#centralized-egress-with-azure-firewall-optional). |
+| **Standard Load Balancer** with outbound rules | Workloads already behind a load balancer | Reuses existing infrastructure. |
+| **Instance-level public IP** | Single VM that needs direct outbound | Use only when other methods aren't practical. |
+
+### NAT Gateway for explicit outbound
+
+When you don't need FQDN-based filtering, attach a [NAT Gateway](/azure/nat-gateway/nat-overview) to the workload subnet for explicit, predictable outbound connectivity. NAT Gateway provides a static outbound IP, supports up to 50 Gbps throughput (Standard SKU), and requires no UDRs.
+
+**NAT Gateway V2 (StandardV2 SKU)** offers zone-redundant operation across all availability zones, IPv6 support, and 100 Gbps throughput at the same price as the Standard SKU. When deploying a new NAT Gateway, prefer StandardV2 where available. Note current limitations: StandardV2 requires StandardV2-SKU public IPs (Standard public IPs aren't compatible), doesn't yet support Terraform, and isn't available in all regions. For a full comparison, see [NAT Gateway SKU comparison](/azure/nat-gateway/nat-sku).
+
+> [!IMPORTANT]
+> Azure DDoS Protection plans can't protect public IPs attached to NAT Gateway. If DDoS Protection is critical for your outbound IPs, use Azure Firewall with a DDoS-protected public IP instead.
+
+> [!NOTE]
+> VMs in private subnets can't reach Windows Activation or Windows Update endpoints without an explicit egress path. Attach a NAT Gateway or configure another outbound method before deploying Windows VMs.
 
 ## Identity and access control
 
@@ -283,6 +312,7 @@ Use [Microsoft Entra ID](/entra/fundamentals/whatis) for role-based access contr
 | Deploying resources before NSGs are in place | Resources operate briefly in an uncontrolled subnet, creating a window of exposure. | Always associate NSGs with subnets before deploying any resources into them. |
 | Deploying Bastion in every spoke | Adds unnecessary cost and management overhead when the hub can serve all spokes | Deploy Bastion once in the hub. Use VNet peering to reach spoke VMs. |
 | Not planning CIDR ranges for future spokes | New spokes can't peer if their address space overlaps with existing VNets | Reserve nonoverlapping address ranges for future spokes before deploying the first spoke. |
+| Relying on default outbound access for internet egress | Default outbound uses an implicit, Microsoft-owned IP that can change without notice. After March 31, 2026, new VNets default to private subnets with no implicit outbound. | Use private subnets with NAT Gateway or Azure Firewall for explicit, predictable outbound connectivity. |
 
 ## When things go wrong
 
@@ -314,3 +344,7 @@ Use [Microsoft Entra ID](/entra/fundamentals/whatis) for role-based access contr
 
 - [Apply Zero Trust principles to a hub virtual network in Azure](/security/zero-trust/azure-infrastructure-networking)
 - [Apply Zero Trust principles to a spoke virtual network with Azure PaaS Services](/security/zero-trust/azure-infrastructure-paas)
+- [Bastion SKU comparison](/azure/bastion/bastion-sku-comparison)
+- [Default outbound access for VMs in Azure](/azure/virtual-network/ip-services/default-outbound-access)
+- [NAT Gateway overview](/azure/nat-gateway/nat-overview)
+- [Azure DDoS Protection tier comparison](/azure/ddos-protection/ddos-protection-sku-comparison)
