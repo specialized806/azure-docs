@@ -27,8 +27,8 @@ In this tutorial, you create a custom agent with a Stop hook that forces the age
 >
 > | Level | How to create | Scope |
 > |-------|--------------|-------|
-> > | **Agent level** | Portal: Builder > Hooks | Applies to all threads and custom agents |
-> > | **Custom agent level** | REST API (this tutorial) or Portal: Agent Canvas > Custom agent > Manage Hooks | Applies only to one custom agent |
+> | **Agent level** | Portal: Builder > Hooks | Applies to all threads and custom agents |
+> | **Custom agent level** | REST API (this tutorial) or Portal: Agent Canvas > Custom agent > Manage Hooks | Applies only to one custom agent |
 
 In this tutorial, you learn how to:
 
