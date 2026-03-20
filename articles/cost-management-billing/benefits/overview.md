@@ -1,6 +1,6 @@
 ---
 title: Billing Benefits Overview
-description: Learn how about the types of billing benefits that Microsoft offers. 
+description: Learn about the types of billing benefits that Microsoft offers. 
 author: benshy
 ms.reviewer: benshy
 ms.service: cost-management-billing
@@ -16,7 +16,7 @@ service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 
 A *billing benefit* is any offer that provides customers with financial advantages by changing the effective cost associated with service usage or purchases. These offers can include discounts, credits, and cost-optimizing commitments. Billing benefits can help customers reduce spending, plan capacity confidently, and align purchasing with business needs.
 
-Azure models billing benefits as Azure Resource Manager resources to enable consistent lifecycle management across the Azure portal, APIs, and SDKs. For more information, see [What is a cloud subscription?](../../cost-management-billing/manage/cloud-subscription.md).
+Azure models billing benefits as Azure Resource Manager resources to enable consistent lifecycle management across the Azure portal, APIs, and SDKs. For more information, see [What is a cloud subscription?](../../cost-management-billing/manage/cloud-subscription.md)
 
 ## Types of billing benefits
 
