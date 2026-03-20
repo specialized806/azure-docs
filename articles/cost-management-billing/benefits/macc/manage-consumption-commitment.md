@@ -58,7 +58,7 @@ After a MACC resource moves, its URI changes to reflect the new location.
 
 5. The MACC resource URI is the **Id** value.
 
-:::image type="content" source="../../manage/media/benefits/azure-consumption-commitment/consumption-commitment-uri.png" border="true" alt-text="Screenshot that shows an example Microsoft Azure Consumption Commitment resource URI on the Properties pane." lightbox="../../manage/media/benefits/azure-consumption-commitment/consumption-commitment-uri.png" :::
+  :::image type="content" source="../../manage/media/benefits/azure-consumption-commitment/consumption-commitment-uri.png" border="true" alt-text="Screenshot that shows an example Microsoft Azure Consumption Commitment resource URI on the Properties pane." lightbox="../../manage/media/benefits/azure-consumption-commitment/consumption-commitment-uri.png":::
 
 ## Rename a MACC resource
 
