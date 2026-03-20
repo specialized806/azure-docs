@@ -12,7 +12,7 @@ ai-usage: ai-generated
 
 # Azure Developer CLI (azd) templates for Azure Container Apps
 
-The [Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview) streamlines the process of building, deploying, and managing applications on Azure. The following templates help you get started with [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview) across a variety of languages, frameworks, and architectural patterns.
+The [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/overview) streamlines the process of building, deploying, and managing applications on Azure. The following templates help you get started with [Azure Container Apps](./overview.md) across a variety of languages, frameworks, and architectural patterns.
 
 Each template is a complete, deployable project you can initialize with a single command:
 
