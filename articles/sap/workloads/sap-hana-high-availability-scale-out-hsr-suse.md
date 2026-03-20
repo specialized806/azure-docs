@@ -642,30 +642,30 @@ In this example for deploying SAP HANA in scale-out configuration with HSR on Az
    Display global.ini, and ensure that the configuration for the internal SAP HANA inter-node communication is in place. Verify the **communication** section. It should have the address space for the `inter` subnet, and `listeninterface` should be set to `.internal`. Verify the **internal_hostname_resolution** section. It should have the IP addresses for the HANA virtual machines that belong to the `inter` subnet.  
 
    ```bash
-     sudo cat /usr/sap/HN1/SYS/global/hdb/custom/config/global.ini
-     # Example from SITE1 
-     [communication]
-     internal_network = 10.23.1.128/26
-     listeninterface = .internal
-     [internal_hostname_resolution]
-     10.23.1.132 = hana-s1-db1
-     10.23.1.133 = hana-s1-db2
-     10.23.1.134 = hana-s1-db3
+   sudo cat /usr/sap/HN1/SYS/global/hdb/custom/config/global.ini
+   # Example from SITE1 
+   [communication]
+   internal_network = 10.23.1.128/26
+   listeninterface = .internal
+   [internal_hostname_resolution]
+   10.23.1.132 = hana-s1-db1
+   10.23.1.133 = hana-s1-db2
+   10.23.1.134 = hana-s1-db3
    ```
 
 4. **[1,2]** Prepare `global.ini` for installation in non-shared environment, as described in SAP note [2080991](https://launchpad.support.sap.com/#/notes/0002080991).  
 
    ```bash
-    sudo vi /usr/sap/HN1/SYS/global/hdb/custom/config/global.ini
-    [persistence]
-    basepath_shared = no
+   sudo vi /usr/sap/HN1/SYS/global/hdb/custom/config/global.ini
+   [persistence]
+   basepath_shared = no
    ```
 
 5. **[1,2]** Restart SAP HANA to activate the changes.  
 
    ```bash
-    sudo -u hn1adm /usr/sap/hostctrl/exe/sapcontrol -nr 03 -function StopSystem
-    sudo -u hn1adm /usr/sap/hostctrl/exe/sapcontrol -nr 03 -function StartSystem
+   sudo -u hn1adm /usr/sap/hostctrl/exe/sapcontrol -nr 03 -function StopSystem
+   sudo -u hn1adm /usr/sap/hostctrl/exe/sapcontrol -nr 03 -function StartSystem
    ```
 
 6. **[1,2]** Verify that the client interface will be using the IP addresses from the `client` subnet for communication.  
@@ -682,7 +682,7 @@ In this example for deploying SAP HANA in scale-out configuration with HSR on Az
 7. **[AH]** Change permissions on the data and log directories to avoid HANA installation error.  
 
    ```bash
-    sudo chmod o+w -R /hana/data /hana/log
+   sudo chmod o+w -R /hana/data /hana/log
    ```
 
 8. **[1]** Install the secondary HANA nodes. The example instructions in this step are for SITE 1.
@@ -690,8 +690,8 @@ In this example for deploying SAP HANA in scale-out configuration with HSR on Az
    a. Start the resident **hdblcm** program as `root`.
 
     ```bash
-     cd /hana/shared/HN1/hdblcm
-     ./hdblcm 
+    cd /hana/shared/HN1/hdblcm
+    ./hdblcm 
     ```
 
    b. At the prompt, enter the following values:
@@ -755,7 +755,7 @@ In this example for deploying SAP HANA in scale-out configuration with HSR on Az
 
    Check the replication status and wait until all databases are in sync.
 
-    ```bash
+   ```bash
    sudo su - hn1adm -c "python /usr/sap/HN1/HDB03/exe/python_support/systemReplicationStatus.py"
    
    # | Database | Host          | Port  | Service Name | Volume ID | Site ID | Site Name | Secondary     | Secondary | Secondary | Secondary | Secondary     | Replication | Replication | Replication    |
@@ -775,7 +775,7 @@ In this example for deploying SAP HANA in scale-out configuration with HSR on Az
    # mode: PRIMARY
    # site id: 1
    # site name: HANA_S1
-    ```
+   ```
 
 4. **[1,2]** Change the HANA configuration so that communication for HANA system replication is directed through the HANA system replication virtual network interfaces.
 
@@ -997,6 +997,11 @@ With susChkSrv implemented, an immediate and configurable action is executed. Th
     ```
 
 ## Create SAP HANA cluster resources
+
+> [!NOTE]
+> The timeouts in the configuration are just examples and may need to be adapted to the specific HANA setup. For instance, you may need to increase the start timeout, if it takes longer to start the SAP HANA database.
+>
+> With ON_FAIL_ACTION=fence on SAPHanaController or SAPHanaFilesystem, you must configure SAPHanaSR-alert-fencing. For more details, see the manual page "man SAPHanaSR-alert-fencing".
 
 1. **[1]** Create the HANA Topology resource. Make sure the cluster is in maintenance mode.  
 
@@ -1296,11 +1301,6 @@ With susChkSrv implemented, an immediate and configurable action is executed. Th
     ```
 
      ---
-
-    > [!NOTE]
-    > The timeouts in the above configuration are just examples and may need to be adapted to the specific HANA setup. For instance, you may need to increase the start timeout, if it takes longer to start the SAP HANA database.
-    >
-    > With ON_FAIL_ACTION=fence on SAPHanaController or SAPHanaFilesystem, you must configure SAPHanaSR-alert-fencing. For more details, see the manual page "man SAPHanaSR-alert-fencing".
 
 ## Test SAP HANA failover
 
