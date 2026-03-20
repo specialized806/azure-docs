@@ -1,9 +1,9 @@
 ---
-title: Call Azure Functions from workflows in Azure Logic Apps
-description: Learn how to call and run functions in Azure Functions from workflows in Azure Logic Apps. Extend workflows with custom code, advanced computations, and dynamic data processing.
-services: logic-apps, azure-functions
+title: Call Azure Functions from Workflows
+description: Call functions in Azure Functions from workflows in Azure Logic Apps. Extend workflows by creating custom code for advanced computations and dynamic data processing.
+services: azure-logic-apps, azure-functions
 ms.suite: integration
-ms.reviewer: estfan, azla
+ms.reviewers: estfan, azla
 ms.topic: how-to
 ai.usage: ai-assisted
 ms.date: 03/10/2026
