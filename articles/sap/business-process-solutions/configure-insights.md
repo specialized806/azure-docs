@@ -25,7 +25,7 @@ The wizard guides you through four steps: **Set up insight**, **Set up connectio
 
 In this step, you select the source system and the insight to deploy. The wizard opens to the **Set up Business Process Solution insight** page.
 
-Under **Source system**, select an existing source system. If you don't have a source system yet, see [Create a new source system](#create-a-new-source-system).
+Under **Source system**, select an existing source system. If you don't have a source system yet, configure one using [Azure Data Factory](configure-source-system-with-data-factory.md), [Open Mirroring](configure-source-system-with-open-mirroring.md), or [Salesforce](configure-salesforce-source-system.md).
 
 1. Select **Select existing** under **Source system**.
    :::image type="content" source="./media/configure-insights/wizard-select-existing-selected.png" alt-text="Screenshot showing the Select existing option selected under source system." lightbox="./media/configure-insights/wizard-select-existing-selected.png":::
