@@ -524,13 +524,15 @@ Set up the disk layout with  **Logical Volume Manager (LVM)**. The following exa
 
 Follow the steps in [Setting up Pacemaker on SUSE Linux Enterprise Server in Azure](high-availability-guide-suse-pacemaker.md) to create the base Pacemaker cluster for HANA scale-out. Ensure that all virtual machines, including the majority maker, are added to the cluster.
 
-### Cluster specific considerations for HANA scale-out
+Few details to consider when setting up basic pacemaker cluster for HANA scale-out.
 
 * Don't set `quorum expected-votes` to 2, as this isn't a two node cluster.
 * Set the cluster property `concurrent-fencing=true` to enable deserialized node fencing.
 
-### Additional configuration steps
-
+  ```bash
+  sudo crm configure property concurrent-fencing=true
+  ```
+  
 After the base Pacemaker cluster is configured, complete the following additional steps.
 
 1. Configure a delayed start for pacemaker.service at boot by creating the file /etc/systemd/system/pacemaker.timer with the following content:
@@ -1296,8 +1298,8 @@ With susChkSrv implemented, an immediate and configurable action is executed. Th
      ---
 
     > [!NOTE]
-    >
     > The timeouts in the above configuration are just examples and may need to be adapted to the specific HANA setup. For instance, you may need to increase the start timeout, if it takes longer to start the SAP HANA database.
+    >
     > With ON_FAIL_ACTION=fence on SAPHanaController or SAPHanaFilesystem, you must configure SAPHanaSR-alert-fencing. For more details, see the manual page "man SAPHanaSR-alert-fencing".
 
 ## Test SAP HANA failover

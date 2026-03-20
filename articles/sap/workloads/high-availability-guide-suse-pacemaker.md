@@ -1009,6 +1009,8 @@ Make sure to assign the custom role to the service principal at all VM (cluster 
 
    #### [Managed identity](#tab/msi)
 
+   ##### [Non Scale-Out](#tab/non-scalout)
+
    ```bash
    # Adjust the command with your subscription ID and resource group of the VM
    sudo crm configure primitive rsc_st_azure stonith:fence_azure_arm \
@@ -1016,7 +1018,11 @@ Make sure to assign the custom role to the service principal at all VM (cluster 
    pcmk_monitor_retries=4 pcmk_action_limit=3 power_timeout=240 pcmk_reboot_timeout=900 pcmk_delay_max=15 pcmk_host_map="prod-cl1-0:prod-cl1-0-vm-name;prod-cl1-1:prod-cl1-1-vm-name" \
    meta failure-timeout=120s \
    op monitor interval=3600 timeout=120
-   
+   ```
+
+   ##### [Scale-Out](#tab/scalout)
+
+   ```bash
    # For SAP HANA scale-out only, configure fence_azure_arm using following command
    sudo crm configure primitive rsc_st_azure stonith:fence_azure_arm \
    params msi=true subscriptionId="subscription ID" resourceGroup="resource group" \
@@ -1025,7 +1031,11 @@ Make sure to assign the custom role to the service principal at all VM (cluster 
    op monitor interval=3600 timeout=120
    ```
 
+    ---
+
    #### [Service principal](#tab/spn)
+
+   ##### [Non Scale-Out](#tab/non-scalout)
 
    ```bash
    # Adjust the command with your subscription ID, resource group of the VM, tenant ID, service principal application ID and password
@@ -1034,7 +1044,11 @@ Make sure to assign the custom role to the service principal at all VM (cluster 
    pcmk_monitor_retries=4 pcmk_action_limit=3 power_timeout=240 pcmk_reboot_timeout=900 pcmk_delay_max=15 pcmk_host_map="prod-cl1-0:prod-cl1-0-vm-name;prod-cl1-1:prod-cl1-1-vm-name" \
    meta failure-timeout=120s \
    op monitor interval=3600 timeout=120
+   ```
 
+   ##### [Scale-Out](#tab/scalout)
+
+   ```bash
    # For SAP HANA scale-out only, configure fence_azure_arm using following command
    sudo crm configure primitive rsc_st_azure stonith:fence_azure_arm \
    params subscriptionId="subscription ID" resourceGroup="resource group" tenantId="tenant ID" login="application ID" passwd="password" \
@@ -1042,6 +1056,8 @@ Make sure to assign the custom role to the service principal at all VM (cluster 
    meta failure-timeout=120s \
    op monitor interval=3600 timeout=120
    ```
+
+    ---
 
     ---
 
