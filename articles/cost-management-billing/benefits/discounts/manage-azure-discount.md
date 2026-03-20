@@ -138,7 +138,7 @@ If you have questions about canceling your discount, contact your Microsoft acco
 
 You can delete a discount resource only if its status is **Failed**, **Canceled**, or **Expired**. Deletion is permanent and can't be reversed.
 
-If you try to delete a discount resource has an **Active** status, an error notifies you that deletion isn't allowed. Deleting a resource group or subscription that has an active discount resource will also fail. Be sure to move the active discount resource to another group or subscription within the same billing account before you attempt deletion.
+If you try to delete a discount resource that has an **Active** status, an error notifies you that deletion isn't allowed. Deleting a resource group or subscription that has an active discount resource will also fail. Be sure to move the active discount resource to another group or subscription within the same billing account before you attempt deletion.
 
 ## Frequently asked questions
 
