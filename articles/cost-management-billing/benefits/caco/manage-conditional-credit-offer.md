@@ -39,7 +39,7 @@ Here are the high-level steps to move a CACO resource. For more information abou
 
 3. Select the resource.
 
-4. At top of the pane, select **Move**, and then select **Move to another subscription** or **Move to another resource group**.
+4. At the top of the pane, select **Move**, and then select **Move to another subscription** or **Move to another resource group**.
 
 5. Follow the instructions to move the resource.
 
