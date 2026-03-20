@@ -81,7 +81,7 @@ Go to **Knowledge settings** to confirm your document is indexed.
 
 The **Knowledge settings** page displays your documents in a table with columns for **File Name**, **Status**, **Type**, and **Last modified**. The **Status** column shows **Indexed** when the document is indexed and ready for search.
 
-:::image type="content" source="media/tutorial-upload-knowledge-document/knowledge-base-page.png" alt-text="Knowledge settings page showing uploaded files with Indexed status, columns for File Name, Status, Type, and Last modified.":::
+:::image type="content" source="media/tutorial-upload-knowledge-document/knowledge-base-page.png" alt-text="Screenshot of Knowledge settings page showing uploaded files with Indexed status, columns for File Name, Status, Type, and Last modified.":::
 
 If the status shows **Pending**, select **Refresh**. Indexing typically finishes within a few seconds.
 
