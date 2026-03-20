@@ -21,3 +21,9 @@ the link in the **Version** column to view the source on the
 ## Azure App Service
 
 [!INCLUDE [azure-policy-reference-rp-appservice](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.web.md)]
+
+## Next steps
+
+- See the built-ins on the [Azure Policy GitHub repo](https://github.com/Azure/azure-policy).
+- Review the [Azure Policy definition structure](../governance/policy/concepts/definition-structure.md).
+- Review [Understanding policy effects](../governance/policy/concepts/effects.md).
