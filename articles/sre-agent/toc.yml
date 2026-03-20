@@ -94,6 +94,8 @@ items:
             href: agent-playground.md
           - name: Python tools
             href: python-code-execution.md
+          - name: Plugin marketplace
+            href: plugin-marketplace.md
           - name: Agent hooks
             href: agent-hooks.md
           - name: Code interpreter
@@ -110,6 +112,10 @@ items:
         items:
           - name: Chat from your tools
             href: chat-from-your-tools.md
+          - name: Learn via Chat
+            href: docsguide.md
+          - name: Favorites and Mine filter
+            href: favorites-mine-filter.md
       - name: Measure & govern
         items:
           - name: Track incident value
@@ -124,6 +130,8 @@ items:
         items:
           - name: Share files and screenshots
             href: file-attachments-tutorial.md
+          - name: Set up Teams connector
+            href: set-up-teams-connector.md
       - name: Diagnose
         items:
           - name: Run a deep investigation
@@ -150,12 +158,22 @@ items:
         items:
           - name: Configure agent hooks
             href: tutorial-agent-hooks.md
+          - name: Create and manage hooks in the portal
+            href: create-manage-hooks-ui.md
           - name: Test a tool in the playground
             href: test-tool-playground.md
           - name: Create a Python tool
             href: create-python-tool.md
+          - name: Install a Marketplace plugin
+            href: install-plugin-from-marketplace.md
           - name: Use code interpreter
             href: use-code-interpreter.md
+          - name: Create a subagent
+            href: create-subagent.md
+          - name: Create a skill
+            href: create-skill.md
+          - name: Use DocsGuide
+            href: use-docsguide.md
       - name: Knowledge & data sources
         items:
           - name: Set up Kusto connector
