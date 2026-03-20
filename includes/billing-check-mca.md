@@ -2,7 +2,7 @@
 author: KennyDay
 ms.service: cost-management-billing
 ms.topic: include
-ms.date: 08/21/2014
+ms.date: 08/21/2024
 ms.author: kenday
 ---
  
