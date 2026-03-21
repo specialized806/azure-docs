@@ -1,9 +1,9 @@
 ---
-title: Call Azure Functions from workflows in Azure Logic Apps
-description: Learn how to call and run functions in Azure Functions from workflows in Azure Logic Apps. Extend workflows with custom code, advanced computations, and dynamic data processing.
-services: logic-apps, azure-functions
+title: Call Azure Functions from Workflows
+description: Call and run functions in Azure Functions from workflows in Azure Logic Apps by creating custom code to perform advanced calculations or process dynamic data.
+services: azure-logic-apps, azure-functions
 ms.suite: integration
-ms.reviewer: estfan, azla
+ms.reviewers: estfan, azla
 ms.topic: how-to
 ai.usage: ai-assisted
 ms.date: 03/10/2026
@@ -15,28 +15,33 @@ ms.custom: sfi-image-nochange
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
-Azure Logic Apps and Azure Functions work together so that you can extend and enhance your integration workflows with custom code execution, advanced computations, and dynamic data processing. When you create functions in Azure Functions, you can call and run these functions from your workflows. The Azure Functions platform lets you run code without building a complete app or setting up separate infrastructure and provides cloud-based computing that can perform tasks. For example:
+To extend your workflows with custom code that performs advanced computations or processes dynamic data, create and call functions in Azure Functions from workflows in Azure Logic Apps. When you create functions in Azure Functions, you can complete tasks like the following:
 
-- Extend your workflow's behavior by running functions created by using C# or Node.js.
-- Perform calculations in your workflow.
+- Run functions created by using C# or Node.js.
+- Perform advanced calculations in your workflow.
 - Apply advanced formatting or compute fields in your workflow.
 
-This guide shows how to call and run a function in Azure Functions from your Azure Logic Apps workflow, whether you're using the Consumption or Standard plan. You also learn about prerequisites, limitations, and tips for working with Azure Functions to ensure seamless integration and optimal performance. For more information, see [Azure Functions](../azure-functions/functions-overview.md) and [Azure Logic Apps](logic-apps-overview.md).
+This guide shows how to call and run a function in Azure Functions from your Consumption or Standard workflow in Azure Logic Apps. You also learn about the prerequisites, limitations, and tips for working with Azure Functions to ensure seamless integration and optimal performance.
 
-> [!NOTE]
+> [!TIP]
 >
-> If you want to run code without using Azure Functions, see:
+> To run code without using Azure Functions, see:
 >
 > - [Run code snippets in workflows](logic-apps-add-run-inline-code.md)
 > - [Create and run .NET code from Standard workflows in Azure Logic Apps](create-run-custom-code-functions.md)
 
+For more information, see:
+
+- [Azure Functions](../azure-functions/functions-overview.md)
+- [Azure Logic Apps](logic-apps-overview.md)
+
 ## Limitations
 
-For Azure Functions to operate correctly in your workflow, the following limitations apply:
+For Azure Functions to operate correctly in your workflow, review the following limitations:
 
 - Function app resources must use either the .NET or Node.js runtime stack.
 
-- Functions must use either C# or JavaScript code.
+- Functions must be written in either C# or JavaScript code.
 
 - Functions must use the **HTTP trigger** template.
 
@@ -60,7 +65,7 @@ For Azure Functions to operate correctly in your workflow, the following limitat
 
 - An [Azure function app resource](../azure-functions/functions-get-started.md), which can contain one or more Azure functions.
 
-  Make sure to use the same Azure subscription for your function app resource and logic app resource.
+  Make sure that your function app resource and logic app resource exist in the same Azure subscription.
 
 - The Azure function to call from your workflow.
 
@@ -115,7 +120,7 @@ For Azure Functions to operate correctly in your workflow, the following limitat
 
   For example, you can start the workflow with the general **HTTP** or **Request** trigger, or you can use a service-based trigger, such as **Azure Queues** or **Event Grid**. Inside your function, send an HTTP POST request to the trigger's URL and include the payload that you want your secondary workflow to process. For more information, see [Call, trigger, or nest logic app workflows](logic-apps-http-endpoint.md).
 
-## Tips for working with Azure functions
+## Tips for working with Azure Functions
 
 <a name="open-ai-definition"></a>
 
@@ -131,7 +136,7 @@ To set up your function app so that your workflow can find and use functions tha
 
    1. Under **Allowed Origins**, add the asterisk (*) wildcard character, remove any origins in the list, and then select **Save**.
 
-      :::image type="content" source="media/call-azure-functions-from-workflows/function-cors-origins.png" alt-text="Screenshot that shows Azure portal, CORS pane, and the * wildcard character entered under Allowed Origins." lightbox="media/call-azure-functions-from-workflows/function-cors-origins.png":::
+      :::image type="content" source="media/call-azure-functions-from-workflows/function-cors-origins.png" alt-text="Screenshot that shows the Azure portal, function app, and CORS pane with * entered under Allowed Origins." lightbox="media/call-azure-functions-from-workflows/function-cors-origins.png":::
 
 ### Access the property values in HTTPS requests
 
@@ -188,7 +193,7 @@ To call an Azure function from your workflow, add that function like any other a
 
 ### [Consumption](#tab/consumption)
 
-1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource, and then open the workflow in the designer.
+1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource. Open the workflow in the designer.
 
 1. In the designer, follow the [general steps](create-workflow-with-trigger-or-action.md?tabs=consumption#add-action) to add the **Azure Functions** action named **Choose an Azure function**.
 
@@ -198,7 +203,7 @@ To call an Azure function from your workflow, add that function like any other a
 
    1. Select the function, and then select **Add action**, for example:
 
-      :::image type="content" source="media/call-azure-functions-from-workflows/select-function-app-function-consumption.png" alt-text="Screenshot that shows the Consumption workflow opened in the Logic app designer with a selected function app and function in the Add an action pane.":::
+      :::image type="content" source="media/call-azure-functions-from-workflows/select-function-app-function-consumption.png" alt-text="Screenshot that shows the Consumption workflow designer with a selected function app and function in Add an action.":::
 
 1. After the function's information box appears, follow these steps:
 
@@ -214,15 +219,15 @@ To call an Azure function from your workflow, add that function like any other a
 
       The following example specifies a JSON object with the `content` attribute and the **From** output value from the email trigger as the **Request Body** value:
 
-      :::image type="content" source="media/call-azure-functions-from-workflows/function-request-body-example-consumption.png" alt-text="Screenshot that shows a Consumption workflow and a function with a Request Body example for the context object payload.":::
+      :::image type="content" source="media/call-azure-functions-from-workflows/function-request-body-example-consumption.png" alt-text="Screenshot that shows a Consumption workflow with a Request Body example for the function context object payload.":::
 
       In this case, the context object isn't cast as a string. The object's content is directly added to the JSON payload. The following image shows the finished example:
 
-      :::image type="content" source="media/call-azure-functions-from-workflows/request-body-example-complete.png" alt-text="Screenshot that shows a Consumption workflow and a function with a finished Request Body example for the context object payload.":::
+      :::image type="content" source="media/call-azure-functions-from-workflows/request-body-example-complete.png" alt-text="Screenshot that shows a Consumption workflow and a function with a completed Request Body example for the function context object payload.":::
 
       If you enter a context object other than a JSON token that passes a string, a JSON object, or a JSON array, you receive an error. However, you can cast the context object as a string by enclosing the token in quotation marks (" "). For example, if you wanted to use the **Received Time** output value:
 
-      :::image type="content" source="media/call-azure-functions-from-workflows/function-request-body-string-cast-example.png" alt-text="Screenshot that shows a Consumption workflow and a Request Body example that casts a context object as a string.":::
+      :::image type="content" source="media/call-azure-functions-from-workflows/function-request-body-string-cast-example.png" alt-text="Screenshot that shows a Consumption workflow with a Request Body example that casts a context object as a string.":::
 
    1. To enter other information such as the method to use, request headers, query parameters, or authentication, open the **Advanced parameters** list, and select the parameters you want.
 
@@ -230,7 +235,7 @@ To call an Azure function from your workflow, add that function like any other a
 
 ### [Standard](#tab/standard)
 
-1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource, and then open the workflow in the designer.
+1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource. Open the workflow in the designer.
 
 1. In the designer, follow the [general steps](create-workflow-with-trigger-or-action.md?tabs=standard#add-action) to add the **Azure Functions** action named **Call an Azure function**.
 
@@ -242,7 +247,7 @@ To call an Azure function from your workflow, add that function like any other a
 
    1. Select the function, and then select **Create new**, for example:
 
-      :::image type="content" source="media/call-azure-functions-from-workflows/select-function-app-function-standard.png" alt-text="Screenshot that shows the Standard workflow designer with page with a selected function app and function in a Create connection pane.":::
+      :::image type="content" source="media/call-azure-functions-from-workflows/select-function-app-function-standard.png" alt-text="Screenshot that shows the Standard workflow designer with a selected function app and function in Create connection.":::
 
 1. After the function's information box appears, follow these steps:
 
