@@ -1,6 +1,6 @@
 ---
 title: Quickstart - Create Consumption Workflows by using Visual Studio Code
-description: Create and publish Consumption automation and integration workflows in multitenant Azure Logic Apps by using Visual Studio Code.
+description: Create and publish Consumption workflows in multitenant Azure Logic Apps for automation and integration solutions by using Visual Studio Code.
 services: logic-apps
 ms.suite: integration
 ms.reviewers: estfan, azla
@@ -18,11 +18,11 @@ ms.custom:
 
 [!INCLUDE [logic-apps-sku-consumption](../logic-apps/includes/logic-apps-sku-consumption.md)]
 
-As an integration developer, you often need to automate business processes across SaaS apps, enterprise systems, and data sources without managing infrastructure. You also need a code-first way to build workflows so you can more efficiently version definitions, make updates, and review changes.
+As an integration developer, you often need to automate business processes across SaaS apps, enterprise systems, and data sources without managing infrastructure. You also need a code-first way to build workflows so you can version definitions, make updates, and review changes efficiently.
 
 This quickstart shows how to create and manage Consumption workflows in multitenant Azure Logic Apps by using the local, code-first tools in Visual Studio Code. Consumption workflows provide a serverless integration model for event-driven and scheduled workflows, so you can connect services and automate processes while paying only for the actions that run.
 
-In Visual Studio Code, you can edit workflow definitions in JavaScript Object Notation (JSON) by using the code editor, use the visual designer when needed, and manage deployed workflows in Azure. You can also work on workflows and integration accounts from any development platform where Visual Studio Code runs, such as Linux, Windows, and Mac.
+In Visual Studio Code, you can edit workflow definitions in JavaScript Object Notation (JSON) by using the code editor, use the visual designer when needed, and manage deployed workflows in Azure. You can also work on workflows and integration accounts from any development platform where Visual Studio Code runs, such as Linux, Windows, and macOS.
 
 The following screenshot shows how an example Consumption workflow definition might look:
 
@@ -37,17 +37,17 @@ For more information, see:
 
 - An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- Basic knowledge about [logic app workflow definitions](logic-apps-workflow-definition-language.md) and their structure in JSON format
+- Basic knowledge about [logic app workflow definitions](logic-apps-workflow-definition-language.md) and their structure in JSON format.
 
-  The example in this article creates the same logic app workflow in this [quickstart](quickstart-create-example-consumption-workflow.md) that focuses more on the basic concepts. You can also [learn to create and manage workflows through the Azure CLI](quickstart-logic-apps-azure-cli.md). 
+  The example in this article creates the same logic app workflow as in this [quickstart](quickstart-create-example-consumption-workflow.md) that focuses more on the basic concepts. You can also [learn to create and manage workflows through the Azure CLI](quickstart-logic-apps-azure-cli.md). 
 
-- Access to the web for signing in to Azure and your Azure subscription
+- Access to the web for signing in to Azure and your Azure subscription.
 
 - Download and install the following tools, if you don't have them already:
 
-  - [Visual Studio Code version 1.25.1 or later](https://code.visualstudio.com/), which is free
+  - [Visual Studio Code version 1.25.1 or later](https://code.visualstudio.com/), which is free.
 
-  - Visual Studio Code extension for Azure Logic Apps (Consumption)
+  - Visual Studio Code extension for Azure Logic Apps (Consumption).
 
     1. Install this extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-logicapps) or directly from inside Visual Studio Code.
     
@@ -67,7 +67,7 @@ For more information, see:
 
 1. In Visual Studio Code, [sign in to your Azure account](https://code.visualstudio.com/docs/azure/resourcesextension#_how-to-sign-in-to-your-azure-account).
 
-   If sign in takes longer than usual, Visual Studio Code prompts you to sign in through a Microsoft authentication website by providing you with a device code. To sign in with the code instead, follow these steps:
+      If sign in takes longer than usual, Visual Studio Code prompts you to sign in through a Microsoft authentication website by providing you with a device code. To sign in by using the code instead, follow these steps:
 
    1. Select **Use Device Code**, and then select **Copy & Open**.
 
@@ -214,7 +214,7 @@ The read-only designer opens in a separate tab and shows the logic app workflow,
 
 To review your logic app workflow definition in Azure portal, follow these steps:
 
-1. In the [Azure portal](https://portal.azure.com), sign in with the same Azure account and subscription associated with your logic app.
+1. In the [Azure portal](https://portal.azure.com), sign in by using the same Azure account and subscription associated with your logic app.
 
 1. In the Azure portal search box, enter the logic app name. From the results list, select the logic app.
 
@@ -240,11 +240,11 @@ In Visual Studio Code, you can open and edit the workflow definition for an alre
 
    :::image type="content" source="media/quickstart-create-logic-apps-visual-studio-code/open-editor-existing-logic-app.png" alt-text="Screenshot that shows Azure window, logic app shortcut menu, and Open in Editor selected.":::
 
-   Visual Studio Code opens the *.logicapp.json file* in your local temporary folder so you can view the workflow definition.
+   Visual Studio Code opens the *.logicapp.json* file in your local temporary folder so you can view the workflow definition.
 
    :::image type="content" source="media/quickstart-create-logic-apps-visual-studio-code/edit-published-logic-app-workflow-definition.png" alt-text="Screenshot that shows Visual Studio Code and the opened logic app workflow definition file.":::
 
-1. Make your changes in the workflow definition file
+1. Make your changes in the workflow definition file.
 
 1. When you finish, save your changes (**File** > **Save** or press Ctrl+S).
 
@@ -256,11 +256,11 @@ In Visual Studio Code, you can open and edit the workflow definition for an alre
 
 ## View or promote other versions
 
-In Visual Studio Code, you can open and review the earlier versions for your logic app workflow. You can also promote an earlier version to the current version.
+In Visual Studio Code, you can open and review earlier versions for your logic app workflow. You can also promote an earlier version to the current version.
 
 > [!IMPORTANT]
 >
-> Before you change an actively running logic app workflow in production, you can minimize disruption and avoid the risk of breaking that logic app if you first [disable your logic app resource](#disable-enable-logic-apps).
+> Before you change an actively running logic app workflow in production, minimize disruption and avoid the risk of breaking that logic app by first [disabling your logic app resource](#disable-enable-logic-apps).
 
 1. In the Azure window, in the **Logic Apps (Consumption)** section, expand your Azure subscription to view the associated logic apps.
 
@@ -332,13 +332,13 @@ To disable or enable a logic app resource in Visual Studio Code, follow these st
 
 Deleting a logic app affects workflow instances in the following ways:
 
-- Azure Logic Apps makes a best effort to cancel any in-progress and pending workflow runs.
+- Azure Logic Apps tries to cancel any in-progress and pending workflow runs.
 
-  Even with a large volume or backlog, most runs are canceled before they finish or start. However, the cancelation process might take time to complete. Meanwhile, some runs might get picked up for execution while the service works through the cancelation process.
+  Even with a large volume or backlog, most runs are canceled before they finish or start. However, the cancellation process might take time to complete. Meanwhile, the service might pick up some runs for execution while it works through the cancellation process.
 
 - Azure Logic Apps doesn't create or run new workflow instances.
 
-- If you delete a workflow and then recreate the same workflow, the recreated workflow has different metadata. You need to resave any workflow that called the deleted workflow. That way, the caller gets the correct information for the recreated workflow. Otherwise, calls to the recreated workflow fail with an `Unauthorized` error. This behavior also applies to workflows that use artifacts in integration accounts and workflows that call Azure functions.
+- If you delete a workflow and then recreate the same workflow, the recreated workflow has different metadata. You need to resave any workflow that called the deleted workflow. When you resave, the caller gets the correct information for the recreated workflow. Otherwise, calls to the recreated workflow fail with an `Unauthorized` error. This behavior also applies to workflows that use artifacts in integration accounts and workflows that call Azure functions.
 
 To delete a logic app resource from Visual Studio Code, follow these steps:
 
