@@ -43,7 +43,7 @@ The first step in configuring your environment for FHIR data export is to enable
 
 1. When the **Yes** and **No** buttons display, select **Yes** to enable the managed identity for the FHIR service. After you enable the system identity, you see an **Object (principal) ID** value for your FHIR service.
 
-   :::image type="content" source="media/configure-import-data/fhir-managed-identity-object-id.png" alt-text="Screenshot showing the enabled managed identity for the FHIR service." lightbox="media/configure-import-data/fhir-managed-identity-object-id.png":::
+   :::image type="content" source="media/configure-import-data/fhir-managed-identity-object-id.png" alt-text="Screenshot showing the enabled managed identity for the FHIR service with the Object (principal) ID displayed." lightbox="media/configure-import-data/fhir-managed-identity-object-id.png":::
 
 
 ## Give permission in the storage account for FHIR service access

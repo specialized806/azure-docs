@@ -57,7 +57,7 @@ You can set the import configuration for the FHIR service through the import set
 > [!NOTE]
 > If you don't assign storage access permissions to the FHIR service, the `import` operation fails.
 
-[Azure portal](#tab/azure-portal)
+# [Azure portal](#tab/azure-portal)
 
 To set the import configuration through the portal:
 
@@ -68,7 +68,7 @@ To set the import configuration through the portal:
 
 :::image type="content" source="media/configure-import-data/fhir-import-portal.png" alt-text="Screenshot of the FHIR import settings in the Azure portal." lightbox="media/configure-import-data/fhir-import-portal.png":::
 
-[ARM template](#tab/arm-template)
+# [ARM template](#tab/arm-template)
 
 You can also set the import configuration by using an ARM template that updates the FHIR service configuration for `import`. You can deploy the template through the portal or the [REST API](/rest/api/healthcareapis/services/create-or-update).
 
@@ -89,7 +89,7 @@ To update an existing FHIR service, you need to provide the following informatio
 
 :::image type="content" source="media/configure-import-data/import-template-portal.png" alt-text="Screenshot of the Deploy to Azure page with parameters for the ARM template." lightbox="media/configure-import-data/import-template-portal.png":::
 
-[REST API](#tab/rest-api)
+# [REST API](#tab/rest-api)
 
 You can set the import configuration by using the REST API to update the FHIR service. This method is helpful if you want to automate the configuration process through scripting.
 
