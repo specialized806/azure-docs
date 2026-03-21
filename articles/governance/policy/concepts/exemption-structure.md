@@ -120,6 +120,32 @@ Exemptions support an optional property `resourceSelectors` that works the same 
 
 Regions can be added or removed from the `resourceLocation` list in the example. Resource selectors allow for greater flexibility of where and how exemptions can be created and managed.
 
+### Identity based exemptions (preview)
+
+You can leverage selector kinds userPrincipalId and groupPrincipalId within the exemption structure to enable a specific service principal, MSI, user, or security group to bypass a policy assignment's enforcement.
+
+Take an example where you want to assign the built-in policy definition `Allowed virtual machine size SKUs` in your subscription to ensure that only A-family VMs can be deployed, with the exception of a high privileged group. You can use identity based conditions to exempt this group in your organization from this enforcement. 
+
+This is an example of an identity-based exemption:
+
+```json
+"properties": {   
+  "policyAssignmentId": "/subscriptions/<subscriptionID>/providers/Microsoft.Authorization/policyAssignments/CostMgmt",   
+  "resourceSelectors": [{    
+      "name": "AllowedGroups",   
+      "selectors": [{   
+          "kind": "groupPrincipalId",   
+          "in": [ "<HighPrivEngGroupId>" ]   
+        },      
+      ]   
+    }   
+  ],   
+  "exemptionCategory": "Waiver",   
+  "displayName": "Exempt high SKU VM",   
+  "description": "Exempt high SKU VM for business need"   
+}   
+```
+
 ## Assignment scope validation (preview)
 
 In most scenarios, the exemption scope is validated to ensure it's at or under the policy assignment scope. The optional `assignmentScopeValidation` property can allow an exemption to bypass this validation and be created outside of the assignment scope. This validation is intended for situations where a subscription needs to be moved from one management group (MG) to another, but the move would be blocked by policy due to properties of resources within the subscription. In this scenario, an exemption could be created for the subscription in its current MG to exempt its resources from a policy assignment on the destination MG. That way, when the subscription is moved into the destination MG, the operation isn't blocked because resources are already exempt from the policy assignment in question. The use of this property is shown in the following example:
