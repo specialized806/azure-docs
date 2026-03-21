@@ -77,7 +77,7 @@ For more information, see:
 
 1. On the Activity bar, select the Azure icon.
 
-   :::image type="content" source="media/quickstart-create-logic-apps-visual-studio-code/open-extensions-visual-studio-code.png" alt-text="Screenshot that shows Visual Studio Code and the Azure icon selected on the Activity bar.":::
+   :::image type="content" source="media/quickstart-create-logic-apps-visual-studio-code/open-extensions-visual-studio-code.png" alt-text="Screenshot that shows Visual Studio Code, Activity bar, and the selected Azure icon.":::
 
    In the Azure pane, the **Logic Apps (Consumption)** and **Integration Accounts** sections now show the Azure subscriptions that are associated with your account. If you don't see the subscriptions that you expect, or if the sections show too many subscriptions, follow these steps:
 
@@ -109,7 +109,7 @@ For more information, see:
 
 1. Enter a name for your Azure resource group.
 
-   :::image type="content" source="media/quickstart-create-logic-apps-visual-studio-code/enter-name-resource-group.png" alt-text="Screenshot that shows an new Azure resource group name entered.":::
+   :::image type="content" source="media/quickstart-create-logic-apps-visual-studio-code/enter-name-resource-group.png" alt-text="Screenshot that shows a new Azure resource group name entered.":::
 
 1. Select the Azure region where to save the logic app metadata.
 
