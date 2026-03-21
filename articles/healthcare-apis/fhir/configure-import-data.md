@@ -1,26 +1,26 @@
 ---
-title: Configure import settings in the FHIR service in Azure Health Data Services
-description: This article describes how to configure import settings in the FHIR service.
+title: "Configure Import Settings in the FHIR Service in Azure Health Data Services"
+description: Learn how to configure import settings in the FHIR service in Azure Health Data Services, including managed identity, storage permissions, and secure import operations.
 author: Expekesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: how-to
-ms.date: 03/18/2026
+ms.date: 03/20/2026
 ms.author: kesheth
 ms.reviewer: v-catheribun
 ms.custom: sfi-image-nochange
 ---
 
-# Configure FHIR import settings
+# Configure import settings in the FHIR service in Azure Health Data Services
 
-This article walks you through the steps to configure settings on the FHIR&reg; service for `import` operations. 
+Use this guide to configure import settings in the FHIR&reg; service in Azure Health Data Services. Learn how to enable managed identities, assign storage permissions, and securely import FHIR data from Azure Blob Storage or Azure Data Lake Storage Gen2. 
 
 ## Prerequisites
 
 - A FHIR service. To create one, see [Deploy the FHIR service](deploy-azure-portal.md).
-- An Azure Blob Storage or Azure Data Lake Storage Gen 2. To create a storage account, see [Create a storage account](../../storage/common/storage-account-create.md).
+- An Azure Blob or Azure Data Lake Storage Gen2 (ADLS Gen2) account configured with [Hierarchical Namespaces (HNS) enabled](../../storage/blobs/create-data-lake-storage-account.md) to use as the destination for exported data. 
 
-## Enable a managed identity on the FHIR service
+## Enable a managed identity on the FHIR service for import
 
 First, enable a system-assigned managed identity on the service. Use this identity to grant the FHIR service access to the storage account. For more information about managed identities in Azure, see [About managed identities for Azure resources](../../active-directory/managed-identities-azure-resources/overview.md).
 
@@ -28,15 +28,13 @@ To enable a managed identity on the FHIR service:
 
 1. In the Azure portal, browse to your FHIR service.
 1. On the left menu, select **Identity**.
-1. Set the **Status** option to **On**, and then select **Save**.
-1. Select **Yes**.
+1. In the **System assigned** tab, set the **Status** option to **On**, and then select **Save**. 
+1. When the **Yes** and **No** buttons display, select **Yes** to enable the managed identity for the FHIR service. After you enable the system identity, you see an **Object (principal) ID** value for your FHIR service.
 
-After you enable the managed identity, a system-assigned GUID value appears.
-
-:::image type="content" source="media/configure-import-data/fhir-managed-identity-enabled.png" alt-text="Screenshot that shows selections for enabling a managed identity for the FHIR service." lightbox="media/configure-import-data/fhir-managed-identity-enabled.png":::
+:::image type="content" source="media/configure-import-data/fhir-managed-identity-enabled.png" alt-text="Screenshot of the Identity pane for the FHIR service with the Status option set to On." lightbox="media/configure-import-data/fhir-managed-identity-enabled.png":::
 
 
-## Assign permissions to the FHIR service
+## Assign storage permissions to the FHIR service
 
 Use the following steps to assign permissions to access the storage account.
 
@@ -52,9 +50,9 @@ Use the following steps to assign permissions to access the storage account.
 
 Now you're ready to select the storage account for import.
 
-## Set the import configuration of the FHIR service
+## Set the import configuration for the FHIR service
 
-You can set the import configuration for the FHIR service through the import settings in the Azure portal, or by using an Azure Resource Manager (ARM) template, or a REST API.
+You can set the import configuration for the FHIR service through the import settings in the Azure portal, or by using an Azure Resource Manager template (ARM template), or a REST API.
 
 > [!NOTE]
 > If you don't assign storage access permissions to the FHIR service, the `import` operation fails.
@@ -117,7 +115,7 @@ First, get the request URL and JSON body for the FHIR service.
 
 ---
 
-## Secure the FHIR service's import operation
+## Secure the FHIR service import operation
 
 To securely import FHIR data into the FHIR service from an Azure Blob or Data Lake Storage Gen2 account, use one of the following options:
 
@@ -125,13 +123,15 @@ To securely import FHIR data into the FHIR service from an Azure Blob or Data La
 * Allow specific IP addresses associated with the FHIR service to access the storage account from other Azure regions.
 * Allow specific IP addresses associated with the FHIR service to access the storage account in the same region as the FHIR service.
 
+### Enable the FHIR service as a trusted Microsoft service
+
 To enable the FHIR workspace as a trusted Microsoft service, follow these steps:
 
-Ensure that your storage account public network access scope is enabled for selected network. 
+Ensure that your storage account public network access scope is enabled for selected networks. 
 
 1. In the Azure portal, go to your Blob or  Data Lake Storage Gen2 account.
 1. On the left menu, select **Networking**.
-1. On the **Public access** under **Public network access**, select **Manage**.
+1. On the **Public access** tab under **Public network access**, select **Manage**.
 
    :::image type="content" source="media/export-data/storage-networking-1.png" alt-text="Screenshot of Azure Storage networking settings." lightbox="media/export-data/storage-networking-1.png":::
 1. Select **Enable from selected networks**.
@@ -165,20 +165,22 @@ Install-Module Az.Storage -Repository PsGallery -AllowClobber -Force
    Add-AzStorageAccountNetworkRule -ResourceGroupName $resourceGroupName -Name $storageaccountName -TenantId $tenantId -ResourceId $resourceId
    ```
 
-1. Use the Azure portal to confirm that the resource is registered as a trusted Microsoft service. In the storage account, go to **Networking** > **Public access** > **Manage**. In the **Resource instances** section, you should see the FHIR service instance listed.
+You're now ready to securely import FHIR data from the storage account. The storage account is on selected networks and isn't publicly accessible. To securely access the files, use [private endpoints](../../storage/common/storage-private-endpoints.md) for the storage account.
 
-:::image type="content" source="media/export-data/storage-networking-3.png" alt-text="Screenshot of Azure Storage networking settings with resource type and instance names." lightbox="media/export-data/storage-networking-3.png":::
+### Allow specific IP addresses to access the Azure storage account from other Azure regions
 
-
-1. Verify that the option to allow trusted Microsoft services to access this storage account is listed in the **Resource instances** section.
-
-:::image type="content" source="media/export-data/storage-networking-4.png" alt-text="Screenshot of Azure Storage networking settings with resource type and instance names." lightbox="media/export-data/storage-networking-4.png":::
-
-## Private endpoint for secure access to storage account
-
-You're now ready to securely import FHIR data from the storage account. The storage account is on selected networks and isn't publicly accessible. To securely access the files, you can use [private endpoints](../../storage/common/storage-private-endpoints.md) for the storage account.
+<!-- Need information as the interface has changed. -->
 
 [!INCLUDE [Specific IP ranges for storage account](../includes/common-ip-address-storage-account.md)]
+
+
+### Allow specific IP addresses to access the Azure storage account in the same region as the FHIR service
+
+The configuration process for IP addresses in the same region is just like the previous procedure, except that you use a specific IP address range in Classless Inter-Domain Routing (CIDR) format instead (that is, 100.64.0.0/10). You must specify the IP address range (100.64.0.0 to 100.127.255.255) because an IP address for the FHIR service is allocated each time you make an operation request.
+
+[!NOTE]
+> You can use a private IP address within the range of 10.0.2.0/24, but there's no guarantee that the operation succeeds in such a case. You can retry if the operation request fails, but until you use an IP address within the range of 100.64.0.0/10, the request won't succeed.
+> This network behavior for IP address ranges is by design. The alternative is to configure the storage account in a different region.
 
 ## Next steps
 
