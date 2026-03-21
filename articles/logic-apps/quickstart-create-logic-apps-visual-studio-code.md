@@ -236,39 +236,39 @@ In Visual Studio Code, you can open and edit the workflow definition for an alre
 
 1. In the Azure window, in the **Logic Apps (Consumption)** section, expand your Azure subscription, and select the logic app you want.
 
-1.From the logic app shortcut menu, select **Open in Editor**. Or, next to the logic app name, select the edit icon.
+1. From the logic app shortcut menu, select **Open in Editor**. Or, next to the logic app name, select the edit icon.
 
    :::image type="content" source="media/quickstart-create-logic-apps-visual-studio-code/open-editor-existing-logic-app.png" alt-text="Screenshot that shows Azure window, logic app shortcut menu, and Open in Editor selected.":::
 
    Visual Studio Code opens the *.logicapp.json file* in your local temporary folder so you can view the workflow definition.
 
-   ![Screenshot that shows your logic app's workflow definition file opened in Visual Studio Code.](./media/quickstart-create-logic-apps-visual-studio-code/edit-published-logic-app-workflow-definition.png)
+   :::image type="content" source="media/quickstart-create-logic-apps-visual-studio-code/edit-published-logic-app-workflow-definition.png" alt-text="Screenshot that shows Visual Studio Code and the opened logic app workflow definition file.":::
 
-1. Make your changes in the logic app's workflow definition.
+1. Make your changes in the workflow definition file
 
-1. When you're done, save your changes (**File** > **Save** or press Ctrl+S).
+1. When you finish, save your changes (**File** > **Save** or press Ctrl+S).
 
-1. When you're prompted to upload your changes and *overwrite* your existing logic app in the Azure portal, select **Upload**.
+1. When you're prompted to upload your changes and *overwrite* your existing logic app workflow in the Azure portal, select **Upload**.
 
-   This step publishes your updates to your logic app resource in the [Azure portal](https://portal.azure.com).
+   This step publishes your updates to your logic app resource in the Azure portal.
 
-   ![Screenshot that shows a dialog box with the Upload button highlighted in Visual Studio Code for uploading logic app changes to the Azure portal.](./media/quickstart-create-logic-apps-visual-studio-code/upload-logic-app-changes.png)
+   :::image type="content" source="media/quickstart-create-logic-apps-visual-studio-code/upload-logic-app-changes.png" alt-text="Screenshot that shows a Visual Studio Code dialog box with the Upload button highlighted for uploading logic app changes to the Azure portal.":::
 
 ## View or promote other versions
 
-In Visual Studio Code, you can open and review the earlier versions for your logic app. You can also promote an earlier version to the current version.
+In Visual Studio Code, you can open and review the earlier versions for your logic app workflow. You can also promote an earlier version to the current version.
 
 > [!IMPORTANT]
 >
 > Before you change an actively running logic app workflow in production, you can minimize disruption and avoid the risk of breaking that logic app if you first [disable your logic app resource](#disable-enable-logic-apps).
 
-1. In the Azure window, under **Logic Apps**, expand your Azure subscription so that you can view all the logic apps in that subscription.
+1. In the Azure window, in the **Logic Apps (Consumption)** section, expand your Azure subscription to view the associated logic apps.
 
 1. Under your subscription, expand your logic app, and expand **Versions**.
 
-   The **Versions** list shows your logic app's earlier versions, if any exist.
+   The **Versions** list shows the logic app's earlier versions, if any exist.
 
-   ![Screenshot that shows your logic app's versions list expanded in Visual Studio Code.](./media/quickstart-create-logic-apps-visual-studio-code/view-previous-versions.png)
+   :::image type="content" source="media/quickstart-create-logic-apps-visual-studio-code/view-previous-versions.png" alt-text="Screenshot that shows Visual Studio Code and a logic app's earlier versions.":::
 
 1. To view an earlier version, select either step:
 
