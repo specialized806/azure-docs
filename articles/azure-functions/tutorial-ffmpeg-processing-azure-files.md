@@ -85,10 +85,11 @@ The function reads the mount path from an environment variable (`FFMPEG_PATH`) t
 
 This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/overview) template. A single `azd up` command provisions infrastructure, deploys the function code, uploads the ffmpeg binary to Azure Files, and creates the EventGrid subscription for blob triggers.
 
-1. Sign in to Azure:
+1. Sign in to Azure. The post-deployment script uses Azure CLI commands, so you need to authenticate with both tools:
 
     ```bash
     azd auth login
+    az login
     ```
 
 1. Provision and deploy everything:

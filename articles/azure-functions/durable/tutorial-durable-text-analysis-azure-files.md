@@ -60,10 +60,11 @@ The sample code for this tutorial is in the [Azure Functions Flex Consumption wi
 
 This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/overview) template. A single `azd up` command provisions infrastructure, deploys the function code, and uploads sample text files to the Azure Files share.
 
-1. Sign in to Azure:
+1. Sign in to Azure. The post-deployment script uses Azure CLI commands, so you need to authenticate with both tools:
 
     ```bash
     azd auth login
+    az login
     ```
 
 1. Provision and deploy everything:
