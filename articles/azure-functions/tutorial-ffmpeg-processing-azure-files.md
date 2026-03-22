@@ -55,6 +55,32 @@ The sample code for this tutorial is in the [Azure Functions Flex Consumption wi
     azd init
     ```
 
+## Review the code
+
+The three key pieces that make OS mount–based processing work are the infrastructure that creates the mount, the script that uploads the binary, and the function code that calls it.
+
+### Mount configuration (Bicep)
+
+The `mounts.bicep` module configures an Azure Files SMB mount on the function app. The `mountPath` value determines the local path where files appear at runtime:
+
+:::code language="bicep" source="~/functions-flex-azure-files-samples/ffmpeg-image-processing/infra/app/mounts.bicep" :::  
+
+The mount is invoked from `main.bicep` with the share name and path:
+
+:::code language="bicep" source="~/functions-flex-azure-files-samples/ffmpeg-image-processing/infra/main.bicep" range="194-212" :::
+
+### Post-deployment script
+
+After `azd up` deploys the infrastructure and code, a post-deployment script downloads the FFmpeg static binary and uploads it to the Azure Files share. It also creates the Event Grid subscription and runs a health check:
+
+:::code language="bash" source="~/functions-flex-azure-files-samples/ffmpeg-image-processing/scripts/post-up.sh" range="33-65" :::
+
+### Function code
+
+The function reads the mount path from an environment variable (`FFMPEG_PATH`) that's set in the Bicep template. It calls `process_with_ffmpeg`, which runs the binary as a subprocess against the input image bytes:
+
+:::code language="python" source="~/functions-flex-azure-files-samples/ffmpeg-image-processing/src/function_app.py" range="19-54" :::
+
 ## Deploy with Azure Developer CLI
 
 This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/overview) template. A single `azd up` command provisions infrastructure, deploys the function code, uploads the ffmpeg binary to Azure Files, and creates the EventGrid subscription for blob triggers.
@@ -93,40 +119,21 @@ This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-c
 
 ## Process an image
 
-1. Upload a test image to the input container. The EventGrid subscription created during deployment automatically triggers your function when a blob is uploaded.
+1. Upload the sample image included in the repository to the input container. The event grid subscription created during deployment automatically triggers your function when a blob is uploaded.
 
     ```azurecli
     az storage blob upload \
       --container-name $INPUT_CONTAINER \
-      --name sample_image.jpg \
-      --file <path-to-a-local-image> \
+      --name sample_image.png \
+      --file sample_image.png \
       --account-name $STORAGE_ACCOUNT \
       --auth-mode login
     ```
 
-    Replace `<path-to-a-local-image>` with the path to any `.jpg` or `.png` file on your computer.
-
     > [!TIP]
     > If the trigger doesn't fire immediately, wait 10-15 seconds, and then check the function's execution logs in the Azure portal.
 
-1. Check the function logs to confirm the image was processed:
-
-    ```azurecli
-    az functionapp log tail \
-      --resource-group $RESOURCE_GROUP \
-      --name $FUNCTION_APP_NAME
-    ```
-
-    Expected output:
-
-    ```
-    Executing 'ProcessImageFunction' (Reason='New blob detected', Id=12345)
-    Image processing started for sample_image.jpg
-    FFmpeg conversion completed successfully
-    Executed 'ProcessImageFunction' (Succeeded, Id=12345, Duration=2765ms)
-    ```
-
-1. List and download the converted image:
+1. Verify the function processed the image by listing the blobs in the output container:
 
     ```azurecli
     az storage blob list \
@@ -134,10 +141,16 @@ This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-c
       --account-name $STORAGE_ACCOUNT \
       --auth-mode login \
       -o table
+    ```
 
+    You should see `sample_image.jpg` in the output container.
+
+1. Download the converted image:
+
+    ```azurecli
     az storage blob download \
       --container-name $OUTPUT_CONTAINER \
-      --name sample_image_converted.png \
+      --name sample_image.png \
       --file ./output_image.png \
       --account-name $STORAGE_ACCOUNT \
       --auth-mode login

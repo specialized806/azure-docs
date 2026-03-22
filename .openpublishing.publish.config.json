@@ -237,6 +237,12 @@
           "branch_mapping": {}
         },
         {
+          "path_to_root": "functions-flex-azure-files-samples",
+          "url": "https://github.com/ggailey777/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples",
+          "branch": "main",
+          "branch_mapping": {}
+        },
+        {
           "path_to_root": "functions-quickstart-java-azd",
           "url": "https://github.com/Azure-Samples/azure-functions-java-flex-consumption-azd",
           "branch": "main",
