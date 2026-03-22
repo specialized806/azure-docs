@@ -1,12 +1,12 @@
 ---
 title: Update files in the DICOM service in Azure Health Data Services
 description: Learn how to use the bulk update API in Azure Health Data Services to modify DICOM attributes for multiple files in the DICOM service. This article explains the benefits, requirements, and steps of the bulk update operation.
-author: varunbms
+author: Expekesheth
 ms.service: azure-health-data-services
 ms.subservice: dicom-service
 ms.topic: how-to
 ms.date: 07/23/2025
-ms.author: buchvarun
+ms.author: kesheth
 ---
 
 # Update DICOM files
@@ -21,7 +21,7 @@ There are a few limitations when you use the bulk update operation:
 - A maximum of 50 studies can be updated in a single operation.
 - Only one bulk update operation can be performed at a time for a given study.
 - For updates involving UID changes, only one study can be updated in a single operation.
-- Only Study Instance UID and Series Instance UID can be updated as part of UID update. SOP Instance UID cannot be updated for an instance.
+- Study Instance UID, Series Instance UID, and SOP Instance UID can be updated.SOP Instance UID updates require `seriesInstanceUid`. Missing this results in HTTP 400 (Bad Request).
 - UID update operation would fail when the target UIDs (`studyInstanceUID`, `seriesInstanceUid` and `sopInstanceUId`) already exists.
 - You can't delete only the latest version of a study, or revert back to the original version. 
 - You can't update any field from non-null to a null value.
@@ -101,6 +101,19 @@ For updating the UIDs, new UIDs have to be provided in the change dataset as fol
     }
 }
 ```
+3. Use the request below to update the 'SOPInstanceUid' for a specific instance within a series. Note that a single instance is updated at a time, and both the 'studyInstanceUid' and 'seriesInstanceUid' must be provided along with the current 'sopInstanceUid' and the new value in the changeDataset.
+
+{
+    "studyInstanceUid": "1.2.3.4",
+    "seriesInstanceUid": "5.6.7.8",
+    "sopInstanceUid": "9.10.11.12",
+    "changeDataset": { 
+        "00080018": { 
+            "vr": "UI", 
+            "Value": ["9.10.11.13"]
+        } 
+    }
+}
 
 #### Responses
 When a bulk update operation starts successfully, the API returns a `202` status code. The body of the response contains a reference to the operation.
@@ -178,7 +191,12 @@ GET {dicom-service-url}/{version}/operations/{operationId}
 | 404 (Not Found) |           | Operation not found |
 
 ## Retrieving study versions
-The [Retrieve (WADO-RS)](dicom-services-conformance-statement-v2.md#retrieve-wado-rs) transaction allows you to retrieve both the original and latest version of a study, series, or instance. By default, the latest version of a study, series, or instance is returned. The original version is returned by setting the `msdicom-request-original` header to `true`. For bulk updates involving UID update, the original and latest version can be retrieved using the newer UIDs only. An example request follows.
+The [Retrieve (WADO-RS)](dicom-services-conformance-statement-v2.md#retrieve-wado-rs) transaction allows you to retrieve both the original and latest version of a study, series, or instance. By default, the latest version of a study, series, or instance is returned.
+* To retrieve the original version, set the `msdicom-request-original` header to `true`.
+* For bulk updates involving UID update, including Study, Series, or SOP Instance UID updates, the original and latest version can be retrieved using the newer UIDs only.
+* When SOP Instance UID filtering was used in a bulk update, you can retrieve specific instances by providing the updated SOP Instance UID.
+
+Example request for retrieving a specific instance after a bulk update:
 
 ```http 
 GET {dicom-service-url}/{version}/studies/{study}/series/{series}/instances/{instance}
@@ -186,14 +204,31 @@ Accept: multipart/related; type="application/dicom"; transfer-syntax=*
 msdicom-request-original: true
 Content-Type: application/dicom
  ```
-
-For bulk updates involving UID update, the original and latest version can be retrieved using the newer UIDs only.
+This ensures precise retrieval even after hierarchy or UID changes in bulk updates.
 
 ## Delete
 The [delete](dicom-services-conformance-statement-v2.md#delete) method deletes both the original and latest version of a study, series, or instance.
 
 ## Change feed
-The [change feed](change-feed-overview.md) records update actions in the same manner as create and delete actions. For UID updates, change feed entries for the older UIDs will not be updated. The update action would be present only for the new UIDs. 
+The [change feed](change-feed-overview.md) records update actions in the same manner as create and delete actions. 
+* For UID updates, including Study, Series, or SOP Instance UID, change feed entries for the older UIDs are not updated.
+* Update actions are recorded only for the new UIDs.
+* When SOP Instance UID filtering is applied, the change feed reflects updates only for the targeted instances.
+
+## Summary of DICOM UID Update Behavior by Hierarchy Level
+This table outlines how bulk updates behave at different levels of the DICOM hierarchy—Study, Series, and Instance—highlighting when updates are allowed, whether a SOP Instance UID filter is required, how instances are moved, and the resulting impact on the UID hierarchy.
+✅ Allowed 
+❌ Not allowed   
+| Scenario                                           | Study-Level Update | Series-Level Update | Instance-Level Update | SOP Instance UID Filter Applied | Movement of Instances                                             | Resulting Action / Notes                                                                                  |
+| -------------------------------------------------- | ----------------- | ----------------- | ------------------- | ------------------------------ | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Update patient demographic attributes only        | ✅       | ✅      | ✅         |Not required               | No movement                                                       | Attributes updated in place; original UID hierarchy preserved.                                            |
+| Update Study Instance UID                          | ✅        | ❌    | ❌       | ❌                | Study → New Study                                                 | All instances in study get new Study UID; series and instance UIDs remain unless explicitly changed.      |
+| Update Series Instance UID                         | ✅       | ✅     | ❌      | Not required       | Series → New Series                                               | All instances in series get new Series UID; Study UID remains unless updated; SOP Instance UID unchanged. |
+| Update SOP Instance UID                            | ❌    | ❌   | ✅        | Required                     | Instance → New Instance                                           | Only the filtered SOP Instance(s) are updated; new SOP Instance UID assigned; Study/Series UID preserved. |
+| Update Study & Series UIDs                         | ✅    | ✅ | ❌ | Not required                 | Study → New Study → Series → New Series                           | Hierarchy updated; all instances in series adopt new UIDs.                                                |
+| Update Study, Series, and SOP Instance UIDs       | ✅       | ✅       | ✅         | Required                     | Study → New Study → Series → New Series → Instance → New Instance | Complete hierarchy updated with filtered SOP instance selection where applicable.                         |
+| Filter specific SOP Instance(s) without UID change| ❌    | ❌      | ✅       | Required                     | Instance → No movement                                            | Only selected SOP instances updated in place; other instances untouched.                                  |
+
 
 ## Supported DICOM modules
 Any attributes in the [Patient Identification Module](https://dicom.nema.org/dicom/2013/output/chtml/part03/sect_C.2.html#table_C.2-2) and [Patient Demographic Module](https://dicom.nema.org/dicom/2013/output/chtml/part03/sect_C.2.html#table_C.2-3) that aren't sequences can be updated using the bulk update operation. Supported attributes are called out in the tables.
