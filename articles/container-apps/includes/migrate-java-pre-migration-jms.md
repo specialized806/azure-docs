@@ -40,7 +40,7 @@ spring.activemq.user=admin
 spring.activemq.password=<password>
 ```
 
-For more information on ActiveMQ configuration, see the [Spring Boot messaging documentation](https://docs.spring.io/spring-boot/reference/messaging.html).
+For more information on ActiveMQ configuration, see the [Spring Boot messaging documentation](https://docs.spring.io/spring-boot/reference/messaging/index.html).
 
 Here's an IBM MQ example from an *application.yaml* file:
 
