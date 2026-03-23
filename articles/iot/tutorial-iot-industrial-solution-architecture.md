@@ -107,7 +107,7 @@ Select the **Deploy** button to deploy all required resources to your Azure subs
 The deployment process prompts you to provide a password for the virtual machine (VM) that hosts the production line simulation and the Edge infrastructure. The password should include three of: a lowercase character, an uppercase character, a number, and a special character. The password length must be between 12 and 72 characters.
 
 > [!NOTE]
-> To reduce cost, the deployment creates a single Linux VM for both the production line simulation and the Edge infrastructure. In a production scenario, the production line simulation isn't required, and for the base OS you should use Azure Local.
+> To reduce cost, the deployment creates a single Linux VM for both the production line simulation and the edge infrastructure. In a production scenario, the production line simulation isn't required, and for the base OS you should use Azure Local.
 
 ## Run the production line simulation
 
