@@ -67,7 +67,7 @@ You can restore a deleted web app in Azure App Service in the Azure portal or by
 Run the following commands to restore the deleted web app.
 
 > [!NOTE]
-> The following sections provide information for restoring a web app. To restore a deleted Azure Functions app, see the section later in this article.
+> The following sections provide information for restoring a web app. To restore a deleted Azure Functions app, see [Restore a deleted Azure Functions app](#restore-a-deleted-azure-functions-app) later in this article.
 
 ### Identify the deleted app to restore
 
@@ -175,7 +175,7 @@ If a function app hosted on a Dedicated App Service plan is deleted, you can res
 
 ### Restore an app in a Dedicated App Service plan
 
-To restore a function app in a new Dedicated App Service plan, follow the process to use the `Restore-AzDeletedWebApp` command, as described in [Restore when multiple deleted apps have same name (deleted site ID)](#restore-when-multiple-deleted-apps-have-same-name-deleted-site-id). For more information, see [Create a function app in the Azure portal](/azure/azure-functions/functions-create-function-app-portal.md#create-a-function-app).
+To restore a function app in a new Dedicated App Service plan, follow the process to use the `Restore-AzDeletedWebApp` command, as described in [Restore when multiple deleted apps have same name (deleted site ID)](#restore-when-multiple-deleted-apps-have-same-name-deleted-site-id). For more information, see [Create a function app in the Azure portal](/azure/azure-functions/functions-create-function-app-portal#create-a-function-app).
 
 ### Restore an app in a Consumption plan or Elastic premium plan
 
@@ -185,9 +185,9 @@ A workaround is available, if you didn't hard delete the Azure Files storage acc
 
 Follow these steps:
 
-1. Create a new function app in a Consumption or Premium plan. For more information, see [Create a function app in the Azure portal](/azure/azure-functions/functions-create-function-app-portal.md#create-a-function-app).
+1. Create a new function app in a Consumption or Premium plan. For more information, see [Create a function app in the Azure portal](/azure/azure-functions/functions-create-function-app-portal#create-a-function-app).
 
-1. Set the following [app settings](/azure/azure-functions/functions-how-to-use-azure-function-app-settings.md?tabs=portal#settings) to refer to the old storage account, which contains the content from the previous app.
+1. Set the following [app settings](/azure/azure-functions/functions-how-to-use-azure-function-app-settings?tabs=portal#settings) to refer to the old storage account, which contains the content from the previous app.
 
    | App setting | Suggested value |
    |---|---|
