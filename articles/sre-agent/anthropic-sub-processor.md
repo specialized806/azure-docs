@@ -1,6 +1,6 @@
 ---
 title: Anthropic as a subprocessor in Azure SRE Agent
-description: Learn how Anthropic operates as a Microsoft subprocessor in Azure SRE Agent, including model selection, data residency, and policy controls.
+description: Learn how Anthropic operates as a Microsoft subprocessor in Azure SRE Agent, including model selection, and data residency controls.
 author: craigshoemaker
 ms.author: cshoe
 ms.topic: conceptual
@@ -59,16 +59,6 @@ If your organization is in the EU, EFTA, or UK and you want to use Anthropic:
 
 > [!NOTE]
 > By selecting Anthropic, you acknowledge that your data might be processed outside the EU Data Boundary, including in the United States.
-
-## Restrict Anthropic with Azure Policy
-
-Tenant administrators can use Azure Policy to enforce Azure OpenAI as the only provider. When a policy is active:
-
-- Anthropic appears in the model picker but is disabled.
-- Users see: *"Disabled by your organization's administrator."*
-- Users can't switch to Anthropic regardless of region.
-
-If no policy is set, users in EU/EFTA/UK regions can opt in to Anthropic through the model picker.
 
 ## Data handling
 
