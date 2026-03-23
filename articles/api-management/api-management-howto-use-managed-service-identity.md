@@ -333,9 +333,6 @@ You can configure and use a system-assigned managed identity to access an event 
 
 ## Create a user-assigned managed identity
 
-> [!NOTE]
-> You can associate an API Management instance with as many as 10 user-assigned managed identities.
-
 ### Azure portal
 
 To set up a managed identity in the portal, you must first create an API Management instance and [create a user-assigned identity](../active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities.md). Then complete the following steps.
