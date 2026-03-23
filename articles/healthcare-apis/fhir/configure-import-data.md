@@ -5,7 +5,7 @@ author: Expekesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 03/23/2026
 ms.author: kesheth
 ms.reviewer: v-catheribun
 ms.custom: sfi-image-nochange
@@ -99,7 +99,7 @@ First, get the request URL and JSON body for the FHIR service.
 1. Select **Overview**.
 1. Select **JSON View**.
 
-:::image type="content" source="media/bulk-import/fhir-json-view.png" alt-text="Screenshot of selections for opening the JSON view." lightbox="media/bulk-import/fhir-json-view.png":::
+    :::image type="content" source="media/bulk-import/fhir-json-view.png" alt-text="Screenshot of selections for opening the JSON view." lightbox="media/bulk-import/fhir-json-view.png":::
 
 1. Select the API version as **2022-06-01** or later.
 1. Copy the request URL and JSON body.
@@ -109,7 +109,7 @@ First, get the request URL and JSON body for the FHIR service.
    1. Set `initialImportMode` to `true` or `false` based on your import mode choice.
    1. Delete the `provisioningState` line.
 
-:::image type="content" source="media/bulk-import/import-url-json-body.png" alt-text="Screenshot of a code example for import configuration." lightbox="media/bulk-import/import-url-json-body.png":::
+    :::image type="content" source="media/bulk-import/import-url-json-body.png" alt-text="Screenshot of a code example for import configuration." lightbox="media/bulk-import/import-url-json-body.png":::
 
 1. Use the request URL with the [REST API Update API](/rest/api/healthcareapis/services/create-or-update) to update the FHIR service.
 
@@ -129,8 +129,8 @@ To enable the FHIR workspace as a trusted Microsoft service, follow these steps:
 
 Ensure that your storage account public network access scope is enabled for selected networks. 
 
-1. In the Azure portal, go to your Blob or  Data Lake Storage Gen2 account.
-1. On the left menu, select **Networking**.
+1. In the Azure portal, go to your Blob or Data Lake Storage Gen2 account.
+1. On the left menu, select **Security + Networking** > **Networking**..
 1. On the **Public access** tab under **Public network access**, select **Manage**.
 
    :::image type="content" source="media/export-data/storage-networking-1.png" alt-text="Screenshot of Azure Storage networking settings." lightbox="media/export-data/storage-networking-1.png":::
@@ -145,9 +145,9 @@ To enable the FHIR service as a trusted Microsoft service through PowerShell, us
 
 1. Run the following PowerShell command to install the `Az.Storage` PowerShell module in your local environment. Use this module to configure your Azure storage accounts by using PowerShell.
 
-```PowerShell
-Install-Module Az.Storage -Repository PsGallery -AllowClobber -Force 
-```
+    ```PowerShell
+    Install-Module Az.Storage -Repository PsGallery -AllowClobber -Force 
+    ```
 
 1. Use the following PowerShell command to set the selected FHIR service instance as a trusted resource for the storage account. Make sure that all listed parameters are defined in your PowerShell environment.
 
@@ -167,24 +167,11 @@ Install-Module Az.Storage -Repository PsGallery -AllowClobber -Force
 
 You're now ready to securely import FHIR data from the storage account. The storage account is on selected networks and isn't publicly accessible. To securely access the files, use [private endpoints](../../storage/common/storage-private-endpoints.md) for the storage account.
 
-### Allow specific IP addresses to access the Azure storage account from other Azure regions
 
-<!-- Need information as the interface has changed. -->
 
 [!INCLUDE [Specific IP ranges for storage account](../includes/common-ip-address-storage-account.md)]
 
-
-### Allow specific IP addresses to access the Azure storage account in the same region as the FHIR service
-
-The configuration process for IP addresses in the same region is just like the previous procedure, except that you use a specific IP address range in Classless Inter-Domain Routing (CIDR) format instead (that is, 100.64.0.0/10). You must specify the IP address range (100.64.0.0 to 100.127.255.255) because an IP address for the FHIR service is allocated each time you make an operation request.
-
-[!NOTE]
-> You can use a private IP address within the range of 10.0.2.0/24, but there's no guarantee that the operation succeeds in such a case. You can retry if the operation request fails, but until you use an IP address within the range of 100.64.0.0/10, the request won't succeed.
-> This network behavior for IP address ranges is by design. The alternative is to configure the storage account in a different region.
-
 ## Next steps
-
-In this article, you learned how the FHIR service supports the `import` operation, and how you can import data into the FHIR service from a storage account. You also learned about the steps for configuring import settings in the FHIR service. For more information about converting data to FHIR, exporting settings to set up a storage account, and moving data to Azure Synapse Analytics, see:
 
 >[!div class="nextstepaction"]
 >[Import FHIR data](import-data.md)

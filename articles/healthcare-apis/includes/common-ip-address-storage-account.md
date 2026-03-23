@@ -12,6 +12,7 @@ ms.reviewer: v-catheribun
 
 1. In the Azure portal, go to the storage account.
 1. On the left menu, select **Security + Networking** > **Networking**.
+1. On the **Public access** tab under **Public network access**, select **Manage**.
 1. Select **Enabled from selected networks**.
 1. Enter the IP addresses in the **IPv4 Addresses** section.
 

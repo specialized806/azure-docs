@@ -5,7 +5,7 @@ author: expekesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 03/23/2026
 ms.author: kesheth
 ms.reviewer: v-catheribun
 ms.custom:
@@ -84,7 +84,7 @@ Specify the storage account that the FHIR service uses when exporting data.
 
 1. Select the name of the storage account from the list. If you need to search for your storage account, use the **Name**, **Resource group**, or **Region** filters. 
 
-:::image type="content" source="media/export-data/fhir-export-storage.png" alt-text="Screenshot showing user interface of FHIR Export Storage list." lightbox="media/export-data/fhir-export-storage.png":::
+    :::image type="content" source="media/export-data/fhir-export-storage.png" alt-text="Screenshot showing user interface of FHIR Export Storage list." lightbox="media/export-data/fhir-export-storage.png":::
 
 After you complete these configuration steps, you're ready to export data from the FHIR service. To learn more about performing `$export` operations with the FHIR service, see [How to export FHIR data](./export-data.md).
 
@@ -105,7 +105,7 @@ To enable the FHIR workspace as a trusted Microsoft service, follow these steps:
 Ensure that your storage account public network access scope is enabled for selected networks. 
 
 1. In the Azure portal, go to your storage account.
-1. On the left menu, select **Networking**.
+1. On the left menu, select **Security + Networking** > **Networking**..
 1. On the **Public access** tab, under **Public network access**, select **Manage**.
 
    :::image type="content" source="media/export-data/storage-networking-1.png" alt-text="Screenshot of Azure Storage networking settings." lightbox="media/export-data/storage-networking-1.png":::
@@ -120,9 +120,9 @@ To enable the FHIR service as a trusted Microsoft service, use the following Pow
 
 1. Run the following PowerShell command to install the `Az.Storage` PowerShell module in your local environment. Use this module to configure your Azure storage accounts by using PowerShell.
 
-```PowerShell
-Install-Module Az.Storage -Repository PsGallery -AllowClobber -Force 
-```
+    ```PowerShell
+    Install-Module Az.Storage -Repository PsGallery -AllowClobber -Force 
+    ```
 
 1. Use the following PowerShell command to set the selected FHIR service instance as a trusted resource for the storage account. Make sure that all listed parameters are defined in your PowerShell environment.
 
@@ -142,29 +142,11 @@ Install-Module Az.Storage -Repository PsGallery -AllowClobber -Force
 
 1. To verify that the FHIR service is added as a trusted Microsoft service for the storage account, go to the storage account in the Azure portal, and select **JSON view**. Verify that the FHIR service is listed in the `properties.networkAcls.resourceAccessRules`.
 
-
-
-
-### Allow specific IP addresses to access the Azure storage account from other Azure regions
-
-<!-- Need information as the interface has changed. -->
-
 [!INCLUDE [Specific IP ranges for storage account](../includes/common-ip-address-storage-account.md)]
-
-
-### Allow specific IP addresses to access the Azure storage account in the same region as the FHIR service
-
-The configuration process for IP addresses in the same region is just like the previous procedure, except that you use a specific IP address range in Classless Inter-Domain Routing (CIDR) format instead (that is, 100.64.0.0/10). You must specify the IP address range (100.64.0.0 to 100.127.255.255) because an IP address for the FHIR service is allocated each time you make an operation request.
-
-[!NOTE]
-> You can use a private IP address within the range of 10.0.2.0/24, but there's no guarantee that the operation succeeds in such a case. You can retry if the operation request fails, but until you use an IP address within the range of 100.64.0.0/10, the request won't succeed.
-> This network behavior for IP address ranges is by design. The alternative is to configure the storage account in a different region.
 
 ## Next steps
 
-In this article, you learned how to configure your environment to allow export of data from your FHIR service to an Azure storage account. For more information about Bulk Export capabilities in the FHIR service, see the following article.
-
 >[!div class="nextstepaction"]
->[How to export FHIR data](export-data.md)
+>[Export FHIR data](export-data.md)
 
 [!INCLUDE [FHIR trademark statement](../includes/healthcare-apis-fhir-trademark.md)]
