@@ -164,7 +164,7 @@
       href: tutorial-ffmpeg-processing-azure-files.md
     - name: Durable text analysis on a mounted share
       displayName: Azure Files, storage mount, Durable Functions, Flex Consumption
-      href: durable/tutorial-durable-text-analysis-azure-files.md
+      href: durable/tutorial-durable-text-analysis-azure-files.md?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
   - name: Java with Azure Cosmos DB and Event Hubs
     href: functions-event-hub-cosmos-db.md
 - name: Samples

@@ -75,10 +75,13 @@ This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-c
 
     When prompted, select the Azure subscription and location to use. The command then:
 
-    - Creates a resource group, storage account, Flex Consumption function app with a Durable Functions configuration, Application Insights instance, and managed identity
+    - Creates a resource group, storage account, Key Vault, Flex Consumption function app with a Durable Functions configuration, Application Insights instance, and managed identity
     - Deploys the Python function code
     - Uploads sample text files to the Azure Files share
     - Runs a health check
+
+    > [!NOTE]
+    > Because Azure Files SMB mounts don't yet support managed identity authentication, a storage account key is required. As a best practice, the deployment stores this key in [Azure Key Vault](/azure/key-vault/general/overview) and uses a [Key Vault reference](/azure/app-service/app-service-key-vault-references) so the key is never exposed in app settings. This approach provides centralized secret management, auditing, and support for key rotation.
 
     The deployment takes a few minutes. When it completes, you see a summary of the created resources.
 

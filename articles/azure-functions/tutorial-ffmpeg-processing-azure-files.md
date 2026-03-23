@@ -61,13 +61,17 @@ The three key pieces that make OS mount–based processing work are the infrastr
 
 ### Mount configuration (Bicep)
 
-The `mounts.bicep` module configures an Azure Files SMB mount on the function app. The `mountPath` value determines the local path where files appear at runtime:
+The `mounts.bicep` module configures an Azure Files SMB mount on the function app. The `mountPath` value determines the local path where files appear at runtime. The storage account access key is passed in as a parameter that the platform resolves at runtime via a Key Vault reference:
 
 :::code language="bicep" source="~/functions-flex-azure-files-samples/ffmpeg-image-processing/infra/app/mounts.bicep" :::  
 
-The mount is invoked from `main.bicep` with the share name and path:
+Because Azure Files SMB mounts don't yet support managed identity authentication, a storage account key is required. As a best practice, the deployment stores this key in Azure Key Vault and uses a [Key Vault reference](/azure/app-service/app-service-key-vault-references) in an app setting. The mount configuration references that app setting with `@AppSettingRef()`, so the key is never exposed in your Bicep templates. The `keyvault.bicep` module creates the vault, stores the key, and grants RBAC roles:
 
-:::code language="bicep" source="~/functions-flex-azure-files-samples/ffmpeg-image-processing/infra/main.bicep" range="194-212" :::
+:::code language="bicep" source="~/functions-flex-azure-files-samples/ffmpeg-image-processing/infra/app/keyvault.bicep" :::
+
+The mount and Key Vault modules are invoked from `main.bicep`:
+
+:::code language="bicep" source="~/functions-flex-azure-files-samples/ffmpeg-image-processing/infra/main.bicep" range="195-229" :::
 
 ### Post-deployment script
 
@@ -100,11 +104,14 @@ This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-c
 
     When prompted, select the Azure subscription and location to use. The command then:
 
-    - Creates a resource group, storage account, Flex Consumption function app, Application Insights instance, and managed identity.
+    - Creates a resource group, storage account, Key Vault, Flex Consumption function app, Application Insights instance, and managed identity.
     - Deploys the Python function code.
     - Downloads and uploads the ffmpeg binary to the Azure Files share.
     - Creates an EventGrid subscription so blob uploads trigger your function.
     - Runs a health check.
+
+    > [!NOTE]
+    > Because Azure Files SMB mounts don't yet support managed identity authentication, a storage account key is required. As a best practice, the deployment stores this key in [Azure Key Vault](/azure/key-vault/general/overview) and uses a [Key Vault reference](/azure/app-service/app-service-key-vault-references) so the key is never exposed in app settings. This approach provides centralized secret management, auditing, and support for key rotation.
 
     The deployment takes a few minutes. When it completes, you see a summary of the created resources.
 
