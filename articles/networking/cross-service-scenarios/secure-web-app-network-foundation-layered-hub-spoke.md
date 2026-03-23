@@ -32,15 +32,93 @@ This pattern is for network engineers and architects at small or midsize organiz
 
 ## Architecture
 
-<!-- TODO: Replace placeholder with hub-spoke architecture diagram showing:
-     - Hub VNet with AzureBastionSubnet (and optional AzureFirewallSubnet)
-     - Spoke VNet with Application Gateway subnet and workload subnet
-     - VNet peering connection between hub and spoke
-     - NSGs on every subnet
-     - Internet traffic flowing through App Gateway WAF in spoke
-     - Bastion in hub reaching VMs in spoke via peering
-     - DDoS Protection covering both VNets -->
-:::image type="content" source="media/secure-azure-network-architecture-cross-service-scenarios-m365-copilot-v1/image1.jpg" alt-text="Architecture diagram showing a hub-spoke topology: a hub virtual network with Azure Bastion peered to a spoke virtual network containing Application Gateway with WAF and a backend workload subnet. NSGs control traffic flow at every subnet boundary.":::
+The backend compute model—IaaS or PaaS—determines which shared services are needed in the hub. Both variants use the same hub-spoke foundation with VNet peering, NSGs (🔒) on every subnet, and conditional DDoS Protection (🛡️). Solid arrows show active traffic flow; dotted arrows show optional or conditional paths.
+
+### IaaS backend (Virtual Machines)
+
+When the backend includes VMs, the hub hosts Azure Bastion for secure RDP/SSH management across peered spokes. NAT Gateway provides explicit outbound connectivity for private workload subnets.
+
+```mermaid
+flowchart TB
+    Internet((Internet))
+    KV[Azure Key Vault]
+
+    subgraph DDoS["🛡️ Azure DDoS Protection · conditional"]
+        subgraph Hub["Hub Virtual Network"]
+            subgraph BS["🔒 AzureBastionSubnet"]
+                Bastion[Azure Bastion]
+            end
+            subgraph FS["🔒 AzureFirewallSubnet · optional"]
+                FW[Azure Firewall Basic]
+            end
+            subgraph FMS["🔒 AzureFirewallManagementSubnet · optional"]
+                FWMgmt[Firewall Management]
+            end
+        end
+
+        Peering{{"VNet Peering"}}
+
+        subgraph Spoke["Spoke Virtual Network"]
+            subgraph AGS["🔒 Application Gateway Subnet"]
+                AppGW[Application Gateway WAF_v2]
+            end
+            subgraph WLS["🔒 Workload Subnet · private"]
+                VM[Virtual Machines]
+            end
+            NAT[NAT Gateway · conditional]
+        end
+    end
+
+    Internet -->|HTTPS| AppGW
+    AppGW -->|Backend traffic| VM
+    AppGW -.->|TLS certificates| KV
+    Bastion -->|RDP / SSH| Peering
+    Peering -->|RDP / SSH| VM
+    FWMgmt ---|Management plane| FW
+    VM --> NAT -->|Outbound| Internet
+    VM -.->|Optional UDR| Peering
+    Peering -.-> FW -.->|Outbound| Internet
+```
+
+### PaaS backend (App Service)
+
+When the backend is PaaS, no Bastion is needed—there's no OS-level access to manage. The hub exists for optional shared services (Azure Firewall) and future growth. VNet peering is always provisioned; it carries active traffic only when Azure Firewall handles centralized egress.
+
+```mermaid
+flowchart TB
+    Internet((Internet))
+    KV[Azure Key Vault]
+
+    subgraph DDoS["🛡️ Azure DDoS Protection · conditional"]
+        subgraph Hub["Hub Virtual Network"]
+            subgraph FS["🔒 AzureFirewallSubnet · optional"]
+                FW[Azure Firewall Basic]
+            end
+            subgraph FMS["🔒 AzureFirewallManagementSubnet · optional"]
+                FWMgmt[Firewall Management]
+            end
+        end
+
+        Peering{{"VNet Peering"}}
+
+        subgraph Spoke["Spoke Virtual Network"]
+            subgraph AGS["🔒 Application Gateway Subnet"]
+                AppGW[Application Gateway WAF_v2]
+            end
+            subgraph WLS["🔒 Workload Subnet"]
+                AppSvc[Azure App Service]
+            end
+        end
+    end
+
+    Internet -->|HTTPS| AppGW
+    AppGW -->|Backend traffic| AppSvc
+    AppGW -.->|TLS certificates| KV
+    Hub --- Peering --- Spoke
+    FWMgmt ---|Management plane| FW
+    AppSvc -.->|"Optional · VNet Integration + UDR"| Peering
+    Peering -.-> FW -.->|Outbound| Internet
+```
 
 The architecture uses two virtual networks connected by VNet peering:
 
