@@ -135,7 +135,7 @@ The following table describes the number of IP addresses available for NVA deplo
 
 #### <a name="ipconsumed" ></a> Consumed IP addresses
 
->[NOTE]
+>[!NOTE]
 > Select your hub address space with scalability taken into consideration as the subnets allocated to NVAs can't be re-sized. Actions such as deploying multiple NVAs in the hub or adding additional IP configurations to existing NVAs requires sufficient available IP addresses.
 
 The number of IP addresses that are consumed by a single NVA deployment is calculated separately for the internal and external interfaces. NVAs deployed in the same hub consume IP addresses from the same subnet as other NVAs and therefore all NVAs in the same hub contribute towards to hub's limit.
