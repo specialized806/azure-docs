@@ -17,7 +17,7 @@ zone_pivot_groups: azure-maps-search
 
 Azure Maps [Search service][Search service v1] includes API that offers various capabilities to help developers to search addresses, places, business listings by name or category, and other geographic information. For example, [Search Fuzzy] allows users to search for an address or Point of Interest (POI).
 
-This article explains how to apply sound practices when you call data from Azure Maps Search service. You'll learn how to:
+This article explains how to apply sound practices when you call data from Azure Maps Search service. Learn how to:
 > [!div class="checklist"]
 >
 > * Build queries to return relevant matches
@@ -36,7 +36,7 @@ You can use any API development environment such as [Bruno] to run the HTTP requ
 
 When you search for a full or partial address by using Azure Maps Search service, the API reads keywords from your search query. Then it returns the longitude and latitude coordinates of the address. This process is called *geocoding*.
 
-The ability to geocode in a country/region depends on the availability of road data and the precision of the geocoding service. For more information about Azure Maps geocoding capabilities by country or region, see [Geocoding coverage].
+The ability to geocode in a country/region depends on the availability of road data and the precision of the geocoding service. For more information about Azure Maps geocoding capabilities by country/region, see [Geocoding coverage].
 
 ### Limit search results
 
@@ -67,8 +67,8 @@ We recommend that you use [Search Fuzzy] when you don't know your user inputs fo
 
 * `Addr` - **Address ranges**: Address points that are interpolated from the beginning and end of the street. These points are represented as address ranges.
 * `Geo` - **Geographies**: Administrative divisions of land. A geography can be a country/region, state, or city, for example.
-* `PAD` - **Point addresses**: Addresses that include a street name and number. Point addresses can be found in an index. An example is *Soquel Dr 2501*. A point address provides the highest level of accuracy available for addresses.  
-* `POI` - **Points of interest**: Points on a map that are considered to be worth attention or that might be interesting. [Search Address] doesn't return POIs.  
+* `PAD` - **Point addresses**: Addresses that include a street name and number. Point addresses can be found in an index. An example is *Soquel Dr 2501*. A point address provides the highest level of accuracy available for addresses.
+* `POI` - **Points of interest**: Points on a map that are considered to be worth attention or that might be interesting. [Search Address] doesn't return POIs.
 * `Str` - **Streets**: Streets on the map.
 * `XStr` - **Cross streets or intersections**: Junctions or places where two streets intersect.
 
@@ -125,13 +125,13 @@ https://atlas.microsoft.com/search/address/reverse/json?api-version=1.0&subscrip
 
 ### Set the results language
 
-Use the `language` parameter to set the language for the returned search results. If the request doesn't set the language, then by default Search service uses the most common language in the country or region. When no data is available in the specified language, the default language is used.
+Use the `language` parameter to set the language for the returned search results. If the request doesn't set the language, then by default Search service uses the most common language in the country/region. When no data is available in the specified language, the default language is used.
 
 For more information, see [Azure Maps supported languages].
 
 ### Use predictive mode (automatic suggestions)
 
-To find more matches for partial queries, set the `typeahead` parameter to `true`. This query is interpreted as a partial input, and the search enters predictive mode. If you don't set the `typeahead` parameter to `true`, then the service assumes that all relevant information has been passed in.
+To find more matches for partial queries, set the `typeahead` parameter to `true`. This query is interpreted as a partial input, and the search enters predictive mode. If you don't set the `typeahead` parameter to `true`, then the service assumes that all relevant information was passed in.
 
 In the following sample query, the Search Address service is queried for *Microsoft*. Here, the `typeahead` parameter set to `true`. The response shows that the search service interpreted the query as partial query. The response contains results for an automatically suggested query.
 
@@ -767,7 +767,7 @@ https://atlas.microsoft.com/search/address/json?subscription-key={Your-Azure-Map
 
 * **Point Address**: Points on a map that have a specific address with a street name and number. Point Address provides the highest level of accuracy for addresses.
 
-* **Address Range**: The range of address points that are interpolated from the beginning and end of the street.  
+* **Address Range**: The range of address points that are interpolated from the beginning and end of the street.
 
 * **Geography**: Areas on a map that represent administrative divisions of a land, for example, country/region, state, or city.
 
@@ -785,7 +785,7 @@ Let's look at the response structure. In the response that follows, the types of
 * Street
 * Cross Street
 
-Notice that the address search doesn't return POIs.  
+Notice that the address search doesn't return POIs.
 
 The `Score` parameter for each response object indicates how the matching score relates to the scores of other objects in the same response. For more information about response object parameters, see [Get Search Address].
 
@@ -951,9 +951,9 @@ The `Score` parameter for each response object indicates how the matching score 
 
 ### Geometry
 
-A response type of *Geometry* can include the geometry ID that's returned in the `dataSources` object under `geometry` and `id`. For example, you can use the [Search Polygon service] to request the geometry data in a GeoJSON format. By using this format, you can get a city or airport outline for a set of entities. You can then use this boundary data to [Set up a geofence] or [Search POIs inside the geometry].
+A response type of *Geometry* can include the geometry ID returned in the `dataSources` object under `geometry` and `id`. For example, you can use the [Search Polygon service] to request the geometry data in a GeoJSON format. By using this format, you can get a city or airport outline for a set of entities. You can then use this boundary data to [Set up a geofence] or [Search POIs inside the geometry].
 
-Responses for [Search Address] or the [Search Fuzzy] can include the geometry ID that's returned in the `dataSources` object under `geometry` and `id`:
+Responses for [Search Address] or the [Search Fuzzy] can include the geometry ID returned in the `dataSources` object under `geometry` and `id`:
 
 ```JSON
 "dataSources": { 
@@ -990,7 +990,7 @@ You can use any API development environment such as [Bruno] to run the HTTP requ
 
 ### Task‑specific operations
 
-Each Search capability is exposed through a dedicated API, such as [Get Geocoding], [Get Geocode Autocomplete], [Get Reverse Geocoding] or [Get Polygon]. This separation improves clarity, performance, and intent alignment.
+Each Search capability is exposed through a dedicated API, such as [Get Geocoding], [Get Geocode Autocomplete], [Get Reverse Geocoding], or [Get Polygon]. This separation improves clarity, performance, and intent alignment.
 
 ### Geographic relevance signals
 
@@ -1022,10 +1022,10 @@ This section describes practical techniques to reduce low‑quality matches for 
 
 * Confidence (High, Medium, Low). For more information, see [ConfidenceEnum].
 * Match codes (Good, Ambiguous, UpHierarchy). For more information, see [MatchCodesEnum].
-* Result type (properties.type — for example: Address, PopulatedPlace, RoadBlock, AdminDivision1). For more information, see [properties.type].
+* Result type (`properties.type` for example: Address, PopulatedPlace, RoadBlock, AdminDivision1). For more information, see [properties.type].
 
 > [!NOTE]
-> `RoadBlock` is formally listed as a possible [properties.type] value and is also referenced in [match‑code][MatchCodesEnum] documentation as an example of an `UpHierarchy` fallback. Treat it as a signal that the service could not resolve the query to a more specific street‑level address.
+> `RoadBlock` is formally listed as a possible [properties.type] value and is also referenced in [match‑code][MatchCodesEnum] documentation as an example of an `UpHierarchy` fallback. Treat it as a signal that the service couldn't resolve the query to a more specific street‑level address.
 
 #### Prefer structured parameters when you know the address components
 
@@ -1068,22 +1068,22 @@ This reduces the likelihood of low-confidence matches in unrelated regions when 
 
 [Get Geocoding] returns multiple signals under features[].properties, including `confidence`, `matchCodes`, and `type`. Use these together rather than filtering by `confidence` alone.
 
-##### Why confidence alone is not sufficient
+##### Why confidence alone isn't sufficient
 
 * **Medium** confidence can indicate a valid result when the query is ambiguous and there isn't enough context to rank one candidate over another.
 
-* **Medium** confidence can also occur when the service returns a less precise match than requested, and sets the match code to UpHierarchy (for example, matching only a postal code when an address was requested).
+* **Medium** confidence can also occur when the service returns a less precise match than requested, and sets the match code to `UpHierarchy` (for example, matching only a postal code when an address was requested).
 
 ##### Reworded clarity: how "up-hierarchy" results happen
 
-When the service cannot find a match at the specificity implied by the query, it may "move up the geographic hierarchy" and return a broader location (for example, city, administrative division, or country/region). In those cases, matchCodes includes UpHierarchy, and properties.type indicates what level was actually returned.
+When the service can't find a match at the specificity implied by the query, it may "move up the geographic hierarchy" and return a broader location (for example, city, administrative division, or country/region). In those cases, `matchCodes` includes `UpHierarchy`, and properties.type indicates what level was returned.
 
 ##### Practical filtering guidance (apply in this order)
 
 1. **Reject low-quality matches for exact-search UX**
   If `confidence` is Low, treat the result as not acceptable for an exact-match workflow.
 1. **Detect up-hierarchy fallbacks**
-  If `matchCodes` includes `UpHierarchy`, the service could not match the requested granularity and returned a broader location. Use `type` to determine what level was returned (for example, `PopulatedPlace`, `AdminDivision1`, `CountryRegion`, or `RoadBlock`).
+  If `matchCodes` includes `UpHierarchy`, the service couldn't match the requested granularity and returned a broader location. Use `type` to determine what level was returned (for example, `PopulatedPlace`, `AdminDivision1`, `CountryRegion`, or `RoadBlock`).
 1. **Validate the expected result type**
   If your UX expects a street-level match, accept results only when type is sufficiently specific (for example, Address) and reject broader types (for example, `PopulatedPlace`). This prevents accepting a city/state fallback when the user intended a specific address.
 1. **Handle ambiguity explicitly**
@@ -1091,6 +1091,40 @@ When the service cannot find a match at the specificity implied by the query, it
 
 > [!TIP]
 > Use [properties.type] to understand what was returned and [matchCodes][MatchCodesEnum] to understand how it was derived (for example, `UpHierarchy` fallback).
+
+### Use geocoding as a data enrichment step
+
+When geocoding large address datasets, expect that some records won't return results. This is normal and doesn't indicate a service error.
+
+Common causes include:
+
+* Misspellings or inconsistent formatting
+* Incomplete addresses
+* Interior details (for example, apartment, suite, or floor numbers) that aren't part of a deliverable address
+
+Treat geocoding as a data enrichment process rather than a strict validation step:
+
+* Submit addresses for geocoding.
+* Identify records that aren't resolved.
+* Flag unresolved addresses for review or normalization.
+* Retry geocoding only after cleaning the source data.
+
+Avoid attempting to force matches for low‑quality input, as this can introduce incorrect or misleading location data into downstream systems.
+
+### Understand empty geocoding results
+
+A geocoding request may return an HTTP 200 (OK) response with no results.
+
+This indicates that the request was processed successfully, but no matching address or place was found. It doesn't represent a failure of the service.
+
+Applications should handle empty results explicitly and avoid treating them as errors. In many scenarios, returning no result is preferable to returning a low‑confidence or incorrect match.
+
+> [!NOTE]
+> Azure Maps request limits, quotas, and throttling behavior are configured at the Azure subscription level.
+> For information on pricing, usage limits, and monitoring, see:
+>
+> * [Azure Maps pricing]
+> * [Understanding Azure Maps transactions]
 
 ## Best practices for autocomplete
 
@@ -1118,7 +1152,7 @@ Use [Get Reverse Geocoding] to translate coordinates into a human‑readable add
 Recommendations:
 
 * Prefer batch reverse geocoding for telemetry, tracking, or other high‑volume workloads.
-* Cache results and avoid repeated calls for coordinates that do not change.
+* Cache results and avoid repeated calls for coordinates that don't change.
 * Validate coordinate order and precision to ensure accurate and consistent results.
 * Expect approximate or partial addresses in some locations and handle these cases gracefully.
 
@@ -1240,3 +1274,5 @@ GET https://atlas.microsoft.com/polygon
 [ConfidenceEnum]: /rest/api/maps/search/get-geocoding#confidenceenum
 [MatchCodesEnum]: /rest/api/maps/search/get-geocoding#MatchCodesEnum
 [properties.type]: /rest/api/maps/search/get-geocoding#properties
+[Azure Maps pricing]: https://azure.microsoft.com/pricing/details/azure-maps
+[Understanding Azure Maps transactions]: understanding-azure-maps-transactions.md
