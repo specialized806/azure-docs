@@ -8,7 +8,7 @@ ms.service: azure-api-management
 ms.collection: ce-skilling-ai-copilot
 ms.custom:
 ms.topic: reference
-ms.date: 03/16/2026
+ms.date: 03/23/2026
 ms.update-cycle: 180-days
 ms.author: danlep
 ---
@@ -62,8 +62,8 @@ Use the policy in scenarios such as the following:
 | backend-id	| Identifier (name) of the Azure AI Content Safety backend to route content-safety API calls to. Policy expressions are allowed.	|  Yes	| N/A |
 | shield-prompt	| If set to `true`, check content for user attacks. Otherwise, skip this check. Policy expressions are allowed.	| No	| `false` |
 | enforce-on-completions| If set to `true` when you set the policy in the inbound section for content safety checks on requests, enforce content safety checks also on chat completions for response validation. When you set the policy in the outbound section for content safety checks on responses, this attribute is ignored. Policy expressions are allowed.	| No	| `false` |
-| window-size | The size of text windows in characters that the policy sends to Azure AI Content Safety for evaluation. If you don't specify a value, the entire content is sent as one window. Policy expressions are allowed. | No | N/A |
-| window-overlap-size | The size of overlaps in characters between text windows when the content is split by using the `window-size` attribute. If you don't specify a value, windows don't overlap. Policy expressions are allowed. | No | N/A |
+| window-size | The size of the text window in characters that the policy sends to Azure AI Content Safety for evaluation. Configurable only for responses; for requests, the default window size is always used. Policy expressions are allowed. | No | 10,000 characters (Azure AI Content Safety limit) |
+| window-overlap-size | The size of the overlap in characters between text windows when the content is split by using the `window-size` attribute. If you don't specify a value, windows don't overlap. Policy expressions are allowed. | No | N/A |
 
 
 ## Elements
@@ -97,7 +97,6 @@ Use the policy in scenarios such as the following:
 ### Usage notes
 
 * Configure the policy in the inbound section to check requests and in the outbound section to check responses.
-* Unless you specify `window-size` for a completion or chat completion request or response, the policy runs on a concatenation of all text content. If you specify `window-size`, the policy runs on windows of text content with the specified size and overlaps. 
 * For streaming responses, the stream handler buffers events in a sliding window and, if a content safety violation is detected, stops forwarding further events to the client. A `403` error isn't returned in this case. 
 * If the request or response exceeds the character limit of Azure AI Content Safety, the policy returns a `403` error.
 * You can use this policy multiple times per policy definition.
