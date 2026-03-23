@@ -2,7 +2,7 @@
 
 **Branch:** `mbender-ms/secure-web-app-network-foundation`  
 **Base:** `main` (MicrosoftDocs/azure-docs-pr)  
-**Last updated:** 2026-03-16
+**Last updated:** 2026-03-23
 
 ---
 
@@ -129,25 +129,98 @@ Author provided critical context that shifted the assessment:
 
 ---
 
-## File inventory
+## Phase 6 — DDoS Clarification
+
+**Date:** 2026-03-16  
+**Commit:** `28b7bf2` — `docs: Clarify DDoS infrastructure protection vs DDoS Protection distinction`
+
+- Addressed PR review comment from @AbdullahBell: Azure DDoS infrastructure protection protects the Azure platform, not individual customer resources.
+- Rewrote DDoS section to explicitly state infrastructure protection and DDoS Protection are **separate services**.
+- Added bold callout: "**doesn't protect customer resources at the resource level**."
+- Added guidance: "Don't rely on infrastructure protection alone to protect your services."
+
+---
+
+## Phase 7 — Bicep Draft
+
+**Date:** 2026-03-16  
+**Commit:** `e30152e` — `added bicep stuff`
+
+- Added `bicep-rough-draft/` folder with `main.bicep`, `azuredeploy.parameters.json`, `metadata.json`, and `README.md`.
+- Updated SHORT article Bastion link from `/azure/bastion/bastion-overview` to `/azure/bastion/bastion-sku-comparison`.
+
+---
+
+## Phase 8 — PR Review Comment Resolution
+
+**Date:** 2026-03-20  
+**Commit:** `2114b44` — `Address PR review comments: DDoS, Bastion, outbound access, NAT Gateway V2`
+
+Addressed 4 PR review comments from @AbdullahBell:
+
+| Comment | Resolution |
+|---|---|
+| DDoS infrastructure ≠ DDoS Protection (outdated) | Already addressed in Phase 6. Strengthened wording further. |
+| Bastion SKU comparison article link (main) | Added link to `/azure/bastion/bastion-sku-comparison` with full SKU comparison reference. |
+| Premium SKU recommendation (main) | Added "**Use Premium SKU for production workloads**" as Bastion deployment essential. |
+| Entra ID authentication article (main) | Added link to `/azure/bastion/bastion-entra-id-authentication` with auth details. |
+
+Additional changes in this commit:
+- Expanded Bastion section with detailed deployment essentials (subnet sizing, Premium SKU rationale, NSG requirements, Entra ID auth).
+- Added Mermaid diagrams for IaaS and PaaS variants inline in the main article.
+- Added outbound connectivity and NAT Gateway guidance.
+
+**Word count:** Full article grew from ~4,304 to ~5,100 words.
+
+---
+
+## Phase 9 — Cleanup and Diagram Extraction
+
+**Date:** 2026-03-23  
+**Commit:** `8feb65f` — `diagrams and archived data for next PR`
+
+- Removed `REVIEW-viability-assessment.md` (working document, not for merge).
+- Removed `bicep-rough-draft/` folder (moved to separate PR or repo).
+- Added `diagram-iaas-hub-spoke.md` and `diagram-paas-hub-spoke.md` as standalone Mermaid diagram files.
+- Expanded main article with additional content (~5,358 words).
+
+### Uncommitted change (2026-03-23)
+
+- Updated SHORT article Bastion VNet peering link from `/azure/bastion/bastion-overview` to `/azure/bastion/bastion-sku-comparison` (resolves remaining PR review comment #2 from @AbdullahBell).
+
+---
+
+## PR review comment status
+
+| # | Comment | Status |
+|---|---------|--------|
+| 1 | DDoS infrastructure vs. DDoS Protection distinction | **Resolved** (Phase 6 + Phase 8) |
+| 2 | Bastion SKU comparison link (SHORT.md) | **Resolved** (Phase 9, uncommitted) |
+| 3 | Bastion SKU article + Premium recommendation (main) | **Resolved** (Phase 8) |
+| 4 | Entra ID authentication article for Bastion (main) | **Resolved** (Phase 8) |
+
+---
+
+## File inventory (updated 2026-03-23)
 
 | File | Status | Purpose | Include in PR? |
 |---|---|---|---|
-| `secure-web-app-network-foundation-layered-hub-spoke.md` | Committed | Full article (~4,304 words) | Yes (or replace with SHORT version) |
-| `secure-web-app-network-foundation-layered-hub-spoke-SHORT.md` | Untracked | Shortened article (~2,633 words) for comparison | Author decision |
-| `REVIEW-viability-assessment.md` | Untracked | Viability assessment with findings and sources | No — working document |
+| `secure-web-app-network-foundation-layered-hub-spoke.md` | Committed | Full article (~5,358 words) | Yes |
+| `secure-web-app-network-foundation-layered-hub-spoke-SHORT.md` | Modified (uncommitted) | Shortened article (~2,636 words) | Author decision |
+| `diagram-iaas-hub-spoke.md` | Committed | IaaS Mermaid diagram | Author decision |
+| `diagram-paas-hub-spoke.md` | Committed | PaaS Mermaid diagram | Author decision |
 | `CHANGELOG.md` | Untracked | This file | No — working document |
-| `Prompt response - Architectural Drawings.md` | Committed | Phase 1 research | No — delete before merge |
-| `media/.../image1.jpg` | Committed | Placeholder diagram | Yes |
-| `media/.../image2.png` | Committed | Placeholder diagram | Yes |
+| `media/.../image1.jpg` | Committed | Architecture diagram | Yes |
+| `media/.../image2.png` | Committed | Architecture diagram | Yes |
 
 ---
 
 ## Open decisions
 
-- [ ] **Which version to publish?** Full (~4,304 words) or shortened (~2,633 words)?
+- [ ] **Which version to publish?** Full (~5,358 words) or shortened (~2,636 words)?
 - [ ] **Deprecate Zero Trust article?** `create-zero-trust-network-web-apps.md` — check page view stats, then decide.
 - [ ] **Architecture diagram** — Production diagram to replace placeholder.
-- [ ] **Bicep/Terraform template** — Links needed for "Deploy this scenario" section.
+- [ ] **Bicep/Terraform template** — Links needed for "Deploy this scenario" section (rough draft removed from branch, planned for separate PR).
 - [ ] **TOC placement** — Confirm "Cross-service scenarios" node location in Networking TOC.
 - [ ] **Delete `Prompt response - Architectural Drawings.md`** from branch before PR.
+- [ ] **Commit SHORT.md Bastion link fix** — Unstaged change resolving PR comment #2.
