@@ -6,8 +6,8 @@ ms.service: azure-load-testing
 ms.custom:
   - build-2024
 ms.topic: overview
-ms.author: shons
-author: shon-shah
+author: nandinim
+author: NandiniMurali
 ms.date: 04/04/2024
 adobe-target: true
 ---

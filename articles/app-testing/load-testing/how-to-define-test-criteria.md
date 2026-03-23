@@ -4,8 +4,8 @@ titleSuffix: Azure Load Testing
 description: 'Learn how to configure fail criteria for load tests with Azure Load Testing. Fail criteria let you define conditions that your load test results should meet.'
 services: load-testing
 ms.service: azure-load-testing
-ms.author: shons
-author: shon-shah
+author: nandinim
+author: NandiniMurali
 ms.date: 05/08/2023
 ms.topic: how-to
 ---
