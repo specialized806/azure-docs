@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 # Enable and run management actions
 
-Management actions let you invoke operations on southbound assets connected to your Azure IoT Operations instance. You can call methods, write values, and read values on assets such as OPC UA servers, ONVIF cameras, and MQTT devices. Management actions use Azure Event Grid to route requests and responses between the cloud and the internal MQTT broker The connector subscribes to a known topic on the internal MQTT broker and then executes the operation on the target asset.
+Management actions let you invoke operations on southbound assets connected to your Azure IoT Operations instance. You can call methods, write values, and read values on assets such as OPC UA servers, ONVIF cameras, and MQTT devices. Management actions use Azure Event Grid to route requests and responses between the cloud and the internal MQTT broker. The connector subscribes to a known topic on the internal MQTT broker and then executes the operation on the target asset.
 
 When you enable management actions, the Azure CLI provisions the infrastructure that connects Event Grid to the MQTT broker. This infrastructure includes an Event Grid data flow endpoint, a request data flow that uses a WebAssembly (WASM) module to process incoming messages, a response data flow that routes replies back through Event Grid, and the required topic spaces and permission bindings. After the infrastructure is in place, you can execute actions on any asset that has a management group and action defined.
 
@@ -96,11 +96,34 @@ az iot ops mgmt-actions execute \
 > [!TIP]
 > The `--payload` parameter supports inline JSON or a local file path that contains the JSON payload.
 
+Not all call actions require a payload. For example, the ONVIF `GetDeviceInformation` action doesn't require any input parameters, so you can execute it without a payload:
+
+```azurecli
+az iot ops mgmt-actions execute \
+    --instance <instance-name> \
+    --resource-group <resource-group> \
+    --asset onvif-asset \
+    --group Device \
+    --action GetDeviceInformation
+```
+
+In this scenario, the following command returns a `Could not resolve the request schema for action 'GetDeviceInformation'...` error because the CLI attempts to validate the request against a non-existent schema:
+
+```azurecli
+az iot ops mgmt-actions execute \
+    --instance <instance-name> \
+    --resource-group <resource-group> \
+    --asset onvif-asset \
+    --group Device \
+    --action GetDeviceInformation \
+    --show-schema
+```
+
 ### Action types
 
 The payload depends on the action type and the target asset's management group definition:
 
-- **Call** actions invoke a method on the asset. The payload contains the method's input parameters. To call a method that takes no parameters, set the payload to `'{}'`.
+- **Call** actions invoke a method on the asset. If the method expects input parameters, the payload contains them.
 - **Write** actions write a value to the target URI on the asset. The payload contains the value to write.
 - **Read** actions read a value from the target URI. Use an empty payload `'{}'` for read actions.
 
