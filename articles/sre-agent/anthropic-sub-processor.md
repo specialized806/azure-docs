@@ -26,9 +26,9 @@ For more information about subprocessor data access, see [Microsoft Data Access 
 
 You choose which AI provider powers your agent. The two options are:
 
-- **Azure OpenAI** — Covered by EU Data Boundary commitments. The default for customers in the EU, EFTA, and UK.
+- **Azure OpenAI**: Covered by EU Data Boundary commitments. The default for customers in the EU, EFTA, and UK.
 
-- **Anthropic** — The default for all other regions. Not covered by EU Data Boundary commitments.
+- **Anthropic**: The default for all other regions. Not covered by EU Data Boundary commitments.
 
 When you select Anthropic, your data (prompts, responses, and resource analysis) might be processed in the United States.
 
@@ -36,9 +36,9 @@ When you select Anthropic, your data (prompts, responses, and resource analysis)
 
 | Region | Anthropic | Azure OpenAI | Notes |
 |--------|-----------|--------------|-------|
-| **Most commercial regions** (US, APAC, etc.) | Default | Available | No data residency restrictions |
+| **Most commercial regions**<br><br>(US, APAC, etc.) | Default | Available | No data residency restrictions |
 | **EU, EFTA, and UK** | Available (opt-in) | Default | Anthropic isn't covered by EU Data Boundary |
-| **Government clouds** (GCC, GCC High, DoD) | Not available | Default | Anthropic isn't available in government or sovereign clouds |
+| **Government clouds**<br><br>(GCC, GCC High, DoD) | Not available | Default | Anthropic isn't available in government or sovereign clouds |
 
 ## Verify the active model provider
 
@@ -76,7 +76,7 @@ When you use Anthropic models in Azure SRE Agent:
 
 - Anthropic processes data under Microsoft's direction and contractual safeguards.
 - The [Microsoft DPA](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) and [Product Terms](https://www.microsoft.com/licensing/terms) apply.
-- Neither Microsoft nor Anthropic uses your data to train AI models.
+- Both Microsoft and Anthropic don't use your data to train AI models.
 - Your data is isolated by tenant and Azure subscription.
 
 For more on how Azure SRE Agent handles data, see [Data residency and privacy](data-privacy.md).
