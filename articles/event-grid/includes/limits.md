@@ -55,7 +55,7 @@ Throughput units define the ingress and egress event rate capacity in namespaces
 | Maximum Retain message size**                               | 64 KB                          |
 | Maximum Retain message per TU          | 10,000 messages or 640 MB (whichever is reached first) |
 | Total Retain storage per TU                               | 640 MB                         |
-| Retain message expiry (MQTT 3.1.1)                        | 365 days (default). To configure a Retain Expiry less than 365 days , contact Microsoft at [askmqtt@microsoft.com](mailto:askmqtt@microsoft.com) |
+| Retain message expiry (MQTT 3.1.1)                        | 365 days (default). To configure a Retain Expiry less than 365 days, contact Microsoft at [askmqtt@microsoft.com](mailto:askmqtt@microsoft.com) |
 | Retain message expiry (MQTT 5.0)                          | Configurable by using the message expiry interval with a range of 0 to 31,536,000 seconds (365 days) |
 | Outbound MQTT publishing requests per Event Grid namespace | 1,000 messages per second per TU                                                         |
 | Outbound MQTT bandwidth per Event Grid namespace        | 1 MB per second per TU                                                            |
