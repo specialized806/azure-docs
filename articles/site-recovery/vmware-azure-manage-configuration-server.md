@@ -19,7 +19,7 @@ You set up an on-premises configuration server when you use [Azure Site Recovery
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 >[!Note]
->This article describes the classic ASR experience for VMware. For the modernized experience and updated workflows, see [VMware to Azure disaster recovery architecture – Modernized](articles/site-recovery/vmware-azure-architecture-modernized.md) and [Set up disaster recovery for VMware VMs – Modernized](articles/site-recovery/vmware-azure-set-up-replication-tutorial-modernized.md).
+>This article describes the classic ASR experience for VMware. For the modernized experience and updated workflows, see [VMware to Azure disaster recovery architecture – Modernized](https://learn.microsoft.com/en-us/azure/site-recovery/vmware-azure-architecture-modernized) and [Set up disaster recovery for VMware VMs – Modernized](https://learn.microsoft.com/en-us/azure/site-recovery/vmware-azure-set-up-replication-tutorial-modernized).
 
 ## Update Windows license
 
