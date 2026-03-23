@@ -32,93 +32,15 @@ This pattern is for network engineers and architects at small or midsize organiz
 
 ## Architecture
 
-The backend compute model—IaaS or PaaS—determines which shared services are needed in the hub. Both variants use the same hub-spoke foundation with VNet peering, NSGs (🔒) on every subnet, and conditional DDoS Protection (🛡️). Solid arrows show active traffic flow; dotted arrows show optional or conditional paths.
+The backend compute model—IaaS or PaaS—determines which shared services are needed in the hub. Both variants use the same hub-spoke foundation with VNet peering, NSGs on every subnet, and conditional DDoS Protection.
 
 ### IaaS backend (Virtual Machines)
 
-When the backend includes VMs, the hub hosts Azure Bastion for secure RDP/SSH management across peered spokes. NAT Gateway provides explicit outbound connectivity for private workload subnets.
-
-```mermaid
-flowchart TB
-    Internet((Internet))
-    KV[Azure Key Vault]
-
-    subgraph DDoS["🛡️ Azure DDoS Protection · conditional"]
-        subgraph Hub["Hub Virtual Network"]
-            subgraph BS["🔒 AzureBastionSubnet"]
-                Bastion[Azure Bastion]
-            end
-            subgraph FS["🔒 AzureFirewallSubnet · optional"]
-                FW[Azure Firewall Basic]
-            end
-            subgraph FMS["🔒 AzureFirewallManagementSubnet · optional"]
-                FWMgmt[Firewall Management]
-            end
-        end
-
-        Peering{{"VNet Peering"}}
-
-        subgraph Spoke["Spoke Virtual Network"]
-            subgraph AGS["🔒 Application Gateway Subnet"]
-                AppGW[Application Gateway WAF_v2]
-            end
-            subgraph WLS["🔒 Workload Subnet · private"]
-                VM[Virtual Machines]
-            end
-            NAT[NAT Gateway · conditional]
-        end
-    end
-
-    Internet -->|HTTPS| AppGW
-    AppGW -->|Backend traffic| VM
-    AppGW -.->|TLS certificates| KV
-    Bastion -->|RDP / SSH| Peering
-    Peering -->|RDP / SSH| VM
-    FWMgmt ---|Management plane| FW
-    VM --> NAT -->|Outbound| Internet
-    VM -.->|Optional UDR| Peering
-    Peering -.-> FW -.->|Outbound| Internet
-```
+When the backend includes VMs, internet traffic flows through Application Gateway with WAF in the spoke to backend VMs in a private workload subnet. The hub hosts Azure Bastion for secure RDP/SSH management across peered spokes, and NAT Gateway provides explicit outbound connectivity for private workload subnets. Azure Firewall in the hub is optional and provides centralized egress control when FQDN-based filtering is needed.
 
 ### PaaS backend (App Service)
 
-When the backend is PaaS, no Bastion is needed—there's no OS-level access to manage. The hub exists for optional shared services (Azure Firewall) and future growth. VNet peering is always provisioned; it carries active traffic only when Azure Firewall handles centralized egress.
-
-```mermaid
-flowchart TB
-    Internet((Internet))
-    KV[Azure Key Vault]
-
-    subgraph DDoS["🛡️ Azure DDoS Protection · conditional"]
-        subgraph Hub["Hub Virtual Network"]
-            subgraph FS["🔒 AzureFirewallSubnet · optional"]
-                FW[Azure Firewall Basic]
-            end
-            subgraph FMS["🔒 AzureFirewallManagementSubnet · optional"]
-                FWMgmt[Firewall Management]
-            end
-        end
-
-        Peering{{"VNet Peering"}}
-
-        subgraph Spoke["Spoke Virtual Network"]
-            subgraph AGS["🔒 Application Gateway Subnet"]
-                AppGW[Application Gateway WAF_v2]
-            end
-            subgraph WLS["🔒 Workload Subnet"]
-                AppSvc[Azure App Service]
-            end
-        end
-    end
-
-    Internet -->|HTTPS| AppGW
-    AppGW -->|Backend traffic| AppSvc
-    AppGW -.->|TLS certificates| KV
-    Hub --- Peering --- Spoke
-    FWMgmt ---|Management plane| FW
-    AppSvc -.->|"Optional · VNet Integration + UDR"| Peering
-    Peering -.-> FW -.->|Outbound| Internet
-```
+When the backend is PaaS, internet traffic flows through Application Gateway with WAF in the spoke to App Service in the workload subnet. No Bastion is needed—there's no OS-level access to manage. The hub exists for optional shared services (Azure Firewall) and future growth. VNet peering is always provisioned; it carries active traffic only when Azure Firewall handles centralized egress.
 
 The architecture uses two virtual networks connected by VNet peering:
 
