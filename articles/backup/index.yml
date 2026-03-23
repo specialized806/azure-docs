@@ -64,17 +64,17 @@ landingContent:
             url: azure-data-lake-storage-backup-overview.md
 
   # Card
-  - title: Back up Azure VMs
+  - title: Back up Azure Virtual Machines
     linkLists:
       - linkListType: concept
         links:
-          - text: About Azure VM backup
+          - text: About Azure Virtual Machines backup
             url: backup-azure-vms-introduction.md
-          - text: Support matrix for Azure VM backup
+          - text: Support matrix for Azure Virtual Machines backup
             url: backup-support-matrix-iaas.md
-          - text: FAQ - Azure VM backup
+          - text: FAQ - Azure Virtual Machines backup
             url: backup-azure-vm-backup-faq.yml
-          - text: Manage Azure VM backups
+          - text: Manage Azure Virtual Machines backups
             url: backup-azure-manage-vms.md
 
   # Card
@@ -100,18 +100,18 @@ landingContent:
             url: backup-azure-mysql-flexible-server-about.md
           - text: Azure Database for PostgreSQL Server backup
             url: backup-azure-database-postgresql-overview.md
-          - text: SQL Server Database on Azure VM backup
+          - text: SQL Server database on Azure Virtual Machines backup
             url: backup-azure-sql-database.md   
-          - text: SAP HANA Database backup
+          - text: SAP HANA database backup
             url: sap-hana-database-about.md
-          - text: SAP ASE Database on Azure VM backup
+          - text: SAP ASE database on Azure Virtual Machines backup
             url: sap-ase-database-about.md
   # Card
   - title: Back up specialized datasources
     linkLists:
       - linkListType: concept
         links:
-          - text: Azure Kubernetes Cluster backup
+          - text: Azure Kubernetes cluster backup
             url: azure-kubernetes-service-backup-overview.md
           - text: Azure Data Lake Storage backup
             url: azure-data-lake-storage-backup-overview.md
@@ -171,15 +171,15 @@ landingContent:
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Cross Region Restore for Azure VM
+          - text: Cross Region Restore for Azure Virtual Machines
             url: backup-azure-arm-restore-vms.md#cross-region-restore
-          - text: Cross Subscription Restore for Azure VM
+          - text: Cross Subscription Restore for Azure Virtual Machines
             url: backup-azure-arm-restore-vms.md#cross-subscription-restore-for-azure-vm
-          - text: Long-term retention using Archive Tier
+          - text: Long-term retention using Archive tier
             url: archive-tier-support.md
           - text: Monitor backup operations
             url: monitoring-and-alerts-overview.md
-          - text: Audit and Enforce Azure Files backup with Azure Policy
+          - text: Audit and enforce Azure Files backup with Azure Policy
             url: backup-azure-files-policy-automation.md
           - text: Automate datasource protection
             url: automation-backup.md
