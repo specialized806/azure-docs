@@ -14,6 +14,9 @@ ms.custom: include file
 
 Deploy a Virtual Network Manager instance with the defined scope and access that you need using the Azure portal.
 
+> [!IMPORTANT]
+> Virtual Network Manager requires specific permissions within the defined scope. Ensure you have the necessary [Azure RBAC roles](../../../virtual-network-manager/concept-network-groups.md#network-groups-and-azure-policy) before creating the instance.
+
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 
 1. Select **+ Create a resource** and search for **Network Manager**. Then select **Network Manager** > **Create** to begin setting up Virtual Network Manager.
@@ -38,8 +41,5 @@ Deploy a Virtual Network Manager instance with the defined scope and access that
 1. Select **Review + create** to validate your configuration.
 
 1. After validation passes, select **Create** to deploy the Virtual Network Manager instance.
-
-> [!IMPORTANT]
-> Virtual Network Manager requires specific permissions within the defined scope. Ensure you have the necessary [Azure RBAC roles](../../../virtual-network-manager/concept-network-manager-scope.md#permissions) before creating the instance.
 
 The Virtual Network Manager instance is now created and ready to manage your existing virtual networks within the defined scope.
