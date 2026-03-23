@@ -22,9 +22,11 @@ Before you configure export, ensure you have the **FHIR Data exporter role** app
 
 Set up the `$export` operation for the FHIR service in three steps:
 
-- Enable a managed identity for the FHIR service.
-- Give permission for the FHIR service to access your storage account.
-- Set the storage account as the export destination for the FHIR service.
+1. Enable a managed identity for the FHIR service.
+1. Give permission for the FHIR service to access your storage account.
+1. Set the storage account as the export destination for the FHIR service.
+
+If your FHIR service is outside the network boundary of your storage account, you can configure access by allowing the FHIR service as a Microsoft trusted service or by allowing specific IP addresses to access the storage account. For more information, see [Secure the FHIR service `$export` operation](#secure-the-fhir-service-export-operation).    
 
 ## Prerequisites
 
@@ -86,16 +88,14 @@ Specify the storage account that the FHIR service uses when exporting data.
 
     :::image type="content" source="media/export-data/fhir-export-storage.png" alt-text="Screenshot showing user interface of FHIR Export Storage list." lightbox="media/export-data/fhir-export-storage.png":::
 
-After you complete these configuration steps, you're ready to export data from the FHIR service. To learn more about performing `$export` operations with the FHIR service, see [How to export FHIR data](./export-data.md).
-
 > [!NOTE]
 > You can only register storage accounts in the same subscription as the FHIR service as the destination for `$export` operations.
 
 ## Secure the FHIR service `$export` operation
 
-To securely export data from the FHIR service to your storage account, use one of the following options:
+To securely export data from the FHIR service outside the network boundary of your storage account, use one of the following options:
 
-* Allow the FHIR service to access the storage account as a Microsoft Trusted Service.
+* Allow the FHIR service to access the storage account as a Microsoft trusted service.
 * Allow specific IP addresses associated with the FHIR service to access the storage account. This option permits two different configurations depending on whether the storage account is in the same Azure region as the FHIR service.
 
 ### Allow the FHIR service as a Microsoft trusted service
@@ -105,7 +105,7 @@ To enable the FHIR workspace as a trusted Microsoft service, follow these steps:
 Ensure that your storage account public network access scope is enabled for selected networks. 
 
 1. In the Azure portal, go to your storage account.
-1. On the left menu, select **Security + Networking** > **Networking**..
+1. On the left menu, select **Security + Networking** > **Networking**.
 1. On the **Public access** tab, under **Public network access**, select **Manage**.
 
    :::image type="content" source="media/export-data/storage-networking-1.png" alt-text="Screenshot of Azure Storage networking settings." lightbox="media/export-data/storage-networking-1.png":::

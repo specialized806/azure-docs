@@ -13,12 +13,23 @@ ms.custom: sfi-image-nochange
 
 # Configure import settings in the FHIR service in Azure Health Data Services
 
-Use this guide to configure import settings in the FHIR&reg; service in Azure Health Data Services. Learn how to enable managed identities, assign storage permissions, and securely import FHIR data from Azure Blob Storage or Azure Data Lake Storage Gen2. 
+The FHIR&reg; service supports the `$import` operation [specified by HL7](https://www.hl7.org/fhir/uv/bulkdata/) for importing FHIR data from a FHIR server. In the FHIR service implementation, when you call the `$import` endpoint, the FHIR service imports data into a preconfigured Azure storage account. The storage account must be a Blob or Azure Data Lake Storage Gen2 (ADLS Gen2) account with hierarchical namespaces enabled.
+
+Before you configure import, ensure you have the **FHIR Data importer role** application role. To learn more about application roles, see [Authentication and Authorization for FHIR service](../../healthcare-apis/authentication-authorization.md).
+
+Set up the `$import` operation for the FHIR service in three steps:
+
+1. Enable a managed identity for the FHIR service.
+1. Give permission for the FHIR service to access your storage account.
+1. Set the storage account as the import destination for the FHIR service.
+
+If your FHIR service is outside the network boundary of your storage account, you can configure access by allowing the FHIR service as a Microsoft trusted service or by allowing specific IP addresses to access the storage account. For more information, see [Secure the FHIR service `$import` operation](#secure-the-fhir-service-import-operation).        
+
 
 ## Prerequisites
 
 - A FHIR service. To create one, see [Deploy the FHIR service](deploy-azure-portal.md).
-- An Azure Blob or Azure Data Lake Storage Gen2 (ADLS Gen2) account configured with [Hierarchical Namespaces (HNS) enabled](../../storage/blobs/create-data-lake-storage-account.md) to use as the destination for exported data. 
+- An Azure Blob or Azure Data Lake Storage Gen2 (ADLS Gen2) account configured with [Hierarchical Namespaces (HNS) enabled](../../storage/blobs/create-data-lake-storage-account.md) to use as the destination for imported data. 
 
 ## Enable a managed identity on the FHIR service for import
 
@@ -117,7 +128,7 @@ First, get the request URL and JSON body for the FHIR service.
 
 ## Secure the FHIR service import operation
 
-To securely import FHIR data into the FHIR service from an Azure Blob or Data Lake Storage Gen2 account, use one of the following options:
+To securely import data from the FHIR service outside the network boundary of your storage account, use one of the following options:
 
 * Enable the FHIR service as a trusted Microsoft service.
 * Allow specific IP addresses associated with the FHIR service to access the storage account from other Azure regions.
@@ -130,7 +141,7 @@ To enable the FHIR workspace as a trusted Microsoft service, follow these steps:
 Ensure that your storage account public network access scope is enabled for selected networks. 
 
 1. In the Azure portal, go to your Blob or Data Lake Storage Gen2 account.
-1. On the left menu, select **Security + Networking** > **Networking**..
+1. On the left menu, select **Security + Networking** > **Networking**.
 1. On the **Public access** tab under **Public network access**, select **Manage**.
 
    :::image type="content" source="media/export-data/storage-networking-1.png" alt-text="Screenshot of Azure Storage networking settings." lightbox="media/export-data/storage-networking-1.png":::
