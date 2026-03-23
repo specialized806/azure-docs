@@ -110,6 +110,8 @@ items:
             href: upload-knowledge-document.md
           - name: Kusto tools
             href: kusto-tools.md
+          - name: MCP connectors
+            href: mcp-connectors.md
       - name: Access
         items:
           - name: Chat from your tools
@@ -182,6 +184,8 @@ items:
             href: kusto-connector.md
           - name: Set up Azure DevOps connector
             href: azure-devops-connector.md
+          - name: Set up Outlook connector
+            href: outlook-connector.md
           - name: Set up MCP connector
             href: mcp-connector.md
           - name: Create a Kusto tool
