@@ -5,8 +5,8 @@ description: 'Service limits used for capacity planning and configuring high-sca
 services: load-testing
 ms.service: azure-load-testing
 ms.topic: reference
-author: nandinim
-author: NandiniMurali
+ms.author: nandinim
+author: nandinimurali
 ms.date: 09/21/2022
 ---
 

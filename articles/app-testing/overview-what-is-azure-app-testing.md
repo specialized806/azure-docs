@@ -4,7 +4,7 @@ description: 'Improve your app performance at scale. Run end-to-end Playwright t
 ms.service: azure-app-testing
 ms.topic: overview
 ms.author: nandinim
-author: NandiniMurali
+author: nandinimurali
 ms.date: 08/07/2025
 adobe-target: true
 ---

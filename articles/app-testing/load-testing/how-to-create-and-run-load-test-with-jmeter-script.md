@@ -6,8 +6,8 @@ services: load-testing
 ms.service: azure-load-testing
 ms.custom: devx-track-azurecli
 ms.topic: how-to
-author: NandiniMurali
-author: nandinim
+author: nandinimurali
+ms.author: nandinim
 ms.date: 10/23/2023
 adobe-target: true
 ---

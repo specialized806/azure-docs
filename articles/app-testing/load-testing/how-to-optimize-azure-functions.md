@@ -4,8 +4,8 @@ titleSuffix: Azure Load Testing
 description: Learn how to optimize Azure Functions for Performance and Costs using Azure Load Testing
 services: load-testing
 ms.service: azure-load-testing
-author: nandinim
-author: NandiniMurali
+ms.author: nandinim
+author: nandinimurali
 ms.date: 06/12/2024
 ms.topic: how-to
 ---

@@ -4,8 +4,8 @@ titleSuffix: Azure Load Testing
 description: Learn how to create a load test for an Azure App Service web app with Azure Load Testing.
 services: load-testing
 ms.service: azure-load-testing
-author: nandinim
-author: NandiniMurali
+ms.author: nandinim
+author: nandinimurali
 ms.date: 02/17/2024
 ms.topic: how-to
 ---
