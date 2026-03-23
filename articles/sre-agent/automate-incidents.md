@@ -65,7 +65,7 @@ An incident response plan tells the agent which incidents to pick up and how muc
 
 1. Select **Next**.
 
-  :::image type="content" source="media/automate-incidents/response-plan-step-1.png" alt-text="Screenshot of the response plan creation form with name and severity fields." lightbox="media/automate-incidents/response-plan-step-1.png":::
+   :::image type="content" source="media/automate-incidents/response-plan-step-1.png" alt-text="Screenshot of the response plan creation form with name and severity fields." lightbox="media/automate-incidents/response-plan-step-1.png":::
 
 1. **Step 2: Preview filter results:** Review matching past incidents from your incident platform (empty if no incidents exist yet). Select **Next**.
 
