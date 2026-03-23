@@ -4,8 +4,8 @@ description: Learn about the data
 services: load-testing
 ms.service: azure-load-testing
 ms.topic: how-to
-author: ninallam
-ms.author: ninallam
+author: shon-shah
+ms.author: shons
 ms.custom: subject-monitoring
 ms.date: 04/05/2023
 ---

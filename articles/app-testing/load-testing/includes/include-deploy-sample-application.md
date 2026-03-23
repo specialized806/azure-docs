@@ -2,9 +2,9 @@
 title: "Include file"
 description: "Include file"
 services: load-testing
-author: ninallam
+author: shon-shah
 ms.service: azure-load-testing
-ms.author: ninallam
+ms.author: shons
 ms.custom: "include file"
 ms.topic: "include"
 ms.date: 09/19/2023
