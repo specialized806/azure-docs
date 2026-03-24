@@ -27,7 +27,7 @@ By the end of this guide, you:
 
 | Requirement | Details |
 |---|---|
-| **Agent created** | Complete [Step 1: Create and set up](create-and-setup.md) first. |
+| **Agent created** | Complete [Step 1: Create and set up](create-and-set-up.md) first. |
 
 > [!TIP]
 > **Didn't finish setup?** You can still talk to the agent and complete team onboarding&mdash;the agent works without connected data sources. However, for the best experience, go to [Complete your setup](complete-setup.md) first to connect your code repository and Azure resources. The agent's onboarding interview is richer when it can read your code.
