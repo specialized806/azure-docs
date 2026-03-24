@@ -10,7 +10,7 @@ ms.date: 03/24/2026
 
 # Understand time handling in Azure Stream Analytics
 
-In this article, you learn how to make design choices to solve practical time handling problems in Azure Stream Analytics jobs. Time handling design decisions are closely related to event ordering factors.
+Time handling in Azure Stream Analytics is the set of mechanisms that determine how streaming events are timestamped, ordered, and processed based on when they occurred versus when they arrived. This article explains how to make design choices to solve practical time handling problems in Azure Stream Analytics jobs. Time handling design decisions are closely related to event ordering factors.
 
 ## Background time concepts
 
@@ -50,7 +50,7 @@ When you use application time, the time progression is based on the incoming eve
 
 * When there's no incoming event, the watermark is the current estimated arrival time minus the late arrival tolerance window. The estimated arrival time is the time that has elapsed from the last time an input event was seen plus that input event's arrival time.
 
-   The arrival time can only be estimated because the real arrival time is generated on the input event broker, such as Event Hubs, and not on the Azure Stream Analytics VM processing the events.
+   The arrival time can only be estimated because the real arrival time is generated on the input event broker (such as Event Hubs or IoT Hub), not on the Azure Stream Analytics VM processing the events.
 
 The design serves two additional purposes other than generating watermarks:
 
@@ -78,15 +78,15 @@ As a part of the adjustment, the event's **System.Timestamp** is set to the new 
 
 ## Handle time variation with substreams
 
-The heuristic watermark generation mechanism described works well in most of cases where time is mostly synchronized between the various event senders. However, in real life, especially in many IoT scenarios, the system has little control over the clock on the event senders. The event senders could be all sorts of devices in the field, perhaps on different versions of hardware and software.
+The heuristic watermark generation mechanism—where Azure Stream Analytics tracks event time progress using the largest observed timestamp minus the tolerance window—works well in most cases where time is mostly synchronized between the various event senders. However, in real life, especially in many IoT scenarios, the system has little control over the clock on the event senders. The event senders could be all sorts of IoT devices in the field, perhaps on different versions of device hardware and firmware.
 
 Instead of using a watermark that is global to all events in an input partition, Azure Stream Analytics has another mechanism called **substreams**. You can use substreams in your job by writing a job query that uses the [**TIMESTAMP BY**](/stream-analytics-query/timestamp-by-azure-stream-analytics) clause and the keyword **OVER**. To designate the substream, provide a key column name after the **OVER** keyword, such as a `deviceid`, so that system applies time policies by that column. Each substream gets its own independent watermark. This mechanism is useful to allow timely output generation, when dealing with large clock skews or network delays among event senders.
 
-When you use substreams, Azure Stream Analytics applies the late arrival tolerance window to incoming events. The late arrival tolerance decides the maximum amount by which different substreams can be apart from each other. For example, if Device 1 is at Timestamp 1, and Device 2 is at Timestamp 2, the maximum late arrival tolerance is Timestamp 2 minus Timestamp 1. The default setting is 5 seconds and is likely too small for devices with divergent timestamps. Start with 5 minutes and make adjustments according to your device clock skew pattern.
+When you use substreams, Azure Stream Analytics applies the late arrival tolerance window to incoming events. The late arrival tolerance decides the maximum amount by which different substreams can be apart from each other. For example, if Device 1 is at Timestamp 1, and Device 2 is at Timestamp 2, the maximum late arrival tolerance is Timestamp 2 minus Timestamp 1. The default late arrival tolerance setting is 5 seconds, which is likely too small for IoT devices with divergent timestamps. Start with 5 minutes and make adjustments according to your device clock skew pattern.
 
 ## Early arriving events
 
-You might have noticed another concept called early arrival window that looks like the opposite of late arrival tolerance window. This window is fixed at 5 minutes and serves a different purpose from the late arrival tolerance window.
+The early arrival window is a fixed 5-minute tolerance that determines how early an event can arrive relative to its event time before Azure Stream Analytics drops it. This window serves a different purpose from the late arrival tolerance window.
 
 Because Azure Stream Analytics guarantees complete results, you can only specify **job start time** as the first output time of the job, not the input time. The job start time is required so that the system processes the complete window, not just from the middle of the window.
 
@@ -149,7 +149,7 @@ There are several other resource constraints that can cause the streaming pipeli
 
 2. Not enough throughput within the input event brokers, so they're throttled. For possible solutions, see [Automatically scale up Azure Event Hubs throughput units](../event-hubs/event-hubs-auto-inflate.md).
 
-3. Output sinks aren't provisioned with enough capacity, so they're throttled. The possible solutions vary widely based on the flavor of output service being used.
+3. Output sinks (such as Azure SQL Database, Blob Storage, or Power BI) aren't provisioned with enough capacity, so they're throttled. The possible solutions vary widely based on the output service being used.
 
 ## Output event frequency
 
