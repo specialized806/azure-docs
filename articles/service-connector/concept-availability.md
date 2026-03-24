@@ -14,7 +14,7 @@ ms.custom: references_regions
 
 Service Connector provides high availability support for all types of applications you run in Azure. This article describes Service Connector high availability features like availability zones, zone redundancy, disaster recovery, and cross-region failover.
 
-The goal of the high availability architecture in Service Connector is to guarantee that your service connections are up and running at least 99.9% of time. This high availability means you don't have to worry about the effects of maintenance operations and outages on your service connections.
+The goal of the high availability architecture in Service Connector is to guarantee that service connections are up and running at least 99.9% of time. This high availability means you don't have to worry about the effects of maintenance operations and outages on your service connections.
 
 ## Availability zones
 
@@ -33,7 +33,7 @@ For example, if you have an app service with zone redundancy enabled, the platfo
 Traffic is routed to all of your available connection resources. When a zone goes down, the platform detects the lost instances, automatically attempts to find new replacement instances, and spreads the traffic as needed.
 
 > [!NOTE]
-> To create, update, validate, and list service connections, Service Connector calls APIs from the compute service and the target service. Because Service Connector relies on the responses from both the compute service and the target service, requests to Service Connector in a zone-down scenario might not succeed if the target service can't be reached. This limitation applies to App Service, Azure Container Apps, and Azure Spring Apps.
+> To create, update, validate, and list service connections, Service Connector calls APIs from the compute service and the target service. Because Service Connector relies on the responses from both the compute service and the target service, requests to Service Connector might not succeed if the target service can't be reached in a zone-down scenario. This limitation applies to App Service, Azure Container Apps, and Azure Spring Apps.
 
 To create a zone-redundant service connection using Service Connector, see [Create a zone-redundant service connection](#create-a-zone-redundant-service-connection).
 
@@ -41,25 +41,25 @@ To create a zone-redundant service connection using Service Connector, see [Crea
 
 Disaster recovery is the process of restoring application functionality after a catastrophic loss.
 
-Failures do happen in the cloud. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component. In a disaster, Service Connector fails over to the paired region. If the outage is decided and declared by the Service Connector team, you don’t need to do anything more.
+Failures do happen in the cloud. Instead of trying to prevent failures altogether, the goal of disaster recovery is to minimize the effects of a single failing component. In a disaster, Service Connector fails over to the paired region. If the Service Connector team decides on and declares the outage, customers don't need to do anything more.
 
 *Recovery Time Objective (RTO)* indicates the duration between the beginning of an outage that impacts Service Connector and the recovery to full availability. *Recovery Point Objective (RPO)* indicates the duration between the start of the outage that affects Service Connector and the last operation correctly restored. Expected and maximum RPO is 24 hours and RTO is 24 hours.
 
-During the disaster duration, operations against Service Connector might fail before the failover happens. Once the failover is complete, data is restored and customers aren't required to take any action.
+During the disaster duration, operations against Service Connector might fail before the failover happens. Once the failover is complete, data is restored, and customers don't need to take any action.
 
-Service connector handles business continuity and disaster recovery (BCRD) for storage and compute. The goal is for issues in storage or compute in any region to have as minimal an impact as possible. The data layer design prioritizes availability over latency in the event of a disaster. If a region goes down, Service Connector attempts to serve the end-user request from its paired region.
+Service connector handles *business continuity and disaster recovery (BCDR)* for storage and compute. The goal is for issues in storage or compute in any region to have the minimal possible impact. The data layer design prioritizes availability over latency in case of disaster. If a region goes down, Service Connector attempts to serve the end-user request from its paired region.
 
-During the failover action, Service Connector handles DNS remapping to the available regions. After failover, all data and action serves as usual from the customer viewpoint.
+During the failover action, Service Connector handles DNS remapping to the available regions. After failover, all data and actions serve as usual from the customer viewpoint.
 
 Service Connector changes its DNS in about one hour. Performing a manual failover would take more time. Because Service Connector is a resource provider built on top of other Azure services, the actual time depends on the failover time of the underlying services.
 
 ### Disaster recovery region support
 
-Service Connector currently supports the following region pairs. In the event of a primary region outage, failover to the secondary region starts automatically.
+Service Connector currently supports the following region pairs. In a primary region outage, failover to the secondary region starts automatically.
 
 | Primary         | Secondary         |
 |-----------------|-------------------|
-| East US 2 EUAP  | East US           |
+| East US 2 Early Updates Access Program (EUAP)  | East US           |
 | West Central US | West Central US 2 |
 | West Europe     | North Europe      |
 | North Europe    | West Europe       |
@@ -82,24 +82,24 @@ Requests to service connections are impacted during a failover. Once the failove
 
 ## Create a zone-redundant service connection
 
-You can create a Service Connector zone-redundant service connection to a target resource of your choice by using Azure CLI or the Azure portal. The following steps create a zone-redundant service connection for Azure App Service to an Azure Storage blob. You can use the same process to create zone-redundant connections for Azure Spring Apps and Azure Container Apps compute services.
+You can create a Service Connector zone-redundant service connection to a target resource of your choice by using Azure CLI or the Azure portal. You can use the same process to create zone-redundant connections for Azure Spring Apps and Azure Container Apps compute services.
 
-To enable zone redundancy for an App Service service connection, you first create a zone-redundant App Service. Because you enable zone redundancy for your App Service, the service connection is also zone redundant.
+The following steps create a zone-redundant service connection for Azure App Service to an Azure Storage blob. To enable zone redundancy for an App Service service connection, you first create a zone-redundant App Service. Because you enable zone redundancy for your App Service, the service connection is also zone redundant.
 
 > [!IMPORTANT]
-> Zone redundancy is supported only in the PremiumV2-PremiumV4 and Isolated SKUs of App Service. Basic and Free SKUs don't support zone redundancy. For more information, see [Reliability in Azure App Service](/azure/reliability/reliability-app-service#resilience-to-availability-zone-failures).
+> Zone redundancy is supported only in the App Service PremiumV2-PremiumV4 and Isolated SKU tiers. Basic and Free SKU tiers don't support zone redundancy. For more information, see [Reliability in Azure App Service](/azure/reliability/reliability-app-service#resilience-to-availability-zone-failures).
 
 ### [Azure CLI](#tab/azure-cli)
 
-The following steps create a zone-redundant service connection for a PremiumV2 App Service Plan called `MyPlan` in an existing resource group called `MyResourceGroup`. This example creates a service connection to an existing Azure Storage blob. To create web app service connections to other target resources, see [az webapp connection create](/cli/azure/webapp/connection/create).
+The following steps create a zone-redundant service connection for a PremiumV2 App Service Plan called `MyPlan` in an existing resource group called `MyResourceGroup`. This example creates a service connection to an Azure Storage blob. To create web app service connections to other target resources, see [az webapp connection create](/cli/azure/webapp/connection/create).
 
-1. Create the App Service plan and include a `--zone-redundant` parameter. You can also optionally include the `--number-of-workers` parameter to specify capacity. For more details, see [How to deploy a zone-redundant App Service](/azure/app-service/environment/overview-zone-redundancy).
+1. Create the App Service plan and include a `--zone-redundant` parameter. You can also optionally include the `--number-of-workers` parameter to specify capacity. For more information, see [How to deploy a zone-redundant App Service](/azure/app-service/environment/overview-zone-redundancy).
 
    ```azurecli
    az appservice plan create --resource-group MyResourceGroup --name MyPlan --sku P1V2 --zone-redundant --number-of-workers 6
    ```
 
-1. Create an web app in the App Service plan. New web app names must be globally unique in Azure. In the following code, replace the `<my_unique_app_name>` placeholder with a globally unique web app name.
+1. Create a web app in the App Service plan. New web app names must be globally unique in Azure. In the following code, replace the `<my_unique_app_name>` placeholder with a globally unique web app name.
 
    ```azurecli
    az webapp create --name <my_unique_app_name> --plan MyPlan --resource-group MyResourceGroup
@@ -137,6 +137,6 @@ To enable zone redundancy for a service connection in App Service using the Azur
 
 ## Related content
 
-[Service Connector concepts](concept-service-connector-internals.md)
-[Service Connector region support](concept-region-support.md)
-[Service Connector FAQ](faq.md)
+- [Service Connector concepts](concept-service-connector-internals.md)
+- [Service Connector region support](concept-region-support.md)
+- [Service Connector FAQ](faq.yml)
