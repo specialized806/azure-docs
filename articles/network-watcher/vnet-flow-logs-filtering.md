@@ -93,6 +93,29 @@ Set-AzNetworkWatcherFlowLog -Enabled $true -Name 'myVNetFlowLog' -NetworkWatcher
     -EnableTrafficAnalytics -TrafficAnalyticsWorkspaceId $workspace.ResourceId `
     -EnableRetention $true -RetentionPolicyDays 15
 ```
+## Filtering based on RecordTypes
+
+You can filter Virtual Network Flow Logs based on the state of a network flow. Flow state represents the lifecycle stage of a connection as observed by Azure Network Watcher, such as when a flow begins, continues, ends, or is denied. 
+
+Use the RecordTypes parameter to specify which flow states you want to record. The parameter accepts one or more comma‑separated values.
+
+### Supported RecordType Values
+
+| Value | Description |
+|-------|-------------|
+| B     | Begin, when a flow is created. No statistics are provided. |
+| C     | Continuing for an ongoing flow. Statistics are provided at five-minute intervals. |
+| E     | End, when a flow is terminated. Statistics are provided. |
+| D     | Deny, when a flow is denied. |
+
+### Example scenarios using RecordTypes
+
+| Scenario | RecordTypes value |
+|----------|-------------------|
+| Capture only denied traffic | "D" |
+| Capture flow creation and termination events | "B,E" |
+| Capture only active traffic statistics | "C" |
+| Capture full flow lifecycle | "B,C,E" |
 
 ## Update RecordTypes filtering condition
 
