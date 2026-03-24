@@ -59,7 +59,7 @@ Once the Azure Event Hubs namespace and event hub are configured, you can create
 1. In the [operations experience](https://iotoperations.azure.com/), select the **Data flow endpoints** tab.
 1. Under **Create new data flow endpoint**, select **Azure Event Hubs** > **New**.
 
-    :::image type="content" source="media/howto-configure-kafka-endpoint/create-event-hubs-endpoint.png" alt-text="Screenshot using operations experience to create an Azure Event Hubs data flow endpoint.":::
+    :::image type="content" source="media/howto-configure-kafka-endpoint/create-event-hubs-endpoint.png" alt-text="Screenshot using operations experience to create an Azure Event Hubs data flow endpoint." lightbox="media/howto-configure-kafka-endpoint/create-event-hubs-endpoint.png":::
 
 1. Enter the following settings for the endpoint:
 
@@ -339,7 +339,7 @@ To configure a data flow endpoint for non-Event-Hub Kafka brokers, set the host,
 1. In the [operations experience](https://iotoperations.azure.com/), select the **Data flow endpoints** tab.
 1. Under **Create new data flow endpoint**, select **Custom Kafka Broker** > **New**.
 
-    :::image type="content" source="media/howto-configure-kafka-endpoint/create-kafka-endpoint.png" alt-text="Screenshot using operations experience to create a Kafka data flow endpoint.":::
+   :::image type="content" source="media/howto-configure-kafka-endpoint/create-kafka-endpoint.png" alt-text="Screenshot using operations experience to create a Kafka data flow endpoint." lightbox="media/howto-configure-kafka-endpoint/create-kafka-endpoint.png":::
 
 1. Enter the following settings for the endpoint:
 
@@ -826,7 +826,7 @@ You can set advanced settings for the Kafka data flow endpoint such as TLS, trus
 
 In the operations experience, select the **Advanced** tab for the data flow endpoint.
 
-:::image type="content" source="media/howto-configure-kafka-endpoint/kafka-advanced.png" alt-text="Screenshot using operations experience to set Kafka data flow endpoint advanced settings.":::
+:::image type="content" source="media/howto-configure-kafka-endpoint/kafka-advanced.png" alt-text="Screenshot using operations experience to set Kafka data flow endpoint advanced settings." lightbox="media/howto-configure-kafka-endpoint/kafka-advanced.png":::
 
 # [Azure CLI](#tab/cli)
 

@@ -65,7 +65,7 @@ For example, you can use the default MQTT broker data flow endpoint. You can use
 
 # [Operations experience](#tab/portal)
 
-:::image type="content" source="media/howto-configure-dataflow-endpoint/create-dataflow-mq-mq.png" alt-text="Screenshot using operations experience to create a data flow from MQTT to MQTT.":::
+:::image type="content" source="media/howto-configure-dataflow-endpoint/create-dataflow-mq-mq.png" alt-text="Screenshot using operations experience to create a data flow from MQTT to MQTT." lightbox="media/howto-configure-dataflow-endpoint/create-dataflow-mq-mq.png":::
 
 # [Azure CLI](#tab/cli)
 
@@ -165,7 +165,7 @@ Similarly, you can create multiple data flows that use the same MQTT endpoint fo
 
 # [Operations experience](#tab/portal)
 
-:::image type="content" source="media/howto-configure-dataflow-endpoint/create-dataflow-mq-kafka.png" alt-text="Screenshot using operations experience to create a data flow from MQTT to Kafka.":::
+:::image type="content" source="media/howto-configure-dataflow-endpoint/create-dataflow-mq-kafka.png" alt-text="Screenshot of operations experience showing Kafka dataflow." lightbox="media/howto-configure-dataflow-endpoint/create-dataflow-mq-kafka.png":::
 
 # [Azure CLI](#tab/cli)
 
