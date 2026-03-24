@@ -209,9 +209,6 @@ items:
               - name: Map data
                 href: connect-to-cloud/concept-dataflow-mapping.md
                 displayName: data flow, transform, metadata, mapping, filtering, last known value, LKV
-              # - name: Filter data
-              #   href: connect-to-cloud/howto-dataflow-filter.md
-              #  displayName: data flow, filter, condition, expression, drop
               - name: Enrich data
                 href: connect-to-cloud/concept-dataflow-enrich.md
                 displayName: data flow, transform, context, contextualization
