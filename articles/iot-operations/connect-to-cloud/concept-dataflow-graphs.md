@@ -53,17 +53,9 @@ Each transform is a pre-built processing step that you configure with rules and 
 
 ## How transforms compose
 
-Transforms connect in sequence inside a `DataflowGraph` resource:
+Transforms connect in sequence inside a `DataflowGraph` resource: **Source > Transform A > Transform B > … > Destination**.
 
-`Source ──→ Transform A ──→ Transform B ──→ … ──→ Destination`
-
-Branch transforms split the flow into parallel paths, and concat transforms merge them back:
-
-```
-                        ┌── true ──→  Transform X ─┐
-Source ──→ Branch ──────┤                           ├──→ Concat ──→ Destination
-                        └── false ──→ Transform Y ─┘
-```
+Branch transforms split the flow into parallel paths, and concat transforms merge them back.
 
 You can chain any number of transforms in any order. A pipeline with a single map transform is as valid as one that filters, branches, maps each path differently, merges, and then aggregates over a time window.
 
