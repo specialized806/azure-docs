@@ -238,21 +238,21 @@ items:
               # - name: Enrich with external data
               #   href: connect-to-cloud/howto-dataflow-graphs-enrich.md
               #   displayName: data flow, graph, enrich, dataset, state store, context, lookup
-              - name: Route messages to different topics
-                href: connect-to-cloud/howto-dataflow-graphs-topic-routing.md
-                displayName: data flow, graph, topic, routing, metadata, dynamic
+              # - name: Route messages to different topics
+              #   href: connect-to-cloud/howto-dataflow-graphs-topic-routing.md
+              #   displayName: data flow, graph, topic, routing, metadata, dynamic
               - name: Use WASM transforms
                 href: connect-to-cloud/howto-dataflow-graph-wasm.md
                 displayName: data flow, WASM, WebAssembly, graph, transform, custom, developer, deploy
               - name: Schemas
                 href: connect-to-cloud/concept-dataflow-graphs-schema.md
                 displayName: data flow, graph, schema, nodeConnections, serialization
-          - name: Destination
-            href: connect-to-cloud/howto-configure-dataflow-destination.md
-            displayName: data flow, destination, MQTT, Kafka, topic, container, table, dynamic
-          - name: Disk persistence
-            href: connect-to-cloud/howto-configure-disk-persistence.md
-            displayName: data flow, persistence, disk, restart, state
+          # - name: Destination
+          #   href: connect-to-cloud/howto-configure-dataflow-destination.md
+          #   displayName: data flow, destination, MQTT, Kafka, topic, container, table, dynamic
+          # - name: Disk persistence
+          #   href: connect-to-cloud/howto-configure-disk-persistence.md
+          #   displayName: data flow, persistence, disk, restart, state
           - name: Expressions
             href: connect-to-cloud/concept-dataflow-graphs-expressions.md
             displayName: data flow, expression, function, operator, metadata, variable, conversion
