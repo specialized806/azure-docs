@@ -251,12 +251,6 @@ A branch transform evaluates a condition on each incoming message and routes it 
 
 ### How branching works
 
-```
-                    ┌── true ──→  (downstream processing) ─┐
-Source ──→ Branch ──┤                                       ├──→ Concat ──→ Destination
-                    └── false ──→ (downstream processing)  ┘
-```
-
 Every message goes to exactly one of the two paths. Nothing is dropped.
 
 Key constraints:
@@ -379,7 +373,7 @@ This end-to-end example filters out bad readings, branches by severity, applies 
 
 # [Operations experience](#tab/portal)
 
-![Screenshot of the operations experience canvas showing a filter, branch, map, concat, and destination pipeline.](media/howto-dataflow-graphs-filter-route/filter-branch-pipeline.png)
+:::image type="content" source="media/howto-dataflow-graphs-filter-route/filter-branch-pipeline.png" alt-text="Screenshot of the operations experience canvas showing a filter, branch, map, concat, and destination pipeline." lightbox="media/howto-dataflow-graphs-filter-route/filter-branch-pipeline.png":::
 
 To build this pipeline in the Operations experience:
 
