@@ -32,10 +32,10 @@ Use the following table to choose the endpoint type to configure:
 > [!IMPORTANT]
 > **Data flow graphs limitation**: [Data flow graphs (WASM)](howto-dataflow-graph-wasm.md) currently only support MQTT, Kafka, and OpenTelemetry endpoints. OpenTelemetry endpoints can only be used as destinations in data flow graphs. Other endpoint types are not supported for data flow graphs. For more information, see [Known issues](../troubleshoot/known-issues.md#data-flow-graphs-only-support-specific-endpoint-types).
 
-> [!IMPORTANT]
+<!-- > [!IMPORTANT]
 > Storage endpoints require a [schema for serialization](./concept-schema-registry.md). To use data flow with Microsoft Fabric OneLake, Azure Data Lake Storage, Azure Data Explorer, or Local Storage, you must [specify a schema reference](./howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema).
 > 
-> To generate the schema from a sample data file, use the [Schema Gen Helper](https://azure-samples.github.io/explore-iot-operations/schema-gen-helper/).
+> To generate the schema from a sample data file, use the [Schema Gen Helper](https://azure-samples.github.io/explore-iot-operations/schema-gen-helper/). -->
 
 ## Data flows must use local MQTT broker endpoint
 

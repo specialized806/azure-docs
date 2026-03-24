@@ -45,8 +45,8 @@ You can apply transformations to data during the processing stage to perform var
 - **Standardizing values**: Scale property values to a user-defined range.
 - **Contextualizing data**: Add reference data to messages for enrichment and driving insights.
 
-> [!TIP]
-> For richer processing capabilities including conditional routing, time-based aggregation, and composable transform pipelines, see [Data flow graphs](concept-dataflow-graphs.md) (preview).
+<!-- > [!TIP]
+> For richer processing capabilities including conditional routing, time-based aggregation, and composable transform pipelines, see [Data flow graphs](concept-dataflow-graphs.md) (preview). -->
 
 ### Configuration and deployment
 
@@ -77,8 +77,8 @@ The local MQTT broker message queue is stored in memory by default. You can conf
 
 ## Related content
 
-- [Data flows vs. data flow graphs](overview-dataflow-comparison.md)
-- [Data flow graphs overview](concept-dataflow-graphs.md)
+<!-- - [Data flows vs. data flow graphs](overview-dataflow-comparison.md)
+- [Data flow graphs overview](concept-dataflow-graphs.md) -->
 - [Create a data flow](howto-create-dataflow.md)
 - [Configure a data flow source](howto-configure-dataflow-source.md)
 - [Create a data flow endpoint](howto-configure-dataflow-endpoint.md)
