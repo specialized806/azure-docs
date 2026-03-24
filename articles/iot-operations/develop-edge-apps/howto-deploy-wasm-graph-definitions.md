@@ -5,7 +5,7 @@ author: dominicbetts
 ms.author: dobett
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 03/24/2026
 ai-usage: ai-assisted
 
 ---
@@ -139,7 +139,19 @@ oras pull ghcr.io/azure-samples/explore-iot-operations/filter:1.0.0
 
 ## Push modules to your registry
 
-Once you have the sample modules and graphs, push them to your container registry. Replace `<YOUR_ACR_NAME>` with the name of your Azure Container Registry. To ensure the graphs and modules are visible in the operations experience web UI, add the `--config` and `--artifact-type` flags as shown in the following example:
+Once you have the sample modules and graphs, push them to your container registry. Replace `<YOUR_ACR_NAME>` with the name of your Azure Container Registry.
+
+> [!IMPORTANT]
+> The operations experience discovers artifacts by their OCI **config** media type, not the layer media type. When you push artifacts to a registry, you must set the correct media types or the artifacts won't appear in the operations experience UI:
+>
+> | Artifact type | Required OCI config media type | Required layer media type |
+> |---|---|---|
+> | Graph definition | `application/vnd.microsoft.aio.graph.v1+yaml` | `application/yaml` |
+> | WASM module | `application/vnd.module.wasm.content.layer.v1+wasm` | `application/wasm` |
+>
+> If you use a CI/CD pipeline or other tooling to copy artifacts between registries, verify that it preserves these media types. Some tools strip or replace artifact metadata during transfer, which causes the artifacts to silently disappear from the operations experience.
+
+To ensure the graphs and modules are visible in the operations experience web UI, add the `--config` and `--artifact-type` flags as shown in the following example:
 
 ```bash
 # Log in to your ACR
