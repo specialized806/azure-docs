@@ -445,7 +445,7 @@ spec:
 
 ---
 
-The built-in data flow graph transforms (map, filter, branch, concat, window) use this endpoint to pull processing artifacts from MCR. When you use `registryEndpointRef: default` in a `DataflowGraph` resource, no extra registry configuration is needed. For more information about built-in transforms, see [Data flow graphs overview](../connect-to-cloud/concept-dataflow-graphs.md).
+<!-- The built-in data flow graph transforms (map, filter, branch, concat, window) use this endpoint to pull processing artifacts from MCR. When you use `registryEndpointRef: default` in a `DataflowGraph` resource, no extra registry configuration is needed. For more information about built-in transforms, see [Data flow graphs overview](../connect-to-cloud/concept-dataflow-graphs.md). -->
 
 > [!NOTE]
 > For custom WASM transforms or third-party artifacts, you need to create a separate registry endpoint that points to the registry where your artifacts are stored.
@@ -456,7 +456,7 @@ Registry endpoints support any OCI-compatible container registry, including Dock
 
 ## Next steps
 
-- [Data flow graphs overview](../connect-to-cloud/concept-dataflow-graphs.md)
+<!-- - [Data flow graphs overview](../connect-to-cloud/concept-dataflow-graphs.md) -->
 - [Use WASM transforms in data flow graphs](../connect-to-cloud/howto-dataflow-graph-wasm.md)
 - [Configure data flow endpoints](../connect-to-cloud/howto-configure-dataflow-endpoint.md)
 - [Configure data flow profiles](../connect-to-cloud/howto-configure-dataflow-profile.md)
