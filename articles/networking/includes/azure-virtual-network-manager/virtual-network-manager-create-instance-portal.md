@@ -5,17 +5,17 @@ services: virtual-network-manager
 author: mbender-ms
 ms.service: azure-virtual-network-manager
 ms.topic: include
-ms.date: 02/02/2026
+ms.date: 03/23/2026
 ms.author: mbender
 ms.custom: include file
 ---
 
 ## Create a Virtual Network Manager instance
 
-Deploy a Virtual Network Manager instance with the defined scope and access that you need using the Azure portal.
+Deploy a Virtual Network Manager instance with the defined scope and features needed using the Azure portal.
 
 > [!IMPORTANT]
-> Virtual Network Manager requires specific permissions within the defined scope. Ensure you have the necessary [Azure RBAC roles](../../../virtual-network-manager/concept-network-groups.md#network-groups-and-azure-policy) before creating the instance.
+> Virtual Network Manager requires specific permissions within the defined scope. Make sure you have the necessary [Azure Role-based Access Control (RBAC) roles](../../../virtual-network-manager/concept-network-groups.md#network-groups-and-azure-policy) before creating the instance.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 
@@ -29,14 +29,14 @@ Deploy a Virtual Network Manager instance with the defined scope and access that
     | **Resource group** | Select the existing resource group where you want to deploy Virtual Network Manager. |
     | **Name** | Enter a name for your Virtual Network Manager instance. |
     | **Region** | Select a region for your Virtual Network Manager instance. Virtual Network Manager can manage virtual networks in any region. The selected region is where the Virtual Network Manager instance will be deployed. |
-    | **Description** | *(Optional)* Provide a description about this Virtual Network Manager instance and the task it's managing. |
-    | [Features](../../../virtual-network-manager/concept-network-manager-scope.md#features) | Select the features you need from the dropdown list: </br> - **Connectivity**: Enables the creation of a full mesh or hub-and-spoke network topology between virtual networks within the scope. </br> - **Security Admin**: Enables the creation of global network security rules. </br> - **Routing**: Enables the creation and management of user-defined routes at scale. |
+    | **Description** | *(Optional)* Provide a description of this Virtual Network Manager instance and the task it manages. |
+    | [Features](../../../virtual-network-manager/concept-network-manager-scope.md#features) | Select the features you need from the dropdown list: <br> - **Connectivity**: Enables the creation of a full mesh or hub-and-spoke network topology between virtual networks within the scope. <br> - **Security Admin**: Enables the creation of global network security rules. <br> - **Routing**: Enables the creation and management of user-defined routes at scale. |
 
 1. Select the **Management scope** tab or **Next: Management scope** to continue.
 
 1. On the **Management scope** tab, select **+ Add**.
 
-1. In the **Add scopes** pane, select the subscriptions or management groups containing your existing virtual networks, and choose **Select**.
+1. In the **Add scopes** pane, select the subscriptions or management groups containing your existing virtual networks, and then select **Select**.
 
 1. Select **Review + create** to validate your configuration.
 
