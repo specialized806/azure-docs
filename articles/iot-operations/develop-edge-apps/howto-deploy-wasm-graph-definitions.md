@@ -149,7 +149,7 @@ Once you have the sample modules and graphs, push them to your container registr
 > | Graph definition | `application/vnd.microsoft.aio.graph.v1+yaml` | `application/yaml` |
 > | WASM module | `application/vnd.module.wasm.content.layer.v1+wasm` | `application/wasm` |
 >
-> If you use a CI/CD pipeline or other tooling to copy artifacts between registries, verify that it preserves these media types. Some tools strip or replace artifact metadata during transfer, which causes the artifacts to silently disappear from the operations experience.
+> If you use a CI/CD pipeline or other tooling to copy artifacts between registries, verify that it preserves these media types. Some tools strip or replace artifact metadata during transfer, which causes the artifacts to silently disappear from the operations experience. For more information, see [Registry artifact requirements](#registry-artifact-requirements).
 
 To ensure the graphs and modules are visible in the operations experience web UI, add the `--config` and `--artifact-type` flags as shown in the following example:
 
