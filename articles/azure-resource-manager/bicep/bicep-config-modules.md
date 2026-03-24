@@ -1,9 +1,9 @@
----
+﻿---
 title: Module setting for Bicep config
 description: Describes how to customize configuration values for modules in Bicep deployments.
-ms.topic: conceptual
+ms.topic: article
 ms.custom: devx-track-bicep
-ms.date: 02/16/2024
+ms.date: 12/22/2025
 ---
 
 # Add module settings in the Bicep config file
@@ -100,13 +100,16 @@ For a template spec, use:
 module stgModule  'ts/CoreSpecs:storage:v1' = {
 ```
 
-An alias has been predefined for the [public module registry](./modules.md#path-to-module). To reference a public module, you can use the format:
+An alias has been predefined for [public modules](./modules.md#file-in-registry). To reference a public module, you can use the format:
 
 ```bicep
 br/public:<file>:<tag>
 ```
 
-You can override the public module registry alias definition in the bicepconfig.json file:
+> [!NOTE]
+> Non-AVM (Azure Verified Modules) modules are retired from the public module registry with most of them available as AVM modules.
+
+You can override the public module registry alias definition in the [bicepconfig.json file](./bicep-config.md):
 
 ```json
 {
@@ -123,7 +126,7 @@ You can override the public module registry alias definition in the bicepconfig.
 
 ## Configure profiles and credentials
 
-To [publish](bicep-cli.md#publish) modules to a private module registry or to [restore](bicep-cli.md#restore) external modules to the local cache, the account must have the correct permissions to access the registry. You can manually configure `currentProfile` and `credentialPrecedence` in the [Bicep config file](./bicep-config.md) for authenticating to the registry. 
+To [publish](bicep-cli.md#publish) modules to a private module registry or to [restore](bicep-cli.md#restore) external modules to the local cache, the account must have the correct permissions to access the registry. You can manually configure `currentProfile` and `credentialPrecedence` in the [Bicep config file](./bicep-config.md) for authenticating to the registry.
 
 ```json
 {
@@ -166,7 +169,6 @@ Bicep uses the [Azure.Identity SDK](/dotnet/api/azure.identity) to do authentica
 - [Environment](/dotnet/api/azure.identity.environmentcredential)
 - [ManagedIdentity](/dotnet/api/azure.identity.managedidentitycredential)
 - [VisualStudio](/dotnet/api/azure.identity.visualstudiocredential)
-- [VisualStudioCode](/dotnet/api/azure.identity.visualstudiocodecredential)
 
 [!INCLUDE [vscode authentication](../../../includes/resource-manager-vscode-authentication.md)]
 

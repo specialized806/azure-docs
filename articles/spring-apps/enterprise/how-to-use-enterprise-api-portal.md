@@ -1,21 +1,22 @@
 ---
-title: How to use API portal for VMware Tanzu with the Azure Spring Apps Enterprise plan
+title: How to Use API Portal for VMware Tanzu with the Azure Spring Apps Enterprise Plan
 titleSuffix: Azure Spring Apps Enterprise plan
 description: How to use API portal for VMware Tanzu with the Azure Spring Apps Enterprise plan.
 author: KarlErickson
-ms.author: xiading
-ms.service: spring-apps
+ms.author: karler
+ms.reviewer: xiading
+ms.service: azure-spring-apps
 ms.topic: how-to
-ms.date: 02/09/2022
+ms.date: 08/19/2025
+ms.update-cycle: 1095-days
 ms.custom: devx-track-java, devx-track-extended-java, devx-track-azurecli
 ---
 
 # Use API portal for VMware Tanzu
 
-> [!NOTE]
-> Azure Spring Apps is the new name for the Azure Spring Cloud service. Although the service has a new name, you'll see the old name in some places for a while as we work to update assets such as screenshots, videos, and diagrams.
+[!INCLUDE [deprecation-note](../includes/deprecation-note.md)]
 
-**This article applies to:** ❌ Basic/Standard ✔️ Enterprise
+**This article applies to:** ❎ Basic/Standard ✅ Enterprise
 
 This article shows you how to use API portal for VMware Tanzu with the Azure Spring Apps Enterprise plan.
 
@@ -150,7 +151,7 @@ This section describes how to view and try out APIs with schema definitions in A
 
 1. Configure routing rules to apps.
 
-   To create rules to access the app in Spring Cloud Gateway for Tanzu route configuration, save the following contents to the *sample.json* file.
+   To create rules to access the app in Spring Cloud Gateway for Tanzu route configuration, save the following contents to the **sample.json** file.
 
    ```json
    {
@@ -202,7 +203,7 @@ Use the following steps to try out APIs:
 1. Select the API you would like to try.
 1. Select **EXECUTE**, and the response appears.
 
-   :::image type="content" source="media/how-to-use-enterprise-api-portal/api-portal-tryout.png" alt-text="Screenshot of API portal.":::
+   :::image type="content" source="media/how-to-use-enterprise-api-portal/api-portal-tryout.png" alt-text="Screenshot of the API portal that shows the Execute option selected.":::
 
 ## Enable/disable API portal after service creation
 

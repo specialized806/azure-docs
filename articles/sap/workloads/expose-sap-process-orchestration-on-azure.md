@@ -8,6 +8,8 @@ ms.subservice: sap-vm-workloads
 ms.topic: how-to
 ms.date: 07/19/2022
 ms.author: mapankra
+ms.custom: sfi-image-nochange
+# Customer intent: "As an IT architect, I want to securely expose SAP Process Orchestration using Azure services, so that I can facilitate integrated communication between internal systems and external partners while ensuring data protection and compliance."
 ---
 # Expose SAP legacy middleware securely with Azure PaaS
 
@@ -16,7 +18,7 @@ Enabling internal systems and external partners to interact with SAP back ends i
 This article describes configuration options on Azure, with emphasis on internet-facing implementations.
 
 > [!NOTE]
-> SAP mentions [SAP Integration Suite](https://discovery-center.cloud.sap/serviceCatalog/integration-suite?region=all)--specifically, [SAP Cloud Integration](https://help.sap.com/docs/CLOUD_INTEGRATION/368c481cd6954bdfa5d0435479fd4eaf/9af2f05c7eb04457aee5906fd8553e00.html)--running on [Business Technology Platform (BTP)](https://www.sap.com/products/business-technology-platform.html) as the successor for SAP PO and PI. Both the BTP platform and the services are available on Azure. For more information, see [SAP Discovery Center](https://discovery-center.cloud.sap/serviceCatalog/integration-suite?region=all&tab=service_plan&provider=azure). For more info about the maintenance support timeline for the legacy components, see SAP OSS note [1648480](https://launchpad.support.sap.com/#/notes/1648480).
+> SAP mentions [SAP Integration Suite](https://discovery-center.cloud.sap/serviceCatalog/integration-suite?region=all)--specifically, [SAP Cloud Integration](https://help.sap.com/docs/CLOUD_INTEGRATION/368c481cd6954bdfa5d0435479fd4eaf/9af2f05c7eb04457aee5906fd8553e00.html)--running on [Business Technology Platform (BTP)](https://www.sap.com/products/business-technology-platform.html) as the successor for SAP PO and PI. Both the BTP platform and the services are available on Azure. For more information, see [SAP Discovery Center](https://discovery-center.cloud.sap/serviceCatalog/integration-suite?region=all&tab=service_plan&provider=azure). 
 
 ## Overview
 
@@ -168,11 +170,11 @@ To determine which integration scenarios described in this article best fit your
 
 - [Azure Firewall](../../firewall/features.md) for non-HTTP integrations
 
-- [High availability](../../virtual-machines/workloads/sap/sap-high-availability-architecture-scenarios.md) and [disaster recovery](/azure/cloud-adoption-framework/scenarios/sap/eslz-business-continuity-and-disaster-recovery) for VM-based SAP integration workloads
+- [High availability](/azure/virtual-machines/workloads/sap/sap-high-availability-architecture-scenarios) and [disaster recovery](/azure/cloud-adoption-framework/scenarios/sap/eslz-business-continuity-and-disaster-recovery) for VM-based SAP integration workloads
 
 - Modern [authentication mechanisms like OAuth2](../../api-management/sap-api.md#production-considerations), where applicable
 
-- A managed key store like [Azure Key Vault](../../key-vault/general/overview.md) for all involved credentials, certificates, and keys
+- A managed key store like [Azure Key Vault](/azure/key-vault/general/overview) for all involved credentials, certificates, and keys
 
 ## Alternatives to SAP Process Orchestration with Azure Integration Services
 

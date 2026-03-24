@@ -2,11 +2,11 @@
 title: What is Workflow Orchestration Manager?
 titleSuffix: Azure Data Factory
 description: Learn about when to use Workflow Orchestration Manager, basic concepts and supported regions.
-ms.service: data-factory
-ms.topic: conceptual
+ms.topic: overview
 author: nabhishek
 ms.author: abnarain
-ms.date: 10/20/2023
+ms.date: 10/03/2024
+ms.subservice: orchestration
 ms.custom: references_regions
 ---
 
@@ -14,14 +14,7 @@ ms.custom: references_regions
 
 [!INCLUDE[appliesto-adf-xxx-md](includes/appliesto-adf-xxx-md.md)]
 
-> [!NOTE]
-> Workflow Orchestration Manager is powered by Apache Airflow.
-
-> [!NOTE]
-> This feature is in public preview. For questions or feature suggestions, please send an email to mailto:ManagedAirflow@microsoft.com with the details.
-
-> [!NOTE]
-> Workflow Orchestration Manager for Azure Data Factory relies on the open source Apache Airflow application. Documentation and more tutorials for Airflow can be found on the Apache Airflow [Documentation](https://airflow.apache.org/docs/) or [Community](https://airflow.apache.org/community/) pages.
+[!INCLUDE[apache-airflow-notification](includes/apache-airflow-notification.md)]
 
 Azure Data Factory offers serverless pipelines for data process orchestration, data movement with 100+ managed connectors, and visual transformations with the mapping data flow.
 
@@ -61,7 +54,7 @@ Workflow Orchestration Manager in Azure Data Factory offers a range of powerful 
 * SouthEast Asia
 
 > [!NOTE]
-> By GA, all ADF regions will be supported. The Airflow environment region is defaulted to the Data Factory region and is not configurable, so ensure you use a Data Factory in the above supported region to be able to access the Workflow Orchestration Manager preview.
+> The Airflow environment region is defaulted to the Data Factory region and is not configurable, so ensure you use a Data Factory in the above supported region to be able to access the Workflow Orchestration Manager preview.
 
 ## Supported Apache Airflow versions
 

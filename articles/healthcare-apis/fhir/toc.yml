@@ -7,15 +7,17 @@ items:
     - name: What is the FHIR service?
       href: overview.md
     - name: FHIR service autoscale
-      href: fhir-service-autoscale.md
+      href: autoscale.md
     - name: FHIR REST API capabilities
-      href: fhir-rest-api-capabilities.md
+      href: rest-api-capabilities.md
     - name: Versioning policy and history management
       href: fhir-versioning-policy-and-history-management.md
     - name: Migration from Azure API for FHIR
       href: migration-strategies.md
     - name: SMART on FHIR
       href: smart-on-fhir.md
+    - name: Best practices
+      href: fhir-best-practices.md
 - name: Quickstarts
   expanded: true
   items: 
@@ -23,16 +25,19 @@ items:
       href: get-started-with-fhir.md
     - name: Deploy a FHIR service
       items: 
-        - name: Using Azure portal
-          href: fhir-portal-quickstart.md
-        - name: Using Bicep
+        - name: Azure portal
+          href: deploy-azure-portal.md
+        - name: Bicep
           href: fhir-service-bicep.md
-        - name: Using ARM template
+        - name: ARM template
           href: fhir-service-resource-manager-template.md
-    - name: Use Azure AD B2C for an identity provider
-      href: azure-ad-b2c-setup.md
+    - name: Use Microsoft Entra External ID for an identity provider
       expanded: true
       items: 
+        - name: Use Microsoft Entra External ID for an identity provider
+          href: azure-entra-external-id-setup.md
+        - name: Use Azure AD B2C for an identity provider
+          href: azure-ad-b2c-setup.md
         - name: Configure multiple service identity providers
           href: configure-identity-providers.md
         - name: Troubleshoot identity provider configuration
@@ -53,9 +58,11 @@ items:
       href: fhir-service-diagnostic-logs.md
     - name: Use Custom HTTP headers to add data to audit logs
       href: use-custom-headers-diagnosticlog.md
-- name: Interoperability and patient access
+- name: Compliance with mandates
   expanded: true
   items: 
+    - name: US Core
+      href: us-core.md
     - name: CMS Interoperability and Patient Access rule introduction
       href: centers-for-medicare-tutorial-introduction.md
     - name: CARIN Implementation Guide for Blue Button
@@ -76,29 +83,35 @@ items:
       href: how-to-run-a-reindex.md
     - name: Search examples
       href: search-samples.md
-    - name: Selectable search parameters (Preview)
+    - name: Selectable search parameters
       href: selectable-search-parameters.md
 - name: FHIR operations
-  items: 
+  items:
+    - name: $bulk-delete
+      href: fhir-bulk-delete.md
+    - name: $bulk-update
+      href: fhir-bulk-update.md      
     - name: $convert-data
       items: 
-        - name: $convert-data overview
-          href: overview-of-convert-data.md
         - name: Configure settings for $convert-data
-          href: configure-settings-convert-data.md
+          href: convert-data-configuration.md 
+        - name: $convert-data overview
+          href: convert-data-overview.md
         - name: Transform HL7v2 data to FHIR R4
-          href: convert-data-with-azure-data-factory.md
+          href: convert-data-azure-data-factory.md
         - name: Troubleshoot $convert-data
-          href: troubleshoot-convert-data.md
-        - name: FAQ - $convert-data
-          href: frequently-asked-questions-convert-data.md
+          href: convert-data-troubleshoot.md
+        - name: $convert-data FAQ
+          href: convert-data-faq.md
+    - name: Copy data to Synapse
+      href: copy-to-synapse.md
     - name: $export
       items: 
         - name: Configure settings for export
           href: configure-export-data.md
         - name: Export FHIR data
           href: export-data.md
-        - name: De-identified export
+        - name: Export deidentified data
           href: de-identified-export.md
     - name: $import
       expanded: false
@@ -111,24 +124,22 @@ items:
       href: tutorial-member-match.md
     - name: Patient/$everything
       href: patient-everything.md
-    - name: $purge-history operation
+    - name: $purge-history
       href: purge-history.md
-    - name: $bulk-delete operation
-      href: fhir-bulk-delete.md
     - name: $validate
       items: 
         - name: Store profiles
           href: store-profiles-in-fhir.md
         - name: Use $validate
           href: validation-against-profiles.md
-    - name: Copy data to Synapse
-      href: copy-to-synapse.md
+    - name: $docref
+      href: fhir-docref.md
+    - name: $expand
+      href: fhir-expand.md
 - name: API reference
   items: 
     - name: Access the FHIR service
       items: 
-        - name: Access using Postman
-          href: use-postman.md
         - name: Access using cURL
           href: using-curl.md
         - name: Access using REST Client

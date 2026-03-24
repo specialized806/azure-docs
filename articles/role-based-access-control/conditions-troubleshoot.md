@@ -2,13 +2,16 @@
 title: Troubleshoot Azure role assignment conditions - Azure ABAC
 description: Troubleshoot Azure role assignment conditions
 author: rolyon
-manager: amycolannino
+manager: pmwongera
 ms.service: role-based-access-control
 ms.subservice: conditions
 ms.topic: troubleshooting
-ms.custom: devx-track-azurepowershell, devx-track-azurecli
-ms.date: 02/27/2024
+ms.date: 05/29/2025
 ms.author: rolyon
+ms.custom:
+  - devx-track-azurepowershell
+  - devx-track-azurecli
+  - sfi-ga-nochange
 ---
 
 # Troubleshoot Azure role assignment conditions
@@ -64,6 +67,35 @@ Your condition isn't formatted correctly.
 Fix any [condition format or syntax](conditions-format.md) issues. Alternatively, add the condition using the [visual editor in the Azure portal](conditions-role-assignments-portal.md).
 
 ## Issues in the visual editor
+
+### Symptom - Condition editor appears when editing a condition
+
+You created a condition using a template described in [Delegate Azure role assignment management to others with conditions](./delegate-role-assignments-portal.md). When you try to edit the condition, you see the advanced condition editor.
+
+:::image type="content" source="./media/conditions-troubleshoot/condition-editor.png" alt-text="Screenshot of condition editor that shows options to edit a condition." lightbox="./media/conditions-troubleshoot/condition-editor.png":::
+
+When you previously edited the condition, you edited using the condition template.
+
+:::image type="content" source="./media/shared/condition-templates-edit.png" alt-text="Screenshot of condition templates with matching template enabled." lightbox="./media/shared/condition-templates-edit.png":::
+
+**Cause**
+
+The condition doesn't match the pattern for the template.
+
+**Solution 1**
+
+Edit the condition to match one of the following template patterns.
+
+| Template | Condition |
+| --- | --- |
+| Constrain roles | [Example: Constrain roles](delegate-role-assignments-examples.md#example-constrain-roles) |
+| Constrain roles and principal types | [Example: Constrain roles and principal types](delegate-role-assignments-examples.md#example-constrain-roles-and-principal-types) |
+| Constrain roles and principals | [Example: Constrain roles and specific groups](delegate-role-assignments-examples.md#example-constrain-roles-and-specific-groups) |
+| Allow all except specific roles | [Example: Allow most roles, but don't allow others to assign roles](delegate-role-assignments-examples.md#example-allow-most-roles-but-dont-allow-others-to-assign-roles) |
+
+**Solution 2**
+
+Delete the condition and recreate it using the steps at [Delegate Azure role assignment management to others with conditions](./delegate-role-assignments-portal.md).
 
 ### Symptom - Principal does not appear in Attribute source
 
@@ -354,6 +386,20 @@ In Bash, if history expansion is enabled, you might see the message `bash: !: ev
 **Solution**
 
 Disable history expansion with the command `set +H`. To re-enable history expansion, use `set -H`.
+
+## Error messages in API
+
+### Symptom - HTTP 403 Forbidden response when deleting a role assignment
+
+Consider a principal that has authorization permissions to modify role assignments and the authorization permissions also include an ABAC condition. If the principal attempts to delete a role assignment that was already deleted or doesn't exist, they receive the `HTTP 403 Forbidden` response instead of the expected `HTTP 204 No Content` response.
+
+**Cause**
+
+When a principal has permissions that include an ABAC condition, the system attempts to read the attribute during condition evaluation. If the attribute does not exist, this can result in an unexpected response instead of the expected outcome.
+
+**Solution**
+
+When handling responses for authorization permissions that also include a condition, you should also handle the `403 Forbidden` response. The `403 Forbidden` response can potentially indicate insufficient permissions, that the role assignment was already deleted, or that the role assignment doesn't exist.
 
 ## Next steps
 

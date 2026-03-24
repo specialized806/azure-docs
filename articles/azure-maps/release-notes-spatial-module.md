@@ -4,17 +4,17 @@ titleSuffix: Microsoft Azure Maps
 description: Release notes for the Azure Maps Spatial IO Module. 
 author: sinnypan
 ms.author: sipa
-ms.date: 5/23/2023
+ms.date: 02/22/2024
 ms.topic: reference
 ms.service: azure-maps
-services: azure-maps
+ms.subservice: web-sdk
 ---
 
 # Spatial IO Module release notes
 
 This document contains information about new features and other changes to the Azure Maps Spatial IO Module.
 
-## [0.1.8] (February 22 2024)
+## [0.1.8] (February 22, 2024)
 
 ### Bug fixes (0.1.8)
 

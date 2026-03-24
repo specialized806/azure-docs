@@ -4,11 +4,12 @@ description: Learn how to copy data from Google Ads to supported sink data store
 titleSuffix: Azure Data Factory & Azure Synapse
 ms.author: jianleishen
 author: jianleishen
-ms.service: data-factory
 ms.subservice: data-movement
 ms.topic: conceptual
-ms.custom: synapse
-ms.date: 01/18/2024
+ms.date: 02/13/2025
+ms.custom:
+  - synapse
+  - sfi-image-nochange
 ---
 
 # Copy data from Google Ads using Azure Data Factory or Synapse Analytics
@@ -264,6 +265,18 @@ Here are the concrete examples of the field name conversion:
 | Segments | `DayOfWeek` | `segments.day_of_week` | 
 | Metrics | `VideoViews` | `metrics.video_views` | 
 
+## Differences between Google Ads using the recommended and the legacy driver version
+
+The table below shows the feature differences between Google Ads using the recommended and the legacy driver version.
+
+| Recommended driver version | Legacy driver version |
+|:---|:---|
+|Specifying Google Ads API version is supported.|Specifying Google Ads API version is not supported.|
+|ServiceAuthentication supports two properties: <br>&nbsp; • email<br>&nbsp; • privateKey |ServiceAuthentication supports four properties:<br>&nbsp; • email<br>&nbsp; • keyFilePath<br>&nbsp; • trustedCertPath<br>&nbsp; • useSystemTrustStore |
+|Selecting a table in a dataset is not supported.|Support selecting a table in a dataset and querying the table in copy activities.|
+|Support GAQL syntax as the query language.|Support SQL syntax as the query language.|
+|The output column names are the same as the field names defined in Google Ads.|The output column names don't match the field names defined in Google Ads.|
+|The following mappings are used from Google Ads data types to interim data types used by the service internally.<br><br>float -> float <br>int32 -> int <br>int64 -> long |The following mappings are used from Google Ads data types to interim data types used by the service internally. <br><br>float -> string <br>int32 -> string <br>int64 -> string |
 
 ## Upgrade Google AdWords connector to Google Ads connector 
 
@@ -312,8 +325,6 @@ Upgrade your Google AdWords linked service to the latest Google Ads linked servi
         | URL_PERFORMANCE_REPORT | detail_placement_view |  
         | USER_AD_DISTANCE_REPORT | distance_view |  
         | VIDEO_PERFORMANCE_REPORT | video | 
-
-    1. If the pipeline is using query to retrieve data from Google AdWords, use [Query Migration tool](https://developers.google.com/google-ads/scripts/docs/reference/query-migration-tool) to translate the AWQL (AdWords Query Language) into GAQL (Google Ads Query Language). 
 
 1. Be aware that there are certain limitations with this upgrade: 
     1. Not all report types from AWQL are supported in GAQL. 

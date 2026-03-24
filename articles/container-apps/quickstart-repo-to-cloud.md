@@ -3,12 +3,12 @@ title: "Quickstart: Build and deploy from a repository to Azure Container Apps"
 description: Build your container app from a code repository and deploy in Azure Container Apps using az containerapp up.
 services: container-apps
 author: craigshoemaker
-ms.service: container-apps
+ms.service: azure-container-apps
 ms.custom:
   - devx-track-azurecli
   - ignite-2023
 ms.topic: quickstart
-ms.date: 01/26/2024
+ms.date: 02/03/2025
 ms.author: cshoe
 zone_pivot_groups: container-apps-code-to-cloud-segmemts
 ---
@@ -34,89 +34,16 @@ To complete this project, you need the following items:
 
 | Requirement  | Instructions |
 |--|--|
-| Azure account | If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F). You need the *Contributor* or *Owner* permission on the Azure subscription to proceed. <br><br>Refer to [Assign Azure roles using the Azure portal](../role-based-access-control/role-assignments-portal.md?tabs=current) for details. |
+| Azure account | If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You need the *Contributor* or *Owner* permission on the Azure subscription to proceed. <br><br>Refer to [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal?tabs=current) for details. |
 | GitHub Account | Get one for [free](https://github.com/join). |
 | git | [Install git](https://git-scm.com/downloads) |
 | Azure CLI | Install the [Azure CLI](/cli/azure/install-azure-cli).|
 
+[!INCLUDE [container-apps-create-cli-steps.md](../../includes/container-apps-create-cli-steps.md)]
 
-## Setup
-
-To sign in to Azure from the CLI, run the following command and follow the prompts to complete the authentication process.
-
-# [Bash](#tab/bash)
-
-```azurecli
-az login
-```
-
-# [Azure PowerShell](#tab/azure-powershell)
-
-```azurepowershell
-az login
-```
-
----
-
-Ensure you're running the latest version of the CLI via the upgrade command.
-
-# [Bash](#tab/bash)
-
-```azurecli
-az upgrade
-```
-
-# [Azure PowerShell](#tab/azure-powershell)
-
-```azurepowershell
-az upgrade
-```
-
----
-
-Next, install or update the Azure Container Apps extension for the CLI.
-
-# [Bash](#tab/bash)
-
-```azurecli
-az extension add --name containerapp --upgrade
-```
-
-# [Azure PowerShell](#tab/azure-powershell)
-
-
-```azurepowershell
-az extension add --name containerapp --upgrade
-```
-
----
-
-Register the `Microsoft.App` and `Microsoft.OperationalInsights` namespaces in your Azure subscription.
-
-# [Bash](#tab/bash)
-
-```azurecli
-az provider register --namespace Microsoft.App
-```
-
-```azurecli
-az provider register --namespace Microsoft.OperationalInsights
-```
-
-# [Azure PowerShell](#tab/azure-powershell)
-
-```azurepowershell
-az provider register --namespace Microsoft.App
-```
-
-```azurepowershell
-az provider register --namespace Microsoft.OperationalInsights
-```
-
----
+## Create environment variables
 
 Now that your Azure CLI setup is complete, you can define the environment variables that are used throughout this article.
-
 
 # [Bash](#tab/bash)
 
@@ -140,7 +67,7 @@ export ACR_NAME="acaalbums"$GITHUB_USERNAME
 ```
 ::: zone-end
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 Define the following variables in your PowerShell console.
 
@@ -319,7 +246,7 @@ az containerapp up \
 ::: zone-end
 
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ::: zone pivot="with-dockerfile"
 
@@ -379,7 +306,7 @@ If you're not going to continue on to the [Deploy a frontend](communicate-betwee
 az group delete --name $RESOURCE_GROUP
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ```powershell
 az group delete --name $RESOURCE_GROUP

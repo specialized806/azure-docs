@@ -1,12 +1,10 @@
 ---
 title: Backup and restore - snapshots, geo-redundant
 description: Learn how backup and restore works in Azure Synapse Analytics dedicated SQL pool. Use backups to restore your data warehouse to a restore point in the primary region. Use geo-redundant backups to restore to a different geographical region.
-author: realAngryAnalytics
-ms.author: stevehow
-manager: joannapea
-ms.reviewer: joanpo, wiassaf
-ms.date: 01/31/2024
-ms.service: synapse-analytics
+author: joannapea 
+ms.author: joanpo
+ms.date: 03/21/2024
+ms.service: azure-synapse-analytics
 ms.subservice: sql-dw
 ms.topic: conceptual
 ---
@@ -18,18 +16,24 @@ In this article, you'll learn how to use backup and restore in Azure Synapse ded
 Use dedicated SQL pool restore points to recover or copy your data warehouse to a previous state in the primary region. Use data warehouse geo-redundant backups to restore to a different geographical region.
 
 > [!NOTE]
-> Not all features of the dedicated SQL pool in Azure Synapse workspaces apply to dedicated SQL pool (formerly SQL DW), and vice versa. To enable workspace features for an existing dedicated SQL pool (formerly SQL DW) refer to [How to enable a workspace for your dedicated SQL pool (formerly SQL DW)](workspace-connected-create.md). For more information, see [What's the difference between Azure Synapse dedicated SQL pools (formerly SQL DW) and dedicated SQL pools in an Azure Synapse Analytics workspace?](https://techcommunity.microsoft.com/t5/azure-synapse-analytics-blog/msft-docs-what-s-the-difference-between-synapse-formerly-sql-dw/ba-p/3597772).
+> Not all features of the dedicated SQL pool in Azure Synapse workspaces apply to dedicated SQL pool (formerly SQL DW), and vice versa. To enable workspace features for an existing dedicated SQL pool (formerly SQL DW) refer to [How to enable a workspace for your dedicated SQL pool (formerly SQL DW)](workspace-connected-create.md). For more information, see [What's the difference between Azure Synapse dedicated SQL pools (formerly SQL DW) and dedicated SQL pools in an Azure Synapse Analytics workspace?](../sql/overview-difference-between-formerly-sql-dw-workspace.md)
 
 ## What is a data warehouse snapshot
 
 A *data warehouse snapshot* creates a restore point you can leverage to recover or copy your data warehouse to a previous state.  Since dedicated SQL pool is a distributed system, a data warehouse snapshot consists of many files that are located in Azure storage. Snapshots capture incremental changes from the data stored in your data warehouse.
+
+> [!NOTE]
+> Dedicated SQL pool Recovery Time Objective (RTO) rates can vary. Factors that might affect the recovery (restore) time:
+> - The database size
+> - The location of the source and target data warehouse (in the case of a geo-restore)
+> - Data warehouse snapshot can't be exported as a separate file (e.g. For Azure Storage, on-premises environment)
 
 A *data warehouse restore* is a new data warehouse that is created from a restore point of an existing or deleted data warehouse. Restoring your data warehouse is an essential part of any business continuity and disaster recovery strategy because it re-creates your data after accidental corruption or deletion. Data warehouse snapshot is also a powerful mechanism to create copies of your data warehouse for test or development purposes.
 
 > [!NOTE]
 > Dedicated SQL pool Recovery Time Objective (RTO) rates can vary. Factors that might affect the recovery (restore) time:
 > - The database size
-> - The location of the source and target data warehouse (in the case of a geo-restore) 
+> - The location of the source and target data warehouse (in the case of a geo-restore)
 
 ## Automatic Restore Points
 
@@ -50,7 +54,7 @@ ORDER BY run_id desc;
 
 ## User-defined restore points
 
-This feature enables you to manually trigger snapshots to create restore points of your data warehouse before and after large modifications. This capability ensures that restore points are logically consistent, which provides additional data protection in case of any workload interruptions or user errors for quick recovery time. User-defined restore points are available for seven days and are automatically deleted on your behalf. You cannot change the retention period of user-defined restore points. **42 user-defined restore points** are guaranteed at any point in time so they must be [deleted](#delete-user-defined-restore-points) before creating another restore point. You can trigger snapshots to create user-defined restore points by using the Azure portal or programmatically by using the [PowerShell or REST APIs](#create-user-defined-restore-points)
+This feature enables you to manually trigger snapshots to create restore points of your data warehouse before and after large modifications. This capability ensures that restore points are logically consistent, which provides additional data protection in case of any workload interruptions or user errors for quick recovery time. User-defined restore points are available for seven days and are automatically deleted on your behalf. You cannot change the retention period of user-defined restore points. **42 user-defined restore points** are guaranteed at any point in time so they must be [deleted](#delete-user-defined-restore-points) before creating another restore point. You can trigger snapshots to create user-defined restore points by using the Azure portal or programmatically by using the [PowerShell or REST APIs only](#create-user-defined-restore-points).
 
 - For more information on user-defined restore points in a standalone data warehouse (formerly SQL pool), see [User-defined restore points for a dedicated SQL pool (formerly SQL DW)](sql-data-warehouse-restore-points.md).
 - For more information on user-defined restore points in a dedicated SQL pool in a Synapse workspace, [User-defined restore points in Azure Synapse Analytics](../backuprestore/sqlpool-create-restore-point.md).
@@ -59,6 +63,8 @@ This feature enables you to manually trigger snapshots to create restore points 
 > If you require restore points longer than 7 days, please [vote for this capability](https://feedback.azure.com/d365community/idea/4c446fd9-0b25-ec11-b6e6-000d3a4f07b8).
 
 > [!NOTE]
+> T-SQL script can't be used to take backup on-demand. User-defined restore points can be created by using the Azure portal or programmatically by using PowerShell or REST APIs.
+> 
 > In case you're looking for a Long-Term Backup (LTR) concept:
 > 1. Create a new user-defined restore point, or you can use one of the automatically generated restore points.
 > 1. Restore from the newly created restore point to a new data warehouse.
@@ -106,7 +112,7 @@ When you drop a dedicated SQL pool, a final snapshot is created and saved for se
 
 ## Geo-backups and disaster recovery
 
-A geo-backup is created once per day to a [paired data center](../../availability-zones/cross-region-replication-azure.md?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json). The RPO for a geo-restore is 24 hours. A geo-restore is always a data movement operation and the RTO will depend on the data size. Only the latest geo-backup is retained. You can restore the geo-backup to a server in any other region where dedicated SQL pool is supported. A geo-backup ensures you can restore data warehouse in case you cannot access the restore points in your primary region. 
+A geo-backup is created once per day to a [paired data center](/azure/reliability/cross-region-replication-azure?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json). The RPO for a geo-restore is 24 hours. A geo-restore is always a data movement operation and the RTO will depend on the data size. Only the latest geo-backup is retained. You can restore the geo-backup to a server in any other region where dedicated SQL pool is supported. A geo-backup ensures you can restore data warehouse in case you cannot access the restore points in your primary region. 
 
 If you do not require geo-backups for your dedicated SQL pool, you can disable them and save on disaster recovery storage costs. To do so, refer to [How to guide: Disable geo-backups for a dedicated SQL pool (formerly SQL DW)](disable-geo-backup.md). If you disable geo-backups, you will not be able to recover your dedicated SQL pool to your paired Azure region if your primary Azure data center is unavailable. 
 
@@ -117,7 +123,7 @@ If you do not require geo-backups for your dedicated SQL pool, you can disable t
 
 If your paired data center is located outside of your country/region, you can ensure that your data stays within your region by provisioning your database on locally redundant storage (LRS). If your database has already been provisioned on RA-GRS (Read Only Geographically Redundant Storage, the current default) then you can opt out of geo-backups, however your database will continue to reside on storage that is replicated to a regional pair. To ensure that customer data stays within your region, you can provision or restore your dedicated SQL pool to locally redundant storage. For more information on how to provision or restore to local redundant storage, see [How-to guide for configuring single region residency for a dedicated SQL pool (formerly SQL DW) in Azure Synapse Analytics](single-region-residency.md)
 
-To confirm that your paired data center is in a different country/region, refer to [Azure Paired Regions](../../availability-zones/cross-region-replication-azure.md?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json).
+To confirm that your paired data center is in a different country/region, refer to [Azure Paired Regions](/azure/reliability/cross-region-replication-azure?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json).
 
 ## Backup and restore costs
 

@@ -2,12 +2,15 @@
 title: Assign a user as an administrator of an Azure subscription with conditions - Azure RBAC
 description: Learn how to make a user an administrator of an Azure subscription with conditions using the Azure portal and Azure role-based access control (Azure RBAC).
 author: rolyon
-manager: amycolannino
+ms.author: rolyon
+manager: pmwongera
+ms.date: 10/23/2025
 ms.service: role-based-access-control
 ms.topic: how-to
-ms.date: 01/30/2024
-ms.author: rolyon
-ms.custom: subject-rbac-steps
+ms.custom:
+  - sfi-image-nochange
+  - ge-structured-content-pilot
+  - subject-rbac-steps
 ---
 
 # Assign a user as an administrator of an Azure subscription with conditions
@@ -28,9 +31,9 @@ This article describes how to assign a user as an administrator of an Azure subs
 
 1. Click the subscription you want to use.
 
-    The following shows an example subscription.
+   The following shows an example subscription.
 
-    ![Screenshot of Subscriptions overview](./media/shared/sub-overview.png)
+   ![Screenshot of Subscriptions overview.](./media/shared/sub-overview.png)
 
 ## Step 2: Open the Add role assignment page
 
@@ -38,9 +41,9 @@ This article describes how to assign a user as an administrator of an Azure subs
 
 1. Click **Access control (IAM)**.
 
-    The following shows an example of the Access control (IAM) page for a subscription.
+   The following shows an example of the Access control (IAM) page for a subscription.
 
-    ![Screenshot of Access control (IAM) page for a subscription.](./media/shared/sub-access-control.png)
+   ![Screenshot of Access control (IAM) page for a subscription.](./media/shared/sub-access-control.png)
 
 1. Click the **Role assignments** tab to view the role assignments at this scope.
 
@@ -48,9 +51,9 @@ This article describes how to assign a user as an administrator of an Azure subs
 
    If you don't have permissions to assign roles, the Add role assignment option will be disabled.
 
-    ![Screenshot of Add > Add role assignment menu.](./media/shared/add-role-assignment-menu.png)
+   ![Screenshot of Add > Add role assignment menu.](./media/shared/add-role-assignment-menu.png)
 
-    The Add role assignment page opens.
+   The Add role assignment page opens.
 
 ## Step 3: Select the Owner role
 
@@ -74,7 +77,7 @@ The [Owner](built-in-roles.md#owner) role grant full access to manage all resour
 
 1. Find and select the user.
 
-    You can type in the **Select** box to search the directory for display name or email address.
+   You can type in the **Select** box to search the directory for display name or email address.
 
    ![Screenshot of Select members pane.](./media/shared/select-members.png)
 
@@ -82,7 +85,7 @@ The [Owner](built-in-roles.md#owner) role grant full access to manage all resour
 
 1. In the **Description** box enter an optional description for this role assignment.
 
-    Later you can show this description in the role assignments list.
+   Later you can show this description in the role assignments list.
 
 1. Click **Next**.
 
@@ -92,28 +95,28 @@ Since the Owner role is a highly privileged role, Microsoft recommends you add a
 
 1. On the **Conditions** tab under **What user can do**, select the **Allow user to only assign selected roles to selected principals (fewer privileges)** option.
 
-    :::image type="content" source="./media/role-assignments-portal-subscription-admin/condition-constrained-owner.png" alt-text="Screenshot of Add role assignment with the constrained option selected." lightbox="./media/role-assignments-portal-subscription-admin/condition-constrained-owner.png":::
+   :::image type="content" source="./media/role-assignments-portal-subscription-admin/condition-constrained-owner.png" alt-text="Screenshot of Add role assignment with the constrained option selected." lightbox="./media/role-assignments-portal-subscription-admin/condition-constrained-owner.png":::
 
 1. Select **Select roles and principals**.
 
-    The Add role assignment condition page appears with a list of condition templates.
+   The Add role assignment condition page appears with a list of condition templates.
 
-    :::image type="content" source="./media/shared/condition-templates.png" alt-text="Screenshot of Add role assignment condition with a list of condition templates." lightbox="./media/shared/condition-templates.png":::
+   :::image type="content" source="./media/shared/condition-templates.png" alt-text="Screenshot of Add role assignment condition with a list of condition templates." lightbox="./media/shared/condition-templates.png":::
 
 1. Select a condition template and then select **Configure**.
 
-    | Condition template | Select this template to |
-    | --- | --- |
-    | Constrain roles | Allow user to only assign roles you select |
-    | Constrain roles and principal types | Allow user to only assign roles you select<br/>Allow user to only assign these roles to principal types you select (users, groups, or service principals) |
-    | Constrain roles and principals | Allow user to only assign roles you select<br/>Allow user to only assign these roles to principals you select |
+   | Condition template | Select this template to |
+   | --- | --- |
+   | Constrain roles | Allow user to only assign roles you select |
+   | Constrain roles and principal types | Allow user to only assign roles you select<br/>Allow user to only assign these roles to principal types you select (users, groups, or service principals) |
+   | Constrain roles and principals | Allow user to only assign roles you select<br/>Allow user to only assign these roles to principals you select |
 
-    > [!TIP]
-    > If you want to allow most role assignments, but don't allow specific role assignments, you can use the advanced condition editor and manually add a condition. For an example, see [Example: Allow most roles, but don't allow others to assign roles](delegate-role-assignments-examples.md#example-allow-most-roles-but-dont-allow-others-to-assign-roles).
-    
+   > [!TIP]
+   > If you want to allow most role assignments, but don't allow specific role assignments, you can use the advanced condition editor and manually add a condition. For an example, see [Example: Allow most roles, but don't allow others to assign roles](delegate-role-assignments-examples.md#example-allow-most-roles-but-dont-allow-others-to-assign-roles).
+
 1. In the configure pane, add the required configurations.
 
-    :::image type="content" source="./media/shared/condition-template-configure-pane.png" alt-text="Screenshot of configure pane for a condition with selection added." lightbox="./media/shared/condition-template-configure-pane.png":::
+   :::image type="content" source="./media/shared/condition-template-configure-pane.png" alt-text="Screenshot of configure pane for a condition with selection added." lightbox="./media/shared/condition-template-configure-pane.png":::
 
 1. Select **Save** to add the condition to the role assignment.
 
@@ -125,10 +128,10 @@ Since the Owner role is a highly privileged role, Microsoft recommends you add a
 
    After a few moments, the user is assigned the Owner role for the subscription.
 
-    ![Screenshot of role assignment list after assigning role.](./media/role-assignments-portal-subscription-admin/sub-role-assignments-owner.png)
+   ![Screenshot of role assignment list after assigning role.](./media/role-assignments-portal-subscription-admin/sub-role-assignments-owner.png)
 
-## Next steps
+## Related content
 
-- [Assign Azure roles using the Azure portal](role-assignments-portal.md)
+- [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal)
 - [Organize your resources with Azure management groups](../governance/management-groups/overview.md)
 - [Alert on privileged Azure role assignments](role-assignments-alert.md)

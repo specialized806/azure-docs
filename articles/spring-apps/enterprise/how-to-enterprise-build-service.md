@@ -1,20 +1,25 @@
 ---
-title: How to use Tanzu Build Service in the Azure Spring Apps Enterprise plan
+title: How to Use Tanzu Build Service in the Azure Spring Apps Enterprise Plan
 description: Learn how to use Tanzu Build Service in the Azure Spring Apps Enterprise plan.
 author: KarlErickson
-ms.author: fenzho
-ms.service: spring-apps
+ms.author: karler
+ms.reviewer: fenzho
+ms.service: azure-spring-apps
 ms.topic: how-to
-ms.date: 05/25/2023
-ms.custom: devx-track-java, devx-track-extended-java, devx-track-azurecli
+ms.date: 08/19/2025
+ms.update-cycle: 1095-days
+ms.custom:
+  - devx-track-java
+  - devx-track-extended-java
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 
 # Use Tanzu Build Service
 
-> [!NOTE]
-> Azure Spring Apps is the new name for the Azure Spring Cloud service. Although the service has a new name, you'll see the old name in some places for a while as we work to update assets such as screenshots, videos, and diagrams.
+[!INCLUDE [deprecation-note](../includes/deprecation-note.md)]
 
-**This article applies to:** ❌ Basic/Standard ✔️ Enterprise
+**This article applies to:** ❎ Basic/Standard ✅ Enterprise
 
 This article shows you how to use VMware Tanzu Build Service with the Azure Spring Apps Enterprise plan.
 
@@ -24,11 +29,11 @@ VMware Tanzu Build Service automates container creation, management, and governa
 
 VMware Tanzu Buildpacks provide framework and runtime support for applications. Buildpacks typically examine your applications to determine what dependencies to download and how to configure applications to communicate with bound services.
 
-The [language family buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html) are [composite buildpacks](https://paketo.io/docs/concepts/buildpacks/#composite-buildpacks) that provide easy out-of-the-box support for the most popular language runtimes and app configurations. These buildpacks combine multiple component buildpacks into ordered groupings. The groupings satisfy each buildpack's requirements.
+The [language family buildpacks](https://techdocs.broadcom.com/us/en/vmware-tanzu/standalone-components/tanzu-buildpacks/services/buildpacks/index.html) are [composite buildpacks](https://paketo.io/docs/concepts/buildpacks/#composite-buildpacks) that provide easy out-of-the-box support for the most popular language runtimes and app configurations. These buildpacks combine multiple component buildpacks into ordered groupings. The groupings satisfy each buildpack's requirements.
 
 ## Builders
 
-A [Builder](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-index.html#builder) is a Tanzu Build Service resource. A Builder contains a set of buildpacks and a [stack](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html) used in the process of building source code.
+A [Builder](https://techdocs.broadcom.com/us/en/vmware-tanzu/standalone-components/tanzu-buildpacks/services/buildpacks/index.html) is a Tanzu Build Service resource. A Builder contains a set of buildpacks and a [stack](https://techdocs.broadcom.com/us/en/vmware-tanzu/standalone-components/tanzu-buildpacks/services/buildpacks/stacks.html) used in the process of building source code.
 
 ## Build agent pool
 
@@ -54,7 +59,7 @@ Tanzu Build Service allows at most one pool-sized build task to build and twice 
 
 When you create a new Azure Spring Apps Enterprise service instance using the Azure portal, you can use the **VMware Tanzu settings** tab to configure the number of resources given to the build agent pool.
 
-:::image type="content" source="media/how-to-enterprise-build-service/agent-pool.png" alt-text="Screenshot of Azure portal that shows the Azure Spring Apps Create page with V M ware Tanzu settings highlighted and Allocated Resources dropdown showing." lightbox="media/how-to-enterprise-build-service/agent-pool.png":::
+:::image type="content" source="media/how-to-enterprise-build-service/agent-pool.png" alt-text="Screenshot of the Azure portal that shows the Create Azure Spring Apps page with V M ware Tanzu settings tab and Allocated Resources highlighted." lightbox="media/how-to-enterprise-build-service/agent-pool.png":::
 
 The following image shows the resources given to the Tanzu Build Service Agent Pool after you successfully provision the service instance. You can also update the configured agent pool size here after you create the service instance.
 
@@ -93,11 +98,11 @@ Use the following steps to enable Tanzu Build Service when provisioning an Azure
 1. Select **Next: VMware Tanzu settings**.
 1. On the **VMware Tanzu settings** tab, select **Enable Build Service**. For **Container registry**, the default setting is **Use a managed Azure Container Registry to store built images**.
 
-   :::image type="content" source="media/how-to-enterprise-build-service/enable-build-service-with-default-acr.png" alt-text="Screenshot of the Azure portal that shows the V M ware Tanzu Settings for the Azure Spring Apps Create page with default Build Service settings highlighted." lightbox="media/how-to-enterprise-build-service/enable-build-service-with-default-acr.png":::
+   :::image type="content" source="media/how-to-enterprise-build-service/enable-build-service-with-default-acr.png" alt-text="Screenshot of the Azure portal that shows the Create Azure Spring Apps page with V M ware Tanzu settings tab and Build Service settings highlighted." lightbox="media/how-to-enterprise-build-service/enable-build-service-with-default-acr.png":::
 
 1. If you select **Use your own container registry to store built images (preview)** for **Container registry**, provide your container registry's server, username, and password.
 
-   :::image type="content" source="media/how-to-enterprise-build-service/enable-build-service-with-user-acr.png" alt-text="Screenshot of the Azure portal that shows V M ware Tanzu Settings for the Azure Spring Apps Create page with use your own container registry highlighted." lightbox="media/how-to-enterprise-build-service/enable-build-service-with-user-acr.png":::
+   :::image type="content" source="media/how-to-enterprise-build-service/enable-build-service-with-user-acr.png" alt-text="Screenshot of the Azure portal that shows the Create Azure Spring Apps page V M ware Tanzu settings tab with container registry settings highlighted." lightbox="media/how-to-enterprise-build-service/enable-build-service-with-user-acr.png":::
 
 1. If you disable **Enable Build Service**, the container registry options aren't provided but you can deploy applications with container images.
 
@@ -123,7 +128,7 @@ Use the following steps to enable Tanzu Build Service when provisioning an Azure
    az provider register --namespace Microsoft.SaaS
    ```
 
-1. Use the following command to accept the legal terms and privacy statements for the Azure Spring Apps Enterprise plan. This step is necessary only if you never used your subscription to create an Enterprise plan instance.
+1. Use the following command to accept the legal terms and privacy statements for the Azure Spring Apps Enterprise plan. This step is necessary only if your subscription has never been used to create an Enterprise plan instance of Azure Spring Apps.
 
    ```azurecli
    az term accept \
@@ -132,7 +137,7 @@ Use the following steps to enable Tanzu Build Service when provisioning an Azure
        --publisher vmware-inc
    ```
 
-1. Select a location. The location must support the Azure Spring Apps Enterprise plan. For more information, see [Azure Spring Apps FAQ](faq.md).
+1. Select a location. The location must support the Azure Spring Apps Enterprise plan. For more information, see [Azure Spring Apps FAQ](../basic-standard/faq.md?toc=/azure/spring-apps/enterprise/toc.json&bc=/azure/spring-apps/enterprise/breadcrumb/toc.json).
 
 1. Use the following command to create a resource group:
 
@@ -191,7 +196,7 @@ By using Tanzu Partner Buildpacks and CA Certificates Buildpack, the Azure Sprin
 
 ## Real-time build logs
 
-A build task is triggered when an application is deployed from an Azure CLI command. Build logs are streamed in real time as part of the CLI command output. For information about using build logs to diagnose problems, see [Analyze logs and metrics with diagnostics settings](./diagnostic-services.md).
+A build task is triggered when an application is deployed from an Azure CLI command. Build logs are streamed in real time as part of the CLI command output. For information about using build logs to diagnose problems, see [Analyze logs and metrics with diagnostics settings](../basic-standard/diagnostic-services.md?toc=/azure/spring-apps/enterprise/toc.json&bc=/azure/spring-apps/enterprise/breadcrumb/toc.json).
 
 ## Build history
 

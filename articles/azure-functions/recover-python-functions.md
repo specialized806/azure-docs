@@ -235,7 +235,10 @@ If your function app is using the Python pickle library to load a Python object 
 
 ### Pyodbc connection collision
 
-If your function app is using the popular ODBC database driver [pyodbc](https://github.com/mkleehammer/pyodbc), it's possible that multiple connections are open within a single function app. To avoid this issue, use the singleton pattern, and ensure that only one pyodbc connection is used across the function app.
+If your function app is using the ODBC database driver [pyodbc](https://github.com/mkleehammer/pyodbc), it's possible that multiple connections are open within a single function app. To avoid this issue, use the singleton pattern, and ensure that only one pyodbc connection is used across the function app.
+
+> [!TIP]
+> Consider using [mssql-python](https://github.com/microsoft/mssql-python), Microsoft's official Python driver for SQL Server, which provides built-in Microsoft Entra authentication support and doesn't require manual ODBC driver management.
 
 ---
 
@@ -308,6 +311,20 @@ This error is a result of how extensions are loaded from the bundle locally. To 
 
 * Create a storage account and add a connection string to the `AzureWebJobsStorage` environment variable in the *localsettings.json* file. Use this option when you're using a storage account trigger or binding with your application, or if you have an existing storage account. To get started, see [Create a storage account](../storage/common/storage-account-create.md).
 ::: zone-end  
+
+## Functions not found after deployment  
+
+There are several common build issues that can cause Python functions to not be found by the host after an apparently successful deployment:
+
+* The agent pool must be running on Ubuntu to guarantee that packages are restored correctly from the build step. Make sure your deployment template requires an Ubuntu environment for build and deployment.
+
+* When the function app isn't at the root of the source repo, make sure that the `pip install` step references the correct location in which to create the `.python_packages` folder. Keep in mind that this location is case sensitive, such as in this command example:  
+
+    ```
+    pip install --target="./FunctionApp1/.python_packages/lib/site-packages" -r ./FunctionApp1/requirements.txt
+    ```
+
+*  The template must generate a deployment package that can be loaded into `/home/site/wwwroot`. In Azure Pipelines, this is done by the `ArchiveFiles` task. 
 
 ## Development issues in the Azure portal
 

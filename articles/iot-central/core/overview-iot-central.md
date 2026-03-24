@@ -3,18 +3,18 @@ title: What is Azure IoT Central
 description: Azure IoT Central is an application platform that simplifies the creation of IoT solutions, reducing the overhead of IoT management operations, and development.
 author: dominicbetts
 ms.author: dobett
-ms.date: 06/02/2023
+ms.date: 05/09/2025
 ms.topic: overview
-ms.service: iot-central
+ms.service: azure-iot-central
 services: iot-central
 ms.custom: mvc
 ---
 
 # What is Azure IoT Central?
 
-IoT Central is an IoT application platform as a service (aPaaS) that reduces the burden and cost of developing, managing, and maintaining IoT solutions. Use IoT Central to quickly evaluate your IoT scenario and assess the opportunities it can create for your business. To streamline the development of a complex and continually evolving IoT infrastructure, IoT Central lets you focus your efforts on determining the business impact you can create with the IoT data stream.
+IoT Central is an _application platform as a service (aPaaS)_ that reduces the burden and cost of developing, managing, and maintaining cloud-based IoT solutions. Use IoT Central to quickly evaluate your IoT scenario and assess the opportunities it can create for your business. To streamline the development of a complex and continually evolving IoT infrastructure, IoT Central lets you focus your efforts on determining the business impact you can create with the IoT data stream.
 
-The web UI lets you quickly connect devices, monitor device conditions, create rules, and manage devices and their data throughout their life cycle. Furthermore, it enables you to act on device insights by extending IoT intelligence into line-of-business applications. After you've used IoT Central to evaluate your IoT scenario, you can then build your enterprise-ready Azure IoT solution.  
+The web UI lets you quickly connect devices, monitor device telemetry, create rules, and manage devices and their data throughout their life cycle. Furthermore, it enables you to act on device insights by extending IoT intelligence into line-of-business applications. After you've used IoT Central to evaluate your IoT scenario, you can then build your enterprise-ready Azure IoT solution.  
 
 This article provides an overview of the features of Azure IoT Central.
 
@@ -56,7 +56,7 @@ Every [device template](howto-set-up-template.md) includes:
   - The telemetry it streams to IoT Central.
   - The read-only properties it uses to report state to IoT Central.
   - The writable properties it receives from IoT Central to set device state.
-  - The commands called from IoT Central.
+  - The commands called from IoT Central to control the device.
 
 - Cloud properties that aren't stored on the device.
 - Customizations, forms, and device views that are part of your IoT Central application.
@@ -129,7 +129,7 @@ The IoT Central documentation refers to four user roles that interact with an Io
 
 - A _solution builder_ is responsible for [creating an application](quick-deploy-iot-central.md), [configuring rules and actions](quick-configure-rules.md), [defining integrations with other services](quick-export-data.md), and further customizing the application for operators and device developers.
 - An _operator_ [manages the devices](howto-manage-devices-individually.md) connected to the application.
-- An _administrator_ is responsible for administrative tasks such as managing [user roles and permissions](howto-administer.md) within the application and [configuring managed identities](howto-manage-iot-central-from-portal.md#configure-a-managed-identity) for securing connects to other services.
+- An _administrator_ is responsible for administrative tasks such as managing [user roles and permissions](howto-administer.md) within the application and [configuring managed identities](howto-manage-and-monitor-iot-central.md#configure-a-managed-identity) for securing connects to other services.
 - A _device developer_ [creates the code that runs on a device](./tutorial-connect-device.md) or [IoT Edge module](concepts-iot-edge.md) connected to your application.
 
 ## Next steps

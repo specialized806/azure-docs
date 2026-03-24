@@ -225,6 +225,6 @@ The following limitations are known issues in the Communication Services Call Au
 
 - If an application dials out to two or more PSTN identities and then quits the call, the call between the other PSTN entities drops.
 
-## Group call limitations users 
+## Job Router
 
-Up to 350 users can join a group call, room, or Teams meeting. Only 100 users can join through JS web calling SDK or Teams web client, the remaining needs to join through Android/iOS/Windows calling SDK or Teams desktop/mobile client. Once the call size reaches 100+ participants in the call, only the top 4 most dominant speakers that have their video camera turned on are seen. When the number of people on the call is 100+, the viewable number of incoming renders goes from 3x3 (9 incoming videos) down to 2x2 (4 incoming videos). When the number of users goes below 100, the number of supported incoming videos goes back up to 3x3 (9 incoming videos).
+The Azure Communication Services Job Router's `GetQueueStatisticsAsync` API may return inaccurate queue statistics data in certain scenarios. Specifically, the API returns incorrect values for metrics such as `LongestJobWaitTimeMinutes` and `EstimatedWaitTimes`, including zero wait times and inconsistent estimates. If you encounter unexpected or inconsistent values, consider implementing additional logic in your application to validate or smooth out the reported statistics and avoid using these values for application-specific logic. The product team is aware of this issue and is actively working on a fix. For the latest updates, refer to the [Azure Communication Services documentation](/azure/communication-services/).

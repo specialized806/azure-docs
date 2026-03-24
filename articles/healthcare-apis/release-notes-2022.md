@@ -2,12 +2,12 @@
 title: Release notes for 2022 Azure Health Data Services monthly releases
 description: 2022 - Explore the Azure Health Data Services release notes for 2022. Learn about the features and enhancements introduced in the FHIR, DICOM, and MedTech services that help you manage and analyze health data. 
 services: healthcare-apis
-author: kgaddam10
-ms.service: healthcare-apis
+author: shellyhaverkamp
+ms.service: azure-health-data-services
 ms.subservice: workspace
 ms.topic: reference
 ms.date: 03/13/2024
-ms.author: kavitagaddam 
+ms.author: kesheth 
 ms.custom: references_regions
 ---
 
@@ -238,7 +238,7 @@ With Private Link, you can access Azure Health Data Services securely from your 
 ### FHIR service
 
 #### FHIRPath Patch operation available
-|This feature enables you to use the FHIRPath Patch operation on FHIR resources. For more information, see [FHIR REST API capabilities for Azure Health Data Services FHIR service](./../healthcare-apis/fhir/fhir-rest-api-capabilities.md). 
+|This feature enables you to use the FHIRPath Patch operation on FHIR resources. For more information, see [FHIR REST API capabilities for Azure Health Data Services FHIR service](./../healthcare-apis/fhir/rest-api-capabilities.md). 
 
 #### Bug fixes
 
@@ -255,7 +255,7 @@ Before the bug fix, a SQL timeout returned a 500 error. With the bug fix, a time
 
 #### Events capability in Azure Health Data Services is generally available (GA)
 
- The Events feature allows customers to receive notifications and triggers when FHIR observations are created, updated, or deleted. For more information, see [Events message structure](./../healthcare-apis/events/events-message-structure.md) and [What are events?](./../healthcare-apis/events/events-overview.md). 
+ The Events feature allows customers to receive notifications and triggers when FHIR observations are created, updated, or deleted. For more information, see [Events message structure](./../healthcare-apis/events/events-message-structure.md) and [What are events?](./../healthcare-apis/events/events-overview.md) 
 
 ## January 2022
 

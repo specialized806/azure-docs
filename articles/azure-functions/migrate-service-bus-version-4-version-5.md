@@ -2,7 +2,7 @@
 title: Migrate Azure Service Bus extension for Azure Functions to version 5.x 
 description: This article shows you how to upgrade your existing function apps using the Azure Service Bus extension version 4.x to be able to use version 5.x of the extension. 
 ms.service: azure-functions
-ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
+ms.custom: devx-track-extended-java, devx-track-js, devx-track-python, devx-track-ts
 ms.topic: how-to 
 ms.date: 01/12/2024
 zone_pivot_groups: programming-languages-set-functions
@@ -58,6 +58,8 @@ Update your `.csproj` project file to use the latest extension version for your 
 
 ### [In-process model](#tab/in-process)
 
+[!INCLUDE [functions-in-process-model-retirement-note](../../includes/functions-in-process-model-retirement-note.md)]
+
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
@@ -91,7 +93,7 @@ The underlying SDK used by extension changed to use the [Azure.Messaging.Service
 
 ## Update the extension bundle
 
-By default, [extension bundles](./functions-bindings-register.md#extension-bundles) are used by non-.NET function apps to install binding extensions. The Azure Service Bus version 5 extension is part of extension bundle version 4.
+By default, [extension bundles](./extension-bundles.md) are used by non-.NET function apps to install binding extensions. The Azure Service Bus version 5 extension is part of extension bundle version 4.
 
 To update your application to use the latest extension bundle, update your `host.json`. The following `host.json` file uses version 4 of the extension bundle.
 

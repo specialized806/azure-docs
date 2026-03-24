@@ -1,9 +1,12 @@
 ---
 title: Conda Version Regression in a recent HDInsight release
 description: Known issue affecting image version 5.1.3000.0.2308052231
-ms.service: hdinsight
-ms.topic: include
-ms.date: 02/22/2024
+ms.service: azure-hdinsight
+ms.topic: troubleshooting-known-issue
+author: apurbasroy
+ms.author: apsinhar
+ms.reviewer: nijelsf
+ms.date: 02/03/2025
 ---
 
 # Conda version regression in a recent HDInsight release

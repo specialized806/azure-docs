@@ -1,12 +1,13 @@
 ---
-title: Manage default and individual user and group quotas for Azure NetApp Files volumes  | Microsoft Docs
+title: Manage default and individual user and group quotas for Azure NetApp Files volumes 
 description: Describes the considerations and steps for managing user and group quotas for Azure NetApp Files volumes.
 services: azure-netapp-files
 author: b-hchen
 ms.author: anfdocs
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 06/14/2023
+ms.date: 03/24/2025
+# Customer intent: As a cloud storage administrator, I want to manage user and group quotas for Azure NetApp Files volumes so that I can effectively control storage usage and ensure optimal performance across my organization's data resources.
 ---
 # Manage default and individual user and group quotas for a volume 
 
@@ -22,14 +23,14 @@ Quota rules only come into effect on the CRR/CZR destination volume after the re
 
 * A quota rule is specific to a volume and is applied to an existing volume.  
 * Deleting a volume results in deleting all the associated quota rules for that volume. 
-* You can create a maximum number of 100 quota rules for a volume.
+* You can create a maximum number of 1,000 quota rules for a volume.
 * Azure NetApp Files doesn't support individual group quota and default group quota for SMB and dual protocol volumes.
 * Group quotas track the consumption of disk space for files owned by a particular group. A file can only be owned by exactly one group. 
 * Auxiliary groups only help in permission checks. You can't use auxiliary groups to restrict the quota (disk space) for a file.
 * In a CRR/CZR setting:
     * You can't create, update, or delete quota rules on the destination volume until you [delete the replication](cross-region-replication-delete.md).  
     * If a quota rule is in the error state after you delete the replication relationship, you need to delete and re-create the quota rule on the destination volume. 
-* If you're using [large volumes](large-volumes-requirements-considerations.md) (volumes larger than 100 TiB):    
+* If you're using [large volumes](large-volumes-requirements-considerations.md):    
     * The space and file usage in a large volume might exceed as much as five percent more than the configured hard limit before the quota limit is enforced and rejects traffic.   
     * To provide optimal performance, the space consumption may exceed configured hard limit before the quota is enforced. The additional space consumption won't exceed either the lower of 1 GB or five percent of the configured hard limit.    
     * After reaching the quota limit, if a user or administrator deletes files or directories to reduce quota usage under the limit, subsequent quota-consuming file operations may resume with a delay of up to five seconds.

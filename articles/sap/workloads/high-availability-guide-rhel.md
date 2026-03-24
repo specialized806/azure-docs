@@ -3,12 +3,17 @@ title: Azure Virtual Machines HA for SAP NW on RHEL | Microsoft Docs
 description: This article describes Azure Virtual Machines high availability for SAP NetWeaver on Red Hat Enterprise Linux (RHEL).
 author: rdeltcheva
 manager: juergent
-ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: article
-ms.date: 01/18/2024
+ms.date: 02/20/2026
 ms.author: radeltch
+ms.custom:
+  - devx-track-azurecli
+  - devx-track-azurepowershell
+  - linux-related-content
+  - sfi-image-nochange
+# Customer intent: "As a systems administrator, I want to implement a high-availability setup for SAP NetWeaver on Red Hat Enterprise Linux in Azure, so that I can ensure continuous operation and reliability of the SAP services in our organization."
 ---
 
 # Azure Virtual Machines high availability for SAP NetWeaver on Red Hat Enterprise Linux
@@ -45,7 +50,6 @@ Read the following SAP Notes and papers first:
   * Important capacity information for Azure VM sizes.
   * Supported SAP software and operating system (OS) and database combinations.
   * Required SAP kernel version for Windows and Linux on Microsoft Azure.
-
 * SAP Note [2015553] lists prerequisites for SAP-supported SAP software deployments in Azure.
 * SAP Note [2002167] has recommended OS settings for Red Hat Enterprise Linux (RHEL).
 * SAP Note [2009879] has SAP HANA Guidelines for Red Hat Enterprise Linux.
@@ -64,8 +68,7 @@ Read the following SAP Notes and papers first:
   * [High Availability Add-On Administration](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/high_availability_add-on_administration/index)
   * [High Availability Add-On Reference](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/high_availability_add-on_reference/index)
   * [Configuring ASCS/ERS for SAP NetWeaver with Standalone Resources in RHEL 7.5](https://access.redhat.com/articles/3569681)
-  * [Configure SAP S/4HANA ASCS/ERS with Standalone Enqueue Server 2 (ENSA2) in Pacemaker on RHEL
-  ](https://access.redhat.com/articles/3974941)
+  * [Configure SAP S/4HANA ASCS/ERS with Standalone Enqueue Server 2 (ENSA2) in Pacemaker on RHEL](https://access.redhat.com/articles/3974941)
 * Azure-specific RHEL documentation:
   * [Support Policies for RHEL High Availability Clusters - Microsoft Azure Virtual Machines as Cluster Members](https://access.redhat.com/articles/3131341)
   * [Installing and Configuring a Red Hat Enterprise Linux 7.4 (and later) High-Availability Cluster on Microsoft Azure](https://access.redhat.com/articles/3252491)
@@ -114,9 +117,6 @@ During VM configuration, you have an option to create or select exiting load bal
 [!INCLUDE [Configure Azure standard load balancer using PowerShell](../../../includes/sap-load-balancer-ascs-ers-powershell.md)]
 
 ---
-
-> [!IMPORTANT]
-> Floating IP isn't supported on a NIC secondary IP configuration in load-balancing scenarios. For more information, see [Azure Load Balancer limitations](../../load-balancer/load-balancer-multivip-overview.md#limitations). If you need another IP address for the VM, deploy a second NIC.
 
 > [!NOTE]
 > When VMs without public IP addresses are placed in the back-end pool of an internal (no public IP address) Standard Azure load balancer, there's no outbound internet connectivity unless more configuration is performed to allow routing to public endpoints. For more information on how to achieve outbound connectivity, see [Public endpoint connectivity for VMs using Azure Standard Load Balancer in SAP high-availability scenarios](./high-availability-guide-standard-load-balancer-outbound-connections.md).
@@ -248,7 +248,7 @@ The following items are prefixed with:
 
 7. **[A]** Configure RHEL.
 
-   Based on the RHEL version, perform the configuration mentioned in SAP Note [2002167](https://launchpad.support.sap.com/#/notes/2002167), SAP Note [2772999](https://launchpad.support.sap.com/#/notes/2772999), or SAP Note [3108316](https://launchpad.support.sap.com/#/notes/2772999).
+   Based on the RHEL version, perform the configuration mentioned in SAP Note [2002167](https://launchpad.support.sap.com/#/notes/2002167), SAP Note [2772999](https://launchpad.support.sap.com/#/notes/2772999), or SAP Note [3108316](https://launchpad.support.sap.com/#/notes/3108316).
 
 ### Install SAP NetWeaver ASCS/ERS
 
@@ -266,15 +266,14 @@ The following items are prefixed with:
    
    sudo pcs resource create fs_NW1_ASCS Filesystem device='glust-0:/NW1-ascs' \
      directory='/usr/sap/NW1/ASCS00' fstype='glusterfs' \
-     options='backup-volfile-servers=glust-1:glust-2' \
-     --group g-NW1_ASCS
+     options='backup-volfile-servers=glust-1:glust-2'
    
    sudo pcs resource create vip_NW1_ASCS IPaddr2 \
-     ip=10.0.0.7 \
-     --group g-NW1_ASCS
+     ip=10.0.0.7
    
-   sudo pcs resource create nc_NW1_ASCS azure-lb port=62000 \
-     --group g-NW1_ASCS
+   sudo pcs resource create nc_NW1_ASCS azure-lb port=62000
+
+   sudo pcs resource group add g-NW1_ASCS fs_NW1_ASCS vip_NW1_ASCS nc_NW1_ASCS
    ```
 
    Make sure that the cluster status is okay and that all resources are started. Which node the resources are running on isn't important.
@@ -322,15 +321,14 @@ The following items are prefixed with:
    
    sudo pcs resource create fs_NW1_AERS Filesystem device='glust-0:/NW1-aers' \
      directory='/usr/sap/NW1/ERS02' fstype='glusterfs' \
-     options='backup-volfile-servers=glust-1:glust-2' \
-    --group g-NW1_AERS
+     options='backup-volfile-servers=glust-1:glust-2'
    
    sudo pcs resource create vip_NW1_AERS IPaddr2 \
-     ip=10.0.0.8 \
-    --group g-NW1_AERS
+     ip=10.0.0.8
    
-   sudo pcs resource create nc_NW1_AERS azure-lb port=62102 \
-    --group g-NW1_AERS
+   sudo pcs resource create nc_NW1_AERS azure-lb port=62102
+
+   sudo pcs resource group add g-NW1_AERS fs_NW1_AERS vip_NW1_AERS nc_NW1_AERS 
    ```
 
    Make sure that the cluster status is okay and that all resources are started. Which node the resources are running on isn't important.
@@ -386,7 +384,7 @@ The following items are prefixed with:
      Start_Program_01 = local $(_EN) pf=$(_PF)
      
      # Add the keep alive parameter, if using ENSA1
-     enque/encni/set_so_keepalive = true
+     enque/encni/set_so_keepalive = TRUE
      ```
 
      For both ENSA1 and ENSA2, make sure that the `keepalive` OS parameters are set as described in SAP Note [1410736](https://launchpad.support.sap.com/#/notes/1410736).
@@ -443,21 +441,25 @@ The following items are prefixed with:
     AUTOMATIC_RECOVER=false \
     meta resource-stickiness=5000 migration-threshold=1 failure-timeout=60 \
     op monitor interval=20 on-fail=restart timeout=60 \
-    op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW1_ASCS
-   
+    op start interval=0 timeout=600 op stop interval=0 timeout=600
+
+    sudo pcs resource group add g-NW1_ASCS rsc_sap_NW1_ASCS00
     sudo pcs resource meta g-NW1_ASCS resource-stickiness=3000
    
     sudo pcs resource create rsc_sap_NW1_ERS02 SAPInstance \
     InstanceName=NW1_ERS02_nw1-aers START_PROFILE="/sapmnt/NW1/profile/NW1_ERS02_nw1-aers" \
     AUTOMATIC_RECOVER=false IS_ERS=true \
-    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW1_AERS
+    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600
+
+    sudo pcs resource group add g-NW1_AERS rsc_sap_NW1_ERS02
    
-    sudo pcs constraint colocation add g-NW1_AERS with g-NW1_ASCS -5000
-    sudo pcs constraint location rsc_sap_NW1_ASCS00 rule score=2000 runs_ers_NW1 eq 1
     sudo pcs constraint order start g-NW1_ASCS then stop g-NW1_AERS kind=Optional symmetrical=false
-   
+    sudo pcs constraint colocation add g-NW1_AERS with g-NW1_ASCS score=-5000
+    # On RHEL 7.x, 8.x, 9.x
+    sudo pcs constraint location rsc_sap_NW1_ASCS00 rule score=2000 runs_ers_NW1 eq 1
+    # On RHEL 10.x
+    sudo pcs constraint location rsc_sap_NW1_ASCS00 rule score=2000 "runs_ers_NW1 eq 1"
+
     sudo pcs node unstandby nw1-cl-0
     sudo pcs property set maintenance-mode=false
     ```
@@ -472,23 +474,22 @@ The following items are prefixed with:
     AUTOMATIC_RECOVER=false \
     meta resource-stickiness=5000 \
     op monitor interval=20 on-fail=restart timeout=60 \
-    op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW1_ASCS
-   
+    op start interval=0 timeout=600 op stop interval=0 timeout=600
+
+    sudo pcs resource group add g-NW1_ASCS rsc_sap_NW1_ASCS00
     sudo pcs resource meta g-NW1_ASCS resource-stickiness=3000
    
     sudo pcs resource create rsc_sap_NW1_ERS02 SAPInstance \
     InstanceName=NW1_ERS02_nw1-aers START_PROFILE="/sapmnt/NW1/profile/NW1_ERS02_nw1-aers" \
     AUTOMATIC_RECOVER=false IS_ERS=true \
-    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW1_AERS
-   
+    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600
+
+    sudo pcs resource group add g-NW1_AERS rsc_sap_NW1_ERS02
     sudo pcs resource meta rsc_sap_NW1_ERS02 resource-stickiness=3000
    
-    sudo pcs constraint colocation add g-NW1_AERS with g-NW1_ASCS -5000
-    sudo pcs constraint order start g-NW1_ASCS then start g-NW1_AERS kind=Optional symmetrical=false
     sudo pcs constraint order start g-NW1_ASCS then stop g-NW1_AERS kind=Optional symmetrical=false
-   
+    sudo pcs constraint colocation add g-NW1_AERS with g-NW1_ASCS score=-5000
+
     sudo pcs node unstandby nw1-cl-0
     sudo pcs property set maintenance-mode=false
     ```
@@ -772,6 +773,9 @@ Follow these steps to install an SAP application server.
        last-rc-change='Tue Aug 21 13:52:39 2018', queued=0ms, exec=0ms
    ```
 
+   > [!NOTE]
+   > If you're using SBD as a STONITH mechanism, it could happen that after a reboot, when the node attempts to rejoin the cluster, it receives the message "we were allegedly just fenced" message in /var/log/messages and shut down the Pacemaker and Corosync services. To address the issue, you can follow the workaround described in RedHat KB [A node shuts down pacemaker after getting fenced and restarting corosync and pacemaker](https://access.redhat.com/solutions/5644441). However, in Azure, set a delay of 150 seconds for Corosync service to startup. Ensure that these steps are applied to all cluster nodes.
+
    Use the following command to clean the failed resources.
 
    ```bash
@@ -1028,5 +1032,5 @@ Follow these steps to install an SAP application server.
 * See [Azure Virtual Machines planning and implementation for SAP][planning-guide].
 * See [Azure Virtual Machines deployment for SAP][deployment-guide].
 * See [Azure Virtual Machines DBMS deployment for SAP][dbms-guide].
-* To learn how to establish HA and plan for disaster recovery of SAP HANA on Azure (large instances), see [SAP HANA (large instances) high availability and disaster recovery on Azure](../../virtual-machines/workloads/sap/hana-overview-high-availability-disaster-recovery.md).
+* To learn how to establish HA and plan for disaster recovery of SAP HANA on Azure (large instances), see [SAP HANA (large instances) high availability and disaster recovery on Azure](/azure/virtual-machines/workloads/sap/hana-overview-high-availability-disaster-recovery).
 * To learn how to establish HA and plan for disaster recovery of SAP HANA on Azure VMs, see [High availability of SAP HANA on Azure Virtual Machines][sap-hana-ha].

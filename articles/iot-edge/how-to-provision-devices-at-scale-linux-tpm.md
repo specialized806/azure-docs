@@ -1,23 +1,24 @@
 ---
 title: Create and provision devices with a virtual TPM on Linux - Azure IoT Edge
 description: Use a simulated TPM on a Linux device to test the Azure IoT Hub device provisioning service for Azure IoT Edge.
-author: PatAltimore
+author: sethmanheim
+ms.author: sethm
 manager: lizross
-ms.author: patricka
-ms.date: 02/27/2024
-ms.topic: conceptual
-ms.service: iot-edge
+ms.date: 03/02/2026
+ms.topic: concept-article
+ms.service: azure-iot-edge
+ms.custom: linux-related-content
 services: iot-edge
 ---
 # Create and provision IoT Edge devices at scale with a TPM on Linux
 
-[!INCLUDE [iot-edge-version-1.4](includes/iot-edge-version-1.4.md)]
+[!INCLUDE [iot-edge-version-all-supported](includes/iot-edge-version-all-supported.md)]
 
 This article provides instructions for autoprovisioning an Azure IoT Edge for Linux device by using a Trusted Platform Module (TPM). You can automatically provision IoT Edge devices with the [Azure IoT Hub device provisioning service](../iot-dps/index.yml). If you're unfamiliar with the process of autoprovisioning, review the [provisioning overview](../iot-dps/about-iot-dps.md#provisioning-process) before you continue.
 
 This article outlines two methodologies. Select your preference based on the architecture of your solution:
 
-- Autoprovision a Linux device with physical TPM hardware. An example is the [Infineon OPTIGA&trade; TPM SLB 9670](https://devicecatalog.azure.com/devices/3f52cdee-bbc4-d74e-6c79-a2546f73df4e).
+- Autoprovision a Linux device with physical TPM hardware.
 - Autoprovision a Linux virtual machine (VM) with a simulated TPM running on a Windows development machine with Hyper-V enabled. We recommend using this methodology only as a testing scenario. A simulated TPM doesn't offer the same security as a physical TPM.
 
 Instructions differ based on your methodology, so make sure you're on the correct tab going forward.
@@ -144,7 +145,7 @@ After the installation is finished and you've signed back in to your VM, you're 
 ## Retrieve provisioning information for your TPM
 
 > [!NOTE]
-> This article previously used the `tpm_device_provision` tool from the IoT C SDK to generate provisioning info. If you relied on that tool previously, then be aware the steps below generate a different registration ID for the same public endorsement key. If you need to recreate the registration ID as before then refer to how the C SDK's [tpm_device_provision tool](https://github.com/Azure/azure-iot-sdk-c/tree/main/provisioning_client/tools/tpm_device_provision) generates it. Be sure the registration ID for the individual enrollment in DPS matches the regisration ID the IoT Edge device is configured to use.
+> This article previously used the `tpm_device_provision` tool from the IoT C SDK to generate provisioning info. If you relied on that tool previously, then be aware the steps below generate a different registration ID for the same public endorsement key. If you need to recreate the registration ID as before then refer to how the C SDK's [tpm_device_provision tool](https://github.com/Azure/azure-iot-sdk-c/tree/main/provisioning_client/tools/tpm_device_provision) generates it. Be sure the registration ID for the individual enrollment in DPS matches the registration ID the IoT Edge device is configured to use.
 
 In this section, you use the TPM2 software tools to retrieve the endorsement key for your TPM and then generate a unique registration ID. This section corresponds with [Step 3: Device has firmware and software installed](../iot-dps/concepts-device-oem-security-practices.md#step-3-device-has-firmware-and-software-installed) in the process for [integrating a TPM into the manufacturing process](../iot-dps/concepts-device-oem-security-practices.md#integrating-a-tpm-into-the-manufacturing-process).
 
@@ -256,7 +257,7 @@ nano ~/config.toml
    [provisioning]
    source = "dps"
    global_endpoint = "https://global.azure-devices-provisioning.net"
-   id_scope = "SCOPE_ID_HERE"
+   id_scope = "DPS_ID_SCOPE_HERE"
 
    # Uncomment to send a custom payload during DPS registration
    # payload = { uri = "PATH_TO_JSON_FILE" }
@@ -274,7 +275,7 @@ nano ~/config.toml
 
 1. Optionally, find the auto reprovisioning mode section of the file. Use the `auto_reprovisioning_mode` parameter to configure your device's reprovisioning behavior. **Dynamic** - Reprovision when the device detects that it may have been moved from one IoT Hub to another. This is the default. **AlwaysOnStartup** - Reprovision when the device is rebooted or a crash causes the daemons to restart. **OnErrorOnly** - Never trigger device reprovisioning automatically. Each mode has an implicit device reprovisioning fallback if the device is unable to connect to IoT Hub during identity provisioning due to connectivity errors. For more information, see [IoT Hub device reprovisioning concepts](../iot-dps/concepts-device-reprovision.md).
 
-1. Optionally, uncomment the `payload` parameter to specify the path to a local JSON file. The contents of the file is [sent to DPS as additional data](../iot-dps/how-to-send-additional-data.md#iot-edge-support) when the device registers. This is useful for [custom allocation](../iot-dps/how-to-use-custom-allocation-policies.md). For example, if you want to allocate your devices based on an IoT Plug and Play model ID without human intervention.
+1. Optionally, uncomment the `payload` parameter to specify the path to a local JSON file. The contents of the file is [sent to DPS as additional data](../iot-dps/how-to-send-additional-data.md#iot-edge-support) when the device registers. This is useful for [custom allocation](../iot-dps/tutorial-custom-allocation-policies.md). For example, if you want to allocate your devices based on an IoT Plug and Play model ID without human intervention.
 
 1. Save and close the file.
 
@@ -300,8 +301,8 @@ You can give access to the TPM by overriding the systemd settings so that the `a
 
    ```input
    # allow aziottpm access to tpm0 and tpmrm0
-   KERNEL=="tpm0", SUBSYSTEM=="tpm", OWNER="aziottpm", MODE="0660"
-   KERNEL=="tpmrm0", SUBSYSTEM=="tpmrm", OWNER="aziottpm", MODE="0660"
+   KERNEL=="tpm0", SUBSYSTEM=="tpm", OWNER="root", GROUP="aziottpm", MODE="0660"
+   KERNEL=="tpmrm0", SUBSYSTEM=="tpmrm", OWNER="root", GROUP="aziottpm", MODE="0660"
    ```
 
 1. Save and exit the file.

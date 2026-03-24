@@ -1,9 +1,9 @@
 ---
 title: Linter rule - max asserts
 description: Linter rule - max asserts.
-ms.topic: conceptual
+ms.topic: reference
 ms.custom: devx-track-bicep
-ms.date: 03/20/2024
+ms.date: 10/30/2025
 ---
 
 # Linter rule - max asserts

@@ -3,60 +3,30 @@ title: Monitor Azure Table Storage
 description: Start here to learn how to monitor Azure Table Storage.
 ms.date: 02/13/2024
 ms.custom: horz-monitor, devx-track-csharp, devx-track-azurepowershell
-ms.topic: conceptual
+ms.topic: concept-article
 author: normesta
 ms.author: normesta
 ms.service: azure-table-storage
 ms.devlang: csharp
 # ms.devlang: csharp, powershell, azurecli
+# Customer intent: As a cloud administrator, I want to monitor Azure Table Storage metrics and logs, so that I can ensure optimal performance, track resource usage, and diagnose any issues effectively.
 ---
-
-<!-- 
-IMPORTANT 
-To make this template easier to use, first:
-1. Search and replace Azure Table Storage with the official name of your service.
-2. Search and replace table-storage with the service name to use in GitHub filenames.-->
-
-<!-- VERSION 3.0 2024_01_07
-For background about this template, see https://review.learn.microsoft.com/en-us/help/contribute/contribute-monitoring?branch=main -->
-
-<!-- Most services can use the following sections unchanged. The sections use #included text you don't have to maintain, which changes when Azure Monitor functionality changes. Add info into the designated service-specific places if necessary. Remove #includes or template content that aren't relevant to your service.
-At a minimum your service should have the following two articles:
-1. The primary monitoring article (based on this template)
-   - Title: "Monitor Azure Table Storage"
-   - TOC title: "Monitor"
-   - Filename: "monitor-table-storage.md"
-2. A reference article that lists all the metrics and logs for your service (based on the template data-reference-template.md).
-   - Title: "Azure Table Storage monitoring data reference"
-   - TOC title: "Monitoring data reference"
-   - Filename: "monitor-table-storage-reference.md".
--->
 
 # Monitor Azure Table Storage
 
-<!-- Intro -->
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 
 > [!IMPORTANT]
 > Metrics and logs in Azure Monitor support only Azure Resource Manager storage accounts. Azure Monitor doesn't support classic storage accounts. If you want to use metrics or logs on a classic storage account, you need to migrate to an Azure Resource Manager storage account. For more information, see [Migrate to Azure Resource Manager](/azure/virtual-machines/migration-classic-resource-manager-overview).
 
-<!-- ## Insights. Optional section. If your service has insights, add the following include and information. -->
 [!INCLUDE [horz-monitor-insights](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-insights.md)]
-<!-- Insights service-specific information. Add brief information about what your Azure Monitor insights provide here. You can refer to another article that gives details or add a screenshot. -->
+
 Azure Storage insights offer a unified view of storage performance, capacity, and availability. See [Monitor storage with Azure Monitor Storage insights](../common/storage-insights-overview.md).
 
-<!-- ## Resource types. Required section. -->
 [!INCLUDE [horz-monitor-resource-types](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-types.md)]
 
-<!-- ## Data storage. Required section. Optionally, add service-specific information about storing your monitoring data after the include. -->
 [!INCLUDE [horz-monitor-data-storage](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-data-storage.md)]
-<!-- Add service-specific information about storing monitoring data here, if applicable. For example, SQL Server stores other monitoring data in its own databases. -->
 
-<!-- METRICS SECTION START ------------------------------------->
-
-<!-- ## Platform metrics. Required section.
-  - If your service doesn't collect platform metrics, use the following include: [!INCLUDE [horz-monitor-no-platform-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-no-platform-metrics.md)]
-  - If your service collects platform metrics, add the following include, statement, and service-specific information as appropriate. -->
 [!INCLUDE [horz-monitor-platform-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-platform-metrics.md)]
 For a list of available metrics for Azure Table Storage, see [Azure Table Storage monitoring data reference](monitor-table-storage-reference.md#metrics).
 
@@ -66,35 +36,9 @@ For a list of available metrics for Azure Table Storage, see [Azure Table Storag
 > [!NOTE]
 > Azure Compute, not Azure Storage, supports metrics for managed disks or unmanaged disks. For more information, see [Per disk metrics for Managed and Unmanaged Disks](https://azure.microsoft.com/blog/per-disk-metrics-managed-disks/).
 
-<!-- Platform metrics service-specific information. Add service-specific information about your platform metrics here.-->
-
-<!-- ## Prometheus/container metrics. Optional. If your service uses containers/Prometheus metrics, add the following include and information. 
-[!INCLUDE [horz-monitor-container-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-container-metrics.md)]
-<!-- Add service-specific information about your container/Prometheus metrics here.-->
-
-<!-- ## System metrics. Optional. If your service uses system-imported metrics, add the following include and information. 
-[!INCLUDE [horz-monitor-system-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-system-metrics.md)]
-<!-- Add service-specific information about your system-imported metrics here.-->
-
-<!-- ## Custom metrics. Optional. If your service uses custom imported metrics, add the following include and information. 
-[!INCLUDE [horz-monitor-custom-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-custom-metrics.md)]
-<!-- Custom imported service-specific information. Add service-specific information about your custom imported metrics here.-->
-
-<!-- ## Non-Azure Monitor metrics. Optional. If your service uses any non-Azure Monitor based metrics, add the following include and information. 
-[!INCLUDE [horz-monitor-custom-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-non-monitor-metrics.md)]
-<!-- Non-Monitor metrics service-specific information. Add service-specific information about your non-Azure Monitor metrics here.-->
-
-<!-- METRICS SECTION END ------------------------------------->
-
-<!-- LOGS SECTION START -------------------------------------->
-
-<!-- ## Resource logs. Required section.
-  - If your service doesn't collect resource logs, use the following include [!INCLUDE [horz-monitor-no-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-no-resource-logs.md)]
-  - If your service collects resource logs, add the following include, statement, and service-specific information as appropriate. -->
 [!INCLUDE [horz-monitor-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-logs.md)]
 For the available resource log categories, their associated Log Analytics tables, and the logs schemas for Azure Table Storage, see [Azure Table Storage monitoring data reference](monitor-table-storage-reference.md#resource-logs).
-<!-- Resource logs service-specific information. Add service-specific information about your resource logs here.
-NOTE: Azure Monitor already has general information on how to configure and route resource logs. See https://learn.microsoft.com/azure/azure-monitor/platform/diagnostic-settings. Ideally, don't repeat that information here. You can provide a single screenshot of the diagnostic settings portal experience if you want. -->
+
 <a name="collection-and-routing"></a>
 ### Azure Table Storage diagnostic settings
 
@@ -120,25 +64,10 @@ For general destination limitations, see [Destination limitations](/azure/azure-
 
   If you send logs to Log Analytics, you can manage the data retention period of Log Analytics at the workspace level or even specify different retention settings by data type. To learn how, see [Change the data retention period](/azure/azure-monitor/logs/data-retention-archive).
 
-<!-- ## Activity log. Required section. Optionally, add service-specific information about your activity log after the include. -->
 [!INCLUDE [horz-monitor-activity-log](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-activity-log.md)]
-<!-- Activity log service-specific information. Add service-specific information about your activity log here. -->
 
-<!-- ## Imported logs. Optional section. If your service uses imported logs, add the following include and information. 
-[!INCLUDE [horz-monitor-imported-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-imported-logs.md)]
-<!-- Add service-specific information about your imported logs here. -->
-
-<!-- ## Other logs. Optional section.
-If your service has other logs that aren't resource logs or in the activity log, add information that states what they are and what they cover here. You can describe how to route them in a later section. -->
-
-<!-- LOGS SECTION END ------------------------------------->
-
-<!-- ANALYSIS SECTION START -------------------------------------->
-
-<!-- ## Analyze data. Required section. -->
 [!INCLUDE [horz-monitor-analyze-data](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-analyze-data.md)]
 
-<!-- ### External tools. Required section. -->
 [!INCLUDE [horz-monitor-external-tools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-external-tools.md)]
 
 ### Analyze metrics for Azure Table Storage
@@ -230,38 +159,43 @@ Azure Monitor provides the [.NET SDK](https://www.nuget.org/packages/microsoft.a
 
 In these examples, replace the `<resource-ID>` placeholder with the resource ID of the entire storage account or the Table Storage service. You can find these resource IDs on the **Properties** pages of your storage account in the Azure portal.
 
-Replace the `<subscription-ID>` variable with the ID of your subscription. For guidance on how to obtain values for `<tenant-ID>`, `<application-ID>`, and `<AccessKey>`, see [Use the portal to create a Microsoft Entra application and service principal that can access resources](/azure/active-directory/develop/howto-create-service-principal-portal).
+These examples use `DefaultAzureCredential` from the `Azure.Identity` package, which supports passwordless authentication using your local developer credentials or a managed identity in Azure. Before running these samples, install the [Azure.Monitor.Query](https://www.nuget.org/packages/Azure.Monitor.Query) and [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) NuGet packages:
+
+```bash
+dotnet add package Azure.Monitor.Query
+dotnet add package Azure.Identity
+```
 
 #### List the account-level metric definition
 
 The following example shows how to list a metric definition at the account level:
 
 ```csharp
-    public static async Task ListStorageMetricDefinition()
+using Azure.Identity;
+using Azure.Monitor.Query;
+using Azure.Monitor.Query.Models;
+
+async Task ListStorageMetricDefinition()
+{
+    var resourceId = "<resource-ID>";
+
+    var credential = new DefaultAzureCredential();
+    var client = new MetricsQueryClient(credential);
+
+    var metricDefinitions = client.GetMetricDefinitionsAsync(resourceId, "<metrics-namespace>");
+
+    await foreach (var metricDefinition in metricDefinitions)
     {
-        var resourceId = "<resource-ID>";
-        var subscriptionId = "<subscription-ID>";
-        var tenantId = "<tenant-ID>";
-        var applicationId = "<application-ID>";
-        var accessKey = "<AccessKey>";
-
-        MonitorManagementClient readOnlyClient = AuthenticateWithReadOnlyClient(tenantId, applicationId, accessKey, subscriptionId).Result;
-        IEnumerable<MetricDefinition> metricDefinitions = await readOnlyClient.MetricDefinitions.ListAsync(resourceUri: resourceId, cancellationToken: new CancellationToken());
-
-        foreach (var metricDefinition in metricDefinitions)
-        {
-            // Enumrate metric definition:
-            //    Id
-            //    ResourceId
-            //    Name
-            //    Unit
-            //    MetricAvailabilities
-            //    PrimaryAggregationType
-            //    Dimensions
-            //    IsDimensionRequired
-        }
+        // Enumerate metric definition:
+        //    Id
+        //    Name
+        //    Unit
+        //    MetricAvailabilities
+        //    PrimaryAggregationType
+        //    Dimensions
+        //    IsDimensionRequired
     }
-
+}
 ```
 
 #### Read account-level metric values
@@ -269,98 +203,85 @@ The following example shows how to list a metric definition at the account level
 The following example shows how to read `UsedCapacity` data at the account level:
 
 ```csharp
-    public static async Task ReadStorageMetricValue()
-    {
-        var resourceId = "<resource-ID>";
-        var subscriptionId = "<subscription-ID>";
-        var tenantId = "<tenant-ID>";
-        var applicationId = "<application-ID>";
-        var accessKey = "<AccessKey>";
+using Azure.Identity;
+using Azure.Monitor.Query;
+using Azure.Monitor.Query.Models;
 
-        MonitorClient readOnlyClient = AuthenticateWithReadOnlyClient(tenantId, applicationId, accessKey, subscriptionId).Result;
+async Task ReadStorageMetricValue()
+{
+    var resourceId = "<resource-ID>";
 
-        Microsoft.Azure.Management.Monitor.Models.Response Response;
+    var credential = new DefaultAzureCredential();
+    var client = new MetricsQueryClient(credential);
 
-        string startDate = DateTime.Now.AddHours(-3).ToUniversalTime().ToString("o");
-        string endDate = DateTime.Now.ToUniversalTime().ToString("o");
-        string timeSpan = startDate + "/" + endDate;
-
-        Response = await readOnlyClient.Metrics.ListAsync(
-            resourceUri: resourceId,
-            timespan: timeSpan,
-            interval: System.TimeSpan.FromHours(1),
-            metricnames: "UsedCapacity",
-
-            aggregation: "Average",
-            resultType: ResultType.Data,
-            cancellationToken: CancellationToken.None);
-
-        foreach (var metric in Response.Value)
+    var response = await client.QueryResourceAsync(
+        resourceId,
+        new[] { "UsedCapacity" },
+        new MetricsQueryOptions
         {
-            // Enumrate metric value
-            //    Id
-            //    Name
-            //    Type
-            //    Unit
-            //    Timeseries
-            //        - Data
-            //        - Metadatavalues
-        }
-    }
+            TimeRange = new QueryTimeRange(TimeSpan.FromHours(3)),
+            Granularity = TimeSpan.FromHours(1),
+            Aggregations = { MetricAggregationType.Average }
+        });
 
+    foreach (var metric in response.Value.Metrics)
+    {
+        // Enumerate metric value
+        //    Id
+        //    Name
+        //    Type
+        //    Unit
+        //    Timeseries
+        //        - Data
+        //        - Metadatavalues
+    }
+}
 ```
 
 #### Read multidimensional metric values
 
 For multidimensional metrics, you need to define metadata filters if you want to read metric data on specific dimension values.
 
-The following example shows how to read metric data on the metric supporting multidimension:
+The following example shows how to read metric data on the metric supporting multidimensional values:
 
 ```csharp
-    public static async Task ReadStorageMetricValueTest()
-    {
-        // Resource ID for table storage
-        var resourceId = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}/tableServices/default";
-        var subscriptionId = "<subscription-ID}";
-        // How to identify Tenant ID, Application ID and Access Key: https://azure.microsoft.com/documentation/articles/resource-group-create-service-principal-portal/
-        var tenantId = "<tenant-ID>";
-        var applicationId = "<application-ID>";
-        var accessKey = "<AccessKey>";
+using Azure.Identity;
+using Azure.Monitor.Query;
+using Azure.Monitor.Query.Models;
 
-        MonitorManagementClient readOnlyClient = AuthenticateWithReadOnlyClient(tenantId, applicationId, accessKey, subscriptionId).Result;
+async Task ReadStorageMetricValueTest()
+{
+    // Resource ID for table storage
+    var resourceId = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}/tableServices/default";
 
-        Microsoft.Azure.Management.Monitor.Models.Response Response;
+    var credential = new DefaultAzureCredential();
+    var client = new MetricsQueryClient(credential);
 
-        string startDate = DateTime.Now.AddHours(-3).ToUniversalTime().ToString("o");
-        string endDate = DateTime.Now.ToUniversalTime().ToString("o");
-        string timeSpan = startDate + "/" + endDate;
-        // It's applicable to define meta data filter when a metric support dimension
-        // More conditions can be added with the 'or' and 'and' operators, example: BlobType eq 'BlockBlob' or BlobType eq 'PageBlob'
-        ODataQuery<MetadataValue> odataFilterMetrics = new ODataQuery<MetadataValue>(
-            string.Format("BlobType eq '{0}'", "BlockBlob"));
-
-        Response = readOnlyClient.Metrics.List(
-                        resourceUri: resourceId,
-                        timespan: timeSpan,
-                        interval: System.TimeSpan.FromHours(1),
-                        metricnames: "BlobCapacity",
-                        odataQuery: odataFilterMetrics,
-                        aggregation: "Average",
-                        resultType: ResultType.Data);
-
-        foreach (var metric in Response.Value)
+    // It's applicable to define a metadata filter when a metric supports dimensions.
+    // More conditions can be added with the 'or' and 'and' operators, example: BlobType eq 'BlockBlob' or BlobType eq 'PageBlob'
+    var response = await client.QueryResourceAsync(
+        resourceId,
+        new[] { "BlobCapacity" },
+        new MetricsQueryOptions
         {
-            //Enumrate metric value
-            //    Id
-            //    Name
-            //    Type
-            //    Unit
-            //    Timeseries
-            //        - Data
-            //        - Metadatavalues
-        }
-    }
+            TimeRange = new QueryTimeRange(TimeSpan.FromHours(3)),
+            Granularity = TimeSpan.FromHours(1),
+            Aggregations = { MetricAggregationType.Average },
+            Filter = "BlobType eq 'BlockBlob'"
+        });
 
+    foreach (var metric in response.Value.Metrics)
+    {
+        // Enumerate metric value
+        //    Id
+        //    Name
+        //    Type
+        //    Unit
+        //    Timeseries
+        //        - Data
+        //        - Metadatavalues
+    }
+}
 ```
 
 ---
@@ -396,10 +317,9 @@ Requests made by the Table Storage service itself, such as log creation or delet
 - Time out errors for both client and server
 - Failed GET requests with the error code 304 (`Not Modified`)
 
-<!-- ### Sample Kusto queries. Required section. If you have sample Kusto queries for your service, add them after the include. -->
 [!INCLUDE [horz-monitor-kusto-queries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-kusto-queries.md)]
-<!-- Add sample Kusto queries for your service here. -->
-Here are some queries that you can enter in the **Log search** bar to help you monitor your Table Storage. These queries work with the [new language](../../azure-monitor/logs/log-query-overview.md). For more information, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial).
+
+Here are some queries that you can enter in the **Log search** bar to help you monitor your Table Storage. These queries work with the [new language](/azure/azure-monitor/logs/log-query-overview). For more information, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial).
 
 * To list the 10 most common errors over the last three days.
 
@@ -449,20 +369,7 @@ Here are some queries that you can enter in the **Log search** bar to help you m
 
     ```
 
-<!-- ### Azure Table Storage service-specific analytics. Optional section.
-Add short information or links to specific articles that outline how to analyze data for your service. -->
-
-<!-- ANALYSIS SECTION END ------------------------------------->
-
-<!-- ALERTS SECTION START -------------------------------------->
-
-<!-- ## Alerts. Required section. -->
 [!INCLUDE [horz-monitor-alerts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-alerts.md)]
-
-<!-- ### Azure Table Storage alert rules. Required section.
-**MUST HAVE** service-specific alert rules. Include useful alerts on metrics, logs, log conditions, or activity log.
-Fill in the following table with metric and log alerts that would be valuable for your service. Change the format as necessary for readability. You can instead link to an article that discusses your common alerts in detail.
-Ask your PMs if you don't know. This information is the BIGGEST request we get in Azure Monitor, so don't avoid it long term. People don't know what to monitor for best results. Be prescriptive. -->
 
 ### Azure Table Storage alert rules
 The following table lists common and recommended alert rules for Azure Table Storage and the proper metric to use for the alert:
@@ -473,13 +380,9 @@ The following table lists common and recommended alert rules for Azure Table Sto
 | Metric | Table Storage requests are successful 99% of the time. | Availability<br>Dimension names: Geo type, API name, Authentication |
 | Metric | Table Storage egress has exceeded 500 GiB in one day. | Egress<br>Dimension names: Geo type, API name, Authentication |
 
-<!-- ### Advisor recommendations -->
 [!INCLUDE [horz-monitor-advisor-recommendations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-advisor-recommendations.md)]
 
-<!-- ALERTS SECTION END -------------------------------------->
-
 ## Related content
-<!-- You can change the wording and add more links if useful. -->
 
 Other Table Storage monitoring content:
 - [Azure Table Storage monitoring data reference](monitor-table-storage-reference.md). A reference of the logs and metrics created by Azure Table Storage.

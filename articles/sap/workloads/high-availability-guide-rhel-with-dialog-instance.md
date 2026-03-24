@@ -7,8 +7,10 @@ manager: rdeltcheva
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: tutorial
-ms.date: 01/21/2024
+ms.date: 02/20/2026
 ms.author: depadia
+ms.custom: sfi-image-nochange
+# Customer intent: As a cloud administrator, I want to deploy SAP dialog instances on high-availability VMs running Red Hat Enterprise Linux so that I can optimize resource usage and ensure continuous service availability for my SAP environment.
 ---
 
 # Deploy SAP dialog instances with SAP ASCS/SCS high-availability VMs on RHEL
@@ -44,6 +46,7 @@ This article describes how to install and configure Primary Application Server (
 * Azure-specific RHEL documentation:
   * [Support Policies for RHEL High-Availability Clusters - Microsoft Azure Virtual Machines as Cluster Members](https://access.redhat.com/articles/3131341)
   * [Installing and Configuring a Red Hat Enterprise Linux 7.4 (and later) High-Availability Cluster on Microsoft Azure](https://access.redhat.com/articles/3252491)
+  * [What is the fast_stop option for a Filesystem resource in a Pacemaker cluster?](https://access.redhat.com/solutions/4801371)
 
 ## Overview
 
@@ -111,9 +114,6 @@ This article assumes that you already configured the load balancer for the SAP A
    1. **Enable Floating IP**: Select this option.
 
 The health probe configuration property `numberOfProbes`, otherwise known as **Unhealthy threshold** in the Azure portal, isn't respected. To control the number of successful or failed consecutive probes, set the property `probeThreshold` to `2`. It's currently not possible to set this property by using the Azure portal. Use either the [Azure CLI](/cli/azure/network/lb/probe) or the [PowerShell](/powershell/module/az.network/new-azloadbalancerprobeconfig) command.
-
-> [!IMPORTANT]
-> Floating IP isn't supported on a NIC secondary IP configuration in load-balancing scenarios. For more information, see [Azure Load Balancer limitations](../../load-balancer/load-balancer-multivip-overview.md#limitations). If you need more IP addresses for the VMs, deploy a second NIC.
 
 When VMs without public IP addresses are placed in the back-end pool of an internal (no public IP address) Standard Azure Load Balancer instance, there's no outbound internet connectivity unless more configuration is performed to allow routing to public endpoints. For steps on how to achieve outbound connectivity, see [Public endpoint connectivity for virtual machines using Azure Standard Load Balancer in SAP high-availability scenarios](high-availability-guide-standard-load-balancer-outbound-connections.md).
 
@@ -262,32 +262,31 @@ When steps in this document are marked with the following prefixes, they mean:
 
    ```bash
    sudo pcs node standby sap-cl2
-   sudo pcs resource create vip_NW1_PAS IPaddr2 ip=10.90.90.30 --group g-NW1_PAS
-   sudo pcs resource create nc_NW1_PAS azure-lb port=62002 --group g-NW1_PAS
+   sudo pcs resource create vip_NW1_PAS IPaddr2 ip=10.90.90.30
+   sudo pcs resource create nc_NW1_PAS azure-lb port=62002
    
    # If using NFS on Azure files
    sudo pcs resource create fs_NW1_PAS Filesystem device='sapnfs.file.core.windows.net:/sapnfsafs/sapnw1/usrsapNW1D02' \
      directory='/usr/sap/NW1/D02' fstype='nfs' force_unmount=safe options='noresvport,vers=4,minorversion=1,sec=sys' \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \
-     op monitor interval=200 timeout=40 \
-     --group g-NW1_PAS
+     op monitor interval=200 timeout=40
     
    # If using NFsv3 on Azure NetApp Files
    sudo pcs resource create fs_NW1_PAS Filesystem device='10.90.91.5:/sapnw1/usrsapNW1D02' \
      directory='/usr/sap/NW1/D02' fstype='nfs' force_unmount=safe \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \ 
-     op monitor interval=200 timeout=40 \
-     --group g-NW1_PAS
+     op monitor interval=200 timeout=40
    
    # If using NFSv4.1 on Azure NetApp Files
    sudo pcs resource create fs_NW1_PAS Filesystem device='10.90.91.5:/sapnw1/usrsapNW1D02' \
      directory='/usr/sap/NW1/D02' fstype='nfs' force_unmount=safe options='sec=sys,vers=4.1' \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \
-     op monitor interval=200 timeout=105 \
-     --group g-NW1_PAS
+     op monitor interval=200 timeout=105
+
+   sudo pcs resource group add g-NW1_PAS vip_NW1_PAS nc_NW1_PAS fs_NW1_PAS
    ```
 
    Make sure that the cluster status is okay and that all resources are started. It isn't important on which node the resources are running.
@@ -354,14 +353,14 @@ When steps in this document are marked with the following prefixes, they mean:
    # If using NFS on Azure Files or NFSv3 on Azure NetApp Files
    pcs resource create rsc_sap_NW1_PAS02 SAPInstance InstanceName="NW1_D02_sappas" \
     START_PROFILE=/sapmnt/NW1/profile/NW1_D02_sappas \
-    op monitor interval=20 timeout=60 \
-    --group g-NW1_PAS
+    op monitor interval=20 timeout=60
     
    # If using NFSv4.1 on Azure NetApp Files
    pcs resource create rsc_sap_NW1_PAS02 SAPInstance InstanceName="NW1_D02_sappas" \
     START_PROFILE=/sapmnt/NW1/profile/NW1_D02_sappas \
-    op monitor interval=20 timeout=105 \
-    --group g-NW1_PAS
+    op monitor interval=20 timeout=105
+
+   sudo pcs resource group add g-NW1_PAS rsc_sap_NW1_PAS02
    ```
 
    Check the status of the cluster.
@@ -440,32 +439,31 @@ When steps in this document are marked with the following prefixes, they mean:
    # Execute below command to cleanup resource, if required
    pcs resource cleanup rsc_sap_NW1_ERS01
    
-   sudo pcs resource create vip_NW1_AAS IPaddr2 ip=10.90.90.31 --group g-NW1_AAS
-   sudo pcs resource create nc_NW1_AAS azure-lb port=62003 --group g-NW1_AAS
+   sudo pcs resource create vip_NW1_AAS IPaddr2 ip=10.90.90.31
+   sudo pcs resource create nc_NW1_AAS azure-lb port=62003
    
    # If using NFS on Azure files
    sudo pcs resource create fs_NW1_AAS Filesystem device='sapnfs.file.core.windows.net:/sapnfsafs/sapnw1/usrsapNW1D03' \
      directory='/usr/sap/NW1/D03' fstype='nfs' force_unmount=safe options='noresvport,vers=4,minorversion=1,sec=sys' \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \
-     op monitor interval=200 timeout=40 \
-     --group g-NW1_AAS
+     op monitor interval=200 timeout=40
     
    # If using NFsv3 on Azure NetApp Files
    sudo pcs resource create fs_NW1_AAS Filesystem device='10.90.91.5:/sapnw1/usrsapNW1D03' \
      directory='/usr/sap/NW1/D03' fstype='nfs' force_unmount=safe \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \ 
-     op monitor interval=200 timeout=40 \
-     --group g-NW1_AAS
+     op monitor interval=200 timeout=40
    
    # If using NFSv4.1 on Azure NetApp Files
    sudo pcs resource create fs_NW1_AAS Filesystem device='10.90.91.5:/sapnw1/usrsapNW1D03' \
      directory='/usr/sap/NW1/D03' fstype='nfs' force_unmount=safe options='sec=sys,vers=4.1' \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \
-     op monitor interval=200 timeout=105 \
-     --group g-NW1_AAS
+     op monitor interval=200 timeout=105
+
+   sudo pcs resource group add g-NW1_AAS vip_NW1_AAS nc_NW1_AAS fs_NW1_AAS
    ```
 
    Make sure that the cluster status is okay and that all resources are started. It isn't important on which node the resources are running. Because the g-NW1_PAS resource group is stopped, all the PAS resources are stopped in the (disabled) state.
@@ -537,14 +535,14 @@ When steps in this document are marked with the following prefixes, they mean:
    # If using NFS on Azure Files or NFSv3 on Azure NetApp Files
    pcs resource create rsc_sap_NW1_AAS03 SAPInstance InstanceName="NW1_D03_sapaas" \
     START_PROFILE=/sapmnt/NW1/profile/NW1_D03_sapaas \
-    op monitor interval=120 timeout=60 \
-    --group g-NW1_AAS
+    op monitor interval=120 timeout=60
     
    # If using NFSv4.1 on Azure NetApp Files
    pcs resource create rsc_sap_NW1_AAS03 SAPInstance InstanceName="NW1_D03_sapaas" \
     START_PROFILE=/sapmnt/NW1/profile/NW1_D03_sapaas \
-    op monitor interval=120 timeout=105 \
-    --group g-NW1_AAS
+    op monitor interval=120 timeout=105
+
+   sudo pcs resource group add g-NW1_AAS rsc_sap_NW1_AAS03
    ```
 
    Check the status of the cluster.

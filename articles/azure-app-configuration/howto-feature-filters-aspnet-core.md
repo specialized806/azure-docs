@@ -1,90 +1,104 @@
 ---
-title: Use feature filters to enable conditional feature flags
+title: Enable Conditional Features with a Custom Filter in an ASP.NET Core Application
 titleSuffix: Azure App Configuration
-description: Learn how to use feature filters in Azure App Configuration to enable conditional feature flags for your app.
+description: Find out how to implement a custom feature filter so you can enable conditional feature flags for your ASP.NET Core application.
 ms.service: azure-app-configuration
 ms.devlang: csharp
 ms.custom: devx-track-csharp
-author: zhiyuanliang
+author: zhiyuanliang-ms
 ms.author: zhiyuanliang
 ms.topic: how-to
-ms.date: 02/28/2024
-#Customerintent: As a developer, I want to create a feature filter to activate a feature flag depending on a specific scenario.
+ms.date: 08/08/2025
+# customer intent: As a developer, I want to implement a custom feature filter in my ASP.NET Core application so that I can turn on features conditionally in my app.
 ---
 
-# Use feature filters to enable conditional feature flags
+# Enable conditional features with a custom filter in an ASP.NET Core application
 
-Feature flags allow you to activate or deactivate functionality in your application. A simple feature flag is either on or off. The application always behaves the same way. For example, you could roll out a new feature behind a feature flag. When the feature flag is enabled, all users see the new feature. Disabling the feature flag hides the new feature.
+Feature flags can use feature filters to enable features conditionally. For more information about feature filters, see [Enable conditional features with feature filters](./howto-feature-filters.md).
 
-In contrast, a _conditional feature flag_ allows the feature flag to be enabled or disabled dynamically. The application may behave differently, depending on the feature flag criteria. Suppose you want to show your new feature to a small subset of users at first. A conditional feature flag allows you to enable the feature flag for some users while disabling it for others. _Feature filters_ determine the state of the feature flag each time it's evaluated.
-
-The `Microsoft.FeatureManagement` library includes the following built-in feature filters accessible from the Azure App Configuration portal.
-
-- **Time window filter** enables the feature flag during a specified window of time.
-- **Targeting filter** enables the feature flag for specified users and groups.
-
-You can also create your own feature filter that implements the `Microsoft.FeatureManagement.IFeatureFilter` interface. For more information, see [Implementing a Feature Filter](https://github.com/microsoft/FeatureManagement-Dotnet#implementing-a-feature-filter).
+This guide shows you how to implement a custom feature filter in an ASP.NET Core application and use the feature filter to enable features conditionally.
 
 ## Prerequisites
 
-- Follow the instructions in [Quickstart: Add feature flags to an ASP.NET Core app](./quickstart-feature-flag-aspnet-core.md) to create a web app with a feature flag.
-- Install the [`Microsoft.FeatureManagement.AspNetCore`](https://www.nuget.org/packages/Microsoft.FeatureManagement.AspNetCore/) package of version **3.0.0** or later.
+- The ASP.NET Core application with a *Beta* feature flag that you create when you complete the steps in [Quickstart: Add feature flags to an ASP.NET Core app](./quickstart-feature-flag-aspnet-core.md). This guide builds on that feature management quickstart.
+- A custom feature filter called `Random`, added to the *Beta* feature flag in your Azure App Configuration store. For instructions, see [Add a custom feature filter](./howto-feature-filters.md#add-a-custom-feature-filter).
 
-## Register a feature filter
+## Implement a custom feature filter
 
-If you have a [custom feature filter](https://github.com/microsoft/FeatureManagement-Dotnet#implementing-a-feature-filter), you can register it by calling the `AddFeatureFilter` method.
+In your App Configuration store, the *Beta* feature flag has a custom feature filter named `Random`. That filter has a `Percentage` parameter. To implement the feature filter, you enable the *Beta* feature flag based on the chance defined by the `Percentage` parameter.
 
-```csharp
-services.AddFeatureManagement()
-        .AddFeatureFilter<MyCriteriaFilter>();
-```
+1. Go to the folder that contains the ASP.NET Core application project from the feature management quickstart listed in [Prerequisites](#prerequisites).
 
-Starting with version *3.0.0* of `Microsoft.FeatureManagement`, the following [built-in filters](https://github.com/microsoft/FeatureManagement-Dotnet#built-in-feature-filters) are registered automatically as part of the `AddFeatureManagement` call, so you don't need to register them.
+1. Add a *RandomFilter.cs* file that contains the following code:
 
-- `TimeWindowFilter`
-- `ContextualTargetingFilter`
-- `PercentageFilter`
+    ```csharp
+    using Microsoft.FeatureManagement;
 
-> [!TIP]
-> For more information on using `TargetingFilter`, see [Enable staged rollout of features for targeted audiences](./howto-targetingfilter-aspnet-core.md).
+    namespace TestAppConfig
+    {
+        [FilterAlias("Random")]
+        public class RandomFilter : IFeatureFilter
+        {
+            private readonly Random _random;
 
-## Add a feature filter to a feature flag
+            public RandomFilter()
+            {
+                _random = new Random();
+            }
 
-In this section, you will learn how to add a feature filter to the **Beta** feature flag you created in the [Quickstart](./quickstart-feature-flag-aspnet-core.md). The following steps use the built-in `TimeWindowFilter` as an example.
+            public Task<bool> EvaluateAsync(FeatureFilterEvaluationContext context)
+            {
+                int percentage = context.Parameters.GetSection("Percentage").Get<int>();
 
-1. In the Azure portal, go to your configuration store and select **Feature manager**.
+                int randomNumber = _random.Next(100);
 
-    :::image type="content" source="./media/feature-filters/edit-beta-feature-flag.png" alt-text="Screenshot of the Azure portal, selecting the Edit option for the **Beta** feature flag, under Feature manager.":::
+                return Task.FromResult(randomNumber <= percentage);
+            }
+        }
+    }
+    ```
 
-1. On the line with the **Beta** feature flag you created in the quickstart, select the context menu and then **Edit**.
+    The `RandomFilter` class in the preceding code implements the `IFeatureFilter` interface from the `Microsoft.FeatureManagement` library. The `IFeatureFilter` interface has a single method named `EvaluateAsync`, which is called whenever a feature flag is evaluated. In `EvaluateAsync`, a feature filter enables a feature flag by returning `true`.
 
-1. In the **Edit feature flag** pane that opens, check the **Enable feature flag** checkbox if it isn't already enabled. Then check the **Use feature filter** checkbox and select **Create**.
+    In this code, the `RandomFilter` class is decorated with `FilterAliasAttribute`, which gives your filter the alias `Random`. That alias matches the filter name in the *Beta* feature flag in App Configuration.
 
-    :::image type="content" source="./media/feature-filters/edit-a-feature-flag.png" alt-text="Screenshot of the Azure portal, filling out the form 'Edit feature flag'.":::
+1. Open the *Program.cs* file. Register `RandomFilter` by adding a call to the `AddFeatureFilter` method, as shown in the following code: 
 
-1. The pane **Create a new filter** opens. Under **Filter type**, select **Time window filter**.
+    ```csharp
+    // Existing code in Program.cs
+    // ... ...
 
-    :::image type="content" source="./media/feature-filters/add-time-window-filter.png" alt-text="Screenshot of the Azure portal, creating a new time window filter.":::
+    // Add feature management to the container of services.
+    builder.Services.AddFeatureManagement()
+                    .AddFeatureFilter<RandomFilter>();
 
-1. Set the **Start date** to **Custom** and select a time a few minutes ahead of your current time. Set the **Expiry date** to **Never**
+    // The rest of the existing code in Program.cs
+    // ... ...
+    ```
 
-1. Select **Add** to save the new feature filter and return to the **Edit feature flag** screen.
+## Apply the feature filter
 
-1. The feature filter you created is now listed in the feature flag details. Select **Apply** to save the new feature flag settings.
+1. Build your app by using the `dotnet build` command. Then run it by using `dotnet run`.
 
-    :::image type="content" source="./media/feature-filters/feature-flag-edit-apply-filter.png" alt-text="Screenshot of the Azure portal, applying new time window filter.":::
+1. In the output of the `dotnet run` command, find a URL that the web app is listening on. Open a browser and go to that URL.
 
-1. On the **Feature manager** page, the feature flag now has a **Feature filter(s)** value of **1**.
+1. Refresh the browser a few times. The **Beta** menu sometimes appears on the webpage, and sometimes it doesn't. The *Beta* feature flag isn't being manually turned on and off. The variation is caused by the random number that the `RandomFilter` implementation of `EvaluateAsync` generates when the feature flag is evaluated.
 
-    :::image type="content" source="./media/feature-filters/updated-feature-flag.png" alt-text="Screenshot of the Azure portal, displaying updated feature flag.":::
+   :::image type="content" source="./media/quickstarts/aspnet-core-feature-flag-local-before.png" alt-text="Screenshot of a browser open to localhost:7207. Text on the page states Data from Azure App Configuration. No Beta menu is visible.":::
 
-## Feature filters in action
-
-Relaunch the application you created in the [Quickstart](./quickstart-feature-flag-aspnet-core.md). If your current time is earlier than the start time set for the time window filter, the **Beta** menu item will not appear on the toolbar. This is because the **Beta** feature flag is disabled by the time window filter.
-
-Once the start time has passed, refresh your browser a few times. You will notice that the **Beta** menu item will now appear. This is because the **Beta** feature flag is now enabled by the time window filter.
+   :::image type="content" source="./media/quickstarts/aspnet-core-feature-flag-local-after.png" alt-text="Screenshot of a browser open to localhost:7207. Text on the page states Data from Azure App Configuration. A Beta menu is highlighted.":::
 
 ## Next steps
 
+To find out more about built-in feature filters, continue to the following documents:
+
 > [!div class="nextstepaction"]
-> [Enable staged rollout of features for targeted audiences](./howto-targetingfilter-aspnet-core.md)
+> [Enable features on a schedule](./howto-timewindow-filter.md)
+
+> [!div class="nextstepaction"]
+> [Roll out features to targeted audiences](./howto-targetingfilter.md)
+
+For the full feature rundown of the .NET feature management library, continue to the following document:
+
+> [!div class="nextstepaction"]
+> [.NET feature management](./feature-management-dotnet-reference.md)

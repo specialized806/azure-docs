@@ -1,11 +1,12 @@
 ---
-title: IoT Plug and Play conventions | Microsoft Docs
+title: IoT Plug and Play conventions
 description: Description of the conventions IoT Plug and Play expects devices to use when they send telemetry and properties, and handle commands and property updates.
-author: timlt
-ms.author: timlt
-ms.date: 1/23/2024
+author: dominicbetts
+ms.author: dobett
+ms.date: 1/10/2025
+ms.update-cycle: 1095-days
 ms.topic: conceptual
-ms.service: iot
+ms.service: azure-iot
 ---
 
 # IoT Plug and Play conventions
@@ -464,5 +465,5 @@ Now that you've learned about IoT Plug and Play conventions, here are some other
 
 - [Digital Twins Definition Language (DTDL)](https://github.com/Azure/opendigitaltwins-dtdl/blob/master/README.md)
 - [C device SDK](https://github.com/Azure/azure-iot-sdk-c/)
-- [IoT REST API](/rest/api/iothub/device)
+- [IoT REST API](/rest/api/iothub/service/devices/get-devices)
 - [IoT Plug and Play modeling guide](concepts-modeling-guide.md)

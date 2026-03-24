@@ -2,12 +2,13 @@
 title: Set up local development for Azure Static Web Apps
 description: Learn to set you your local development environment for Azure Static Web Apps
 services: static-web-apps
-author: craigshoemaker
-ms.service: static-web-apps
+author: cjk7989
+ms.service: azure-static-web-apps
 ms.topic: how-to
 ms.date: 02/05/2024
-ms.author: cshoe
+ms.author: jikunchen
 ms.custom:
+  - sfi-image-nochange
 ---
 
 # Set up local development for Azure Static Web Apps
@@ -88,7 +89,7 @@ Open a terminal to the root folder of your existing Azure Static Web Apps site.
 
 ## Authorization and authentication emulation
 
-The Static Web Apps CLI emulates the [security flow](./authentication-authorization.md) implemented in Azure. When a user logs in, you can define a fake identity profile returned to the app.
+The Static Web Apps CLI emulates the [security flow](./authentication-authorization.yml) implemented in Azure. When a user logs in, you can define a fake identity profile returned to the app.
 
 For instance, when you try to go to `/.auth/login/github`, a page is returned that allows you to define an identity profile.
 

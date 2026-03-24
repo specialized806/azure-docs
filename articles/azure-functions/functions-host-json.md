@@ -1,8 +1,8 @@
 ---
 title: host.json reference for Azure Functions 2.x
-description: Reference documentation for the Azure Functions host.json file with the v2 runtime.
-ms.topic: conceptual
-ms.date: 07/10/2023
+description: Describes the various available settings for the Azure Functions host that can be set in the host.json file for the Functions v4 runtime.
+ms.topic: reference
+ms.date: 05/16/2024
 ---
 
 # host.json reference for Azure Functions 2.x and later 
@@ -130,6 +130,7 @@ The following sample *host.json* file for version 2.x+ has all possible options 
       "lockAcquisitionTimeout": "00:01:00",
       "lockAcquisitionPollingInterval": "00:00:03"
     },
+    "telemetryMode": "OpenTelemetry",
     "watchDirectories": [ "Shared", "Test" ],
     "watchFiles": [ "myFile.txt" ]
 }
@@ -156,7 +157,7 @@ For the complete JSON structure, see the earlier [example host.json file](#sampl
 | --------- | --------- | --------- | 
 | samplingSettings | n/a | See [applicationInsights.samplingSettings](#applicationinsightssamplingsettings). |
 | dependencyTrackingOptions | n/a | See [applicationInsights.dependencyTrackingOptions](#applicationinsightsdependencytrackingoptions). |
-| enableLiveMetrics | true | Enables live metrics collection. |
+| enableLiveMetrics | true | Enables live metrics collection. You can filter live metrics using [applicationInsights.samplingSettings.excludedTypes](#applicationinsightssamplingsettings), For more information, see see [Select and filter your metrics](/azure/azure-monitor/app/live-stream#select-and-filter-your-metrics). |
 | enableDependencyTracking | true | Enables dependency tracking. |
 | enablePerformanceCountersCollection | true | Enables Kudu performance counters collection. |
 | liveMetricsInitializationDelay | 00:00:15 | For internal use only. |
@@ -165,7 +166,7 @@ For the complete JSON structure, see the earlier [example host.json file](#sampl
 
 ### applicationInsights.samplingSettings
 
-For more information about these settings, see [Sampling in Application Insights](../azure-monitor/app/sampling.md). 
+For more information about these settings, see [Sampling in Application Insights](/azure/azure-monitor/app/sampling). 
 
 |Property | Default | Description |
 | --------- | --------- | --------- | 
@@ -193,11 +194,11 @@ For more information about these settings, see [Sampling in Application Insights
 
 |Property | Default | Description |
 | --------- | --------- | --------- | 
-| enableSqlCommandTextInstrumentation | false | Enables collection of the full text of SQL queries, which is disabled by default. For more information on collecting SQL query text, see [Advanced SQL tracking to get full SQL query](../azure-monitor/app/asp-net-dependencies.md#advanced-sql-tracking-to-get-full-sql-query). |
+| enableSqlCommandTextInstrumentation | false | Enables collection of the full text of SQL queries, which is disabled by default. For more information on collecting SQL query text, see [Advanced SQL tracking to get full SQL query](/azure/azure-monitor/app/asp-net-dependencies#advanced-sql-tracking-to-get-full-sql-query). |
 
 ### applicationInsights.snapshotConfiguration
 
-For more information on snapshots, see [Debug snapshots on exceptions in .NET apps](../azure-monitor/app/snapshot-debugger.md) and [Troubleshoot problems enabling Application Insights Snapshot Debugger or viewing snapshots](/troubleshoot/azure/azure-monitor/app-insights/snapshot-debugger-troubleshoot).
+For more information on snapshots, see [Debug snapshots on exceptions in .NET apps](/azure/azure-monitor/app/snapshot-debugger) and [Troubleshoot problems enabling Application Insights Snapshot Debugger or viewing snapshots](/troubleshoot/azure/azure-monitor/app-insights/snapshot-debugger-troubleshoot).
 
 |Property | Default | Description |
 | --------- | --------- | --------- | 
@@ -308,7 +309,7 @@ Property that returns an object that contains all of the binding-specific settin
 
 ## extensionBundle 
 
-Extension bundles let you add a compatible set of Functions binding extensions to your function app. To learn more, see [Extension bundles for local development](functions-bindings-register.md#extension-bundles).
+Extension bundles let you add a compatible set of Functions binding extensions to your function app. To learn more, see [Extension bundles for local development](extension-bundles.md).
 
 [!INCLUDE [functions-extension-bundles-json](../../includes/functions-extension-bundles-json.md)]
 
@@ -324,28 +325,29 @@ A list of functions that the job host runs. An empty array means run all functio
 
 ## functionTimeout
 
-Indicates the timeout duration for all function executions. It follows the timespan string format. 
-
-| Plan type | Default (min) | Maximum (min) |
-| -- | -- | -- |
-| Consumption | 5 | 10 |
-| Premium<sup>1</sup> | 30 | -1 (unbounded)<sup>2</sup> |
-| Dedicated (App Service) | 30 | -1 (unbounded)<sup>2</sup> |
-
-<sup>1</sup> Premium plan execution is only guaranteed for 60 minutes, but technically unbounded.   
-<sup>2</sup> A value of `-1` indicates unbounded execution, but keeping a fixed upper bound is recommended.
+Indicates the timeout duration for all function executions. It follows the [timespan string format](/dotnet/fundamentals/runtime-libraries/system-timespan-parse). A value of `-1` indicates unbounded execution, but keeping a fixed upper bound is recommended.
 
 ```json
 {
     "functionTimeout": "00:05:00"
 }
 ```
+The format of the timespan string needs to follow the syntax `[d.]hh:mm:ss` and the valid values are:
+- d = days (optional)
+- hh = hours (0–23)
+- mm = minutes (0–59)
+- ss = seconds (0–59)
+
+> [!TIP]
+> When you need to set a 24-hour timeout, you must define it as one day (`"1.00:00:00"`) instead of 24 hours (`"24:00:00"`). You might also use `"23:59:59"`.
+
+For more information on the default and maximum values for specific plans, see [Function app timeout duration](./functions-scale.md#timeout).
 
 ## healthMonitor
 
 Configuration settings for [Host health monitor](https://github.com/Azure/azure-webjobs-sdk-script/wiki/Host-Health-Monitor).
 
-```
+```json
 {
     "healthMonitor": {
         "enabled": true,
@@ -443,6 +445,12 @@ Configuration settings for Singleton lock behavior. For more information, see [G
 |listenerLockRecoveryPollingInterval|00:01:00|The time interval used for listener lock recovery if a listener lock couldn't be acquired on startup.| 
 |lockAcquisitionTimeout|00:01:00|The maximum amount of time the runtime will try to acquire a lock.| 
 |lockAcquisitionPollingInterval|n/a|The interval between lock acquisition attempts.| 
+
+## telemetryMode
+
+ _This feature is currently in preview._
+
+Used to enable output of logs and traces in an OpenTelemetry output format to one or more endpoints that support OpenTelemetry. When this setting is set to `OpenTelemetry`, OpenTelemetry output is used. By default without this setting, all logs, traces, and events are sent to Application Insights using the standard outputs. For more information, see [Use OpenTelemetry with Azure Functions](opentelemetry-howto.md).
 
 ## version
 

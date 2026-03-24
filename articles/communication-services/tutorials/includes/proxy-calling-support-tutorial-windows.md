@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: sloanster
 services: azure-communication-services
-ms.date: 08/14/2023
+ms.date: 06/27/2025
 ms.topic: include
 ms.author: chengyuanlai
 ms.service: azure-communication-services
@@ -11,22 +11,24 @@ ms.subservice: calling
 ms.custom: mode-other
 ---
 
-The proxy feature will *not* be available for Teams identities and Azure Communication Services Teams interoperability actions.
+The proxy feature is *not* available for Teams identities and Azure Communication Services Teams interoperability actions.
 
 ## Proxy calling media traffic
 
 The following sections describe how to proxy call your media traffic.
 
 ### What is a TURN server?
+
 Many times, establishing a network connection between two peers isn't straightforward. A direct connection might not work because of:
 
 - Firewalls with strict rules.
 - Peers sitting behind a private network.
 - Computers running in a network address translation (NAT) environment.
 
-To solve these network connection issues, you can use a server that uses the Traversal Using Relay NAT (TURN) protocol for relaying network traffic. Session Traversal Utilities for NAT (STUN) and TURN servers are the relay servers here. To learn more about how Azure Communication Services mitigates network challenges by using STUN and TURN, see [Network traversal concepts](../../concepts/network-traversal.md).
+To solve these network connection issues, you can use a server that uses the Traversal Using Relay NAT (TURN) protocol for relaying network traffic. Session Traversal Utilities for NAT (STUN) and TURN servers are the relay servers.
 
 ### Provide your TURN server details with the SDK
+
 To provide the details of your TURN servers, you need to pass details of what TURN server to use as part of `CallClientOptions` while initializing `CallClient`. For more information on how to set up a call, see [Azure Communication Services Windows SDK](../../quickstarts/voice-video-calling/get-started-with-video-calling.md?pivots=platform-windows) for the quickstart on how to set up voice and video.
 
 ```csharp
@@ -45,16 +47,20 @@ callNetworkOptions.IceServers = new List<IceServer>() { iceServer }.AsReadOnly()
 // Supply the network options when creating an instance of the CallClient
 callClientOptions.Network = callNetworkOptions;
 CallClient callClient = new CallClient(callClientOptions);
-
-// ...continue normally with your SDK setup and usage.
 ```
 
 > [!IMPORTANT]
-> If you provided your TURN server details while you initialized `CallClient`, all the media traffic <i>exclusively</i> flows through these TURN servers. Any other ICE candidates that are normally generated when you create a call won't be considered while trying to establish connectivity between peers. That means only `relay` candidates are considered. To learn more about different types of Ice candidates, see [RTCIceCandidate: type property](https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/type).
+> If you provided your TURN server details while you initialized `CallClient`, all the media traffic <i>exclusively</i> flows through these TURN servers. Any other ICE candidates that are normally generated when you create a call aren't considered while trying to establish connectivity between peers. That means only `relay` candidates are considered. To learn more about different types of Ice candidates, see [RTCIceCandidate: type property](https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/type).
 
-Currently, Windows SDK supports only <b>one IPv4 address</b> and <b>UDP</b> protocol for media proxy. Any URLs in non-ipv4 format are ignored. When multiple URLs are provided, only the last one is used by the SDK. If a UDP port isn't provided, a default UDP port 3478 is used.
+Currently, the Android SDK supports only <b>one single IPv4 address</b> and <b>UDP</b> protocol for media proxy. If a UDP port isn't provided, a default UDP port 3478 is used. The SDK throws an `Failed to set media proxy` error when calling `setIceServer` with unsupported input as follows:
 
-If any of the URLs provided are invalid, the `CallClient` initialization fails and throws errors accordingly.
+- More than one ICE server is provided in the IceServers list.
+- More than one url is provided in the IceServer's url list.
+- IPv6 url is provided in the url list.
+- Only TCP port is provided.
+- Realm information isn't provided.
+
+If the ICE server information provided is invalid, the `CallClient` initialization fails and throws errors accordingly.
 
 ### Set up a TURN server in Azure
 You can create a Linux virtual machine in the Azure portal. For more information, see [Quickstart: Create a Linux virtual machine in the Azure portal](/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu). To deploy a TURN server, use [coturn](https://github.com/coturn/coturn). Coturn is a free and open-source implementation of a TURN and STUN server for VoIP and WebRTC.
@@ -76,6 +82,7 @@ CallClient callClient = new CallClient(callClientOptions);
 ```
 
 ### Set up a signaling proxy server on Azure
+
 You can create a Linux virtual machine in the Azure portal and deploy an NGINX server on it. For more information, see [Quickstart: Create a Linux virtual machine in the Azure portal](/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
 
 Here's an NGINX configuration that you can use as a sample:

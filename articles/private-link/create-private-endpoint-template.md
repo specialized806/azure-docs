@@ -3,19 +3,20 @@ title: 'Quickstart: Create a private endpoint - ARM template'
 description: In this quickstart, you'll learn how to create a private endpoint using an Azure Resource Manager template (ARM template).
 services: private-link
 author: abell
-ms.service: private-link
+ms.service: azure-private-link
 ms.topic: quickstart
-ms.date: 07/18/2022
+ms.date: 03/25/2025
 ms.author: abell
 ms.custom: subject-armqs, mode-arm, template-quickstart, devx-track-arm-template
 #Customer intent: As someone who has a basic network background but is new to Azure, I want to create a private endpoint by using an ARM template.
+# Customer intent: As a network administrator new to Azure, I want to create a private endpoint using an ARM template, so that I can securely connect to my Azure SQL Database while learning to manage resources in the cloud.
 ---
 
 # Quickstart: Create a private endpoint by using an ARM template
 
 In this quickstart, you'll use an Azure Resource Manager template (ARM template) to create a private endpoint.
 
-[!INCLUDE [About Azure Resource Manager](../../includes/resource-manager-quickstart-introduction.md)]
+[!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
 You can also create a private endpoint by using the [Azure portal](create-private-endpoint-portal.md), [Azure PowerShell](create-private-endpoint-powershell.md), or the [Azure CLI](create-private-endpoint-cli.md).
 
@@ -23,11 +24,12 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/template-deployments/deploy-to-azure-button.svg" alt-text="Button to deploy the Resource Manager template to Azure." border="false" link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.sql%2Fprivate-endpoint-sql%2Fazuredeploy.json":::
 
-:::image type="content" source="./media/create-private-endpoint-portal/private-endpoint-qs-resources-sql.png" alt-text="Diagram of resources created in private endpoint quickstart.":::
+:::image type="content" source="./media/create-private-endpoint-portal/private-endpoint-qs-resources-sql.png" alt-text="Diagram of resources created in private endpoint quickstart." lightbox="./media/create-private-endpoint-portal/private-endpoint-qs-resources-sql.png":::
+
 
 ## Prerequisites
 
-You need an Azure account with an active subscription. If you don't already have an Azure account, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+You need an Azure account with an active subscription. If you don't already have an Azure account, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Review the template
 

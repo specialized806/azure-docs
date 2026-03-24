@@ -8,9 +8,9 @@ ms.date: 11/02/2023
 ms.author: glenga
 ---
 
-These steps assume a local C# project, and if your app is instead using C# script (`.csx` files), you should [convert to the project model](../articles/azure-functions/functions-reference-csharp.md#convert-a-c-script-app-to-a-c-project) before continuing.
+These steps assume a local C# project; if your app instead uses C# script (*.csx* files), you should [convert to the project model](../articles/azure-functions/functions-reference-csharp.md#convert-a-c-script-app-to-a-c-project) before continuing.
 
-The following changes are required in the `.csproj` XML project file: 
+The following changes are required in the *.csproj* XML project file:
 
 1. Set the value of `PropertyGroup`.`TargetFramework` to `net8.0`.
 
@@ -27,7 +27,7 @@ The following changes are required in the `.csproj` XML project file:
     ```xml
       <FrameworkReference Include="Microsoft.AspNetCore.App" />
       <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.21.0" />
-      <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.16.4" />
+      <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.17.2" />
       <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore" Version="1.2.1" />
       <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.22.0" />
       <PackageReference Include="Microsoft.Azure.Functions.Worker.ApplicationInsights" Version="1.2.0" />
@@ -58,7 +58,7 @@ After you make these changes, your updated project should look like the followin
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.21.0" />
-    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.16.4" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.17.2" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore" Version="1.2.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.22.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.ApplicationInsights" Version="1.2.0" />

@@ -1,10 +1,10 @@
 ---
 title: Output error policies in Azure Stream Analytics
 description: Learn about the output error handling policies available in Azure Stream Analytics.
-author: enkrumah
-ms.author: ebnkruma
-ms.service: stream-analytics
-ms.topic: conceptual
+author: AliciaLiMicrosoft 
+ms.author: ali 
+ms.service: azure-stream-analytics
+ms.topic: concept-article
 ms.date: 05/30/2021
 ---
 # Azure Stream Analytics output error policy

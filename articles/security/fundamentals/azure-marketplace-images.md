@@ -2,15 +2,14 @@
 title: Security Recommendations for Azure Marketplace Images | Microsoft Docs
 description: This article provides recommendations for images included in the market place
 services: security
-author: terrylanfear
-manager: rkarlin
+author: msmbaldwin
 ms.service: security
 ms.subservice: security-fundamentals
+ms.custom: linux-related-content
 ms.topic: article
-ms.date: 02/06/2024
-ms.author: terrylan
+ms.date: 12/03/2025
+ms.author: mbaldwin
 ms.reviewer: mattmcinnes
-
 ---
 # Security Recommendations for Azure Marketplace Images
 
@@ -57,4 +56,3 @@ Make sure to run a security vulnerability detection on your image Prior to submi
 | Deployment                                                       | 64-bit operating system only.                            |
 
 Even if your organization does not have images in the Azure marketplace, consider checking your Windows and Linux image configurations against these recommendations.
-

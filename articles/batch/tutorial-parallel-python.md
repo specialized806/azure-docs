@@ -5,6 +5,7 @@ ms.devlang: python
 ms.topic: tutorial
 ms.date: 03/01/2024
 ms.custom: mvc, devx-track-python
+# Customer intent: "As a developer, I want to run a parallel workload using the Python API with Azure Batch, so that I can efficiently process multiple media files in high-performance computing tasks."
 ---
 
 # Tutorial: Run a parallel workload with Azure Batch using the Python API
@@ -21,7 +22,7 @@ Use Azure Batch to run large-scale parallel and high-performance computing (HPC)
 
 In this tutorial, you convert MP4 media files to MP3 format, in parallel, by using the [ffmpeg](https://ffmpeg.org/) open-source tool.
 
-[!INCLUDE [quickstarts-free-trial-note.md](../../includes/quickstarts-free-trial-note.md)]
+[!INCLUDE [quickstarts-free-trial-note.md](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
 
 ## Prerequisites
 

@@ -5,7 +5,7 @@ ms.service: azure-app-configuration
 author: maud-lv
 ms.author: malev
 ms.topic: how-to
-ms.date: 03/27/2023
+ms.date: 04/12/2024
 
 #Customer intent: I want to move my App Configuration resource from one Azure region to another. 
 
@@ -103,10 +103,4 @@ Follow these steps to delete your source configuration store in the Azure CLI:
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Automatically back up key-values from Azure App Configuration stores](./howto-move-resource-between-regions.md)
-
-> [!div class="nextstepaction"]
-> [Azure App Configuration resiliency and disaster recovery](./concept-disaster-recovery.md)
-
-> [!div class="nextstepaction"]
-> [How to enable geo-replication](./howto-geo-replication.md)  
+> [Enable geo-replication](./howto-geo-replication.md)  

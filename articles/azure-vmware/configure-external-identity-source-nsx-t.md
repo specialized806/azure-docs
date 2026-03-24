@@ -3,8 +3,11 @@ title: Set an external identity source for VMware NSX
 description: Learn how to use Azure VMware Solution to set an external identity source for VMware NSX.
 ms.topic: how-to
 ms.service: azure-vmware
-ms.date: 3/22/2024
-ms.custom: engagement-fy23
+ms.date: 3/29/2024
+ms.custom:
+  - engagement-fy23
+  - sfi-image-nochange
+# Customer intent: As a network administrator, I want to configure an external LDAP identity source for VMware NSX in Azure VMware Solution, so that I can manage user authentication and access control using existing Active Directory accounts.
 ---
 
 # Set an external identity source for VMware NSX
@@ -13,7 +16,7 @@ In this article, learn how to set up an external identity source for VMware NSX 
 
 You can set up NSX to use an external Lightweight Directory Access Protocol (LDAP) directory service to authenticate users. A user can sign in by using their Windows Server Active Directory account credentials or credentials from a third-party LDAP server. Then, the account can be assigned an NSX role, like in an on-premises environment, to provide role-based access for NSX users.
 
-:::image type="content" source="media/nsxt/azure-vmware-solution-to-ldap-server.png" alt-text="Screenshot that shows NSX connectivity to the LDAP Windows Server Active Directory server.":::
+:::image type="content" source="media/nsxt/azure-vmware-solution-to-ldap-server.png" alt-text="Screenshot that shows NSX connectivity to the LDAP Windows Server Active Directory server." lightbox="media/nsxt/azure-vmware-solution-to-ldap-server.png":::
 
 ## Prerequisites
 
@@ -58,7 +61,7 @@ You can set up NSX to use an external Lightweight Directory Access Protocol (LDA
     | **Port**     | Leave the default secure LDAP port. |
     | **Enabled**              | Leave as **Yes**. |
     | **Use Start TLS**        | Required only if you use standard (unsecured) LDAP. |
-    | **Bind Identity**        | Use your account that has domain Administrator permissions. For example, `<admin@contoso.com>`. |
+    | **Bind Identity**        | Use your account that has read permissions to directory. For example, `<admin@contoso.com>`. |
     | **Password**            | Enter the password for the LDAP server. This password is the one that you use with the example `<admin@contoso.com>` account. |
     | **Certificate**          | Leave empty (see step 6). |
 
@@ -105,4 +108,4 @@ Your users should now be able to sign in to NSX Manager by using their Windows S
 
 - [Azure VMware Solution identity architecture](architecture-identity.md)
 - [Set an external identity source for vCenter Server](configure-identity-source-vcenter.md)
-- [VMware product documentation](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/administration/GUID-DB5A44F1-6E1D-4E5C-8B50-D6161FFA5BD2.html)
+- [VMware product documentation](https://techdocs.broadcom.com/us/en/vmware-cis/nsx/vmware-nsx/4-1/administration-guide/authentication-and-authorization/integration-with-ldap.html)
