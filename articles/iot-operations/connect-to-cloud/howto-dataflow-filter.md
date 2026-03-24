@@ -47,7 +47,7 @@ Drop messages where temperature is 20 or below:
 
 1. Under **Transform (optional)**, select **Filter** > **Add**.
 
-    :::image type="content" source="media/howto-create-dataflow/dataflow-filter.png" alt-text="Screenshot using operations experience to add a filter transform.":::
+    :::image type="content" source="media/howto-create-dataflow/dataflow-filter.png" alt-text="Screenshot using operations experience to add a filter transform." lightbox="media/howto-create-dataflow/dataflow-filter.png":::
 
 1. Enter the following settings:
 

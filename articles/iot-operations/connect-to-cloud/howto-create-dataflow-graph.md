@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As an operator, I want to create a data flow graph to process data with transforms like map, filter, and window.
 ---
 
-# Create a data flow graph
+# Process data with data flow graphs
 
 [!INCLUDE [kubernetes-management-preview-note](../includes/kubernetes-management-preview-note.md)]
 
@@ -39,31 +39,31 @@ A data flow graph contains three types of elements: **sources** that bring data 
 
 1. Select **Data flow graph** > **Create data flow graph**.
 
-    ![Screenshot of the operations experience data flow graph list page with the Create data flow graph button highlighted.](media/howto-create-dataflow-graph/dataflow-graph-list.png)
+    :::image type="content" source="media/howto-create-dataflow-graph/dataflow-graph-list.png" alt-text="Screenshot of operations experience showing data flow graph." lightbox="media/howto-create-dataflow-graph/dataflow-graph-list.png":::
 
 1. Enter a name for the data flow graph and select a data flow profile. The default profile is selected by default.
 
-    ![Screenshot of the operations experience create dialog showing the name field and profile dropdown.](media/howto-create-dataflow-graph/create-graph-dialog.png)
+    :::image type="content" source="media/howto-create-dataflow-graph/create-graph-dialog.png" alt-text="Screenshot of the operations experience create dialog showing the name field and profile dropdown." lightbox="media/howto-create-dataflow-graph/create-graph-dialog.png":::
 
 1. Build your pipeline by adding elements to the canvas:
 
     1. **Add a source**: Select the source endpoint and configure the topics to subscribe to for incoming messages.
 
-       ![Screenshot of the operations experience source configuration panel showing endpoint dropdown and topic input.](media/howto-create-dataflow-graph/source-configuration.png)
+       :::image type="content" source="media/howto-create-dataflow-graph/source-configuration.png" alt-text="Screenshot of the operations experience source configuration panel showing endpoint dropdown and topic input." lightbox="media/howto-create-dataflow-graph/source-configuration.png":::
 
        <!-- 1. **Add transforms**: Select one or more transforms to process the data. Available transforms include map, filter, branch, concat, and window. For details on each transform type, see [Data flow graphs overview](concept-dataflow-graphs.md#available-transforms). -->
 
-       ![Screenshot of the operations experience transform selection menu showing available transform types.](media/howto-create-dataflow-graph/transform-selection.png)
+       :::image type="content" source="media/howto-create-dataflow-graph/transform-selection.png" alt-text="Screenshot of the operations experience transform selection menu showing available transform types." lightbox="media/howto-create-dataflow-graph/transform-selection.png":::
 
-       ![Screenshot of the operations experience showing a branch transform configuration example.](media/howto-create-dataflow-graph/branch-transform-example.png)
+       :::image type="content" source="media/howto-create-dataflow-graph/branch-transform-example.png" alt-text="Screenshot of the operations experience showing a branch transform configuration example.Screenshot of the operations experience showing a branch transform configuration example." lightbox="media/howto-create-dataflow-graph/branch-transform-example.png":::
 
     1. **Add a destination**: Select the destination endpoint and configure the topic or path to send processed data to.
 
-        ![Screenshot of the operations experience destination configuration panel showing endpoint and topic settings.](media/howto-create-dataflow-graph/destination-configuration.png)
+        :::image type="content" source="media/howto-create-dataflow-graph/destination-configuration.png" alt-text="Screenshot of the operations experience showing a destination example." lightbox="media/howto-create-dataflow-graph/destination-configuration.png":::
 
 1. Connect the elements in the order you want data to flow.
 
-    ![Screenshot of the operations experience canvas showing a connected source, transform, and destination pipeline.](media/howto-create-dataflow-graph/connected-pipeline.png)
+    :::image type="content" source="media/howto-create-dataflow-graph/connected-pipeline.png" alt-text="Screenshot of the operations experience canvas showing a connected source, transform, and destination pipeline." lightbox="media/howto-create-dataflow-graph/connected-pipeline.png":::
 
 1. Select **Save** to deploy the data flow graph.
 
