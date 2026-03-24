@@ -295,7 +295,7 @@ For a system assigned managed identity, run the following command to get an OAut
 AzFilesSmbMIClient.exe refresh --uri https://<storage-account-name>.file.core.windows.net/
 ```
 
-For a user assigned managed identity, you need to specify the Client ID. Replace `<client-id>` with the Client ID of the managed identity.
+For a user assigned managed identity, you need to specify the client ID. Replace `<client-id>` with the client ID of the managed identity.
 
 ```powershell
 AzFilesSmbMIClient.exe refresh --uri https://<storage-account-name>.file.core.windows.net/ --clientId <client-id> 
