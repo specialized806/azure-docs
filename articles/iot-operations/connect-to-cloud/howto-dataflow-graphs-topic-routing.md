@@ -30,7 +30,7 @@ Two pieces work together:
 1. **Inside the transform**: A map rule writes a string value to `$metadata.topic`.
 2. **In the destination**: The `dataDestination` field references `${outputTopic}`, which resolves to the value the transform wrote.
 
-For more on metadata fields, see [Metadata fields](concept-dataflow-graphs-expressions.md#metadata-fields).
+<!-- For more on metadata fields, see [Metadata fields](concept-dataflow-graphs-expressions.md#metadata-fields). -->
 
 ## Option 1: Single map transform with a conditional expression
 
@@ -381,7 +381,7 @@ If the topic variable can't be resolved (for example, `$metadata.topic` was neve
 
 ## Next steps
 
-- [Transform data with map](howto-dataflow-graphs-map.md)
+<!-- - [Transform data with map](howto-dataflow-graphs-map.md)
 - [Filter and route data](howto-dataflow-graphs-filter-route.md)
 - [Expressions reference](concept-dataflow-graphs-expressions.md)
-- [Data flow graphs overview](concept-dataflow-graphs.md)
+- [Data flow graphs overview](concept-dataflow-graphs.md) -->

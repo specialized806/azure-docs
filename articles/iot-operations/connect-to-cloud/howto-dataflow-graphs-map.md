@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 A map transform takes each incoming message and produces an output message based on your rules. You can rename fields, reorganize them into new structures, compute derived values, or remove unwanted fields. Wildcard rules let you copy all fields at once.
 
-For an overview of data flow graphs and how transforms compose in a pipeline, see [Data flow graphs overview](concept-dataflow-graphs.md).
+<!-- For an overview of data flow graphs and how transforms compose in a pipeline, see [Data flow graphs overview](concept-dataflow-graphs.md). -->
 
 ## Prerequisites
 
@@ -228,7 +228,7 @@ To scale a sensor reading:
 
 ---
 
-For the complete list of operators, functions, and advanced features, see [Expressions reference](concept-dataflow-graphs-expressions.md).
+<!-- For the complete list of operators, functions, and advanced features, see [Expressions reference](concept-dataflow-graphs-expressions.md). -->
 
 ## Copy all fields with wildcards
 
@@ -393,7 +393,7 @@ The map transform applies the specific rule to `temperature` and copies all othe
 
 ## Use metadata fields
 
-You can read from and write to message metadata like MQTT topics and user properties. See [Metadata fields](concept-dataflow-graphs-expressions.md#metadata-fields) in the expressions reference.
+<!-- You can read from and write to message metadata like MQTT topics and user properties. See [Metadata fields](concept-dataflow-graphs-expressions.md#metadata-fields) in the expressions reference. -->
 
 # [Operations experience](#tab/portal)
 
@@ -430,7 +430,7 @@ For a complete example of dynamic topic routing, see [Route messages to differen
 
 ## Use last known value and defaults
 
-When sensor data arrives intermittently, you can fill in missing fields with the last known value or a static default. See [Last known value](concept-dataflow-graphs-expressions.md#last-known-value) and [Default values](concept-dataflow-graphs-expressions.md#default-values) in the expressions reference.
+<!-- When sensor data arrives intermittently, you can fill in missing fields with the last known value or a static default. See [Last known value](concept-dataflow-graphs-expressions.md#last-known-value) and [Default values](concept-dataflow-graphs-expressions.md#default-values) in the expressions reference. -->
 
 # [Operations experience](#tab/portal)
 
@@ -459,7 +459,7 @@ This rule uses the current value when present, falls back to the last known valu
 
 ## Enrich with external data
 
-You can augment messages with data from an external state store by configuring datasets. For example, look up a device's metadata by its ID and include it in the output. For details, see [Enrich with external data](howto-dataflow-graphs-enrich.md).
+<!-- You can augment messages with data from an external state store by configuring datasets. For example, look up a device's metadata by its ID and include it in the output. For details, see [Enrich with external data](howto-dataflow-graphs-enrich.md). -->
 
 ## Full configuration example
 
@@ -467,7 +467,7 @@ Here's a complete map configuration that copies all fields, removes sensitive da
 
 # [Operations experience](#tab/portal)
 
-![Screenshot of the operations experience map transform configuration panel showing multiple rules for wildcard, remove, restructure, compute, and merge.](media/howto-dataflow-graphs-map/map-transform-configuration.png)
+<!-- ![Screenshot of the operations experience map transform configuration panel showing multiple rules for wildcard, remove, restructure, compute, and merge.](media/howto-dataflow-graphs-map/map-transform-configuration.png) -->
 
 In the Operations experience, create a data flow graph and add a map transform. In the map configuration panel, add rules to:
 
@@ -572,14 +572,14 @@ The rules configuration is a JSON string placed as the `value` for the `rules` k
 }
 ```
 
-For the full `DataflowGraph` resource structure, see [Data flow graphs overview](concept-dataflow-graphs.md#how-configuration-works).
+<!-- For the full `DataflowGraph` resource structure, see [Data flow graphs overview](concept-dataflow-graphs.md#how-configuration-works). -->
 
 ---
 
 ## Next steps
 
-- [Filter and route data](howto-dataflow-graphs-filter-route.md)
+<!-- - [Filter and route data](howto-dataflow-graphs-filter-route.md)
 - [Aggregate data over time](howto-dataflow-graphs-window.md)
 - [Enrich with external data](howto-dataflow-graphs-enrich.md)
 - [Route messages to different topics](howto-dataflow-graphs-topic-routing.md)
-- [Expressions reference](concept-dataflow-graphs-expressions.md)
+- [Expressions reference](concept-dataflow-graphs-expressions.md) -->

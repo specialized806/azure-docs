@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 A window transform collects messages over a fixed time interval and produces a single output message with aggregated values. Instead of forwarding every reading individually, you can compute statistics like averages, minimums, or counts and send one consolidated result downstream.
 
-For an overview of data flow graphs and how transforms compose in a pipeline, see [Data flow graphs overview](concept-dataflow-graphs.md).
+<!-- For an overview of data flow graphs and how transforms compose in a pipeline, see [Data flow graphs overview](concept-dataflow-graphs.md). -->
 
 ## Prerequisites
 
@@ -353,8 +353,8 @@ spec:
 ## Next steps
 
 - [Transform data with map](howto-dataflow-graphs-map.md)
-- [Filter and route data](howto-dataflow-graphs-filter-route.md)
+<!-- - [Filter and route data](howto-dataflow-graphs-filter-route.md)
 - [Enrich with external data](howto-dataflow-graphs-enrich.md)
 - [Expressions reference](concept-dataflow-graphs-expressions.md)
 - [Configure a source](howto-configure-dataflow-source.md)
-- [Configure a destination](howto-configure-dataflow-destination.md)
+- [Configure a destination](howto-configure-dataflow-destination.md) -->
