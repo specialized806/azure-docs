@@ -167,7 +167,7 @@ After you connect your data sources, select **Done and go to agent** to open the
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Step 2: Team onboarding](team-onboarding.md)
+> [Step 2: Team onboarding](team-onboard.md)
 
 ## Related content
 

@@ -332,6 +332,6 @@ The following table lists common problems and solutions for agent hooks.
 ## Related content
 
 - [Agent hooks capability overview](agent-hooks.md)
-- [Create and manage hooks (portal)](tutorial-create-manage-hooks-ui.md)
+- [Create and manage hooks (portal)](create-manage-hooks-ui.md)
 - [Run modes](run-modes.md)
 - [Python code execution](python-code-execution.md)
