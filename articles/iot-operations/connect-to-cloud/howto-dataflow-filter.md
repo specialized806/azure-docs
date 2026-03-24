@@ -20,8 +20,8 @@ Use the filter stage in a data flow to drop messages that match a condition. Whe
 
 You can define multiple filter rules. Each rule specifies input fields and a boolean expression. The rules use OR logic: if **any** rule evaluates to true, the message is dropped.
 
-> [!TIP]
-> For richer filtering capabilities, including branch routing, concat merging, and schema validation, see [Filter and route data with data flow graphs](howto-dataflow-graphs-filter-route.md).
+<!-- > [!TIP]
+> For richer filtering capabilities, including branch routing, concat merging, and schema validation, see [Filter and route data with data flow graphs](howto-dataflow-graphs-filter-route.md). -->
 
 ## Configure a filter
 
@@ -368,5 +368,5 @@ builtInTransformationSettings:
 
 - [Map data by using data flows](concept-dataflow-mapping.md)
 - [Enrich data by using data flows](concept-dataflow-enrich.md)
-- [Filter and route data with data flow graphs](howto-dataflow-graphs-filter-route.md)
+<!-- - [Filter and route data with data flow graphs](howto-dataflow-graphs-filter-route.md) -->
 - [Create a data flow](howto-create-dataflow.md)

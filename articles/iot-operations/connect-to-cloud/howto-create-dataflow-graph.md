@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 A data flow graph is a composable processing pipeline that transforms data as it moves between sources and destinations. A standard [data flow](howto-create-dataflow.md) follows a fixed enrich, filter, map sequence. A data flow graph lets you chain transforms in any order, branch into parallel paths, and aggregate data over time windows.
 
-This article walks through creating a data flow graph step by step. For an overview of data flow graphs and the available transforms, see [Data flow graphs overview](concept-dataflow-graphs.md).
+<!-- This article walks through creating a data flow graph step by step. For an overview of data flow graphs and the available transforms, see [Data flow graphs overview](concept-dataflow-graphs.md). -->
 
 > [!IMPORTANT]
 > Data flow graphs currently support only MQTT, Kafka, and OpenTelemetry endpoints. Other endpoint types like Data Lake, Microsoft Fabric OneLake, Azure Data Explorer, and Local Storage aren't supported. For more information, see [Known issues](../troubleshoot/known-issues.md#data-flow-graphs-only-support-specific-endpoint-types).
@@ -51,7 +51,7 @@ A data flow graph contains three types of elements: **sources** that bring data 
 
         ![Screenshot of the operations experience source configuration panel showing endpoint dropdown and topic input.](media/howto-create-dataflow-graph/source-configuration.png)
 
-    1. **Add transforms**: Select one or more transforms to process the data. Available transforms include map, filter, branch, concat, and window. For details on each transform type, see [Data flow graphs overview](concept-dataflow-graphs.md#available-transforms).
+    <!-- 1. **Add transforms**: Select one or more transforms to process the data. Available transforms include map, filter, branch, concat, and window. For details on each transform type, see [Data flow graphs overview](concept-dataflow-graphs.md#available-transforms). -->
 
         ![Screenshot of the operations experience transform selection menu showing available transform types.](media/howto-create-dataflow-graph/transform-selection.png)
 
@@ -278,10 +278,10 @@ The available built-in transforms are:
 
 For detailed configuration of each transform type, see:
 
-- [Transform data with map](howto-dataflow-graphs-map.md)
+<!-- - [Transform data with map](howto-dataflow-graphs-map.md)
 - [Filter and route data](howto-dataflow-graphs-filter-route.md)
 - [Aggregate data over time](howto-dataflow-graphs-window.md)
-- [Enrich with external data](howto-dataflow-graphs-enrich.md)
+- [Enrich with external data](howto-dataflow-graphs-enrich.md) -->
 
 # [Operations experience](#tab/portal)
 
@@ -404,7 +404,7 @@ Select the destination element and configure:
 
 ---
 
-For dynamic topic routing based on message content, see [Route messages to different topics](howto-dataflow-graphs-topic-routing.md).
+<!-- For dynamic topic routing based on message content, see [Route messages to different topics](howto-dataflow-graphs-topic-routing.md). -->
 
 ## Verify the data flow graph is working
 
@@ -438,11 +438,11 @@ kubectl logs -l app=dataflow -n azure-iot-operations --tail=50
 
 ## Next steps
 
-- [Data flow graphs overview](concept-dataflow-graphs.md)
+<!-- - [Data flow graphs overview](concept-dataflow-graphs.md)
 - [Configure a source](howto-configure-dataflow-source.md)
 - [Configure a destination](howto-configure-dataflow-destination.md)
 - [Transform data with map](howto-dataflow-graphs-map.md)
 - [Filter and route data](howto-dataflow-graphs-filter-route.md)
 - [Aggregate data over time](howto-dataflow-graphs-window.md)
 - [Enrich with external data](howto-dataflow-graphs-enrich.md)
-- [Expressions reference](concept-dataflow-graphs-expressions.md)
+- [Expressions reference](concept-dataflow-graphs-expressions.md) -->
