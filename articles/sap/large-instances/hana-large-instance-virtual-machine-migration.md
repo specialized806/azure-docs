@@ -84,7 +84,7 @@ Your current deployment model is designed to satisfy certain service level goals
 In most cases, your SAP application servers are in an availability set. If the current service level is satisfactory, the target VM can reuse the HLI logical hostname. Update the DNS record to point to the VM's IP address, and no SAP profile changes are needed.
 
 - If you're not using PPG, place every application and database servers in the same zone to minimize network latency.
-- If you’re using PPG, refer to a later section of this article, [Availability sets, availability zones, and proximity placement groups](#availability-sets-availability-zones-and-proximity-placement-groups).
+- If you’re using PPG, refer to a later section of this article, [Availability sets, availability zones, and PPGs](#availability-sets-availability-zones-and-ppgs).
 
 ### Storage replication discontinuance process (if used)
 
