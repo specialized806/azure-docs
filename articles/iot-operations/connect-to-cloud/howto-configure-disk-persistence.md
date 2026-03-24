@@ -147,5 +147,5 @@ spec:
 ## Related content
 
 - [Create a data flow](howto-create-dataflow.md)
-<!-- - [Data flow graphs overview](concept-dataflow-graphs.md) -->
+- [Data flow graphs overview](concept-dataflow-graphs.md)
 - [Configure MQTT broker persistence](../manage-mqtt-broker/howto-broker-persistence.md)
