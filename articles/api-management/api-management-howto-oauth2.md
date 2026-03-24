@@ -50,7 +50,7 @@ The following are the high-level configuration steps:
 
 This configuration supports the following OAuth flow:
 
-:::image type="content" source="media/api-management-howto-oauth2/overview-graphic-azure-ad.png" alt-text="Diagram that visually represents the following flow." lightbox="media/api-management-howto-oauth2/overview-graphic-azure-ad.png":::
+:::image type="content" source="media/api-management-howto-oauth2/overview-graphic-oauth.png" alt-text="Diagram that visually represents the following flow." lightbox="media/api-management-howto-oauth2/overview-graphic-oauth.png":::
 
 1. The developer portal requests a token from Microsoft Entra ID using the client-app credentials.
 
