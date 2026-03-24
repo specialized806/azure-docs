@@ -85,7 +85,7 @@ The advantage of writing your prompts in clear sentences, rather than relying on
 
 ## Tip 2: Provide detailed, step-by-step instructions
 
-The second tip for using GitHub Copilot is to provide detailed, step-by-step instructions. Imagine that you are a product manager writing functional specifications for your product. For instance, if you want to geocode the address, '1 Microsoft Way, Redmond, WA' and add a marker on the map, you can write a prompt like the following:
+The second tip for using GitHub Copilot is to provide detailed, step-by-step instructions. Imagine that you're a product manager writing functional specifications for your product. For instance, if you want to geocode the address, '1 Microsoft Way, Redmond, WA' and add a marker on the map, you can write a prompt like the following:
 
 <blockquote>
 Write an HTML program using Azure Maps Web SDK v3 to make a geocode request for the coordinates of '1 Microsoft Way, Redmond, WA' and then place a marker at that location.
