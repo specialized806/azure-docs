@@ -4,7 +4,7 @@ description: Learn how to build a secure-by-default network foundation for regio
 author: mbender-ms
 ms.author: mbender
 ms.reviewer: mbender
-ms.service: azure-networking
+ms.service: azure-virtual-network
 ms.topic: concept-article
 ms.date: 03/24/2026
 
