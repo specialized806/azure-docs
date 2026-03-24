@@ -1,28 +1,65 @@
 ---
 title: Connect Microsoft Foundry Agents to MongoDB Atlas
-description: Learn how to connect Microsoft Foundry Agents to MongoDB Atlas
+description: Learn how to connect Microsoft Foundry Agents to MongoDB Atlas using the MongoDB MCP Server for data retrieval and vector search.
 ms.topic: how-to
-ms.date: 03/20/20256
+ms.date: 03/20/2026
 ---
 
-# Connect Microsoft Foundry Agents to MongoDB Atlas
+# Connect Microsoft Foundry agents to MongoDB Atlas
 
-This article shows how to connect Microsoft Foundry agents that can query and retrieve data from MongoDB Atlas using the MongoDB MCP Server.
+This article shows you how to connect Microsoft Foundry agents that can query and retrieve data from MongoDB Atlas using the MongoDB MCP Server.
 
-## Pre-requistes
+## Architecture overview
+
+At a high level, the integration includes these components:
+
+- **Microsoft Foundry Agent** – Orchestrates reasoning and tool usage.
+- **MongoDB MCP Server** – Exposes MongoDB Atlas operations (vector search, aggregation) as agent tools.
+- **MongoDB Atlas** – Stores operational and vectorized data.
+- **Azure hosting** – Hosts the MCP Server in Azure Container Apps.
+
+The Foundry agent calls the MCP Server over HTTPS at query time, and the MCP Server executes operations against your Atlas cluster. Your data remains in MongoDB Atlas.
+
+## Prerequisites
 
 Before you begin, ensure you have:
 
-- An Azure subscription with access to Microsoft Foundry Project
-- A MongoDB Atlas account with a project and cluster
-- A vector index created in MongoDB Atlas (for RAG scenarios)
-- Permission to deploy services to Azure (for MCP Server hosting)
+- An Azure subscription with access to a Microsoft Foundry project.
+- A MongoDB Atlas account with a project and cluster.
+- A vector search index created in MongoDB Atlas (for RAG scenarios).
+- Permission to deploy services to Azure (for MCP Server hosting).
 
-## Pre-requisites for RAG
+## Prepare MongoDB Atlas
 
-In retrieval-augmented generation (RAG) scenarios, Foundry agents often need to generate embeddings for user queries at runtime before invoking MongoDB Atlas Vector Search. This integration supports that pattern by exposing an embedding generation function as an OpenAPI (Swagger)–based tool that the agent can call during reasoning.
+1. Create or select a MongoDB Atlas cluster.
+1. Load your dataset (for example, sample Airbnb or domain-specific data).
+1. Create a vector search index on the target collection.
 
-- Define the embedding function like below
+## Deploy the MongoDB MCP Server
+
+The [MongoDB MCP Server](https://github.com/mongodb-js/mongodb-mcp-server) acts as a bridge between Foundry agents and MongoDB Atlas.
+
+1. Deploy the MCP Server to Azure Container Apps or another Azure-hosted environment. For details on hosting, see the [MongoDB MCP Server Azure deployment guide](https://github.com/mongodb-js/mongodb-mcp-server/blob/main/deploy/azure/README.md).
+1. Configure the server with:
+   - MongoDB Atlas connection details
+   - Enabled tools (vector search, aggregation)
+1. Expose a remote HTTPS endpoint.
+
+## Create an agent in Microsoft Foundry
+
+1. Open the Microsoft Foundry portal.
+1. Create a new agent, provide system instructions, and choose a deployed Foundry model.
+1. Go to **Tools** > **MongoDB MCP Server** > **Connect**.
+1. Paste the MCP Server remote URL.
+1. Save the agent configuration.
+
+After you add the MCP Server, the agent can invoke MongoDB operations through the MCP tool during reasoning.
+
+## Deploy the embedding endpoint
+
+In retrieval-augmented generation (RAG) scenarios, Foundry agents need to generate embeddings for user queries at runtime before invoking MongoDB Atlas Vector Search. You expose an embedding generation function as an OpenAPI-based tool that the agent calls during reasoning.
+
+Define the embedding function with the following OpenAPI specification:
 
 ```yaml
 openapi: 3.0.1
@@ -57,65 +94,32 @@ paths:
                     items:
                       type: number
 ```
-The implementation behind this API typically calls a Foundry-hosted embedding model (for example, text-embedding-3-large) and returns the vector as JSON.
 
-## Connect Microsoft Foundry agents to MongoDB Atlas
+The implementation behind this API typically calls a Foundry-hosted embedding model (for example, `text-embedding-3-large`) and returns the vector as JSON.
 
-### Step 1: Prepare MongoDB Atlas
+## Configure the agent for vector search
 
-- Create or select a MongoDB Atlas cluster.
-- Load your dataset (for example, sample Airbnb or domain-specific data).
-- Create a vector search index on the target collection.
+By using the previous steps, you can perform database operations but you can't perform vector search because it requires embedding user queries. To configure the agent for vector search:
 
-Microsoft Foundry connects to Atlas data in-place. The data remains in MongoDB Atlas, and Foundry agents retrieve it at query time. 
+1. In the agent tools, add a new OpenAPI tool.
+1. Paste the OpenAPI specification from the [Deploy the embedding endpoint](#deploy-the-embedding-endpoint) step.
+1. In the agent instructions, guide the agent to invoke this function for vector search use cases.
+1. Save the agent.
 
-### Step 2: Deploy the MongoDB MCP Server
+Once registered, the agent can invoke `generateEmbeddings` as part of its reasoning chain.
 
-The [MongoDB MCP Server](https://github.com/mongodb-js/mongodb-mcp-server) acts as a bridge between Foundry agents and MongoDB Atlas.
-
-- Deploy the MCP Server to Azure Container Apps or another Azure-hosted environment. For details on hosting, [visit] (https://github.com/mongodb-js/mongodb-mcp-server/blob/main/deploy/azure/README.md)
-- Configure it with:MongoDB Atlas connection details
-- Enabled tools (vector search, aggregation)
-- Expose a remote HTTPS endpoint
-
-### Step 3: Create an Agent in Microsoft Foundry
-
-- Open the Microsoft Foundry portal
-- Create a new agent and provide system instructions and choose a deployed Foundry model
-- Go to Tools > MongoDB MCP Server > Connect
-- Paste the MCP Server remote URL
-- Save the agent configuration
-
-Once added, the agent can invoke MongoDB operations through the MCP tool during reasoning.
-
-### Step 4: Configure Agent for vector search
-
-With the previous steps, users can perform database operations but cannot perform vector search since it requires embedding the user queries.
-To configure the agent for vector search, follow these steps -
-
-- In the Agent tools, add a new OpenAPI tool
-- Paste the Swagger definition generated in Pre-requistes
-- In the agent instructions, guide the agent to invoke this function in case of a vector search use-case.
-- Save the agent
-
-Once registered, the agent can invoke generateEmbeddings as part of its reasoning chain.
-
-### Step 5: Test retrieval and responses
+## Test retrieval and responses
 
 Run prompts that require:
+
 - Semantic search over MongoDB data
 - Aggregation queries
 - Context-aware responses grounded in Atlas data
 
-Successful responses confirm end-to-end connectivity between Foundry, MCP Server, and MongoDB Atlas.
+Successful responses confirm end-to-end connectivity between Foundry, the MCP Server, and MongoDB Atlas.
 
-## Architecture overview
+## Next steps
 
-At a high level, the integration includes:
-
-- Microsoft Foundry Agent – Orchestrates reasoning and tool usage
-- MongoDB MCP Server – Exposes MongoDB Atlas operations (vector search, aggregation) as an agent tool
-- MongoDB Atlas – Stores operational and vectorized data
-- Azure hosting – Hosts the MCP server in Azure Container App
-
-For broader Foundry concepts, see the official Foundry documentation.
+- [MongoDB MCP Server](https://github.com/mongodb-js/mongodb-mcp-server)
+- [What is MongoDB Atlas?](overview.md)
+- [Manage MongoDB Atlas](manage.md)
