@@ -20,7 +20,7 @@ SAP Landscape Management (LaMa) is a tool for operating and monitoring SAP lands
 
 * Deallocate and start virtual machines (VMs)
 * Copy and relocate managed disks
-* Delete managed disks.
+* Delete managed disks
 
 Use these operations to relocate, copy, clone, and refresh SAP systems.
 
