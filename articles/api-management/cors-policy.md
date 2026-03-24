@@ -80,13 +80,17 @@ The `cors` policy adds cross-origin resource sharing (CORS) support to an operat
 
 |Name|Description|Required|Default|
 |----------|-----------------|--------------|-------------|
-|header|Specifies a header name.|At least one `header` element is required in `allowed-headers` if that section is present.|N/A|The value * indicates all headers.
+|header|Specifies a header name.|At least one `header` element is required in `allowed-headers` if that section is present.|N/A|
+
+The value `*` indicates all headers.
 
 ### expose-headers elements
 
 |Name|Description|Required|Default|
 |----------|-----------------|--------------|-------------|
-|header|Specifies a header name.|At least one `header` element is required in `expose-headers` if that section is present.|N/A|The value * indicates all headers.
+|header|Specifies a header name.|At least one `header` element is required in `expose-headers` if that section is present.|N/A|
+
+The value `*` indicates all headers.
 
 ## Usage
 
