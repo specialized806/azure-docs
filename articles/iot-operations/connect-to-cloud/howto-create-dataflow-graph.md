@@ -49,13 +49,13 @@ A data flow graph contains three types of elements: **sources** that bring data 
 
     1. **Add a source**: Select the source endpoint and configure the topics to subscribe to for incoming messages.
 
-        ![Screenshot of the operations experience source configuration panel showing endpoint dropdown and topic input.](media/howto-create-dataflow-graph/source-configuration.png)
+       ![Screenshot of the operations experience source configuration panel showing endpoint dropdown and topic input.](media/howto-create-dataflow-graph/source-configuration.png)
 
-    <!-- 1. **Add transforms**: Select one or more transforms to process the data. Available transforms include map, filter, branch, concat, and window. For details on each transform type, see [Data flow graphs overview](concept-dataflow-graphs.md#available-transforms). -->
+       <!-- 1. **Add transforms**: Select one or more transforms to process the data. Available transforms include map, filter, branch, concat, and window. For details on each transform type, see [Data flow graphs overview](concept-dataflow-graphs.md#available-transforms). -->
 
-        ![Screenshot of the operations experience transform selection menu showing available transform types.](media/howto-create-dataflow-graph/transform-selection.png)
+       ![Screenshot of the operations experience transform selection menu showing available transform types.](media/howto-create-dataflow-graph/transform-selection.png)
 
-        ![Screenshot of the operations experience showing a branch transform configuration example.](media/howto-create-dataflow-graph/branch-transform-example.png)
+       ![Screenshot of the operations experience showing a branch transform configuration example.](media/howto-create-dataflow-graph/branch-transform-example.png)
 
     1. **Add a destination**: Select the destination endpoint and configure the topic or path to send processed data to.
 
