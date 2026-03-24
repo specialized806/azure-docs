@@ -20,7 +20,7 @@ This article describes how to configure import settings for the FHIR service. If
 ## Prerequisites
 
 - A FHIR service. To create one, see [Deploy the FHIR service](deploy-azure-portal.md).
-- An Azure Blob or Azure Data Lake Storage Gen2 (ADLS Gen2) account configured with [Hierarchical Namespaces (HNS) enabled](../../storage/blobs/create-data-lake-storage-account.md) to use as the destination for imported data. 
+- An [Azure Blob or Azure Data Lake Storage Gen2 (ADLS Gen2)](../../storage/common/storage-account-create.md) account. 
 - You need to have the **FHIR Data importer role** application role. To learn more about application roles, see [Authentication and Authorization for FHIR service](../../healthcare-apis/authentication-authorization.md).
 
 ## Step 1:Enable a managed identity on the FHIR service for import

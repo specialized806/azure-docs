@@ -23,7 +23,7 @@ This article describes how to configure export settings for the FHIR service. If
 ## Prerequisites
 
 - A FHIR service. To create one, see [Deploy the FHIR service](deploy-azure-portal.md).
-- An Azure Blob or Azure Data Lake Storage Gen2 (ADLS Gen2) account configured with [Hierarchical Namespaces (HNS) enabled](../../storage/blobs/create-data-lake-storage-account.md) to use as the destination for exported data. 
+- An [Azure Blob or Azure Data Lake Storage Gen2 (ADLS Gen2)](../../storage/common/storage-account-create.md) account.
 - You need the **FHIR Data exporter role** application role. To learn more about application roles, see [Authentication and Authorization for FHIR service](../../healthcare-apis/authentication-authorization.md).
 
 
@@ -96,8 +96,6 @@ To securely export data from the FHIR service outside the network boundary of yo
 
 To enable the FHIR workspace as a trusted Microsoft service, follow these steps:
 
-Ensure that your storage account public network access scope is enabled for selected networks. 
-
 1. In the Azure portal, go to your storage account.
 1. On the left menu, select **Security + Networking** > **Networking**.
 1. On the **Public access** tab, under **Public network access**, select **Manage**.
@@ -136,7 +134,13 @@ To enable the FHIR service as a trusted Microsoft service, use the following Pow
 
 1. To verify that the FHIR service is added as a trusted Microsoft service for the storage account, go to the storage account in the Azure portal, and select **JSON view**. Verify that the FHIR service is listed in the `properties.networkAcls.resourceAccessRules`.
 
+You're now ready to securely export FHIR data to the storage account.
+
+The storage account is on selected networks and isn't publicly accessible. To securely access the files, you can enable [private endpoints](../../storage/common/storage-private-endpoints.md) for the storage account.
+
 [!INCLUDE [Specific IP ranges for storage account](../includes/common-ip-address-storage-account.md)]
+
+
 
 ## Next steps
 
