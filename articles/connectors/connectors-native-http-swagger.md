@@ -1,16 +1,17 @@
 ---
-title: Call endpoints for REST APIs from workflows in Azure Logic Apps
-description: Learn how to call a REST API endpoint URL from an Azure Logic App workflow by using HTTP Swagger operations.
-services: logic-apps
+title: Call REST APIs from Workflows
+description: Call REST API endpoint URLs from workflows in Azure Logic Apps by using HTTP Swagger operations.
+services: azure-logic-apps
 ms.suite: integration
 ms.reviewers: estfan, azla
 ms.topic: how-to
 ms.update-cycle: 365-days
-ms.date: 03/19/2026
-# Customer intent: As an integration developer who works with Azure Logic Apps, I want to call a REST API endpoint from my workflow by using HTTP Swagger operations.
+ai-usage: ai-assisted
+ms.date: 03/23/2026
+# Customer intent: As an integration developer who works with Azure Logic Apps, I want to call a REST API endpoint URL from my workflow by using HTTP Swagger operations.
 ---
 
-# Call endpoints for REST APIs from workflows in Azure Logic Apps
+# Call REST API endpoint URLs from workflows in Azure Logic Apps
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
