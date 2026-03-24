@@ -33,7 +33,7 @@
   - name: Plan and design
     items:
     - name: Design a secure hub-spoke network
-      href: design-secure-hub-spoke-network.md
+      href: cross-service-scenarios/design-secure-hub-spoke-network.md
     - name: Support for working remotely
       href: working-remotely-support.md
     - name: Virtual networks
