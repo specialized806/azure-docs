@@ -4,7 +4,7 @@ titleSuffix: Microsoft Azure Maps
 description: Learn how to apply the best practices when using the Search service from Microsoft Azure Maps.
 author: farazgis
 ms.author: fsiddiqui
-ms.date: 10/28/2021
+ms.date: 3/24/2026
 ms.topic: best-practice
 ms.service: azure-maps
 ms.subservice: search
@@ -1098,16 +1098,15 @@ When geocoding large address datasets, expect that some records won't return res
 
 Common causes include:
 
-* Misspellings or inconsistent formatting
+* Misspellings or inconsistent address formatting
 * Incomplete addresses
 * Interior details (for example, apartment, suite, or floor numbers) that aren't part of a deliverable address
 
 Treat geocoding as a data enrichment process rather than a strict validation step:
 
 * Submit addresses for geocoding.
-* Identify records that aren't resolved.
-* Flag unresolved addresses for review or normalization.
-* Retry geocoding only after cleaning the source data.
+* Accept high‑confidence matches and flag unresolved or low‑confidence results.
+* Reprocess flagged records only after cleaning or normalizing the source data.
 
 Avoid attempting to force matches for low‑quality input, as this can introduce incorrect or misleading location data into downstream systems.
 
@@ -1117,7 +1116,7 @@ A geocoding request may return an HTTP 200 (OK) response with no results.
 
 This indicates that the request was processed successfully, but no matching address or place was found. It doesn't represent a failure of the service.
 
-Applications should handle empty results explicitly and avoid treating them as errors. In many scenarios, returning no result is preferable to returning a low‑confidence or incorrect match.
+Applications should handle empty results explicitly and avoid treating them as errors. In many scenarios, returning no result is preferable to returning a low‑confidence or incorrect match. Search inputs should be reviewed and edited before retrying.
 
 > [!NOTE]
 > Azure Maps request limits, quotas, and throttling behavior are configured at the Azure subscription level.
@@ -1125,6 +1124,7 @@ Applications should handle empty results explicitly and avoid treating them as e
 >
 > * [Azure Maps pricing]
 > * [Understanding Azure Maps transactions]
+> * [Use cost alerts to monitor usage and spending]
 
 ## Best practices for autocomplete
 
@@ -1276,3 +1276,4 @@ GET https://atlas.microsoft.com/polygon
 [properties.type]: /rest/api/maps/search/get-geocoding#properties
 [Azure Maps pricing]: https://azure.microsoft.com/pricing/details/azure-maps
 [Understanding Azure Maps transactions]: understanding-azure-maps-transactions.md
+[Use cost alerts to monitor usage and spending]: /azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending
