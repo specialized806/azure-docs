@@ -121,6 +121,12 @@ Data Box documentation specifies a Robocopy command. That command isn't suitable
 
 [!INCLUDE [storage-files-migration-robocopy](../../../includes/storage-files-migration-robocopy.md)]
 
+RoboCopy might report that files were copied even when no data transfer was necessary. This behavior occurs because robocopy evaluates both file data and metadata changes when producing its output. To correctly interpret the results, review the file status in the command output:
+- Newer: File data is copied to the destination.
+- Modified: Only metadata is updated; file data isn't recopied.
+
+In both cases, RoboCopy might report byte counts as though data was transferred. This behavior can lead to confusion when validating copy operations.
+
 ## Phase 6: Deploy the Azure File Sync cloud resource
 
 Before you continue with this guide, wait until all of your files have arrived in the correct Azure file shares. The process of shipping and ingesting Data Box data will take time.
@@ -182,6 +188,12 @@ Run the first local copy to your Windows Server target folder:
 The following Robocopy command will copy only the differences (updated files and folders) from your NAS storage to your Windows Server target folder. The Windows Server instance will then sync them to the Azure file shares. 
 
 [!INCLUDE [storage-files-migration-robocopy](../../../includes/storage-files-migration-robocopy.md)]
+
+RoboCopy might report that files were copied even when no data transfer was necessary. This behavior occurs because robocopy evaluates both file data and metadata changes when producing its output. To correctly interpret the results, review the file status in the command output:
+- Newer: File data is copied to the destination.
+- Modified: Only metadata is updated; file data isn't recopied.
+
+In both cases, RoboCopy might report byte counts as though data was transferred. This behavior can lead to confusion when validating copy operations.
 
 If you provisioned less storage on your Windows Server instance than your files use on the NAS appliance, you've configured cloud tiering. As the local Windows Server volume becomes full, [cloud tiering](../file-sync/file-sync-cloud-tiering-overview.md) will kick in and tier files that have already successfully synced. Cloud tiering will generate enough space to continue the copy from the NAS appliance. Cloud tiering checks once an hour to determine what has synced and to free up disk space to reach the 99 percent volume free space.
 
