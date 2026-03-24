@@ -89,7 +89,7 @@ Data flow graph destinations support an `outputSchemaSettings` field to control 
 }
 ```
 
-When using storage destinations (ADLS, Fabric, ADX), the output schema and serialization format are configured on the destination endpoint. See [Configure a data flow destination](howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema).
+<!-- When using storage destinations (ADLS, Fabric, ADX), the output schema and serialization format are configured on the destination endpoint. See [Configure a data flow destination](howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema). -->
 
 # [Kubernetes (preview)](#tab/kubernetes)
 
@@ -101,7 +101,7 @@ When using storage destinations (ADLS, Fabric, ADX), the output schema and seria
     dataDestination: my-container
 ```
 
-When using storage destinations (ADLS, Fabric, ADX), the output schema and serialization format are configured on the destination endpoint. See [Configure a data flow destination](howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema).
+<!-- When using storage destinations (ADLS, Fabric, ADX), the output schema and serialization format are configured on the destination endpoint. See [Configure a data flow destination](howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema). -->
 
 ---
 
@@ -120,5 +120,5 @@ When using storage destinations (ADLS, Fabric, ADX), the output schema and seria
 ## Related content
 
 - [Understand message schemas](concept-schema-registry.md)
-- [Data flow graphs overview](concept-dataflow-graphs.md)
-- [Configure a data flow destination](howto-configure-dataflow-destination.md)
+<!-- - [Data flow graphs overview](concept-dataflow-graphs.md)
+- [Configure a data flow destination](howto-configure-dataflow-destination.md) -->
