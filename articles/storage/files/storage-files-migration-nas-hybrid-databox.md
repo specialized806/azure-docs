@@ -121,12 +121,6 @@ Data Box documentation specifies a Robocopy command. That command isn't suitable
 
 [!INCLUDE [storage-files-migration-robocopy](../../../includes/storage-files-migration-robocopy.md)]
 
-RoboCopy might report that files were copied even when no data transfer was necessary. This behavior occurs because robocopy evaluates both file data and metadata changes when producing its output. To correctly interpret the results, review the file status in the command output:
-- Newer: File data is copied to the destination.
-- Modified: Only metadata is updated; file data isn't recopied.
-
-In both cases, RoboCopy might report byte counts as though data was transferred. This behavior can lead to confusion when validating copy operations.
-
 ## Phase 6: Deploy the Azure File Sync cloud resource
 
 Before you continue with this guide, wait until all of your files have arrived in the correct Azure file shares. The process of shipping and ingesting Data Box data will take time.
