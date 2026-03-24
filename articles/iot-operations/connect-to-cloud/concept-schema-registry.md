@@ -25,8 +25,8 @@ Data flows use schemas in three places:
 - **Transformation**: The operations experience uses the source schema as a starting point when you build transformations.
 - **Destination**: Specify an output schema and serialization format when sending data to storage endpoints.
 
-<!-- > [!NOTE]
-> For data flow graphs, schemas are configured differently. See [Use schemas in data flow graphs](concept-dataflow-graphs-schema.md). -->
+> [!NOTE]
+> For data flow graphs, schemas are configured differently. See [Use schemas in data flow graphs](concept-dataflow-graphs-schema.md).
 
 ## Schema formats
 
@@ -85,7 +85,7 @@ Asset sources have a predefined schema created by the connector for OPC UA. For 
 
 :::image type="content" source="./media/concept-schema-registry/upload-schema.png" alt-text="Screenshot that shows uploading a message schema in the operations experience web UI.":::
 
-<!-- To reference a schema in your data flow source configuration, use the `schemaRef` field. For more information, see [Configure a data flow source](howto-configure-dataflow-source.md#specify-source-schema). -->
+To reference a schema in your data flow source configuration, use the `schemaRef` field. For more information, see [Configure a data flow source](howto-configure-dataflow-source.md#specify-source-schema).
 
 ## Configure an output schema
 
@@ -93,7 +93,7 @@ Output schemas control how data is serialized before it reaches the destination.
 
 In the operations experience, when you select a storage destination, the UI applies any transformations to the source schema and generates a Delta schema automatically. The generated schema is stored in the schema registry and referenced by the data flow.
 
-<!-- For Bicep or Kubernetes deployments, specify the schema and serialization format in the transformation settings. For more information, see [Configure a data flow destination](howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema). -->
+For Bicep or Kubernetes deployments, specify the schema and serialization format in the transformation settings. For more information, see [Configure a data flow destination](howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema).
 
 ## Upload a schema
 
@@ -181,7 +181,7 @@ az deployment group create --resource-group <RESOURCE_GROUP> --template-file sch
 
 ## Related content
 
-<!-- - [Use schemas in data flow graphs](concept-dataflow-graphs-schema.md)
+- [Use schemas in data flow graphs](concept-dataflow-graphs-schema.md)
 - [Configure a data flow source](howto-configure-dataflow-source.md)
-- [Configure a data flow destination](howto-configure-dataflow-destination.md) -->
+- [Configure a data flow destination](howto-configure-dataflow-destination.md)
 - [Create a data flow](howto-create-dataflow.md)

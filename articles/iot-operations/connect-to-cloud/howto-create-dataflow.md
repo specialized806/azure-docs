@@ -20,7 +20,6 @@ ms.custom:
 
 A data flow is the path that data takes from the source to the destination with optional transformations. You can configure the data flow by creating a *Data flow* custom resource or using the operations experience web UI. A data flow is made up of three parts: the **source**, the **transformation**, and the **destination**. 
 
-<!--
 ```mermaid
 flowchart LR
   subgraph Source
@@ -37,7 +36,6 @@ flowchart LR
   Source - -> BuiltInTransformation
   BuiltInTransformation - -> Destination
 ```
--->
 
 :::image type="content" source="media/howto-create-dataflow/dataflow.svg" alt-text="Diagram of a data flow showing flow from source to transform then destination.":::
 
@@ -229,13 +227,13 @@ Review the following sections to learn how to configure the operation types of t
 
 Configure the source endpoint and data sources (topics) for the data flow. You can use the default MQTT broker, an asset, or a custom MQTT or Kafka endpoint as the source.
 
-<!-- For complete configuration details, including MQTT topic wildcards, shared subscriptions, Kafka topics, and source schema, see [Configure a data flow source](howto-configure-dataflow-source.md). -->
+For complete configuration details, including MQTT topic wildcards, shared subscriptions, Kafka topics, and source schema, see [Configure a data flow source](howto-configure-dataflow-source.md).
 
 If you don't use the default endpoint as the source, you must use it as the [destination](#destination). For more information about using the local MQTT broker endpoint, see [Data flows must use local MQTT broker endpoint](./howto-configure-dataflow-endpoint.md#data-flows-must-use-local-mqtt-broker-endpoint).
 
 ## Request disk persistence
 
-<!-- Disk persistence keeps data flow processing state across restarts. For configuration details, see [Configure disk persistence](howto-configure-disk-persistence.md). -->
+Disk persistence keeps data flow processing state across restarts. For configuration details, see [Configure disk persistence](howto-configure-disk-persistence.md).
 
 ## Transformation
 
@@ -388,7 +386,7 @@ For more information about condition syntax, see [Enrich data by using data flow
 
 Use the filter stage to drop messages that don't meet a condition. You can define multiple filter rules with input fields and boolean expressions.
 
-<!-- For complete configuration details and examples, see [Filter data in a data flow](howto-dataflow-filter.md). -->
+For complete configuration details and examples, see [Filter data in a data flow](howto-dataflow-filter.md).
 
 ### Map: Move data from one field to another
 
@@ -693,18 +691,18 @@ To learn more, see [Map data by using data flows](concept-dataflow-mapping.md).
 
 ### Serialize data according to a schema
 
-<!-- If you want to serialize the data before sending it to the destination, specify a schema and serialization format. For details, see [Serialize the output with a schema](howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema). -->
+If you want to serialize the data before sending it to the destination, specify a schema and serialization format. For details, see [Serialize the output with a schema](howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema).
 
 ## Destination
 
 Configure the destination endpoint and data destination (topic, container, or table) for the data flow. You can use any supported endpoint type as the destination, including MQTT, Kafka, Azure Data Lake Storage, Microsoft Fabric, Azure Data Explorer, and local storage.
 
-<!-- For complete configuration details, including the data destination table, dynamic destination topics, and output serialization, see [Configure a data flow destination](howto-configure-dataflow-destination.md). -->
+For complete configuration details, including the data destination table, dynamic destination topics, and output serialization, see [Configure a data flow destination](howto-configure-dataflow-destination.md).
 
 To send data to a destination other than the local MQTT broker, create a data flow endpoint. To learn how, see [Configure data flow endpoints](howto-configure-dataflow-endpoint.md).
 
-<!-- > [!IMPORTANT]
-> Storage endpoints require a [schema for serialization](./concept-schema-registry.md). To use data flow with Microsoft Fabric OneLake, Azure Data Lake Storage, Azure Data Explorer, or Local Storage, you must [specify a schema reference](howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema). -->
+> [!IMPORTANT]
+> Storage endpoints require a [schema for serialization](./concept-schema-registry.md). To use data flow with Microsoft Fabric OneLake, Azure Data Lake Storage, Azure Data Explorer, or Local Storage, you must [specify a schema reference](howto-configure-dataflow-destination.md#serialize-the-output-with-a-schema).
 
 ## Example
 

@@ -15,10 +15,10 @@ ai-usage: ai-assisted
 
 [!INCLUDE [kubernetes-management-preview-note](../includes/kubernetes-management-preview-note.md)]
 
-<!-- Azure IoT Operations [data flow graphs](concept-dataflow-graphs.md) include built-in transforms for common processing tasks like mapping, filtering, and aggregation. When you need custom logic beyond what the built-in transforms provide, you can deploy WebAssembly (WASM) modules as custom transforms in your data flow graph pipelines.
+Azure IoT Operations [data flow graphs](concept-dataflow-graphs.md) include built-in transforms for common processing tasks like mapping, filtering, and aggregation. When you need custom logic beyond what the built-in transforms provide, you can deploy WebAssembly (WASM) modules as custom transforms in your data flow graph pipelines.
 
 > [!TIP]
-> For most data processing scenarios, start with the [built-in transforms](concept-dataflow-graphs.md#available-transforms). Use WASM transforms when you need custom business logic, specialized algorithms, or processing that the built-in options don't cover. -->
+> For most data processing scenarios, start with the [built-in transforms](concept-dataflow-graphs.md#available-transforms). Use WASM transforms when you need custom business logic, specialized algorithms, or processing that the built-in options don't cover.
 
 > [!TIP]
 > Want to run AI in-band? See [Run ONNX inference in WebAssembly data flow graphs](../develop-edge-apps/howto-wasm-onnx-inference.md) to package and execute small ONNX models inside your WASM operators.
@@ -33,8 +33,8 @@ ai-usage: ai-assisted
   - **Quick start with public registry**: Create a registry endpoint pointing to `ghcr.io/azure-samples/explore-iot-operations` with anonymous authentication. For instructions, see [Use prebuilt modules from a public registry](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md#use-prebuilt-modules-from-a-public-registry).
   - **Private registry**: Set up your own container registry and push the sample modules by following guidance in [Deploy WebAssembly (WASM) modules and graph definitions](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md).
 
-<!-- > [!NOTE]
-> **Data flows vs. data flow graphs**: A *data flow* is a pipeline that moves and transforms data between endpoints by using built-in transformations. A *data flow graph* extends data flows with composable processing steps. Azure IoT Operations provides [built-in data flow graphs](concept-dataflow-graphs.md) for common operations like mapping, filtering, branching, and aggregation. For custom processing logic, you can implement WebAssembly modules as described in this article. Data flow graphs use YAML graph definitions that specify how operators connect. The data flow graph resource wraps this definition and maps its abstract source and sink operations to concrete endpoints, like MQTT topics and Kafka topics. -->
+> [!NOTE]
+> **Data flows vs. data flow graphs**: A *data flow* is a pipeline that moves and transforms data between endpoints by using built-in transformations. A *data flow graph* extends data flows with composable processing steps. Azure IoT Operations provides [built-in data flow graphs](concept-dataflow-graphs.md) for common operations like mapping, filtering, branching, and aggregation. For custom processing logic, you can implement WebAssembly modules as described in this article. Data flow graphs use YAML graph definitions that specify how operators connect. The data flow graph resource wraps this definition and maps its abstract source and sink operations to concrete endpoints, like MQTT topics and Kafka topics.
 
 ## Overview
 
