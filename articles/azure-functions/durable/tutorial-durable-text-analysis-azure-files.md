@@ -3,7 +3,7 @@ title: "Tutorial: Durable text analysis with a mounted Azure Files share in Azur
 description: Learn how to deploy a Python Azure Functions app that uses Durable Functions to orchestrate parallel text file analysis by using a mounted Azure Files share on a Flex Consumption plan.
 ms.service: azure-functions
 ms.topic: tutorial
-ms.date: 03/11/2026
+ms.date: 03/24/2026
 ms.custom:
   - devx-track-azurecli
   - devx-track-azdevcli
@@ -18,7 +18,7 @@ In this tutorial, you deploy a Python Azure Functions app that uses [Durable Fun
 In this tutorial, you:
 
 > [!div class="checklist"]
-> * Deploy a Durable Functions app in a Flex Consumption plan with a mounted Azure Files share by using Azure Developer CLI
+> * Use Azure Developer CLI to deploy a Durable Functions app in a Flex Consumption plan with a mounted Azure Files share
 > * Trigger an orchestration to process sample text files in parallel
 > * Verify the aggregated analysis results
 
@@ -34,9 +34,9 @@ The CLI examples in this tutorial use Bash syntax and have been tested in [Azure
 
 ## Initialize the sample project
 
-The sample code for this tutorial is in the [Azure Functions Flex Consumption with Azure Files OS Mount Samples](https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples) GitHub repository. The `durable-text-analysis` folder contains the function app code, a Bicep template that provisions the required Azure resources, and a post-deployment script that uploads sample text files.
+You can find the sample code for this tutorial in the [Azure Functions Flex Consumption with Azure Files OS Mount Samples](https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples) GitHub repository. The `durable-text-analysis` folder contains the function app code, a Bicep template that provisions the required Azure resources, and a post-deployment script that uploads sample text files.
 
-1. Open a terminal and navigate to the directory where you want to clone the repository.
+1. Open a terminal and go to the directory where you want to clone the repository.
 
 1. Clone the repository:
 
@@ -44,7 +44,7 @@ The sample code for this tutorial is in the [Azure Functions Flex Consumption wi
     git clone https://github.com/Azure-Samples/Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples.git
     ```
 
-1. Navigate to the project folder:
+1. Go to the project folder:
 
     ```bash
     cd Azure-Functions-Flex-Consumption-with-Azure-Files-OS-Mount-Samples/durable-text-analysis
@@ -56,11 +56,47 @@ The sample code for this tutorial is in the [Azure Functions Flex Consumption wi
     azd init
     ```
 
-## Deploy with Azure Developer CLI
+## Review the code
+
+The three key pieces that make this sample work are the infrastructure that creates the mount, the script that uploads sample files, and the function code that orchestrates the analysis.
+
+### [Mount configuration (Bicep)](#tab/mount-config)
+
+The `mounts.bicep` module configures an Azure Files SMB mount on the function app. The `mountPath` value determines the local path where files appear at runtime. You pass the storage account access key as a parameter, and the platform resolves it at runtime through a Key Vault reference:
+
+:::code language="bicep" source="~/functions-flex-azure-files-samples/durable-text-analysis/infra/app/mounts.bicep" :::
+
+Because Azure Files SMB mounts don't yet support managed identity authentication, you need a storage account key. As a best practice, store this key in Azure Key Vault and use a [Key Vault reference](/azure/app-service/app-service-key-vault-references) in an app setting. The mount configuration references that app setting by using `@AppSettingRef()`, so the key never appears in your Bicep templates. The `keyvault.bicep` module creates the vault, stores the key, and grants RBAC roles:
+
+:::code language="bicep" source="~/functions-flex-azure-files-samples/durable-text-analysis/infra/app/keyvault.bicep" :::
+
+The `main.bicep` file invokes the mount and Key Vault modules:
+
+:::code language="bicep" source="~/functions-flex-azure-files-samples/durable-text-analysis/infra/main.bicep" range="173-206" :::
+
+### [Post-deployment script](#tab/post-deploy-script)
+
+After `azd up` deploys the infrastructure and code, a post-deployment script creates sample text files, uploads them to the Azure Files share, and runs a health check:
+
+:::code language="bash" source="~/functions-flex-azure-files-samples/durable-text-analysis/scripts/post-up.sh" range="33-88" :::
+
+### [Function code](#tab/function-code)
+
+The HTTP starter in `function_app.py` starts a Durable Functions orchestration. The orchestrator in `orchestrator.py` lists all `.txt` files on the mount, fans out to analyze each file in parallel, and aggregates the results:
+
+:::code language="python" source="~/functions-flex-azure-files-samples/durable-text-analysis/src/orchestrator.py" :::
+
+Each activity function reads directly from the mounted share by using standard file I/O. It doesn't need any SDK or network calls:
+
+:::code language="python" source="~/functions-flex-azure-files-samples/durable-text-analysis/src/activities.py" range="30-51" :::
+
+---
+
+## Deploy by using Azure Developer CLI
 
 This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/overview) template. A single `azd up` command provisions infrastructure, deploys the function code, and uploads sample text files to the Azure Files share.
 
-1. Sign in to Azure. The post-deployment script uses Azure CLI commands, so you need to authenticate with both tools:
+1. Sign in to Azure. The post-deployment script uses Azure CLI commands, so you need to authenticate by using both tools:
 
     ```bash
     azd auth login
@@ -81,7 +117,7 @@ This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-c
     - Runs a health check
 
     > [!NOTE]
-    > Because Azure Files SMB mounts don't yet support managed identity authentication, a storage account key is required. As a best practice, the deployment stores this key in [Azure Key Vault](/azure/key-vault/general/overview) and uses a [Key Vault reference](/azure/app-service/app-service-key-vault-references) so the key is never exposed in app settings. This approach provides centralized secret management, auditing, and support for key rotation.
+    > Because Azure Files SMB mounts don't yet support managed identity authentication, you need a storage account key. As a best practice, the deployment stores this key in [Azure Key Vault](/azure/key-vault/general/overview) and uses a [Key Vault reference](/azure/app-service/app-service-key-vault-references) so the key is never exposed in app settings. This approach provides centralized secret management, auditing, and support for key rotation.
 
     The deployment takes a few minutes. When it completes, you see a summary of the created resources.
 
@@ -168,7 +204,7 @@ This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-c
     ```
 
 > [!TIP]
-> Your function app accessed all three files in parallel through the storage mount. The app didn't need any per-request network calls. The function read them directly from the mounted share by using standard file I/O. This approach demonstrates the power of storage mounts combined with Durable Functions.
+> Your function app accesses all three files in parallel through the storage mount. The app doesn't need any per-request network calls. The function reads them directly from the mounted share by using standard file I/O. This approach demonstrates the power of storage mounts combined with Durable Functions.
 
 ## Clean up resources
 
