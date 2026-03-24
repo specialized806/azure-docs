@@ -198,7 +198,6 @@ The token is a Microsoft Entra token for the managed identity that was configure
 | `authenticationData` | Optional | Authentication data from MQTT CONNECT packet in Base64 encoding (MQTT5 only). | 
 | `clientCertificate` | Optional | Client certificate in Privacy-Enhanced Mail (PEM) format. | 
 | `clientCertificateChain`| Optional | Other certificates provided by the client required to build the chain from the client certificate to the Certificate Authority certificate. | 
-| `userProperties` | Optional | User properties from CONNECT packet (MQTT5 only). | 
 
 ### Response payload 
 
