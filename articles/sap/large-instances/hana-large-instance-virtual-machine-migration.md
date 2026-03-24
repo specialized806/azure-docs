@@ -58,7 +58,7 @@ You can migrate to Azure VMs for all HLI scenarios. The following table summariz
 | 12 | [Single node HSR to DR (cost optimized)](/azure/virtual-machines/workloads/sap/hana-supported-scenario#single-node-hsr-to-dr-cost-optimized) | Yes | - |
 | 13 | [HA and DR with HSR](/azure/virtual-machines/workloads/sap/hana-supported-scenario#high-availability-and-disaster-recovery-with-hsr) | Yes | - |
 | 14 | [HA and DR with HSR (cost optimized)](/azure/virtual-machines/workloads/sap/hana-supported-scenario#high-availability-and-disaster-recovery-with-hsr-cost-optimized) | Yes | - |
-| 15 | [Scale-out with DR using HSR](/azure/virtual-machines/workloads/sap/hana-supported-scenario#scale-out-with-dr-using-hsr) | Yes | BW/4HANA with M128s. M416s, M416ms VMs (with or without using ANF for storage). |
+| 15 | [Scale-out with DR using HSR](/azure/virtual-machines/workloads/sap/hana-supported-scenario#scale-out-with-dr-using-hsr) | Yes | BW/4HANA with M128s, M416s, M416ms VMs (with or without using ANF for storage). |
 
 ## Source (HLI) planning
 
