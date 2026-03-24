@@ -164,12 +164,12 @@ Both the hub and spoke virtual networks use NSGs to enforce default-deny rules a
 
 ### Essentials when deploying
 
-1. **Associate an NSG with every subnet in both VNets.** Start with a deny-all inbound rule. Add explicit allow rules only for traffic the design requires.
-1. **Application Gateway subnet rules (spoke):** Allow inbound HTTPS (443) from the internet. Allow inbound on ports 65200-65535 from the `GatewayManager` [service tag](/azure/application-gateway/configuration-infrastructure#network-security-groups) (required for v2 health probes). Allow the `AzureLoadBalancer` service tag.
-1. **Workload subnet rules (spoke):** Allow inbound only from the Application Gateway subnet on the application port. Deny all other inbound traffic.
-1. **Bastion subnet rules (hub):** Follow the [Bastion NSG requirements](/azure/bastion/configuration-settings#nsg) exactly. Bastion has specific inbound and outbound rules that you must apply for connectivity to work across peered VNets.
-1. **Restrict egress.** Use NSG outbound rules to deny unwanted outbound traffic. For most regional web apps, limiting egress to known Azure service destinations is sufficient. If you need FQDN-based filtering, add [Azure Firewall](/azure/firewall/overview) in the hub virtual network (see [Centralized egress with Azure Firewall](#centralized-egress-with-azure-firewall-optional)).
-1. **Enable flow logs.** [Virtual network flow logs](/azure/network-watcher/vnet-flow-logs-overview) capture traffic patterns for security analysis and troubleshooting. If you still use NSG flow logs, [migrate to VNet flow logs](/azure/network-watcher/nsg-flow-logs-migrate) before the NSG flow logs retirement on September 30, 2027.
+- **Associate an NSG with every subnet in both VNets.** Start with a deny-all inbound rule. Add explicit allow rules only for traffic the design requires.
+- **Application Gateway subnet rules (spoke):** Allow inbound HTTPS (443) from the internet. Allow inbound on ports 65200-65535 from the `GatewayManager` [service tag](/azure/application-gateway/configuration-infrastructure#network-security-groups) (required for v2 health probes). Allow the `AzureLoadBalancer` service tag.
+- **Workload subnet rules (spoke):** Allow inbound only from the Application Gateway subnet on the application port. Deny all other inbound traffic.
+- **Bastion subnet rules (hub):** Follow the [Bastion NSG requirements](/azure/bastion/configuration-settings#nsg) exactly. Bastion has specific inbound and outbound rules that you must apply for connectivity to work across peered VNets.
+- **Restrict egress.** Use NSG outbound rules to deny unwanted outbound traffic. For most regional web apps, limiting egress to known Azure service destinations is sufficient. If you need FQDN-based filtering, add [Azure Firewall](/azure/firewall/overview) in the hub virtual network (see [Centralized egress with Azure Firewall](#centralized-egress-with-azure-firewall-optional)).
+- **Enable flow logs.** [Virtual network flow logs](/azure/network-watcher/vnet-flow-logs-overview) capture traffic patterns for security analysis and troubleshooting. If you still use NSG flow logs, [migrate to VNet flow logs](/azure/network-watcher/nsg-flow-logs-migrate) before the NSG flow logs retirement on September 30, 2027.
 
 ## DDoS Protection: Do you need it?
 
@@ -208,11 +208,11 @@ You deploy Application Gateway into its dedicated subnet in the spoke virtual ne
 
 ### Essentials when deploying
 
-1. **Use WAF policies, not legacy WAF configuration.** You can't create new WAF configuration deployments on WAF v2 starting March 15, 2025. [Migrate existing configurations to WAF policies before March 15, 2027](/azure/web-application-firewall/ag/upgrade-ag-waf-policy). WAF policies provide per-site and per-URI rule granularity, bot protection, and the next-generation WAF engine.
-1. **Start in Detection mode, switch to Prevention before production.** Detection mode logs threats without blocking them, giving you time to tune rules and identify false positives. Use Prevention mode for all production workloads.
-1. **Size the subnet to /24.** Application Gateway v2 supports up to 125 instances and requires a [dedicated subnet](/azure/application-gateway/configuration-infrastructure#size-of-the-subnet). A /24 provides 251 usable addresses for autoscaling and maintenance upgrades.
-1. **Store TLS certificates in Azure Key Vault.** Use [Key Vault integration](/azure/application-gateway/key-vault-certs) with managed identities for automated certificate rotation. This approach eliminates manual certificate management and prevents outages from expired certificates.
-1. **Enable diagnostic logging from day one.** Send access logs, firewall logs, and performance metrics to a [Log Analytics workspace](/azure/application-gateway/application-gateway-diagnostics). Without logs, you can't investigate security incidents or tune WAF rules.
+- **Use WAF policies, not legacy WAF configuration.** You can't create new WAF configuration deployments on WAF v2 starting March 15, 2025. [Migrate existing configurations to WAF policies before March 15, 2027](/azure/web-application-firewall/ag/upgrade-ag-waf-policy). WAF policies provide per-site and per-URI rule granularity, bot protection, and the next-generation WAF engine.
+- **Start in Detection mode, switch to Prevention before production.** Detection mode logs threats without blocking them, giving you time to tune rules and identify false positives. Use Prevention mode for all production workloads.
+- **Size the subnet to /24.** Application Gateway v2 supports up to 125 instances and requires a [dedicated subnet](/azure/application-gateway/configuration-infrastructure#size-of-the-subnet). A /24 provides 251 usable addresses for autoscaling and maintenance upgrades.
+- **Store TLS certificates in Azure Key Vault.** Use [Key Vault integration](/azure/application-gateway/key-vault-certs) with managed identities for automated certificate rotation. This approach eliminates manual certificate management and prevents outages from expired certificates.
+- **Enable diagnostic logging from day one.** Send access logs, firewall logs, and performance metrics to a [Log Analytics workspace](/azure/application-gateway/application-gateway-diagnostics). Without logs, you can't investigate security incidents or tune WAF rules.
 
 > [!IMPORTANT]
 > Application Gateway v1 SKU [retires April 28, 2026](/azure/application-gateway/v1-retirement). Deploy all new workloads on v2.
@@ -239,10 +239,10 @@ The Basic SKU and higher support [virtual network peering](/azure/bastion/bastio
 
 ### Essentials when deploying
 
-1. **Deploy Bastion in a dedicated `AzureBastionSubnet` of /26 or larger.** Azure requires this exact subnet name and you can't share it with other resources.
-1. **Use Premium SKU for production workloads.** Premium supports private-only deployment (no public IP required), session recording for compliance, and host scaling (2–50 instances). The cost difference over Standard is marginal. For smaller deployments, Basic is an acceptable minimum - it provides dedicated instances and supports VNet peering. The Developer SKU uses shared infrastructure, doesn't support peering, and [isn't suitable for production](/azure/bastion/bastion-sku-comparison).
-1. **Follow the Bastion NSG requirements.** The Bastion subnet has [specific inbound and outbound rules](/azure/bastion/configuration-settings#nsg) that you must apply exactly. Missing rules cause connection failures. When Bastion is in the hub, ensure the spoke workload subnet NSG allows inbound RDP (3389) or SSH (22) from the hub VNet's address space.
-1. **Enable Microsoft Entra ID authentication for SSH/RDP.** Entra ID authentication eliminates distributing SSH keys or local passwords and enables MFA and conditional access policies. SSH via Entra ID in the portal is generally available; RDP via Entra ID in the portal is in public preview. The Basic SKU supports Entra ID auth in the portal; the Standard SKU or higher is required for native client connections. For setup instructions, see [Entra ID authentication for Azure Bastion](/azure/bastion/bastion-entra-id-authentication).
+- **Deploy Bastion in a dedicated `AzureBastionSubnet` of /26 or larger.** Azure requires this exact subnet name and you can't share it with other resources.
+- **Use Premium SKU for production workloads.** Premium supports private-only deployment (no public IP required), session recording for compliance, and host scaling (2–50 instances). The cost difference over Standard is marginal. For smaller deployments, Basic is an acceptable minimum - it provides dedicated instances and supports VNet peering. The Developer SKU uses shared infrastructure, doesn't support peering, and [isn't suitable for production](/azure/bastion/bastion-sku-comparison).
+- **Follow the Bastion NSG requirements.** The Bastion subnet has [specific inbound and outbound rules](/azure/bastion/configuration-settings#nsg) that you must apply exactly. Missing rules cause connection failures. When Bastion is in the hub, ensure the spoke workload subnet NSG allows inbound RDP (3389) or SSH (22) from the hub VNet's address space.
+- **Enable Microsoft Entra ID authentication for SSH/RDP.** Entra ID authentication eliminates distributing SSH keys or local passwords and enables MFA and conditional access policies. SSH via Entra ID in the portal is generally available; RDP via Entra ID in the portal is in public preview. The Basic SKU supports Entra ID auth in the portal; the Standard SKU or higher is required for native client connections. For setup instructions, see [Entra ID authentication for Azure Bastion](/azure/bastion/bastion-entra-id-authentication).
 
 ## Centralized egress with Azure Firewall (optional)
 
@@ -258,10 +258,10 @@ For organizations that need FQDN-based outbound filtering, TLS inspection, or ce
 
 ### If you choose to add it
 
-1. **Use the Basic SKU for SMBs.** Azure Firewall Basic supports up to 250 Mbps throughput and costs less than Standard or Premium SKUs. It's designed for small and midsize environments. For help choosing a SKU, see [Choose the right Azure Firewall SKU](/azure/firewall/choose-firewall-sku).
-1. **Deploy in `AzureFirewallSubnet` (/26) in the hub.** Azure Firewall Basic also requires a dedicated `AzureFirewallManagementSubnet` (/26) to separate management traffic from customer traffic. Create both subnets before deploying the firewall.
-1. **Create UDRs on spoke subnets** with a default route (`0.0.0.0/0`) pointing to the firewall's private IP. This route forces all outbound traffic through the hub for inspection.
-1. **Start simple.** Begin with a small set of application and network rules. Add rules as you understand your workload's traffic patterns.
+- **Use the Basic SKU for SMBs.** Azure Firewall Basic supports up to 250 Mbps throughput and costs less than Standard or Premium SKUs. It's designed for small and midsize environments. For help choosing a SKU, see [Choose the right Azure Firewall SKU](/azure/firewall/choose-firewall-sku).
+- **Deploy in `AzureFirewallSubnet` (/26) in the hub.** Azure Firewall Basic also requires a dedicated `AzureFirewallManagementSubnet` (/26) to separate management traffic from customer traffic. Create both subnets before deploying the firewall.
+- **Create UDRs on spoke subnets** with a default route (`0.0.0.0/0`) pointing to the firewall's private IP. This route forces all outbound traffic through the hub for inspection.
+- **Start simple.** Begin with a small set of application and network rules. Add rules as you understand your workload's traffic patterns.
 
 > [!TIP]
 > If you don't need Azure Firewall today, design your hub virtual network with a reserved `AzureFirewallSubnet` anyway. Adding Firewall later is straightforward when the subnet already exists. Adding a subnet to a hub that's already peered requires no downtime - just add the subnet and deploy.
