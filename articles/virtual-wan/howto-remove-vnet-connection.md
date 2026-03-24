@@ -13,7 +13,7 @@ ms.author: flapinski
 
 This article helps you disconnect your virtual network from your virtual hub using the Azure portal. In this example, we remove the WUS2-VNet connection from the WestUS2-Hub Virtual WAN hub. Repeat these steps for each VNet connection that you want to remove.
 
-:::image type="content" source="./media/howto-remove-vnet-connection/vwan-delete-overview.png" alt-text="Diagram that shows architecture of example Virtual WAN." lightbox="./media/howto-remove-vnet-connection/vwan-delete-overview.png":::
+:::image type="content" source="./media/howto-remove-virtual-network-connection/vwan-delete-overview.png" alt-text="Diagram that shows architecture of example Virtual WAN." lightbox="./media/howto-remove-virtual-network-connection/vwan-delete-overview.png":::
 
 Before you remove a connection, be aware of the following considerations:
 
@@ -30,7 +30,7 @@ Before you remove a connection, be aware of the following considerations:
 1. Navigate to your Virtual WAN resource in the Azure portal.
 2. Under **Connectivity**, select **Virtual network connections**.
 3. In the list of connections, locate **WUS2-VNet-Connection** connected to the **WestUS2-Hub**.
-:::image type="content" source="./media/howto-remove-vnet-connection/portal-vnet-conn-overview-delete-vnet-conn.png" alt-text="Diagram that shows an overview of the Virtual WAN VNet Connections." lightbox="./media/howto-remove-vnet-connection/portal-vnet-conn-overview-delete-vnet-conn.png":::
+:::image type="content" source="./media/howto-remove-virtual-network-connection/portal-vnet-conn-overview-delete-vnet-conn.png" alt-text="Diagram that shows an overview of the Virtual WAN VNet Connections." lightbox="./media/howto-remove-virtual-network-connection/portal-vnet-conn-overview-delete-vnet-conn.png":::
 4. Select the drop-down next to **Virtual networks** for the Hub you wan to delete the connection for. Select the **"..."** menu for the connection you want to remove and select **"Delete virtual network connection"**.
 6. In the confirmation dialog, write **yes** to remove the virtual network connection from the Virtual WAN hub.
 
