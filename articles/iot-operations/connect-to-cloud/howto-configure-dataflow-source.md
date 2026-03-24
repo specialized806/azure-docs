@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 The source is where data enters a data flow or data flow graph. You configure the source by specifying an endpoint reference and a list of data sources (topics) for that endpoint.
 
-This page applies to both [data flows](overview-dataflow.md) and [data flow graphs](concept-dataflow-graphs.md). For data flows, the source is an operation in the `Dataflow` resource. For data flow graphs, the source is a `Source` node in the `DataflowGraph` resource.
+<!-- This page applies to both [data flows](overview-dataflow.md) and [data flow graphs](concept-dataflow-graphs.md). For data flows, the source is an operation in the `Dataflow` resource. For data flow graphs, the source is a `Source` node in the `DataflowGraph` resource. -->
 
 > [!IMPORTANT]
 > Data flows support MQTT and Kafka source endpoints. Data flow graphs support MQTT, Kafka, and OpenTelemetry source endpoints. Each data flow must have the Azure IoT Operations local MQTT broker default endpoint as either the source or destination. For more information, see [Data flows must use local MQTT broker endpoint](./howto-configure-dataflow-endpoint.md#data-flows-must-use-local-mqtt-broker-endpoint).
@@ -436,6 +436,6 @@ For more information, see [Understand message schemas](concept-schema-registry.m
 
 ## Next steps
 
-- [Configure a data flow destination](howto-configure-dataflow-destination.md)
+<!-- - [Configure a data flow destination](howto-configure-dataflow-destination.md)
 - [Create a data flow](howto-create-dataflow.md)
-- [Data flow graphs overview](concept-dataflow-graphs.md)
+- [Data flow graphs overview](concept-dataflow-graphs.md) -->
