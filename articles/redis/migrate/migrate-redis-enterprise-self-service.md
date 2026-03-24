@@ -15,10 +15,10 @@ appliesto:
 
 This article provides step-by-step instructions for both migration paths:
 
-- [Self-service migration for caches without geo-replication](#execute-option-1a-self-service-migration-for-caches-without-geo-replication)
-- [Self-service migration for caches with geo-replication](#execute-option-1b-self-service-migration-for-caches-with-geo-replication)
+- [Self-service migration for caches without geo-replication](#self-service-migration-for-caches-without-geo-replication)
+- [Self-service migration for caches with geo-replication](#self-service-migration-for-caches-with-geo-replication)
 
-Use the path that best matches your downtime, rollback, and operational control requirements. We highly recommend performing the migration during off-business hours, as it will result in a brief connectivity blip similar to behavior during regular maintenance operations.
+We highly recommend performing the migration during off-business hours, as it will result in a brief connectivity blip similar to behavior during regular maintenance operations.
 
 ## Self-service migration for caches without geo-replication
 
@@ -116,7 +116,6 @@ Use these steps if you have a set of geo-replicated Redis Enterprise caches that
 
 - [Migration overview](migrate-redis-enterprise-overview.md)
 - [Understand the differences](migrate-redis-enterprise-understand.md)
-- [Explore migration options](migrate-redis-enterprise-migration-options.md)
 - [What is Azure Managed Redis?](../overview.md)
 - [Azure Managed Redis architecture](../architecture.md)
 - [Scale an Azure Managed Redis instance](../how-to-scale.md)

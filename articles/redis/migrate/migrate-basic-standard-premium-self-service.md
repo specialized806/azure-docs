@@ -106,7 +106,6 @@ Azure Cache for Redis and Azure Managed Redis are compatible, so no application 
 
 - [Migration overview](migrate-basic-standard-premium-overview.md)
 - [Understand the differences](migrate-basic-standard-premium-understand.md)
-- [Explore migration options](migrate-basic-standard-premium-migration-options.md)
 - [What is Azure Managed Redis?](../overview.md)
 - [Azure Managed Redis architecture](../architecture.md)
 - [Scale an Azure Managed Redis instance](../how-to-scale.md)

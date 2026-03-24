@@ -77,7 +77,7 @@ In this case, any of the following tiers offering 12 GB of memory would be appro
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Plan Execution](migrate-redis-enterprise-migration-self-service.md)
+> [Plan execution](migrate-redis-enterprise-self-service.md)
 
 ## Related content
 

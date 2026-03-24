@@ -108,7 +108,7 @@ For more information, see [Choosing the right tier](../overview.md#choosing-the-
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Plan execution](migrate-basic-standard-premium-migration-self-service.md)
+> [Plan execution](migrate-basic-standard-premium-self-service.md)
 
 ## Related content
 

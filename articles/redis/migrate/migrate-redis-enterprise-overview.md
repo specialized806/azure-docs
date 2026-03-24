@@ -27,7 +27,7 @@ Azure Managed Redis is built on the same Redis Enterprise software stack as Azur
 Follow step-by-step instructions to create your new Azure Managed Redis instance, migrate your data, update your application, and validate the migration.
 
 > [!div class="nextstepaction"]
-> [Plan execution](migrate-redis-enterprise-plan-self-service.md)
+> [Plan execution](migrate-redis-enterprise-self-service.md)
 
 ## Related content
 
