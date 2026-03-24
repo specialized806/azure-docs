@@ -21,10 +21,6 @@ Some scenarios require messages to arrive on different MQTT topics depending on 
 
 A map transform can write to message metadata, including the MQTT topic, by using the `$metadata.topic` output path. The destination then uses the `${outputTopic}` variable to publish to whatever topic the transform set.
 
-```
-Source ──→ Map transform (sets $metadata.topic) ──→ Destination (publishes to ${outputTopic})
-```
-
 Two pieces work together:
 
 1. **Inside the transform**: A map rule writes a string value to `$metadata.topic`.
@@ -156,12 +152,6 @@ spec:
 ## Option 2: Branch, map each path, and merge
 
 If you need different transformations on each path (not just a different topic), use a branch transform to split the flow, a map transform on each arm to set the topic and apply path-specific rules, and a concat transform to merge the paths.
-
-```
-                          ┌── true ──→  Map (topic = alerts)    ─┐
-Source ──→ Branch ($1>1000)                                       ├──→ Concat ──→ Destination
-                          └── false ──→ Map (topic = historian) ─┘
-```
 
 # [Operations experience](#tab/portal)
 
