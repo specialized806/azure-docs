@@ -142,7 +142,6 @@ Use this table to help select the appropriate pattern for your scenario:
 | Event-driven alerts | Event Hubs + Azure Functions | Flexible integration |
 | Data lake analytics | Delta Lake output | ACID transactions |
 | Unified analytics | Microsoft Fabric | End-to-end platform |
-| Visual development | No-code editor | Rapid development |
 | Kafka workloads | Event Hubs Kafka endpoint | Protocol compatibility |
 
 ## How to monitor ASA jobs
