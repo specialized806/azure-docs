@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 Data flow graphs provide two ways to control which messages flow through your pipeline: **filter** transforms drop unwanted messages, and **branch** transforms route each message down one of two paths based on a condition. After branching, a **concat** transform merges the paths back together.
 
-For an overview of data flow graphs and how transforms compose in a pipeline, see [Data flow graphs overview](concept-dataflow-graphs.md).
+<!-- For an overview of data flow graphs and how transforms compose in a pipeline, see [Data flow graphs overview](concept-dataflow-graphs.md). -->
 
 ## Prerequisites
 
@@ -172,7 +172,7 @@ filter: [
 
 ---
 
-For the full list of operators and functions, see [Expressions reference](concept-dataflow-graphs-expressions.md).
+<!-- For the full list of operators and functions, see [Expressions reference](concept-dataflow-graphs-expressions.md). -->
 
 ### Validate messages against a schema
 
@@ -379,7 +379,7 @@ This end-to-end example filters out bad readings, branches by severity, applies 
 
 # [Operations experience](#tab/portal)
 
-![Screenshot of the operations experience canvas showing a filter, branch, map, concat, and destination pipeline.](media/howto-dataflow-graphs-filter-route/filter-branch-pipeline.png)
+<!-- ![Screenshot of the operations experience canvas showing a filter, branch, map, concat, and destination pipeline.](media/howto-dataflow-graphs-filter-route/filter-branch-pipeline.png) -->
 
 To build this pipeline in the Operations experience:
 
@@ -612,8 +612,8 @@ spec:
 
 ## Next steps
 
-- [Transform data with map](howto-dataflow-graphs-map.md)
+<!-- - [Transform data with map](howto-dataflow-graphs-map.md)
 - [Aggregate data over time](howto-dataflow-graphs-window.md)
 - [Enrich with external data](howto-dataflow-graphs-enrich.md)
 - [Route messages to different topics](howto-dataflow-graphs-topic-routing.md)
-- [Expressions reference](concept-dataflow-graphs-expressions.md)
+- [Expressions reference](concept-dataflow-graphs-expressions.md) -->

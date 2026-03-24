@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 Sometimes the incoming message doesn't contain everything you need. A temperature reading might arrive with a device ID, but the display name, location, and calibration offset live in a separate lookup table. Enrichment lets you pull that external data into your transform rules.
 
-For an overview of data flow graphs, see [Data flow graphs overview](concept-dataflow-graphs.md).
+<!-- For an overview of data flow graphs, see [Data flow graphs overview](concept-dataflow-graphs.md). -->
 
 ## Prerequisites
 
@@ -374,9 +374,9 @@ spec:
 
 ## Next steps
 
-- [Transform data with map](howto-dataflow-graphs-map.md)
+<!-- - [Transform data with map](howto-dataflow-graphs-map.md)
 - [Filter and route data](howto-dataflow-graphs-filter-route.md)
 - [Aggregate data over time](howto-dataflow-graphs-window.md)
 - [Expressions reference](concept-dataflow-graphs-expressions.md)
 - [Configure a source](howto-configure-dataflow-source.md)
-- [Configure a destination](howto-configure-dataflow-destination.md)
+- [Configure a destination](howto-configure-dataflow-destination.md) -->
