@@ -116,6 +116,8 @@ After migration completes, go to your Fabric workspace to review the migrated pi
 
 After migration completes, validate the pipelines in the Fabric Data Factory experience.
 
+> [!VIDEO  https://learn-video.azurefd.net/vod/player?id=4704fb66-2ce2-44a6-a024-4a00c0963b42]
+
 ## Migration behavior
 
 - Pipelines migrate into a Fabric Data Factory workspace.
