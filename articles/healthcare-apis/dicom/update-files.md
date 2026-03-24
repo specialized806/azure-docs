@@ -103,17 +103,27 @@ For updating the UIDs, new UIDs have to be provided in the change dataset as fol
 ```
 3. Use the request below to update the 'SOPInstanceUid' for a specific instance within a series. Note that a single instance is updated at a time, and both the 'studyInstanceUid' and 'seriesInstanceUid' must be provided along with the current 'sopInstanceUid' and the new value in the changeDataset.
 
+```
 {
-    "studyInstanceUid": "1.2.3.4",
+    "studyInstanceUids": ["1.2.3.4"],
     "seriesInstanceUid": "5.6.7.8",
-    "sopInstanceUid": "9.10.11.12",
-    "changeDataset": { 
-        "00080018": { 
-            "vr": "UI", 
-            "Value": ["9.10.11.13"]
-        } 
+    "sopInstanceUid": "9.10.11.12", 
+    "changeDataset": {
+        "0020000D": {
+            "vr": "UI",
+            "Value": ["1.2.3.5"]
+        },
+        "0020000E": {
+            "vr": "UI",
+            "Value": ["5.6.7.9"]
+        },
+        "00080018": {
+            "vr": "UI",
+            "Value": ["9.10.11.13"] 
+        }
     }
 }
+```
 
 #### Responses
 When a bulk update operation starts successfully, the API returns a `202` status code. The body of the response contains a reference to the operation.
@@ -217,13 +227,12 @@ The [change feed](change-feed-overview.md) records update actions in the same ma
 
 ## Summary of DICOM UID Update Behavior by Hierarchy Level
 This table outlines how bulk updates behave at different levels of the DICOM hierarchy—Study, Series, and Instance—highlighting when updates are allowed, whether a SOP Instance UID filter is required, how instances are moved, and the resulting impact on the UID hierarchy.
-✅ Allowed 
-❌ Not allowed   
+  ✅ Allowed  ❌ Not allowed   
 | Scenario                                           | Study-Level Update | Series-Level Update | Instance-Level Update | SOP Instance UID Filter Applied | Movement of Instances                                             | Resulting Action / Notes                                                                                  |
 | -------------------------------------------------- | ----------------- | ----------------- | ------------------- | ------------------------------ | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | Update patient demographic attributes only        | ✅       | ✅      | ✅         |Not required               | No movement                                                       | Attributes updated in place; original UID hierarchy preserved.                                            |
 | Update Study Instance UID                          | ✅        | ❌    | ❌       | ❌                | Study → New Study                                                 | All instances in study get new Study UID; series and instance UIDs remain unless explicitly changed.      |
-| Update Series Instance UID                         | ✅       | ✅     | ❌      | Not required       | Series → New Series                                               | All instances in series get new Series UID; Study UID remains unless updated; SOP Instance UID unchanged. |
+| Update Series Instance UID                         |  ❌     | ✅     | ❌      | Not required       | Series → New Series                                               | All instances in series get new Series UID; Study UID remains unless updated; SOP Instance UID unchanged. |
 | Update SOP Instance UID                            | ❌    | ❌   | ✅        | Required                     | Instance → New Instance                                           | Only the filtered SOP Instance(s) are updated; new SOP Instance UID assigned; Study/Series UID preserved. |
 | Update Study & Series UIDs                         | ✅    | ✅ | ❌ | Not required                 | Study → New Study → Series → New Series                           | Hierarchy updated; all instances in series adopt new UIDs.                                                |
 | Update Study, Series, and SOP Instance UIDs       | ✅       | ✅       | ✅         | Required                     | Study → New Study → Series → New Series → Instance → New Instance | Complete hierarchy updated with filtered SOP instance selection where applicable.                         |
@@ -293,5 +302,49 @@ The UID `1.3.6.1.4.1.311.129` is a registered under [Microsoft OID arc](https://
 | Referring Physician's Name | (0008,0090) | Name of the patient's referring physician |
 | Accession Number | (0008,0050) | A RIS generated number that identifies the order for the Study |
 | Study Description | (0008,1030) | Institution-generated description or classification of the Study (component) performed |
+
+
+## Study module attributes
+
+| Attribute Name                  | Tag        | Description                                                                 |
+|--------------------------------|------------|-----------------------------------------------------------------------------|
+| Accession Number               | (0008,0050)| A RIS-generated number that identifies the order for the study              |
+| Referring Physician's Name     | (0008,0090)| Name of the patient's referring physician                                   |
+| Study Description              | (0008,1030)| Institution-generated description or classification of the study performed  |
+| Study Date                     | (0008,0020)| Date the study started                                                      |
+| Study Time                     | (0008,0030)| Time the study started                                                      |
+| Study ID                       | (0020,0010)| User or equipment generated study identifier                                |
+| Admitting Diagnoses Description| (0008,1080)| Description of the admitting diagnosis                                      |
+| Requested Procedure ID         | (0040,1001)| Identifier that identifies the requested procedure in the Imaging Service Request |
+
+## Series module attributes
+
+| Attribute Name        | Tag        | Description                                                                 |
+|----------------------|------------|-----------------------------------------------------------------------------|
+| Series Description   | (0008,103E)| Description of the series                                                  |
+| Frame of Reference UID | (0020,0052)| Uniquely identifies the frame of reference for a series                   |
+| Series Number        | (0020,0011)| A number that identifies the series                                        |
+| Series Date          | (0008,0021)| Date the series started                                                    |
+| Series Time          | (0008,0031)| Time the series started                                                    |
+| Body Part Examined   | (0018,0015)| Text description of the part of the body examined                          |
+| Laterality           | (0020,0060)| Laterality of (paired) body part examined; Enumerated Values: R (right), L (left) |
+
+## Instance module attributes
+
+| Attribute Name       | Tag        | Description                                                                 |
+|---------------------|------------|-----------------------------------------------------------------------------|
+| Instance Number     | (0020,0013)| A number that identifies the instance                                       |
+| Acquisition Date    | (0008,0022)| The date the acquisition of data that resulted in this image started        |
+| Acquisition Time    | (0008,0032)| The time the acquisition of data that resulted in this image started        |
+| Image Laterality    | (0020,0062)| Laterality of (possibly paired) body part examined in the image; Enumerated Values: R (right), L (left), U (unpaired), B (both) |
+| Measurement Laterality | (0024,0113)| The laterality of the measurement                                          |
+
+## UID attributes
+
+| Attribute Name      | Tag        | Description                                  |
+|--------------------|------------|----------------------------------------------|
+| Study Instance UID | (0020,000D)| Unique identifier for the study              |
+| Series Instance UID| (0020,000E)| Unique identifier for the series             |
+| SOP Instance UID   | (0008,0018)| Uniquely identifies the SOP Instance         |
 
 [!INCLUDE [DICOM trademark statements](../includes/healthcare-apis-dicom-trademark.md)]
