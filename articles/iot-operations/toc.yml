@@ -195,9 +195,9 @@ items:
               - name: Local storage or ACSA
                 href: connect-to-cloud/howto-configure-local-storage-endpoint.md
                 displayName: data flow, endpoint, northbound, Azure Container Storage enabled by Azure Arc
-          # - name: Source
-          #   href: connect-to-cloud/howto-configure-dataflow-source.md
-          #   displayName: data flow, source, MQTT, Kafka, topic, asset, broker, shared subscription
+          - name: Source
+            href: connect-to-cloud/howto-configure-dataflow-source.md
+            displayName: data flow, source, MQTT, Kafka, topic, asset, broker, shared subscription
           - name: Data flows
             items:
               - name: Overview
@@ -217,39 +217,39 @@ items:
                 displayName: data flow, serialize, deserialize, schema registry
           - name: Data flow graphs
             items:
-              # - name: Overview
-              #   href: connect-to-cloud/concept-dataflow-graphs.md
-              #   displayName: data flow, graph, transform, map, filter, branch, window, compose, pipeline
-              # - name: Create a data flow graph
-              #   href: connect-to-cloud/howto-create-dataflow-graph.md
-              #   displayName: data flow, graph, create, deploy, pipeline, source, destination
-              # - name: Transform data with map
-              #   href: connect-to-cloud/howto-dataflow-graphs-map.md
-              #   displayName: data flow, graph, map, rename, restructure, wildcard, copy, compute
-              # - name: Filter and route data
-              #   href: connect-to-cloud/howto-dataflow-graphs-filter-route.md
-              #   displayName: data flow, graph, filter, drop, branch, concat, merge, route, condition
-              # - name: Aggregate data over time
-              #   href: connect-to-cloud/howto-dataflow-graphs-window.md
-              #   displayName: data flow, graph, window, aggregate, average, sum, min, max, tumbling
-              # - name: Enrich with external data
-              #   href: connect-to-cloud/howto-dataflow-graphs-enrich.md
-              #   displayName: data flow, graph, enrich, dataset, state store, context, lookup
-              # - name: Route messages to different topics
-              #   href: connect-to-cloud/howto-dataflow-graphs-topic-routing.md
-              #   displayName: data flow, graph, topic, routing, metadata, dynamic
+              - name: Overview
+                href: connect-to-cloud/concept-dataflow-graphs.md
+                displayName: data flow, graph, transform, map, filter, branch, window, compose, pipeline
+              - name: Create a data flow graph
+                href: connect-to-cloud/howto-create-dataflow-graph.md
+                displayName: data flow, graph, create, deploy, pipeline, source, destination
+              - name: Transform data with map
+                href: connect-to-cloud/howto-dataflow-graphs-map.md
+                displayName: data flow, graph, map, rename, restructure, wildcard, copy, compute
+              - name: Filter and route data
+                href: connect-to-cloud/howto-dataflow-graphs-filter-route.md
+                displayName: data flow, graph, filter, drop, branch, concat, merge, route, condition
+              - name: Aggregate data over time
+                href: connect-to-cloud/howto-dataflow-graphs-window.md
+                displayName: data flow, graph, window, aggregate, average, sum, min, max, tumbling
+              - name: Enrich with external data
+                href: connect-to-cloud/howto-dataflow-graphs-enrich.md
+                displayName: data flow, graph, enrich, dataset, state store, context, lookup
+              - name: Route messages to different topics
+                href: connect-to-cloud/howto-dataflow-graphs-topic-routing.md
+                displayName: data flow, graph, topic, routing, metadata, dynamic
               - name: Use WASM transforms
                 href: connect-to-cloud/howto-dataflow-graph-wasm.md
                 displayName: data flow, WASM, WebAssembly, graph, transform, custom, developer, deploy
               - name: Schemas
                 href: connect-to-cloud/concept-dataflow-graphs-schema.md
                 displayName: data flow, graph, schema, nodeConnections, serialization
-          # - name: Destination
-          #   href: connect-to-cloud/howto-configure-dataflow-destination.md
-          #   displayName: data flow, destination, MQTT, Kafka, topic, container, table, dynamic
-          # - name: Disk persistence
-          #   href: connect-to-cloud/howto-configure-disk-persistence.md
-          #   displayName: data flow, persistence, disk, restart, state
+          - name: Destination
+            href: connect-to-cloud/howto-configure-dataflow-destination.md
+            displayName: data flow, destination, MQTT, Kafka, topic, container, table, dynamic
+          - name: Disk persistence
+            href: connect-to-cloud/howto-configure-disk-persistence.md
+            displayName: data flow, persistence, disk, restart, state
           - name: Expressions
             href: connect-to-cloud/concept-dataflow-graphs-expressions.md
             displayName: data flow, expression, function, operator, metadata, variable, conversion

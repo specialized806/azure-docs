@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [kubernetes-management-preview-note](../includes/kubernetes-management-preview-note.md)]
 
-<!-- This reference applies to both [data flows](overview-dataflow.md) and [data flow graphs](concept-dataflow-graphs.md). Both use the same expression language for map, filter, and enrichment transforms. Data flow graphs also support branch and window (accumulate) transforms, which are noted where applicable. -->
+This reference applies to both [data flows](overview-dataflow.md) and [data flow graphs](concept-dataflow-graphs.md). Both use the same expression language for map, filter, and enrichment transforms. Data flow graphs also support branch and window (accumulate) transforms, which are noted where applicable.
 
 ## Positional variables
 
@@ -149,7 +149,7 @@ These functions are available only in accumulation rules within window transform
 | `first($n)` | First value in the window | Error |
 | `last($n)` | Last value in the window | Error |
 
-<!-- For details on using aggregation functions, see [Aggregate data over time](howto-dataflow-graphs-window.md). -->
+For details on using aggregation functions, see [Aggregate data over time](howto-dataflow-graphs-window.md).
 
 ## Conditional logic
 
@@ -262,8 +262,8 @@ JSON objects and arrays are preserved as-is when fields are copied without an ex
 ## Related content
 
 - [Map data by using data flows](concept-dataflow-mapping.md)
-<!-- - [Filter data in a data flow](howto-dataflow-filter.md)
+- [Filter data in a data flow](howto-dataflow-filter.md)
 - [Transform data with map in data flow graphs](howto-dataflow-graphs-map.md)
 - [Filter and route data in data flow graphs](howto-dataflow-graphs-filter-route.md)
 - [Aggregate data over time](howto-dataflow-graphs-window.md)
-- [Enrich with external data](howto-dataflow-graphs-enrich.md) -->
+- [Enrich with external data](howto-dataflow-graphs-enrich.md)
