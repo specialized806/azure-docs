@@ -1,11 +1,11 @@
 ---
-title: "Configure Import Settings in the FHIR Service in Azure Health Data Services"
+title: Configure Import Settings in the FHIR Service in Azure Health Data Services
 description: Learn how to configure import settings in the FHIR service in Azure Health Data Services, including managed identity, storage permissions, and secure import operations.
 author: Expekesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: how-to
-ms.date: 03/23/2026
+ms.date: 03/24/2026
 ms.author: kesheth
 ms.reviewer: v-catheribun
 ms.custom: sfi-image-nochange
@@ -15,7 +15,7 @@ ms.custom: sfi-image-nochange
 
 The FHIR&reg; service supports the `$import` operation [specified by HL7](https://www.hl7.org/fhir/uv/bulkdata/) for importing FHIR data from a FHIR server. In the FHIR service implementation, when you call the `$import` endpoint, the FHIR service imports data into a preconfigured Azure storage account. The storage account must be a Blob or Azure Data Lake Storage Gen2 (ADLS Gen2) account with hierarchical namespaces enabled.
 
-This article describes how to configure import settings for the FHIR service. If your FHIR service is outside the network boundary of your storage account, you can configure access by allowing the FHIR service as a Microsoft trusted service or by allowing specific IP addresses to access the storage account. For more information, see [Secure the FHIR service `$import` operation](#secure-the-fhir-service-import-operation).    
+This article describes how to configure import settings for the FHIR service and give the FHIR service permission to access your storage account. If your FHIR service is outside the network boundary of your storage account, you can configure access by allowing the FHIR service as a Microsoft trusted service or by allowing specific IP addresses to access the storage account. For more information, see [Secure the FHIR service `$import` operation](#secure-the-fhir-service-import-operation).    
 
 ## Prerequisites
 

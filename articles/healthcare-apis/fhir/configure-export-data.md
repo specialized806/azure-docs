@@ -1,11 +1,11 @@
 ---
 title: Configure export settings in FHIR service
-description: This article describes how to configure export settings in the Azure Health Data Services FHIR service
+description: "FHIR service export configuration: Enable managed identity, assign storage roles, and protect your data exports. Follow our step-by-step guide."
 author: expekesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: how-to
-ms.date: 03/23/2026
+ms.date: 03/24/2026
 ms.author: kesheth
 ms.reviewer: v-catheribun
 ms.custom:
@@ -18,7 +18,7 @@ ms.custom:
 
 The FHIR&reg; service supports the `$export` operation [specified by HL7](https://www.hl7.org/fhir/uv/bulkdata/) for exporting FHIR data from a FHIR server. In the FHIR service implementation, when you call the `$export` endpoint, the FHIR service exports data into a preconfigured Azure storage account. The storage account must be a Blob or Azure Data Lake Storage Gen2 (ADLS Gen2) account with hierarchical namespaces enabled.
 
-This article describes how to configure export settings for the FHIR service. If your FHIR service is outside the network boundary of your storage account, you can configure access by allowing the FHIR service as a Microsoft trusted service or by allowing specific IP addresses to access the storage account. For more information, see [Secure the FHIR service `$export` operation](#secure-the-fhir-service-export-operation).    
+This article describes how to configure export settings for the FHIR service and give the FHIR service permission to access your storage account. If your FHIR service is outside the network boundary of your storage account, you can configure access by allowing the FHIR service as a Microsoft trusted service or by allowing specific IP addresses to access the storage account. For more information, see [Secure the FHIR service `$export` operation](#secure-the-fhir-service-export-operation).    
 
 ## Prerequisites
 
