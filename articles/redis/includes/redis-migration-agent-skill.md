@@ -4,7 +4,7 @@ ms.topic: include
 ms.custom:
 author: flang-msft
 ms.service: azure-managed-redis
-ms.author: franlangois
+ms.author: franlanglois
 
 ---
 
