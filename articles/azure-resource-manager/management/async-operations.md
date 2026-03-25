@@ -29,7 +29,7 @@ After getting the 201 or 202 response code, you're ready to monitor the status o
 
 ## URL to monitor status
 
-There are two different ways to monitor the status the asynchronous operation. You determine the correct approach by examining the header values that are returned from your original request. First, look for:
+There are two different ways to monitor the status of the asynchronous operation. You determine the correct approach by examining the header values that are returned from your original request. First, look for:
 
 * `Azure-AsyncOperation` - URL for checking the ongoing status of the operation. If your operation returns this value, use it to track the status of the operation.
 * `Retry-After` - The number of seconds to wait before checking the status of the asynchronous operation.
