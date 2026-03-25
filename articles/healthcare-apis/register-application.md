@@ -11,7 +11,7 @@ ms.custom: sfi-image-blocked
 
 # Register a client application in Microsoft Entra ID for Azure Health Data Services
 
-In this article, you learn how to register a client application in Microsoft Entra ID to access Azure Health Data Services. Registering a client application enables you to authenticate and securely connect to FHIR and DICOM services. For more information, see [Register an application with the Microsoft identity platform](../active-directory/develop/quickstart-register-app.md).
+In this article, you learn how to register a client application in Microsoft Entra ID to access Azure Health Data Services. When you register a client application, you can authenticate and securely connect to FHIR and DICOM services. For more information, see [Register an application with the Microsoft identity platform](../active-directory/develop/quickstart-register-app.md).
 
 ## Register a new application
 
@@ -56,7 +56,7 @@ For example, when you choose **Mobile and desktop applications**, you select the
 
 ## Certificates and client secrets
 
-To create a new client secret, use the following steps.
+To create a new client secret, use the following steps:
 
 1. Go to **Certificates & Secrets** > **Client secrets**.
 1. Select **New Client Secret**. 
@@ -73,11 +73,11 @@ To create a new client secret, use the following steps.
 >It's important that you save the secret value, not the secret ID.
 
 
-Optionally, you can upload a certificate (public key) and use the Certificate ID, a GUID value associated with the certificate. For testing purposes, you can create a self-signed certificate by using tools such as the PowerShell command `New-SelfSignedCertificate`, and then export the certificate from the certificate store. For more information, see [Create a self-signed public certificate to authenticate your application](/entra/identity-platform/howto-create-self-signed-certificate)  
+Optionally, you can upload a certificate (public key) and use the Certificate ID, a GUID value associated with the certificate. For testing purposes, you can create a self-signed certificate by using tools such as the PowerShell command `New-SelfSignedCertificate`, and then export the certificate from the certificate store. For more information, see [Create a self-signed public certificate to authenticate your application](/entra/identity-platform/howto-create-self-signed-certificate).  
 
 ## API permissions for DICOM and FHIR services
 
-If you're using Azure Health Data Services, adding API permissions to the FHIR service is optional because the FHIR service supports both user delegated permission and application permission. You can choose to add permissions for the FHIR service if your application scenario requires application permission, which is used when the application runs without a signed-in user. If you want to add permissions for the FHIR service, search for **Azure API for FHIR** under **APIs my organization** uses, and then select the required permissions.
+If you're using Azure Health Data Services, adding API permissions to the FHIR service is optional because the FHIR service supports both user-delegated permission and application permission. You can choose to add permissions for the FHIR service if your application scenario requires application permission, which is used when the application runs without a signed-in user. If you want to add permissions for the FHIR service, search for **Azure Healthcare APIs** under **APIs my organization** uses, and then select the required permissions.
 
 
 The following steps are required for the DICOM service.
@@ -103,7 +103,7 @@ The following steps are required for the DICOM service.
 
 >[!NOTE]
 >Use `grant_type` of `client_credentials` when getting an access token for the FHIR service by using tools such as REST Client. For more information, see [Accessing Azure Health Data Services using the REST Client Extension in Visual Studio Code](./fhir/using-rest-client.md).
->>Use `grant_type` of `client_credentials` or `authentication_code` when getting an access token for the DICOM service. For more information, see [Using DICOM with cURL](dicom/dicomweb-standard-apis-curl.md).
+>Use `grant_type` of `client_credentials` or `authentication_code` when getting an access token for the DICOM service. For more information, see [Using DICOM with cURL](dicom/dicomweb-standard-apis-curl.md).
 
 ## Next step
 
