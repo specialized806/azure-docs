@@ -11,7 +11,7 @@ appliesto:
 #customer intent: As a developer with Azure Cache for Redis Basic, Standard, or Premium instances, I want step-by-step instructions to execute my migration to Azure Managed Redis.
 ---
 
-# Plan execution - Basic, Standard, and Premium tiers
+# Plan migration execution - Basic, Standard, and Premium tiers to Azure Managed Redis
 
 This article provides step-by-step instructions for migration paths. We highly recommend performing the migration during off-business hours, as it will result in a brief connectivity blip similar to behavior during regular maintenance operations.
 
@@ -23,7 +23,7 @@ Once you have identified the appropriate Azure Managed Redis SKU, update your de
 
 ## Step 2: Create a new Azure Managed Redis instance
 
-1. Use the [SKU mapping table](migrate-basic-standard-premium-understand.md#choose-the-right-azure-managed-redis-size-and-sku) to select the right size and performance tier.
+1. Use the [SKU mapping table](migrate-basic-standard-premium-understand.md#choose-the-right-azure-managed-redis-size-and-sku) to select the right size (same size or bigger than the existing cache) and performance tier.
 1. Create the instance by following the [Quickstart: Create an Azure Managed Redis Instance](../quickstart-create-managed-redis.md).
 
 > [!TIP]
@@ -45,7 +45,6 @@ Only supported for Premium tier. Provides a point-in-time snapshot of your data.
 
 Steps:
 
-1. Create a new Azure Managed Redis instance that is the same size or bigger than the existing cache.
 1. Export the RDB file from the existing Azure Cache for Redis instance using the [export instructions](../../azure-cache-for-redis/cache-how-to-import-export-data.md#export) or the [PowerShell Export cmdlet](/powershell/module/az.rediscache/export-azrediscache).
 1. Import the RDB file into the new Azure Managed Redis instance using the [import instructions](../how-to-import-export-data.md) or the PowerShell Import cmdlet.
 1. Proceed to [Step 4: Update your application](#step-4-update-your-application).
@@ -59,7 +58,6 @@ Best when you need zero data loss and can tolerate running two caches temporaril
 
 Steps:
 
-1. Create a new Azure Managed Redis instance that is the same size or bigger than the existing cache.
 1. Modify your application code to write to both the existing cache and the new Azure Managed Redis instance.
 1. Continue reading data from the existing cache until the new instance is sufficiently populated.
 1. Update the application code to read and write from the new instance only.
@@ -75,7 +73,6 @@ RIOT provides a way to migrate content from Enterprise to Azure Managed Redis. F
 Steps:
 
 1. Create a VM in the same region as the existing cache. If your dataset is large, choose a powerful VM to reduce copying time.
-1. Create a new Azure Managed Redis instance.
 1. Flush data from the new cache to ensure it's empty. **Don't flush the source cache.**
 1. Copy data from the source cache to the new Azure Managed Redis instance.
 1. Proceed to [Step 4: Update your application](#step-4-update-your-application).

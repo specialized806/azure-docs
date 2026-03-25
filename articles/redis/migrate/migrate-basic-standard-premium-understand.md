@@ -11,7 +11,7 @@ appliesto:
 #customer intent: As a developer with Azure Cache for Redis Basic, Standard, or Premium instances, I want to understand the differences before migrating to Azure Managed Redis.
 ---
 
-# Understand the differences - Basic, Standard, and Premium tiers
+# Understand the differences - Basic, Standard, and Premium tiers versus Azure Managed Redis
 
 Before migrating, review the key differences between Azure Cache for Redis and Azure Managed Redis so that you can plan effectively.
 
@@ -57,7 +57,7 @@ Here are the important differences to be aware of when moving from Basic, Standa
 
 - **Keyspace notifications.** Keyspace notifications are supported in Azure Cache for Redis but aren't currently available in Azure Managed Redis.
 
-- **Reboot.** Azure Cache for Redis supports manual reboot of cache nodes. This operation isn't available in Azure Managed Redis, which manages node operations automatically. If you use Reboot to flush data from your cache, then Azure Managed Redis offers Flush as a management operation. Azure Managed Redis will soon offer APIs to simulate maintenance events for testing the resilience of your applications.
+- **Reboot.** Azure Cache for Redis supports manual reboot of cache nodes. This operation isn't available in Azure Managed Redis, which manages node operations automatically. If you use Reboot to flush data from your cache, then Azure Managed Redis offers Flush as a management operation. Azure Managed Redis APIs to simulate maintenance events for testing the resilience of your applications are on the roadmap.
 
 ## Key differences for client applications
 

@@ -11,9 +11,9 @@ appliesto:
 #customer intent: As a developer with Azure Cache for Redis Enterprise instances, I want to understand the differences before migrating to Azure Managed Redis.
 ---
 
-# Understand the differences - Redis Enterprise
+# Understand the differences - Azure Cache for Redis Enterprise versus Azure Managed Redis
 
-Azure Managed Redis is built on the same Redis Enterprise software stack as Azure Cache for Redis Enterprise. Because the core software is the same, your existing Enterprise applications require minimal changes — primarily updating connection credentials and hostname. However, please read the following differences carefully as Azure Managed Redis has a different SKU structure and high availability configuration.
+Azure Managed Redis is built on the same core Redis Enterprise software stack as Azure Cache for Redis Enterprise, but with a simplified SKU structure. Because the core software is the same, your existing Enterprise applications require minimal changes — primarily updating connection credentials and hostname. However, please read the following differences carefully as Azure Managed Redis has a different SKU structure and high availability configuration.
 
 ## Key feature differences
 

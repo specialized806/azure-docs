@@ -96,13 +96,13 @@ Update your application's connection configuration to point to the new Azure Man
 
 Use these steps if you have a set of geo-replicated Redis Enterprise caches that you want to migrate to Azure Managed Redis.
 
-1. Identify the appropriate Azure Managed Redis SKU using the ListSKUForScaling command `az redisenterprise list-skus-for-scaling --resource-group --cluster-name` and add an appropriate resource tag on all Redis Enterprise caches `amr-migration-data-preserve=False` or `amr-migration-data-preserve=True` based on whether you need data to be preserved during migration or not.
+1. Identify the appropriate Azure Managed Redis SKU using the `list-skus-for-scaling` command in the Azure CLI: `az redisenterprise list-skus-for-scaling --resource-group --cluster-name`. 
 1. Ensure that all Redis Enterprise caches in your geo-replication group are the same SKU and size.
-1. Create new Azure Managed Redis instance and add it to the geo-replication group which contains the Redis Enterprise instances that you wish to migrate.
+1. Create a new Azure Managed Redis instance and during creation, add it to the geo-replication group which contains the Redis Enterprise instances that you wish to migrate.
 1. If you use private endpoint, then provision a new private DNSZone for `*.redis.azure.net` in the same virtual network and create a new private endpoint for this new Azure Managed Redis instance.
 1. Verify that the new Azure Managed Redis instance is accessible and update your application to include the new Azure Managed Redis endpoint.
 1. Once Azure Managed Redis instance has replicated all the dataset, remove one Redis Enterprise instance from the geo-replicated group.
-1. Repeat the above spets for every remaining Redis Enterprise cache in your geo-replication group.
+1. Repeat the preceding steps for every remaining Redis Enterprise cache in your geo-replication group.
 
 ### Limitations/callouts
 1. Once an Azure Managed Redis instance is added to an existing geo-replication group of Redis Enterprise instances, you cannot add new Redis Enterprise instances to that geo-replication group. You can only add Azure Managed Redis and only remove Redis Enterprise instances.
