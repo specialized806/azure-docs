@@ -6,7 +6,7 @@ manager: timlt
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: how-to
-ms.date: 03/24/2026
+ms.date: 03/25/2026
 ms.author: sedusch
 ms.custom:
   - subject-rbac-steps
@@ -243,7 +243,7 @@ Before you start the SAP Software Provisioning Manager (SWPM), you need to mount
 
 ![Windows logo.][Logo_Windows] Windows
 
-```bash
+```cmd
 # C:\Program Files\SAP\hostctrl\exe\sapacext.exe -a ifup -i <network interface> -h <virtual hostname or IP address> -n <subnet mask>
 C:\Program Files\SAP\hostctrl\exe\sapacext.exe -a ifup -i "Ethernet 3" -h ah1-ascs -n 255.255.255.128
 ```
@@ -370,7 +370,7 @@ Before you start SWPM, you need to mount the IP address of the virtual host name
 
 ![Windows logo.][Logo_Windows] Windows
 
-```bash
+```cmd
 # C:\Program Files\SAP\hostctrl\exe\sapacext.exe -a ifup -i <network interface> -h <virtual hostname or IP address> -n <subnet mask>
 C:\Program Files\SAP\hostctrl\exe\sapacext.exe -a ifup -i "Ethernet 3" -h ah1-di-0 -n 255.255.255.128
 ```
@@ -399,7 +399,7 @@ Back up SYSTEMDB and all tenant databases before you try to copy a tenant, move 
 
 ### Microsoft SQL Server
 
-The following examples assume that you install the SAP NetWeaver system with SID *AS1*. The virtual host names are:
+The following examples assume that you install the SAP NetWeaver system with SID **AS1**. The virtual host names are:
 
 * *as1-db* for the SQL Server instance that the SAP NetWeaver system uses
 * *as1-ascs* for SAP NetWeaver ASCS
@@ -409,7 +409,7 @@ The following examples assume that you install the SAP NetWeaver system with SID
 
 Before you start SWPM, you need to mount the IP address of the virtual host name of ASCS. We recommend using SAPACEXT. If you mount the IP address by using SAPACEXT, make sure that you remount the IP address after a reboot.
 
-```bash
+```cmd
 # C:\Program Files\SAP\hostctrl\exe\sapacext.exe -a ifup -i <network interface> -h <virtual hostname or IP address> -n <subnet mask>
 C:\Program Files\SAP\hostctrl\exe\sapacext.exe -a ifup -i "Ethernet 3" -h as1-ascs -n 255.255.255.128
 ```
@@ -420,7 +420,7 @@ Run SWPM. For **ASCS Instance Host Name**, use **as1-ascs**.
 
 Before you start SWPM, you need to add the IP address of the virtual host name of the database to a network interface. We recommend using SAPACEXT. If you mount the IP address by using SAPACEXT, make sure that you remount the IP address after a reboot.
 
-```bash
+```cmd
 # C:\Program Files\SAP\hostctrl\exe\sapacext.exe -a ifup -i <network interface> -h <virtual hostname or IP address> -n <subnet mask>
 C:\Program Files\SAP\hostctrl\exe\sapacext.exe -a ifup -i "Ethernet 3" -h as1-db -n 255.255.255.128
 ```
@@ -433,7 +433,7 @@ Make sure that the user *NT AUTHORITY\SYSTEM* has access to the SQL Server insta
 
 Before you start SWPM, you need to mount the IP address of the virtual host name of the application server. We recommend using SAPACEXT. If you mount the IP address by using SAPACEXT, make sure that you remount the IP address after a reboot.
 
-```bash
+```cmd
 # C:\Program Files\SAP\hostctrl\exe\sapacext.exe -a ifup -i <network interface> -h <virtual hostname or IP address> -n <subnet mask>
 C:\Program Files\SAP\hostctrl\exe\sapacext.exe -a ifup -i "Ethernet 3" -h as1-di-0 -n 255.255.255.128
 ```
@@ -448,17 +448,15 @@ In the **Primary Application Server Instance** dialog, for **PAS Instance Host N
 
   * **Error**:
 
-    ```
-    [Microsoft][ODBC SQL Server Driver][SQL Server]The SELECT permission was denied on the object 'log_shipping_primary_databases', database 'msdb', schema 'dbo'. [SOAPFaultException]
-
-    The SELECT permission was denied on the object 'log_shipping_primary_databases', database 'msdb', schema 'dbo'.
-    ```
+    > [Microsoft][ODBC SQL Server Driver][SQL Server]The SELECT permission was denied on the object 'log_shipping_primary_databases', database 'msdb', schema 'dbo'. [SOAPFaultException]
+    >
+    > The SELECT permission was denied on the object 'log_shipping_primary_databases', database 'msdb', schema 'dbo'.
 
    * **Solution**: Make sure that *NT AUTHORITY\SYSTEM* can access the SQL Server instance. See SAP Note [2562184].
 
 ### Errors and warnings during instance validation
 
-* An exception was raised in the validation of *hdbuserstore*. See Log Viewer.
+* An exception was raised in the validation of *hdbuserstore*. See **Log Viewer**.
 
   * **Caused by**: `com.sap.nw.lm.aci.monitor.api.validation`
 
