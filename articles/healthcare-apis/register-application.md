@@ -1,29 +1,27 @@
 ---
 title: Register a client application in Microsoft Entra ID for the Azure Health Data Services
-description: How to register a client application in the Microsoft Entra ID and add a secret and API permissions to the Azure Health Data Services
+description: "Learn how to register a client application in Microsoft Entra ID for Azure Health Data Services. Add secrets, certificates, and API permissions to enable secure access."
 author: chachachachami
 ms.service: azure-health-data-services
-ms.subservice: fhir
 ms.topic: tutorial
-ms.date: 03/16/2026
+ms.date: 03/24/2026
 ms.author: chrupa
-ms.reviewer: v-catheribun
 ms.custom: sfi-image-blocked
 ---
 
-# Register a client application in Microsoft Entra ID
+# Register a client application in Microsoft Entra ID for Azure Health Data Services
 
-In this article, you learn how to register a client application in Microsoft Entra ID to access Azure Health Data Services. For more information, see [Register an application with the Microsoft identity platform](../active-directory/develop/quickstart-register-app.md).
+In this article, you learn how to register a client application in Microsoft Entra ID to access Azure Health Data Services. Registering a client application enables you to authenticate and securely connect to FHIR and DICOM services. For more information, see [Register an application with the Microsoft identity platform](../active-directory/develop/quickstart-register-app.md).
 
 ## Register a new application
 
 1. In the [Azure portal](https://portal.azure.com), select **Microsoft Entra ID**.
 2. Select **App registrations**.
-    :::image type="content" source="media/register-application-new-app-registration.png" alt-text="Screen shot of new app registration window." lightbox="media/register-application-new-app-registration.png":::
+    :::image type="content" source="media/register-application-new-app-registration.png" alt-text="Screenshot of the new app registration window in Microsoft Entra ID." lightbox="media/register-application-new-app-registration.png":::
 
 3. Select **New registration**.
 4. For Supported account types, select **Accounts in this organization directory only**. Don't change the other options.
-   :::image type="content" source="media/register-application-account-types.png" alt-text="Screenshot of new registration account options." lightbox="media/register-application-account-types.png":::
+   :::image type="content" source="media/register-application-account-types.png" alt-text="Screenshot of the new registration account options for supported account types." lightbox="media/register-application-account-types.png":::
 
 5. Select **Register**.
 
@@ -31,7 +29,7 @@ In this article, you learn how to register a client application in Microsoft Ent
 
 After registering a new application, you can find the application (client) ID and Directory (tenant) ID in the **Overview** menu option. Make a note of the values for use later.
 
-:::image type="content" source="media/register-application-app-overview.png" alt-text="Screenshot of client ID overview panel." lightbox="media/register-application-app-overview.png":::
+:::image type="content" source="media/register-application-app-overview.png" alt-text="Screenshot of the application client ID and tenant ID overview panel in Microsoft Entra ID." lightbox="media/register-application-app-overview.png":::
 
 
 ## Authentication setting: confidential vs. public
@@ -40,7 +38,7 @@ Select **Authentication** and the **Settings** tab to review the settings. The d
 
 If you keep this default value, the application registration is a **confidential client application** and requires a certificate or secret.
 
-:::image type="content" source="media/register-application-allow-public-client-flows.png" alt-text="Screenshot of confidential client application."::: ](media/register-application-allow-public-client-flows.png#lightbox)
+:::image type="content" source="media/register-application-allow-public-client-flows.png" alt-text="Screenshot of the authentication settings for a confidential client application."::: ](media/register-application-allow-public-client-flows.png#lightbox)
 
 
 If you enable the **Allow public client flows** option, the application registration is a public client application and doesn't require a certificate or secret. Public client applications are useful when you want to use the OAuth 2.0 authorization protocol or features as described in [Public client and confidential client applications](/entra/identity-platform/msal-client-applications#when-should-you-enable-a-public-client-flow-in-your-app-registration).
@@ -57,7 +55,7 @@ For example, when you choose **Mobile and desktop applications**, you select the
 
 
 
-## Certificates and secrets
+## Certificates and client secrets
 
 To create a new client secret, use the following steps.
 
@@ -66,10 +64,10 @@ To create a new client secret, use the following steps.
 1. In **Add a client secret**, enter a **Description**.
 1. Accept the recommended 180-day value in the **Expires** field, or select a different value from the list.
 1. Select **Add**.
-    :::image type="content" source="media/register-application-new-client-secret.png" alt-text="Screenshot of certificates and secrets." lightbox="media/register-application-new-client-secret.png":::
+    :::image type="content" source="media/register-application-new-client-secret.png" alt-text="Screenshot of the certificates and client secrets page with new client secret options." lightbox="media/register-application-new-client-secret.png":::
 
 1. Copy the secret value by selecting the copy button next to the **Value**.
-    :::image type="content" source="media/register-application-copy-client-secret.png" alt-text="Screenshot of copy client secret." lightbox="media/register-application-copy-client-secret.png":::
+    :::image type="content" source="media/register-application-copy-client-secret.png" alt-text="Screenshot of the client secret value with the copy button highlighted." lightbox="media/register-application-copy-client-secret.png":::
 
 
 >[!NOTE]
@@ -78,9 +76,9 @@ To create a new client secret, use the following steps.
 
 Optionally, you can upload a certificate (public key) and use the Certificate ID, a GUID value associated with the certificate. For testing purposes, you can create a self-signed certificate by using tools such as the PowerShell command `New-SelfSignedCertificate`, and then export the certificate from the certificate store. For more information, see [Create a self-signed public certificate to authenticate your application](/entra/identity-platform/howto-create-self-signed-certificate)  
 
-## API permissions
+## API permissions for DICOM and FHIR services
 
-The following steps are required for the DICOM service, but optional for the FHIR service. In addition, you manage user access permissions or role assignments for Azure Health Data Services through RBAC. For more information, see [Configure Azure RBAC for Azure Health Data Services](configure-azure-rbac.md).
+The following steps are required for the DICOM service, but optional for the FHIR service. 
 
 1. Select **API permissions**.
 
@@ -104,8 +102,7 @@ The following steps are required for the DICOM service, but optional for the FHI
 >Use `grant_type` of `client_credentials` when getting an access token for the FHIR service by using tools such as REST Client. For more information, see [Accessing Azure Health Data Services using the REST Client Extension in Visual Studio Code](./fhir/using-rest-client.md).
 >>Use `grant_type` of `client_credentials` or `authentication_code` when getting an access token for the DICOM service. For more information, see [Using DICOM with cURL](dicom/dicomweb-standard-apis-curl.md).
 
-## Next steps
+## Next step
 
->[!NEXT STEPS]
-> - [Grant permissions to the client application](configure-azure-rbac.md)
-> - [Access Azure Health Data Services](access-healthcare-apis.md)
+> [!div class="nextstepaction"]
+> [Configure Azure RBAC for Azure Health Data Services](configure-azure-rbac.md)
