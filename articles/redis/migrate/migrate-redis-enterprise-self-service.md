@@ -24,7 +24,7 @@ We highly recommend performing the migration during off-business hours, as it wi
 
 ### Step 1: Update deployment scripts
 
-Once you have identified the appropriate Azure Managed Redis SKU, update your deployment scripts (such as ARM templates, Bicep files, or Terraform configurations) to provision Azure Managed Redis instead of Azure Cache for Redis Enterprise. For guidance, see [Update deployment scripts for Azure Managed Redis](<!-- TODO: Add link -->).
+Once you have identified the appropriate Azure Managed Redis SKU, update your deployment scripts (such as ARM templates, Bicep files, or Terraform configurations) to provision Azure Managed Redis instead of Azure Cache for Redis Enterprise.
 
 ### Step 2: Create a new Azure Managed Redis instance
 
@@ -99,7 +99,7 @@ Use these steps if you have a set of geo-replicated Redis Enterprise caches that
 1. Identify the appropriate Azure Managed Redis SKU using the `list-skus-for-scaling` command in the Azure CLI: `az redisenterprise list-skus-for-scaling --resource-group --cluster-name`. 
 1. Ensure that all Redis Enterprise caches in your geo-replication group are the same SKU and size.
 1. Create a new Azure Managed Redis instance and during creation, add it to the geo-replication group which contains the Redis Enterprise instances that you wish to migrate.
-1. If you use private endpoint, then provision a new private DNSZone for `*.redis.azure.net` in the same virtual network and create a new private endpoint for this new Azure Managed Redis instance.
+1. If you use private endpoint, then provision a new private DNS Zone for `*.redis.azure.net` in the same virtual network and create a new private endpoint for this new Azure Managed Redis instance.
 1. Verify that the new Azure Managed Redis instance is accessible and update your application to include the new Azure Managed Redis endpoint.
 1. Once Azure Managed Redis instance has replicated all the dataset, remove one Redis Enterprise instance from the geo-replicated group.
 1. Repeat the preceding steps for every remaining Redis Enterprise cache in your geo-replication group.
