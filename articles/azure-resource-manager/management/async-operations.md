@@ -213,7 +213,7 @@ GET
 https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.Storage/operations/{operation-id}?monitor=true&api-version=2019-06-01
 ```
 
-If the request is still running, you receive a status code 202. If the request is completed, your receive a status code 200. The body of the response contains the properties of the storage account that was created.
+If the request is still running, you receive a status code 202. If the request is completed, you receive a status code 200. The body of the response contains the properties of the storage account that was created.
 
 ## Next steps
 
