@@ -16,29 +16,31 @@ In this article, you learn how to register a client application in Microsoft Ent
 ## Register a new application
 
 1. In the [Azure portal](https://portal.azure.com), select **Microsoft Entra ID**.
-2. Select **App registrations**.
+1. Select **App registrations**.
+
     :::image type="content" source="media/register-application-new-app-registration.png" alt-text="Screenshot of the new app registration window in Microsoft Entra ID." lightbox="media/register-application-new-app-registration.png":::
 
-3. Select **New registration**.
-4. For Supported account types, select **Accounts in this organization directory only**. Don't change the other options.
+1. Select **New registration**.
+1. For Supported account types, select **Accounts in this organization directory only**. Don't change the other options.
+
    :::image type="content" source="media/register-application-account-types.png" alt-text="Screenshot of the new registration account options for supported account types." lightbox="media/register-application-account-types.png":::
 
-5. Select **Register**.
+1. Select **Register**.
 
 ## Application ID (client ID)
 
-After registering a new application, you can find the application (client) ID and Directory (tenant) ID in the **Overview** menu option. Make a note of the values for use later.
+After registering a new application, you can find the **Application (client) ID** and **Directory (tenant) ID** in the **Overview** page. Make a note of the values for use later.
 
 :::image type="content" source="media/register-application-app-overview.png" alt-text="Screenshot of the application client ID and tenant ID overview panel in Microsoft Entra ID." lightbox="media/register-application-app-overview.png":::
 
 
 ## Authentication setting: confidential vs. public
 
-Select **Authentication** and the **Settings** tab to review the settings. The default value for **Allow public client flows** is **Disabled**.
+Select **Authentication** and the **Settings** tab. The default value for **Allow public client flows** is **Disabled**.
 
 If you keep this default value, the application registration is a **confidential client application** and requires a certificate or secret.
 
-:::image type="content" source="media/register-application-allow-public-client-flows.png" alt-text="Screenshot of the authentication settings for a confidential client application."::: ](media/register-application-allow-public-client-flows.png#lightbox)
+:::image type="content" source="media/register-application-allow-public-client-flows.png" alt-text="Screenshot of the authentication settings for a confidential client application." lightbox="media/register-application-allow-public-client-flows.png":::
 
 
 If you enable the **Allow public client flows** option, the application registration is a public client application and doesn't require a certificate or secret. Public client applications are useful when you want to use the OAuth 2.0 authorization protocol or features as described in [Public client and confidential client applications](/entra/identity-platform/msal-client-applications#when-should-you-enable-a-public-client-flow-in-your-app-registration).
@@ -51,9 +53,6 @@ For tools that require a redirect URI, such as [OAuth 2.0](/entra/identity-platf
 For example, when you choose **Mobile and desktop applications**, you select the redirect URI for that platform.
 
 :::image type="content" source="media/register-application-add-redirect-uri-mobile-desktop-platform.png" alt-text="Screenshot of configure other platform." lightbox="media/register-application-add-redirect-uri-mobile-desktop-platform.png":::
-
-
-
 
 ## Certificates and client secrets
 
@@ -78,13 +77,16 @@ Optionally, you can upload a certificate (public key) and use the Certificate ID
 
 ## API permissions for DICOM and FHIR services
 
-The following steps are required for the DICOM service, but optional for the FHIR service. 
+If you're using Azure Health Data Services, adding API permissions to the FHIR service is optional because the FHIR service supports both user delegated permission and application permission. You can choose to add permissions for the FHIR service if your application scenario requires application permission, which is used when the application runs without a signed-in user. If you want to add permissions for the FHIR service, search for **Azure API for FHIR** under **APIs my organization** uses, and then select the required permissions.
+
+
+The following steps are required for the DICOM service.
 
 1. Select **API permissions**.
 
    :::image type="content" source="dicom/media/dicom-add-apis-permissions.png" alt-text="Screenshot of API permission page with Add a permission button highlighted." lightbox="dicom/media/dicom-add-apis-permissions.png":::
 
-2. Select **Add a permission**.
+1. Select **Add a permission**.
 
    If you're using Azure Health Data Services, add a permission to the DICOM service by searching for **Azure API for DICOM** under **APIs my organization** uses. 
 
@@ -94,9 +96,10 @@ The following steps are required for the DICOM service, but optional for the FHI
 
    If you're referencing a different resource application, select your DICOM API Resource Application Registration that you created previously under **APIs my organization**.
 
-3. Select scopes (permissions) that the confidential client application asks for on behalf of a user. Select **Dicom.ReadWrite**, and then select **Add permissions**.
+1. Select scopes (permissions) that the confidential client application asks for on behalf of a user. Select **Dicom.ReadWrite**, and then select **Add permissions**.
 
-   :::image type="content" source="dicom/media/dicom-select-scope.png" alt-text="Screenshot of scopes (permissions) that the client application will ask for on behalf of a user." lightbox="dicom/media/dicom-select-scope.png":::
+   :::image type="content" source="dicom/media/dicom-select-scope.png" alt-text="Screenshot of scopes (permissions) that the client application asks for on behalf of a user." lightbox="dicom/media/dicom-select-scope.png":::
+
 
 >[!NOTE]
 >Use `grant_type` of `client_credentials` when getting an access token for the FHIR service by using tools such as REST Client. For more information, see [Accessing Azure Health Data Services using the REST Client Extension in Visual Studio Code](./fhir/using-rest-client.md).
@@ -106,3 +109,6 @@ The following steps are required for the DICOM service, but optional for the FHI
 
 > [!div class="nextstepaction"]
 > [Configure Azure RBAC for Azure Health Data Services](configure-azure-rbac.md)
+
+
+[!INCLUDE [FHIR and DICOM trademark statements](./includes/healthcare-apis-fhir-dicom-trademark.md)]
