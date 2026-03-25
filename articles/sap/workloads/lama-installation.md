@@ -63,7 +63,7 @@ Follow these steps to create a service principal for the SAP LaMa connector for 
 1. Go to the [Azure portal](https://portal.azure.com).
 1. Search for or open **Microsoft Entra ID**.
 1. In the service menu, select **App registrations**.
-   1. Select **New registration**.
+   - Select **New registration**.
 1. Under **Register an application**, enter a name, then select **Register**.
 1. Select the new app.
 1. In the service menu, expand **Manage**, then select **Certificates & secrets**.
