@@ -154,7 +154,7 @@ You can use managed identities with Windows or Linux. Select your operating syst
 
 The enablement steps described here are for Azure VMs. If you want to enable a managed identity on non-Azure Windows machines (on-premises or other cloud), you must [onboard them to Azure Arc and assign a managed identity](/azure/cloud-adoption-framework/scenarios/hybrid/arc-enabled-servers/eslz-identity-and-access-management). You can also authenticate by using an application identity instead of using a managed identity on a VM or Windows device.
 
-### Enable managed identity on an Azure VM
+### Enable a managed identity on an Azure VM
 
 The managed identity can be either [system assigned or user assigned](/entra/identity/managed-identities-azure-resources/overview#differences-between-system-assigned-and-user-assigned-managed-identities). If the VM has both system-assigned and user-assigned managed identities, Azure defaults to system assigned. Assign only one for best results.
 
@@ -190,7 +190,7 @@ Follow these steps to assign the built-in Azure RBAC role [Storage File Data SMB
 
 1. Under **Members**, select **+ Select members**.
 
-1. For Azure VMs or Azure Arc identities, select the managed identity for your VM or Windows device. For application identities, search for and select the application identity. Click **Select**.
+1. For Azure VMs or Azure Arc identities, select the managed identity for your VM or Windows device. For application identities, search for and select the application identity. Choose **Select**.
 
 1. Verify that the managed identity or application identity is listed under **Members**. Select **Next**.
 
@@ -210,7 +210,7 @@ If you created a user-assigned managed identity, follow these steps to add it to
 
 To configure a managed identity on a Linux VM running in Azure, follow these steps. Your VM must be running Azure Linux 3.0, Ubuntu 22.04, Ubuntu 24.04, RHEL 9.6+, or SLES 15 SP6+.
 
-### Enable managed identity on an Azure VM
+### Enable a managed identity on an Azure VM
 
 The managed identity can be either [system assigned or user assigned](/entra/identity/managed-identities-azure-resources/overview#differences-between-system-assigned-and-user-assigned-managed-identities). If the VM has both system-assigned and user-assigned managed identities, Azure defaults to system assigned. Assign only one for best results.
 
@@ -240,7 +240,7 @@ The managed identity can be either [system assigned or user assigned](/entra/ide
 
 1. Under **Members**, select **+ Select members**. The **Select managed identities** pane appears.
 
-1. Under **Managed identity**, select the managed identity, and then click **Select**.
+1. Under **Managed identity**, select the managed identity, and then choose **Select**.
 
 1. Verify that the managed identity is listed under **Members**. Select **Next**.
 
@@ -258,7 +258,7 @@ If you created a user-assigned managed identity, follow these steps to add it to
 
 ## Prepare your client to authenticate by using a managed identity
 
-Follow these steps to prepare your system to mount the file share by using managed identity authentication. The steps are different for Windows and Linux clients. Clients shouldn't be domain joined.
+The steps for preparing your system to mount the file share by using managed identity authentication are different for Windows and Linux clients. Clients shouldn't be domain joined.
 
 ::: zone pivot="windows"
 

@@ -19,7 +19,7 @@ After you enable an identity source for your storage account, you must configure
 
 ## Choose how to assign share-level permissions
 
-You configure share-level permissions on Azure file shares for Microsoft Entra users, groups, or service principals. Directory and file-level permissions are enforced through Windows access control lists (ACLs). Assign share-level permissions to the Entra identity that represents the user, group, or service principal needing access.
+You configure share-level permissions on Azure file shares for Microsoft Entra users, groups, or service principals. Directory-level and file-level permissions are enforced through Windows access control lists (ACLs). Assign share-level permissions to the Entra identity that represents the user, group, or service principal needing access.
 
 Most users assign share-level permissions to specific Entra users or groups and use Windows ACLs for granular access control at the directory and file levels. This configuration is the most secure.
 
@@ -45,8 +45,8 @@ Several built-in Azure role-based access control (RBAC) roles are intended for u
 |---------|---------|
 |[Storage File Data SMB Share Reader](../../role-based-access-control/built-in-roles.md#storage-file-data-smb-share-reader) | Grants read access to files and directories in Azure Files. This role is similar to a file share ACL of *read* on Windows file servers. |
 |[Storage File Data SMB Share Contributor](../../role-based-access-control/built-in-roles.md#storage-file-data-smb-share-contributor) | Grants read, write, and delete access on files and directories in Azure Files.         |
-|[Storage File Data SMB Share Elevated Contributor](../../role-based-access-control/built-in-roles.md#storage-file-data-smb-share-elevated-contributor) | Grants read, write, delete, and modify-ACL access on files and directories in Azure Files. This role is similar to a file share ACL of *change* on Windows file servers.         |
-|[Storage File Data Privileged Contributor](../../role-based-access-control/built-in-roles/storage.md#storage-file-data-privileged-contributor) | Grants read, write, delete, and modify-ACL access in Azure Files by overriding existing ACLs. |
+|[Storage File Data SMB Share Elevated Contributor](../../role-based-access-control/built-in-roles.md#storage-file-data-smb-share-elevated-contributor) | Grants read, write, delete, and modify-ACLs access on files and directories in Azure Files. This role is similar to a file share ACL of *change* on Windows file servers.         |
+|[Storage File Data Privileged Contributor](../../role-based-access-control/built-in-roles/storage.md#storage-file-data-privileged-contributor) | Grants read, write, delete, and modify-ACLs access in Azure Files by overriding existing ACLs. |
 |[Storage File Data Privileged Reader](../../role-based-access-control/built-in-roles/storage.md#storage-file-data-privileged-reader) | Grants read access in Azure Files by overriding existing ACLs. |
 |[Storage File Data SMB Admin](../../role-based-access-control/built-in-roles/storage.md#storage-file-data-smb-admin) | Grants admin access equivalent to a storage account key for users over SMB. |
 |[Storage File Data SMB Take Ownership](../../role-based-access-control/built-in-roles/storage.md#storage-file-data-smb-take-ownership) | Allows users to assume ownership of a file/directory. |
@@ -70,7 +70,7 @@ For share-level permissions to work, you must take the following actions:
 - Add Active Directory-synced groups to the RBAC role so they can access your storage account.
 
 > [!TIP]
-> Optional: To migrate SMB server share-level permissions to RBAC permissions, use the `Move-OnPremSharePermissionsToAzureFileShare` PowerShell cmdlet to migrate directory and file-level permissions from on-premises to Azure. This cmdlet evaluates the groups of a particular on-premises file share. It then writes the appropriate users and groups to the Azure file share by using the built-in RBAC roles. You provide the information for the on-premises share and the Azure file share when invoking the cmdlet.
+> Optional: To migrate SMB server share-level permissions to RBAC permissions, use the `Move-OnPremSharePermissionsToAzureFileShare` PowerShell cmdlet to migrate directory-level and file-level permissions from on-premises to Azure. This cmdlet evaluates the groups of a particular on-premises file share. It then writes the appropriate users and groups to the Azure file share by using the built-in RBAC roles. You provide the information for the on-premises share and the Azure file share when invoking the cmdlet.
 
 To grant share-level permissions, use the Azure portal, Azure PowerShell, or the Azure CLI to assign one of the built-in roles to the Entra ID identity of a user.
 
@@ -204,7 +204,7 @@ Because of this process, authorization is based on the groups listed in the Kerb
 
 ## Next step
 
-After you assign share-level permissions, you can take ownership of the file share and configure directory and file-level permissions. Wait for share-level permissions to propagate first.
+After you assign share-level permissions, you can take ownership of the file share and configure directory-level and file-level permissions. Wait for share-level permissions to propagate first.
 
 > [!div class="nextstepaction"]
-> [Configure directory and file-level permissions for Azure file shares](storage-files-identity-configure-file-level-permissions.md)
+> [Configure directory-level and file-level permissions for Azure file shares](storage-files-identity-configure-file-level-permissions.md)

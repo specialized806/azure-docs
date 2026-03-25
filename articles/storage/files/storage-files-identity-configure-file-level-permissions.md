@@ -9,7 +9,7 @@ ms.author: kendownie
 # Customer intent: "As a system administrator, I want to configure directory-level and file-level permissions for SMB Azure file shares by using Windows ACLs, so that I can ensure granular access control and enhance security for users accessing shared files."
 ---
 
-# Configure directory and file-level permissions for Azure file shares
+# Configure directory-level and file-level permissions for Azure file shares
 
 **Applies to:** :heavy_check_mark: SMB file shares
 
@@ -20,7 +20,7 @@ Before you can configure Windows ACLs, you need to mount the file share with adm
 > [!IMPORTANT]
 > To configure Windows ACLs for [hybrid identities](/entra/identity/hybrid/whatis-hybrid-identity), you need a client machine running Windows that has unimpeded network connectivity to the domain controller.
 >
-> If you authenticate with Azure Files by using Active Directory Domain Services (AD DS) or Microsoft Entra Kerberos for hybrid identities, you need unimpeded network connectivity to the on-premises Active Directory. If you use Microsoft Entra Domain Services, the client machine must have unimpeded network connectivity to the domain controllers for the domain that's Microsoft Entra Domain Services manages. These domain controllers are located in Azure.
+> If you authenticate with Azure Files by using Active Directory Domain Services (AD DS) or Microsoft Entra Kerberos for hybrid identities, you need unimpeded network connectivity to on-premises Active Directory. If you use Microsoft Entra Domain Services, the client machine must have unimpeded network connectivity to the domain controllers for the domain that Microsoft Entra Domain Services manages. These domain controllers are located in Azure.
 >
 > For cloud-only identities (preview), there's no dependency on domain controllers, but the client device must be joined to Microsoft Entra ID.
 
@@ -28,7 +28,7 @@ Before you can configure Windows ACLs, you need to mount the file share with adm
 
 Share-level permissions (RBAC) act as a high-level gatekeeper that determines whether a user can access the share. Windows ACLs (NTFS permissions) operate at a more granular level to control what operations the user can do at the directory or file level. You can set Windows ACLs at the root, directory, or file level.
 
-When a user tries to access a file or directory, both share-level and file/directory-level permissions are enforced. If there's a difference between either of them, only the most restrictive one applies.
+When a user tries to access a file or directory, share-level, file-level, and directory-level permissions are enforced. If there are differences among them, only the most restrictive one applies.
 
 For example, if a user has read/write access at the file level, but only read access at a share level, they can only read that file. The same rule applies if the permissions are reversed: if a user has read/write access at the share level, but only read access at the file level, they can still only read the file.
 
@@ -79,7 +79,7 @@ Before you configure Windows ACLs, mount the file share with admin-level access.
 
 - **Use the storage account key (less secure)**: Use your storage account key to mount the file share and then configure ACLs. The storage account key is a sensitive credential. For security reasons, use this option only if you can't use identity-based authentication.
 
-If a user has the **Full Control** ACL and the [Storage File Data SMB Share Elevated Contributor](/azure/role-based-access-control/built-in-roles/storage#storage-file-data-smb-share-elevated-contributor) role (or a custom role with the required permissions), they can configure ACLs without using the Windows permission model for SMB admin or the storage account key.
+If a user has the Full Control ACL and the [Storage File Data SMB Share Elevated Contributor](/azure/role-based-access-control/built-in-roles/storage#storage-file-data-smb-share-elevated-contributor) role (or a custom role with the required permissions), they can configure ACLs without using the Windows permission model for SMB admin or the storage account key.
 
 ### Use the Windows permission model for SMB admin
 
@@ -220,4 +220,4 @@ To configure ACLs by using Windows File Explorer, follow these steps:
 
 ## Next step
 
-After you configure directory and file-level permissions, you can mount the SMB file share on [Windows](storage-how-to-use-files-windows.md) or [Linux](storage-how-to-use-files-linux.md).
+After you configure directory-level and file-level permissions, you can mount the SMB file share on [Windows](storage-how-to-use-files-windows.md) or [Linux](storage-how-to-use-files-linux.md).

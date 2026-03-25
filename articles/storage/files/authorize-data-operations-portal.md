@@ -81,9 +81,9 @@ You can change the authentication method for individual file shares. By default,
 
 1. Select **Browse**.
 
-1. The **Authentication method** shows whether you're currently using the storage account access key or your Entra account to authenticate and authorize file share operations.
+1. **Authentication method** shows whether you're currently using the storage account access key or your Entra account to authenticate and authorize file share operations.
 
-   If you're currently authenticating by using the storage account access key, **Access Key** is specified as the authentication method, as shown in the following image. If you're authenticating by using your Entra account, **Microsoft Entra user account** is specified instead.
+   If you're currently authenticating by using the storage account access key, **Access key** is specified as the authentication method, as shown in the following image. If you're authenticating by using your Entra account, **Microsoft Entra user account** is specified instead.
 
 :::image type="content" source="media/authorize-data-operations-portal/auth-method-access-key.png" alt-text="Screenshot that shows the authentication method set to access key.":::
 

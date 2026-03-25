@@ -15,17 +15,17 @@ ms.custom:
 
 # Access Azure file shares by using Microsoft Entra ID with Azure Files OAuth over REST
 
-:heavy_check_mark: **Applies to:** Classic SMB and NFS file shares created with the Microsoft.Storage resource provider
+:heavy_check_mark: **Applies to:** Classic SMB and NFS file shares created with the `Microsoft.Storage` resource provider
 
-:heavy_multiplication_x: **Doesn't apply to:** File shares created with the Microsoft.FileShares resource provider (preview)
+:heavy_multiplication_x: **Doesn't apply to:** File shares created with the `Microsoft.FileShares` resource provider (preview)
 
 By using Azure Files OAuth over REST, users and applications can get admin-level read and write access to Azure file shares through the [OAuth](https://oauth.net/) authentication protocol. This access method uses Microsoft Entra ID for REST API-based access.
 
-Users, groups, Microsoft services such as Azure portal, and partner services and applications that use REST interfaces can now use OAuth authentication and authorization with a Microsoft Entra account to access data in Azure Files. Azure PowerShell cmdlets and Azure CLI commands that call REST APIs can also use OAuth to access Azure Files.
+Users, groups, Microsoft services such as the Azure portal, and partner services and applications that use REST interfaces can now use OAuth authentication and authorization with a Microsoft Entra account to access data in Azure Files. Azure PowerShell cmdlets and Azure CLI commands that call REST APIs can also use OAuth to access Azure Files.
 
 You must call the REST API by using an explicit header to indicate your intent to use the additional privilege. This requirement also applies to Azure PowerShell and Azure CLI access.
 
-This article explains how to enable admin-level access to Azure file shares for specific [customer use cases](#customer-use-cases). For a more general article on identity-based authentication for end users, see [Overview of Azure Files identity-based authentication](storage-files-active-directory-overview.md).
+This article explains how to enable admin-level access to Azure file shares for specific [customer use cases](#customer-use-cases). For a more general article on identity-based authentication for users, see [Overview of Azure Files identity-based authentication](storage-files-active-directory-overview.md).
 
 ## Limitations
 
@@ -45,7 +45,7 @@ OAuth authentication and authorization enable developers to build applications t
 
 Customers and partners can also enable Microsoft and partner services to configure necessary access securely and transparently to a customer storage account.  
 
-DevOps tools such as the Azure portal, Azure PowerShell, the Azure CLI, AzCopy, and Storage Explorer can manage data by using the user's identity. Using this identity eliminates the need to manage or distribute storage access keys.
+DevOps tools such as the Azure portal, Azure PowerShell, the Azure CLI, AzCopy, and Azure Storage Explorer can manage data by using the user's identity. Using this identity eliminates the need to manage or distribute storage access keys.
 
 ### Managed identities  
 
@@ -80,7 +80,7 @@ These roles are similar to the [Storage File Data SMB Share Reader](../../role-b
 
 - When the user, group, or service principal assigned the Storage File Data Privileged Reader or Storage File Data Privileged Contributor role calls the FileREST data API by using OAuth, the user, group, or the service principal has:
   - **Storage File Data Privileged Reader**: Full read access on all the data in the shares for all the configured storage accounts regardless of the file-level or directory-level NTFS permissions that are set.
-  - **Storage File Data Privileged Contributor**: Full read, write, modify ACLs, and delete access on all the data in the shares for all the configured storage accounts regardless of the file-level or directory-level NTFS permissions that are set.
+  - **Storage File Data Privileged Contributor**: Full read, write, modify-ACLs, and delete access on all the data in the shares for all the configured storage accounts regardless of the file-level or directory-level NTFS permissions that are set.
 
 - When you use these special permissions and roles, the system bypasses any file-level or directory-level permissions and grants access to file share data.
 
@@ -185,7 +185,7 @@ Extensions for Azure PowerShell enable you to sign in and call Azure PowerShell 
 
 You can assign permissions to file data to a Microsoft Entra security principal via Azure RBAC.
 
-## Supported operations
+### Supported operations
 
 The extensions support only operations on file data. Which operations you can call depends on the permissions granted to the Entra security principal with which you signed in to Azure PowerShell.
 
@@ -193,7 +193,7 @@ The storage context with OAuth works only if you call it with the `-EnableFileBa
 
 The storage context with OAuth works only for operations on files and directories, and `Get`/`Set` permissions on Azure file shares. For all other operations on storage account and file shares, you must use the storage account key or SAS token.
 
-## Prerequisites
+### Prerequisites
 
 You need an Azure resource group and a storage account within that resource group. The storage account must be assigned a role that grants explicit permissions to perform data operations against file shares. Make sure that you have the required roles and permissions to access both the management services and data services. For details on the permissions required to call specific Azure Files service operations, see [Permissions for calling data operations](/rest/api/storageservices/authorize-with-azure-active-directory#permissions-for-calling-data-operations).
 
@@ -203,7 +203,7 @@ You also need to install the latest [Az.Storage](https://www.powershellgallery.c
 Install-Module Az.Storage -Repository PsGallery
 ```
 
-## Authorize access to file data
+### Authorize access to file data
 
 To authorize access to file data by using Azure PowerShell, follow these steps:
 
@@ -243,7 +243,7 @@ To authorize access to file data by using Azure PowerShell, follow these steps:
 
 Core Azure CLI commands that ship as part of the CLI support the Azure Files OAuth over REST interface. You can use them to authenticate and authorize file data operations by using Entra credentials.
 
-## Supported operations
+### Supported operations
 
 The commands support operations only on file data. Which operations you can call depends on the permissions granted to the Entra security principal that you use to sign in to the Azure CLI.
 
@@ -251,13 +251,13 @@ OAuth authentication and authorization work only if you call the CLI command by 
 
 All commands under the `az storage file` and `az storage directory` command groups, along with the `az storage share list-handle` and `az storage share close-handle` commands, support OAuth authentication and authorization. For all other operations on storage accounts and file shares, you must use the storage account key or shared access signature (SAS) token.
 
-## Prerequisites
+### Prerequisites
 
 You need an Azure resource group and a storage account within that resource group. The storage account must be assigned a role that grants explicit permissions to perform data operations against file shares. Make sure that you have the required roles and permissions to access both the management services and data services. For details on the permissions required to call specific Azure Files service operations, see [Permissions for calling data operations](/rest/api/storageservices/authorize-with-azure-active-directory#permissions-for-calling-data-operations).
 
 If you haven't already done so, [install the latest version of the Azure CLI](/cli/azure/install-azure-cli).
 
-## Authorize access to file data
+### Authorize access to file data
 
 Follow these steps to authorize access to file data by using the Azure CLI:
 
