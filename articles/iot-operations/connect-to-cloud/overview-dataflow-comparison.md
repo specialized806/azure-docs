@@ -24,7 +24,7 @@ Data flows are generally available and support all endpoint types.
 
 ## What are data flow graphs?
 
-<!-- A [data flow graph](concept-dataflow-graphs.md) is a composable, graph-based pipeline that connects multiple transforms in any topology you define. You can chain, branch, and merge processing steps. Each transform is a pre-built processing unit (map, filter, branch, window, enrichment) that you configure with rules. You configure a data flow graph by creating a `DataflowGraph` custom resource. -->
+A [data flow graph](concept-dataflow-graphs.md) is a composable, graph-based pipeline that connects multiple transforms in any topology you define. You can chain, branch, and merge processing steps. Each transform is a pre-built processing unit (map, filter, branch, window, enrichment) that you configure with rules. You configure a data flow graph by creating a `DataflowGraph` custom resource.
 
 Data flow graphs are in preview and support MQTT, Kafka, and OpenTelemetry endpoints.
 
@@ -49,9 +49,9 @@ Data flows and data flow graphs share:
 
 - **Endpoints**: Both use `DataflowEndpoint` resources to connect to MQTT brokers, Kafka, storage, and other services. See [Prepare endpoints](howto-configure-dataflow-endpoint.md).
 - **Profiles**: Both reference a `DataflowProfile` for scaling and instance configuration. See [Manage data flow profiles](howto-configure-dataflow-profile.md).
-<!-- - **Source configuration**: Both support the same source endpoint options (default broker, asset, custom endpoint) and data source (topic) configuration. See [Configure a source](howto-configure-dataflow-source.md).
+- **Source configuration**: Both support the same source endpoint options (default broker, asset, custom endpoint) and data source (topic) configuration. See [Configure a source](howto-configure-dataflow-source.md).
 - **Destination configuration**: Both support static and dynamic destination topics. See [Configure a destination](howto-configure-dataflow-destination.md).
-- **Disk persistence**: Both support `requestDiskPersistence` to survive restarts. See [Configure disk persistence](howto-configure-disk-persistence.md). -->
+- **Disk persistence**: Both support `requestDiskPersistence` to survive restarts. See [Configure disk persistence](howto-configure-disk-persistence.md).
 
 ## When to use which
 
@@ -73,6 +73,6 @@ For new projects that use supported endpoint types, we recommend data flow graph
 ## Related content
 
 - [Data flows overview](overview-dataflow.md)
-<!-- - [Data flow graphs overview](concept-dataflow-graphs.md)
+- [Data flow graphs overview](concept-dataflow-graphs.md)
 - [Create a data flow](howto-create-dataflow.md)
-- [Create a data flow graph](howto-create-dataflow-graph.md) -->
+- [Create a data flow graph](howto-create-dataflow-graph.md)

@@ -230,7 +230,7 @@ In data flow graphs, you can set the destination topic dynamically based on mess
 
 This approach is more flexible than source topic routing because it lets you set the destination topic based on any field or computed value in the message, not just the source topic structure.
 
-<!-- For more information and complete examples, see [Route messages to different topics](howto-dataflow-graphs-topic-routing.md). -->
+For more information and complete examples, see [Route messages to different topics](howto-dataflow-graphs-topic-routing.md).
 
 ## Serialize the output with a schema
 
@@ -247,7 +247,7 @@ Specify the schema and serialization format in the data flow endpoint details. T
 
 # [Azure CLI](#tab/cli)
 
-<!-- After you [upload a schema to the schema registry](concept-schema-registry.md#upload-a-schema), reference it in the data flow configuration. -->
+After you [upload a schema to the schema registry](concept-schema-registry.md#upload-schema-with-the-cli), reference it in the data flow configuration.
 
 ```json
 {
@@ -260,7 +260,7 @@ Specify the schema and serialization format in the data flow endpoint details. T
 
 # [Bicep](#tab/bicep)
 
-<!-- After you [upload a schema to the schema registry](concept-schema-registry.md#upload-a-schema), reference it in the data flow configuration. -->
+After you [upload a schema to the schema registry](concept-schema-registry.md#upload-schema-with-the-cli), reference it in the data flow configuration.
 
 ```bicep
 builtInTransformationSettings: {
@@ -271,7 +271,7 @@ builtInTransformationSettings: {
 
 # [Kubernetes (preview)](#tab/kubernetes)
 
-<!-- After you [upload a schema to the schema registry](concept-schema-registry.md#upload-a-schema), reference it in the data flow configuration. -->
+After you [upload a schema to the schema registry](concept-schema-registry.md#upload-schema-with-the-cli), reference it in the data flow configuration.
 
 ```yaml
 builtInTransformationSettings:
@@ -285,7 +285,7 @@ For more information about schema registry, see [Understand message schemas](con
 
 ## Next steps
 
-<!-- - [Configure a data flow source](howto-configure-dataflow-source.md)
+- [Configure a data flow source](howto-configure-dataflow-source.md)
 - [Create a data flow](howto-create-dataflow.md)
 - [Data flow graphs overview](concept-dataflow-graphs.md)
-- [Route messages to different topics with data flow graphs](howto-dataflow-graphs-topic-routing.md) -->
+- [Route messages to different topics with data flow graphs](howto-dataflow-graphs-topic-routing.md)

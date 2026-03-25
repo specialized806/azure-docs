@@ -41,15 +41,15 @@ For new projects that use supported endpoint types, we recommend data flow graph
 
 Each transform is a pre-built processing step that you configure with rules and chain with other transforms inside a `DataflowGraph` resource.
 
-<!-- | Transform | What it does | Learn more |
+| Transform | What it does | Learn more |
 |-----------|-------------|------------|
 | **Map** | Rename, restructure, compute, and copy fields | [Transform data with map](howto-dataflow-graphs-map.md) |
 | **Filter** | Drop messages that match a condition | [Filter and route data](howto-dataflow-graphs-filter-route.md) |
 | **Branch** | Route each message to a `true` or `false` path based on a condition | [Filter and route data](howto-dataflow-graphs-filter-route.md#branch-transform) |
 | **Concat** | Merge two or more paths back into one | [Filter and route data](howto-dataflow-graphs-filter-route.md#merge-paths-with-concat) |
-| **Window** | Collect messages over a time interval, then aggregate | [Aggregate data over time](howto-dataflow-graphs-window.md) | -->
+| **Window** | Collect messages over a time interval, then aggregate | [Aggregate data over time](howto-dataflow-graphs-window.md) |
 
-<!-- All transforms share an [expression language](concept-dataflow-graphs-expressions.md) for operators, functions, and field references. You can also [enrich](howto-dataflow-graphs-enrich.md) messages with external data from a state store in map, filter, and branch transforms. -->
+All transforms share an [expression language](concept-dataflow-graphs-expressions.md) for operators, functions, and field references. You can also [enrich](howto-dataflow-graphs-enrich.md) messages with external data from a state store in map, filter, and branch transforms.
 
 ## How transforms compose
 
@@ -69,7 +69,7 @@ Here's a complete example that reads temperature data from an MQTT topic, conver
 
 # [Operations experience](#tab/portal)
 
-<!-- ![Screenshot of the operations experience showing a data flow graph example with source, transform, and destination.](media/concept-dataflow-graphs/dataflow-graph-example.png) -->
+![Screenshot of the operations experience showing a data flow graph example with source, transform, and destination.](media/concept-dataflow-graphs/dataflow-graph-example.png)
 
 In the Operations experience:
 
@@ -182,7 +182,7 @@ spec:
 
 The pipeline defines three elements: a source, a transform (indicated by `nodeType: Graph`), and a destination. The connections describe how data flows between them. The transform's `configuration` passes rules as a JSON string under the `rules` key.
 
-<!-- In the how-to articles that follow, examples focus on the transform rules themselves. For a step-by-step guide to creating a data flow graph, see [Create a data flow graph](howto-create-dataflow-graph.md). -->
+In the how-to articles that follow, examples focus on the transform rules themselves. For a step-by-step guide to creating a data flow graph, see [Create a data flow graph](howto-create-dataflow-graph.md).
 
 ## Built-in transforms vs. WASM transforms
 
@@ -223,7 +223,7 @@ To use data flow graphs, you need:
 
 ## Next steps
 
-<!-- - [Data flows vs. data flow graphs](overview-dataflow-comparison.md)
+- [Data flows vs. data flow graphs](overview-dataflow-comparison.md)
 - [Create a data flow graph](howto-create-dataflow-graph.md)
 - [Transform data with map](howto-dataflow-graphs-map.md)
 - [Filter and route data](howto-dataflow-graphs-filter-route.md)
@@ -232,4 +232,4 @@ To use data flow graphs, you need:
 - [Expressions reference](concept-dataflow-graphs-expressions.md)
 - [Route messages to different topics](howto-dataflow-graphs-topic-routing.md)
 - [Expressions reference](concept-dataflow-graphs-expressions.md)
-- [Use WASM transforms in data flow graphs](howto-dataflow-graph-wasm.md) -->
+- [Use WASM transforms in data flow graphs](howto-dataflow-graph-wasm.md)
