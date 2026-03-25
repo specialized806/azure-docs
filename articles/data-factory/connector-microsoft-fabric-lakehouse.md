@@ -6,8 +6,6 @@ ms.author: jianleishen
 author: jianleishen
 ms.subservice: data-movement
 ms.topic: how-to
-ms.date: 10/23/2025
-ms.topic: conceptual
 ms.date: 01/30/2026
 ms.custom:
   - synapse
