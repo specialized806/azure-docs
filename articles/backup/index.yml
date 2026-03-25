@@ -82,9 +82,9 @@ landingContent:
     linkLists:
       - linkListType: concept
         links:
-          - text: Azure Disk Backup
+          - text: Azure Disks backup
             url: disk-backup-overview.md
-          - text: Azure Blob backup
+          - text: Azure Blobs (Azure Storage) backup
             url: blob-backup-overview.md
           - text: Azure Files backup
             url: azure-file-share-backup-overview.md
@@ -171,9 +171,9 @@ landingContent:
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Cross Region Restore for Azure Virtual Machines
+          - text: Cross region restore for Azure Virtual Machines
             url: backup-azure-arm-restore-vms.md#cross-region-restore
-          - text: Cross Subscription Restore for Azure Virtual Machines
+          - text: Cross subscription restore for Azure Virtual Machines
             url: backup-azure-arm-restore-vms.md#cross-subscription-restore-for-azure-vm
           - text: Long-term retention using Archive tier
             url: archive-tier-support.md
