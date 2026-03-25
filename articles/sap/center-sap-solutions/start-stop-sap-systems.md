@@ -25,7 +25,7 @@ Through the Azure portal, [Azure PowerShell](/powershell/module/az.workloads), [
   - High Availability (HA)
   - Distributed Non-HA
 - SAP systems that run on Windows, RHEL, and SUSE Linux operating systems.
-- SAP HA systems that use SUSE and RHEL Pacemaker clustering software and Windows Server Failover Clustering (WSFC). Other certified cluster software isn't currently supported.
+- SAP HA systems that use SUSE and RHEL Pacemaker clustering software and Windows Server Failover Clustering. Other certified cluster software isn't currently supported.
 
 ## Supported scenarios
 
@@ -35,7 +35,7 @@ The following scenarios are supported when starting and stopping SAP systems:
 - Stopping and starting an SAP system or individual instances from the VIS resource stops or starts only the SAP application. The underlying VMs aren't stopped or started.
 - Stopping a highly available SAP system from the VIS resource gracefully stops the SAP instances in the correct order and doesn't result in a failover of the Central Services instance.
 - Stopping the HANA database from the VIS resource stops the entire HANA instance. For HANA multitenant database containers with multiple tenant databases, the entire instance is stopped, not a specific tenant database.
-- For highly available (HA) HANA databases, start and stop operations through the VIS resource are supported only when a cluster management solution is in place. Other HANA database high-availability configurations without a cluster aren't currently supported for start and stop operations through the VIS resource.
+- For HA HANA databases, start and stop operations through the VIS resource are supported only when a cluster management solution is in place. Other HANA database high-availability configurations without a cluster aren't currently supported for start and stop operations through the VIS resource.
 
 > [!NOTE]
 > When multiple application server instances run on a single virtual machine and you want to stop all instances, you can stop only one instance at a time. If you attempt to stop them in parallel, only one stop request is accepted and all other requests fail.
