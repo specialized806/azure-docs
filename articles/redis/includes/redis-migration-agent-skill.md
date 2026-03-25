@@ -2,6 +2,10 @@
 ms.date: 03/25/2026
 ms.topic: include
 ms.custom:
+author: flang-msft
+ms.service: azure-managed-redis
+ms.author: franlangois
+
 ---
 
 > [!IMPORTANT]
