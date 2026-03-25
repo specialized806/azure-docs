@@ -99,8 +99,6 @@ The implementation behind this API typically calls a Foundry-hosted embedding mo
 
 ## Configure the agent for vector search
 
-To configure the agent for vector search:
-
 1. In the agent tools, add a new OpenAPI tool.
 1. Paste the OpenAPI specification from the [Deploy the embedding endpoint](#deploy-the-embedding-endpoint) step.
 1. In the agent instructions, guide the agent to invoke this function for vector search use cases.
