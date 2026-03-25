@@ -33,7 +33,6 @@ Azure IoT Operations provides two ways to process data in a pipeline:
 | Time-based aggregation | Not available | Window transforms with tumbling windows |
 | Conditional routing | Not available | Branch and concat transforms |
 | Endpoint support | All endpoint types | MQTT, Kafka, and OpenTelemetry only |
-| Status | Generally available | Preview |
 
 For new projects that use supported endpoint types, we recommend data flow graphs. Data flows remain fully supported for all scenarios, and they support the full range of endpoint types.
 
