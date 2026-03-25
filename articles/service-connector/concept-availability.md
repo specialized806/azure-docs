@@ -5,7 +5,7 @@ author: maud-lv
 ms.author: malev
 ms.service: service-connector
 ms.topic: concept-article
-ms.date: 03/24/2026
+ms.date: 03/25/2026
 ms.custom: references_regions
 #Customer intent: As an Azure developer, I want to understand Service Connector availability concepts so I can take advantage of these features in my Service Connector connections.
 ---
@@ -39,21 +39,17 @@ To create a zone-redundant service connection using Service Connector, see [Crea
 
 ## Disaster recovery and resiliency
 
-Disaster recovery is the process of restoring application functionality after a catastrophic loss.
+Disaster recovery is the process of restoring application functionality after a catastrophic loss. Instead of trying to prevent failures altogether, the goal of disaster recovery is to minimize the effects of a single failing component.
 
-Failures do happen in the cloud. Instead of trying to prevent failures altogether, the goal of disaster recovery is to minimize the effects of a single failing component. In a disaster, Service Connector fails over to the paired region. Once the Service Connector team identifies and declares an outage, customers don't need to do anything more.
+Service Connector handles *business continuity and disaster recovery (BCDR)* for storage and compute. The goal is for issues in storage or compute in any region to have the minimum possible business impact. In a disaster, Service Connector fails over to the paired region. Once the Service Connector team identifies and declares an outage, customers don't need to do anything more.
 
 *Recovery Time Objective (RTO)* indicates the duration between the beginning of an outage that impacts Service Connector and the recovery to full availability. *Recovery Point Objective (RPO)* indicates the duration between the start of the outage that affects Service Connector and the last operation correctly restored. Expected and maximum RPO is 24 hours and RTO is 24 hours.
 
-During the disaster, operations against Service Connector might fail before the failover happens. Once the failover is complete, data is restored, and customers don't need to take any action.
+The data layer design prioritizes availability over latency during a disaster. If a region goes down, Service Connector attempts to serve end-user requests from its paired region.
 
-Service connector handles *business continuity and disaster recovery (BCDR)* for storage and compute. The goal is for issues in storage or compute in any region to have the minimum possible impact.
+During a disaster, operations against Service Connector might fail before the failover happens. After failover, all data and actions serve as usual from the customer viewpoint. Data is restored, and customers don't need to take any action.
 
-The data layer design prioritizes availability over latency during a disaster. If a region goes down, Service Connector attempts to serve the end-user request from its paired region.
-
-During the failover action, Service Connector handles DNS remapping to the available regions. After failover, all data and actions serve as usual from the customer viewpoint.
-
-Service Connector changes its DNS in about one hour. Performing a manual failover would take more time. Because Service Connector is a resource provider built on top of other Azure services, the actual time depends on the failover time of the underlying services.
+During the failover action, Service Connector handles DNS remapping to the available regions. Service Connector changes its DNS in about one hour. Performing a manual failover would take more time. Because Service Connector is a resource provider built on top of other Azure services, the actual time depends on the failover time of the underlying services.
 
 ### Disaster recovery region support
 
@@ -72,7 +68,7 @@ Service Connector currently supports the following region pairs. In a primary re
 
 Microsoft is responsible for handling cross-region failovers. The failover process doesn't require any changes in the customer's applications or compute service configurations. Service Connector uses an active-passive cluster configuration with automatic failover. After a disaster recovery, customers can use the full functionalities of Service Connector.
 
-Service Connector runs health checks every 10 minutes, and regional failovers are detected and handled in the Service Connector backend. The health check that runs every 10 minutes simulates user behavior by creating, validating, and updating connections to target services in each of the compute services Service Connector supports.
+Service Connector runs health checks every 10 minutes, and regional failovers are detected and handled in the Service Connector backend. The health checks that run every 10 minutes simulate user behavior by creating, validating, and updating connections to target services in each of the compute services Service Connector supports.
 
 Microsoft starts to analyze and launch a Service Connector failover under any of the following conditions:
 
@@ -86,7 +82,7 @@ Requests to service connections are impacted during a failover. Once the failove
 
 You can create a Service Connector zone-redundant service connection to a target resource of your choice by using Azure CLI or the Azure portal. You use the same process to create zone-redundant connections for Azure Spring Apps and Azure Container Apps compute services.
 
-The following steps create a zone-redundant service connection for Azure App Service to an Azure Storage blob. To enable zone redundancy for an App Service service connection, you first create a zone-redundant App Service. Because you enable zone redundancy for your App Service, the service connection is also zone redundant.
+The following steps create a zone-redundant service connection to an Azure Storage blob for Azure App Service. To enable zone redundancy for an App Service service connection, you first create a zone-redundant App Service. Because you enable zone redundancy for your App Service, the service connection is also zone redundant.
 
 > [!IMPORTANT]
 > Zone redundancy is supported only in the PremiumV2-PremiumV4 and Isolated SKU tiers of App Service. Basic and Free SKU tiers don't support zone redundancy. For more information, see [Reliability in Azure App Service](/azure/reliability/reliability-app-service#resilience-to-availability-zone-failures).
@@ -101,17 +97,17 @@ The following steps create a zone-redundant service connection for a PremiumV2 A
    az appservice plan create --resource-group MyResourceGroup --name MyPlan --sku P1V2 --zone-redundant --number-of-workers 6
    ```
 
-1. Create a web app in the App Service plan. New web app names must be globally unique in Azure. In the following code, replace the `<my_unique_app_name>` placeholder with a globally unique web app name.
+1. Create a web app in the App Service plan. New web app names must be globally unique in Azure. In the following code, replace the `<unique_app_name>` placeholder with your globally unique web app name.
 
    ```azurecli
-   az webapp create --name <my_unique_app_name> --plan MyPlan --resource-group MyResourceGroup
+   az webapp create --name <unique_app_name> --plan MyPlan --resource-group MyResourceGroup
    ```
    
-1. The following code creates a service connection to an existing Azure Storage blob. Replace the `<my_unique_app_name>`, `<storage_account_resource_group>`, and `<storage_account_name>` placeholders with your own values. For more information, see [az webapp connection create storage-blob](/cli/azure/webapp/connection/create#az-webapp-connection-create-storage-blob).
+1. The following code creates a service connection to an existing Azure Storage blob using system-assigned identity authorization. Replace the `<unique_app_name>`, `<storage_account_resource_group>`, and `<storage_account_name>` placeholders with the values for your resources. For more information, see [az webapp connection create storage-blob](/cli/azure/webapp/connection/create#az-webapp-connection-create-storage-blob).
 
    ```azurecli
    az webapp connection create storage-blob \
-     --resource-group MyResourceGroup -name <my-unique_app_name> \
+     --resource-group MyResourceGroup -name <unique_app_name> \
      --target-resource-group <storage_account_resource_group> \
      --account <storage_account_name> --system-identity
    ```
