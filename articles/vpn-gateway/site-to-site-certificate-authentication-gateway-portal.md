@@ -5,10 +5,8 @@ description: Learn how to configure VPN Gateway server settings for site-to-site
 author: cherylmc
 ms.service: azure-vpn-gateway
 ms.topic: how-to
-ms.date: 03/18/2026
+ms.date: 03/25/2026
 ms.author: cherylmc
-
-#customer intent: As a network engineer, I want to create a site-to-site VPN connection between my on-premises location and my Azure virtual network using certificate authentication and Azure Key Vault.
 
 # Customer intent: "As a network engineer, I want to establish a secure site-to-site VPN connection using certificate authentication, so that I can securely connect my on-premises network to my Azure virtual network."
 ---
@@ -16,7 +14,9 @@ ms.author: cherylmc
 
 In this article, you use the Azure portal to create a site-to-site (S2S) certificate authentication VPN gateway connection between your on-premises network and your virtual network. The steps for this configuration use Managed Identity, Azure Key Vault, and certificates. For more information about site-to-site certificate authentication, see [About site-to-site VPN connections with certificate authentication](site-to-site-certificate-authentication-gateway-about.md). If you need to create a site-to-site VPN connection that uses a shared key instead, see [Create a S2S VPN connection](tutorial-site-to-site-portal.md).
 
-:::image type="content" source="./media/tutorial-site-to-site-portal/diagram.png" alt-text="Diagram that shows site-to-site VPN gateway cross-premises connections." lightbox="./media/tutorial-site-to-site-portal/diagram.png":::
+**Site-to-site VPN connection with certificate authentication**
+
+:::image type="content" source="./media/site-to-site-certificate-authentication-gateway-portal/diagram.png" alt-text="Diagram that shows site-to-site VPN gateway cross-premises connections." lightbox="./media/site-to-site-certificate-authentication-gateway-portal/diagram.png":::
 
 > [!IMPORTANT]
 > Site-to-site certificate authentication is currently in Preview.
@@ -24,10 +24,10 @@ In this article, you use the Azure portal to create a site-to-site (S2S) certifi
 
 ## Prerequisites
 
-> [!IMPORTANT]
-> Site-to-site certificate authentication isn't supported on Basic SKU VPN gateways. We recommend using VpnGw1AZ or higher.
-
 * You already have a virtual network and a VPN gateway. If you don't, follow the steps to [Create a VPN gateway](tutorial-create-gateway-portal.md), then return to this page to configure your site-to-site certificate authentication connection.
+
+  > [!NOTE]
+  > Site-to-site certificate authentication isn't supported on Basic SKU VPN gateways.
 
 * Make sure you have a compatible VPN device and someone who can configure it. For more information about compatible VPN devices and device configuration, see [About VPN devices](vpn-gateway-about-vpn-devices.md).
 
@@ -253,19 +253,10 @@ The following steps help you upload the outbound certificate information to Azur
 1. On the **Members** tab, for **Assign access to**, select **Managed identity**.
 1. Select **+ Select members**. In **Select managed identities**, set **Managed identity** to **User-assigned managed identity**, then choose the user-assigned managed identity you created earlier.
 1. Select **Next**, review the settings, then select **Review + assign** to apply the role assignment.
-1. Repeat the steps above to assign the **Key Vault Certificate User** role to the same user-assigned managed identity. This is required; otherwise, the managed identity won't be able to access the outbound certificate stored in Key Vault.
+1. Repeat the previous steps to assign the **Key Vault Certificate User** role to the same user-assigned managed identity. This is required; otherwise, the managed identity can't access the outbound certificate stored in Key Vault.
 
 > [!NOTE]
 > RBAC role assignment changes aren't applied immediately to Key Vault. Before proceeding to the next step, verify under **Role assignments** that both built-in roles **Key Vault Secrets User** and **Key Vault Certificate User** are present.
-
-## Add the Managed Identity to your key vault
-
-1. Go to your key vault. In the left pane, open the **Access policies** page.
-1. Select **+Create**.
-1. On the **Create an access policy** page, for **Secret Management Options** and **Certificate Management Operations**, select **Select all**.
-1. Select **Next** to move to the **Principal** page.
-1. On the **Principal** page, search and select the Managed Identity that you created earlier.
-1. Select **Next** and advance to the **Review + create** page. Select **Create**.
 
 ## <a name="VPNDevice"></a>Configure your VPN device
 
