@@ -6,7 +6,7 @@ author: craigshoemaker
 ms.service: azure-container-apps
 ms.custom: devx-track-extended-java
 ms.topic: tutorial
-ms.date: 12/23/2024
+ms.date: 03/25/2026
 ms.author: cshoe
 #customer intent: As a developer, I want to set up auto scale using Java metrics exposed from Azure Container Apps
 ---
