@@ -37,7 +37,7 @@ Before you start, make sure you complete the following steps:
 1. Locate the resource group where you deployed the TollApp event generator. 
 1. Select the Azure Event Hubs **namespace**. You might want to open it in a separate tab or a window.
 
-    :::image type="content" source="./media/stream-analytics-no-code/resource-group.png" alt-text="Screenshot showing the selection of the Event Hubs namespace in the resource group." lightbox="./media/stream-analytics-no-code/resource-group.png":::
+    :::image type="content" source="./media/event-hubs-parquet-capture-tutorial/resource-group.png" alt-text="Screenshot showing the selection of the Event Hubs namespace in the resource group." lightbox="./media/event-hubs-parquet-capture-tutorial/resource-group.png":::
 1. On the **Event Hubs namespace** page, select **Event Hubs** under **Entities** in the left menu. 
 1. Select `entrystream` instance.
 
