@@ -9,7 +9,7 @@ ms.author: kendownie
 ms.custom:
   - devx-track-azurepowershell
 zone_pivot_groups: azure-files-windows-linux
-# Customer intent: As a cloud administrator, I want to improve security by authenticating managed identities to allow applications and virtual machines to access SMB Azure Files shares by using identity-based authentication with Microsoft Entra ID instead of using a storage account key.
+# Customer intent: As a cloud administrator, I want to improve security by authenticating managed identities to allow applications and virtual machines to access SMB Azure file shares by using identity-based authentication with Microsoft Entra ID instead of using a storage account key.
 ---
 
 # Access SMB Azure file shares by using managed identities with Microsoft Entra ID (preview)
@@ -42,7 +42,7 @@ Benefits include:
 
 Azure provides two types of managed identities: *system assigned* and *user assigned*.
 
-A system-assigned managed identity is restricted to one per resource and is tied to the life cycle of this resource. You can grant permissions to the managed identity by using Azure role-based access control (Azure RBAC). The managed identity is authenticated with Microsoft Entra ID, so you don't have to store any credentials in code.
+A system-assigned managed identity is restricted to one per resource and is tied to the life cycle of a resource. You can grant permissions to the managed identity by using Azure role-based access control (Azure RBAC). The managed identity is authenticated with Microsoft Entra ID, so you don't have to store any credentials in code.
 
 User-assigned managed identities enable Azure resources to authenticate to cloud services without storing credentials in code. You create this type of managed identity as a standalone Azure resource with its own life cycle. A single resource, like a VM, can use multiple user-assigned managed identities. Also, multiple VMs can share a single user-assigned managed identity.
 
@@ -50,7 +50,7 @@ Although you can configure both user-assigned and system-assigned managed identi
 
 ## Prerequisites
 
-This article assumes that you have an Azure subscription with permissions to create storage accounts and assign Azure RBAC roles. To assign roles, you need role-assignment write permission (`Microsoft.Authorization/roleAssignments/write`) at the scope where you want to assign the role.
+This article assumes that you have an Azure subscription with permissions to create storage accounts and assign Azure RBAC roles. To assign roles, you need role-assignment write permission (`Microsoft.Authorization/roleAssignments/write`) at the required scope.
 
 The clients that need to authenticate by using a managed identity shouldn't be joined to any domain.
 
@@ -62,7 +62,7 @@ To enable the `SMBOAuth` property on your storage account, use either the Azure 
 
 ### [Portal](#tab/portal)
 
-To create a new storage account with the `SMBOAuth` property enabled by using the Azure portal, follow [these steps](create-classic-file-share.md#create-a-storage-account). Under the **Advanced** tab, select the **Enable Managed Identity for SMB** checkbox.
+To create a new storage account with the `SMBOAuth` property enabled by using the Azure portal, follow [these steps](create-classic-file-share.md#create-a-storage-account). On the **Advanced** tab, select the **Enable Managed Identity for SMB** checkbox.
 
 :::image type="content" source="media/managed-identities/enable-managed-identity.png" alt-text="Screenshot that shows how to enable a managed identity for SMB when creating a new storage account by using the Azure portal." border="true":::
 
@@ -70,7 +70,7 @@ Alternatively, you can enable the `SMBOAuth` property on an existing storage acc
 
 Go to the storage account. On the service menu, under **Settings**, select **Configuration**. Under **Managed Identity for SMB**, select **Enabled**, and then select **Save**.
 
-:::image type="content" source="media/managed-identities/enable-managed-identity-on-existing-storage-account.png" alt-text="Screenshot that shows how to enable managed identity for SMB on an existing storage account by using the Azure portal." border="true":::
+:::image type="content" source="media/managed-identities/enable-managed-identity-on-existing-storage-account.png" alt-text="Screenshot that shows how to enable a managed identity for SMB on an existing storage account by using the Azure portal." border="true":::
 
 Next, [create an SMB file share](create-classic-file-share.md) on the storage account.
 
@@ -129,7 +129,7 @@ To enable `SMBOAuth` on an existing storage account, run the following PowerShel
 Set-AzStorageAccount -ResourceGroupName <resource-group> -Name <storage-account-name> -EnableSmbOAuth $true
 ```
 
-If you errors say that the policy disallows the resource, you might have a policy set on your subscription that disallows `Set-AzStorageAccount`. To work around this problem, retry by using the following command:
+If errors say that the policy disallows the resource, you might have a policy set on your subscription that disallows `Set-AzStorageAccount`. To work around this problem, retry by using the following command:
 
 ```powershell
 Set-AzStorageAccount -ResourceGroupName <resource-group> -Name <storage-account-name> -EnableSmbOAuth $true -AllowBlobPublicAccess $false
@@ -166,7 +166,7 @@ Follow these steps to enable a system-assigned managed identity on a Windows VM 
 
 1. You can enable a system-assigned managed identity during VM creation on the **Management** tab.
 
-    :::image type="content" source="media/managed-identities/enable-system-assigned-managed-identity.png" alt-text="Screenshot that shows how to enable system-assigned managed identity when creating a new VM by using the Azure portal." border="true":::
+    :::image type="content" source="media/managed-identities/enable-system-assigned-managed-identity.png" alt-text="Screenshot that shows how to enable a system-assigned managed identity when creating a new VM by using the Azure portal." border="true":::
 
 #### Enable a user-assigned managed identity
 
@@ -176,7 +176,7 @@ Follow these steps to enable a system-assigned managed identity on a Windows VM 
 
 ### Assign a built-in RBAC role to the managed identity or application identity
 
-After you enable a managed identity, grant all necessary permissions through Azure RBAC. To assign roles, sign in as a user with role-assignment write permission at the scope where you want to assign the role.
+After you enable a managed identity, grant all necessary permissions through Azure RBAC. To assign roles, sign in as a user with role-assignment write permission at the required scope.
 
 Follow these steps to assign the built-in Azure RBAC role [Storage File Data SMB MI Admin](/azure/role-based-access-control/built-in-roles/storage#storage-file-data-smb-mi-admin). This role gives admin-level access for managed identities on files and directories in Azure Files.
 
@@ -192,7 +192,7 @@ Follow these steps to assign the built-in Azure RBAC role [Storage File Data SMB
 
 1. For Azure VMs or Azure Arc identities, select the managed identity for your VM or Windows device. For application identities, search for and select the application identity. Click **Select**.
 
-1. You should now see the managed identity or application identity listed under **Members**. Select **Next**.
+1. Verify that the managed identity or application identity is listed under **Members**. Select **Next**.
 
 1. Select **Review + assign** to add the role assignment to the storage account.
 
@@ -226,7 +226,7 @@ The managed identity can be either [system assigned or user assigned](/entra/ide
 
 1. Sign in to the Azure portal and follow the steps to [create a user-assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal#create-a-user-assigned-managed-identity).
 
-1. Go to the user-assigned managed identity you just created and copy the **Client ID** value. You need this value later.
+1. Go to the user-assigned managed identity that you just created and copy the **Client ID** value. You need this value later.
 
 ### Assign a built-in RBAC role to the managed identity
 
@@ -242,7 +242,7 @@ The managed identity can be either [system assigned or user assigned](/entra/ide
 
 1. Under **Managed identity**, select the managed identity, and then click **Select**.
 
-1. You should now see the managed identity listed under **Members**. Select **Next**.
+1. Verify that the managed identity is listed under **Members**. Select **Next**.
 
 1. Select **Review + assign** to add the role assignment to the storage account.
 
@@ -583,7 +583,7 @@ const char* extern_smb_version();
 
 ### API description
 
-The following table lists the API commands and their usage. Returned values follow standard C conventions (0 for success, nonzero for errors).
+The following table lists the API commands and their usage. Returned values follow standard C conventions (zero for success, nonzero for errors).
 
 | **Command** | **Description** |
 |-------------|-----------------|

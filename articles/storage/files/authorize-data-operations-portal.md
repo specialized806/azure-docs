@@ -89,7 +89,7 @@ You can change the authentication method for individual file shares. By default,
 
 ### Authenticate by using your Microsoft Entra account (recommended)
 
-To switch to using your Entra account, select the link highlighted in the image that says **Switch to Microsoft Entra user account**. If you have the appropriate permissions through the Azure roles that are assigned to you, you can proceed. If you lack the necessary permissions, you see an error message that you don't have permissions to list the data by using your user account with Entra ID.
+To switch to using your Entra account, select the link highlighted in the image that says **Switch to Microsoft Entra user account**. If you have the appropriate permissions through the Azure roles that are assigned to you, you can proceed. If you lack the necessary permissions, an error message says you don't have permissions to list the data by using your user account with Entra ID.
 
 Two additional RBAC permissions are required to use your Entra account:
 
@@ -100,7 +100,7 @@ No file shares appear in the list if your Entra account lacks permissions to vie
 
 ### Authenticate by using the storage account access key (not recommended)
 
-To switch to using the account access key, select the link that says **Switch to access key**. If you have access to the storage account key, you can proceed. If you don't have access to the account key, you see an error message that you don't have permissions to use the access key to list data.
+To switch to using the account access key, select the link that says **Switch to access key**. If you have access to the storage account key, you can proceed. If you don't have access to the account key, an error message says you don't have permissions to use the access key to list data.
 
 No file shares appear in the list if you don't have access to the storage account access key.
 
