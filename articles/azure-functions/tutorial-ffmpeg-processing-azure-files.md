@@ -89,7 +89,7 @@ The function reads the mount path from an environment variable (`FFMPEG_PATH`) s
 
 ## Deploy by using Azure Developer CLI
 
-This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/overview) template. A single `azd up` command provisions infrastructure, deploys the function code, uploads the ffmpeg binary to Azure Files, and creates the EventGrid subscription for blob triggers.
+This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/overview) template. A single `azd up` command provisions infrastructure, deploys the function code, uploads the ffmpeg binary to Azure Files, and creates the Event Grid subscription for blob triggers.
 
 1. Sign in to Azure. The post-deployment script uses Azure CLI commands, so you need to authenticate by using both tools:
 
@@ -109,7 +109,7 @@ This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-c
     - Creates a resource group, storage account, Key Vault, Flex Consumption function app, Application Insights instance, and managed identity.
     - Deploys the Python function code.
     - Downloads and uploads the ffmpeg binary to the Azure Files share.
-    - Creates an EventGrid subscription so blob uploads trigger your function.
+    - Creates an Event Grid subscription so blob uploads trigger your function.
     - Runs a health check.
 
     > [!NOTE]
@@ -129,7 +129,7 @@ This sample is an [Azure Developer CLI (azd)](/azure/developer/azure-developer-c
 
 ## Process an image
 
-1. Upload the sample image included in the repository to the input container. The event grid subscription created during deployment automatically triggers your function when a blob is uploaded.
+1. Upload the sample image included in the repository to the input container. The Event Grid subscription created during deployment automatically triggers your function when a blob is uploaded.
 
     ```azurecli
     az storage blob upload \
