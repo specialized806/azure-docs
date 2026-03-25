@@ -157,7 +157,7 @@ The following connectivity requirements are needed for successful operation of A
 ### ALB controller inbound connectivity
 
 >[!Note]
->These inbound ports are exposed via ClusterIP Service, so they're only accessible from within the cluster. They are exposed to help with troubleshooting / diagnostics and may be blocked with network policy if desired.
+>These inbound ports are exposed via ClusterIP Service and not published directly to the internet. They are exposed to help with troubleshooting / diagnostics and may be blocked with network policy if desired.
 
 |Port|Name|Purpose|
 |--|--|--|
