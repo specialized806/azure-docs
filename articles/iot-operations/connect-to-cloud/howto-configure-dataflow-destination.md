@@ -247,7 +247,7 @@ Specify the schema and serialization format in the data flow endpoint details. T
 
 # [Azure CLI](#tab/cli)
 
-After you [upload a schema to the schema registry](concept-schema-registry.md#upload-schema-with-the-cli), reference it in the data flow configuration.
+After you [upload a schema to the schema registry](concept-schema-registry.md#upload-with-the-azure-cli), reference it in the data flow configuration.
 
 ```json
 {
@@ -260,7 +260,7 @@ After you [upload a schema to the schema registry](concept-schema-registry.md#up
 
 # [Bicep](#tab/bicep)
 
-After you [upload a schema to the schema registry](concept-schema-registry.md#upload-schema-with-the-cli), reference it in the data flow configuration.
+After you [upload a schema to the schema registry](concept-schema-registry.md#upload-with-the-azure-cli), reference it in the data flow configuration.
 
 ```bicep
 builtInTransformationSettings: {
@@ -271,7 +271,7 @@ builtInTransformationSettings: {
 
 # [Kubernetes (preview)](#tab/kubernetes)
 
-After you [upload a schema to the schema registry](concept-schema-registry.md#upload-schema-with-the-cli), reference it in the data flow configuration.
+After you [upload a schema to the schema registry](concept-schema-registry.md#upload-with-the-azure-cli), reference it in the data flow configuration.
 
 ```yaml
 builtInTransformationSettings:
