@@ -12,7 +12,7 @@ ms.custom: references_regions
 
 # High availability for Service Connector
 
-Service Connector provides high availability support for all types of applications you run in Azure. This article describes Service Connector high availability features like availability zones, zone redundancy, disaster recovery, and cross-region failover.
+Service Connector can provide high availability support for all types of applications you run in Azure. This article describes Service Connector high availability features like availability zones, zone redundancy, disaster recovery, and cross-region failover.
 
 The goal of the high availability architecture in Service Connector is to guarantee that service connections are up and running at least 99.9% of time. This high availability means you don't have to worry about the effects of maintenance operations and outages on your service connections.
 
@@ -28,7 +28,7 @@ Service Connector is an Azure extension resource provider that extends Azure App
 
 To enable zone redundancy for the service connection, you must enable zone redundancy for the compute service. Your service connection then also automatically becomes zone-redundant.
 
-For example, if you have an app service with zone redundancy enabled, the platform automatically spreads your app service instances across three zones in the selected region. When you use Service Connector to create a service connection in this app service, the service connection resource is also automatically created in the three corresponding zones in the selected region.
+For example, if you have an app service that has zone redundancy enabled with three instances, the platform automatically spreads your app service instances across three zones in the selected region. When you use Service Connector to create a service connection in this app service, the service connection resource is also automatically created in the three corresponding zones in the selected region.
 
 Traffic is routed to all of your available connection resources. When a zone goes down, the platform detects the lost instances, automatically attempts to find new replacement instances, and spreads the traffic as needed.
 
@@ -41,13 +41,15 @@ To create a zone-redundant service connection using Service Connector, see [Crea
 
 Disaster recovery is the process of restoring application functionality after a catastrophic loss.
 
-Failures do happen in the cloud. Instead of trying to prevent failures altogether, the goal of disaster recovery is to minimize the effects of a single failing component. In a disaster, Service Connector fails over to the paired region. If the Service Connector team decides on and declares the outage, customers don't need to do anything more.
+Failures do happen in the cloud. Instead of trying to prevent failures altogether, the goal of disaster recovery is to minimize the effects of a single failing component. In a disaster, Service Connector fails over to the paired region. Once the Service Connector team identifies and declares an outage, customers don't need to do anything more.
 
 *Recovery Time Objective (RTO)* indicates the duration between the beginning of an outage that impacts Service Connector and the recovery to full availability. *Recovery Point Objective (RPO)* indicates the duration between the start of the outage that affects Service Connector and the last operation correctly restored. Expected and maximum RPO is 24 hours and RTO is 24 hours.
 
-During the disaster duration, operations against Service Connector might fail before the failover happens. Once the failover is complete, data is restored, and customers don't need to take any action.
+During the disaster, operations against Service Connector might fail before the failover happens. Once the failover is complete, data is restored, and customers don't need to take any action.
 
-Service connector handles *business continuity and disaster recovery (BCDR)* for storage and compute. The goal is for issues in storage or compute in any region to have the minimal possible impact. The data layer design prioritizes availability over latency in case of disaster. If a region goes down, Service Connector attempts to serve the end-user request from its paired region.
+Service connector handles *business continuity and disaster recovery (BCDR)* for storage and compute. The goal is for issues in storage or compute in any region to have the minimum possible impact.
+
+The data layer design prioritizes availability over latency during a disaster. If a region goes down, Service Connector attempts to serve the end-user request from its paired region.
 
 During the failover action, Service Connector handles DNS remapping to the available regions. After failover, all data and actions serve as usual from the customer viewpoint.
 
@@ -82,12 +84,12 @@ Requests to service connections are impacted during a failover. Once the failove
 
 ## Create a zone-redundant service connection
 
-You can create a Service Connector zone-redundant service connection to a target resource of your choice by using Azure CLI or the Azure portal. You can use the same process to create zone-redundant connections for Azure Spring Apps and Azure Container Apps compute services.
+You can create a Service Connector zone-redundant service connection to a target resource of your choice by using Azure CLI or the Azure portal. You use the same process to create zone-redundant connections for Azure Spring Apps and Azure Container Apps compute services.
 
 The following steps create a zone-redundant service connection for Azure App Service to an Azure Storage blob. To enable zone redundancy for an App Service service connection, you first create a zone-redundant App Service. Because you enable zone redundancy for your App Service, the service connection is also zone redundant.
 
 > [!IMPORTANT]
-> Zone redundancy is supported only in the App Service PremiumV2-PremiumV4 and Isolated SKU tiers. Basic and Free SKU tiers don't support zone redundancy. For more information, see [Reliability in Azure App Service](/azure/reliability/reliability-app-service#resilience-to-availability-zone-failures).
+> Zone redundancy is supported only in the PremiumV2-PremiumV4 and Isolated SKU tiers of App Service. Basic and Free SKU tiers don't support zone redundancy. For more information, see [Reliability in Azure App Service](/azure/reliability/reliability-app-service#resilience-to-availability-zone-failures).
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -117,8 +119,6 @@ The following steps create a zone-redundant service connection for a PremiumV2 A
 ### [Portal](#tab/azure-portal)
 
 The following steps create a zone-redundant service connection for a PremiumV2 App Service Plan called `MyPlan` in an existing resource group called `MyResourceGroup`. This example creates a service connection to an existing Azure Storage blob. 
-The following steps create a zone-redundant service connection for a PremiumV2 App Service Plan.
-To enable zone redundancy for a service connection in App Service using the Azure portal:
 
 1. In the Azure portal, search for and select **App Services**.
 1. Select **Create** > **Web App** and complete the **Create Web App** form. At the bottom of the **Basics** tab, select **Enabled** under **Zone redundancy**.
@@ -126,7 +126,7 @@ To enable zone redundancy for a service connection in App Service using the Azur
    :::image type="content" source="media/enable-zone-redundancy.png" alt-text="Screenshot of the Azure portal, enabling zone redundancy in App Services.":::
 
 1. After completing the form, select **Review + create** and then select **Create**.
-1. When the deployment completes, go to the web app page and select **Service Connector** under **Settings** in the left navigation menu.
+1. When the deployment completes, go to the web app and select **Service Connector** under **Settings** in the left navigation menu.
 1. Select **Create**, and complete the **Create connection** form. Under **Service type**, select **Storage - Blob** or another service of your choice.
 1. After you complete the form, select **Review + Create**, and then select **Create**.
 
