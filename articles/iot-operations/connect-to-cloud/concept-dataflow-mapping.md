@@ -17,7 +17,7 @@ ms.service: azure-iot-operations
 [!INCLUDE [kubernetes-management-preview-note](../includes/kubernetes-management-preview-note.md)]
 
 > [!TIP]
-> Data flow graphs offer an expanded mapping language with additional functions, composable transforms, and features like conditional routing and time-based aggregation. For new projects that use MQTT, Kafka, or OpenTelemetry endpoints, see [Transform data with map in data flow graphs](howto-dataflow-graphs-map.md) (preview).
+> Data flow graphs offer an expanded mapping language with additional functions, composable transforms, and features like conditional routing and time-based aggregation. For new projects that use MQTT, Kafka, or OpenTelemetry endpoints, see [Transform data with map in data flow graphs](howto-dataflow-graphs-map.md).
 
 Use the data flow mapping language to transform data in Azure IoT Operations. The syntax is a simple, yet powerful, way to define mappings that transform data from one format to another. This article provides an overview of the data flow mapping language and key concepts.
 

@@ -16,7 +16,7 @@ ms.service: azure-iot-operations
 [!INCLUDE [kubernetes-management-preview-note](../includes/kubernetes-management-preview-note.md)]
 
 > [!TIP]
-> Data flow graphs support enrichment with expanded capabilities including enrichment in filter and branch transforms. For new projects that use MQTT, Kafka, or OpenTelemetry endpoints, see [Enrich with external data in data flow graphs](howto-dataflow-graphs-enrich.md) (preview).
+> Data flow graphs support enrichment with expanded capabilities including enrichment in filter and branch transforms. For new projects that use MQTT, Kafka, or OpenTelemetry endpoints, see [Enrich with external data in data flow graphs](howto-dataflow-graphs-enrich.md).
 
 You can enrich data by using the *contextualization datasets* function. When incoming records are processed, you can query these datasets based on conditions that relate to the fields of the incoming record. This capability allows for dynamic interactions. Data from these datasets can be used to supplement information in the output fields and participate in complex calculations during the mapping process.
 

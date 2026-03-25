@@ -46,7 +46,7 @@ You can apply transformations to data during the processing stage to perform var
 - **Contextualizing data**: Add reference data to messages for enrichment and driving insights.
 
 > [!TIP]
-> For richer processing capabilities including conditional routing, time-based aggregation, and composable transform pipelines, see [Data flow graphs](concept-dataflow-graphs.md) (preview).
+> For richer processing capabilities including conditional routing, time-based aggregation, and composable transform pipelines, see [Data flow graphs](concept-dataflow-graphs.md).
 
 ### Configuration and deployment
 

@@ -26,7 +26,7 @@ Data flows are generally available and support all endpoint types.
 
 A [data flow graph](concept-dataflow-graphs.md) is a composable, graph-based pipeline that connects multiple transforms in any topology you define. You can chain, branch, and merge processing steps. Each transform is a pre-built processing unit (map, filter, branch, window, enrichment) that you configure with rules. You configure a data flow graph by creating a `DataflowGraph` custom resource.
 
-Data flow graphs are in preview and support MQTT, Kafka, and OpenTelemetry endpoints.
+Data flow graphs support MQTT, Kafka, and OpenTelemetry endpoints.
 
 ## Comparison
 
@@ -41,7 +41,6 @@ Data flow graphs are in preview and support MQTT, Kafka, and OpenTelemetry endpo
 | Dynamic destination topics | `${inputTopic}` (source topic passthrough) | `$metadata.topic` + `${outputTopic}` (content-based routing) |
 | Schema | On source and transformation | On node connections |
 | Disk persistence | Supported | Supported |
-| Status | Generally available | Preview |
 
 ## Shared infrastructure
 
