@@ -48,7 +48,7 @@ Several built-in Azure role-based access control (RBAC) roles are intended for u
 |[Storage File Data SMB Share Elevated Contributor](../../role-based-access-control/built-in-roles.md#storage-file-data-smb-share-elevated-contributor) | Grants read, write, delete, and modify-ACL access on files and directories in Azure Files. This role is similar to a file share ACL of *change* on Windows file servers.         |
 |[Storage File Data Privileged Contributor](../../role-based-access-control/built-in-roles/storage.md#storage-file-data-privileged-contributor) | Grants read, write, delete, and modify-ACL access in Azure Files by overriding existing ACLs. |
 |[Storage File Data Privileged Reader](../../role-based-access-control/built-in-roles/storage.md#storage-file-data-privileged-reader) | Grants read access in Azure Files by overriding existing ACLs. |
-|[Storage File Data SMB Admin](../../role-based-access-control/built-in-roles/storage.md#storage-file-data-smb-admin) | Grants admin access equivalent to an storage account key for users over SMB. |
+|[Storage File Data SMB Admin](../../role-based-access-control/built-in-roles/storage.md#storage-file-data-smb-admin) | Grants admin access equivalent to a storage account key for users over SMB. |
 |[Storage File Data SMB Take Ownership](../../role-based-access-control/built-in-roles/storage.md#storage-file-data-smb-take-ownership) | Allows users to assume ownership of a file/directory. |
 
 <a name='share-level-permissions-for-specific-azure-ad-users-or-groups'></a>
@@ -185,7 +185,7 @@ az storage account update --name $storageAccountName --resource-group $resourceG
 
 You can assign permissions to all authenticated Entra users and to specific Entra users or groups. When you use this configuration, a specific user or group gets the higher-level permission between the default share-level permission and the RBAC assignment.
 
-For example, suppose you grant a user the **Storage File Data SMB Reader** role on the target file share. You also grant the default share-level permission **Storage File Data SMB Share Elevated Contributor** to all authenticated users. With this configuration, that particular user has **Storage File Data SMB Share Elevated Contributor** access to the file share. Higher-level permissions always take precedence.
+For example, suppose you grant a user the Storage File Data SMB Reader role on the target file share. You also grant the default share-level permission Storage File Data SMB Share Elevated Contributor to all authenticated users. With this configuration, that particular user has Storage File Data SMB Share Elevated Contributor access to the file share. Higher-level permissions always take precedence.
 
 ## Understanding group-based access for non-synced users
 

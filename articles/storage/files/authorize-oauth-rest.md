@@ -78,7 +78,7 @@ These roles are similar to the [Storage File Data SMB Share Reader](../../role-b
 
 - The new roles contain the extra data actions that OAuth access requires.
 
-- When the user, group, or service principal assigned the **Storage File Data Privileged Reader** or **Storage File Data Privileged Contributor** role calls the FileREST data API by using OAuth, the user, group, or the service principal has:
+- When the user, group, or service principal assigned the Storage File Data Privileged Reader or Storage File Data Privileged Contributor role calls the FileREST data API by using OAuth, the user, group, or the service principal has:
   - **Storage File Data Privileged Reader**: Full read access on all the data in the shares for all the configured storage accounts regardless of the file-level or directory-level NTFS permissions that are set.
   - **Storage File Data Privileged Contributor**: Full read, write, modify ACLs, and delete access on all the data in the shares for all the configured storage accounts regardless of the file-level or directory-level NTFS permissions that are set.
 
@@ -175,7 +175,7 @@ The [Azure portal](https://portal.azure.com?azure-portal=true) can use either yo
 
 When you attempt to access file data, the Azure portal first checks whether you have an Azure role with `Microsoft.Storage/storageAccounts/listkeys/action`. If you have a role with this action, the Azure portal uses the storage account key for accessing file data via shared key authorization. If you don't have a role with this action, the Azure portal attempts to access data by using your Entra account.
 
-To access file data from the Azure portal by using your Entra account, you need permissions to access file data. You also need permissions to move through the storage account resources in the Azure portal. The built-in Azure roles grant access to file resources, but they don't grant permissions to storage account resources. For this reason, access to the portal also requires assigning an Azure Resource Manager role such as the **Reader** role, scoped to the level of the storage account or higher. The **Reader** role grants the most restrictive permissions, but any Resource Manager role that grants access to storage account management resources is acceptable.
+To access file data from the Azure portal by using your Entra account, you need permissions to access file data. You also need permissions to move through the storage account resources in the Azure portal. The built-in Azure roles grant access to file resources, but they don't grant permissions to storage account resources. For this reason, access to the portal also requires assigning an Azure Resource Manager role such as the Reader role, scoped to the level of the storage account or higher. The Reader role grants the most restrictive permissions, but any Resource Manager role that grants access to storage account management resources is acceptable.
 
 When you go to a container, the Azure portal indicates which authorization scheme is in use. For more information about data access in the portal, see [Choose how to authorize access to file data in the Azure portal](authorize-data-operations-portal.md).
 

@@ -26,7 +26,7 @@ Before you can configure Windows ACLs, you need to mount the file share with adm
 
 ## How Azure RBAC and Windows ACLs work together
 
-Whereas share-level permissions (RBAC) act as a high-level gatekeeper that determines whether a user can access the share, Windows ACLs (NTFS permissions) operate at a more granular level to control what operations the user can do at the directory or file level. You can set Windows ACLs at the root, directory, or file level.
+Share-level permissions (RBAC) act as a high-level gatekeeper that determines whether a user can access the share. Windows ACLs (NTFS permissions) operate at a more granular level to control what operations the user can do at the directory or file level. You can set Windows ACLs at the root, directory, or file level.
 
 When a user tries to access a file or directory, both share-level and file/directory-level permissions are enforced. If there's a difference between either of them, only the most restrictive one applies.
 
@@ -85,7 +85,7 @@ If a user has the **Full Control** ACL and the [Storage File Data SMB Share Elev
 
 Use the Windows permission model for SMB admin instead of the storage account key. This feature enables you to assign the built-in RBAC role [Storage File Data SMB Admin](/azure/role-based-access-control/built-in-roles/storage#storage-file-data-smb-admin) to users, so they can take ownership of a file or directory to configure ACLs.
 
-The Storage File Data SMB Admin RBAC role doesn't grant the identity direct access to a file or directory if the identity isn't granted the proper permission (such as Modify or Full Control) in the target file's or directory's ACL. However, the identity with the Storage File Data SMB Admin RBAC role can take ownership of the target file or directory by using the Windows [takeown](/windows-server/administration/windows-commands/takeown) command, and then modify the ACL to grant proper access permissions.
+The Storage File Data SMB Admin RBAC role doesn't grant the identity direct access to a file or directory if the identity isn't granted the proper permission (such as Modify or Full Control) in the target file's or directory's ACL. However, the identity with the Storage File Data SMB Admin RBAC role can take ownership of the target file or directory by using the Windows [`takeown`](/windows-server/administration/windows-commands/takeown) command, and then modify the ACL to grant proper access permissions.
 
 The Storage File Data SMB Admin RBAC role includes the following three data actions:
 

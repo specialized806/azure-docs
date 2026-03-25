@@ -15,7 +15,7 @@ ms.author: kendownie
 
 Regardless of which identity source you choose for [identity-based authentication](storage-files-active-directory-overview.md) on your storage account, you need to configure authorization and access control. Azure Files enforces authorization on user access at both the share level and the directory/file level.
 
-You can assign share-level permissions to Microsoft Entra users or groups that are managed through [Azure RBAC](/azure/role-based-access-control/overview). With Azure RBAC, the credentials that you use for file access should be available or synced to Microsoft Entra ID. You can assign Azure built-in roles like **Storage File Data SMB Share Reader** to users or groups in Microsoft Entra ID to grant access to a file share.
+You can assign share-level permissions to Microsoft Entra users or groups that are managed through [Azure RBAC](/azure/role-based-access-control/overview). With Azure RBAC, the credentials that you use for file access should be available or synced to Microsoft Entra ID. You can assign Azure built-in roles like Storage File Data SMB Share Reader to users or groups in Microsoft Entra ID to grant access to a file share.
 
 At the directory and file levels, Azure Files supports preserving, inheriting, and enforcing [Windows ACLs](/windows/win32/secauthz/access-control-lists). You can choose to keep Windows ACLs when you copy data over SMB between your existing file share and your Azure file shares. Whether you plan to enforce authorization or not, you can use Azure Files to back up ACLs along with your data.
 
