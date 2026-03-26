@@ -23,8 +23,8 @@ ms.custom: include file
     | Setting | Value |
     | ------- | ----- |
     | Subscription | Select your subscription. |
-    | Resource group | Enter **<resource-group>**. |
-    | Region | Select **<region>**. |
+    | Resource group | Enter **\<resource-group\>**. |
+    | Region | Select **\<region\>**. |
 
 1. Select **Review + create**.
 
