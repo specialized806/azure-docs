@@ -5,7 +5,7 @@ author: maud-lv
 ms.author: malev
 ms.service: service-connector
 ms.topic: concept-article
-ms.date: 03/25/2026
+ms.date: 03/26/2026
 ms.custom: references_regions
 #Customer intent: As an Azure developer, I want to understand Service Connector availability concepts so I can take advantage of these features in my Service Connector connections.
 ---
@@ -32,10 +32,10 @@ For example, if you have an app service that has zone redundancy enabled with th
 
 Traffic is routed to all of your available connection resources. When a zone goes down, the platform detects the lost instances, automatically attempts to find new replacement instances, and spreads the traffic as needed.
 
+To create a zone-redundant service connection using Service Connector, see [Create a zone-redundant service connection](#create-a-zone-redundant-service-connection).
+
 > [!NOTE]
 > To create, update, validate, and list service connections, Service Connector calls APIs from the compute service and the target service. Because Service Connector relies on the responses from both the compute service and the target service, requests to Service Connector might not succeed if the target service can't be reached in a zone-down scenario. This limitation applies to App Service, Azure Container Apps, and Azure Spring Apps.
-
-To create a zone-redundant service connection using Service Connector, see [Create a zone-redundant service connection](#create-a-zone-redundant-service-connection).
 
 ## Disaster recovery and resiliency
 
@@ -103,7 +103,7 @@ The following steps create a zone-redundant service connection for a PremiumV2 A
    az webapp create --name <unique_app_name> --plan MyPlan --resource-group MyResourceGroup
    ```
    
-1. The following code creates a service connection to an existing Azure Storage blob using system-assigned identity authorization. Replace the `<unique_app_name>`, `<storage_account_resource_group>`, and `<storage_account_name>` placeholders with the values for your resources. For more information, see [az webapp connection create storage-blob](/cli/azure/webapp/connection/create#az-webapp-connection-create-storage-blob).
+1. Create a service connection to an existing Azure Storage blob using system-assigned identity authorization. In the following code, replace the `<unique_app_name>`, `<storage_account_resource_group>`, and `<storage_account_name>` placeholders with the values for your resources. For more information, see [az webapp connection create storage-blob](/cli/azure/webapp/connection/create#az-webapp-connection-create-storage-blob).
 
    ```azurecli
    az webapp connection create storage-blob \
@@ -114,10 +114,11 @@ The following steps create a zone-redundant service connection for a PremiumV2 A
 
 ### [Portal](#tab/azure-portal)
 
-The following steps create a zone-redundant service connection for a PremiumV2 App Service Plan called `MyPlan` in an existing resource group called `MyResourceGroup`. This example creates a service connection to an existing Azure Storage blob. 
+The following steps create a zone-redundant service connection for a PremiumV2 App Service Plan to an existing Azure Storage blob.
 
 1. In the Azure portal, search for and select **App Services**.
-1. Select **Create** > **Web App** and complete the **Create Web App** form. At the bottom of the **Basics** tab, select **Enabled** under **Zone redundancy**.
+1. Select **Create** > **Web App**.
+1. Complete the **Create Web App** form, providing a globally unique web app name and selecting a Premium or Isolated pricing plan. At the bottom of the **Basics** tab, select **Enabled** under **Zone redundancy**.
 
    :::image type="content" source="media/enable-zone-redundancy.png" alt-text="Screenshot of the Azure portal, enabling zone redundancy in App Services.":::
 
