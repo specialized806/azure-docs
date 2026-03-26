@@ -461,6 +461,48 @@ This rule uses the current value when present, falls back to the last known valu
 
 You can augment messages with data from an external state store by configuring datasets. For example, look up a device's metadata by its ID and include it in the output. For details, see [Enrich with external data](howto-dataflow-graphs-enrich.md).
 
+## Data flow graph exclusive features
+
+Data flow graphs support several features that aren't available in data flow `builtInTransformation` mappings.
+
+### Default values for missing fields
+
+Use the `?? <default>` syntax on an input to provide a static fallback when a field is missing. This is simpler than writing an `if` expression to check for empty values.
+
+# [Operations experience](#tab/portal)
+
+In the map transform configuration, set the input to include the `??` syntax followed by the default value. For example, enter `temperature ?? 0` as the input field to use `0` when the temperature field is missing.
+
+# [Bicep](#tab/bicep)
+
+```bicep
+{
+  inputs: [ 'temperature ?? 0' ]
+  output: 'temperature'
+}
+```
+
+# [Kubernetes (preview)](#tab/kubernetes)
+
+```yaml
+- inputs:
+    - temperature ?? 0
+  output: temperature
+```
+
+---
+
+For details on supported default types and combining defaults with last known values, see [Default values](concept-dataflow-graphs-expressions.md#default-values) in the expressions reference.
+
+### Regex functions
+
+Data flow graphs support regular expression matching and replacement:
+
+- `str::regex_matches(string, pattern)`: Returns true if the string matches the regex pattern.
+- `str::regex_replace(string, pattern, replacement)`: Replaces all regex matches with the replacement string.
+
+These functions are useful in filter expressions or for cleaning and transforming string data. For the full list of string functions, see [String functions](concept-dataflow-graphs-expressions.md#string-functions) in the expressions reference.
+
 ## Full configuration example
 
 Here's a complete map configuration that copies all fields, removes sensitive data, restructures a field, and computes a derived value:
@@ -575,31 +617,6 @@ The rules configuration is a JSON string placed as the `value` for the `rules` k
 For the full `DataflowGraph` resource structure, see [Data flow graphs overview](concept-dataflow-graphs.md#how-configuration-works).
 
 ---
-
-## Data flow graph exclusive features
-
-Data flow graphs support several features that aren't available in data flow `builtInTransformation` mappings.
-
-### Default values for missing fields
-
-Use the `?? <default>` syntax on an input to provide a static fallback when a field is missing. This is simpler than writing an `if` expression to check for empty values.
-
-```yaml
-- inputs:
-    - temperature ?? 0
-  output: temperature
-```
-
-For details on supported default types and combining defaults with last known values, see [Default values](concept-dataflow-graphs-expressions.md#default-values) in the expressions reference.
-
-### Regex functions
-
-Data flow graphs support regular expression matching and replacement:
-
-- `str::regex_matches(string, pattern)`: Returns true if the string matches the regex pattern.
-- `str::regex_replace(string, pattern, replacement)`: Replaces all regex matches with the replacement string.
-
-These functions are useful in filter expressions or for cleaning and transforming string data. For the full list of string functions, see [String functions](concept-dataflow-graphs-expressions.md#string-functions) in the expressions reference.
 
 ## Next steps
 
