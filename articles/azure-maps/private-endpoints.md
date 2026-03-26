@@ -4,7 +4,7 @@ description: Learn how to use private endpoints with Azure Maps.
 author: pbrasil
 ms.author: peterbr 
 ms.date: 03/26/2026
-ms.topic: how-to
+ms.topic: article
 ms.service: azure-maps
 ms.subservice: authentication
 ---
