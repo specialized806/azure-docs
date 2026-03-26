@@ -18,7 +18,7 @@ The following procedure creates two VMs named **\<virtual-machine-1\>** and **\<
 
 1. In **Virtual machines**, select **+ Create**, and then select **Azure virtual machine**.
 
-1. On the **Basics** tab of **Create a virtual machine**, enter or select the following information:
+1. On the **Basics** tab of **Create a virtual machine**, enter, or select the following information:
 
     | Setting | Value |
     |---|---|
@@ -50,7 +50,7 @@ The following procedure creates two VMs named **\<virtual-machine-1\>** and **\<
     | Subnet | Select **\<subnet\> (10.0.0.0/24)**. |
     | Public IP | Select **None**. |
     | NIC network security group | Select **Advanced**. |
-    | Configure network security group | Select **Create new**. </br> Enter **\<network-security-group\>** for the name. </br> Leave the rest at the defaults and select **OK**. |
+    | Configure network security group | Select **Create new**.</br> Enter **\<network-security-group\>** for the name.</br> Leave the rest at the defaults and select **OK**. |
 
 1. Leave the rest of the settings at the defaults and select **Review + create**.
 
