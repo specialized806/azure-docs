@@ -236,7 +236,7 @@ When the output should closely match the input with only a few changes, use a wi
 
 # [Operations experience](#tab/portal)
 
-Add a passthrough rule that copies all fields. In the Operations experience, this is typically the default behavior when you add a map transform.
+Add a passthrough rule that copies all fields. Set the input to `*` and the output to `*`.
 
 # [Bicep](#tab/bicep)
 
