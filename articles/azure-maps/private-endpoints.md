@@ -82,7 +82,7 @@ Within this zone, a DNS record maps your Azure Maps account's unique ID and regi
 Clients inside the virtual network resolve the hostname to a private IP address for private connectivity, while clients outside the network resolve the same hostname to the Azure Maps public endpoint. This split‑horizon DNS approach lets you use a single endpoint URL both inside and outside the virtual network.
 
 If you don't use automatic DNS integration, configure DNS manually so the Azure Maps account hostname  
-(`<maps-account-client-id>.<location>.privatelink.account.maps.azure.com`) resolves to the private endpoint IP address within your network. For more information, see [Azure Private Endpoint DNS documentation](../private-link/private-endpoint-dns.md).
+(`<maps-account-client-id>.<location>.account.maps.azure.com`) resolves to the private endpoint IP address within your network. For more information, see [Azure Private Endpoint DNS documentation](../private-link/private-endpoint-dns.md).
 
 ### 3. Use the private endpoint in your applications
 
