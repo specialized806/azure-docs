@@ -4,7 +4,7 @@ description: Learn about dynamic sessions in Azure Container Apps.
 services: container-apps
 author: craigshoemaker
 ms.service: azure-container-apps
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/07/2025
 ms.author: cshoe
 ms.custom: references_regions, ignite-2024
@@ -71,16 +71,18 @@ Dynamic sessions are available in the following regions. Both code interpreter a
 | Americas | Europe | Asia Pacific | Middle East & Africa |
 |----------|--------|--------------|----------------------|
 | Brazil South | France Central | Australia East | South Africa North |
-| Canada Central | Germany West Central | Australia Southeast | UAE North |
-| Canada East | Italy North | Central India | |
-| Central US | North Europe | East Asia | |
-| East US | Norway East | Japan East | |
-| East US 2 | Poland Central | Japan West | |
-| North Central US | Sweden Central | Korea Central | |
-| West Central US | Switzerland North | South India | |
-| West US | Switzerland West | Southeast Asia | |
-| West US 2 | UK South | | |
-| West US 3 | UK West | | |
+| Canada Central | France South | Australia Southeast | UAE North |
+| Canada East | Germany West Central | Central India | |
+| Central US | Italy North | East Asia | |
+| East US | North Europe | Japan East | |
+| East US 2 | Norway East | Japan West | |
+| North Central US | Poland Central | Korea Central | |
+| West Central US | Spain Central | South India | |
+| West US | Sweden Central | Southeast Asia | |
+| West US 2 | Switzerland North | | |
+| West US 3 | Switzerland West | | |
+| | UK South | | |
+| | UK West | | |
 | | West Europe | | |
 
 > [!NOTE]

@@ -14,7 +14,7 @@ ms.service: azure-iot-operations
 
 The custom WebAssembly (WASM) data processing feature in Azure IoT Operations enables real time telemetry data processing within your Azure IoT Operations cluster. By deploying custom WASM modules, you can define and execute data transformations as part of your data flow graph or HTTP/REST connector.
 
-This article describes how to use the **Azure IoT Operations Data Flow** preview VS Code extension to develop, test, and debug your WASM modules locally before you deploy them to your Azure IoT Operations cluster. You'll learn how to:
+This article describes how to use the **Azure IoT Operations Data Flow** VS Code extension to develop, test, and debug your WASM modules locally before you deploy them to your Azure IoT Operations cluster. You'll learn how to:
 
 - Run a graph application locally by executing a prebuilt graph with sample data to understand the basic workflow.
 - Create custom WASM modules by building new operators in Python and Rust with map and filter functionality.
@@ -26,7 +26,7 @@ The extension is supported on the following platforms:
 
 - Linux
 - Windows Subsystem for Linux (WSL)
-- Windows (be sure to use a Windows shell such as PowerShell or Command Prompt when when you run the extension commands on Windows)
+- Windows (be sure to use a Windows shell such as PowerShell or Command Prompt when you run the extension commands on Windows)
 
 To learn more about graphs and WASM in Azure IoT Operations, see:
 
@@ -39,7 +39,7 @@ Development environment:
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - (Optional) [RedHat YAML extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) for VS Code
-- [Azure IoT Operations Data Flow extension (preview)](https://marketplace.visualstudio.com/items?itemName=ms-azureiotoperations.azure-iot-operations-data-flow-vscode) for VS Code.
+- [Azure IoT Operations Data Flow extension](https://marketplace.visualstudio.com/items?itemName=ms-azureiotoperations.azure-iot-operations-data-flow-vscode) for VS Code.
 - [CodeLLDB extension](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb) for VS Code to enable debugging of WASM modules
 - [Azure CLI](/cli/azure/install-azure-cli)
 - [ORAS CLI](https://oras.land/docs/installation/)
@@ -431,7 +431,7 @@ To learn more, see [Azure IoT Operations schema registry concepts](../connect-to
 
 The `data/` folder contains three test files:
 
-- `temperature_humidity_payload_1.json` - Contains both temperature and humidity data and passes validation. However, the humidity value isn't an integer as specified in the schema, so the data is filtered out.
+- `temperature_humidity_payload_1.json` - Contains both temperature and humidity data. However, the humidity value (175.1) isn't an integer as specified in the schema, so the data fails schema validation and is filtered out.
 - `temperature_humidity_payload_2.json` - Contains only humidity data and is filtered out.
 - `temperature_humidity_payload_3.json` - Contains both temperature and humidity data and passes validation.
 
@@ -583,3 +583,10 @@ kubectl logs -n azure-iot-operations -l app.kubernetes.io/instance=aio-dataflow-
 ### Recovery procedures
 
 **VS Code extension reset**: If the VS Code extension behaves unexpectedly, try uninstalling and reinstalling it, then restart VS Code.
+## Related content
+
+- [Develop custom WASM modules](howto-develop-wasm-modules.md)
+- [Configure graph definitions](howto-configure-wasm-graph-definitions.md)
+- [Deploy graph definitions](howto-deploy-wasm-graph-definitions.md)
+- [ONNX inference in WASM modules](howto-wasm-onnx-inference.md)
+- [Use WASM in dataflow graphs](../connect-to-cloud/howto-dataflow-graph-wasm.md)
