@@ -14,7 +14,7 @@ ms.custom: include file
 
 ### Create the first virtual machine
 
-Create a virtual machine with [az vm create](/cli/azure/vm#az-vm-create). The following example creates a virtual machine named **vm-1** in the **vnet-1** virtual network. If SSH keys don't already exist in a default key location, the command creates them. The `--no-wait` option creates the virtual machine in the background, so you can continue to the next step.
+Create a virtual machine with [az vm create](/cli/azure/vm#az-vm-create). The following example creates a virtual machine named **\<virtual-machine-1\>** in the **\<virtual-network\>** virtual network. If SSH keys don't already exist in a default key location, the command creates them. The `--no-wait` option creates the virtual machine in the background, so you can continue to the next step.
 
 ```azurecli-interactive
 # Variable declarations
@@ -37,7 +37,7 @@ az vm create \
 
 ### Create the second virtual machine
 
-Create a virtual machine named **vm-2** in the **vnet-1** virtual network.
+Create a virtual machine named **\<virtual-machine-2\>** in the **\<virtual-network\>** virtual network.
 
 ```azurecli-interactive
 # Variable declarations
