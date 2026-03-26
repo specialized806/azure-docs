@@ -14,7 +14,7 @@ ms.custom: include file
 
 ### Create the first virtual machine
 
-Create a virtual machine with [New-AzVM](/powershell/module/az.compute/new-azvm). The following example creates a virtual machine named **vm-1** in the **vnet-1** virtual network.
+Create a virtual machine with [New-AzVM](/powershell/module/az.compute/new-azvm). The following example creates a virtual machine named **\<virtual-machine-1\>** in the **\<virtual-network\>** virtual network.
 
 ```azurepowershell-interactive
 # Variable declarations
