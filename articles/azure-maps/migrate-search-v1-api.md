@@ -12,7 +12,7 @@ ms.subservice: search
 
 # Migrate Azure Maps Search 1.0 APIs
 
-[Search][Search v1] API version 1.0 is superseded by the [Search][Search v2026-01-01] 2026‑01‑01 API. The newer version introduces task‑specific endpoints, clearer intent, and improved scalability. This article explains how to migrate existing Search v1 integrations.
+[Search][Search v2026-01-01] API version 2026‑01‑01 supersedes [Search][Search v1] API version 1.0. The newer version introduces task‑specific endpoints, clearer intent, and improved scalability. This article explains how to migrate existing Search v1 integrations.
 
 > [!IMPORTANT]
 > Azure Maps [Search API version 1.0][Search v1] has been superseded by [Search API version 2026‑01‑01][Search v2026-01-01]. While Search v1 continues to function, new development should use the latest Search API to access task‑specific endpoints, improved performance, and long‑term support. To avoid future service disruptions, migrate existing Search v1 integrations to Search 2026‑01‑01.
@@ -22,7 +22,7 @@ ms.subservice: search
 | Purpose            | Search v1 API                   | Search 2026‑01‑01 API         |
 |--------------------|---------------------------------|-------------------------------|
 | Forward geocoding  | [Get Search Address]            | [Get Geocoding]               |
-| Address/POI search | [Get Search Fuzzy] (final)      | [Get Geocoding]               |
+| Address            | [Get Search Fuzzy] (final)      | [Get Geocoding]               |
 | Autocomplete       | [Get Search Fuzzy] (type‑ahead) | [Get Geocode Autocomplete]    |
 | Batch geocoding    | [Get Search Address Batch]      | [Get Geocoding Batch]         |
 | Reverse geocoding  | [Get Search Address Reverse]    | [Get Reverse Geocoding]       |
@@ -70,9 +70,9 @@ When migrating, review how your application interprets search responses:
 - A successful request may return **no results** when no suitable match is found. For more information, see [Understand empty geocoding results].
 - Low‑confidence or loosely related matches are less likely to be returned automatically.
 - Applications should evaluate **confidence values**, **match codes**, and **entity types** when determining whether a result is acceptable. For more information, see [Improve result quality for query-based geocoding].
-- If a requested entity is not found, the service may return a higher‑level entity in the address hierarchy (for example, a region instead of a city). For more information on evaluating result quality and validating that returned entity types match the intended search scenario, see [Best practices for forward geocoding] in _Best practices for Azure Maps Search service_.
+- If a requested entity isn't found, the service may return a higher‑level entity in the address hierarchy (for example, a region instead of a city). For more information on evaluating result quality and validating that returned entity types match the intended search scenario, see [Best practices for forward geocoding] in _Best practices for Azure Maps Search service_.
 
-Do not assume that every successful request will return a usable result. Explicit result evaluation is required to maintain data quality.
+Don't assume that every successful request returns a usable result. Explicit result evaluation is required to maintain data quality.
 
 ## Request and response example comparison
 
