@@ -266,6 +266,16 @@ JSON objects and arrays are preserved as-is when fields are copied without an ex
 
 ¹ Available in data flow graphs only. Not supported in data flow `builtInTransformation` inputs.
 
+## Field paths, wildcards, and contextualization
+
+The expression language operates on fields referenced in the `inputs` and `output` of each rule. For details on how to reference fields, including dot notation, escaping, wildcard matching, and contextualization datasets, see [Map data by using data flows](concept-dataflow-mapping.md). These field path features apply to both data flows and data flow graphs.
+
+Key features:
+
+- **Dot notation**: Reference nested fields like `Employee.DateOfBirth` or escape segments containing dots like `"Tag.10"`.
+- **Wildcards**: Use `*` in input and output paths to match multiple fields at once, for example `ColorProperties.*`.
+- **Contextualization datasets**: Reference external data with `$context(datasetName).fieldName`.
+
 ## Related content
 
 - [Map data by using data flows](concept-dataflow-mapping.md)
