@@ -6,7 +6,7 @@ ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: reference
-ms.date: 03/19/2026
+ms.date: 03/26/2026
 ai-usage: ai-assisted
 
 ---
@@ -212,7 +212,10 @@ Last known value is supported in map, filter, and branch rules. It isn't availab
 
 ## Default values
 
-Use the `?? <default>` suffix on an input to provide a fallback value when the field is missing and no last known value is available. Supported default types: integer, float, boolean, string, and null.
+Use the `?? <default>` suffix on an input to provide a fallback value when the field is missing. Supported default types: integer, float, boolean, string, and null.
+
+> [!NOTE]
+> The `?? <default>` syntax is available in data flow graphs only. It isn't supported in data flow `builtInTransformation` inputs.
 
 | Input | Fallback |
 |-------|----------|
@@ -223,11 +226,12 @@ Use the `?? <default>` suffix on an input to provide a fallback value when the f
 
 ### Combine last known value and default
 
-You can combine `? $last` and `?? <default>`. The runtime checks the current message first, then the last known value, then the default.
+You can combine `? $last` and `?? <default>`. The runtime checks the current message first, then the last known value, then the default. If you use `?? <default>` without `? $last`, the runtime checks the current message and then the default directly.
 
 | Input | Evaluation order |
 |-------|-----------------|
-| `temperature ? $last ?? 0` | Current value, then last known, then 0 |
+| `temperature ?? 0` | Current value, then default (0) |
+| `temperature ? $last ?? 0` | Current value, then last known, then default (0) |
 
 Default values are supported in map, filter, and branch rules. They aren't available in window (accumulate) rules.
 
@@ -256,8 +260,11 @@ JSON objects and arrays are preserved as-is when fields are copied without an ex
 | `$metadata` access | Yes | Yes | Yes | No |
 | `$context` enrichment | Yes | Yes | Yes | No |
 | `? $last` | Yes | Yes | Yes | No |
-| `?? <default>` | Yes | Yes | Yes | No |
+| `?? <default>` ¹ | Yes | Yes | Yes | No |
+| `str::regex_matches` / `str::regex_replace` ¹ | Yes | Yes | Yes | No |
 | Wildcards | Yes | No | No | No |
+
+¹ Available in data flow graphs only. Not supported in data flow `builtInTransformation` inputs.
 
 ## Related content
 

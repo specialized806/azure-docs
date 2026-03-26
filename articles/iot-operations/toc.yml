@@ -250,7 +250,7 @@ items:
           - name: Disk persistence
             href: connect-to-cloud/howto-configure-disk-persistence.md
             displayName: data flow, persistence, disk, restart, state
-          - name: Expressions
+          - name: Expressions reference
             href: connect-to-cloud/concept-dataflow-graphs-expressions.md
             displayName: data flow, expression, function, operator, metadata, variable, conversion
           - name: Profiles
