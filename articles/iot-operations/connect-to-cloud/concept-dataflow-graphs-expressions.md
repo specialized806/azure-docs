@@ -195,19 +195,15 @@ Expression: `$1 + "/" + $2`
 
 In the following example, the MQTT `topic` property is mapped to the `origin_topic` field in the output:
 
-```yaml
-inputs:
-  - $metadata.topic
-output: origin_topic
-```
+| Input | Output |
+|-------|--------|
+| `$metadata.topic` | `origin_topic` |
 
 If the user property `priority` is present in the MQTT message, the following example demonstrates how to map it to an output field:
 
-```yaml
-inputs:
-  - $metadata.user_property.priority
-output: priority
-```
+| Input | Output |
+|-------|--------|
+| `$metadata.user_property.priority` | `priority` |
 
 ### Write to metadata
 
@@ -217,27 +213,21 @@ Setting a metadata field to an empty value (`()`) removes it. For user propertie
 
 You can also map metadata properties to an output header or user property. In the following example, the MQTT `topic` is mapped to the `origin_topic` field in the output's user property:
 
-```yaml
-inputs:
-  - $metadata.topic
-output: $metadata.user_property.origin_topic
-```
+| Input | Output |
+|-------|--------|
+| `$metadata.topic` | `$metadata.user_property.origin_topic` |
 
 If the incoming payload contains a `priority` field, the following example demonstrates how to map it to an MQTT user property:
 
-```yaml
-inputs:
-  - priority
-output: $metadata.user_property.priority
-```
+| Input | Output |
+|-------|--------|
+| `priority` | `$metadata.user_property.priority` |
 
 The same example for Kafka:
 
-```yaml
-inputs:
-  - priority
-output: $metadata.header.priority
-```
+| Input | Output |
+|-------|--------|
+| `priority` | `$metadata.header.priority` |
 
 Metadata fields are supported in map, filter, and branch rules. They aren't available in window (accumulate) rules.
 
@@ -314,28 +304,11 @@ JSON objects and arrays are preserved as-is when fields are copied without an ex
 
 ## Dot notation and escaping
 
-Dot notation is widely used to reference nested fields. A standard dot-notation sample looks like this:
+Dot notation is widely used to reference nested fields. A standard dot-notation path looks like `Person.Address.Street.Number`.
 
-```yaml
-- inputs:
-  - Person.Address.Street.Number
-```
+In a data flow, a path described by dot notation might include strings and some special characters without needing escaping, such as `Person.Date of Birth`.
 
-In a data flow, a path described by dot notation might include strings and some special characters without needing escaping:
-
-```yaml
-- inputs:
-  - Person.Date of Birth
-```
-
-In other cases, escaping is necessary:
-
-```yaml
-- inputs:
-  - nsu=http://opcfoundation.org/UA/Plc/Applications;s=RandomSignedInt32
-```
-
-The previous example, among other special characters, contains dots within the field name. Without escaping, the field name would serve as a separator in the dot notation itself.
+In other cases, escaping is necessary, for example: `nsu=http://opcfoundation.org/UA/Plc/Applications;s=RandomSignedInt32`. This path, among other special characters, contains dots within the field name. Without escaping, the field name would serve as a separator in the dot notation itself.
 
 While a data flow parses a path, it treats only two characters as special:
 
@@ -344,56 +317,18 @@ While a data flow parses a path, it treats only two characters as special:
 
 Any other characters are treated as part of the field name. This flexibility is useful in formats like JSON, where field names can be arbitrary strings.
 
-The path definition must also adhere to the rules of YAML. When a character with special meaning is included in the path, proper quoting is required in the configuration. Consult the YAML documentation for precise rules. Here are some examples that demonstrate the need for careful formatting:
-
-```yaml
-- inputs:
-  - ':Person:.:name:'   # ':' cannot be used as the first character without single quotation marks
-  - '100 celsius.hot'   # numbers followed by text would not be interpreted as a string without single quotation marks
-```
+The path definition must also adhere to the rules of the configuration format. When a character with special meaning is included in the path, proper quoting is required. For example, field names that start with a colon (like `:Person:.:name:`) or that begin with a number followed by text (like `100 celsius.hot`) need quoting in the configuration to be interpreted correctly as strings.
 
 ### Escaping
 
-The primary function of escaping in a dot-notated path is to accommodate the use of dots that are part of field names rather than separators:
-
-```yaml
-- inputs:
-  - 'Payload."Tag.10".Value'
-```
-
-The outer single quotation marks (`'`) are necessary because of YAML syntax rules, which allow the inclusion of double quotation marks within the string.
-
-In this example, the path consists of three segments: `Payload`, `Tag.10`, and `Value`.
+The primary function of escaping in a dot-notated path is to accommodate the use of dots that are part of field names rather than separators. For example, the path `Payload."Tag.10".Value` consists of three segments: `Payload`, `Tag.10`, and `Value`. The double quotation marks around `Tag.10` prevent the dot from acting as a separator.
 
 ### Escaping rules in dot notation
 
-* **Escape each segment separately:** If multiple segments contain dots, those segments must be enclosed in double quotation marks. Other segments can also be quoted, but it doesn't affect the path interpretation:
-
-  
-  ```yaml
-  - inputs:
-    - 'Payload."Tag.10".Measurements."Vibration.$12".Value'
-  ```
+* **Escape each segment separately:** If multiple segments contain dots, those segments must be enclosed in double quotation marks. Other segments can also be quoted, but it doesn't affect the path interpretation. For example: `Payload."Tag.10".Measurements."Vibration.$12".Value`
 
     
-* **Proper use of double quotation marks:** Double quotation marks must open and close an escaped segment. Any quotation marks in the middle of the segment are considered part of the field name:
-
-  
-  ```yaml
-  - inputs:
-    - 'Payload.He said: "Hello", and waved'
-  ```
-
-  This example defines two fields: `Payload` and `He said: "Hello", and waved`. When a dot appears under these circumstances, it continues to serve as a separator:
-
-  
-  ```yaml
-  - inputs:
-    - 'Payload.He said: "No. It is done"'
-  ```
-
-  
-  In this case, the path is split into the segments `Payload`, `He said: "No`, and `It is done"` (starting with a space).
+* **Proper use of double quotation marks:** Double quotation marks must open and close an escaped segment. Any quotation marks in the middle of the segment are considered part of the field name. For example, the path `Payload.He said: "Hello", and waved` defines two fields: `Payload` and `He said: "Hello", and waved`. When a dot appears under these circumstances, it continues to serve as a separator. For example, the path `Payload.He said: "No. It is done"` is split into the segments `Payload`, `He said: "No`, and `It is done"` (starting with a space).
     
 ### Segmentation algorithm
 
@@ -406,11 +341,9 @@ In many scenarios, the output record closely resembles the input record, with on
 
 Let's consider a basic scenario to understand the use of asterisks in mappings:
 
-```yaml
-- inputs:
-  - '*'
-  output: '*'
-```
+| Input | Output |
+|-------|--------|
+| `*` | `*` |
 
 This configuration shows a basic mapping where every field in the input is directly mapped to the same field in the output without any changes. The asterisk (`*`) serves as a wildcard that matches any field in the input record.
 
@@ -444,15 +377,10 @@ Original JSON:
 
 Mapping configuration that uses wildcards:
 
-```yaml
-- inputs:
-  - 'ColorProperties.*'
-  output: '*'
-
-- inputs:
-  - 'TextureProperties.*'
-  output: '*'
-```
+| Input | Output |
+|-------|--------|
+| `ColorProperties.*` | `*` |
+| `TextureProperties.*` | `*` |
 
 Resulting JSON:
 
@@ -504,13 +432,9 @@ Original JSON:
 
 Mapping configuration that uses wildcards:
 
-```yaml
-- inputs:
-  - '*.Max'   # - $1
-  - '*.Min'   # - $2
-  output: 'ColorProperties.*'
-  expression: ($1 + $2) / 2
-```
+| Input | Output | Expression |
+|-------|--------|------------|
+| `*.Max` ($1), `*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
 
 Resulting JSON:
 
@@ -561,15 +485,9 @@ Original JSON:
 
 Initial mapping configuration that uses wildcards:
 
-```yaml
-- inputs:
-  - '*.Max'    # - $1
-  - '*.Min'    # - $2
-  - '*.Avg'    # - $3
-  - '*.Mean'   # - $4
-  output: 'ColorProperties.*'
-  expression: ($1, $2, $3, $4)
-```
+| Input | Output | Expression |
+|-------|--------|------------|
+| `*.Max` ($1), `*.Min` ($2), `*.Avg` ($3), `*.Mean` ($4) | `ColorProperties.*` | `($1, $2, $3, $4)` |
 
 This initial mapping tries to build an array (for example, for `Opacity`: `[0.88, 0.91, 0.89, 0.89]`). This configuration fails because:
 
@@ -584,15 +502,9 @@ Because `Avg` and `Mean` are nested within `Mid`, the asterisk in the initial ma
 
 Corrected mapping configuration:
 
-```yaml
-- inputs:
-  - '*.Max'        # - $1
-  - '*.Min'        # - $2
-  - '*.Mid.Avg'    # - $3
-  - '*.Mid.Mean'   # - $4
-  output: 'ColorProperties.*'
-  expression: ($1, $2, $3, $4)
-```
+| Input | Output | Expression |
+|-------|--------|------------|
+| `*.Max` ($1), `*.Min` ($2), `*.Mid.Avg` ($3), `*.Mid.Mean` ($4) | `ColorProperties.*` | `($1, $2, $3, $4)` |
 
 This revised mapping accurately captures the necessary fields. It correctly specifies the paths to include the nested `Mid` object, which ensures that the asterisks work effectively across different levels of the JSON structure.
 
@@ -600,19 +512,10 @@ This revised mapping accurately captures the necessary fields. It correctly spec
 
 When you use the previous example from multi-input wildcards, consider the following mappings that generate two derived values for each property:
 
-```yaml
-- inputs:
-  - '*.Max'   # - $1
-  - '*.Min'   # - $2
-  output: 'ColorProperties.*.Avg'
-  expression: ($1 + $2) / 2
-
-- inputs:
-  - '*.Max'   # - $1
-  - '*.Min'   # - $2
-  output: 'ColorProperties.*.Diff'
-  expression: $1 - $2
-```
+| Input | Output | Expression |
+|-------|--------|------------|
+| `*.Max` ($1), `*.Min` ($2) | `ColorProperties.*.Avg` | `($1 + $2) / 2` |
+| `*.Max` ($1), `*.Min` ($2) | `ColorProperties.*.Diff` | `$1 - $2` |
 
 This mapping is intended to create two separate calculations (`Avg` and `Diff`) for each property under `ColorProperties`. This example shows the result:
 
@@ -639,19 +542,10 @@ Here, the second mapping definition on the same inputs acts as a *second rule* f
 
 Now, consider a scenario where a specific field needs a different calculation:
 
-```yaml
-- inputs:
-  - '*.Max'   # - $1
-  - '*.Min'   # - $2
-  output: 'ColorProperties.*'
-  expression: ($1 + $2) / 2
-
-- inputs:
-  - Opacity.Max   # - $1
-  - Opacity.Min   # - $2
-  output: ColorProperties.OpacityAdjusted
-  expression: ($1 + $2 + 1.32) / 2  
-```
+| Input | Output | Expression |
+|-------|--------|------------|
+| `*.Max` ($1), `*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
+| `Opacity.Max` ($1), `Opacity.Min` ($2) | `ColorProperties.OpacityAdjusted` | `($1 + $2 + 1.32) / 2` |
 
 In this case, the `Opacity` field has a unique calculation. Two options to handle this overlapping scenario are:
 
@@ -660,20 +554,12 @@ In this case, the `Opacity` field has a unique calculation. Two options to handl
 
 Consider a special case for the same fields to help decide the right action:
 
-```yaml
-- inputs:
-  - '*.Max'   # - $1
-  - '*.Min'   # - $2
-  output: 'ColorProperties.*'
-  expression: ($1 + $2) / 2
+| Input | Output | Expression |
+|-------|--------|------------|
+| `*.Max` ($1), `*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
+| `Opacity.Max`, `Opacity.Min` | *(empty)* | |
 
-- inputs:
-  - Opacity.Max
-  - Opacity.Min
-  output:   
-```
-
-An empty `output` field in the second definition implies not writing the fields in the output record (effectively removing `Opacity`). This setup is more of a `Specialization` than a `Second Rule`.
+An empty output field in the second definition implies not writing the fields in the output record (effectively removing `Opacity`). This setup is more of a `Specialization` than a `Second Rule`.
 
 Resolution of overlapping mappings by data flows:
 
@@ -699,19 +585,15 @@ Contextualization datasets can be used with wildcards. Consider a dataset named 
 
 In an earlier example, we used a specific field from this dataset:
 
-```yaml
-- inputs:
-  - $context(position).BaseSalary
-  output: Employment.BaseSalary
-```
+| Input | Output |
+|-------|--------|
+| `$context(position).BaseSalary` | `Employment.BaseSalary` |
 
 This mapping copies `BaseSalary` from the context dataset directly into the `Employment` section of the output record. If you want to automate the process and include all fields from the `position` dataset into the `Employment` section, you can use wildcards:
 
-```yaml
-- inputs:
-  - '$context(position).*'
-  output: 'Employment.*'
-```
+| Input | Output |
+|-------|--------|
+| `$context(position).*` | `Employment.*` |
 
 This configuration allows for a dynamic mapping where every field within the `position` dataset is copied into the `Employment` section of the output record:
 
