@@ -1,7 +1,7 @@
 ---
 title: Automate Incident Response in Azure SRE Agent
 description: Learn how your agent monitors, investigates, and resolves incidents automatically which learns from every fix to improve over time.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-sre-agent
 ms.date: 03/18/2026
 author: craigshoemaker
