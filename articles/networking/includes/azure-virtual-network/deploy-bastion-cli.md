@@ -30,7 +30,7 @@ Azure Bastion uses your browser to connect to virtual machines in your virtual n
         --address-prefix 10.0.1.0/26
     ```
 
-1. Create a public IP address for Bastion. This IP address is used to connect to the Bastion host from the internet. Use [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create) to create a public IP address named **public-ip** in the **test-rg** resource group:
+1. Create a public IP address for Bastion. This IP address is used to connect to the Bastion host from the internet. Use [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create) to create a public IP address named **public-ip** in the **\<resource-group\>** resource group:
 
     ```azurecli-interactive
     # Variable declarations
