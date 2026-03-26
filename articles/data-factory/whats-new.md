@@ -34,43 +34,43 @@ Check out our [What's New video archive](https://www.youtube.com/playlist?list=P
 ## January 2026
 
 ### Migration
-- Assessing your Azure Data Factory and Synapse pipelines for migration to Fabric. [Learn more](how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration.md).
+Assessing your Azure Data Factory and Synapse pipelines for migration to Fabric. [Learn more](how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration.md).
 
 ## December 2025
 
 ### Data movement
 
-- HDInsight Hive activity now supports Managed Identity authentication to ADLS Gen2 Storage accounts for Bring Your Own Compute. [Learn more](compute-linked-services.md).
+HDInsight Hive activity now supports Managed Identity authentication to ADLS Gen2 Storage accounts for Bring Your Own Compute. [Learn more](compute-linked-services.md).
 
 ## October 2025
 
 ### Data movement
 
-- HDInsight Hive activity now supports Managed Identity authentication to ADLS Gen2 Storage accounts for Bring Your Own Compute. [Learn more](compute-linked-services.md).
+HDInsight Hive activity now supports Managed Identity authentication to ADLS Gen2 Storage accounts for Bring Your Own Compute. [Learn more](compute-linked-services.md).
 
 ## August 2025
 
 ### Data flow
 
-- We're updating Azure Data Factory Mapping Data Flows to use to use Spark 3.4.
+We're updating Azure Data Factory Mapping Data Flows to use to use Spark 3.4.
 
 ## August 2024
 
 ### Data movement
 
-- HDInsight On-demand Spark activity now supports Managed Identity authentication. [Learn more](connector-azure-table-storage.md).
+HDInsight On-demand Spark activity now supports Managed Identity authentication. [Learn more](connector-azure-table-storage.md).
 
 ## June 2025
 
 ### Data movement
 
-- Azure Data Factory Connector Upgrade Advisor now supports additional connectors. [Learn more](connector-upgrade-advisor.md).
+Azure Data Factory Connector Upgrade Advisor now supports additional connectors. [Learn more](connector-upgrade-advisor.md).
 
 ## May 2025
 
 ### Migration
 
-- Mounting your Azure Data Factory in Fabric is now generally available. [Learn more](/fabric/data-factory/tutorial-bring-azure-data-factory-to-fabric).
+Mounting your Azure Data Factory in Fabric is now generally available. [Learn more](/fabric/data-factory/tutorial-bring-azure-data-factory-to-fabric).
 
 ## June 2024
 
