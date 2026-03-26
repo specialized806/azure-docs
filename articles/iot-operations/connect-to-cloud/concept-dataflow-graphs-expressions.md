@@ -434,7 +434,7 @@ Mapping configuration that uses wildcards:
 
 | Input | Output | Expression |
 |-------|--------|------------|
-| `*.Max` ($1), `*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
+| `*.Max` ($1)<br>`*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
 
 Resulting JSON:
 
@@ -487,7 +487,7 @@ Initial mapping configuration that uses wildcards:
 
 | Input | Output | Expression |
 |-------|--------|------------|
-| `*.Max` ($1), `*.Min` ($2), `*.Avg` ($3), `*.Mean` ($4) | `ColorProperties.*` | `($1, $2, $3, $4)` |
+| `*.Max` ($1)<br>`*.Min` ($2)<br>`*.Avg` ($3)<br>`*.Mean` ($4) | `ColorProperties.*` | `($1, $2, $3, $4)` |
 
 This initial mapping tries to build an array (for example, for `Opacity`: `[0.88, 0.91, 0.89, 0.89]`). This configuration fails because:
 
@@ -504,7 +504,7 @@ Corrected mapping configuration:
 
 | Input | Output | Expression |
 |-------|--------|------------|
-| `*.Max` ($1), `*.Min` ($2), `*.Mid.Avg` ($3), `*.Mid.Mean` ($4) | `ColorProperties.*` | `($1, $2, $3, $4)` |
+| `*.Max` ($1)<br>`*.Min` ($2)<br>`*.Mid.Avg` ($3)<br>`*.Mid.Mean` ($4) | `ColorProperties.*` | `($1, $2, $3, $4)` |
 
 This revised mapping accurately captures the necessary fields. It correctly specifies the paths to include the nested `Mid` object, which ensures that the asterisks work effectively across different levels of the JSON structure.
 
@@ -514,8 +514,8 @@ When you use the previous example from multi-input wildcards, consider the follo
 
 | Input | Output | Expression |
 |-------|--------|------------|
-| `*.Max` ($1), `*.Min` ($2) | `ColorProperties.*.Avg` | `($1 + $2) / 2` |
-| `*.Max` ($1), `*.Min` ($2) | `ColorProperties.*.Diff` | `$1 - $2` |
+| `*.Max` ($1)<br>`*.Min` ($2) | `ColorProperties.*.Avg` | `($1 + $2) / 2` |
+| `*.Max` ($1)<br>`*.Min` ($2) | `ColorProperties.*.Diff` | `$1 - $2` |
 
 This mapping is intended to create two separate calculations (`Avg` and `Diff`) for each property under `ColorProperties`. This example shows the result:
 
@@ -544,8 +544,8 @@ Now, consider a scenario where a specific field needs a different calculation:
 
 | Input | Output | Expression |
 |-------|--------|------------|
-| `*.Max` ($1), `*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
-| `Opacity.Max` ($1), `Opacity.Min` ($2) | `ColorProperties.OpacityAdjusted` | `($1 + $2 + 1.32) / 2` |
+| `*.Max` ($1)<br>`*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
+| `Opacity.Max` ($1)<br>`Opacity.Min` ($2) | `ColorProperties.OpacityAdjusted` | `($1 + $2 + 1.32) / 2` |
 
 In this case, the `Opacity` field has a unique calculation. Two options to handle this overlapping scenario are:
 
@@ -556,7 +556,7 @@ Consider a special case for the same fields to help decide the right action:
 
 | Input | Output | Expression |
 |-------|--------|------------|
-| `*.Max` ($1), `*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
+| `*.Max` ($1)<br>`*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
 | `Opacity.Max`, `Opacity.Min` | *(empty)* | |
 
 An empty output field in the second definition implies not writing the fields in the output record (effectively removing `Opacity`). This setup is more of a `Specialization` than a `Second Rule`.
