@@ -6,7 +6,7 @@ ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/26/2026
 ai-usage: ai-assisted
 
 ---
@@ -575,6 +575,44 @@ The rules configuration is a JSON string placed as the `value` for the `rules` k
 For the full `DataflowGraph` resource structure, see [Data flow graphs overview](concept-dataflow-graphs.md#how-configuration-works).
 
 ---
+
+## Data flow graph exclusive features
+
+Data flow graphs support several features that aren't available in data flow `builtInTransformation` mappings.
+
+### Default values for missing fields
+
+Use the `?? <default>` syntax on an input to provide a static fallback when a field is missing. This is simpler than writing an `if` expression to check for empty values.
+
+# [Bicep](#tab/bicep)
+
+```bicep
+{
+  inputs: [ 'temperature ?? 0' ]
+  output: 'temperature'
+}
+```
+
+# [Kubernetes (preview)](#tab/kubernetes)
+
+```yaml
+- inputs:
+    - temperature ?? 0
+  output: temperature
+```
+
+---
+
+For details on supported default types and combining defaults with last known values, see [Default values](concept-dataflow-graphs-expressions.md#default-values) in the expressions reference.
+
+### Regex functions
+
+Data flow graphs support regular expression matching and replacement:
+
+- `str::regex_matches(string, pattern)`: Returns true if the string matches the regex pattern.
+- `str::regex_replace(string, pattern, replacement)`: Replaces all regex matches with the replacement string.
+
+These functions are useful in filter expressions or for cleaning and transforming string data. For the full list of string functions, see [String functions](concept-dataflow-graphs-expressions.md#string-functions) in the expressions reference.
 
 ## Next steps
 
