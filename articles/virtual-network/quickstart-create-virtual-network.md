@@ -72,9 +72,6 @@ If you're running Azure CLI locally, use Azure CLI version 2.0.31 or later.
 
 ---
 
-
-### [Portal](#tab/portal)
-
 ## Resource values
 
 Use the following values to replace the placeholders of resources in this article:
@@ -89,6 +86,8 @@ Use the following values to replace the placeholders of resources in this articl
 | Bastion | `<bastion>` | **bastion** |
 | Virtual machine 1 | `<virtual-machine-1>` | **vm-1** |
 | Virtual machine 2 | `<virtual-machine-2>` | **vm-2** |
+
+### [Portal](#tab/portal)
 
 [!INCLUDE [create-resource-group](../networking/includes/azure-virtual-network/create-resource-group.md)]
 
@@ -105,9 +104,13 @@ Use the following values to replace the placeholders of resources in this articl
 Use [New-AzResourceGroup](/powershell/module/az.Resources/New-azResourceGroup) to create a resource group for the virtual network. Run the following code to create a resource group named **test-rg** in the **eastus2** Azure region:
 
 ```azurepowershell-interactive
+# Variable declarations
+$resourceGroupName = 'test-rg'       # <resource-group>
+$location = 'eastus2'                # <region>
+
 $rg = @{
-    Name = 'test-rg'
-    Location = 'eastus2'
+    Name = $resourceGroupName
+    Location = $location
 }
 New-AzResourceGroup @rg
 ```
@@ -117,10 +120,15 @@ New-AzResourceGroup @rg
 1. Use [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork) to create a virtual network named **vnet-1** with IP address prefix **10.0.0.0/16** in the **test-rg** resource group and **eastus2** location:
 
     ```azurepowershell-interactive
+    # Variable declarations
+    $virtualNetworkName = 'vnet-1'       # <virtual-network>
+    $resourceGroupName = 'test-rg'       # <resource-group>
+    $location = 'eastus2'                # <region>
+
     $vnet = @{
-        Name = 'vnet-1'
-        ResourceGroupName = 'test-rg'
-        Location = 'eastus2'
+        Name = $virtualNetworkName
+        ResourceGroupName = $resourceGroupName
+        Location = $location
         AddressPrefix = '10.0.0.0/16'
     }
     $virtualNetwork = New-AzVirtualNetwork @vnet
@@ -129,8 +137,11 @@ New-AzResourceGroup @rg
 1. Azure deploys resources to a subnet within a virtual network. Use [Add-AzVirtualNetworkSubnetConfig](/powershell/module/az.network/add-azvirtualnetworksubnetconfig) to create a subnet configuration named **subnet-1** with address prefix **10.0.0.0/24**:
 
     ```azurepowershell-interactive
+    # Variable declarations
+    $subnetName = 'subnet-1'             # <subnet>
+
     $subnet = @{
-        Name = 'subnet-1'
+        Name = $subnetName
         VirtualNetwork = $virtualNetwork
         AddressPrefix = '10.0.0.0/24'
     }
@@ -169,10 +180,14 @@ Azure Bastion uses your browser to connect to virtual machines in your virtual n
 1. Create a public IP address for Bastion. The Bastion host uses the public IP to access SSH and RDP over port 443.
 
     ```azurepowershell-interactive
+    # Variable declarations
+    $resourceGroupName = 'test-rg'       # <resource-group>
+    $location = 'eastus2'                # <region>
+
     $ip = @{
-            ResourceGroupName = 'test-rg'
+            ResourceGroupName = $resourceGroupName
             Name = 'public-ip'
-            Location = 'eastus2'
+            Location = $location
             AllocationMethod = 'Static'
             Sku = 'Standard'
             Zone = 1,2,3
@@ -183,13 +198,18 @@ Azure Bastion uses your browser to connect to virtual machines in your virtual n
 1. Use the [New-AzBastion](/powershell/module/az.network/new-azbastion) command to create a new Basic SKU Bastion host in **AzureBastionSubnet**:
 
     ```azurepowershell-interactive
+    # Variable declarations
+    $bastionName = 'bastion'             # <bastion>
+    $resourceGroupName = 'test-rg'       # <resource-group>
+    $virtualNetworkName = 'vnet-1'       # <virtual-network>
+
     $bastion = @{
-        Name = 'bastion'
-        ResourceGroupName = 'test-rg'
-        PublicIpAddressRgName = 'test-rg'
+        Name = $bastionName
+        ResourceGroupName = $resourceGroupName
+        PublicIpAddressRgName = $resourceGroupName
         PublicIpAddressName = 'public-ip'
-        VirtualNetworkRgName = 'test-rg'
-        VirtualNetworkName = 'vnet-1'
+        VirtualNetworkRgName = $resourceGroupName
+        VirtualNetworkName = $virtualNetworkName
         Sku = 'Basic'
     }
     New-AzBastion @bastion
@@ -204,21 +224,28 @@ It takes about 10 minutes to deploy the Bastion resources. You can create virtua
 Create a virtual machine with [New-AzVM](/powershell/module/az.compute/new-azvm). The following example creates a virtual machine named **vm-1** in the **vnet-1** virtual network.
 
 ```azurepowershell-interactive
+# Variable declarations
+$resourceGroupName = 'test-rg'       # <resource-group>
+$location = 'eastus2'                # <region>
+$vm1Name = 'vm-1'                    # <virtual-machine-1>
+$virtualNetworkName = 'vnet-1'       # <virtual-network>
+$subnetName = 'subnet-1'             # <subnet>
+
 # Create a credential object
 $cred = Get-Credential
 
 # Define the virtual machine parameters
 $vmParams = @{
-    ResourceGroupName = "test-rg"
-    Location = "eastus2"
-    Name = "vm-1"
+    ResourceGroupName = $resourceGroupName
+    Location = $location
+    Name = $vm1Name
     Image = "Ubuntu2204"
     Size = "Standard_DS1_v2"
     Credential = $cred
-    VirtualNetworkName = "vnet-1"
-    SubnetName = "subnet-1"
+    VirtualNetworkName = $virtualNetworkName
+    SubnetName = $subnetName
     PublicIpAddressName = ""  # No public IP address
-    SshKeyName = "vm-1-ssh-key"
+    SshKeyName = "$vm1Name-ssh-key"
     GenerateSshKey = $true
 }
 
@@ -229,21 +256,28 @@ New-AzVM @vmParams
 ### Create the second virtual machine
 
 ```azurepowershell-interactive
+# Variable declarations
+$resourceGroupName = 'test-rg'       # <resource-group>
+$location = 'eastus2'                # <region>
+$vm2Name = 'vm-2'                    # <virtual-machine-2>
+$virtualNetworkName = 'vnet-1'       # <virtual-network>
+$subnetName = 'subnet-1'             # <subnet>
+
 # Create a credential object
 $cred = Get-Credential
 
 # Define the virtual machine parameters
 $vmParams = @{
-    ResourceGroupName = "test-rg"
-    Location = "eastus2"
-    Name = "vm-2"
+    ResourceGroupName = $resourceGroupName
+    Location = $location
+    Name = $vm2Name
     Image = "Ubuntu2204"
     Size = "Standard_DS1_v2"
     Credential = $cred
-    VirtualNetworkName = "vnet-1"
-    SubnetName = "subnet-1"
+    VirtualNetworkName = $virtualNetworkName
+    SubnetName = $subnetName
     PublicIpAddressName = ""  # No public IP address
-    SshKeyName = "vm-2-ssh-key"
+    SshKeyName = "$vm2Name-ssh-key"
     GenerateSshKey = $true
 }
 
@@ -718,8 +752,11 @@ For information about troubleshooting Terraform, see [Troubleshoot common proble
 When you finish using the virtual network and the virtual machines, use [Remove-AzResourceGroup](/powershell/module/az.resources/remove-azresourcegroup) to remove the resource group and all its resources:
 
 ```azurepowershell-interactive
+# Variable declarations
+$resourceGroupName = 'test-rg'       # <resource-group>
+
 $rgParams = @{
-    Name = 'test-rg'
+    Name = $resourceGroupName
     Force = $true
 }
 Remove-AzResourceGroup @rgParams
