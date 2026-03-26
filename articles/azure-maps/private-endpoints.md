@@ -3,13 +3,13 @@ title: Use private endpoints with Azure Maps
 description: Learn how to use private endpoints with Azure Maps. 
 author: pbrasil
 ms.author: peterbr 
-ms.date: 02/27/2026
+ms.date: 03/26/2026
 ms.topic: how-to
 ms.service: azure-maps
 ms.subservice: authentication
 ---
 
-# Use private endpoints with Azure Maps
+# Use private endpoints with Azure Maps (preview)
 
 Azure Maps supports [Azure Private Link](/../private-link/private-link-overview.md), enabling secure access to Azure Maps services through a private endpoint in your virtual network. A private endpoint assigns a private IP address from your virtual network to the Azure Maps service, so traffic between your applications and Azure Maps stays on the Microsoft backbone network instead of the public internet. This provides improved security and network isolation. You can create a private endpoint when you create an Azure Maps account or add one to an existing account.
 
@@ -92,7 +92,7 @@ To use the private endpoint, configure your applications to call the **Azure Map
 
 The access pattern is:
 
-`https://{maps-account-client-id}.{location}.privatelink.account.maps.azure.com`
+`https://{maps-account-client-id}.{location}.account.maps.azure.com`
 
 > [!Important]
 > If your application continues to use the default Azure Maps endpoint (such as `atlas.microsoft.com`), requests won't be routed through the private endpoint. Azure Maps SDKs support overriding the default endpoint, so configure your SDK or connection code to use your Azure Maps account–specific hostname. When configured, requests from within your network are automatically routed through Private Link.
