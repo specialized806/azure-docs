@@ -1,7 +1,7 @@
 ---
 title: Agent Permissions in Azure SRE Agent
 description: Learn how your agent accesses Azure resources, including permission levels, RBAC roles, and on-behalf-of flow.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-sre-agent
 ms.date: 03/18/2026
 author: craigshoemaker

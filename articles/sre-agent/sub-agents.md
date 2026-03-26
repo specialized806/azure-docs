@@ -1,11 +1,12 @@
 ---
 title: Custom agents in Azure SRE Agent
 description: Learn how custom agents provide specialized domain expertise that you invoke on demand through the /agent command.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-sre-agent
 ms.date: 03/18/2026
 author: craigshoemaker
 ms.author: cshoe
+ms.reviewer: cshoe
 ms.ai-usage: ai-assisted
 ms.custom: custom agents, subagents, specialized, delegation, multi-agent
 #customer intent: As an SRE, I want to understand custom agents so that I can create specialized agents for specific operational domains.
@@ -14,9 +15,9 @@ ms.custom: custom agents, subagents, specialized, delegation, multi-agent
 # Custom agents in Azure SRE Agent
 <!-- Video: Subagents__Specialist_AI_Team.mp4 — Replace with the hosted video URL using > [!VIDEO https://...] syntax -->
 
-Custom agents are specialist agents that you invoke on demand. Type `/agent` in chat, select your specialist, and ask your question. This gives you access to a database expert for SQL problems and a security auditor for threat investigation.
+Custom agents are specialist agents that you invoke on demand. Type `/agent` in chat, select your specialist, and ask your question. This process gives you access to a database expert for SQL problems and a security auditor for threat investigation.
 
-Unlike skills (which are always available), custom agents require explicit invocation. This scope their expertise to specific tasks.
+Unlike skills (which are always available), custom agents require explicit invocation. This requirement scopes their expertise to specific tasks.
 
 :::image type="content" source="media/sub-agents/portal-sub-agent-canvas-full.png" alt-text="Screenshot of Agent Canvas showing custom agents connected to triggers and tools." lightbox="media/sub-agents/portal-sub-agent-canvas-full.png":::
 
