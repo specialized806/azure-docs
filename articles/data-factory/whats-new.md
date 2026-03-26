@@ -29,7 +29,7 @@ Check out our [What's New video archive](https://www.youtube.com/playlist?list=P
 
 ## Migration
 - Upgrading your Azure Data Factory pipelines to Fabric. [Learn more](how-to-upgrade-your-azure-data-factory-pipelines-to-fabric-data-factory.md).
-- Upgrading your Azure Synapse Analytics pipelines to Fabric. [Learn more] (how-to-upgrade-your-azure-synapse-analytics-pipelines-to-fabric-data-factory.md).
+- Upgrading your Azure Synapse Analytics pipelines to Fabric. [Learn more](how-to-upgrade-your-azure-synapse-analytics-pipelines-to-fabric-data-factory.md).
 
 ## January 2026
 
@@ -52,7 +52,7 @@ Check out our [What's New video archive](https://www.youtube.com/playlist?list=P
 
 ## Data transformation
 
-- We're updating Azure Data Factory Mapping Data Flows to use Spark 3.4
+- We have updated Azure Data Factory Mapping Data Flows to use Spark 3.4
 
 ## August 2024
 
