@@ -21,7 +21,7 @@ Through the Azure CLI, you can start and stop:
 
 - The entire SAP application tier, which includes Advanced Business Application Programming SAP Central Services (ASCS) and application server instances.
 - Individual SAP instances, which include Central Services and application server instances.
-- HANA database.
+- A HANA database.
 - Instances in the following types of deployments:
   - Single-server.
   - High availability (HA).
@@ -34,7 +34,7 @@ Through the Azure CLI, you can start and stop:
 
 To start and stop on the VIS solutions resource, you must:
 
-- Use an SAP system that you've [created in Azure Center for SAP solutions](prepare-network.md) or [registered with Azure Center for SAP solutions](register-existing-system.md) as a VIS resource.
+- Use an SAP system that you [created in Azure Center for SAP solutions](prepare-network.md) or [registered with Azure Center for SAP solutions](register-existing-system.md) as a VIS resource.
 
 - Confirm that your Azure account has the following role, or equivalent role access on the VIS resource: Azure Center for SAP solutions administrator. For more information about the granular permissions that govern start and stop actions on the VIS, individual SAP instances, and HANA database, see [Start SAP system](manage-with-azure-rbac.md#start-sap-system).
 
