@@ -27,13 +27,13 @@ Azure Bastion uses your browser to connect to virtual machines (VMs) in your vir
     |---|---|
     | **Project details** |  |
     | Subscription | Select your subscription. |
-    | Resource group | Select **<resource-group>**. |
+    | Resource group | Select **\<resource-group\>**. |
     | **Instance details** |  |
-    | Name | Enter **<bastion>**. |
-    | Region | Select **<region>**. |
+    | Name | Enter **\<bastion\>**. |
+    | Region | Select **\<region\>**. |
     | Tier | Select **Developer**. |
     | **Configure virtual networks** |  |
-    | Virtual network | Select **<virtual-network>**. |
+    | Virtual network | Select **\<virtual-network\>**. |
 
 1. Select **Review + create**.
 
