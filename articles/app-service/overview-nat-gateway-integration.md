@@ -22,7 +22,7 @@ Azure NAT Gateway is a fully managed, highly resilient service that ensures all 
 There are two important scenarios for using Azure NAT Gateway with App Service:
 
 - A NAT gateway gives you a static, predictable public IP address for outbound internet-facing traffic to your app within the virtual network.
-- A NAT gateway significantly increases the available [source network address translation (SNAT) ports](./troubleshoot-intermittent-outbound-connection-errors.md) in scenarios, where you have a high number of concurrent connections to the same public address/port combination.
+- A NAT gateway significantly increases the available source network address translation (SNAT) ports in scenarios where you have a high number of concurrent connections to the same public address/port combination. For more information, see [Troubleshoot intermittent outbound connection errors in Azure App Service](./troubleshoot-intermittent-outbound-connection-errors.md).
 
 The following diagram shows internet traffic from an app flowing to a NAT gateway in an Azure virtual network:
 
@@ -70,7 +70,7 @@ Confirm your app is integrated with a virtual network and subnet, as described i
 
    1. In the **Virtual Network Integration** page, select **Add virtual network integration**:
 
-   :::image type="content" source="./media/overview-nat-gateway-integration/add-virtual-network-integration.png" alt-text="Screenshot that shows how to select the 'Add virtual network integration' option in the Azure portal.":::  
+      :::image type="content" source="./media/overview-nat-gateway-integration/add-virtual-network-integration.png" alt-text="Screenshot that shows how to select the 'Add virtual network integration' option in the Azure portal.":::  
 
    1. In the **Add virtual network integration** pane, select your **Subscription**, **Virtual Network**, and **Subnet**.
 
@@ -88,7 +88,7 @@ Confirm your app is integrated with a virtual network and subnet, as described i
 
    :::image type="content" source="./media/overview-nat-gateway-integration/enable-all-traffic-routes.png" alt-text="Screenshot that shows how to ensure all traffic routes are enabled for the integration in the Azure portal."::: 
 
-For detailed steps, see [Manage Azure App Service virtual network integration routing](./configure-vnet-integration-routing.md#configure-application-routing).
+For detailed steps, see [Configure application routing](./configure-vnet-integration-routing.md#configure-application-routing).
 
 # [Azure CLI](#tab/azure-cli)
 
