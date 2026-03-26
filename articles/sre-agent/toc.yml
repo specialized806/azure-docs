@@ -72,6 +72,8 @@ items:
             href: workflow-automation.md
           - name: Scheduled tasks
             href: scheduled-tasks.md
+          - name: HTTP triggers
+            href: http-triggers.md
           - name: Send notifications
             href: send-notifications.md
       - name: Extend
@@ -122,6 +124,8 @@ items:
         items:
           - name: Create scheduled tasks
             href: create-scheduled-task.md
+          - name: Create an HTTP trigger
+            href: create-http-trigger.md
       - name: Extend
         items:
           - name: Configure agent hooks
