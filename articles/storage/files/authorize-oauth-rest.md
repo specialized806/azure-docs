@@ -78,7 +78,7 @@ These roles are similar to the [Storage File Data SMB Share Reader](../../role-b
 
 - The new roles contain the extra data actions that OAuth access requires.
 
-- When the user, group, or service principal assigned the Storage File Data Privileged Reader or Storage File Data Privileged Contributor role calls the FileREST data API by using OAuth, the user, group, or the service principal has:
+- When the user, group, or service principal assigned the Storage File Data Privileged Reader or Storage File Data Privileged Contributor role calls the FileREST data API by using OAuth, the caller has the following access:
   - **Storage File Data Privileged Reader**: Full read access on all the data in the shares for all the configured storage accounts regardless of the file-level or directory-level NTFS permissions that are set.
   - **Storage File Data Privileged Contributor**: Full read, write, modify-ACLs, and delete access on all the data in the shares for all the configured storage accounts regardless of the file-level or directory-level NTFS permissions that are set.
 
