@@ -12,7 +12,7 @@ ms.custom: include file
 
 ## Create a virtual network and subnet
 
-Use [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create) to create a virtual network named **vnet-1** with a subnet named **subnet-1** in the **test-rg** resource group:
+Use [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create) to create a virtual network named **\<virtual-network\>** with a subnet named **\<subnet\>** in the **\<resource-group\>** resource group:
 
 ```azurecli-interactive
 # Variable declarations
