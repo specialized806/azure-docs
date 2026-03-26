@@ -337,275 +337,131 @@ The primary function of escaping in a dot-notated path is to accommodate the use
 
 ## Wildcards
 
-In many scenarios, the output record closely resembles the input record, with only minor modifications required. When you deal with records that contain numerous fields, manually specifying mappings for each field can become tedious. Wildcards simplify this process by allowing for generalized mappings that can automatically apply to multiple fields.
+Use a wildcard (`*`) in input and output paths to match multiple fields at once. This is useful when the output closely resembles the input, or when you need to apply the same transformation across many fields without listing each one.
 
-Let's consider a basic scenario to understand the use of asterisks in mappings:
+### Copy all fields
+
+To pass every field through unchanged:
 
 | Input | Output |
 |-------|--------|
 | `*` | `*` |
 
-This configuration shows a basic mapping where every field in the input is directly mapped to the same field in the output without any changes. The asterisk (`*`) serves as a wildcard that matches any field in the input record.
+The `*` matches each field path in the input and places it at the same path in the output. The portion of the path that `*` matches is called the **captured segment**. In the output, the captured segment replaces the `*`.
 
-Here's how the asterisk (`*`) operates in this context:
+### Flatten nested fields
 
-* **Pattern matching**: The asterisk can match a single segment or multiple segments of a path. It serves as a placeholder for any segments in the path.
-* **Field matching**: During the mapping process, the algorithm evaluates each field in the input record against the pattern specified in the `inputs`. The asterisk in the previous example matches all possible paths, effectively fitting every individual field in the input.
-* **Captured segment**: The portion of the path that the asterisk matches is referred to as the `captured segment`.
-* **Output mapping**: In the output configuration, the `captured segment` is placed where the asterisk appears. This means that the structure of the input is preserved in the output, with the `captured segment` filling the placeholder provided by the asterisk.
-
-Another example illustrates how wildcards can be used to match subsections and move them together. This example effectively flattens nested structures within a JSON object.
-
-Original JSON:
-
-```json
-{
-  "ColorProperties": {
-    "Hue": "blue",
-    "Saturation": "90%",
-    "Brightness": "50%",
-    "Opacity": "0.8"
-  },
-  "TextureProperties": {
-    "type": "fabric",
-    "SurfaceFeel": "soft",
-    "SurfaceAppearance": "matte",
-    "Pattern": "knitted"
-  }
-}
-```
-
-Mapping configuration that uses wildcards:
+To move fields out of a nested object to the root level, put the prefix in the input and `*` in the output:
 
 | Input | Output |
 |-------|--------|
-| `ColorProperties.*` | `*` |
-| `TextureProperties.*` | `*` |
+| `Sensors.*` | `*` |
+| `Metadata.*` | `*` |
 
-Resulting JSON:
+Given this input:
 
 ```json
 {
-  "Hue": "blue",
-  "Saturation": "90%",
-  "Brightness": "50%",
-  "Opacity": "0.8",
-  "type": "fabric",
-  "SurfaceFeel": "soft",
-  "SurfaceAppearance": "matte",
-  "Pattern": "knitted"
+  "Sensors": { "Temperature": 72.5, "Pressure": 14.7 },
+  "Metadata": { "LineId": "Line-3", "Shift": "A" }
 }
 ```
 
-### Wildcard placement
+The output flattens both objects:
 
-When you place a wildcard, you must follow these rules:
+```json
+{
+  "Temperature": 72.5,
+  "Pressure": 14.7,
+  "LineId": "Line-3",
+  "Shift": "A"
+}
+```
 
-* **Single asterisk per data reference:** Only one asterisk (`*`) is allowed within a single data reference.
-* **Full segment matching:** The asterisk must always match an entire segment of the path. It can't be used to match only a part of a segment, such as `path1.partial*.path3`.
-* **Positioning:** The asterisk can be positioned in various parts of a data reference:
-  * **At the beginning:** `*.path2.path3` - Here, the asterisk matches any segment that leads up to `path2.path3`.
-  * **In the middle:** `path1.*.path3` - In this configuration, the asterisk matches any segment between `path1` and `path3`.
-  * **At the end:** `path1.path2.*` - The asterisk at the end matches any segment that follows after `path1.path2`.
-* The path containing the asterisk must be enclosed in single quotation marks (`'`).
+### Restructure fields
+
+To move fields under a new parent, put `*` in the input and add a prefix in the output:
+
+| Input | Output |
+|-------|--------|
+| `*` | `Telemetry.*` |
+
+This wraps all top-level fields inside a `Telemetry` object.
+
+### Wildcard placement rules
+
+- Only **one** `*` is allowed per input or output path.
+- The `*` must match a **complete segment** (not a partial segment like `Sensor*`).
+- The `*` can appear at the beginning (`*.Value`), middle (`Sensors.*.Reading`), or end (`Sensors.*`) of a path.
 
 ### Multi-input wildcards
 
-Original JSON:
+When a rule has multiple inputs with wildcards, the `*` must capture the **same segment** across all inputs. The runtime resolves the `*` from the first input, then looks for matching paths in the other inputs.
+
+For example, to average the max and min readings for each sensor:
+
+| Input | Output | Expression |
+|-------|--------|------------|
+| `*.Max` ($1)<br>`*.Min` ($2) | `Averaged.*` | `($1 + $2) / 2` |
+
+Given this input:
 
 ```json
 {
-  "Saturation": {
-    "Max": 0.42,
-    "Min": 0.67,
-  },
-  "Brightness": {
-    "Max": 0.78,
-    "Min": 0.93,
-  },
-  "Opacity": {
-    "Max": 0.88,
-    "Min": 0.91,
-  }
+  "Temperature": { "Max": 85.3, "Min": 62.1 },
+  "Pressure": { "Max": 15.2, "Min": 14.1 }
 }
 ```
 
-Mapping configuration that uses wildcards:
-
-| Input | Output | Expression |
-|-------|--------|------------|
-| `*.Max` ($1)<br>`*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
-
-Resulting JSON:
+The `*` captures `Temperature` first, so the rule looks for both `Temperature.Max` and `Temperature.Min`. Then it captures `Pressure` and looks for `Pressure.Max` and `Pressure.Min`. The output is:
 
 ```json
 {
-  "ColorProperties" : {
-    "Saturation": 0.54,
-    "Brightness": 0.85,
-    "Opacity": 0.89 
-  }    
+  "Averaged": { "Temperature": 73.7, "Pressure": 14.65 }
 }
 ```
 
-If you use multi-input wildcards, the asterisk (`*`) must consistently represent the same `Captured Segment` across every input. For example, when `*` captures `Saturation` in the pattern `*.Max`, the mapping algorithm expects the corresponding `Saturation.Min` to match with the pattern `*.Min`. Here, `*` is substituted by the `Captured Segment` from the first input, guiding the matching for subsequent inputs.
+If any input can't resolve for a captured segment (for example, `*.Mid.Avg` when the field is nested differently), that segment is skipped. Make sure the paths in all inputs reflect the actual structure of the data.
 
-Consider this detailed example:
+### Override a wildcard for specific fields
 
-Original JSON:
-
-```json
-{
-  "Saturation": {
-    "Max": 0.42,
-    "Min": 0.67,
-    "Mid": {
-      "Avg": 0.51,
-      "Mean": 0.56
-    }
-  },
-  "Brightness": {
-    "Max": 0.78,
-    "Min": 0.93,
-    "Mid": {
-      "Avg": 0.81,
-      "Mean": 0.82
-    }
-  },
-  "Opacity": {
-    "Max": 0.88,
-    "Min": 0.91,
-    "Mid": {
-      "Avg": 0.89,
-      "Mean": 0.89
-    }
-  }
-}
-```
-
-Initial mapping configuration that uses wildcards:
+You can combine a wildcard rule with specific rules. Specific rules take precedence when they have a **lower coverage** (fewer segments matched by `*`). This is called **specialization**.
 
 | Input | Output | Expression |
 |-------|--------|------------|
-| `*.Max` ($1)<br>`*.Min` ($2)<br>`*.Avg` ($3)<br>`*.Mean` ($4) | `ColorProperties.*` | `($1, $2, $3, $4)` |
+| `*.Max` ($1)<br>`*.Min` ($2) | `Averaged.*` | `($1 + $2) / 2` |
+| `Pressure.Max` ($1)<br>`Pressure.Min` ($2) | `Averaged.PressureAdj` | `($1 + $2 + 1.0) / 2` |
 
-This initial mapping tries to build an array (for example, for `Opacity`: `[0.88, 0.91, 0.89, 0.89]`). This configuration fails because:
+The first rule applies to all fields. The second rule overrides it for `Pressure` only, because `Pressure.Max` is more specific than `*.Max` (coverage 0 vs. coverage 1).
 
-* The first input `*.Max` captures a segment like `Saturation`.
-* The mapping expects the subsequent inputs to be present at the same level:
-  * `Saturation.Max`
-  * `Saturation.Min`
-  * `Saturation.Avg`
-  * `Saturation.Mean`
+To exclude a field entirely, use an empty output:
 
-Because `Avg` and `Mean` are nested within `Mid`, the asterisk in the initial mapping doesn't correctly capture these paths.
+| Input | Output |
+|-------|--------|
+| `Pressure.Max`, `Pressure.Min` | *(empty)* |
 
-Corrected mapping configuration:
+An empty output drops the field from the result. This overrides any wildcard rule that would otherwise include it.
 
-| Input | Output | Expression |
-|-------|--------|------------|
-| `*.Max` ($1)<br>`*.Min` ($2)<br>`*.Mid.Avg` ($3)<br>`*.Mid.Mean` ($4) | `ColorProperties.*` | `($1, $2, $3, $4)` |
+### Multiple rules on the same inputs
 
-This revised mapping accurately captures the necessary fields. It correctly specifies the paths to include the nested `Mid` object, which ensures that the asterisks work effectively across different levels of the JSON structure.
-
-### Specialization and second rules
-
-When you use the previous example from multi-input wildcards, consider the following mappings that generate two derived values for each property:
+If two rules have the same or higher coverage, both apply. This lets you compute multiple derived values from the same inputs:
 
 | Input | Output | Expression |
 |-------|--------|------------|
-| `*.Max` ($1)<br>`*.Min` ($2) | `ColorProperties.*.Avg` | `($1 + $2) / 2` |
-| `*.Max` ($1)<br>`*.Min` ($2) | `ColorProperties.*.Diff` | `$1 - $2` |
+| `*.Max` ($1)<br>`*.Min` ($2) | `Stats.*.Avg` | `($1 + $2) / 2` |
+| `*.Max` ($1)<br>`*.Min` ($2) | `Stats.*.Range` | `$1 - $2` |
 
-This mapping is intended to create two separate calculations (`Avg` and `Diff`) for each property under `ColorProperties`. This example shows the result:
-
-```json
-{
-  "ColorProperties": {
-    "Saturation": {
-      "Avg": 0.54,
-      "Diff": 0.25
-    },
-    "Brightness": {
-      "Avg": 0.85,
-      "Diff": 0.15
-    },
-    "Opacity": {
-      "Avg": 0.89,
-      "Diff": 0.03
-    }
-  }
-}
-```
-
-Here, the second mapping definition on the same inputs acts as a *second rule* for mapping.
-
-Now, consider a scenario where a specific field needs a different calculation:
-
-| Input | Output | Expression |
-|-------|--------|------------|
-| `*.Max` ($1)<br>`*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
-| `Opacity.Max` ($1)<br>`Opacity.Min` ($2) | `ColorProperties.OpacityAdjusted` | `($1 + $2 + 1.32) / 2` |
-
-In this case, the `Opacity` field has a unique calculation. Two options to handle this overlapping scenario are:
-
-- Include both mappings for `Opacity`. Because the output fields are different in this example, they wouldn't override each other.
-- Use the more specific rule for `Opacity` and remove the more generic one.
-
-Consider a special case for the same fields to help decide the right action:
-
-| Input | Output | Expression |
-|-------|--------|------------|
-| `*.Max` ($1)<br>`*.Min` ($2) | `ColorProperties.*` | `($1 + $2) / 2` |
-| `Opacity.Max`, `Opacity.Min` | *(empty)* | |
-
-An empty output field in the second definition implies not writing the fields in the output record (effectively removing `Opacity`). This setup is more of a `Specialization` than a `Second Rule`.
-
-Resolution of overlapping mappings by data flows:
-
-* The evaluation progresses from the top rule in the mapping definition.
-* If a new mapping resolves to the same fields as a previous rule, the following conditions apply:
-  * A `Rank` is calculated for each resolved input based on the number of segments the wildcard captures. For instance, if the `Captured Segments` are `Properties.Opacity`, the `Rank` is 2. If it's only `Opacity`, the `Rank` is 1. A mapping without wildcards has a `Rank` of 0.
-  * If the `Rank` of the latter rule is equal to or higher than the previous rule, a data flow treats it as a `Second Rule`.
-  * Otherwise, the data flow treats the configuration as a `Specialization`.
-
-For example, the mapping that directs `Opacity.Max` and `Opacity.Min` to an empty output has a `Rank` of 0. Because the second rule has a lower `Rank` than the previous one, it's considered a specialization and overrides the previous rule, which would calculate a value for `Opacity`.
+Both rules execute for each captured segment, producing two output fields per sensor.
 
 ### Wildcards in contextualization datasets
 
-Contextualization datasets can be used with wildcards. Consider a dataset named `position` that contains the following record:
-
-```json
-{
-  "Position": "Analyst",
-  "BaseSalary": 70000,
-  "WorkingHours": "Regular"
-}
-```
-
-In an earlier example, we used a specific field from this dataset:
+You can use wildcards with `$context` references to copy all fields from a dataset:
 
 | Input | Output |
 |-------|--------|
-| `$context(position).BaseSalary` | `Employment.BaseSalary` |
+| `$context(assetMeta).*` | `Asset.*` |
 
-This mapping copies `BaseSalary` from the context dataset directly into the `Employment` section of the output record. If you want to automate the process and include all fields from the `position` dataset into the `Employment` section, you can use wildcards:
-
-| Input | Output |
-|-------|--------|
-| `$context(position).*` | `Employment.*` |
-
-This configuration allows for a dynamic mapping where every field within the `position` dataset is copied into the `Employment` section of the output record:
-
-```json
-{
-    "Employment": {      
-      "Position": "Analyst",
-      "BaseSalary": 70000,
-      "WorkingHours": "Regular"
-    }
-}
-```
+This copies every field from the `assetMeta` dataset into the `Asset` section of the output.
 
 ## Contextualization datasets
 
