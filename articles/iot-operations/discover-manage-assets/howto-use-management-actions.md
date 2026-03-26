@@ -41,7 +41,7 @@ The `az iot ops mgmt-actions enable` command in the quickstart script provisions
 | Event Grid data flow endpoint | Connects the Azure IoT Operations data flow runtime to the Event Grid namespace. |
 | Request data flow graph | Routes messages from Event Grid to the MQTT broker, applying a WASM module to rewrite topic paths. |
 | Response data flow | Routes responses from the MQTT broker back to Event Grid. |
-| Managed identity | If you don't specify a user-assigned managed identity, the command creates a system-assigned managed identity for the data flow endpoint and Azure Device Registry namespace. |
+| Managed identity | If you don't specify a user-assigned managed identity, the command creates a system-assigned managed identity for the data flow endpoint and Azure Device Registry namespace. If the Azure Device Registry namespace doesn't have a system-assigned managed identity enabled, the `az iot ops mgmt-actions enable` command enables one to allow authentication with the Event Grid namespace. |
 | Role assignments | Grants the data flow identity and the Azure Device Registry namespace the required permissions. |
 | Management endpoint | A management endpoint for the Azure Device Registry namespace linking it to the Event Grid namespace. |
 
@@ -141,7 +141,7 @@ Management actions use two data flows and Azure Event Grid to connect a cloud cl
 
 When you execute a management action, the following sequence occurs:
 
-1. The `az iot ops mgmt-actions execute` command calls the `executeAction` endpoint in the Azure Device Registry namespace. The namespace then publishes the action request for the asset as an MQTT message to the Event Grid namespace. The message is published to a topic in the topic space created by the quickstart script, with the asset name, management group, and action name as subtopics.
+1. The `az iot ops mgmt-actions execute` command calls the `executeAction` endpoint of the asset in the Azure Device Registry namespace. The namespace then publishes the action request for the asset as an MQTT message to the Event Grid namespace. The message is published to a topic in the topic space created by the quickstart script, with the asset name, management group, and action name as subtopics.
 
 1. The **request data flow** subscribes to the `actions/requests/<instance-name>/#` topic on the Event Grid namespace. When a message arrives, the data flow passes it through a WASM graph module that strips the Event Grid topic prefix and rewrites the topic to the internal MQTT broker format.
 
