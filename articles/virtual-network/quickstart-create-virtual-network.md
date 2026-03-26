@@ -81,14 +81,14 @@ Use the following values to replace the placeholders of resources in this articl
 
 | Setting | Placeholder | Value |
 | ------- | ------ | ----------- |
-| Resource group | `<resource-group>` | **test-rg** |
-| Region | `<region>` | **East US 2** |
-| Virtual network | `<virtual-network>` | **vnet-1** |
-| Subnet | `<subnet>` | **subnet-1** |
-| Network security group | `<network-security-group>` | **nsg-1** |
-| Bastion | `<bastion>` | **bastion** |
-| Virtual machine 1 | `<virtual-machine-1>` | **vm-1** |
-| Virtual machine 2 | `<virtual-machine-2>` | **vm-2** |
+| Resource group | `\<resource-group\>` | **test-rg** |
+| Region | `\<region\>` | **East US 2** |
+| Virtual network | `\<virtual-network\>` | **vnet-1** |
+| Subnet | `\<subnet\>` | **subnet-1** |
+| Network security group | `\<network-security-group\>` | **nsg-1** |
+| Bastion | `\<bastion\>` | **bastion** |
+| Virtual machine 1 | `\<virtual-machine-1\>` | **vm-1** |
+| Virtual machine 2 | `\<virtual-machine-2\>` | **vm-2** |
 
 [!INCLUDE [create-resource-group](../networking/includes/azure-virtual-network/create-resource-group.md)]
 
