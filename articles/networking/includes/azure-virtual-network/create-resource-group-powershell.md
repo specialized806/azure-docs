@@ -12,7 +12,7 @@ ms.custom: include file
 
 ## Create a resource group
 
-Use [New-AzResourceGroup](/powershell/module/az.Resources/New-azResourceGroup) to create a resource group for the virtual network. Run the following code to create a resource group named **test-rg** in the **eastus2** Azure region:
+Use [New-AzResourceGroup](/powershell/module/az.Resources/New-azResourceGroup) to create a resource group for the virtual network. Run the following code to create a resource group named **\<resource-group\>** in the **\<region\>** Azure region:
 
 ```azurepowershell-interactive
 # Variable declarations
