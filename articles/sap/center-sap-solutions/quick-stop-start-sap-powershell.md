@@ -21,7 +21,7 @@ Through the Azure PowerShell module, you can start and stop:
 
 - The entire SAP application tier, which includes Advanced Business Application Programming SAP Central Services (ASCS) and application server instances.
 - Individual SAP instances, which include Central Services and application server instances.
-- HANA database.
+- A HANA database.
 - Instances in the following types of deployments:
   - Single-server.
   - High availability (HA).
