@@ -14,7 +14,7 @@ ms.date: 07/10/2025
 
 # Quickstart: Create an Azure Virtual Network
  
-Learn how to create an Azure Virtual Network (VNet) using the Azure portal, Azure CLI, Azure PowerShell, Azure Resource Manager (ARM) template, Bicep template, and Terraform. Two virtual machines and an Azure Bastion host are deployed to test connectivity between the virtual machines in the same virtual network. The Azure Bastion host facilitates secure and seamless RDP and SSH connectivity to the virtual machines directly in the Azure portal over SSL.
+Learn how to create an Azure Virtual Network using the Azure portal, Azure CLI, Azure PowerShell, Azure Resource Manager (ARM) template, Bicep template, and Terraform. Two virtual machines and an Azure Bastion host are deployed to test connectivity between the virtual machines in the same virtual network. The Azure Bastion host facilitates secure and seamless RDP and SSH connectivity to the virtual machines directly in the Azure portal over SSL.
 
 :::image type="content" source="./media/quick-create-portal/virtual-network-qs-resources.png" alt-text="Diagram of resources created in the virtual network quickstart." lightbox="./media/quick-create-portal/virtual-network-qs-resources.png":::
 
@@ -36,7 +36,7 @@ If you don't have an Azure account with an active subscription, [create one for 
 
 - Azure Cloud Shell or Azure PowerShell.
 
-  The steps in this quickstart run the Azure PowerShell cmdlets interactively in [Azure Cloud Shell](/azure/cloud-shell/overview). To run the commands in the Cloud Shell, select **Open Cloudshell** at the upper-right corner of a code block. Select **Copy** to copy the code, and then paste it into Cloud Shell to run it. You can also run Cloud Shell from within the Azure portal.
+  The steps in this quickstart run the Azure PowerShell cmdlets interactively in [Azure Cloud Shell](/azure/cloud-shell/overview). To run the commands in the Cloud Shell, select **Open Cloud shell** at the upper-right corner of a code block. Select **Copy** to copy the code, and then paste it into Cloud Shell to run it. You can also run Cloud Shell from within the Azure portal.
 
   You can also [install Azure PowerShell locally](/powershell/azure/install-azure-powershell) to run the cmdlets. The steps in this article require Azure PowerShell module version 5.4.1 or later. Run `Get-Module -ListAvailable Az` to find your installed version. If you need to upgrade, see [Update the Azure PowerShell module](/powershell/azure/install-Az-ps#update-the-azure-powershell-module).
 
@@ -52,7 +52,7 @@ If you don't have an Azure account with an active subscription, [create one for 
 
 If you're running Azure CLI locally, use Azure CLI version 2.0.31 or later.
 
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
 
 - An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
@@ -102,7 +102,7 @@ Use the following values to replace the placeholders of resources in this articl
 
 ## Create a resource group
 
-Use [New-AzResourceGroup](/powershell/module/az.Resources/New-azResourceGroup) to create a resource group to host the virtual network. Run the following code to create a resource group named **test-rg** in the **eastus2** Azure region:
+Use [New-AzResourceGroup](/powershell/module/az.Resources/New-azResourceGroup) to create a resource group for the virtual network. Run the following code to create a resource group named **test-rg** in the **eastus2** Azure region:
 
 ```azurepowershell-interactive
 $rg = @{
@@ -254,7 +254,7 @@ New-AzVM @vmParams
 Azure takes a few minutes to create the virtual machines. When Azure finishes creating the virtual machines, it returns the output to PowerShell.
 
 > [!NOTE]
-> Virtual machines in a virtual network with a Bastion host don't need public IP addresses. Bastion provides the public IP, and the virtual machines use private IPs to communicate within the network. You can remove the public IPs from any virtual machines in Bastion-hosted virtual networks. For more information, see [Dissociate a public IP address from an Azure VM](ip-services/remove-public-ip-address-vm.md).
+> Virtual machines in a virtual network with a Bastion host don't need public IP addresses. Bastion provides the public IP, and the virtual machines use private IPs to communicate within the network. You can remove the public IPs from any virtual machines in Bastion-hosted virtual networks. For more information, see [Dissociate a public IP address from an Azure Virtual Machine](ip-services/remove-public-ip-address-vm.md).
 
 [!INCLUDE [ephemeral-ip-note.md](~/reusable-content/ce-skilling/azure/includes/ephemeral-ip-note.md)]
 
@@ -366,7 +366,7 @@ The virtual machine takes a few minutes to create.
 
 [!INCLUDE [ephemeral-ip-note.md](~/reusable-content/ce-skilling/azure/includes/ephemeral-ip-note.md)]
 
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
 
 ## Review the template
 
@@ -387,7 +387,7 @@ Deploy the Resource Manager template to Azure:
 
    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/template-deployments/deploy-to-azure-button.svg" alt-text="Button to deploy the Resource Manager template to Azure." border="false" link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.network%2Fvnet-two-subnets%2Fazuredeploy.json":::
 
-1. In the portal, on the **Create a Virtual Network with two Subnets** page, enter or select the following values:
+1. In the portal, on the **Create a Virtual Network with two Subnets** page, enter, or select the following values:
    - **Resource group**: Select **Create new**, enter **CreateVNetQS-rg** for the resource group name, and then select **OK**.
    - **Virtual Network Name**: Enter a name for the new virtual network.
 1. Select **Review + create**, and then select **Create**.
@@ -407,7 +407,7 @@ To learn about the JSON syntax and properties for a virtual network in a templat
 
 ## Create the virtual network and virtual machines
 
-This quickstart uses the [Two VMs in VNET](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.compute/2-vms-internal-load-balancer/main.bicep) Bicep template from [Azure Resource Manager Quickstart Templates](https://github.com/Azure/azure-quickstart-templates) to create the virtual network, resource subnet, and virtual machines. The Bicep template defines the following Azure resources:
+This quickstart uses the [Two VMs in virtual network](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.compute/2-vms-internal-load-balancer/main.bicep) Bicep template from [Azure Resource Manager Quickstart Templates](https://github.com/Azure/azure-quickstart-templates) to create the virtual network, resource subnet, and virtual machines. The Bicep template defines the following Azure resources:
 
 - [Microsoft.Network virtualNetworks](/azure/templates/microsoft.network/virtualnetworks): Creates an Azure virtual network.
 - [Microsoft.Network virtualNetworks/subnets](/azure/templates/microsoft.network/virtualnetworks/subnets): Creates a subnet for the virtual machines.
@@ -735,7 +735,7 @@ az group delete \
     --yes
 ```
 
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
 
 When you no longer need the resources that you created with the virtual network, delete the resource group. This action removes the virtual network and all the related resources.
 
