@@ -14,8 +14,8 @@ When you finish using the resources that you created, you can delete the resourc
 
 1. In the Azure portal, search for and select **Resource groups**.
 
-1. On the **Resource groups** page, select the **<resource-group>** resource group.
+1. On the **Resource groups** page, select the **\<resource-group\>** resource group.
 
-1. On the **<resource-group>** page, select **Delete resource group**.
+1. On the **\<resource-group\>** page, select **Delete resource group**.
 
-1. Enter **<resource-group>** in **Enter resource group name to confirm deletion**, and then select **Delete**.
+1. Enter **\<resource-group\>** in **Enter resource group name to confirm deletion**, and then select **Delete**.
