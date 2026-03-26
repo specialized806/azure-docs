@@ -12,7 +12,7 @@ ms.custom: include file
 
 ## Create a resource group
 
-Use [az group create](/cli/azure/group#az-group-create) to create a resource group to host the virtual network. Use the following code to create a resource group named **test-rg** in the **eastus2** Azure region:
+Use [az group create](/cli/azure/group#az-group-create) to create a resource group to host the virtual network. Use the following code to create a resource group named **\<resource-group\>** in the **\<region\>** Azure region:
 
 ```azurecli-interactive
 # Variable declarations
