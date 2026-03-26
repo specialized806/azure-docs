@@ -264,6 +264,8 @@ items:
           href: migrate-tomcat.md
         - name: Migrate Java with GitHub Copilot app modernization
           href: migrate-java-github-copilot-app-modernization.md
+    - name: Azure Developer CLI (azd) templates
+      href: container-apps-cli-templates.md
 - name: Observability
   items:
     - name: Overview
