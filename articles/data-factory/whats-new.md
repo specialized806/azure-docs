@@ -70,7 +70,7 @@ Check out our [What's New video archive](https://www.youtube.com/playlist?list=P
 
 ### Migration
 
-- Mounting your Azure Data Factory in Fabric is now generally available. [Learn more](tutorial-bring-azure-data-factory-to-fabric.md).
+- Mounting your Azure Data Factory in Fabric is now generally available. [Learn more](/fabric/data-factory/tutorial-bring-azure-data-factory-to-fabric).
 
 ## June 2024
 
