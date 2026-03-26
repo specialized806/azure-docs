@@ -80,4 +80,4 @@ Azure NetApp Files volume replication is supported between various [Azure region
 <br/><br/>
 
 > [!NOTE]
-> There can be a discrepancy in the size and number of snapshots between the source and the destination. This discrepancy is expected. Snapshot policies and replication schedules influence the number of snapshots. Snapshot policies and replication schedules, combined with the amount of data that changes between snapshots, influence the size of snapshots. For more information, see [How Azure NetApp Files snapshots work](../snapshots-introduction.md).
+> There can be a discrepancy in the size and number of snapshots between the source and the destination. This discrepancy is expected. Snapshot policies and replication schedules influence the number of snapshots. Snapshot policies and replication schedules, combined with the amount of data that changes between snapshots, influence the size of snapshots. For more information, see [Understand Azure NetApp Files snapshot-based data protection](../snapshots-introduction.md).
