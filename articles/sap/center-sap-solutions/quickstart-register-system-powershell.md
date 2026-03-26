@@ -40,7 +40,7 @@ Use the Azure PowerShell module to register an existing SAP system with Azure Ce
 
 - On the subscription or resource groups where you have the SAP system resources, confirm that your Azure account has **Azure Center for SAP solutions administrator** and **Managed Identity Operator** or equivalent role access.
 
-- Confirm that **User-assigned managed identity** has the following access roles: **Azure Center for SAP solutions service** role access on the compute resource group, and **Reader** role access on the virtual network resource group of the SAP system. Azure Center for SAP solutions uses this identity to discover your SAP system resources and register the system as a Virtual Instance for SAP solutions (VIS) resource.
+- Confirm that **User-assigned managed identity** has the following access roles: **Azure Center for SAP solutions service** role access on the compute resource group, and **Reader** role access on the virtual network resource group of the SAP system. Azure Center for SAP solutions uses this identity to discover your SAP system resources and register the system as a VIS resource.
 
 - Make sure that Advanced Business Application Programming SAP Central Services (ASCS), the application server, and database VMs of the SAP system are in the **Running** state.
 
