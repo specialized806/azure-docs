@@ -22,10 +22,10 @@ ms.custom: include file
     |---|---|
     | **Project details** |  |
     | Subscription | Select your subscription. |
-    | Resource group | Select **<resource-group>**. |
+    | Resource group | Select **\<resource-group\>**. |
     | **Instance details** |  |
-    | Name | Enter **<virtual-network>**. |
-    | Region | Select **<region>**. |
+    | Name | Enter **\<virtual-network\>**. |
+    | Region | Select **\<region\>**. |
 
 1. Select **Next** to proceed to the **Security** tab.
 
@@ -39,7 +39,7 @@ ms.custom: include file
     |---|---|
     | **Subnet details** |  |
     | Subnet template | Leave the default **Default**. |
-    | Name | Enter **<subnet>**. |
+    | Name | Enter **\<subnet\>**. |
     | Starting address | Leave the default of **10.0.0.0**. |
     | Subnet size | Leave the default of **/24 (256 addresses)**. |
 
