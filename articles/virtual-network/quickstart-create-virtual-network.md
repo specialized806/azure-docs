@@ -109,111 +109,13 @@ Use the following values to replace the placeholders of resources in this articl
 
 ### [CLI](#tab/cli)
 
-## Create a resource group
+[!INCLUDE [create-resource-group-cli](../networking/includes/azure-virtual-network/create-resource-group-cli.md)]
 
-Use [az group create](/cli/azure/group#az-group-create) to create a resource group to host the virtual network. Use the following code to create a resource group named **test-rg** in the **eastus2** Azure region:
+[!INCLUDE [create-virtual-network-cli](../networking/includes/azure-virtual-network/create-virtual-network-cli.md)]
 
-```azurecli-interactive
-az group create \
-    --name test-rg \
-    --location eastus2
-```
+[!INCLUDE [deploy-bastion-cli](../networking/includes/azure-virtual-network/deploy-bastion-cli.md)]
 
-## Create a virtual network and subnet
-
-Use [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create) to create a virtual network named **vnet-1** with a subnet named **subnet-1** in the **test-rg** resource group:
-
-```azurecli-interactive
-az network vnet create \
-    --name vnet-1 \
-    --resource-group test-rg \
-    --address-prefix 10.0.0.0/16 \
-    --subnet-name subnet-1 \
-    --subnet-prefixes 10.0.0.0/24
-```
-
-## Deploy Azure Bastion
-
-Azure Bastion uses your browser to connect to virtual machines in your virtual network over Secure Shell (SSH) or Remote Desktop Protocol (RDP) by using their private IP addresses. The virtual machines don't need public IP addresses, client software, or special configuration.
-
-[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)] For more information about Azure Bastion, see [What is Azure Bastion?](~/articles/bastion/bastion-overview.md).
-
-1. Use [az network vnet subnet create](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-create) to create a Bastion subnet for your virtual network. This subnet is reserved exclusively for Bastion resources and must be named **AzureBastionSubnet**.
-
-    ```azurecli-interactive
-    az network vnet subnet create \
-        --name AzureBastionSubnet \
-        --resource-group test-rg \
-        --vnet-name vnet-1 \
-        --address-prefix 10.0.1.0/26
-    ```
-
-1. Create a public IP address for Bastion. This IP address is used to connect to the Bastion host from the internet. Use [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create) to create a public IP address named **public-ip** in the **test-rg** resource group:
-
-    ```azurecli-interactive
-    az network public-ip create \
-        --resource-group test-rg \
-        --name public-ip \
-        --sku Standard \
-        --location eastus2 \
-        --zone 1 2 3
-    ```
-
-1. Use [az network bastion create](/cli/azure/network/bastion#az-network-bastion-create) to create a Bastion host in **AzureBastionSubnet** for your virtual network:
-
-    ```azurecli-interactive
-    az network bastion create \
-        --name bastion \
-        --public-ip-address public-ip \
-        --resource-group test-rg \
-        --vnet-name vnet-1 \
-        --location eastus2 \
-        --sku Basic
-    ```
-
-It takes about 10 minutes to deploy the Bastion resources. You can create virtual machines in the next section while Bastion deploys to your virtual network.
-
-## Create virtual machines
-
-### Create the first virtual machine
-
-Create a virtual machine with [az vm create](/cli/azure/vm#az-vm-create). The following example creates a virtual machine named **vm-1** in the **vnet-1** virtual network. If SSH keys don't already exist in a default key location, the command creates them. The `--no-wait` option creates the virtual machine in the background, so you can continue to the next step.
-
-```azurecli-interactive
-az vm create \
-    --resource-group test-rg \
-    --name vm-1 \
-    --image Ubuntu2204 \
-    --vnet-name vnet-1 \
-    --subnet subnet-1 \
-    --public-ip-address "" \
-    --admin-username azureuser \
-    --generate-ssh-keys \
-    --no-wait
-```
-
-### Create the second virtual machine
-
-Create a virtual machine named **vm-2** in the **vnet-1** virtual network.
-
-```azurecli-interactive
-az vm create \
-    --resource-group test-rg \
-    --name vm-2 \
-    --image Ubuntu2204 \
-    --vnet-name vnet-1 \
-    --subnet subnet-1 \
-    --public-ip-address "" \
-    --admin-username azureuser \
-    --generate-ssh-keys
-```
-
-The virtual machine takes a few minutes to create.
-
-> [!NOTE]
-> Virtual machines in a virtual network with a Bastion host don't need public IP addresses. Bastion provides the public IP, and the virtual machines use private IPs to communicate within the network. You can remove the public IPs from any virtual machines in Bastion-hosted virtual networks. For more information, see [Dissociate a public IP address from an Azure VM](ip-services/remove-public-ip-address-vm.md).
-
-[!INCLUDE [ephemeral-ip-note.md](~/reusable-content/ce-skilling/azure/includes/ephemeral-ip-note.md)]
+[!INCLUDE [create-virtual-machines-cli](../networking/includes/azure-virtual-network/create-virtual-machines-cli.md)]
 
 ### [ARM template](#tab/arm)
 
@@ -568,13 +470,7 @@ For information about troubleshooting Terraform, see [Troubleshoot common proble
 
 ### [CLI](#tab/cli)
 
-When you finish using the virtual network and the virtual machines, use [az group delete](/cli/azure/group#az-group-delete) to remove the resource group and all its resources.
-
-```azurecli-interactive
-az group delete \
-    --name test-rg \
-    --yes
-```
+[!INCLUDE [clean-up-cli](../networking/includes/azure-virtual-network/clean-up-cli.md)]
 
 ### [ARM template](#tab/arm)
 
