@@ -12,7 +12,7 @@ ms.custom: include file
 
 ## Create a virtual network
 
-1. Use [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork) to create a virtual network named **vnet-1** with IP address prefix **10.0.0.0/16** in the **test-rg** resource group and **eastus2** location:
+1. Use [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork) to create a virtual network named **\<virtual-network\>** with IP address prefix **10.0.0.0/16** in the **\<resource-group\>** resource group and **\<region\>** location:
 
     ```azurepowershell-interactive
     # Variable declarations
@@ -29,7 +29,7 @@ ms.custom: include file
     $virtualNetwork = New-AzVirtualNetwork @vnet
    ```
 
-1. Azure deploys resources to a subnet within a virtual network. Use [Add-AzVirtualNetworkSubnetConfig](/powershell/module/az.network/add-azvirtualnetworksubnetconfig) to create a subnet configuration named **subnet-1** with address prefix **10.0.0.0/24**:
+1. Azure deploys resources to a subnet within a virtual network. Use [Add-AzVirtualNetworkSubnetConfig](/powershell/module/az.network/add-azvirtualnetworksubnetconfig) to create a subnet configuration named **\<subnet\>** with address prefix **10.0.0.0/24**:
 
     ```azurepowershell-interactive
     # Variable declarations
