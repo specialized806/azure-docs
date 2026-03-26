@@ -85,7 +85,7 @@ Cost components for running on-premises servers. For TCO calculations, an annual
 |     |    | Other Management software | This is the cost of the management software for Partner management products. |
 |     | **Management cost other than software** | Monitoring cost |  Specify costs other than monitoring software. Default is USD 145 per year per server. This is multiplied with the number of servers. The default used is the cost associated with a monitoring administrator.  |
 |     |    | Patch Management cost | Specify costs other than patch management software. Default is USD 145 per year per server. This is multiplied with the number of servers. Default is the cost associated with a patch management administrator.  |
-|     |    | Backup cost | There are 2 components for backup cost. Default backup admin cost is USD 145 per server. Backup cost on-prem also includes a per GB backup cost as $0.022 per GB. Backup costs are only applied to Prod servers. |
+|     |    | Backup cost | There are 2 components for backup cost. Default backup admin cost is USD 145 per server. Backup cost on-premises also includes a per GB backup cost as $0.022 per GB. Backup costs are only applied to Prod servers. |
 
 ### TCO (steady state): Azure cost
 

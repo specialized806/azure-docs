@@ -107,7 +107,7 @@ This report contains detailed insights about the Azure costs for the application
 
 - Cost details by Azure target:
 
-    - **Infrastructure cost**: This card shows cost split of applications and workloads moving to infrastructure targets (eg. Azure Virtual Machines, AVS, SQL server on Azure VM etc.). 
+    - **Infrastructure cost**: This card shows cost split of applications and workloads moving to infrastructure targets (eg. Azure Virtual Machines, Azure VMware Solution, SQL server on Azure Virtual Machine etc.). 
     - **Database cost**: This card shows cost of application workloads moving to database targets on Azure (eg. Azure SQL DB/MI, Azure Database for MySQL).
     - **Webapps cost**: This card shows cost of application workloads moving to Webapp targets on Azure (eg. App service, AKS etc.).
 
