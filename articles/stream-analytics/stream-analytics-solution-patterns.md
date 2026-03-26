@@ -122,15 +122,6 @@ For modern lakehouse architectures, Stream Analytics can write directly to [Delt
 - Time travel capabilities for data versioning
 - Unified batch and streaming data access
 
-## Microsoft Fabric integration
-
-Stream Analytics integrates with [Microsoft Fabric](/fabric/real-time-intelligence/event-streams/add-source-azure-stream-analytics) for end-to-end analytics solutions. You can output streaming data directly to:
-
-- Fabric Eventhouse for real-time analytics with KQL
-- OneLake for unified data lake storage
-
-This pattern combines real-time stream processing with Fabric's unified analytics platform.
-
 ### Choosing the right pattern
 
 Use this table to help select the appropriate pattern for your scenario:
@@ -141,7 +132,6 @@ Use this table to help select the appropriate pattern for your scenario:
 | Complex reporting | SQL Database + Power BI | Full BI capabilities |
 | Event-driven alerts | Event Hubs + Azure Functions | Flexible integration |
 | Data lake analytics | Delta Lake output | ACID transactions |
-| Unified analytics | Microsoft Fabric | End-to-end platform |
 | Kafka workloads | Event Hubs Kafka endpoint | Protocol compatibility |
 
 ## How to monitor ASA jobs
@@ -234,6 +224,5 @@ You've learned about various solution patterns using Azure Stream Analytics. Nex
 * [Create a Stream Analytics job by using the Azure portal](stream-analytics-quick-create-portal.md)
 * [Build a no-code stream processing pipeline](no-code-stream-processing.md)
 * [Output to Delta Lake format](write-to-delta-lake.md)
-* [Integrate with Microsoft Fabric](/fabric/real-time-intelligence/event-streams/add-source-azure-stream-analytics)
 * [Use managed identities to secure your job](stream-analytics-managed-identities-overview.md)
 * [Monitor Stream Analytics jobs](stream-analytics-monitoring.md)
