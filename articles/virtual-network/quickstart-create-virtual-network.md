@@ -75,155 +75,28 @@ If you're running Azure CLI locally, use Azure CLI version 2.0.31 or later.
 
 ### [Portal](#tab/portal)
 
-## Create a resource group
+## Resource values
 
-1. Sign in to the [Azure portal](https://portal.azure.com) with your Azure account.
+Use the following values to replace the placeholders of resources in this article:
 
-1. In the search box at the top of the portal, enter **Resource group**. Select **Resource groups** in the search results.
+| Setting | Placeholder | Value |
+| ------- | ------ | ----------- |
+| Resource group | `<resource-group>` | **test-rg** |
+| Region | `<region>` | **East US 2** |
+| Virtual network | `<virtual-network>` | **vnet-1** |
+| Subnet | `<subnet>` | **subnet-1** |
+| Network security group | `<network-security-group>` | **nsg-1** |
+| Bastion | `<bastion>` | **bastion** |
+| Virtual machine 1 | `<virtual-machine-1>` | **vm-1** |
+| Virtual machine 2 | `<virtual-machine-2>` | **vm-2** |
 
-1. Select **+ Create**.
+[!INCLUDE [create-resource-group](../networking/includes/azure-virtual-network/create-resource-group.md)]
 
-1. In the **Basics** tab of **Create a resource group**, enter, or select the following information:
+[!INCLUDE [create-virtual-network](../networking/includes/azure-virtual-network/create-virtual-network.md)]
 
-    | Setting | Value |
-    | ------- | ----- |
-    | Subscription | Select your subscription. |
-    | Resource group | Enter **test-rg**. |
-    | Region | Select **East US 2**. |
+[!INCLUDE [deploy-bastion](../networking/includes/azure-virtual-network/deploy-bastion.md)]
 
-1. Select **Review + create**.
-
-1. Select **Create**.
-
-## <a name="create-a-virtual-network"></a> Create a virtual network
-
-1. In the search box at the top of the portal, enter **Virtual network**. Select **Virtual networks** in the search results.
-
-1. Select **+ Create**.
-
-1. On the **Basics** tab of **Create virtual network**, enter, or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **test-rg**. |
-    | **Instance details** |  |
-    | Name | Enter **vnet-1**. |
-    | Region | Select **East US 2**. |
-
-1. Select **Next** to proceed to the **Security** tab.
-
-1. Select **Next** to proceed to the **IP Addresses** tab.
-
-1. In the address space box in **Subnets**, select the **default** subnet.
-
-1. In **Edit subnet**, enter, or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Subnet details** |  |
-    | Subnet template | Leave the default **Default**. |
-    | Name | Enter **subnet-1**. |
-    | Starting address | Leave the default of **10.0.0.0**. |
-    | Subnet size | Leave the default of **/24 (256 addresses)**. |
-
-1. Select **Save**.
-
-1. Select **Review + create** at the bottom of the screen, and when validation passes, select **Create**.
-
-## Deploy Azure Bastion
-
-Azure Bastion uses your browser to connect to virtual machines (VMs) in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The virtual machines don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
-
->[!NOTE]
->[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
-
-1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
-
-1. Select **+ Create**.
-
-1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **test-rg**. |
-    | **Instance details** |  |
-    | Name | Enter **bastion**. |
-    | Region | Select **East US 2**. |
-    | Tier | Select **Developer**. |
-    | **Configure virtual networks** |  |
-    | Virtual network | Select **vnet-1**. |
-
-1. Select **Review + create**.
-
-1. Select **Create**.
-
-## Create virtual machines
-
-The following procedure creates two VMs named **vm-1** and **vm-2** in the virtual network:
-
-1. In the portal, search for and select **Virtual machines**.
-
-1. In **Virtual machines**, select **+ Create**, and then select **Azure virtual machine**.
-
-1. On the **Basics** tab of **Create a virtual machine**, enter or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **test-rg**. |
-    | **Instance details** |  |
-    | Virtual machine name | Enter **vm-1**. |
-    | Region | Select **East US 2**. |
-    | Availability options | Select **No infrastructure redundancy required**. |
-    | Security type | Leave the default of **Standard**. |
-    | Image | Select **Ubuntu Server 22.04 LTS - x64 Gen2**. |
-    | VM architecture | Leave the default of **x64**. |
-    | Size | Select a size. |
-    | **Administrator account** |  |
-    | Authentication type | Select **SSH public key**. |
-    | Username | Enter **azureuser**. |
-    | SSH public key source | Select **Generate new key pair**. |
-    | Key pair name | Enter **vm-1-key**. |
-    | **Inbound port rules** |  |
-    | Public inbound ports | Select **None**. |
-
-1. Select the **Networking** tab. Enter or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Network interface** |  |
-    | Virtual network | Select **vnet-1**. |
-    | Subnet | Select **subnet-1 (10.0.0.0/24)**. |
-    | Public IP | Select **None**. |
-    | NIC network security group | Select **Advanced**. |
-    | Configure network security group | Select **Create new**. </br> Enter **nsg-1** for the name. </br> Leave the rest at the defaults and select **OK**. |
-
-1. Leave the rest of the settings at the defaults and select **Review + create**.
-
-1. Review the settings and select **Create**.
-
-1. Wait for the first virtual machine to deploy then repeat the previous steps to create a second virtual machine with the following settings:
-
-    | Setting | Value |
-    |---|---|
-    | Virtual machine name | Enter **vm-2**. |
-    | SSH public key source | Select **Generate new key pair**. |
-    | Key pair name | Enter **vm-2-key**. |
-    | Virtual network | Select **vnet-1**. |
-    | Subnet | Select **subnet-1 (10.0.0.0/24)**. |
-    | Public IP | Select **None**. |
-    | NIC network security group | Select **Advanced**. |
-    | Configure network security group | Select **nsg-1**. |
-
-> [!NOTE]
-> Virtual machines in a virtual network with an Azure Bastion host don't need public IP addresses. Bastion provides the public IP, and the VMs use private IPs to communicate within the network. You can remove the public IPs from any VMs in Bastion-hosted virtual networks. For more information, see [Dissociate a public IP address from an Azure VM](ip-services/remove-public-ip-address-vm.md).
-
-[!INCLUDE [ephemeral-ip-note.md](~/reusable-content/ce-skilling/azure/includes/ephemeral-ip-note.md)]
+[!INCLUDE [create-virtual-machines](../networking/includes/azure-virtual-network/create-virtual-machines.md)]
 
 ### [PowerShell](#tab/powershell)
 
@@ -838,7 +711,7 @@ For information about troubleshooting Terraform, see [Troubleshoot common proble
 
 ### [Portal](#tab/portal)
 
-[!INCLUDE [portal-clean-up.md](~/reusable-content/ce-skilling/azure/includes/portal-clean-up.md)]
+[!INCLUDE [clean-up](../networking/includes/azure-virtual-network/clean-up.md)]
 
 ### [PowerShell](#tab/powershell)
 
