@@ -584,24 +584,11 @@ Data flow graphs support several features that aren't available in data flow `bu
 
 Use the `?? <default>` syntax on an input to provide a static fallback when a field is missing. This is simpler than writing an `if` expression to check for empty values.
 
-# [Bicep](#tab/bicep)
-
-```bicep
-{
-  inputs: [ 'temperature ?? 0' ]
-  output: 'temperature'
-}
-```
-
-# [Kubernetes (preview)](#tab/kubernetes)
-
 ```yaml
 - inputs:
     - temperature ?? 0
   output: temperature
 ```
-
----
 
 For details on supported default types and combining defaults with last known values, see [Default values](concept-dataflow-graphs-expressions.md#default-values) in the expressions reference.
 
