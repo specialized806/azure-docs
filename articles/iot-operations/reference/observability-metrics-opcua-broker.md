@@ -14,7 +14,7 @@ ms.date: 03/25/2026
 
 # Metrics for the connector for OPC UA
 
-The connector for OPC UA provides a set of observability metrics that you can use to monitor and analyze the health of your solution. This article lists the available metrics for the connector for OPC UA. The following sections group related sets of metrics, and list the name, type, and description for each metric.
+The connector for OPC UA provides a set of observability metrics that you can use to monitor and analyze the health of your solution. This article lists the available metrics for the connector for OPC UA. The following sections group related sets of metrics, and list the name, type, description, and dimensions for each metric.
 
 ## Crosscutting
 
@@ -148,7 +148,7 @@ Dimensions marked with **(1)** are only emitted when `ExperimentalConfiguration.
 | aio.opc.mcp.syncproperties.success | Counter | Number of times the sync properties tool completed successfully. | |
 | aio.opc.mcp.syncproperties.failed | Counter | Number of times the sync properties tool failed. | |
 
-## Attribute reference
+## Dimension reference
 
 ### instance
 
@@ -244,4 +244,4 @@ The type of managed service (OPC UA Commander).
 
 ## Related content
 
-[Configure observability](../configure-observability-monitoring/howto-configure-observability.md)
+- [Configure observability](../configure-observability-monitoring/howto-configure-observability.md)
