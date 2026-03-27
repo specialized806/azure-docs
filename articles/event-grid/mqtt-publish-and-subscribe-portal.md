@@ -134,7 +134,7 @@ After a successful installation of Step, open a command prompt in your user prof
     :::image type="content" source="./media/mqtt-publish-and-subscribe-portal/create-permission-binding-2.png" alt-text="Screenshot showing creation of second permission binding.":::
 1. Select **Create** to create the permission binding.
 
-## Connect clients to the EG namespace by using MQTTX app
+## Connect clients to the namespace by using MQTTX app
 
 1. To publish and subscribe to MQTT messages, use any tool you like. For demonstration purposes, this article shows how to publish and subscribe by using the MQTTX app. You can download the app from [https://mqttx.app/](https://mqttx.app/).
 1. Select **+** on the navigation bar to the left. 
