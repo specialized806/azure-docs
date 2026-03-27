@@ -86,7 +86,7 @@ Modernize your internet-first applications on Azure with cloud-native experience
 
 * Help protect your applications from malicious actors with bot manager rules based on Microsoft Threat Intelligence.
 
-* Privately connect to your back end behind Azure Front Door by using [Azure Private Link](private-link.md), and embrace a Zero Trust access model.
+* Privately connect to your origin behind Azure Front Door by using [Azure Private Link](private-link.md), and embrace a Zero Trust access model.
 
 * Provide a centralized security experience for your application via Azure Policy and Azure Advisor that provides consistent security features across apps.
 
@@ -100,7 +100,7 @@ Azure Front Door Standard, Premium, and Classic tiers are available in Microsoft
 
 ## What's the pricing?
 
-For pricing information, see [Azure Front Door pricing](https://azure.microsoft.com/pricing/details/frontdoor/). For information about service-level agreements (SLAs), See the [Microsoft SLA page for online services](https://azure.microsoft.com/support/legal/sla/frontdoor/v1_0/).
+For pricing information, see [Azure Front Door pricing](https://azure.microsoft.com/pricing/details/frontdoor/). For information about service-level agreement (SLA), see [Microsoft SLA for online services](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 
 ## What's new?
 

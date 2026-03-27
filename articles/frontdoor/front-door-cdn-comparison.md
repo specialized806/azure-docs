@@ -54,7 +54,7 @@ The following table provides a comparison between the Azure Front Door and Azure
 | Supported TLS versions | TLS 1.3, TLS 1.2 | TLS 1.3, TLS 1.2 | TLS 1.3, TLS 1.2 | TLS 1.3, TLS 1.2 |
 | **Caching** | | | | |
 | Query string caching | &check; | &check; | &check; | &check; |
-| Cache management (deletion, rules, and compression) | &check; | &check; | &check; | &check; |
+| Cache management (purge, rules, and compression) | &check; | &check; | &check; | &check; |
 | Cache behavior settings | &check; (using standard rules engine) | &check; (using standard rules engine) | &check; (using standard rules engine) | &check; (using standard rules engine) |
 | **Routing** | | | | |
 | Origin load balancing | &check; | &check; | &check; | &check; |
