@@ -146,7 +146,7 @@ You now have a storage account and file share ready for SMB OAuth authentication
 
 ### [Azure CLI](#tab/cli)
 
-To enable the **SMBOAuth** property on your storage account by using Azure CLI, first sign in to Azure:
+To enable the `SMBOAuth` property on your storage account by using Azure CLI, first sign in to Azure:
 
 ```azurecli
 az login
@@ -160,7 +160,7 @@ az account set --subscription "<subscription-ID>"
 
 ### Create the storage account
 
-To create a new storage account with **SMBOAuth** enabled, run the following command. Replace `<resource-group>`, `<storage-account-name>`, and `<region>` with your values.
+To create a new storage account with `SMBOAuth` enabled, run the following command. Replace `<resource-group>`, `<storage-account-name>`, and `<region>` with your values.
 
 ```azurecli
 az storage account create --resource-group <resource-group> --name <storage-account-name> --location <region> --sku Standard_LRS --enable-smb-oauth true
