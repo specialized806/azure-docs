@@ -5,7 +5,7 @@ author: maud-lv
 ms.author: malev
 ms.service: service-connector
 ms.topic: concept-article
-ms.date: 03/26/2026
+ms.date: 03/27/2026
 ms.custom: references_regions
 #Customer intent: As an Azure developer, I want to understand Service Connector availability concepts so I can take advantage of these features in my Service Connector connections.
 ---
@@ -89,12 +89,12 @@ The following steps create a zone-redundant service connection to an Azure Stora
 
 ### [Azure CLI](#tab/azure-cli)
 
-The following steps create a zone-redundant service connection for a PremiumV2 App Service Plan called `MyPlan` in an existing resource group called `MyResourceGroup`. This example creates a service connection to an Azure Storage blob. To create web app service connections to other target resources, see [az webapp connection create](/cli/azure/webapp/connection/create).
+The following steps create a zone-redundant service connection for a PremiumV3 App Service Plan called `MyPlan` in an existing resource group called `MyResourceGroup`. This example creates a service connection to an Azure Storage blob. To create web app service connections to other target resources, see [az webapp connection create](/cli/azure/webapp/connection/create).
 
 1. Create the App Service plan and include a `--zone-redundant` parameter. You can also optionally include the `--number-of-workers` parameter to specify capacity. For more information, see [How to deploy a zone-redundant App Service](/azure/app-service/environment/overview-zone-redundancy).
 
    ```azurecli
-   az appservice plan create --resource-group MyResourceGroup --name MyPlan --sku P1V2 --zone-redundant --number-of-workers 6
+   az appservice plan create --resource-group MyResourceGroup --name MyPlan --sku P1V3 --zone-redundant --number-of-workers 6
    ```
 
 1. Create a web app in the App Service plan. New web app names must be globally unique in Azure. In the following code, replace the `<unique_app_name>` placeholder with your globally unique web app name.
@@ -114,11 +114,11 @@ The following steps create a zone-redundant service connection for a PremiumV2 A
 
 ### [Portal](#tab/azure-portal)
 
-The following steps create a zone-redundant service connection for a PremiumV2 App Service Plan to an existing Azure Storage blob.
+The following steps create a zone-redundant service connection for a PremiumV3 App Service Plan to an existing Azure Storage blob.
 
 1. In the Azure portal, search for and select **App Services**.
 1. Select **Create** > **Web App**.
-1. Complete the **Create Web App** form, providing a globally unique web app name and selecting a Premium or Isolated pricing plan. At the bottom of the **Basics** tab, select **Enabled** under **Zone redundancy**.
+1. Complete the **Create Web App** form, providing a globally unique web app name and selecting a PremiumV3 or other Premium or Isolated pricing plan. At the bottom of the **Basics** tab, select **Enabled** under **Zone redundancy**.
 
    :::image type="content" source="media/enable-zone-redundancy.png" alt-text="Screenshot of the Azure portal, enabling zone redundancy in App Services.":::
 
