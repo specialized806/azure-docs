@@ -623,7 +623,8 @@ Gatekeeper Release: https://github.com/open-policy-agent/gatekeeper/releases/tag
 Changes: https://github.com/open-policy-agent/gatekeeper/compare/v3.20.1...v3.22.0
 
 #### 1.15.4
-Patch CVE-2025-61727. Security improvements.
+Patch CVE-2025-61727.
+Security improvements.
 - Released: Dec 2025
 - Kubernetes: 1.27+
 - Gatekeeper: 3.20.1
@@ -758,7 +759,6 @@ Security improvements.
 
 #### 1.4.0
 Enables mutation and external data by default. The additional mutating webhook and increased validating webhook timeout cap might add latency to calls in the worst case. Also introduces support for viewing policy definition and set definition version in compliance results.
-
 Security improvements.
 - Released: May 2024
 - Kubernetes: 1.25+
@@ -790,7 +790,7 @@ Security improvements.
 - Gatekeeper: 3.11.1
 
 #### 1.0.0
-Azure Policy for Kubernetes now supports mutation to remediate AKS clusters at-scale. Security improvements.
+Azure Policy for Kubernetes now supports mutation to remediate AKS clusters at-scale.
 
 ## Remove the add-on
 
