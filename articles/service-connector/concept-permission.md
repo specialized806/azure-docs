@@ -171,7 +171,7 @@ The following permissions apply to service connections for Azure database servic
 |`Microsoft.DBForPostgreSQL/servers/databases/read`|Return the list of PostgreSQL Databases or get the properties for the specified database.|
 |`Microsoft.DBforPostgreSQL/servers/write`|Create a server with the specified parameters or update the properties or tags for the specified server.|
 
-#### Azure Database for PostgreSQL - Flexible Server
+### Azure Database for PostgreSQL - Flexible Server
 
 
 | Action | Description |
