@@ -1,6 +1,66 @@
 {
   "redirections": [
     {
+      "source_path": "articles/iot-hub/horizontal-arm-route-messages.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/horizontal-arm-route-messages",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/how-to-routing-arm.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/how-to-routing-arm",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/how-to-routing-powershell.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/how-to-routing-powershell",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/how-to-routing-azure-cli.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/how-to-routing-azure-cli",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/iot-hub-how-to-order-connection-state-events.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/iot-hub-how-to-order-connection-state-events",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/iot-hub-live-data-visualization-in-power-bi.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/iot-hub-live-data-visualization-in-power-bi",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/iot-hub-live-data-visualization-in-web-apps.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/iot-hub-live-data-visualization-in-web-apps",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/iot-hub-query-avro-data.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/iot-hub-query-avro-data",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/module-twins-portal-dotnet.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/module-twins-portal-dotnet",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/quickstart-bicep-route-messages.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/quickstart-bicep-route-messages",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-hub/tutorial-device-twins.md",
+      "redirect_url": "/previous-versions/azure/iot-hub/tutorial-device-twins",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/iot/concepts-architecture.md",
       "redirect_url": "/previous-versions/azure/iot/concepts-architecture",
       "redirect_document_id": false
