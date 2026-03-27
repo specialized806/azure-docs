@@ -39,7 +39,7 @@ The following permissions apply to service connections for Azure app-related ser
 |`Microsoft.Web/sites/slots/config/Read`|Get web app slot configuration settings.|
 |`Microsoft.Web/sites/slots/config/Write`|Update web app slot configuration settings.|
 |`Microsoft.web/sites/slots/config/delete`|Delete web app slot config.|
-|`Microsoft.Web/sites/slots/config/list/Action`|Listweb app slot security sensitive settings, such as publishing credentials, app settings, and connection strings.|
+|`Microsoft.Web/sites/slots/config/list/Action`|List web app slot security sensitive settings, such as publishing credentials, app settings, and connection strings.|
 
 ### Azure App Configuration
 
@@ -306,7 +306,7 @@ Service Connector might need to grant permissions to your identity if a connecti
 |`Microsoft.Network/publicIPAddresses/read`|Get a public IP address definition.|
 |`Microsoft.Network/virtualNetworks/subnets/read`|Get a virtual network subnet definition.|
 |`Microsoft.Network/virtualNetworks/subnets/write`|Create a virtual network subnet or update an existing virtual network subnet.|
-|`Microsoft.Network/privateEndpoints/read`|Get an private endpoint resource.|
+|`Microsoft.Network/privateEndpoints/read`|Get a private endpoint resource.|
 |`Microsoft.Network/virtualNetworks/subnets/joinViaServiceEndpoint/action`|Join a resource such as a storage account or SQL database to a subnet. Not alertable.|
 |`Microsoft.Network/networkSecurityGroups/join/action`|Join a network security group. Not alertable.|
 |`Microsoft.Network/serviceEndpointPolicies/join/action`|Join a service endpoint policy. Not alertable.|
