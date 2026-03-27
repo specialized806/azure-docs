@@ -5,7 +5,7 @@ author: maud-lv
 ms.author: malev
 ms.service: service-connector
 ms.topic: concept-article
-ms.date: 03/26/2026
+ms.date: 03/27/2026
 #customer intent: As an Azure developer, I want to see required Service Connector permissions so I can use Service Connector to connect my Azure services.
 ---
 
@@ -135,7 +135,7 @@ The following permissions apply to service connections for Azure database servic
 |`Microsoft.DBforMySQL/servers/firewallRules/write`|Create a firewall rule with the specified parameters or update an existing rule.|
 |`Microsoft.DBforMySQL/servers/firewallRules/delete`|Delete an existing firewall rule.|
 |`Microsoft.DBforMySQL/servers/read`|Return the list of servers or get the properties for the specified server.|
-|`Microsoft.DBforMySQL/servers/databases/read`|Return the list of MySQL Databases or get the properties for the specified Database.|
+|`Microsoft.DBforMySQL/servers/databases/read`|Return the list of MySQL databases or get the properties for the specified database.|
 |`Microsoft.DBforMySQL/servers/write`|Create a server with the specified parameters or update the properties or tags for the specified server.|
 
 ### Azure Database for MySQL - Flexible Server
@@ -168,7 +168,7 @@ The following permissions apply to service connections for Azure database servic
 |`Microsoft.DBforPostgreSQL/servers/firewallRules/write`|Create a firewall rule with the specified parameters or update an existing rule.|
 |`Microsoft.DBforPostgreSQL/servers/firewallRules/delete`|Delete an existing firewall rule.|
 |`Microsoft.DBForPostgreSQL/servers/read`|Return the list of servers or get the properties for the specified server.|
-|`Microsoft.DBForPostgreSQL/servers/databases/read`|Return the list of PostgreSQL Databases or get the properties for the specified database.|
+|`Microsoft.DBForPostgreSQL/servers/databases/read`|Return the list of PostgreSQL databases or get the properties for the specified database.|
 |`Microsoft.DBforPostgreSQL/servers/write`|Create a server with the specified parameters or update the properties or tags for the specified server.|
 
 ### Azure Database for PostgreSQL - Flexible Server
@@ -264,7 +264,7 @@ The following permissions apply to service connections for other Azure services.
 
 | Action | Description |
 | --- | --- |
-|`Microsoft.Storage/storageAccounts/read`|Return the list of storage accounts or gets the properties for the specified storage account.|
+|`Microsoft.Storage/storageAccounts/read`|Return the list of storage accounts or get the properties for the specified storage account.|
 |`Microsoft.Storage/storageAccounts/write`|Create a storage account with the specified parameters, or update the properties or tags, or add custom domain for the specified storage account.|
 |`Microsoft.Storage/storageAccounts/listkeys/action`|Return the access keys for the specified storage account.|
 
@@ -298,7 +298,7 @@ Service Connector might need to grant permissions to a managed identity or servi
 
 ### Private endpoint or service endpoint
 
-Service Connector might need to grant permissions to your identity if a connection is created with those network solutions. The following table lists the permission requirements for creating these connections.
+Service Connector might need to grant permissions to your identity if connections are created with that network solution. The following table lists the permission requirements for creating these connections.
 
 
 | Action | Description |
@@ -323,7 +323,7 @@ Service Connector might need to grant permissions to a user-assigned managed ide
 | Action | Description |
 | --- | --- |
 |`Microsoft.ManagedIdentity/userAssignedIdentities/read`|Get an existing user-assigned identity.|
-|`Microsoft.ManagedIdentity/userAssignedIdentities/assign/action`|Role-based access control (RBAC) action for assigning an existing user-assigned identity to a resource.|
+|`Microsoft.ManagedIdentity/userAssignedIdentities/assign/action`|Use a role-based access control (RBAC) action to assign an existing user-assigned identity to a resource.|
 |`Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials/read`|Get or list federated identity credentials.|
 |`Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials/write`|Add or update a federated identity credential.|
 |`Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials/delete`|Delete a federated identity credential.|
