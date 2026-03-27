@@ -5,7 +5,7 @@ author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
 ms.date: 03/25/2026
-ms.topic: concept
+ms.topic: concept-article
 ms.service: azure-sre-agent
 ai-usage: ai-assisted
 ---
