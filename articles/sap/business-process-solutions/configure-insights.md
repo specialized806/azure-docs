@@ -84,10 +84,10 @@ Once the deployment completes, you can see the report in your workspace and in t
 
 ## Connection for Semantic Model Refreshes
 
-To refresh the semantic model, we need to set up a connection in fabric, else we won't be able to automatically refresh the reports via pipelines. To set up the connection, follow the steps:
-
 > [!NOTE]
 > Refresh the semantic model only after data is available in the gold lakehouse.
+
+To refresh the semantic model, we need to set up a connection in fabric, else we won't be able to automatically refresh the reports via pipelines. To set up the connection, follow the steps:
 
 1. Open the Semantic Model item, Click on **File**, and then select **Settings** button.
    :::image type="content" source="./media/configure-insights/model-settings.png" alt-text="Screenshot showing how to open the semantic model settings." lightbox="./media/configure-insights/model-settings.png":::
@@ -103,10 +103,10 @@ If you encounter problems with model refresh, check our [troubleshooting page](t
 
 ## Import Lakehouse Views
 
-Some Insights require additional transformations delivered through SQL views on top of the lakehouse. To deploy these views, run the provided notebook from your workspace:
-
 > [!NOTE]
 > This step is optional. Run this notebook only after data is available in the gold lakehouse.
+
+Some Insights require additional transformations delivered through SQL views on top of the lakehouse. To deploy these views, run the provided notebook from your workspace:
 
 1. Navigate to your workspace.
 2. Open the notebook **bps_gold_view_creation**.
