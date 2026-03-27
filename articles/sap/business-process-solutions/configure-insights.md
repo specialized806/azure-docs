@@ -86,6 +86,9 @@ Once the deployment completes, you can see the report in your workspace and in t
 
 To refresh the semantic model, we need to set up a connection in fabric, else we won't be able to automatically refresh the reports via pipelines. To set up the connection, follow the steps:
 
+> [!NOTE]
+> Refresh the semantic model only after data is available in the gold lakehouse.
+
 1. Open the Semantic Model item, Click on **File**, and then select **Settings** button.
    :::image type="content" source="./media/configure-insights/model-settings.png" alt-text="Screenshot showing how to open the semantic model settings." lightbox="./media/configure-insights/model-settings.png":::
 2. Open the **Gateway and cloud connections** and under cloud connections, click on Create a connection.
@@ -96,14 +99,14 @@ To refresh the semantic model, we need to set up a connection in fabric, else we
    :::image type="content" source="./media/configure-insights/associate-connection.png" alt-text="Screenshot showing how to associate a connection to the semantic model." lightbox="./media/configure-insights/associate-connection.png":::
 6. Once done, try to refresh the semantic model and check if it completes successfully.
 
-> [!NOTE]
-> Refresh the semantic model only after data is available in the gold lakehouse.
-
 If you encounter problems with model refresh, check our [troubleshooting page](troubleshooting.md).
 
 ## Import Lakehouse Views
 
 Some Insights require additional transformations delivered through SQL views on top of the lakehouse. To deploy these views, run the provided notebook from your workspace:
+
+> [!NOTE]
+> This step is optional. Run this notebook only after data is available in the gold lakehouse.
 
 1. Navigate to your workspace.
 2. Open the notebook **bps_gold_view_creation**.
@@ -111,9 +114,6 @@ Some Insights require additional transformations delivered through SQL views on 
 3. Click on the **Run All** button.
    :::image type="content" source="./media/configure-insights/run-gold-view-notebook.png" alt-text="Screenshot showing how to run the bps_gold_view_creation notebook." lightbox="./media/configure-insights/run-gold-view-notebook.png":::
 4. Once the notebook run is finished, you should see the sql views in your gold lakehouse.
-
-> [!NOTE]
-> This step is optional. Run this notebook only after data is available in the gold lakehouse.
 
 ## Summary
 
