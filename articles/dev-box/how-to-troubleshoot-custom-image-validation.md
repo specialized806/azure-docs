@@ -149,9 +149,12 @@ Common network-related causes of provisioning failures include:
 | Hyper-V generation mismatch | Some deployments might succeed depending on VM size and boot mode | Dev Box requires Generation 2 images |
 
 ## Validate your Packer configuration against a known good reference example
+
+<!-- carmada-dev/demo-images links pinned to commit ea786c6 (2025-10-22). Verify and update SHA if referencing newer repo content. -->
+
 The [carmada-dev/demo-images](https://github.com/carmada-dev/demo-images) repository provides a production-ready reference implementation for building Dev Box images with Packer. Compare your configuration against this example. For example:
 
-**Trusted Launch configuration** — [_packer/source.pkr.hcl](https://github.com/carmada-dev/demo-images/blob/main/_packer/source.pkr.hcl):
+**Trusted Launch configuration** — [_packer/source.pkr.hcl](https://github.com/carmada-dev/demo-images/blob/ea786c67b65c9c4dc32cc0c2c40fe010d2268ea4/_packer/source.pkr.hcl):
 
 ```
 source "azure-arm" "vm" {
@@ -164,7 +167,7 @@ source "azure-arm" "vm" {
 }
 ```
 
-**Image definition creation with Trusted Launch** — [build.sh](https://github.com/carmada-dev/demo-images/blob/main/build.sh#L55-L60):
+**Image definition creation with Trusted Launch** — [build.sh](https://github.com/carmada-dev/demo-images/blob/ea786c67b65c9c4dc32cc0c2c40fe010d2268ea4/build.sh#L55-L60):
 
 ```
 az sig image-definition create \
@@ -173,26 +176,26 @@ az sig image-definition create \
   --features 'IsHibernateSupported=true SecurityType=TrustedLaunch'
 ```
 
-**Sysprep execution** — [_scripts/core/Generalize-VM.ps1](https://github.com/carmada-dev/demo-images/blob/main/_scripts/core/Generalize-VM.ps1#L128-L129):
+**Sysprep execution** — [_scripts/core/Generalize-VM.ps1](https://github.com/carmada-dev/demo-images/blob/ea786c67b65c9c4dc32cc0c2c40fe010d2268ea4/_scripts/core/Generalize-VM.ps1#L128-L129):
 ```
 & $env:SystemRoot\System32\Sysprep\Sysprep.exe /generalize /oobe /mode:vm /quiet /quit
 ```
 
-**Performance optimizations** — [_scripts/core/Generalize-VM.ps1](https://github.com/carmada-dev/demo-images/blob/main/_scripts/core/Generalize-VM.ps1#L43-L65):
+**Performance optimizations** — [_scripts/core/Generalize-VM.ps1](https://github.com/carmada-dev/demo-images/blob/ea786c67b65c9c4dc32cc0c2c40fe010d2268ea4/_scripts/core/Generalize-VM.ps1#L43-L65):
 
 - Disables reserved storage (DISM /Set-ReservedStorageState /State:Disabled)
-- Runs component store cleanup (DISM /Cleanup-Image /CheckHealth)
+- Runs component store cleanup and health check (DISM /Cleanup-Image /CheckHealth)
 - Runs disk defragmentation (defrag c: /FreespaceConsolidate)
 - Runs boot optimization (defrag c: /BootOptimize)
 
-**Hibernate/Virtual Machine Platform support** — [_scripts/core/Initialize-VM.ps1](https://github.com/carmada-dev/demo-images/blob/main/_scripts/core/Initialize-VM.ps1#L152-L161):
+**Hibernate/Virtual Machine Platform support** — [_scripts/core/Initialize-VM.ps1](https://github.com/carmada-dev/demo-images/blob/ea786c67b65c9c4dc32cc0c2c40fe010d2268ea4/_scripts/core/Initialize-VM.ps1#L152-L161):
 ```
 Get-WindowsOptionalFeature -Online `
   | Where-Object { $_.FeatureName -like "*VirtualMachinePlatform*" -and $_.State -ne "Enabled" } `
   | Enable-WindowsOptionalFeature -Online -All -NoRestart
 ```
 
-**Build orchestration** — [_packer/build.pkr.hcl](https://github.com/carmada-dev/demo-images/blob/main/_packer/build.pkr.hcl) shows the complete provisioner sequence including Windows Updates, feature installation, package installation, and finalization.
+**Build orchestration** — [_packer/build.pkr.hcl](https://github.com/carmada-dev/demo-images/blob/ea786c67b65c9c4dc32cc0c2c40fe010d2268ea4/_packer/build.pkr.hcl) shows the complete provisioner sequence including Windows Updates, feature installation, package installation, and finalization.
 
 ## Troubleshooting: Known issues and solutions
 
@@ -269,7 +272,7 @@ The image is not visible to Dev Box for one or more of the following reasons:
 
 - **Image not replicated to the Dev Center's region:** The image was built and published to a region different from where the Dev Center is located. Dev Box requires the image to be available in the same region as the Dev Center (or the network connection's region for dev box pools).
 
-- **Image definition doesn't meet requirements:** The image definition is missing required metadata (Trusted Launch security type, Gen2, Generalized) and is filtered out silently rather than showing an error.
+- **Image not replicated to the network connection's region (where dev boxes are created):** The image definition is missing required metadata (Trusted Launch security type, Gen2, Generalized) and is filtered out silently rather than showing an error.
 
 **Solution:**
 
