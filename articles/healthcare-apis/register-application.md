@@ -77,8 +77,7 @@ Optionally, you can upload a certificate (public key) and use the Certificate ID
 
 ## API permissions for DICOM and FHIR services
 
-If you're using Azure Health Data Services, adding API permissions to the FHIR service is optional because the FHIR service supports both user-delegated permission and application permission. You can choose to add permissions for the FHIR service if your application scenario requires application permission, which is used when the application runs without a signed-in user. If you want to add permissions for the FHIR service, search for **Azure Healthcare APIs** under **APIs my organization** uses, and then select the required permissions.
-
+To allow the client application to access the FHIR and DICOM services, you need to add API permissions. The required permissions depend on your application scenario and the service you want to access.
 
 The following steps are required for the DICOM service.
 
@@ -101,9 +100,11 @@ The following steps are required for the DICOM service.
    :::image type="content" source="dicom/media/dicom-select-scope.png" alt-text="Screenshot of scopes (permissions) that the client application asks for on behalf of a user." lightbox="dicom/media/dicom-select-scope.png":::
 
 
+If you're using Azure Health Data Services, adding API permissions to the FHIR service is optional because the FHIR service supports both user delegated permission and application permission. If your application scenario requires application permission, which is used when the application runs without a signed-in user, search for **Azure API for FHIR** under **APIs my organization** uses, and then select the required permissions.
+
 >[!NOTE]
 >Use `grant_type` of `client_credentials` when getting an access token for the FHIR service by using tools such as REST Client. For more information, see [Accessing Azure Health Data Services using the REST Client Extension in Visual Studio Code](./fhir/using-rest-client.md).
->Use `grant_type` of `client_credentials` or `authentication_code` when getting an access token for the DICOM service. For more information, see [Using DICOM with cURL](dicom/dicomweb-standard-apis-curl.md).
+>>Use `grant_type` of `client_credentials` or `authentication_code` when getting an access token for the DICOM service. For more information, see [Using DICOM with cURL](dicom/dicomweb-standard-apis-curl.md).
 
 ## Next step
 
