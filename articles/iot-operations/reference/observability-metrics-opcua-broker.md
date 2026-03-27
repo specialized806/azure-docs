@@ -32,7 +32,7 @@ Emitted by all components: Supervisor, OPC UA Connector, and OPC UA Commander.
 | aio.opc.mqtt.client.subscription.failure.count | Counter | The number of times the MQTT client failed to subscribe to a topic. | [`aio.opc.mqtt.client.id`](#aioopcmqttclientid), [`aio.opc.mqtt.topic`](#aioopcmqtttopic), [`aio.opc.mqtt.subscribe.result`](#aioopcmqttsubscriberesult) |
 | aio.opc.mqtt.client.disconnect.count | Counter | The number of times the MQTT client disconnected. | [`aio.opc.mqtt.client.id`](#aioopcmqttclientid) |
 | aio.opc.mqtt.client.publish.attempt.when.disconnected.count | Counter | The number of times a publish attempt was made when the MQTT client was disconnected. | |
-| aio.opc.component.shutdown.count | Counter | The number of times the component has shut down. | [`aio.opc.component.shutdown.originator`](#aioopcomponentshutdownoriginator), [`aio.opc.component.shutdown.code`](#aioopcomponentshutdowncode) |
+| aio.opc.component.shutdown.count | Counter | The number of times the component is shut down. | [`aio.opc.component.shutdown.originator`](#aioopcomponentshutdownoriginator), [`aio.opc.component.shutdown.code`](#aioopcomponentshutdowncode) |
 
 ## Supervisor
 
@@ -42,7 +42,7 @@ Emitted by all components: Supervisor, OPC UA Connector, and OPC UA Commander.
 | aio.opc.endpoint.count | ObservableGauge | The number of asset endpoint profiles that are deployed. | |
 | aio.opc.asset.datapoint.count | ObservableGauge | The number of datapoints that are defined across all assets. | |
 | aio.opc.asset.event.count | ObservableGauge | The number of events that are defined across all assets. | |
-| aio.opc.connector.failover.duration | Histogram | The duration of a connector instance failover. This spans from when the connector was detected as missing until the passive connector instance confirms its activation. | [`aio.opc.connector-schema`](#aioopconnector-schema), [`aio.opc.connector-name`](#aioopconnector-name) |
+| aio.opc.connector.failover.duration | Histogram | The duration of a connector instance failover, measured from when the connector was detected as missing until the passive connector instance confirms its activation. | [`aio.opc.connector-schema`](#aioopconnector-schema), [`aio.opc.connector-name`](#aioopconnector-name) |
 | aio.opc.connector.asset.count | Histogram | Number of assets assigned per connector instance. | [`aio.opc.connector-name`](#aioopconnector-name) |
 | aio.opc.connector.endpoint.count | Histogram | Number of endpoints assigned per connector instance. | [`aio.opc.connector-name`](#aioopconnector-name) |
 | aio.opc.connector.load | Histogram | Number that indicates the load per connector instance. | [`aio.opc.connector-name`](#aioopconnector-name) |
@@ -61,13 +61,13 @@ Dimensions marked with **(1)** are only emitted when `ExperimentalConfiguration.
 | aio.opc.asset.session.connect.count | Counter | The number of asset session connect events. | [`aio.opc.session-name`](#aioopsession-name) **(1)**, [`aio.opc.endpoint`](#aioopendpoint) **(1)** |
 | aio.opc.asset.session.disconnect.count | Counter | The number of asset session disconnect events. | [`aio.opc.session-name`](#aioopsession-name) **(1)**, [`aio.opc.endpoint`](#aioopendpoint) **(1)**, [`aio.opc.error-source`](#aiooperror-source) |
 | aio.opc.session.connect.duration | Histogram | The OPC UA session connect duration. | [`aio.opc.connect.result`](#aioopconnectresult), [`aio.opc.endpoint`](#aioopendpoint) **(1)** |
-| aio.opc.data_change.processing.duration | Histogram | The processing duration of data changes received from an asset. This spans from when the event was received by the connector until we have a publish acknowledgment from the MQTT broker. | [`aio.opc.mqtt.messages.count`](#aioopcmqttmessagescount), [`aio.opc.mqtt.messages.error.any`](#aioopcmqttmessageserrorany), [`aio.opc.processing.error`](#aioopprocessingerror) |
-| aio.opc.event.processing.duration | Histogram | The processing duration of events received from an asset. This spans from when the event was received by the connector until we have a publish acknowledgment from the MQTT broker. | [`aio.opc.mqtt.messages.count`](#aioopcmqttmessagescount) |
-| aio.opc.data_change.delivery_time.duration | Histogram | The data changes delivery latency. This is the time between the OPC UA server (publishing time) and the connector. | [`aio.opc.endpoint`](#aioopendpoint) **(1)** |
-| aio.opc.event_delivery_time.duration | Histogram | The event delivery latency. This is the time between the OPC UA server (publishing time) and the connector. | [`aio.opc.endpoint`](#aioopendpoint) **(1)** |
+| aio.opc.data_change.processing.duration | Histogram | The processing duration of data changes received from an asset, measured from when the data change was received by the connector until a publish acknowledgment is received from the MQTT broker. | [`aio.opc.mqtt.messages.count`](#aioopcmqttmessagescount), [`aio.opc.mqtt.messages.error.any`](#aioopcmqttmessageserrorany), [`aio.opc.processing.error`](#aioopprocessingerror) |
+| aio.opc.event.processing.duration | Histogram | The processing duration of events received from an asset, measured from when the event was received by the connector until a publish acknowledgment is received from the MQTT broker. | [`aio.opc.mqtt.messages.count`](#aioopcmqttmessagescount) |
+| aio.opc.data_change.delivery_time.duration | Histogram | The data changes delivery latency, measured from the OPC UA server publishing time to the connector. | [`aio.opc.endpoint`](#aioopendpoint) **(1)** |
+| aio.opc.event_delivery_time.duration | Histogram | The event delivery latency, measured from the OPC UA server publishing time to the connector. | [`aio.opc.endpoint`](#aioopendpoint) **(1)** |
 | aio.opc.message.egress.size | Histogram | The number of bytes for telemetry sent by the assets. | [`aio.opc.compression`](#aioopcompression) |
 | aio.opc.method.request.count | Counter | The number of method invocations received. | [`aio.opc.method`](#aioopmethod) |
-| aio.opc.method.response.count | Counter | The number of method invocations that have been answered. | [`aio.opc.method`](#aioopmethod) |
+| aio.opc.method.response.count | Counter | The number of method invocations answered. | [`aio.opc.method`](#aioopmethod) |
 | aio.opc.mqtt.message.processing.duration | Histogram | The duration for the processing of messages received from the MQTT broker (method invocations, writes). | |
 | aio.opc.mqtt.queue.ack.size | ObservableGauge | The number of incoming MQTT messages with QoS higher than 0 which delivery acknowledgment is yet to be sent to MQTT broker. | |
 | aio.opc.mqtt.queue.notack.size | ObservableGauge | The number of incoming MQTT messages with QoS higher than 0 in the acknowledgment queue which acknowledgment period timed out due to delay in acknowledgment of previous messages. | |
