@@ -615,34 +615,38 @@ Introducing Validating Admission Policy (VAP) generation. [Validating Admission 
 Patch CVEs.
 - Released Apr 2026
 - Kubernetes 1.29+
-##### Gatekeeper 3.22.1-1
+- Gatekeeper 3.22.0
+
+##### Gatekeeper 3.22.0
+Gatekeeper Release: https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.22.0
+Changes: https://github.com/open-policy-agent/gatekeeper/compare/v3.20.1...v3.22.0
 
 #### 1.15.4
 Patch CVE-2025-61727
 - Released Dec 2025
 - Kubernetes 1.27+
-- Gatekeeper 3.20.1-2
+- Gatekeeper 3.20.1
 
 #### 1.15.3
 Patch CVE-2025-47914, CVE-2025-58181, CVE-2025-58187, CVE-2025-22872
 - Released Dec 2025
 - Kubernetes 1.27+
-- Gatekeeper 3.20.1-2
+- Gatekeeper 3.20.1
 
 #### 1.15.1
 
 - Released Nov 2025
 - Kubernetes 1.27+
-- Gatekeeper 3.20.1-2
+- Gatekeeper 3.20.1
 
 #### 1.14.2
 Patch [CVE-2025-4802](https://nvd.nist.gov/vuln/detail/cve-2025-4802).
 
 - Released Oct 2025
 - Kubernetes 1.27+
-- Gatekeeper 3.20.1-2
+- Gatekeeper 3.20.1
 
-##### Gatekeeper 3.20.1-2
+##### Gatekeeper 3.20.1
 Gatekeeper Release: https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.20.1
 Changes: https://github.com/open-policy-agent/gatekeeper/compare/v3.19.1...v3.20.1
 
@@ -662,7 +666,7 @@ Security improvements.
 - Released July 2025
 - Kubernetes 1.27+
 - Gatekeeper 3.20.0
-##### Gatekeeper 3.20.0-1
+##### Gatekeeper 3.20.0
 Gatekeeper Release: https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.20.0
 Changes: https://github.com/open-policy-agent/gatekeeper/compare/v3.19.1...v3.20.0
 
@@ -685,7 +689,7 @@ Security improvements.
 - Released May 2025
 - Kubernetes 1.27+
 - Gatekeeper 3.19.1
-##### Gatekeeper 3.19.1-1
+##### Gatekeeper 3.19.1
 Gatekeeper Release: https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.19.1
 Changes: https://github.com/open-policy-agent/gatekeeper/compare/v3.18.2...v3.19.1
 Patch [CVE-2025-22872](https://nvd.nist.gov/vuln/detail/CVE-2025-22872).
@@ -703,7 +707,7 @@ CEL is enabled by default, you can continue using Rego. New CRD configpodstatuse
 - Released February 2025
 - Kubernetes 1.27+
 - Gatekeeper 3.18.2
-##### Gatekeeper 3.18.2-1
+##### Gatekeeper 3.18.2
 Gatekeeper Release: https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.18.2
 Changes: https://github.com/open-policy-agent/gatekeeper/compare/v3.17.1...v3.18.2
 
@@ -714,7 +718,7 @@ Patch CVE-2024-45337 and CVE-2024-45338.
 - Released January 2025
 - Kubernetes 1.27+
 - Gatekeeper 3.17.1
-##### Gatekeeper 3.17.1-5
+##### Gatekeeper 3.17.1
 Patch CVE-2024-45337 and CVE-2024-45338.
 
 #### 1.8.0
