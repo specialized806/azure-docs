@@ -24,9 +24,9 @@ Emitted by all components: Supervisor, OPC UA Connector, and OPC UA Commander.
 |--------|------|-------------|------------|
 | aio.opc.heartbeat.count | Counter | The number of heartbeat signals emitted by the component instance. | [`instance`](#instance) |
 | aio.opc.instance.count | Gauge | The current number of active component instances. | [`service.name`](#servicename), [`instance`](#instance) |
-| aio.opc.mqtt.message.publishing.retry.count | Counter | The number of times publishing a MQTT message had to be retried. | [`aio.opc.mqtt.message.qos`](#aioopcmqttmessageqos) |
+| aio.opc.mqtt.message.publishing.retry.count | Counter | The number of times publishing an MQTT message had to be retried. | [`aio.opc.mqtt.message.qos`](#aioopcmqttmessageqos) |
 | aio.opc.mqtt.message.publishing.failure.count | Counter | The number of failed attempts to publish an MQTT message. | [`aio.opc.mqtt.client.id`](#aioopcmqttclientid), [`aio.opc.mqtt.publish.result`](#aioopcmqttpublishresult) |
-| aio.opc.mqtt.message.publishing.duration | Histogram | The duration of publishing a message to the MQTT broker and receiving an acknowledgement. | [`aio.opc.mqtt.message.qos`](#aioopcmqttmessageqos), [`aio.opc.mqtt.publish.result`](#aioopcmqttpublishresult) |
+| aio.opc.mqtt.message.publishing.duration | Histogram | The duration of publishing a message to the MQTT broker and receiving an acknowledgment. | [`aio.opc.mqtt.message.qos`](#aioopcmqttmessageqos), [`aio.opc.mqtt.publish.result`](#aioopcmqttpublishresult) |
 | aio.opc.mqtt.client.connect.count | Counter | The number of times the MQTT client tried to connect. | [`aio.opc.mqtt.client.purpose`](#aioopcmqttclientpurpose) |
 | aio.opc.mqtt.client.connect.failure.count | Counter | The number of times the MQTT client failed to connect. | [`aio.opc.mqtt.client.purpose`](#aioopcmqttclientpurpose) |
 | aio.opc.mqtt.client.subscription.failure.count | Counter | The number of times the MQTT client failed to subscribe to a topic. | [`aio.opc.mqtt.client.id`](#aioopcmqttclientid), [`aio.opc.mqtt.topic`](#aioopcmqtttopic), [`aio.opc.mqtt.subscribe.result`](#aioopcmqttsubscriberesult) |
@@ -69,8 +69,8 @@ Dimensions marked with **(1)** are only emitted when `ExperimentalConfiguration.
 | aio.opc.method.request.count | Counter | The number of method invocations received. | [`aio.opc.method`](#aioopmethod) |
 | aio.opc.method.response.count | Counter | The number of method invocations that have been answered. | [`aio.opc.method`](#aioopmethod) |
 | aio.opc.mqtt.message.processing.duration | Histogram | The duration for the processing of messages received from the MQTT broker (method invocations, writes). | |
-| aio.opc.mqtt.queue.ack.size | ObservableGauge | The number of incoming MQTT messages with QoS higher than 0 which delivery acknowledgement is yet to be sent to MQTT broker. | |
-| aio.opc.mqtt.queue.notack.size | ObservableGauge | The number of incoming MQTT messages with QoS higher than 0 in the acknowledgement queue which acknowledgement period timed out due to delay in acknowledgement of previous messages. | |
+| aio.opc.mqtt.queue.ack.size | ObservableGauge | The number of incoming MQTT messages with QoS higher than 0 which delivery acknowledgment is yet to be sent to MQTT broker. | |
+| aio.opc.mqtt.queue.notack.size | ObservableGauge | The number of incoming MQTT messages with QoS higher than 0 in the acknowledgment queue which acknowledgment period timed out due to delay in acknowledgment of previous messages. | |
 | aio.opc.output_queue.count | ObservableGauge | Number of asset telemetry items (data changes or events) that are queued for publish to the MQTT broker. | |
 
 ## OPC UA Commander
@@ -224,7 +224,7 @@ The number of messages the OPC UA DataChangeNotification was split into. Values 
 
 ### aio.opc.mqtt.messages.error.any
 
-Whether any messages of the OPC UA DataChangeNotification could not be published to MQTT. Values are `true` or `false`.
+Whether any messages of the OPC UA DataChangeNotification couldn't be published to MQTT. Values are `true` or `false`.
 
 ### aio.opc.processing.error
 
