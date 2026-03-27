@@ -27,8 +27,6 @@ The article covers the following tasks:
 > [!NOTE]
 > We recommend that you use an [Event Grid Trigger](../azure-functions/functions-bindings-event-grid.md) to trigger an Azure Function with Event Grid. It provides an easier and quicker integration between Event Grid and Azure Functions. However, Azure Functions' Event Grid trigger doesn't support the scenario where the hosted code needs to control the HTTP status code returned to Event Grid. Given this limitation, your code running on an Azure Function can't return a 5XX error to initiate an event delivery retry by Event Grid, for example.
 
-Content Mentor is powered by AI, so mistakes are possible. Review output carefully before use. [Learn more](https://learn.microsoft.com/help/platform/ai-responsible)
-
 ## Prerequisites
 
 - You need a function app with an HTTP triggered function.
