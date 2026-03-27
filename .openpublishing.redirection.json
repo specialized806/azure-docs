@@ -123,6 +123,10 @@
     {
       "source_path": "articles/iot/tutorial-send-telemetry-iot-hub.md",
       "redirect_url": "/previous-versions/azure/iot/tutorial-send-telemetry-iot-hub",
+    },
+    {
+      "source_path": "articles/backup/backup-azure-enhanced-soft-delete-about.md",
+      "redirect_url": "/azure/backup/secure-by-default",
       "redirect_document_id": false
     },
     {
