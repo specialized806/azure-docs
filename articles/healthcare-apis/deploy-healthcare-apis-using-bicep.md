@@ -1,11 +1,11 @@
 ---
-title: How to create Azure Health Data Services, workspaces, and FHIR and DICOM services with BICEP
-description: This document describes how to deploy Azure Health Data Services using Azure Bicep.
+title: How to deploy Azure Health Data Services services with BICEP
+description: This document describes how to deploy an Azure Health Data Services using Azure Bicep workspace with a FHIR and a DICOM service with BICEP.
 author: chachachachami
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: quickstart-bicep
-ms.date: 03/11/2026
+ms.date: 03/27/2026
 ms.author: chrupa
 ms.reviewer: v-catheribun
 ms.custom:
@@ -17,7 +17,7 @@ ms.custom:
 
 # Quickstart: Deploy Azure Health Data Service with Bicep
 
-In this quickstart, you use a Bicep file to create an Azure Health Data Services workspace with a Fast Healthcare Interoperability Resources (FHIR) service and a Digital Imaging Communications in Medicine (DICOM) service. 
+In this quickstart, use a Bicep file to create an Azure Health Data Services workspace with a Fast Healthcare Interoperability Resources (FHIR) service and a Digital Imaging Communications in Medicine (DICOM) service. 
 
 [!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]
 
@@ -29,10 +29,10 @@ An Azure subscription. If you don't have an Azure subscription, [create a free a
 
 ## Review the Bicep file
 
-The Bicep file used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/<template-name>).
+The Bicep file used in this quickstart is from [Azure Quickstart Templates](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.healthcareapis/workspaces/create-workspace-with-child-services).
 
 
-:::code language="bicep" source="~/quickstart-templates/<template-name>/main.bicep":::
+:::code language="bicep" source="~/quickstart-templates/quickstarts/microsoft.healthcareapis/workspaces/create-workspace-with-child-services/main.bicep":::
 
 The Bicep file defines three Azure resources.
 
@@ -46,7 +46,7 @@ The Bicep file defines three Azure resources.
 
 You can deploy the Bicep file by using Azure CLI or Azure PowerShell. This example uses Azure CLI in Bash.
 
-1. Save your Bicep file locally as `main.bicep`
+1. Save your Bicep file locally as `main.bicep`.
 1. Open a Bash shell and go to the directory where you saved the Bicep file.
 1. Run the following command to sign in to Azure from the CLI. Follow the prompts to complete the authentication process.
     
